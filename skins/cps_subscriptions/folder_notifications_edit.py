@@ -83,6 +83,8 @@ if REQUEST is not None:
                                                               title=role,
                                                               **{'roles':[role]})
 
+        # Dunno if I should ?
+        subscription_folder.reindexObject(idxs=['portal_type', 'getSubscriptions'])
 return REQUEST.RESPONSE.redirect("%s/%s?portal_status_message=%s" %(context.absolute_url(),
                                                                     'folder_notifications_form',
                                                                     'psm_notifications_changed'))
