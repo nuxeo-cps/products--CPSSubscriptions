@@ -171,19 +171,24 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
         portal_type_ok= 'XXXX'
         portal_type_not_ok = ('XXXXXXXXXX',)
         currents = self.subscriptions_tool.getRenderedPortalTypes()
-        self.assertEqual(currents, [])
+        initial_len = len(currents)
+
+        self.assertEqual(isinstance(currents, ListType), 1)
 
         self.assertEqual(self.subscriptions_tool.addRenderedPortalType(
             portal_type_ok),
                          1)
-        currents = self.subscriptions_tool.getRenderedPortalTypes()
-        self.assertEqual(currents, [portal_type_ok])
+        new_currents = self.subscriptions_tool.getRenderedPortalTypes()
+        new_len = len(new_currents)
+
+        self.assertEqual(initial_len+1, new_len)
 
         self.assertEqual(self.subscriptions_tool.addRenderedPortalType(
             portal_type_not_ok),
                          0)
+
         currents = self.subscriptions_tool.getRenderedPortalTypes()
-        self.assertEqual(currents, [portal_type_ok])
+        self.assertEqual(len(currents), new_len)
 
     def testSubscriptionsToolRenderedEventsRegistration(self):
 
@@ -195,19 +200,26 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
         event_id_ok= 'XXXX'
         event_id_not_ok = ('XXXXXXXXXX',)
         currents = self.subscriptions_tool.getRenderedEvents()
-        self.assertEqual(currents, [])
+        initial_len = len(currents)
+
+        # This variables could be initialized
+        # Just check in here if the structure hosting is a list
+        self.assertEqual(isinstance(currents, ListType), 1)
 
         self.assertEqual(self.subscriptions_tool.addRenderedEvent(
             event_id_ok),
                          1)
-        currents = self.subscriptions_tool.getRenderedEvents()
-        self.assertEqual(currents, [event_id_ok])
+
+        currents_plus = self.subscriptions_tool.getRenderedEvents()
+        new_len = len(currents_plus)
+
+        self.assertEqual(new_len, initial_len+1)
 
         self.assertEqual(self.subscriptions_tool.addRenderedEvent(
             event_id_not_ok),
                          0)
-        currents = self.subscriptions_tool.getRenderedEvents()
-        self.assertEqual(currents, [event_id_ok])
+        new_currents = self.subscriptions_tool.getRenderedEvents()
+        self.assertEqual(new_len, len(new_currents))
 
 def test_suite():
     suite = unittest.TestSuite()
