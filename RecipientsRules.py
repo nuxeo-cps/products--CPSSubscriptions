@@ -280,7 +280,11 @@ class ExplicitRecipientsRule(RecipientsRule):
             #
 
             if candidate_id not in current_member_ids:
-                self.members += [member_struct]
+                # It might have been changed through the ZMI
+                if isinstance(self.members, TupleType):
+                    self.members += (member_struct,)
+                else:
+                   self.members += [member_struct]
                 return 1
             else:
 
