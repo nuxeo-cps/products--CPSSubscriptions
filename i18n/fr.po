@@ -209,22 +209,22 @@ msgstr ""
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
-"You may allowed only members with given local roles to subscribe to this "
+"You may allow only members with given local roles to subscribe to this "
 "givent event. For instance, you may not want the anonymous users (public) to "
 "subscribe to the event 'reject content' within sections. For this, just pick "
 "up the local roles below for which you want to give the possiblity to the "
 "users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is opened to everybody for "
+"not specify any local roles then the event is open to everybody for "
 "subscriptions."
 msgstr ""
 "Vous avez la possibilité de restreindre l'abonnement à cet évènement à une "
 "certaine catégorie d'utilisateurs ayant certains rôles locaux. Par exemple, "
-"il est possible de ne pas authoriser les utilisateurs anonymes à s'abonner à "
+"il est possible de ne pas autoriser les utilisateurs anonymes à s'abonner à "
 "l'événement 'Rejet de publication de contenu' dans les sections. Pour cela, "
 "choisissez les roles locaux dans la liste ci-dessous et l'événement sera "
 "disponible uniquement pour les utilisateurs ayant les rôles locaux que vous "
-"allez spécifier ci-dessous. Si vous ne spécifier aucuns rôle local alors "
-"l'événement sera disponibe à tous. (Ils'agit de la configuration par défaut)"
+"allez spécifier ci-dessous. Si vous ne spécifiez aucun rôle local, alors "
+"l'événement sera disponibe à tous. (Il s'agit de la configuration par défaut.)"
 
 #.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
 #: from

@@ -185,12 +185,12 @@ msgstr ""
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
-"You may allowed only members with given local roles to subscribe to this "
+"You may allow only members with given local roles to subscribe to this "
 "givent event. For instance, you may not want the anonymous users (public) to "
 "subscribe to the event 'reject content' within sections. For this, just pick "
 "up the local roles below for which you want to give the possiblity to the "
 "users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is opened to everybody for "
+"not specify any local roles then the event is open to everybody for "
 "subscriptions."
 msgstr ""
 
