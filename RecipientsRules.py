@@ -103,17 +103,17 @@ class ComputedRecipientsRule(RecipientsRule):
         self.expression = 'string:'
         self.expression_c = Expression(self.expression)
 
-    def getExpression(self, context):
+    def getExpression(self, context, infos={}):
         """
         """
         try:
             self.expression_c = Expression(self.expression)
         except AttributeError:
             self.expression = 'string:'
-        expr_context = self._createExpressionContext(context)
+        expr_context = self._createExpressionContext(context, infos)
         return self.expression_c(expr_context)
 
-    def _createExpressionContext(self, context):
+    def _createExpressionContext(self, context, infos={}):
         """Create an expression context for expression evaluation
         """
         mapping = {
@@ -125,20 +125,22 @@ class ComputedRecipientsRule(RecipientsRule):
             'DateTime': DateTime,
             'Triggering_user': getSecurityManager().getUser(),
             'nothing': None,
+            'infos': infos,
             }
         return getEngine().getContext(mapping)
 
-    def getRecipients(self, event_type, object, infos):
+    def getRecipients(self, event_type, object, infos={}):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        return self.getExpression(object)
+        return self.getExpression(object, infos)
 
 InitializeClass(ComputedRecipientsRule)
 
-addComputedRecipientsRuleForm = DTMLFile('zmi/computed_recipients_rules_addform',
-                                         globals())
+addComputedRecipientsRuleForm = DTMLFile(
+    'zmi/computed_recipients_rules_addform',
+    globals())
 
 def addComputedRecipientsRule(self, id=None, REQUEST=None):
     """ Add a computed recipients rule
