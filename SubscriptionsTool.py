@@ -197,12 +197,13 @@ class SubscriptionsTool(UniqueObject, Folder):
             self.mapping_context_events[event_where][event_id] = event_label
         self.mapping_context_events = mapping_context_events
 
-        self.mapping_event_email_content[event_id] = [self.getDefaultMessageTitle(),
-                                                      self.getDefaultMessageBody(),
-                                                      self.getSubscribeConfirmEmailTitle(),
-                                                      self.getSubscribeConfirmEmailBody(),
-                                                      self.getSubscribeWelcomeEmailTitle(),
-                                                      self.getSubscribeWelcomeEmailBody()]
+        self.mapping_event_email_content[event_id] = [
+            self.getDefaultMessageTitle(),
+            self.getDefaultMessageBody(),
+            self.getSubscribeConfirmEmailTitle(),
+            self.getSubscribeConfirmEmailBody(),
+            self.getSubscribeWelcomeEmailTitle(),
+            self.getSubscribeWelcomeEmailBody()]
 
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_events')
@@ -274,7 +275,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         else:
             if not self.event_default_email_title:
                 # Init of the variable here.
-                self.event_default_email_title = self.getMailTemplate()['mail_subject']
+                self.event_default_email_title = self.getMailTemplate()[
+                    'mail_subject']
             return self.event_default_email_title
 
     security.declarePublic('getDefaultMessageBody')
@@ -290,7 +292,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         else:
             if not self.event_default_email_body:
                 # Init of the variable here.
-                self.event_default_email_body = self.getMailTemplate()['mail_body']
+                self.event_default_email_body = self.getMailTemplate()[
+                    'mail_body']
             return self.event_default_email_body
 
     security.declarePublic('getErrorMessageBody')
@@ -309,7 +312,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         else:
             if not self.event_error_email_body:
                 # Init of the variable here.
-                self.event_error_email_body = self.getMailTemplate()['mail_error_body']
+                self.event_error_email_body = self.getMailTemplate()[
+                    'mail_error_body']
             return self.event_error_email_body
 
     security.declarePublic('getSubscribeConfirmEmailTitle')
@@ -325,8 +329,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         #else:
         if not self.subscribe_confirm_email_title:
             # Init of the variable here.
-            self.subscribe_confirm_email_title = \
-                                               self.getMailTemplate()['subscribe_confirm_email_title']
+            self.subscribe_confirm_email_title = self.getMailTemplate()[
+                'subscribe_confirm_email_title']
         return self.subscribe_confirm_email_title
 
     security.declarePublic('getSubscribeConfirmEmailBody')
@@ -342,8 +346,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         #else:
         if not self.subscribe_confirm_email_body:
             # Init of the variable here.
-            self.subscribe_confirm_email_body = \
-                                              self.getMailTemplate()['subscribe_confirm_email_body']
+            self.subscribe_confirm_email_body = self.getMailTemplate()[
+                'subscribe_confirm_email_body']
         return self.subscribe_confirm_email_body
 
     security.declarePublic('getSubscribeWelcomeEmailTitle')
@@ -359,8 +363,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         #else:
         if not self.subscribe_welcome_email_title:
             # Init of the variable here.
-            self.subscribe_welcome_email_title = \
-                                               self.getMailTemplate()['subscribe_welcome_email_title']
+            self.subscribe_welcome_email_title = self.getMailTemplate()[
+                'subscribe_welcome_email_title']
         return self.subscribe_welcome_email_title
 
     security.declarePublic('getSubscribeWelcomeEmailBody')
@@ -376,8 +380,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         #else:
         if not self.subscribe_welcome_email_body:
             # Init of the variable here.
-            self.subscribe_welcome_email_body = \
-                                              self.getMailTemplate()['subscribe_welcome_email_body']
+            self.subscribe_welcome_email_body = self.getMailTemplate()[
+                'subscribe_welcome_email_body']
         return self.subscribe_welcome_email_body
 
     #######################################################
@@ -521,25 +525,43 @@ class SubscriptionsTool(UniqueObject, Folder):
             path = getToolByName(self, 'portal_url').getPortalPath()
 
         catalog = getToolByName(self, 'portal_catalog')
+        portal_type = 'CPS PlaceFull Subscription Container'
 
         containers = catalog.searchResults({'portal_type':
-                                            'CPS PlaceFull Subscription Container',
+                                            portal_type,
                                             'path':path,})
 
         subscriptions_list = []
         for container in containers:
             container_parent = aq_parent(aq_inner(container.getObject()))
-            recipients = self.getRecipientsFor(infos={'context':container_parent})
+            recipients = self.getRecipientsFor(
+                infos={'context':container_parent})
             if email in recipients.keys():
                 elt = {}
                 elt['title'] = container_parent.title_or_id()
                 if getattr(container_parent, 'getContent'):
-                    elt['description'] = container_parent.getContent().Description()
+                    doc = container_parent.getContent()
+                    elt['description'] = doc.Description()
                 else:
                     elt['description'] = container_parent.Description()
                 elt['path'] = container_parent.absolute_url()
                 subscriptions_list.append(elt)
 
         return subscriptions_list
+
+    security.declarePublic('isSubscriberFor')
+    def isSubscriberFor(self, event_id, context, email=''):
+        """Is a given member subscriber for a given email in the given context
+        """
+
+        if not email:
+            membership_tool = getToolByName(self, 'portal_membership')
+            if not membership_tool.isAnonymousUser():
+                member = membership_tool.getAuthenticatedMember()
+                member_id = member.getMemberId()
+                email = self.getMemberEmail(member_id)
+            else:
+                return 0
+        return email in self.getRecipientsFor(event_id, context).keys()
 
 InitializeClass(SubscriptionsTool)
