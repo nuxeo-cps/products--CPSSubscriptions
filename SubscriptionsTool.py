@@ -1149,4 +1149,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                 return area.get(context_portal_type, {})
         return {}
 
+    def all_meta_types(self):
+        """Allowed meta types
+        """
+        return ()
+
 InitializeClass(SubscriptionsTool)
