@@ -2,6 +2,7 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
 "POT-Creation-Date: 2004-03-04 10:02default\n"
-"PO-Revision-Date: 2004-03-04 11:45+0100\n"
+"PO-Revision-Date: 2004-03-04 16:49+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -205,7 +206,7 @@ msgstr "Confirm subscription for <span replace='event_id' />"
 #: from ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
 #: ../skins/cps_subscriptions/folder_notifications_form.pt
 msgid "heading_manage_local_notifications"
-msgstr "<\tLocal Notifications Management"
+msgstr "Local Notifications Management"
 
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
