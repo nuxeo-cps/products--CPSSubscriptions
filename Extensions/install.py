@@ -62,6 +62,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.setupSubscriber()
         self.setupEvents()
         self.setupTranslations()
+        self.setupCatalogSpecifics()
         self.log("End of Install/Update : CPSSubscriptions Product")
 
     def setupSubscriptionsTool(self):
@@ -221,6 +222,40 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                         context][event_id])
         else:
             raise "Hum,....portal_subscriptions disapears on the middle of the install process..."
+
+    def setupCatalogSpecifics(self):
+        """Setup specifics catalog thingies.
+
+        The point in here is being able to get where a given members/email has
+        some subscriptions
+        """
+
+        self.log("Setting some specifics on catalog")
+
+        catalog = getToolByName(self.portal, 'portal_catalog')
+        indexes = {
+            'getRecipients' : 'FieldIndex',
+            }
+        metadata = [
+            'getRecipients',
+            ]
+
+        for ix, typ in indexes.items():
+            if ix in catalog.Indexes.objectIds():
+                self.log("  %s: ok" % ix)
+            else:
+                prod = catalog.Indexes.manage_addProduct['PluginIndexes']
+                constr = getattr(prod, 'manage_add%s' % typ)
+                constr(ix)
+                self.log("  %s: added" % ix)
+        for md in metadata:
+            if md in catalog.schema():
+                self.log("  %s: ok" % md)
+            else:
+                catalog.addColumn(md)
+                self.log("  %s: added" % md)
+
+        self.log("End if setting some specifics on catalog")
 
 ###############################################
 # __call__
