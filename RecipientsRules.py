@@ -219,8 +219,13 @@ def addComputedRecipientsRule(self, id=None, REQUEST=None):
 class ExplicitRecipientsRule(RecipientsRule):
     """Explicit Recipient Rules Class
 
-    Explicit member/groups/emails information.
-    Only one explicit recipients rule object per subscription container.
+    Explicit member/groups/emails information. Only one explicit recipients
+    rule object per subscription to store anoynmous / members explict
+    subscriptions.
+
+    Anoynmous may subscribe through a 2 step process. Requesting a subscription
+    and then confirming it wheras the members can subscribe and unsubscribe
+    freely
     """
 
     meta_type = "Explicit Recipients Rule"
@@ -397,15 +402,30 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self._p_changed = 1
 
-        notification_rule = getattr(self, 'mail__notification_rule', None)
+        subtool = getToolByName(self, 'portal_subscriptions')
+        notification_rule_id = subtool.getMailNotificationRuleObjectId()
+
+        #
+        # Getting notification rule object since he's the one sending
+        # confirmation emails.
+        # If this object is not in here then it means there's a problem
+        #
+
+        notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
             LOG(" ::CPSSubscriptions:: subscribeTo()",
                 INFO,
                 "Error : No mail notification found")
             return 0
 
+        # Subscription information from the subscription container
+        subscription_allowed = getattr(self, 'subscription_allowed')
+        anonymous_allowed = getattr(self, 'anonymous_subscription_allowed')
+
         # Anonymous subscriptions
         if email:
+            if not (subscription_allowed and anonymous_allowed):
+                return 0
             if self.updatePendingEmails(email):
                 notification_rule.notifyConfirmSubscription(event_id,
                                                            self,
@@ -413,12 +433,14 @@ class ExplicitRecipientsRule(RecipientsRule):
                                                            context)
                 return 1
 
-        # Members subscriptions.
+        # Member subscriptions.
         else:
+            if not subscription_allowed:
+                return 0
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = self.getMemberEmail(member_id)
+            member_email = self.getMemberEmail(member_id) #skins
             if self.updateMembers([member_id]):
                 notification_rule.notifyWelcomeSubscription(event_id,
                                                            self,
@@ -430,22 +452,46 @@ class ExplicitRecipientsRule(RecipientsRule):
     security.declareProtected(View, 'confirmSubscribeTo')
     def confirmSubscribeTo(self, email, event_id, context):
         """Anonymous confirm the subscription
+
+        This method is in use only for anonymous since members
+        are not requested to confirm after requesting a subscription
+
+        We gonna check again if the anonymous is allowed to subscribe since
+        it could have changed since the moment he requested the subscription
         """
         self._p_changed = 1
 
-        notification_rule = getattr(self, 'mail__notification_rule', None)
+        subtool = getToolByName(self, 'portal_subscriptions')
+        notification_rule_id = subtool.getMailNotificationRuleObjectId()
+
+        #
+        # Getting notification rule object since he's the one sending
+        # confirmation emails.
+        # If this object is not in here then it means there's a problem
+        #
+
+        notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: confirmSubscribeTo()",
+            LOG(" ::CPSSubscriptions:: subscribeTo()",
                 INFO,
                 "Error : No mail notification found")
+            return 0
+
+        # Subscription information from the subscription container
+        subscription_allowed = getattr(self, 'subscription_allowed')
+        anonymous_allowed = getattr(self, 'anonymous_subscription_allowed')
+
+        # Anonymous subscriptions
+        if not (subscription_allowed and anonymous_allowed):
+            return 0
 
         if email in self.getPendingEmails():
             self.emails_subscribers.append(email)
             self.emails_pending_add.remove(email)
             notification_rule.notifyWelcomeSubscription(event_id,
-                                                       self,
-                                                       email,
-                                                       context)
+                                                        self,
+                                                        email,
+                                                        context)
             return 1
         return 0
 
@@ -458,52 +504,71 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self._p_changed = 1
 
-        notification_rule = getattr(self, 'mail__notification_rule', None)
+        subtool = getToolByName(self, 'portal_subscriptions')
+        notification_rule_id = subtool.getMailNotificationRuleObjectId()
+
+        #
+        # Getting notification rule object since he's the one sending
+        # confirmation emails.
+        # If this object is not in here then it means there's a problem
+        #
+
+        notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: unsubscribeTo()",
+            LOG(" ::CPSSubscriptions:: subscribeTo()",
                 INFO,
                 "Error : No mail notification found")
             return 0
 
-        # Anonymous subscriptions
+        # Anonymous unsubscriptions
         if email:
             if self.updatePendingDeleteEmails(email):
                 notification_rule.notifyConfirmUnSubscribe(event_id,
-                                                          self,
-                                                          email,
-                                                          context)
+                                                           self,
+                                                           email,
+                                                           context)
                 return 1
 
-        # Members subscriptions.
+        # Member unsubscriptions.
         else:
             stupid_flag = 0
+
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
+            member_email = self.getMemberEmail(member_id) #skins
 
             if member_id in self.getMembers():
                 self.members.remove(member_id)
                 stupid_flag = 1
             if stupid_flag:
                 notification_rule.notifyUnSubscribe(event_id,
-                                                   self,
-                                                   member_id,
-                                                   context)
+                                                    self,
+                                                    member_email,
+                                                    context)
                 return 1
-            else:
-                # FIXME LOGS
-                pass
         return 0
 
     security.declareProtected(View, 'confirmUnSubscribeTo')
     def confirmUnSubscribeTo(self, email, event_id, context):
         """Confirm unsubscribe to a given event subscription
+
+        Only in use for anonymous.
         """
         self._p_changed = 1
 
-        notification_rule = getattr(self, 'mail__notification_rule', None)
+        subtool = getToolByName(self, 'portal_subscriptions')
+        notification_rule_id = subtool.getMailNotificationRuleObjectId()
+
+        #
+        # Getting notification rule object since he's the one sending
+        # confirmation emails.
+        # If this object is not in here then it means there's a problem
+        #
+
+        notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: confirmUnsubscribeTo()",
+            LOG(" ::CPSSubscriptions:: subscribeTo()",
                 INFO,
                 "Error : No mail notification found")
             return 0
@@ -518,21 +583,6 @@ class ExplicitRecipientsRule(RecipientsRule):
                                                    email,
                                                    context)
                 return 1
-
-        # Members unsubscriptions.
-        # XXX to implement
-        #else:
-        #    membership_tool = getToolByName(self, 'portal_membership')
-        #    member = membership_tool.getAuthenticatedMember()
-        #    member_id = member.getMemberId()
-        #    member_email = self.getMemberEmail(member_id)
-        #    if member_id in self.getMembers():
-        #        self.members.remove(member_id)
-        #        notification_rule.notifyUnSubscribe(event_id,
-        #                                           self,
-        #                                           member_email,
-        #                                           context)
-        #        return 1
         return 0
 
     ###############################################################
