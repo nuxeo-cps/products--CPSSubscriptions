@@ -39,7 +39,7 @@ from AccessControl import ClassSecurityInfo, getSecurityManager
 
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import View
+from Products.CMFCore.permissions import View
 
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.Expression import getEngine

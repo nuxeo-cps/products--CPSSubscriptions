@@ -32,7 +32,7 @@ from Globals import InitializeClass, MessageDialog
 from Acquisition import aq_base, aq_inner, aq_parent
 from AccessControl import ClassSecurityInfo
 
-from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
+from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CPSCore.CPSBase import CPSBaseFolder
 
 from Products.CMFCore.utils import getToolByName, _checkPermission

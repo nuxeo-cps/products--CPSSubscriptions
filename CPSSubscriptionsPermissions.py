@@ -31,7 +31,7 @@ __author__ = "Julien Anguenot <ja@nuxeo.com>"
   - 'Can Notify Content' : user may notify a document by hand
 """
 
-from Products.CMFCore.CMFCorePermissions import setDefaultRoles
+from Products.CMFCore.permissions import setDefaultRoles
 
 ManageSubscriptions = 'Manage Subscriptions'
 setDefaultRoles( ManageSubscriptions, ('Manager'))

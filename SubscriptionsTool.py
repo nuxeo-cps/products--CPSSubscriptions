@@ -36,7 +36,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
-from Products.CMFCore.CMFCorePermissions import ManagePortal, View, \
+from Products.CMFCore.permissions import ManagePortal, View, \
      ModifyPortalContent
 from Products.CMFCore.utils import UniqueObject, getToolByName, \
      _checkPermission

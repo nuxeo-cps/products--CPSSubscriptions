@@ -35,7 +35,7 @@ from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
-from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
+from Products.CMFCore.permissions import View, ModifyPortalContent
 
 addComputedRecipientsRuleForm = DTMLFile(
     'zmi/notification_message_body_addform',

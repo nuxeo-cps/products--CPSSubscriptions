@@ -30,7 +30,7 @@ This component provides notifications and subscribtions for CPS3.
 
 from Products.CMFCore.utils import ContentInit, ToolInit
 from Products.CMFCore.DirectoryView import registerDirectory
-from Products.CMFCore.CMFCorePermissions import AddPortalContent,\
+from Products.CMFCore.permissions import AddPortalContent,\
      ModifyPortalContent
 
 import SubscriptionsTool

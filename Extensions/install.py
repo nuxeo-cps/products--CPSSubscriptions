@@ -31,7 +31,7 @@ from zLOG import LOG, INFO, DEBUG
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import View
+from Products.CMFCore.permissions import View
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
 from Products.CPSSubscriptions.CPSSubscriptionsPermissions import \
