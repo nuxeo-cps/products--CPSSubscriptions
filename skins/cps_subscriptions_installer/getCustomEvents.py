@@ -10,4 +10,6 @@ you'd like to be able to get notifications features.
 """
 ###################################
 
-return {}
+events = {}
+
+return events

@@ -1,14 +1,14 @@
-##parameters=
+##parameters=loadcustom=1
 #$Id$
 """ Returns the CPS Subscriptions events
 
-Use by the installer.  The dict key is the portal type of the container where
-you'd like to be able to get notifications features.
+Use by the installer. The events dictionnary key is the portal type of the
+container where you'd like to be able to get notifications features.
 
 The key is the portal_type of the containers.
 """
 
-dict = {}
+events = {}
 
 workspace = {'workflow_create' : 'label_workflow_create',
              'workflow_modify' : 'label_workflow_modify',
@@ -26,15 +26,13 @@ section = {'workflow_publish' : 'label_workflow_publish',
 
 ###################################
 
-dict['Workspace'] = workspace
-dict['Section'] = section
-dict['Portal'] = workspace   # Has to disappear soon.
+events['Workspace'] = workspace
+events['Section'] = section
+events['Portal'] = workspace   # Has to disappear soon.
 
 
-# Custom events (Projects eventually)
-custom = context.getCustomEvents()
+if loadcustom:
+    cevents = context.getCustomEvents()
+    events.update(cevents)
 
-for key in custom.keys():
-    dict[key] = custom[key]
-
-return dict
+return events
