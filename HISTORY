@@ -1,4 +1,26 @@
 *******************************************
+** CPSSubscriptions V0.16.0 [R1 build 2005/01/20-11:43 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Added a new "comments" variable available for all message and which takes its
+  value from the workflow transitions.
+Bug fixes:
+~~~~~~~~~~
+- Fix malformed URI reference for actions
+- Allowed user subscription and unsubscription by default.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- macro lib splitted
+- Better layout and accessibility for
+  subscriptions_lib_display_subscriptions_table.pt through the use of the new
+  CPSDefault listing CSS class (closes #458).
+- Better layout and wording for subscription options (closes #387).
+
+*******************************************
 ** CPSSubscriptions V0.15.1 [R1 build 2004/12/13-08:25 by madarche]
 
 Requires:

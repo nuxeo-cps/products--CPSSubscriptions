@@ -3,16 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Added a new "comments" variable available for all message and which takes its
-  value from the workflow transitions.
+-
 Bug fixes:
 ~~~~~~~~~~
-- Fix malformed URI reference for actions
-- Allowed user subscription and unsubscription by default.
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- splitting macro lib in progress
-- Better layout and accessibility for
-  subscriptions_lib_display_subscriptions_table.pt through the use of the new
-  CPSDefault listing CSS class (closes #458).
-- Better layout and wording for subscription options (closes #387).
+-
