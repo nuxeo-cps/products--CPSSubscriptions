@@ -1,16 +1,12 @@
 Requires:
 ~~~~~~~~~
-- CPSDefault > 3.24.0
+-
 New features:
 ~~~~~~~~~~~~~
 -
 Bug fixes:
 ~~~~~~~~~~
-- if anonymous unsusbcribe to an event he's not registered then portal fell
-- scheduling notification message subject was not encoded and preventing the messages to be sent. Thanks to clafoutislifestyle [at] free.fr
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- use workflow_delete coming from CPSDefault instead of the sys_del_object which is to low level. (was working while deleting from ZMI too.)
-- use a dedicated API for the subscriptions tool to display relevant local roles in a given context to a user. As well, this API permit, to handle full local roles customization. check through ZMI the portal_subscriptions tool
-- cosmetic on ZMI interface
-- Possible to access all the field values if FlexibleTypeInformation or attribute values in the case of a 'normal' zope object within the event notification messages
+-
