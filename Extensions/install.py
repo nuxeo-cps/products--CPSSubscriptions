@@ -114,7 +114,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                 self.log("Adding portal_subscribtions as subscriber")
                 portal_eventservice.manage_addSubscriber(
                     subscriber='portal_subscriptionns',
-                    action='notify',
+                    action='event',
                     meta_type='*',
                     event_type='*',
                     notification_type='synchronous')
