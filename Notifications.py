@@ -48,6 +48,8 @@ from Products.CMFCore.PortalFolder import PortalFolder
 
 from zLOG import LOG, INFO, DEBUG
 
+logKey = 'Notifications'
+
 class NotificationRule(PortalFolder):
     """Base Notification rule Class.
 
@@ -84,15 +86,16 @@ class NotificationRule(PortalFolder):
         writer.addheader('From', sender)
 
         # Subject
-        subj = infos['subject']
-        infp = cStringIO.StringIO(subj)
-        outfp = cStringIO.StringIO()
-        quopri.encode(infp, outfp, 1)
-        subject = outfp.getvalue()
+        subject = infos['subject']
+        #infp = cStringIO.StringIO(subject)
+        #outfp = cStringIO.StringIO()
+        #quopri.encode(infp, outfp, 1)
+        #subject = outfp.getvalue()
         subject = string.replace(subject, "\n", "")
-        subject = string.replace(subject, " ", "_")
+        #subject = string.replace(subject, " ", "_")
 
         # Header
+        LOG(logKey, DEBUG, "subject = %s" % subject)
         if string.find(subject, "?") == -1:
             # FIXME
             #subject = "=?iso-8859-1?Q?%s?=" % subject
@@ -113,12 +116,12 @@ class NotificationRule(PortalFolder):
 
         writer.flushheaders()
         writer._fp.write('Content-Transfer-Encoding: quoted-printable\n')
-        body_writer = writer.startbody('text/plain;',
+        body_writer = writer.startbody('text/plain; charset=iso-8859-15',
                                        [],
                                        {'Content-Transfer-Encoding':
                                         'quoted-printable'})
 
-        body = '\n'+infos['body']
+        body = '\n' + infos['body']
         body = cStringIO.StringIO(body)
         body.seek(0)
         mimetools.copyliteral(body, body_writer)
