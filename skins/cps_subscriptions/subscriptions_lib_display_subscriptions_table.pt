@@ -30,7 +30,8 @@
     <tal:block define="subtool nocall:here/portal_subscriptions;
 		       context_lcs python:subtool.getRelevantLocalRolesFromContext(here)">
       <form action="." name="form" tal:attributes="action here/absolute_url">
-	<table class="listing" id="subscriptions">
+	<table class="listing" id="subscriptions"
+          summary="A table listing the available events and their notificiations in this context">
 	<thead>
 	  <tr>
 	    <td i18n:translate="">Notification type</td>
