@@ -4,9 +4,7 @@
 <h3>Default message for events</h3>
 <p>
  This message appears in the mails sent at notification time.
- <br />
  You may customize it by filling the form below.
- <br />
  Notice, you can also customize every event type by clicking the name of the
  event above.
 </p>
@@ -195,7 +193,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
 <form action="manage_resetEventMessages" method="post">
 <p>
 Reset all messages (default and specific) to their default values
-(all your message customization will be lost)?
+(warning, all your message customization will be lost).
 </p>
 <p>
 <input class="form-element" type="submit" name="action" value="Reset" />
