@@ -22,13 +22,13 @@
 
 """ CPSSubscriptions Installer
 
-XXX : comments
-
+Installer/Updater fot the CPSSubscriptions component.
 """
 
 from zLOG import LOG, INFO, DEBUG
 
 import os, sys
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CPSDefault.Installer import BaseInstaller
@@ -40,45 +40,52 @@ SKINS = (
     )
 
 class CPSSubscriptionsInstaller(BaseInstaller):
-    """ Installer class for CPS Subscriptions module
+    """ Installer class for CPS Subscriptions component
 
-    XXX : comments
+    Intended to be use as an Installer/Updater tool.
     """
 
     product_name = 'CPSSubscriptions'
 
     def install(self):
-        """
+        """ Installs the compulsory elements.
+
         Calling feature methods.
         """
-        self.log("Setup/Intialization : CPSSubscriptions Product")
+
+        self.log("Install/Update : CPSSubscriptions Product")
         self.setupSkins(SKINS)
         self.setupSubscriptionsTool()
         self.installActions()
         self.setupSubscriber()
         self.setupTranslations()
-        self.log("End of Setup/Intialization : CPSSubscriptions Product")
+        self.log("End of Install/Update : CPSSubscriptions Product")
 
     def setupSubscriptionsTool(self):
+        """ Installs the subscriptions tool
+
+        id : portal_subscriptions
         """
-        Check the subscriptions tool install.
-        """
-        self.log("Installing CPS Subscriptions Tool")
-        if getattr(self.portal, 'portal_subscriptions', None) :
+
+        self.log("Checking CPS Subscriptions Tool")
+        if getToolByName(self.portal, 'portal_subscriptions'):
+            self.log("Deleting existing CPS Subscriptions Tool")
             self.portal.manage_delObjects(['portal_subscriptions',])
         self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
         self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
                 'Subscriptions Tool')
 
     def installActions(self):
+        """ Installs a new action permitting to manage notifications
+        within CPS.
+
+        Action category : folder
         """
-        Add new folder action
-        """
+
         action_found = 0
         for action in self.portal['portal_actions'].listActions():
             if action.id == 'folder_notifications':
                 action_found = 1
-
         if not action_found:
             self.portal['portal_actions'].addAction(
                 id='folder_notifications',
@@ -91,9 +98,9 @@ class CPSSubscriptionsInstaller(BaseInstaller):
             self.log(" Added Action folder Notifications")
 
     def setupSubscriber(self):
-        """
-        Add portal_subscriptions as subscriber within the
-        portal_eventservice
+        """ Adds portal_subscriptions as subscriber of portal_eventservice
+
+        notification method : event
         """
 
         portal_eventservice = getToolByName(self.portal,
@@ -116,22 +123,15 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         else:
             raise ('DEPENDENCY ERROR : portal_eventservice')
 
-class CMFSubscriptionsInstaller(CPSSubscriptionsInstaller):
-    pass
-
 ###############################################
 # __call__
 ###############################################
 
 def install(self):
-    """
-    XXX : comments
+    """Installation is done here.
+
+    Called by an external method for instance.
     """
     installer = CPSSubscriptionsInstaller(self)
-    installer.install()
-    return installer.logResult()
-
-def cmfinstall(self):
-    installer = CMFSubscriptionsInstaller()
     installer.install()
     return installer.logResult()
