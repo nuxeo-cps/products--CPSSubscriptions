@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
-- CPSInstaller
+- CPSInstaller >= 0.4
 New features:
 ~~~~~~~~~~~~~
 - Adding the Manager role
@@ -11,6 +11,7 @@ Bug fixes:
 - Acquisition was a problem before if a container was defined in a restricted area such as the top of tree. Members hadn't enough rights to use the subsription since they didn't have any rights on the top.
 - 'My Subscriptions' board now cope with sub trees and central subscription container.
 - to mail field wasn't well formed for some MTA
+- Indexation of subsription containers was buggy with Zope-2.6.x.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - New permissions 'Can Subscribe' for subscription container
