@@ -169,6 +169,9 @@ msgstr ""
 msgid "psm_an_email_has_been_sent"
 msgstr ""
 
+msgid "psm_subscription_updated"
+msgstr ""
+
 ### BUTTONS ########################################
 
 msgid "button_subscribe"
