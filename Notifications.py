@@ -104,29 +104,7 @@ class NotificationRule(PortalFolder):
         writer.flushheaders()
         writer._fp.write('Content-Transfer-Encoding: 8bit\n')
 
-        #
-        # Let's check if render the conten because of the portal_type
-        # or because of the event id.
-        # This is defined tool side.
-        #
-
-        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
-
-        rendered_portal_types = subscriptions_tool.getRenderedPortalTypes()
-        rendered_events = subscriptions_tool.getRenderedEvents()
-
-        if (object is not None and
-            getattr(object, 'portal_type', None) in  rendered_portal_types or
-            event_id in rendered_events):
-            try:
-                infos['body'] = object.getContent().render()
-            except AttributeError:
-                # Not a CPSDocument
-                # XXX : we might handle whatever sort of content for rendering
-                # in here. Using the main_template flag maybe.
-                pass
-
-            # text/html then
+        if infos['body'][1] == 'text/html':
             body_writer = writer.startbody('text/html; charset=iso-8859-15',
                                            [],
                                            {'Content-Transfer-Encoding':
@@ -137,7 +115,7 @@ class NotificationRule(PortalFolder):
                                            {'Content-Transfer-Encoding':
                                             '8bit'})
 
-        body = '\n' + infos['body']
+        body = '\n' + infos['body'][0]
         body = cStringIO.StringIO(body)
         body.seek(0)
         mimetools.copyliteral(body, body_writer)
@@ -207,7 +185,7 @@ class MailNotificationRule(NotificationRule):
         try:
             subject = self.portal_subscriptions.getDefaultMessageTitle(
                 event_id=infos['event']) % infos
-        except (KeyError,):
+        except (KeyError, TypeError):
             # If the user put wrong variables
             subject = "No Subject"
 
@@ -222,7 +200,7 @@ class MailNotificationRule(NotificationRule):
         try:
             body = self.portal_subscriptions.getDefaultMessageBody(
                 event_id=infos['event']) % infos
-        except (KeyError,):
+        except (KeyError, TypeError):
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
 
@@ -303,25 +281,58 @@ class MailNotificationRule(NotificationRule):
         """
 
         portal = getToolByName(self, 'portal_url').getPortalObject()
+        subscriptions_tool = getToolByName(portal, 'portal_subscriptions')
 
         infos = self._makeInfoDict(event_type, object, infos)
         mfrom = self._getMailFrom(object, infos)
         subject = self._getSubject(infos)
-        body = self._getBody(infos)
+
+        #
+        # Let's check if we render the content because of the portal_type
+        # or because of the event id.
+        # This is defined tool side.
+        #
+
+        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
+
+        rendered_portal_types = subscriptions_tool.getRenderedPortalTypes()
+        rendered_events = subscriptions_tool.getRenderedEvents()
+
+        if (object is not None and
+            getattr(object, 'portal_type', None) in  rendered_portal_types or
+            infos.get('event') in rendered_events):
+            try:
+                body = object.getContent().render()
+                mime_type = 'text/html'
+            except AttributeError:
+                # Not a CPSDocument
+                # XXX : we might handle whatever sort of content for rendering
+                # in here. Using the main_template flag maybe.
+                body = self._getBody(infos)
+                mime_type = 'text/plain'
+        else:
+            body = self._getBody(infos)
+            mime_type = 'text/plain'
 
         LOG(":: CPSSubscriptions :: MailNotificationRule :: on",
             INFO,
             infos)
 
         # Dealing with emails
+        # XXX should send all the email at the same time with bcc
         for email in emails:
             mail_infos = {}
             mail_infos['sender_name'] = portal.Title()
             mail_infos['sender_email'] = mfrom
             mail_infos['subject'] = subject
             mail_infos['to'] = email
-            mail_infos['body'] = body
+            mail_infos['body'] = (body, mime_type)
 
+            # Save the email notification body
+            subscriptions_tool.addNotificationMessageBodyObject(body)
+
+            # Send the email
+            # XXX should check what kind of registration the user choose
             self.sendMail(mail_infos, object, event_id=infos['event'])
 
         # Dealing with members
@@ -370,7 +381,7 @@ class MailNotificationRule(NotificationRule):
         mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
         mail_infos['subject'] = subject
         mail_infos['to'] = email
-        mail_infos['body'] = body
+        mail_infos['body'] = (body, 'text/plain')
 
         # Send mail then.
         self.sendMail(mail_infos)
@@ -411,7 +422,7 @@ class MailNotificationRule(NotificationRule):
         mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
         mail_infos['subject'] = infos.get('subject', 'No Subject')
         mail_infos['to'] = email
-        mail_infos['body'] = infos.get('body', '')
+        mail_infos['body'] = (infos.get('body', ''), 'text/plain')
 
         # Send mail then.
         self.sendMail(mail_infos)
@@ -455,7 +466,7 @@ class MailNotificationRule(NotificationRule):
         mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
         mail_infos['subject'] = infos.get('subject', 'No Subject')
         mail_infos['to'] = email
-        mail_infos['body'] = infos.get('body', '')
+        mail_infos['body'] = (infos.get('body', ''), 'text/plain')
 
         # Send mail then.
         self.sendMail(mail_infos)
@@ -503,7 +514,7 @@ class MailNotificationRule(NotificationRule):
         mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
         mail_infos['subject'] = infos.get('subject', 'No Subject')
         mail_infos['to'] = email
-        mail_infos['body'] = infos.get('body', '')
+        mail_infos['body'] = (infos.get('body', ''), 'text/plain')
 
         # Send mail then.
         self.sendMail(mail_infos)
