@@ -1,0 +1,28 @@
+$Id$
+
+- Core Features
+
+  o Unsubsribe Members / Anonymous
+  o Anonymous subscriptions management
+  o ComputedRecipientsRule interface + testing
+  o WorkflowImpliedRecipientsRule to implement
+ 
+- Notifications
+
+  o Better emails generation (Encoding, stuffs...)
+  o Full i18n for emails based on Mailing list language ? 
+
+- Subscriptions Tool 
+
+  o Export configuration
+  o Context -> event -> content instead of event -> content
+
+- Default 
+
+  o What events ? 
+  o Where ? 
+
+- Misc 
+
+  o Usuability
+
