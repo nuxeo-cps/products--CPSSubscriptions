@@ -80,7 +80,7 @@
 	  </table>
       <br>
       <h4 i18n:translate="header_when_where_to_notify">
-        When/where to notify ? 
+        When/where to notify ?
       </h4>
       <br>
       <tal:block define="subscription_folder python:getattr(here,
@@ -119,7 +119,7 @@
         Are subscriptions allowed and to whom ?
       </h4>
       <br>
-      <tal:block define="subscription_folder python:getattr(here,
+      <tal:block define="global subscription_folder python:getattr(here,
       here.portal_subscriptions.getSubscriptionContainerId(), 0)">
         <table border="0" align="center" width="100%">
         <tr>
@@ -150,6 +150,20 @@
         </tr>
         </table>
       </tal:block>
+      <br>
+      <h4 i18n:translate="header_mfrom_mailing_list">
+        Sender address for outgoing emails
+      </h4>
+      <tal:block define="current_mfrom subscription_folder/getMailFrom">
+        <table border="0" align="center" width="100%">
+          <tr>
+            <td align="center">
+             <input type="text" name="mfrom" value=""
+                    tal:attributes="value current_mfrom" />
+            </td>
+          </tr>
+        </table>
+      </tal:block>
       <br />
       <hr />
       <a href="."
@@ -171,54 +185,90 @@
 <metal:block define-macro="display_user_subscribe">
 <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
                    subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
-                   events python:subscriptions_tool.getEventsFromContext(context=here)">
+                   events python:subscriptions_tool.getEventsFromContext(context=here);
+                   email request/email|nothing;">
 
-<h4 i18n:translate="header_choose_the_events">
-  Events open for subscriptions
-</h4>
-<br>
-<form name="form" method="get" action="."
-      tal:attributes="action string:${here/absolute_url}/folder_subscribe">
-  <table width="100%" align="center">
-    <tr tal:repeat="event_key python:events.keys()"
-        tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
-      <td>
-        <strong>
-          <span i18n:translate="">
-            <span tal:replace="events/?event_key" />
-          </span>
-        </strong>
-      </td>
-      <td align="left">
-        <input type="checkbox"
-               tal:attributes="name string:event_ids:list;
-                               value event_key;
-                               checked python:0">
-      </td>
-    </tr>
-    </table>
-    <h4 i18n:translate="header_enter_your_email">
-        <span i18n:translate="label_enter_your_email">
-          Enter a valid email
-        </span>
-    </h4>
+  <h4 i18n:translate="header_choose_the_events">
+    Events open for subscriptions
+  </h4>
+  <br>
+  <form name="form" method="get" action="."
+        tal:attributes="action string:${here/absolute_url}/folder_subscribe">
     <table width="100%" align="center">
-    <tr>
-      <td align="left">
-        <input type="text"
-               size="30"
-               name="subscriber_email"
-               value="your_email@domain.com">
-      </td>
-      <td align="left">
-        <input type="submit" class="standAlone" name="folder_subscribe_submit"
-               value="button_submit"
-               i18n:attributes="value">
-      </td>
-    </tr>
-    </table>
-</form>
+      <tr tal:repeat="event_key python:events.keys()"
+          tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+        <td>
+          <strong>
+            <span i18n:translate="">
+              <span tal:replace="events/?event_key" />
+            </span>
+          </strong>
+        </td>
+        <td align="left">
+          <input type="checkbox"
+                 tal:condition="python:1"
+                 tal:attributes="name string:event_ids:list;
+                                 value event_key;
+                                 checked python:0">
+        </td>
+      </tr>
+      </table>
+      <tal:block condition="not:email">
+        <h4 i18n:translate="header_enter_your_email">
+            <span i18n:translate="label_enter_your_email">
+              Enter a valid email
+            </span>
+        </h4>
+        <br />
+        <table width="100%" align="center">
+        <tr>
+          <td align="left">
+            <input type="text"
+                   size="30"
+                   name="subscriber_email"
+                   value="your_email@domain.com">
+          </td>
+          <td align="left">
+            <input type="submit" class="standAlone" name="folder_subscribe_submit"
+                   value="button_ok"
+                   i18n:attributes="value">
+          </td>
+        </tr>
+        </table>
+      </tal:block>
+  </form>
 </tal:block>
+</metal:block>
+
+<!-- ###### Confirm Subscriptions -->
+
+<metal:block define-macro="user_confirm_subscribe">
+  <br />
+  <span i18n:translate="">
+    Mailing list subscription confirmation for the event
+    <span i18n:translate="event_id" />
+    in <span tal:replace="here/title_or_id" />
+    at <a href="here/absolute_url">
+         <span tal:replace="here/absolute_url" />
+       </a>
+  </span>
+  <br /><br />
+  <span i18n:translate="">
+    We have received a request for subscription with the email
+    address, <a href=""
+                tal:attributes="href string:mailto:${email}">
+                <span tal:replace="email" />
+             </a>
+  </span>
+  <br /><br />
+  <span i18n:translate="">
+   Ton confirm that you want to be added to this mailing list, click
+   <a href=""
+      tal:attributes="href
+  string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
+      here
+   </a>
+  </span>
 </metal:block>
 
 <!-- ###### Explicit/black emails for a given event -->
