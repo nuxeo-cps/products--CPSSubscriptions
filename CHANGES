@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Fix while asking the recipients while passing the context explicitly
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
