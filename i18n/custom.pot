@@ -181,3 +181,6 @@ msgstr ""
 
 msgid "mode_real_time"
 msgstr ""
+
+msgid "bc_manage_my_subscriptions"
+msgstr ""

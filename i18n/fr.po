@@ -2,6 +2,9 @@
 # translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
 # translation of fr.po to francais
 # translation of fr.po to
 # translation of fr.po to
@@ -17,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-07-19 16:05default\n"
-"PO-Revision-Date: 2004-07-19 16:19+0200\n"
+"POT-Creation-Date: 2004-09-28 18:36default\n"
+"PO-Revision-Date: 2004-09-28 18:37+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,7 +52,7 @@ msgid "<span replace=\"events/?event_key\" />"
 msgstr "FAKE"
 
 #.   <span>
-#.                   <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
+#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
@@ -490,6 +493,13 @@ msgid "label_subscription_where"
 msgstr "Où"
 
 #.   <span>
+#.                      subscriptions / unsubscriptions are closed
+#.                    </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscriptions_closed"
+msgstr "Les abonnements ne plus authorisés ici"
+
+#.   <span>
 #.                 E-Mails
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -677,4 +687,7 @@ msgstr "Hebdomadaire"
 
 msgid "mode_monthly"
 msgstr "Mensuel"
+
+msgid "bc_manage_my_subscriptions"
+msgstr "Mes abonnements"
 

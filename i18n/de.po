@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
-"POT-Creation-Date: 2004-07-19 16:05default\n"
+"POT-Creation-Date: 2004-09-28 18:36default\n"
 "PO-Revision-Date: 2004-07-12 18:19+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -31,7 +31,7 @@ msgid "<span replace=\"events/?event_key\" />"
 msgstr "FAKE"
 
 #.   <span>
-#.                   <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
+#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid ""
@@ -479,6 +479,14 @@ msgid "label_subscription_where"
 msgstr "Wo"
 
 #.   <span>
+#.                      subscriptions / unsubscriptions are closed
+#.                    </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#, fuzzy
+msgid "label_subscriptions_closed"
+msgstr "Sind Abonnements erlaubt ?"
+
+#.   <span>
 #.                 E-Mails
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -674,3 +682,7 @@ msgstr "Wöchentlich"
 
 msgid "mode_monthly"
 msgstr "Monatlich"
+
+#, fuzzy
+msgid "bc_manage_my_subscriptions"
+msgstr "Meine Abonnements"

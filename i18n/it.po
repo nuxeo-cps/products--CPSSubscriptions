@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-07-19 16:05default\n"
+"POT-Creation-Date: 2004-09-28 18:36default\n"
 "PO-Revision-Date: 2004-05-10 16:45+0100\n"
 "Last-Translator: Paolo Dina <paolo@php3.it>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -41,7 +41,7 @@ msgid "<span replace=\"events/?event_key\" />"
 msgstr "FAKE"
 
 #.   <span>
-#.                   <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
+#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid ""
@@ -670,6 +670,17 @@ msgid "label_subscription_where"
 msgstr "Dove"
 
 #    <span>
+#                  Are subscription allowed ?
+#                </span>
+#.   <span>
+#.                      subscriptions / unsubscriptions are closed
+#.                    </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#, fuzzy
+msgid "label_subscriptions_closed"
+msgstr "Le iscrizioni sono consentite ?"
+
+#    <span>
 #                E-Mails
 #              </span>
 #.   <span>
@@ -879,3 +890,10 @@ msgstr ""
 
 msgid "mode_monthly"
 msgstr ""
+
+#    <h1>
+#          My subscriptions
+#        </h1>
+#, fuzzy
+msgid "bc_manage_my_subscriptions"
+msgstr "Le mie iscrizioni"
