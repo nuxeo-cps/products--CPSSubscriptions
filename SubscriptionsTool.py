@@ -36,8 +36,10 @@ from AccessControl import ClassSecurityInfo
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
-from Products.CMFCore.CMFCorePermissions import ManagePortal, View
-from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
+from Products.CMFCore.CMFCorePermissions import ManagePortal, View, \
+     ModifyPortalContent
+from Products.CMFCore.utils import UniqueObject, getToolByName, \
+     _checkPermission
 
 from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
 from Notifications import NotificationRule
@@ -51,6 +53,7 @@ from zLOG import LOG, DEBUG, INFO
 SUBSCRIPTION_CONTAINER_ID = '.cps_subscriptions'
 EXPLICIT_RECIPIENTS_RULE_ID = 'explicit__recipients_rule'
 MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
+SUBSCRIPTION_PREFIX = 'subscription__'
 
 ##############################################################
 
@@ -131,14 +134,16 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
     manage_edit_event = DTMLFile('zmi/configureEvent', globals())
 
     security.declareProtected(ManagePortal, 'manage_local_roles_in_contexts')
-    manage_local_roles_in_contexts = DTMLFile('zmi/configureLocalRoles', globals())
+    manage_local_roles_in_contexts = DTMLFile(
+        'zmi/configureLocalRoles', globals())
 
     def manage_resetEventMessages(self, REQUEST=None):
         """Reset the email messages to their default values.
         """
         self.resetEvents()
         if REQUEST is not None:
-            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_edit_events')
+            REQUEST.RESPONSE.redirect(
+                self.absolute_url() + '/manage_edit_events')
 
     def manage_editDefaultEventMessage(self,
                                        event_error_email_body,
@@ -176,7 +181,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         self.unsubscribe_confirm_email_title = unsubscribe_confirm_email_title
 
         if REQUEST is not None:
-            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_edit_events')
+            REQUEST.RESPONSE.redirect(
+                self.absolute_url() + '/manage_edit_events')
 
     def manage_editEventMessage(self,
                                 event_id,
@@ -209,10 +215,12 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         self.mapping_event_email_content[event_id] = struct
 
         if REQUEST is not None:
-            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_edit_events')
+            REQUEST.RESPONSE.redirect(
+                self.absolute_url() + '/manage_edit_events')
 
 
-    def manage_addEventType(self, event_where, event_id, event_label, REQUEST=None):
+    def manage_addEventType(self, event_where, event_id, event_label,
+                            REQUEST=None):
         """ Adds a new event id in a given context
         """
         self._p_changed = 1
@@ -282,7 +290,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         """
 
         if area_portal_type and area_portal_type in self.getLocalRoleAreas():
-            if portal_type and portal_type in self.getLocalRoleArea(area_portal_type).keys():
+            if portal_type and portal_type in self.getLocalRoleArea(
+                area_portal_type).keys():
                 self.addLocalRoleToPortalTypeToArea(area_portal_type,
                                                     portal_type,
                                                     role_id,
@@ -337,7 +346,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         #
         # Mode  : One of the above subscription modes
         # Email : email of the recipient
-        # message_ids : list of the message ids stored in the portal_subscriptions
+        # message_ids : list of the message ids stored in the
+        # portal_subscriptions
+
         self.notification_scheduling_table = {}
 
         self.mapping_modes = {'weekly' : 'mode_weekly',
@@ -439,6 +450,14 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         Id in use for the MailNoticationRule object.
         """
         return MAIL_NOTIFICATION_RULE_ID
+
+    security.declarePublic('getSubscriptionObjectPrefix')
+    def getSubscriptionObjectPrefix(self):
+        """Return the default prefix used for subscription
+
+        <subscription__>event_id
+        """
+        return SUBSCRIPTION_PREFIX
 
     ###########################################################
     ###########################################################
@@ -629,6 +648,33 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                 return self.mapping_context_events[context_portal_type]
         return {}
 
+    security.declarePublic('getFilteredEventsFromContext')
+    def getFilteredAllowedToSubscribeEventsFromContext(self, context=None):
+        """Returns events given context filtered on roles
+        """
+        mtool = getToolByName(self, 'portal_membership')
+        auth_member = mtool.getAuthenticatedMember()
+        auth_roles = auth_member.getRolesInContext(context)
+
+        event_ids_from_context = self.getEventsFromContext(context).keys()
+        container = self.getSubscriptionContainerFromContext(context)
+
+        res = {}
+        for event_id in event_ids_from_context:
+            subscription = container.getSubscriptionById(event_id)
+            roles_allowed = subscription.getRolesAllowedToSubscribe()
+
+            ok = 0
+            # No filter in here
+            if roles_allowed == []:
+                ok = 1
+            for role_allowed in roles_allowed:
+                if role_allowed in auth_roles:
+                    ok = 1
+            if ok:
+                res[event_id] = self.getI18nFor(event_id)
+        return res
+
     security.declarePublic('getContainerPortalTypes')
     def getContainerPortalTypes(self):
         """Get all portal types in when we can set notifications
@@ -646,12 +692,27 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         """Return the i18n string for the given event_id
         """
         for key_portal_type in self.mapping_context_events.keys():
-            for key_event in self.mapping_context_events[key_portal_type].keys():
+            for key_event in self.mapping_context_events[
+                key_portal_type].keys():
                 if key_event == event_id:
-                    return self.mapping_context_events[key_portal_type][key_event]
+                    return self.mapping_context_events[
+                        key_portal_type][key_event]
 
     #########################################################
     #########################################################
+
+    security.declarePublic('addSusbcriptionContainerFromContext')
+    def addSubscriptionContainerInContext(self, context):
+        """Add a subscription container in the context
+        """
+        if context is None:
+            return None
+
+        subscription_id = self.getSubscriptionContainerId()
+        if subscription_id not in context.objectIds():
+            context.manage_addProduct[
+                'CPSSubscriptions'].addSubscriptionContainer()
+        return getattr(context, subscription_id)
 
     security.declarePublic('getSusbcriptionContainerFromContext')
     def getSubscriptionContainerFromContext(self, context):
@@ -660,7 +721,21 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         Lookup to find one through acquisition
         """
         container_id = self.getSubscriptionContainerId()
-        return getattr(context, container_id, None)
+        container = getattr(context, container_id, None)
+
+        #
+        # No subscription container by acquisition
+        # create one in the context if the current member
+        # has the ModifyPortalContent permission
+        #
+
+        mtool = getToolByName(self, 'portal_membership')
+        auth_user = mtool.getAuthenticatedMember()
+
+        if (container is None and
+            _checkPermission(ModifyPortalContent, auth_user)):
+            container = self.addSubscriptionContainerInContext(context)
+        return container
 
     security.declarePrivate("notify_event")
     def notify_event(self, event_type, object, infos):
@@ -732,9 +807,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                                                                     infos)
                     if isinstance(pt_recipients, DictType):
                         for pt_recipient in pt_recipients.keys():
-                            recipients[pt_recipient] = pt_recipients[pt_recipient]
+                            recipients[pt_recipient] = pt_recipients[
+                                pt_recipient]
                     else:
-                        LOG("::CPSSubscriptions :: ComputeRecipientsRules ERROR",
+                        LOG("::CPSSubscriptions :: "
+                            "ComputeRecipientsRules ERROR",
                             INFO,
                             "You should provide a dictionnary",
                             pt_recipient_rule.absolute_url())
@@ -838,7 +915,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                     #
 
                     if recipients_rule.meta_type == 'Explicit Recipients Rule':
-                        subscriber = recipients_rule.getMemberStructById(member_id)
+                        subscriber = recipients_rule.getMemberStructById(
+                            member_id)
                         if subscriber != -1:
                             urls = subscriber['subscription_relative_url']
                             for url in urls:
@@ -851,9 +929,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                     #
 
                     else:
-                        recipients = recipients_rule.getRecipients('', container_parent, {})
+                        recipients = recipients_rule.getRecipients(
+                            '', container_parent, {})
                         if email in recipients.keys():
-                            elt = self._makeEltDict(container_parent, subscription)
+                            elt = self._makeEltDict(container_parent,
+                                                    subscription)
                             subscriptions_list.append(elt)
         return subscriptions_list
 
@@ -918,7 +998,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
     ################################################################
 
     security.declareProtected(ManagePortal, 'addNotificationMessageBodyObject')
-    def addNotificationMessageBodyObject(self, message_body='', mime_type='text/plain'):
+    def addNotificationMessageBodyObject(self, message_body='',
+                                         mime_type='text/plain'):
         """Add a notification Message Body
         """
         id = addNotificationMessageBody(self,
@@ -933,8 +1014,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         return self.mapping_modes.values()
 
     def scheduleNotificationMessageFor(self, user_mode, email, message_id):
-        """Add within the scheduling table the message_id for a the given user within
-        the given category
+        """Add within the scheduling table the message_id for a the given user
+        within the given category
         """
 
         self._p_changed = 1
@@ -993,14 +1074,18 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         if compiled_body_html:
             infos_html = infos
             infos_html['body'] = (compiled_body_html, 'text/html')
-            subscription_mode_label = mcat('mode_'+subscription_mode).encode("ISO-8859-15", "ignore") + ' V2 '
-            infos_html['subject'] = '[%s] %s' %(portal_title, subscription_mode_label)
+            subscription_mode_label = mcat('mode_'+subscription_mode).encode(
+                "ISO-8859-15", "ignore") + ' V2 '
+            infos_html['subject'] = '[%s] %s' %(
+                portal_title, subscription_mode_label)
         else:
             infos_html = None
 
         if compiled_body_text:
-            subscription_mode_label = mcat('mode_'+subscription_mode).encode("ISO-8859-15", "ignore") + ' V1 '
-            infos['subject'] = '[%s] %s' %(portal_title, subscription_mode_label)
+            subscription_mode_label = mcat('mode_'+subscription_mode).encode(
+                "ISO-8859-15", "ignore") + ' V1 '
+            infos['subject'] = '[%s] %s' %(portal_title,
+                                           subscription_mode_label)
             infos['body'] = (compiled_body_text, 'text/plain')
         else:
             infos = None
@@ -1031,9 +1116,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                 # For the moment I have to send 2 sepate mail since
                 # the NotificationRule can't handle 2 body parts
                 if text is not None:
-                    notification_vector.sendMail(mail_infos=text, mailhost=mailhost)
+                    notification_vector.sendMail(mail_infos=text,
+                                                 mailhost=mailhost)
                 if html is not None:
-                    notification_vector.sendMail(mail_infos=html, mailhost=mailhost)
+                    notification_vector.sendMail(mail_infos=html,
+                                                 mailhost=mailhost)
 
             # Cleaning the scheduling table
             for email in table.keys():
@@ -1098,7 +1185,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         self._p_changed = 1
 
         if area and area in self.getLocalRoleAreas():
-            if portal_type and portal_type not in self.mapping_local_roles_context[area].keys():
+            if (portal_type and
+                portal_type not in
+                self.mapping_local_roles_context[area].keys()):
                 self.mapping_local_roles_context[area][portal_type] = {}
 
     security.declareProtected(ManagePortal, 'addLocalRoleToPortalTypeToArea')
@@ -1112,11 +1201,14 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         self._p_changed = 1
 
         if area and area in self.getLocalRoleAreas():
-            if portal_type and portal_type in self.getLocalRoleArea(area).keys():
-                if role_id and role_id not in self.getLocalRoleArea(area)[portal_type]:
+            if portal_type and portal_type in self.getLocalRoleArea(
+                area).keys():
+                if role_id and role_id not in self.getLocalRoleArea(area)[
+                    portal_type]:
                     if not role_label:
                         role_label = role_id
-                    self.mapping_local_roles_context[area][portal_type][role_id] = role_label
+                    self.mapping_local_roles_context[area][portal_type][
+                        role_id] = role_label
 
     ##############################################################
     ##############################################################
@@ -1128,12 +1220,14 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         for container_id in content_path:
             ob = self.restrictedTraverse(container_id)
             portal_type = getattr(ob, 'portal_type', None)
-            if portal_type is not None and portal_type in self.getLocalRoleAreas():
+            if (portal_type is not None and
+                portal_type in self.getLocalRoleAreas()):
                 return portal_type
         return None
 
     security.declareProtected(ManagePortal, 'setLocalRolesToContext')
-    def setLocalRolesToContext(self, area=None, context=None, local_roles_mapping={}):
+    def setLocalRolesToContext(self, area=None, context=None,
+                               local_roles_mapping={}):
         """Add local roles to a given context (portal_type)
 
         cf. cps_subscriptions_installer/getCPSSubscriptionsRelevantLocalRoles
