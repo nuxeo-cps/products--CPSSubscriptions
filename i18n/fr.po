@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-01-16 12:43default\n"
-"PO-Revision-Date: 2004-01-16 12:44+0100\n"
+"POT-Creation-Date: 2004-01-20 15:39default\n"
+"PO-Revision-Date: 2004-01-20 15:46+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -139,22 +139,37 @@ msgstr "Courriel"
 
 # ## LABELS #######################################
 msgid "label_creation_of_documents"
-msgstr "Création d'un document"
+msgstr "A la création d'un élément"
 
 msgid "label_modification_of_documents"
-msgstr "Modification d'un document"
+msgstr "A la modification d'un élément"
 
 msgid "label_cut_copy_paste_of_documents"
-msgstr "Copier/coller d'un document"
+msgstr "Au Copier/coller d'un élément"
+
+msgid "label_calendar_new_event"
+msgstr "A la création d'un nouvel évènement dans l'agenda"
+
+msgid "label_forum_comment_create"
+msgstr "A la création d'un commentaire"
+
+msgid "label_reply_to_personnal_post"
+msgstr "A la réponse à une contribution personelle"
+
+msgid "label_new_versions"
+msgstr "A la création d'une version d'un document"
+
+msgid "label_forum_new_message"
+msgstr "A la création d'un nouveau message de forum"
 
 msgid "label_workspace_manager"
-msgstr "Responsable de l'espace de travail"
+msgstr "Responsable"
 
 msgid "label_workspace_member"
-msgstr "Membre de l'espace de travail"
+msgstr "Membre"
 
 msgid "label_workspace_reader"
-msgstr "Lecteur de l'espace de travail"
+msgstr "Lecteur"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"

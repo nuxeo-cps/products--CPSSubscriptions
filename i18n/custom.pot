@@ -27,6 +27,21 @@ msgstr ""
 msgid "label_cut_copy_paste_of_documents"
 msgstr ""
 
+msgid "label_calendar_new_event"
+msgstr ""
+
+msgid "label_forum_comment_create"
+msgstr ""
+
+msgid "label_reply_to_personnal_post"
+msgstr ""
+
+msgid "label_new_versions"
+msgstr ""
+
+msgid "label_forum_new_message"
+msgstr ""
+ 
 msgid "label_workspace_manager"
 msgstr ""
 

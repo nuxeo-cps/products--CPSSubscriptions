@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-01-16 12:43default\n"
-"PO-Revision-Date: 2004-01-16 12:44+0100\n"
+"POT-Creation-Date: 2004-01-20 15:39default\n"
+"PO-Revision-Date: 2004-01-20 15:41+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -146,6 +146,21 @@ msgstr "Document modification"
 
 msgid "label_cut_copy_paste_of_documents"
 msgstr "Document copy/paste "
+
+msgid "label_calendar_new_event"
+msgstr "New planning event"
+
+msgid "label_forum_comment_create"
+msgstr "New forum post"
+
+msgid "label_reply_to_personnal_post"
+msgstr "New reply to personnal post"
+
+msgid "label_new_versions"
+msgstr "New document version"
+
+msgid "label_forum_new_message"
+msgstr "New forum post"
 
 msgid "label_workspace_manager"
 msgstr "Workspace Manager"
