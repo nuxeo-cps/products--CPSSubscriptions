@@ -1,23 +1,192 @@
+# translation of ro.po to 
 # ##########################################################
 # ################# DON'T EDIT THIS FILE! ##################
 # ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: default\n"
+"Project-Id-Version: ro\n"
 "POT-Creation-Date: 2005-01-14 09:04default\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Your Name <your@email>\n"
-"Language-Team: Name <email>\n"
+"PO-Revision-Date: 2005-04-05 18:18+0300\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language-code: ro\n"
 "Language-name: Romanian\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #.   <block>
 #.   		  <block replace="context_lcs/?role" />
@@ -25,7 +194,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "<block replace=\"context_lcs/?role\" />"
-msgstr ""
+msgstr "FAKE"
 
 #.   <block>
 #.   		    <span replace="events/?event_key" />
@@ -40,16 +209,15 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 #: ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "<span replace=\"events/?event_key\" />"
-msgstr ""
+msgstr "FAKE"
 
 #.   <span>
 #.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
 #.                 </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid ""
-"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
-msgstr ""
+msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgstr "FAKE"
 
 #.   <span>
 #.         Below are the subscriptions you belong to all over the portal
@@ -57,7 +225,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "Below are the subscriptions you belong to all over the portal"
-msgstr ""
+msgstr "Mai jos ai toate abonamentele din portal care iti apartin."
 
 #.   <span>
 #.       Mailing list subscription confirmation for the event
@@ -73,6 +241,9 @@ msgid ""
 "replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
 "replace=\"here/absolute_url\" /> </a>"
 msgstr ""
+"Confirmarea abonamentului la lista de distributie<span /> in <span "
+"replace=\"here/title_or_id\" /> la adresa <a href=\"here/absolute_url\"> "
+"<span replace=\"here/absolute_url\" /> </a>"
 
 #.   <span>
 #.       Mailing list unsubscription confirmation for the event
@@ -89,20 +260,22 @@ msgid ""
 "replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
 "replace=\"here/absolute_url\" /> </a>"
 msgstr ""
+"Confirmarea dezabonarii la lista de distributie <span /> in <span "
+"replace=\"here/title_or_id\" /> la adresa <a href=\"here/absolute_url\"> "
+"<span replace=\"here/absolute_url\" /> </a>"
 
 #.   <td>Notification type</td>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "Notification type"
-msgstr ""
+msgstr "Tipuri de notificari"
 
 #.   <span>
 #.          Please, follow the instruction included in the mail you will shortly receive
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr ""
+msgid "Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Te rog, urmeaza instructiunile incluse in email-ul pe care il vei primi in scurt timp"
 
 #.   <span>
 #.       Ton confirm that you want to be added to this mailing list, click
@@ -117,6 +290,9 @@ msgid ""
 "\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
 "email=${email}&event_id=${event_id}\"> here </a>"
 msgstr ""
+"Pentru a confirma ca doresti sa te abonezi la lista de distributie, "
+"apasa <a href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> aici </a>f"
 
 #.   <span>
 #.       Ton confirm that you want to be removed from this mailing list, click
@@ -132,6 +308,9 @@ msgid ""
 "href=\"\" attributes=\"href string:${here/absolute_url}/"
 "folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
 msgstr ""
+"Pentru a confirma ca doresti sa te dezabonezi din lista de distributie, "
+"apasa <a href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> aici </a>f"
 
 #.   <span>
 #.       We have received a request for subscription with the email
@@ -145,6 +324,9 @@ msgid ""
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
 msgstr ""
+"Am primit o cerere de abonare pentru adresa de email, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -159,6 +341,9 @@ msgid ""
 "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
+"Am primit o cerere de dezabonare pentru adresa de email, <a "
+"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"\" /> </a>"
 
 #.   <i>
 #.         You may allowed only members with given local roles to subscribe to this
@@ -179,24 +364,33 @@ msgid ""
 "not specify any local roles then the event is opened to everybody for "
 "subscriptions."
 msgstr ""
+"Poti permite doar membrilor cu un anumit rol local sa se aboneze "
+"la acest "
+"eveniment.  De exemplu, poate ca nu vrei ca utilizatorii cu rolul de Oaspete sa se poata abona la evenimentul 'refuza continutul' din cadrul unei sectiuni.  De aceea, "
+"alege rolurile locale dorite. Doar utilizatorii cu un rol "
+"din lista de roluri locale selectate"
+"vor putea sa se aboneze la evenimentul respectiv. "
+"Daca nu "
+"specifici nici un rol local atunci oricine se poate abona "
+"la evenimentul respectiv."
 
 #.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "button_close"
-msgstr ""
+msgstr "Inchide"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "button_import"
-msgstr ""
+msgstr "Importa"
 
 #.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
 #.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #.           </input></input>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "button_subscribe"
-msgstr ""
+msgstr "Aboneaza-te"
 
 #.   <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #.           </input>
@@ -206,7 +400,7 @@ msgstr ""
 #.             </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "button_unsubscribe"
-msgstr ""
+msgstr "Dezaboneaza-te"
 
 #.   <p>
 #.   	  You should not modify the following field unless you have specific
@@ -217,18 +411,22 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
 msgstr ""
+"Nu e nevoie sa modifici campul urmator decat daca este neaparat necesar. "
+"In cazul in care e nevoie de o modificare, trebuie sa introduci "
+"o adresa "
+"electronica valida cum ar fi, de exemplu, systeme@monsite.net"
 
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_save_changes"
-msgstr ""
+msgstr "Salveaza modificarile"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
 msgid "event_id"
-msgstr ""
+msgstr "FAKE"
 
 #.   <h2>
 #.         Available events in here
@@ -236,21 +434,21 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_available_events"
-msgstr ""
+msgstr "Evenimente disponibile in acest context"
 
 #.   <h4>
 #.         Below are events open for subscriptions.
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_choose_the_events"
-msgstr ""
+msgstr "Mai jos sunt evenimentele la care te poti abona"
 
 #.   <h4>
 #.           Below are the events you may unsubscribe
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_choose_the_events_to_sunsubscribe"
-msgstr ""
+msgstr "Mai jos sunt evenimentele de la care te poti dezabona"
 
 #.   <h2>
 #.   	  Contextual notifications
@@ -258,7 +456,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_contextual_notifications"
-msgstr ""
+msgstr "Notificari contextuale"
 
 #.   <strong>
 #.                       <span>
@@ -267,7 +465,7 @@ msgstr ""
 #.                     </strong>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_enter_your_email"
-msgstr ""
+msgstr "Introdu o adresa electronica valida"
 
 #.   <h2>
 #.   	  Sender address for outgoing emails
@@ -275,7 +473,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
-msgstr ""
+msgstr "Adresa electronica a expeditorului pentru email-urile trimise"
 
 #.   <h2>
 #.   	  Notified people
@@ -283,7 +481,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
-msgstr ""
+msgstr "Persoanele notificate"
 
 #.   <h2>
 #.   	  Save changes
@@ -291,7 +489,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_save_changes"
-msgstr ""
+msgstr "Salveaza modificarile"
 
 #.   <h2>
 #.   	  Subscribing/unsubscribing
@@ -299,14 +497,14 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_subscribing_unsubscribing"
-msgstr ""
+msgstr "Abonare/Dezabonare"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr ""
+msgstr "Mai jos sunt evenimentele la care esti abonat datorita rolurilor tale locale"
 
 #.   <h4>
 #.              You can choose below your subscription mode for your above subscriptions
@@ -314,13 +512,15 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_user_subscribption_mode"
 msgstr ""
+"Poti alege modul de abonare de mai jos pentru ansamblul de "
+"abonamente de mai sus. "
 
 #.   <h1 condition="not:email">
 #.         I Subscribe
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_I_subscribe"
-msgstr ""
+msgstr "Lista de email-uri"
 
 #.   <h1>
 #.         All Subscribers
@@ -328,28 +528,28 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/folder_notifications_all_subscribers_view.pt
 msgid "heading_all_subscribers"
-msgstr ""
+msgstr "Toate persoanele notificate"
 
 #.   <h1>
 #.           Confirm subscription for <span replace="event_id" />
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
 msgid "heading_confirm_subscribtion"
-msgstr ""
+msgstr "Confirmarea abonamentului la <span replace='event_id' />"
 
 #.   <h1>
 #.           Confirm unsubscription for <span replace="event_id" />
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
 msgid "heading_confirm_unsubscribtion"
-msgstr ""
+msgstr "Confirmarea dézabonarii la <span replace='event_id' />"
 
 #.   <span>
 #.           Edit subscription
 #.         </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid "heading_label_edit"
-msgstr ""
+msgstr "Modifica"
 
 #.   <h1>
 #.         Local Notifications Management
@@ -357,54 +557,54 @@ msgstr ""
 #: from ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
 #: ../skins/cps_subscriptions/folder_notifications_form.pt
 msgid "heading_manage_local_notifications"
-msgstr ""
+msgstr "Administreaza notificarile"
 
 #.   <h1>
 #.         My subscriptions
 #.       </h1>
 #: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr ""
+msgstr "Abonamentele mele"
 
 #.   <h1>
 #.           Search members to add to recipients list
 #.         </h1>
 #: from ../skins/cps_subscriptions/content_notify_email_form.pt
 msgid "heading_notify_content_form"
-msgstr ""
+msgstr "Cauta membrii care au drepturi asupra acestui document"
 
 #.   <h1>
 #.       Search results
 #.     </h1>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "heading_notify_members_search_results"
-msgstr ""
+msgstr "Rezultatele cautarii"
 
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_ok_subscription"
-msgstr ""
+msgstr "Abonare luata in considerare"
 
 #.   <h1 condition="email">
 #.         Unsubscription taken into consideration
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "heading_ok_unsubscription"
-msgstr ""
+msgstr "Dezabonare luata in considerare"
 
 #.   <h1>
 #.         You are now part of the mailing list.
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
-msgstr ""
+msgstr "Bun venit pe lista de email-uri"
 
 #.   <th content="field/title">id</th>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "id"
-msgstr ""
+msgstr "FAKE"
 
 #.   <span>
 #.         label_<span replace="request/event_key|nothing">
@@ -412,9 +612,8 @@ msgstr ""
 #.       </span>
 #.       </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid ""
-"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr ""
+msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgstr "FAKE"
 
 #.   <label for="anonymous_subscription_allowed">
 #.   		  Allow anonymous subscriptions
@@ -422,7 +621,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_anonymous_subscriptions"
-msgstr ""
+msgstr "Autorizeaza abonamentele pentru oaspeti"
 
 #.   <label for="subscription_allowed">
 #.   		  Allow user subscriptions
@@ -430,7 +629,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_user_subscriptions"
-msgstr ""
+msgstr "Autorizeaza abonamentele pentru utilizatori"
 
 #.   <label for="unsubscription_allowed">
 #.   		  Allow user local roles based unsubscriptions
@@ -438,7 +637,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_user_unsubscriptions"
-msgstr ""
+msgstr "Autorizeaza dezabonarea pentru utilizatori"
 
 #.   <span>
 #.                 E-Mails Black list
@@ -446,7 +645,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
 msgid "label_black_list"
-msgstr ""
+msgstr "Lista de email-uri de blocat pentru acest eveniment"
 
 #.   <span>
 #.                     Click here
@@ -454,13 +653,13 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_click_here"
-msgstr ""
+msgstr "Apasa aici"
 
 #.   <td>Configure</td>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_configure"
-msgstr ""
+msgstr "Configureaza"
 
 #.   <span>
 #.                 Explicit E-Mails
@@ -468,14 +667,14 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
 msgid "label_emails"
-msgstr ""
+msgstr "Email-uri de adaugat pentru acest eveniment"
 
 #.   <span>
 #.                         Enter a valid email
 #.                       </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_enter_your_email"
-msgstr ""
+msgstr "Introdu un email valid"
 
 #.   <span>
 #.          Please, follow the instruction included in the mail you will shortly receive
@@ -483,33 +682,33 @@ msgstr ""
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr ""
+msgstr "Te rog, urmeaza instructiunile incluse in email-ul pe care il vei primi in scurt timp"
 
 #.   <span>
 #.                   Import a list of emails from a file. (text file with one email per ligne)
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_import_emais_list"
-msgstr ""
+msgstr "Importa o lista de email-uri dintr-un fisier. (fisier text cu un email pe fiecare linie)"
 
 #.   <span>
 #.            Mail body
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_mail_body"
-msgstr ""
+msgstr "Corpul mesajului"
 
 #.   <span>
 #.            Mail Subject
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_mail_subject"
-msgstr ""
+msgstr "Subiectul mesajului"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_no_results"
-msgstr ""
+msgstr "Nici un membru nu corespunde cautarii"
 
 #.   <div>
 #.             No event opened for subscsriptions in here.
@@ -519,7 +718,7 @@ msgstr ""
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
-msgstr ""
+msgstr "Momentan nu ai nici un abonament in acest context sau pentru acest obiect."
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -527,6 +726,8 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions_based_on_local_roles"
 msgstr ""
+"Momentan nu ai nici un abonament in acest context sau pentru acest obiect "
+"care sa se bazeze pe rolurile tale locale"
 
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
 #.   		    Edit
@@ -534,7 +735,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notification_edit"
-msgstr ""
+msgstr "Modifica"
 
 #.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
 #.   		    Choose
@@ -542,14 +743,14 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
-msgstr ""
+msgstr "Alege"
 
 #.   <span>
 #.            Add explicitly recipients emails (one email per ligne)
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
-msgstr ""
+msgstr "Adauga destinatarii email-urilor (un email pe fiecare linie) "
 
 #.   <label for="notify_local_only">
 #.                     Only notify people having local roles in this folder
@@ -557,7 +758,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_local_roles"
-msgstr ""
+msgstr "Notifica doar persoanele care au roluri locale in acest director"
 
 #.   <label for="notify_no_local">
 #.                     Only notify for events happening in sub-folders
@@ -566,19 +767,21 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
 msgstr ""
+"Notifica doar pentru evenimentele care se produc in acest "
+"sub-director"
 
 #.   <td>Others</td>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_other"
-msgstr ""
+msgstr "Altii"
 
 #.   <span>
 #.                   Current local roles
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_roles_allowed_to_subscribe"
-msgstr ""
+msgstr "Rolurile locale permit persoanelor sa se aboneze la acest eveniment."
 
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
 #.   	    See all subscribers
@@ -586,13 +789,13 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
-msgstr ""
+msgstr "Vizualizeaza toate persoanele notificate pentru toate evenimentele."
 
 #.   <label for="senderEmailAddress">Email address of sender:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_sender_email_address"
-msgstr ""
+msgstr "Adresa electronica a expeditorului"
 
 #.   <span>
 #.                 Full Name
@@ -600,7 +803,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "label_subcriptions_fullname"
-msgstr ""
+msgstr "Nume complet"
 
 #.   <span>
 #.                   Description
@@ -608,7 +811,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscription_description"
-msgstr ""
+msgstr "Descriere"
 
 #.   <span>
 #.                   Infos / Unsubscribe
@@ -616,14 +819,14 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscription_manage"
-msgstr ""
+msgstr "Administreaza"
 
 #.   <span>
 #.                 Subscription modes
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_subscription_modes"
-msgstr ""
+msgstr "Tipuri de abonament"
 
 #.   <span>
 #.                   Where
@@ -631,7 +834,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscription_where"
-msgstr ""
+msgstr "Unde"
 
 #.   <span>
 #.                      subscriptions / unsubscriptions are closed
@@ -639,7 +842,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_closed"
-msgstr ""
+msgstr "Abonamentele nu mai sunt autorizate aici"
 
 #.   <span>
 #.                 E-Mails
@@ -647,7 +850,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "label_subscriptions_email"
-msgstr ""
+msgstr "Emails"
 
 #.   <span>
 #.           You currently do not belong to any subscriptions.
@@ -655,184 +858,188 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_no_subscription_yet"
-msgstr ""
+msgstr "Nu ai nici un abonament in portal"
 
 #.   <span>
 #.         You are now a subscriber.
 #.       </span>
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_you_are_no_registred"
-msgstr ""
+msgstr "Acum este abonat."
 
 #.   <span>
 #.                   Real time
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "mode_real_time"
-msgstr ""
+msgstr "Timp real"
 
 # ## LABELS #######################################
 msgid "label_workspace_manager"
-msgstr ""
+msgstr "Responsabil pentru spatiul de lucru"
 
 msgid "label_workspace_member"
-msgstr ""
+msgstr "Membru in spatiul de lucru"
 
 msgid "label_workspace_reader"
-msgstr ""
+msgstr "Cititor in spatiul de lucru"
 
 msgid "label_section_manager"
-msgstr ""
+msgstr "Responsabil de sectiune"
 
 msgid "label_section_reviewer"
-msgstr ""
+msgstr "Validator al sectiunii"
 
 msgid "label_section_reader"
-msgstr ""
+msgstr "Cititor de sectiune"
 
 msgid "label_owner"
-msgstr ""
+msgstr "Creator"
 
 msgid "label_manager"
-msgstr ""
+msgstr "Responsabil"
 
 msgid "label_forum_poster"
-msgstr ""
+msgstr "Persoana care posteaza pe forum"
 
 msgid "label_forum_moderator"
-msgstr ""
+msgstr "Moderatorul forumului"
 
 msgid "label_workflow_create"
-msgstr ""
+msgstr "Crearea continutului"
 
 msgid "label_workflow_modify"
-msgstr ""
+msgstr "Modificarea continutului"
 
 msgid "label_workflow_cut_copy_paste"
-msgstr ""
+msgstr "Copiaza/Taie continutul"
 
 msgid "label_workflow_publish"
-msgstr ""
+msgstr "Publicarea continutului"
 
 msgid "label_workflow_accept"
-msgstr ""
+msgstr "Acceptarea si publicarea continutului"
 
 msgid "label_workflow_delete"
-msgstr ""
+msgstr "Stergerea continutului"
 
 msgid "label_workflow_submit"
-msgstr ""
+msgstr "Continut adaugat"
 
 msgid "label_workflow_reject"
-msgstr ""
+msgstr "Refuzarea publicarii continutului"
 
 msgid "label_workflow_unpublish"
-msgstr ""
+msgstr "Continut nepublicat"
 
 msgid "label_calendar_new_event"
-msgstr ""
+msgstr "Crearea unui nou eveniment in agenda"
 
 msgid "label_forum_comment_create"
-msgstr ""
+msgstr "Crearea unui comentariu"
 
 msgid "label_reply_to_personnal_post"
-msgstr ""
+msgstr "Raspuns la o contributie personala"
 
 msgid "label_new_versions"
-msgstr ""
+msgstr "Crearea unei versiuni a documentului"
 
 msgid "label_forum_new_message"
-msgstr ""
+msgstr "Crearea unui nou mesaj pe forum"
 
 msgid "label_forum_new_post"
-msgstr ""
+msgstr "Crearea unui mesaj"
 
 msgid "label_forum_new_comment"
-msgstr ""
+msgstr "Crearea unui comentariu"
 
 msgid "label_forum_post_published"
-msgstr ""
+msgstr "Publicarea unui mesaj"
 
 msgid "label_forum_post_unpublished"
-msgstr ""
+msgstr "Depublicarea unui mesaj"
 
 msgid "label_forum_post_rejected"
-msgstr ""
+msgstr "Refuza mesajul"
 
 msgid "label_forum_post_deleted"
-msgstr ""
+msgstr "Sterge mesaj"
 
 msgid "label_forum_comment_published"
-msgstr ""
+msgstr "Publicarea unui comentariu"
 
 msgid "label_forum_comment_unpublished"
-msgstr ""
+msgstr "Depublicarea unui comentariu"
 
 msgid "label_forum_comment_rejected"
-msgstr ""
+msgstr "Refuza comentariul"
 
 msgid "label_forum_comment_deleted"
-msgstr ""
+msgstr "Comentariu sters"
 
 msgid "label_notification_related_document"
-msgstr ""
+msgstr "Legatura catre document"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
-msgstr ""
+msgstr "Administreaza notificarile"
 
 msgid "action_my_subscriptions"
-msgstr ""
+msgstr "Abonamentele mele"
 
 msgid "action_folder_subscribe"
-msgstr ""
+msgstr "Abonamente"
 
 msgid "action_notify_content"
-msgstr ""
+msgstr "Trimite o notificare prin email"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
-msgstr ""
+msgstr "Notificari locale modificate."
 
 msgid "psm_please_choose_at_least_one_event_for subscription"
-msgstr ""
+msgstr "Te rog, alege cel putin un eveniment"
 
 msgid "psm_email_sent_to_you"
-msgstr ""
+msgstr "Un email de confirmare ti-a fost trimis."
 
 msgid "psm_subscription_not_taken_into_consideration"
-msgstr ""
+msgstr "Abonamentul nu a fost luat in considerare."
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
-msgstr ""
+msgstr "Trebuie sa te abonezi inainte de a incerca sa confirmi."
 
 msgid "psm_welcome_to_mailing_list"
-msgstr ""
+msgstr "Bun venit pe lista de distributie."
 
 msgid "psm_you_are_removed_from_the_mailing_list"
-msgstr ""
+msgstr "Ai fost sters de pe lista de distributie."
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
 msgstr ""
+"Ai fost sters de pe lista de distributie. Contacteaza "
+"administratorul daca "
+"vrei sa faci parte din aceasta lista din nou."
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
-msgstr ""
+msgstr "Te rog, alege cel putin un eveniment"
 
 msgid "psm_an_email_has_been_sent"
-msgstr ""
+msgstr "Un email a fost trimis"
 
 msgid "psm_subscription_updated"
-msgstr ""
+msgstr "O configuratie a evenimentului a fost adusa la zi"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
-msgstr ""
+msgstr "Zilnic"
 
 msgid "mode_weekly"
-msgstr ""
+msgstr "Saptamanal"
 
 msgid "mode_monthly"
-msgstr ""
+msgstr "Lunar"
 
 msgid "bc_manage_my_subscriptions"
-msgstr ""
+msgstr "Abonamentele mele"
+
