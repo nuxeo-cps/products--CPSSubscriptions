@@ -87,6 +87,18 @@ class SubscriptionsTool(UniqueObject, Folder):
         {'id': 'subscribe_welcome_email_body',
          'type' : 'text', 'mode':'r',
          'label': 'Subscribe Email Welcome Body',},
+        {'id': 'unsubscribe_email_title',
+         'type' : 'string', 'mode':'r',
+         'label': 'UnSubscribe Email Title',},
+        {'id': 'unsubscribe_email_body',
+         'type' : 'text', 'mode':'r',
+         'label': 'UnSubscribe Email Body',},
+        {'id': 'unsubscribe_confirm_email_title',
+         'type' : 'string', 'mode':'r',
+         'label': 'UnSubscribe Confirm Email Title',},
+        {'id': 'unsubscribe_confirm_email_body',
+         'type' : 'text', 'mode':'r',
+         'label': 'UnSubscribe Confirm Email Body',},
         {'id':'mapping_context_events',
          'type':'string', 'mode':'r',
          'label':'Mapping context / events'},
@@ -131,6 +143,10 @@ class SubscriptionsTool(UniqueObject, Folder):
                                        subscribe_confirm_email_title,
                                        subscribe_welcome_email_body,
                                        subscribe_welcome_email_title,
+                                       unsubscribe_email_title,
+                                       unsubscribe_email_body,
+                                       unsubscribe_confirm_email_title,
+                                       unsubscribe_confirm_email_body,
                                        REQUEST=None):
         """Edit the default event email
         """
@@ -139,17 +155,25 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         # No %(sthg)s in the error message. It's the purpose of that kind of
         # message.
-
         if '%' in event_error_email_body:
             event_error_email_body = event_error_email_body.replace('%', '')
 
+        # Notifications
         self.event_default_email_title = event_default_email_title
         self.event_default_email_body = event_default_email_body
         self.event_error_email_body = event_error_email_body
+
+        # Subscriptions
         self.subscribe_confirm_email_body = subscribe_confirm_email_body
         self.subscribe_confirm_email_title = subscribe_confirm_email_title
         self.subscribe_welcome_email_body = subscribe_welcome_email_body
         self.subscribe_welcome_email_title = subscribe_welcome_email_title
+
+        # UnSubscriptions
+        self.unsubscribe_email_body = unsubscribe_email_body
+        self.unsubscribe_email_title = unsubscribe_email_title
+        self.unsubscribe_confirm_email_body = unsubscribe_confirm_email_body
+        self.unsubscribe_confirm_email_title = unsubscribe_confirm_email_title
 
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_edit_events')
@@ -162,6 +186,10 @@ class SubscriptionsTool(UniqueObject, Folder):
                                 subscribe_confirm_email_title,
                                 subscribe_welcome_email_body,
                                 subscribe_welcome_email_title,
+                                unsubscribe_email_title,
+                                unsubscribe_email_body,
+                                unsubscribe_confirm_email_title,
+                                unsubscribe_confirm_email_body,
                                 REQUEST=None):
         """Edit a custom event message
         """
@@ -173,7 +201,11 @@ class SubscriptionsTool(UniqueObject, Folder):
                   subscribe_confirm_email_title,
                   subscribe_confirm_email_body,
                   subscribe_welcome_email_title,
-                  subscribe_welcome_email_body]
+                  subscribe_welcome_email_body,
+                  unsubscribe_email_title,
+                  unsubscribe_email_body,
+                  unsubscribe_confirm_email_title,
+                  unsubscribe_confirm_email_body,]
 
         self.mapping_event_email_content[event_id] = struct
 
@@ -181,8 +213,7 @@ class SubscriptionsTool(UniqueObject, Folder):
             REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_edit_events')
 
 
-    def manage_addEventType(self, event_where, event_id, event_label,
-                            REQUEST=None):
+    def manage_addEventType(self, event_where, event_id, event_label, REQUEST=None):
         """ Adds a new event id in a given context
         """
 
@@ -203,7 +234,11 @@ class SubscriptionsTool(UniqueObject, Folder):
             self.getSubscribeConfirmEmailTitle(),
             self.getSubscribeConfirmEmailBody(),
             self.getSubscribeWelcomeEmailTitle(),
-            self.getSubscribeWelcomeEmailBody()]
+            self.getSubscribeWelcomeEmailBody(),
+            self.getUnSubscribeConfirmEmailTitle(),
+            self.getUnSubscribeConfirmEmailBody(),
+            self.getUnSubscribeEmailTitle(),
+            self.getUnSubscribeEmailBody(),]
 
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_events')
@@ -215,22 +250,32 @@ class SubscriptionsTool(UniqueObject, Folder):
 
     def __init__(self):
         """Initialization of default properties.
+
+        Core attributs and default messages contents
         """
 
+        # Core attrs
         self.notify_hidden_object = 0
-
         self.mapping_context_events = {}
         self.mapping_event_email_content = {}
 
+        # Notifications
         self.event_default_email_title = ''
         self.event_default_email_body = ''
         self.event_error_email_body = ''
 
+
+        # Subscriptions
         self.subscribe_confirm_email_title = ''
         self.subscribe_confirm_email_body = ''
         self.subscribe_welcome_email_title = ''
         self.subscribe_welcome_email_body = ''
 
+        # UnSubscriptions
+        self.unsubscribe_confirm_email_title = ''
+        self.unsubscribe_confirm_email_body = ''
+        self.unsubscribe_email_title = ''
+        self.unsubscribe_email_body = ''
 
     ######################################################
     #####################################################
@@ -323,10 +368,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         If event_id is specified then let's check if we get a custom
         one for the given event.
         """
-        #if event_id is not None:
-        #    if self.mapping_event_email_content.has_key(event_id):
-        #        return self.mapping_event_email_content[event_id][3]
-        #else:
+        # XXX event
         if not self.subscribe_confirm_email_title:
             # Init of the variable here.
             self.subscribe_confirm_email_title = self.getMailTemplate()[
@@ -340,10 +382,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         If event_id is specified then let's check if we get a custom
         one for the given event.
         """
-        #if event_id is not None:
-        #    if self.mapping_event_email_content.has_key(event_id):
-        #        return self.mapping_event_email_content[event_id][4]
-        #else:
+        # XXX event
         if not self.subscribe_confirm_email_body:
             # Init of the variable here.
             self.subscribe_confirm_email_body = self.getMailTemplate()[
@@ -357,10 +396,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         If event_id is specified then let's check if we get a custom
         one for the given event.
         """
-        #if event_id is not None:
-        #    if self.mapping_event_email_content.has_key(event_id):
-        #        return self.mapping_event_email_content[event_id][5]
-        #else:
+        # XXX event
         if not self.subscribe_welcome_email_title:
             # Init of the variable here.
             self.subscribe_welcome_email_title = self.getMailTemplate()[
@@ -374,15 +410,68 @@ class SubscriptionsTool(UniqueObject, Folder):
         If event_id is specified then let's check if we get a custom
         one for the given event.
         """
-        #if event_id is not None:
-        #    if self.mapping_event_email_content.has_key(event_id):
-        #        return self.mapping_event_email_content[event_id][6]
-        #else:
+        # XXX event
         if not self.subscribe_welcome_email_body:
             # Init of the variable here.
             self.subscribe_welcome_email_body = self.getMailTemplate()[
                 'subscribe_welcome_email_body']
         return self.subscribe_welcome_email_body
+
+    security.declarePublic('getUnSubscribeEmailTitle')
+    def getUnSubscribeEmailTitle(self, event_id=None):
+        """Returns the unsubcribe email title
+
+        If event_id is specified then let's check if we get a custom
+        one for the given event.
+        """
+        # XXX event_id
+        if not self.unsubscribe_email_title:
+            # Init of the variable here.
+            self.unsubscribe_email_title = self.getMailTemplate()[
+                'unsubscribe_email_title']
+        return self.unsubscribe_email_title
+
+    security.declarePublic('getUnSubscribeEmailBody')
+    def getUnSubscribeEmailBody(self, event_id=None):
+        """Returns the unsubcribe email body
+
+        If event_id is specified then let's check if we get a custom
+        one for the given event.
+        """
+        # XXX event_id
+        if not self.unsubscribe_email_body:
+            # Init of the variable here.
+            self.unsubscribe_email_body = self.getMailTemplate()[
+                'unsubscribe_email_body']
+        return self.unsubscribe_email_body
+
+    security.declarePublic('getUnSubscribeConfirmEmailTitle')
+    def getUnSubscribeConfirmEmailTitle(self, event_id=None):
+        """Returns the unsubcribe confirm email title
+
+        If event_id is specified then let's check if we get a custom
+        one for the given event.
+        """
+        # XXX event_id
+        if not self.unsubscribe_confirm_email_title:
+            # Init of the variable here.
+            self.unsubscribe_confirm_email_title = self.getMailTemplate()[
+                'unsubscribe_confirm_email_title']
+        return self.unsubscribe_confirm_email_title
+
+    security.declarePublic('getUnSubscribeConfirmEmailBody')
+    def getUnSubscribeConfirmEmailBody(self, event_id=None):
+        """Returns the unsubcribe confirm email body
+
+        If event_id is specified then let's check if we get a custom
+        one for the given event.
+        """
+        # XXX event_id
+        if not self.unsubscribe_confirm_email_body:
+            # Init of the variable here.
+            self.unsubscribe_confirm_email_body = self.getMailTemplate()[
+                'unsubscribe_confirm_email_body']
+        return self.unsubscribe_confirm_email_body
 
     #######################################################
     #######################################################
