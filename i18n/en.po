@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-01-12 18:00default\n"
-"PO-Revision-Date: 2004-01-12 18:01+0100\n"
+"POT-Creation-Date: 2004-01-15 11:15default\n"
+"PO-Revision-Date: 2004-01-15 11:16+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -88,4 +88,8 @@ msgstr "Workspace Reader"
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Notifications Management"
+
+# ## PSMS ##########################################
+msgid "psm_notifications_changed"
+msgstr "Local notifications changed"
 

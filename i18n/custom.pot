@@ -41,3 +41,8 @@ msgstr ""
 msgid "action_folder_notifications"
 msgstr ""
 
+### PSMS ##########################################
+
+msgid "psm_notifications_changed"
+msgstr ""
+
