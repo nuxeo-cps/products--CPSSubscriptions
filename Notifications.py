@@ -181,13 +181,9 @@ class MailNotificationRule(NotificationRule):
 
     security = ClassSecurityInfo()
 
-    def _getMailFrom(self, object, infos):
+    def _getMailFrom(self, infos):
         """ Return an email for the mail from field of the mail.
         """
-
-        mtool = self.portal_membership
-        creator = mtool.getMemberById(object.Creator())
-
         mail_from = infos.get('email_from')
 
         if not mail_from:
@@ -343,7 +339,7 @@ class MailNotificationRule(NotificationRule):
         subscriptions_tool = getToolByName(portal, 'portal_subscriptions')
 
         infos = self._makeInfoDict(event_type, object, infos)
-        mfrom = self._getMailFrom(object, infos)
+        mfrom = self._getMailFrom(infos)
         subject = self._getSubject(infos)
 
         #
