@@ -33,6 +33,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent, setDefaultRoles
 from Products.CPSDefault.Installer import BaseInstaller
 
+from Products.CPSSubscriptions.CPSSubscriptionsPermissions import ManageSubscriptions
+
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = (
@@ -83,12 +85,6 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         """Installs new subscriptions dedicated permissions
         """
 
-        self.log("Installing new subscriptions permissions")
-
-        ManageSubscriptions = 'Manage Subscriptions'
-        setDefaultRoles( ManageSubscriptions, ('Manager'))
-
-
         subscription_workspace_perms = {
             ManageSubscriptions : ['Manager', 'WorkspaceManager'],
             }
@@ -136,7 +132,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
             name='action_folder_notifications',
             action='string: ${object_url}/folder_notifications_form',
             condition="python:hasattr(object, 'portal_type') and object.portal_type in portal.portal_subscriptions.getContainerPortalTypes() and object.portal_type != 'Portal'",
-            permission=('ManageSubsriptions',),
+            permission=(ManageSubscriptions,),
             category='folder',
             visible=1)
         self.log(" Added Action folder Notifications")
