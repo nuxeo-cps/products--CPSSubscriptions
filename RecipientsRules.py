@@ -516,7 +516,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             if member_id in self.getMembers():
                 self.members.remove(member_id)
                 stupid = 1
-            if member_email in self.email_subscribers:
+            if member_email in self.emails_subscribers:
                 self.emails_subscribers.remove(member_email)
                 stupid = 1
             if stupid:
