@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-05 19:13default\n"
+"POT-Creation-Date: 2004-03-08 09:55default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -102,6 +102,19 @@ msgstr ""
 #.   <input onclick="javascript:window.close()" class="standAlone" type="button" value="button_close" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_close"
+msgstr ""
+
+#.   <input value="button_subscribe" class="standAlone" name="folder_subscribe:method" type="submit">
+#.         <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.     </input></input>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_subscribe"
+msgstr ""
+
+#.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.     </input>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_unsubscribe"
 msgstr ""
 
 #.   <span />
@@ -404,11 +417,4 @@ msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr ""
 
 msgid "psm_welcome_to_mailing_list"
-msgstr ""
-
-# ## BUTTONS ########################################
-msgid "button_subscribe"
-msgstr ""
-
-msgid "button_unsubscribe"
 msgstr ""
