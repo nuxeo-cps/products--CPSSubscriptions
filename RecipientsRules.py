@@ -738,6 +738,7 @@ class RoleRecipientsRule(RecipientsRule):
                             if member is not None:
                                 email = self.getMemberEmail(member_id)
                                 member_email_mapping[email] = member_id
+        else:
             #
             # Using roles defined only in the context
             #
