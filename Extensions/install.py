@@ -37,6 +37,7 @@ SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = (
     ('cps_subscriptions', 'Products/CPSSubscriptions/skins/cps_subscriptions',),
+    ('cps_subscriptions_installer', 'Products/CPSSubscriptions/skins/cps_subscriptions_installer',),
     )
 
 class CPSSubscriptionsInstaller(BaseInstaller):
@@ -58,6 +59,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.setupSubscriptionsTool()
         self.installActions()
         self.setupSubscriber()
+        self.setupEvents()
         self.setupTranslations()
         self.log("End of Install/Update : CPSSubscriptions Product")
 
@@ -123,6 +125,25 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                 self.log("portal_subscribtions already subscriber")
         else:
             raise ('DEPENDENCY ERROR : portal_eventservice')
+
+    def setupEvents(self):
+        """ Setup events on which to react
+        """
+
+        subscriptions_tool = getToolByName(self.portal,
+                                           'portal_subscriptions',
+                                           0)
+
+        if subscriptions_tool:
+            mapping_context_events = self.portal.getEvents()
+            for context in mapping_context_events.keys():
+                for event_id in mapping_context_events[context].keys():
+                    subscriptions_tool.manage_addEventType(context,
+                                                           event_id,
+                                                           mapping_context_events[
+                        context][event_id])
+        else:
+            raise "Hum,....portal_subscriptions disapears on the middle of the install process..."
 
 ###############################################
 # __call__
