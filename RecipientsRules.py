@@ -376,6 +376,28 @@ class ExplicitRecipientsRule(RecipientsRule):
     #####################################################
     #####################################################
 
+    security.declarePublic("getPendingDeleteEmails")
+    def getPendingDeleteEmails(self):
+        """ Return all the emails that are about to be deleted
+
+        Returns a list of emails
+        """
+        return self.emails_pending_delete
+
+    security.declareProtected(ModifyPortalContent, "updatePendingDeleteEmails")
+    def updatePendingDeleteEmails(self, email=''):
+        """ Add pending email subscription
+        """
+        if email and \
+               email in self.getSubscriberEmails() or \
+               email in self.getMails():
+            self.emails_pending_delete.append(email)
+            return 1
+        return 0
+
+    ######################################################
+    ######################################################
+
     security.declareProtected(ModifyPortalContent, 'getSubscriberEmails')
     def getSubscriberEmails(self):
         """Returns the anonymous subscriber emails
@@ -460,6 +482,86 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     #####################################################
     #####################################################
+
+    security.declareProtected(View, 'unSubscribeTo')
+    def unSubscribeTo(self, email, event_id, context):
+        """Unsubscribe to a given event subscribption
+        """
+        self._p_changed = 1
+
+        NotificationRule = getattr(self, 'mail__notification_rule', None)
+        if NotificationRule is None:
+            LOG(" ::CPSSubscriptions:: unsubscribeTo()",
+                INFO,
+                "Error : No mail notification found")
+            return 0
+
+        # Anonymous subscriptions
+        if email:
+            if self.updatePendingDeleteEmails(email):
+                NotificationRule.notifyConfirmUnSubscribe(event_id,
+                                                             self,
+                                                             email,
+                                                             context)
+                return 1
+
+        # Members subscriptions.
+        else:
+            membership_tool = getToolByName(self, 'portal_membership')
+            member = membership_tool.getAuthenticatedMember()
+            member_id = member.getMemberId()
+            member_email = self.getMemberEmail(member_id)
+            if member_id in self.getMembers():
+                self.members.remove(member_id)
+                NotificationRule.notifyUnSubscribe(event_id,
+                                                   self,
+                                                   member_email,
+                                                   context)
+                return 1
+        return 0
+
+    security.declareProtected(View, 'confirmUnSubscribeTo')
+    def confirmUnSubscribeTo(self, email, event_id, context):
+        """Confirm unsubscribe to a given event subscription
+        """
+        self._p_changed = 1
+
+        NotificationRule = getattr(self, 'mail__notification_rule', None)
+        if NotificationRule is None:
+            LOG(" ::CPSSubscriptions:: confirmUnsubscribeTo()",
+                INFO,
+                "Error : No mail notification found")
+            return 0
+
+        # Anonymous unsubscriptions
+        if email:
+            if email in self.getPendingDeleteEmails():
+                self.emails_subscribers.remove(email)
+                self.emails_pending_delete.remove(email)
+                NotificationRule.notifyUnSubscribe(event_id,
+                                                   self,
+                                                   email,
+                                                   context)
+                return 1
+
+        # Members unsubscriptions.
+        # XXX to implement
+        #else:
+        #    membership_tool = getToolByName(self, 'portal_membership')
+        #    member = membership_tool.getAuthenticatedMember()
+        #    member_id = member.getMemberId()
+        #    member_email = self.getMemberEmail(member_id)
+        #    if member_id in self.getMembers():
+        #        self.members.remove(member_id)
+        #        NotificationRule.notifyUnSubscribe(event_id,
+        #                                           self,
+        #                                           member_email,
+        #                                           context)
+        #        return 1
+        return 0
+
+    ###############################################################
+    ###############################################################
 
     security.declareProtected(View, "getRecipients")
     def getRecipients(self, event_type, object, infos):
