@@ -16,12 +16,7 @@ class CPSSubscriptionsInstaller(CPSTestCase.CPSInstaller):
         """
 
         # CPS Default Site
-        factory = self.app.manage_addProduct['CPSDefault']
-        factory.manage_addCPSDefaultSite(id,
-                                         root_password1="passwd",
-                                         root_password2="passwd",
-                                         langs_list=['fr', 'en'])
-
+        CPSTestCase.CPSInstaller.addPortal(self, id)
         portal = getattr(self.app, id)
 
         # Install the CPSSubscriptions product

@@ -28,13 +28,10 @@ Installer/Updater fot the CPSSubscriptions component.
 
 from zLOG import LOG, INFO, DEBUG
 
-import os, sys
-
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent, \
-     setDefaultRoles
+from Products.CMFCore.CMFCorePermissions import View
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
 from Products.CPSSubscriptions.CPSSubscriptionsPermissions import \
@@ -76,7 +73,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         self.setupCatalogSpecifics()
         self.finalize()
         self.reindexCatalog()
-        self.insallUpdateExMethod()
+        self.installUpdateExMethod()
         self.log("End of Install/Update : CPSSubscriptions Product")
 
     def setupSubscriptionsTool(self):
@@ -181,10 +178,10 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         """
 
         subscription_workspace_perms = {
-            ManageSubscriptions : ['Manager', 'WorkspaceManager', 'ForumModerator'],
+            ManageSubscriptions: ['Manager', 'WorkspaceManager', 'ForumModerator'],
             }
         subscription_sections_perms = {
-            ManageSubscriptions : ['Manager', 'SectionManager', 'ForumModerator'],
+            ManageSubscriptions: ['Manager', 'SectionManager', 'ForumModerator'],
             }
 
         for perm, roles in subscription_workspace_perms.items():
@@ -300,12 +297,9 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         """
 
         self.setupPortalPermissions({
-            CanSubscribe : ['Manager',
-                            ],
-            ManageSubscriptions : ['Manager',
-                                   ],
-            ViewMySubscriptions : ['Manager',
-                                   'Member'],
+            CanSubscribe: ['Manager'],
+            ManageSubscriptions: ['Manager'],
+            ViewMySubscriptions: ['Manager', 'Member'],
             })
 
     def setupCatalogSpecifics(self):
@@ -319,7 +313,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
 
         catalog = getToolByName(self.portal, 'portal_catalog')
         indexes = {
-            'getSubscriptions' : 'FieldIndex',
+            'getSubscriptions': 'FieldIndex',
             }
         metadata = [
             'getSubscriptions',
@@ -342,7 +336,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
 
         self.log("End if setting some specifics on catalog")
 
-    def insallUpdateExMethod(self):
+    def installUpdateExMethod(self):
         """Install an external method that permits to upgrade
         latest changes
         """
@@ -399,8 +393,7 @@ def updateContainers(self):
     # Fetching all the containers on the portal
     catalog = self.portal_catalog
     portal_type = 'CPS PlaceFull Subscription Container'
-    containers = catalog.searchResults({'portal_type':
-                                            portal_type,})
+    containers = catalog.searchResults({'portal_type': portal_type,})
     containers = [x.getObject() for x in containers]
 
     for container in containers:

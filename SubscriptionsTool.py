@@ -386,7 +386,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
 
     security.declarePublic('getRenderedEvents')
     def getRenderedEvents(self):
-        """Return the events for wich  we are gonna render the content
+        """Return the events for wich we are gonna render the content
         type which is responsible of the notifications
         and then add this rendering within the email notification body
         """

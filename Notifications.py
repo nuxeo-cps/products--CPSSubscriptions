@@ -44,7 +44,6 @@ except ImportError:
 import socket
 import cStringIO
 import string
-import quopri
 import mimify
 import mimetools
 import MimeWriter
@@ -231,7 +230,7 @@ class MailNotificationRule(NotificationRule):
         return body
 
     def _makeInfoDict(self, event_type, object, infos=None):
-        """Building the infos dict used for processing the email.
+        """Build the info dict used for processing the email.
         """
         if infos is None:
             infos = {}
@@ -259,9 +258,11 @@ class MailNotificationRule(NotificationRule):
 
         infos['object_title'] = object.Title()
         infos['object_url'] = infos.get('url', object.absolute_url())
-        infos['object_parent_title'] = aq_parent(aq_inner(object)).Title()
-        infos['object_parent_url'] = aq_parent(aq_inner(object)).absolute_url()
         infos['object_type'] = getattr(object, 'portal_type', '')
+
+        object_parent = aq_parent(aq_inner(object))
+        infos['object_parent_title'] = object_parent.Title()
+        infos['object_parent_url'] = object_parent.absolute_url()
 
         object_creator_id = object.Creator()
         object_creator_user = memberDirectory.getEntry(object_creator_id,
@@ -289,7 +290,6 @@ class MailNotificationRule(NotificationRule):
                     infos[attr] = value
 
         ##############################################################
-        ##############################################################
 
         # The user whose action is at the origin of the event
         user_id = getSecurityManager().getUser().getId()
@@ -305,9 +305,6 @@ class MailNotificationRule(NotificationRule):
 
         LOG("INFOS------------", DEBUG, infos)
         return infos
-
-    ##################################################################
-    ##################################################################
 
     security.declareProtected(ManagePortal, "notifyRecipients")
     def notifyRecipients(self,
