@@ -92,7 +92,9 @@ PortalFolder<br>
 <a href="#_getSubject">_getSubject</a><br>
 <a href="#_makeInfoDict">_makeInfoDict</a><br>
 <a href="#notifyConfirmSubscription">notifyConfirmSubscription</a><br>
+<a href="#notifyConfirmUnSubscribe">notifyConfirmUnSubscribe</a><br>
 <a href="#notifyRecipients">notifyRecipients</a><br>
+<a href="#notifyUnSubscribe">notifyUnSubscribe</a><br>
 <a href="#notifyWelcomeSubscription">notifyWelcomeSubscription</a><br>
 
 
@@ -265,6 +267,41 @@ notifyConfirmSubscription (
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="notifyConfirmUnSubscribe"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">notifyConfirmUnSubscribe&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+notifyConfirmUnSubscribe (
+        self,
+        event_id,
+        object,
+        email,
+        context,
+        )
+
+</pre></font>
+
+<h3>Mail notification for confirm unsubscription message</h3>
+<p>        This method is called when someone just confirm the unsubscription</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="notifyRecipients"></a>&nbsp;
                 </font>
             </th>
@@ -293,7 +330,43 @@ notifyRecipients (
 </pre></font>
 
 <h3>Notify recipients</h3>
-<p>        This method will be called by the Subscription object.</p>
+<p>        This method will be called by the Subscription object when a
+        notification occurs.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="notifyUnSubscribe"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">notifyUnSubscribe&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+notifyUnSubscribe (
+        self,
+        event_id,
+        object,
+        email,
+        context,
+        )
+
+</pre></font>
+
+<h3>Mail notification for unsubscription message</h3>
+<p>        This method is called when someone just unsubscribe</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -342,7 +415,7 @@ notifyWelcomeSubscription (
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

@@ -90,8 +90,10 @@ PortalFolder<br>
         
 <a href="#__init__">__init__</a><br>
 <a href="#addRole">addRole</a><br>
+<a href="#addUnSubscribedMember">addUnSubscribedMember</a><br>
 <a href="#getRecipients">getRecipients</a><br>
 <a href="#getRoles">getRoles</a><br>
+<a href="#getUnSubscribedMembers">getUnSubscribedMembers</a><br>
 
 
         <tr>
@@ -164,6 +166,34 @@ addRole ( self,  role )
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="addUnSubscribedMember"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">addUnSubscribedMember&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+addUnSubscribedMember ( self,  member_id='' )
+
+</pre></font>
+
+<p>A member is unsubscribing</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="getRecipients"></a>&nbsp;
                 </font>
             </th>
@@ -180,9 +210,9 @@ addRole ( self,  role )
         <font color="#000088"><pre>
 getRecipients (
         self,
-        event_type,
-        object,
-        infos,
+        event_type='',
+        object=None,
+        infos={},
         )
 
 </pre></font>
@@ -217,6 +247,34 @@ getRoles ( self )
 </pre></font>
 
 <p>Returns the roles subscribed.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getUnSubscribedMembers"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getUnSubscribedMembers&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getUnSubscribedMembers ( self )
+
+</pre></font>
+
+<p>Returns the list of members who unsusbribed</p>
 </td></tr>
 </td></tr>
 </table>
@@ -230,7 +288,7 @@ getRoles ( self )
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

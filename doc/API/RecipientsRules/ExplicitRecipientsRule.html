@@ -93,18 +93,22 @@ PortalFolder<br>
             <td align="LEFT" valign="TOP">
 <a href="#__init__">__init__</a><br>
 <a href="#confirmSubscribeTo">confirmSubscribeTo</a><br>
+<a href="#confirmUnSubscribeTo">confirmUnSubscribeTo</a><br>
 <a href="#getEmails">getEmails</a><br>
 <a href="#getGroups">getGroups</a><br>
 <a href="#getMembers">getMembers</a><br>
+<a href="#getPendingDeleteEmails">getPendingDeleteEmails</a><br>
 <a href="#getPendingEmails">getPendingEmails</a><br>
 <a href="#getRecipients">getRecipients</a><br>
 </td>
 <td align="LEFT" valign="TOP">
 <a href="#getSubscriberEmails">getSubscriberEmails</a><br>
 <a href="#subscribeTo">subscribeTo</a><br>
+<a href="#unSubscribeTo">unSubscribeTo</a><br>
 <a href="#updateEmails">updateEmails</a><br>
 <a href="#updateGroups">updateGroups</a><br>
 <a href="#updateMembers">updateMembers</a><br>
+<a href="#updatePendingDeleteEmails">updatePendingDeleteEmails</a><br>
 <a href="#updatePendingEmails">updatePendingEmails</a><br>
 <a href="#updateSubscriberEmails">updateSubscriberEmails</a><br>
 </td>
@@ -176,6 +180,39 @@ confirmSubscribeTo (
 </pre></font>
 
 <p>Anonymous confirm the subscription</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="confirmUnSubscribeTo"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">confirmUnSubscribeTo&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+confirmUnSubscribeTo (
+        self,
+        email,
+        event_id,
+        context,
+        )
+
+</pre></font>
+
+<p>Confirm unsubscribe to a given event subscription</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -263,6 +300,35 @@ getMembers ( self )
 
 <h3>Return all the member ids subscribed manually</h3>
 <p>        Returns a list of ids</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getPendingDeleteEmails"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getPendingDeleteEmails&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getPendingDeleteEmails ( self )
+
+</pre></font>
+
+<h3>Return all the emails that are about to be deleted</h3>
+<p>        Returns a list of emails</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -397,6 +463,39 @@ subscribeTo (
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="unSubscribeTo"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">unSubscribeTo&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+unSubscribeTo (
+        self,
+        email,
+        event_id,
+        context,
+        )
+
+</pre></font>
+
+<p>Unsubscribe to a given event subscribption</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="updateEmails"></a>&nbsp;
                 </font>
             </th>
@@ -481,6 +580,34 @@ updateMembers ( self,  member_ids=[] )
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="updatePendingDeleteEmails"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">updatePendingDeleteEmails&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+updatePendingDeleteEmails ( self,  email='' )
+
+</pre></font>
+
+<p>Add pending email subscription</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="updatePendingEmails"></a>&nbsp;
                 </font>
             </th>
@@ -541,7 +668,7 @@ updateSubscriberEmails ( self,  email='' )
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

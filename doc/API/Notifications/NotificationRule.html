@@ -82,8 +82,96 @@ PortalFolder<br>
         <tr>
         <td>
         
+<a href="#getRawMessage">getRawMessage</a><br>
+<a href="#getSMTPServerName">getSMTPServerName</a><br>
+<a href="#getSMTPServerPort">getSMTPServerPort</a><br>
 <a href="#notifyRecipients">notifyRecipients</a><br>
+<a href="#sendMail">sendMail</a><br>
 
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getRawMessage"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getRawMessage&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getRawMessage ( self,  infos )
+
+</pre></font>
+
+<p>Renders an RFC822 compliant message.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSMTPServerName"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSMTPServerName&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSMTPServerName ( self )
+
+</pre></font>
+
+<p>Returns the name of the SMTP server</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSMTPServerPort"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSMTPServerPort&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSMTPServerPort ( self )
+
+</pre></font>
+
+<p>Returns the port for the smtp host</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -141,6 +229,35 @@ NotImplementedError<br>
 
 </td></tr>
 </table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="sendMail"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">sendMail&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+sendMail ( self,  mail_infos )
+
+</pre></font>
+
+<h3>Send a mail</h3>
+<p>        mail_infos contains all the needed information</p>
 </td></tr>
 </td></tr>
 </table>
@@ -154,7 +271,7 @@ NotImplementedError<br>
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

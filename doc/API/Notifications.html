@@ -54,9 +54,15 @@
 <b>from</b> AccessControl <b>import</b> ClassSecurityInfo<br>
 <b>from</b> Acquisition <b>import</b> aq_base, aq_parent, aq_inner<br>
 <b>from</b> Globals <b>import</b> InitializeClass, MessageDialog<br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-MimeWriter.html">MimeWriter</a><br>
 <b>from</b> Products.CMFCore.CMFCorePermissions <b>import</b> ManagePortal<br>
 <b>from</b> Products.CMFCore.PortalFolder <b>import</b> PortalFolder<br>
 <b>from</b> Products.CMFCore.utils <b>import</b> getToolByName<br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-cStringIO.html">cStringIO</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-mimetools.html">mimetools</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-mimify.html">mimify</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-quopri.html">quopri</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-string.html">string</a><br>
 <b>from</b> zLOG <b>import</b> LOG, INFO, DEBUG<br>
 
 </td></tr>
@@ -164,7 +170,7 @@ addMailNotificationRule (
         <p><i><a href="index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

@@ -97,21 +97,25 @@ Folder<br>
 <a href="#getErrorMessageBody">getErrorMessageBody</a><br>
 <a href="#getEventsFromContext">getEventsFromContext</a><br>
 <a href="#getExplicitRecipientsRuleId">getExplicitRecipientsRuleId</a><br>
-</td>
-<td align="LEFT" valign="TOP">
 <a href="#getMailNotificationRuleObjectId">getMailNotificationRuleObjectId</a><br>
 <a href="#getRecipientsFor">getRecipientsFor</a><br>
+</td>
+<td align="LEFT" valign="TOP">
 <a href="#getRecordedEvents">getRecordedEvents</a><br>
 <a href="#getSubscribeConfirmEmailBody">getSubscribeConfirmEmailBody</a><br>
 <a href="#getSubscribeConfirmEmailTitle">getSubscribeConfirmEmailTitle</a><br>
 <a href="#getSubscribeWelcomeEmailBody">getSubscribeWelcomeEmailBody</a><br>
 <a href="#getSubscribeWelcomeEmailTitle">getSubscribeWelcomeEmailTitle</a><br>
 <a href="#getSubscriptablePortalTypes">getSubscriptablePortalTypes</a><br>
-</td>
-<td align="LEFT" valign="TOP">
 <a href="#getSubscriptionContainerFromContext">getSubscriptionContainerFromContext</a><br>
 <a href="#getSubscriptionContainerId">getSubscriptionContainerId</a><br>
 <a href="#getSubscriptionsFor">getSubscriptionsFor</a><br>
+<a href="#getUnSubscribeConfirmEmailBody">getUnSubscribeConfirmEmailBody</a><br>
+</td>
+<td align="LEFT" valign="TOP">
+<a href="#getUnSubscribeConfirmEmailTitle">getUnSubscribeConfirmEmailTitle</a><br>
+<a href="#getUnSubscribeEmailBody">getUnSubscribeEmailBody</a><br>
+<a href="#getUnSubscribeEmailTitle">getUnSubscribeEmailTitle</a><br>
 <a href="#isSubscriberFor">isSubscriberFor</a><br>
 <a href="#manage_addEventType">manage_addEventType</a><br>
 <a href="#manage_editDefaultEventMessage">manage_editDefaultEventMessage</a><br>
@@ -148,7 +152,8 @@ __init__ ( self )
 
 </pre></font>
 
-<p>Initialization of default properties.</p>
+<h3>Initialization of default properties.</h3>
+<p>        Core attributs and default messages contents</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -702,6 +707,126 @@ getSubscriptionsFor (
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="getUnSubscribeConfirmEmailBody"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getUnSubscribeConfirmEmailBody&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getUnSubscribeConfirmEmailBody ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the unsubcribe confirm email body</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getUnSubscribeConfirmEmailTitle"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getUnSubscribeConfirmEmailTitle&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getUnSubscribeConfirmEmailTitle ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the unsubcribe confirm email title</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getUnSubscribeEmailBody"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getUnSubscribeEmailBody&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getUnSubscribeEmailBody ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the unsubcribe email body</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getUnSubscribeEmailTitle"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getUnSubscribeEmailTitle&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getUnSubscribeEmailTitle ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the unsubcribe email title</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="isSubscriberFor"></a>&nbsp;
                 </font>
             </th>
@@ -721,6 +846,7 @@ isSubscriberFor (
         event_id,
         context,
         email='',
+        role_based=0,
         )
 
 </pre></font>
@@ -792,6 +918,10 @@ manage_editDefaultEventMessage (
         subscribe_confirm_email_title,
         subscribe_welcome_email_body,
         subscribe_welcome_email_title,
+        unsubscribe_email_title,
+        unsubscribe_email_body,
+        unsubscribe_confirm_email_title,
+        unsubscribe_confirm_email_body,
         REQUEST=None,
         )
 
@@ -826,10 +956,14 @@ manage_editEventMessage (
         event_id,
         event_email_title,
         event_email_body,
-        subscribe_confirm_email_body,
-        subscribe_confirm_email_title,
-        subscribe_welcome_email_body,
-        subscribe_welcome_email_title,
+        subscribe_confirm_email_body='',
+        subscribe_confirm_email_title='',
+        subscribe_welcome_email_body='',
+        subscribe_welcome_email_title='',
+        unsubscribe_email_title='',
+        unsubscribe_email_body='',
+        unsubscribe_confirm_email_title='',
+        unsubscribe_confirm_email_body='',
         REQUEST=None,
         )
 
@@ -886,7 +1020,7 @@ notify_event (
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

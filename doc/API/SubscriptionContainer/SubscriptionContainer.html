@@ -81,16 +81,26 @@ PortalFolder<br>
         <tr>
         <td>
         
+
+            <table border="0" cellspacing="2" cellpadding="2" width="100%">
+              <tr>
+            <td align="LEFT" valign="TOP">
 <a href="#__init__">__init__</a><br>
 <a href="#getLanguage">getLanguage</a><br>
 <a href="#getMailFrom">getMailFrom</a><br>
 <a href="#getSubscriptions">getSubscriptions</a><br>
 <a href="#isAnonymousSubscriptionAllowed">isAnonymousSubscriptionAllowed</a><br>
+</td>
+<td align="LEFT" valign="TOP">
 <a href="#isNotificationLocalOnly">isNotificationLocalOnly</a><br>
 <a href="#isNotificationNoLocal">isNotificationNoLocal</a><br>
 <a href="#isSubscriptionAllowed">isSubscriptionAllowed</a><br>
+<a href="#isUnSubscriptionAllowed">isUnSubscriptionAllowed</a><br>
 <a href="#updateProperties">updateProperties</a><br>
-
+</td>
+</tr>
+            </table>
+            
 
         <tr>
             <th bgcolor="#99ccff"
@@ -336,6 +346,36 @@ isSubscriptionAllowed ( self )
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="isUnSubscriptionAllowed"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">isUnSubscriptionAllowed&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+isUnSubscriptionAllowed ( self )
+
+</pre></font>
+
+<h3>Is UnSubscription Allowed ?</h3>
+<p>        Usefull to provide the possibility to users to unsubscribe if
+        they are computed as recipients based on their roles</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="updateProperties"></a>&nbsp;
                 </font>
             </th>
@@ -369,7 +409,7 @@ updateProperties ( self,  **kw )
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Mar  5 19:30:51 2004 by
+        on Wed Mar 31 00:28:10 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         
