@@ -1,0 +1,90 @@
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+msgid ""
+msgstr ""
+"Project-Id-Version: default\n"
+"POT-Creation-Date: 2004-01-12 18:00default\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Your Name <your@email>\n"
+"Language-Team: Name <email>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+
+#.   <span>
+#.                   <span replace="context_lcs/?role" />
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "<span replace=\"context_lcs/?role\" />"
+msgstr ""
+
+#.   <span>
+#.                      <span replace="events/?event_key" />
+#.                    </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "<span replace=\"events/?event_key\" />"
+msgstr ""
+
+#.   <span>
+#.                   Notification type
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Notification type"
+msgstr ""
+
+#.   <input value="button_change" class="standAlone" name="folder_notifications_edit:method" type="submit" />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_change"
+msgstr ""
+
+#.   <h1>
+#.         Local Notifications Management
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_notifications_form.pt
+msgid "heading_manage_local_notifications"
+msgstr ""
+
+#.   <span>
+#.                      List
+#.                    </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_list"
+msgstr ""
+
+#.   <span>
+#.                 Other
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_other"
+msgstr ""
+
+# ## LABELS #######################################
+msgid "label_creation_of_documents"
+msgstr ""
+
+msgid "label_modification_of_documents"
+msgstr ""
+
+msgid "label_cut_copy_paste_of_documents"
+msgstr ""
+
+msgid "label_workspace_manager"
+msgstr ""
+
+msgid "label_workspace_member"
+msgstr ""
+
+msgid "label_workspace_reader"
+msgstr ""
+
+# ## ACTIONS ###################################### 
+msgid "action_folder_notifications"
+msgstr ""

@@ -1,0 +1,67 @@
+<!-- CPSSubscriptions : zpt's macro lib -->
+<!-- $Id$ -->
+
+<metal:block define-macro="display_subscriptions_table">
+  <tal:block define="context_lcs here/getLocalRolesFromContext">
+    <form action="." name="form" tal:attributes="action here/absolute_url">
+	  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="FormLayout">
+	    <tr>
+	      <td>
+            <i>
+              <span i18n:translate="">
+                Notification type
+              </span>
+            </i>
+	      </td>
+          <td tal:repeat="role python:context_lcs.keys()">
+            <i>
+            <span i18n:translate="">
+                <span tal:replace="context_lcs/?role" />
+            </span>
+            </i>
+          </td>
+	      <td>
+            <i>
+             <span i18n:translate="label_other">
+              Other
+              </span>
+            </i>
+          </td>
+	    </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <br />
+        <tal:block define="events here/getAllEventTypesFromContext">
+	       <tr tal:repeat="event_key python:events.keys()"
+               tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+	         <td>
+               <strong>
+                 <span i18n:translate="">
+                   <span tal:replace="events/?event_key" />
+                 </span>
+               </strong>
+             </td>
+             <tal:block repeat="role python:context_lcs.keys()">
+  	           <td align="center">
+                 <input type="checkbox" name="role_event:list"
+                        tal:attributes="value string:${role}:${event_key}" />
+               </td>
+             </tal:block>
+	         <td align="center">
+               <a href="#">
+                 <span i18n:translate="label_list">
+                   List
+                 </span>
+               </a>
+             </td>
+	       </tr>
+        </tal:block>
+	  </table>
+      <br />
+      <input type="submit" name="folder_notifications_edit:method"
+             value="button_change" class="standAlone"
+                   i18n:attributes="value" />
+    </form>
+  </tal:block>
+</metal:block>
