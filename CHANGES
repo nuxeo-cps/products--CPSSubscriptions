@@ -11,4 +11,4 @@ Bug fixes:
 - #356 : No notification is sent when a user modifies or deletes an object
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- infos is available within the mapping used to compute the TALES expression in the ComputeRecipientsRule class
