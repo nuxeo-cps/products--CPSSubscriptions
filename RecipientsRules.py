@@ -409,7 +409,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """Add pending email subscription
         """
         if email and email in self.getSubscriberEmails() or \
-               email in self.getMails():
+               email in self.getEmails():
             self.emails_pending_delete.append(email)
             return 1
         return 0
