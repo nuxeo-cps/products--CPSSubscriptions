@@ -24,7 +24,7 @@
 </div>
 
 <div class="group">
-<form action="content_notify_sendmail" method="POST"
+<form action="content_notify_sendmail" method="post"
       tal:attributes="action python:request['URL1']+'/content_notify_sendmail'">
 
 <strong i18n:translate="heading_search_results" />

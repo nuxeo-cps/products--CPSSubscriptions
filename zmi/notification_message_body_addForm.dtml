@@ -4,7 +4,7 @@
 <dtml-var manage_form_title>
 </dtml-let>
 
-<form action="addNotificationMessageBody" method="POST">
+<form action="addNotificationMessageBody" method="post">
 <table cellspacing="0" cellpadding="2" border="0">
   <tr>
     <td align="left" valign="top">

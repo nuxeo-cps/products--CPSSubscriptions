@@ -13,6 +13,7 @@ Bug fixes:
   displayed could crash on certain circumstances (Error Type:
   UnboundLocalError, Error Value: local variable 'mtool' referenced before
   assignment)
+- XHTML-ification "POST" -> "post".
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

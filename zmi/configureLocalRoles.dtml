@@ -68,7 +68,7 @@ for the structure</i>
 
 <h3>Add a new area</h3>
 
-<form action="manage_addLocalRoleArea" method="POST">
+<form action="manage_addLocalRoleArea" method="post">
 <p class="form-help">
   You can add a new local roles area for your need.
 </p>
@@ -100,7 +100,7 @@ for the structure</i>
 
 <h3>Add a new portal_type within an area</h3>
 
-<form action="manage_addPortalTypeToArea" method="POST">
+<form action="manage_addPortalTypeToArea" method="post">
 <p class="form-help">
   You can add a new portal_type within an existing area
 </p>
@@ -142,7 +142,7 @@ for the structure</i>
 
 <h3>Add a new local roles within a portal_type within an area</h3>
 
-<form action="manage_addLocalRoleToPortalTypeToArea" method="POST">
+<form action="manage_addLocalRoleToPortalTypeToArea" method="post">
 <p class="form-help">
   You can add a new local role to an existing portal_type within an existing area
 </p>

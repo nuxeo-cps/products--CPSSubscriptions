@@ -31,7 +31,7 @@
 
 <h3>Add a new event type.</h3>
 
-<form action="manage_addEventType" method="POST">
+<form action="manage_addEventType" method="post">
 <p class="form-help">
   You can add a new event to react on in a given context.
 </p>
