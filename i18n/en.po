@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-04-07 11:16default\n"
-"PO-Revision-Date: 2004-04-07 11:17+0200\n"
+"POT-Creation-Date: 2004-04-22 16:21default\n"
+"PO-Revision-Date: 2004-04-22 16:22+0200\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -190,16 +190,13 @@ msgid "button_unsubscribe"
 msgstr "Unsubscribe"
 
 #.   <p>
-#.           You should leave the following field empty unless you have specific
-#.   	needs and if so you should enter a valid email address like,
+#.           You should not modify the following field unless you have specific
+#.           needs, and if so, you should enter a valid email address like,
 #.   	for example, system@mysite.net
 #.         </p>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "description_leave_empty_or_enter_email_address"
-msgstr ""
-"You should leave the following field empty unless you have specific needs "
-"and if so you should enter a valid email address like, for example, "
-"system@mysite.net"
+msgid "description_do_not_modify_or_enter_email_address"
+msgstr "You should not modify the following field unless you have specific needs, and if so, you should enter a valid email address like, for example, system@mysite.net"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt

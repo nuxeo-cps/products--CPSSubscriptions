@@ -101,13 +101,14 @@ class SubscriptionContainer(PortalFolder):
 
     security.declarePublic('getMailFrom')
     def getMailFrom(self):
-        """Returns the default mail from for the mails
+        """Returns the default email address from for the emails
         that are going to be sent by this container
 
-        More likely the WorkspaceManager
+        The email address used by default is the email address of the portal
+        administrator.
         """
         if not self.mfrom:
-            self.mfrom = self.getMemberEmail(self.Creator())
+            self.mfrom = self.portal_properties.email_from_address
         return self.mfrom
 
     def getLanguage(self):

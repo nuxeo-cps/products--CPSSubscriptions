@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-04-07 11:16default\n"
-"PO-Revision-Date: 2004-04-07 11:22+0200\n"
+"POT-Creation-Date: 2004-04-22 16:21default\n"
+"PO-Revision-Date: 2004-04-22 16:24+0200\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -190,16 +190,13 @@ msgid "button_unsubscribe"
 msgstr "Se désinscrire"
 
 #.   <p>
-#.           You should leave the following field empty unless you have specific
-#.   	needs and if so you should enter a valid email address like,
+#.           You should not modify the following field unless you have specific
+#.           needs, and if so, you should enter a valid email address like,
 #.   	for example, system@mysite.net
 #.         </p>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "description_leave_empty_or_enter_email_address"
-msgstr ""
-"Vous devez laisser ce champ vide à moins que vous n'ayez des besoins "
-"spécifiques et si c'est le cas vous devez entrer une adresse électronique "
-"valide comme, par exemple, system@mysite.net"
+msgid "description_do_not_modify_or_enter_email_address"
+msgstr "Vous ne devez pas modifier le champ suivant à moins que vous n'ayez des besoins spécifiques, et si c'est le cas, vous devez entrer une adresse électronique valide comme, par exemple, systeme@monsite.net"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -248,7 +245,9 @@ msgstr "Adresse électronique de l'émetteur pour les courriels sortants"
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr "Les événements ci-dessous sont ceux pour lesquels vous êtes abonnés de par vos rôles locaux"
+msgstr ""
+"Les événements ci-dessous sont ceux pour lesquels vous êtes abonnés de par "
+"vos rôles locaux"
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
