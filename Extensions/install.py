@@ -103,9 +103,9 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             }
 
         for perm, roles in subscription_workspace_perms.items():
-            self.portal[WORKSPACES_ID].manage_permission(perm, roles, 0)
+            self.portal[WORKSPACES_ID].manage_permission(perm, roles, 1)
         for perm, roles in subscription_workspace_perms.items():
-            self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
+            self.portal[SECTIONS_ID].manage_permission(perm, roles, 1)
 
     def installActions(self):
         """ Installs new actions permitting to manage notifications
