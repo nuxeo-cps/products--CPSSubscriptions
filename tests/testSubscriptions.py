@@ -42,7 +42,7 @@ def myGetViewFor(obj, view='view'):
 
 class TestSubscriptions(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     def afterSetUp(self):
-        self.login('root')
+        self.login('manager')
         self.portal.REQUEST.SESSION = {}
         self.portal.REQUEST.form = {}
 

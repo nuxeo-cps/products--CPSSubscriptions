@@ -12,8 +12,9 @@ import CPSSubscriptionsTestCase
 from Products.CMFCore.utils import getToolByName
 
 class TestGlobalInstall(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
+
     def afterSetUp(self):
-        self.login('root')
+        self.login('manager')
 
     def beforeTearDown(self):
         self.logout()

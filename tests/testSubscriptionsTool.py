@@ -39,7 +39,7 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     """
 
     def afterSetUp(self):
-        self.login('root')
+        self.login('manager')
         self.portal.REQUEST.SESSION = {}
         self.portal.REQUEST.form = {}
 
