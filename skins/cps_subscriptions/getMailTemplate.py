@@ -41,14 +41,15 @@ subscribe_welcome_email_title = \
 """
 
 subscribe_welcome_email_body = \
-"""Welcome to the %(event_id)s mailing lists at :
+"""Welcome to the %(event_id)s mailing lists at
+
 %(object_url)s
 
-General information about the mailing list is at :
+General information about the mailing list is at
+
 %(info_url)s
 
-If you ever want to unsubscribe or change your options, visit your subscription
-page at:
+If you ever want to unsubscribe or change your options, visit your subscription page at:
 
 %(info_url)s
 """
