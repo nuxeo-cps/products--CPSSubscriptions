@@ -1,0 +1,26 @@
+<metal:block use-macro="here/content_lib/macros/master">
+  <metal:block fill-slot="header">
+    <h1>
+      <span i18n:translate="heading_label_edit">
+        Edit subscription
+      </span>
+    <span i18n:translate="">
+      label_<span tal:replace="request/event_key|nothing">
+      Susbcription ID
+    </span>
+    </span>
+    </h1>
+  </metal:block>
+  <metal:block fill-slot="main">
+    <i i18n:translate="">
+      You may allowed only members with given local roles to subscribe to this
+      givent event.  For instance, you may not want the anonymous users
+      (public) to subscribe to the event 'reject content' within sections.  For
+      this, just pick up the local roles below for which you want to give the
+      possiblity to the users granted with these local roles to subscribe to
+      this event.  If you do not specify any local roles then the event is
+      opened to everybody for subscriptions.
+    </i>
+    <metal:block use-macro="here/subscriptions_lib/macros/configure_subscription" />
+  </metal:block>
+</metal:block>

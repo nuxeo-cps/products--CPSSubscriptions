@@ -47,6 +47,13 @@
                 </span>
               </em>
             </td>
+            <td>
+              <em>
+                <span i18n:translate="label_configure">
+                  Configure
+                </span>
+              </em>
+            </td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -74,6 +81,14 @@
                   tal:attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
                   <span i18n:translate="label_notifications_add">
                     Choose
+                  </span>
+                </a>
+              </td>
+              <td align="center">
+                <a href="."
+                  tal:attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
+                  <span i18n:translate="label_notification_edit">
+                    Edit
                   </span>
                 </a>
               </td>
@@ -207,7 +222,7 @@
 <metal:block define-macro="display_user_subscribe">
   <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
     subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
-    events python:subscriptions_tool.getEventsFromContext(context=here);
+    events python:subscriptions_tool.getFilteredAllowedToSubscribeEventsFromContext(here);
     isAno python:here.portal_membership.isAnonymousUser();
     email request/email|nothing;
     unsubscribe_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, email)];
@@ -456,6 +471,66 @@
       here
     </a>
   </span>
+</metal:block>
+
+<!-- ###### Subscription Configuration -->
+
+<metal:block define-macro="configure_subscription">
+  <tal:block define="subtool here/portal_subscriptions;
+      event_id request/event_key|nothing;
+      subscription_container python:subtool.getSubscriptionContainerFromContext(here);
+      event python:subscription_container.getSubscriptionById(event_id);
+      roles_allowed_to_subscribe event/getRolesAllowedToSubscribe
+      ">
+      <div class="group">
+        <form action="." name="form"
+              tal:attributes="action here/absolute_url">
+          <div class="row">
+            <div class="label">
+              <span i18n:translate="label_roles_allowed_to_subscribe">
+                Current local roles
+              </span>
+            </div>
+            <div class="field">
+              <textarea cols="40" rows="10"
+                        name="roles_allowed_to_subscribe:lines" wrap="soft" tal:content="python:'\n'.join(roles_allowed_to_subscribe)"></textarea>
+            </div>
+          </div>
+          <p><input type="submit" value="button_change"
+                    class="standalone" name="subscription_edit:method"
+                    i18n:attributes="value" />
+             <input type="hidden" name="event_id" value="event_id"
+                    tal:attributes="value event_id" />
+             <input type="button" class="standalone" value="button_back"
+                    onclick="javascript:history.back()" i18n:attributes="value" />
+          </p>
+        </form>
+      </div>
+      <div class="group">
+        <form action="." name="form2" method="POST" enctype="multipart/form-data"
+              tal:attributes="action here/absolute_url">
+          <div class="row">
+            <div class="label">
+              <span i18n:translate="label_import_emais_list">
+                Import a list of emails from a file. (text file with one email per ligne)
+              </span>
+            </div>
+            <div class="row">
+              <p>
+                <input type="file" name="file" value="button_import" />
+              </p>
+              <input type="submit" value="button_import"
+                    class="standalone" name="subscription_import:method"
+                    i18n:attributes="value" />
+             <input type="hidden" name="event_id" value="event_id"
+                    tal:attributes="value event_id" />
+             <input type="button" class="standalone" value="button_back"
+                    onclick="javascript:history.back()" i18n:attributes="value" />
+            </div>
+          </div>
+        </form>
+      </div>
+  </tal:block>
 </metal:block>
 
 <!-- ###### Explicit/black emails for a given event -->
