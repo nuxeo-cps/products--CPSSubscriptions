@@ -41,7 +41,7 @@ subscribe_welcome_email_body = \
 
 %(object_url)s
 
-Pour plus d'information ou vous désabonner de la liste : 
+Pour plus d'information ou vous désabonner de la liste :
 
 %(info_url)s
 """
@@ -59,7 +59,7 @@ unsubscribe_confirm_email_title = \
 """
 
 unsubscribe_confirm_email_body = \
-"""Vous avez demandé de vous désabonner de la liste de diffusion : 
+"""Vous avez demandé de vous désabonner de la liste de diffusion :
 
 %(object_title)s at :
 
