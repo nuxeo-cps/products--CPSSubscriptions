@@ -291,8 +291,8 @@
       </form>
     </tal:block>
     <tal:block condition="not:unsubscribe_list">
-      <div translate="label_no_subscriptions">
-        Currently you got no subscriptions in here.
+      <div i18n:translate="label_no_subscriptions">
+        Currently you haven't any subscriptions in this context or for this object.
       </div>
     </tal:block>
     </div>

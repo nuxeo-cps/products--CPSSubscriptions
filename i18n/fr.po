@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-03-10 04:33default\n"
-"PO-Revision-Date: 2004-03-25 11:59+0100\n"
+"POT-Creation-Date: 2004-03-29 10:42default\n"
+"PO-Revision-Date: 2004-03-29 10:44+0200\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,12 @@ msgstr "FAKE"
 #.   <span>
 #.                      <span replace="events/?event_key" />
 #.                    </span>
+#.   <span>
+#.                   <span replace="events/?event_key" />
+#.                 </span>
+#.   <span>
+#.                     <span replace="events/?event_key" />
+#.                   </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"events/?event_key\" />"
 msgstr "FAKE"
@@ -155,9 +161,9 @@ msgid ""
 "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
-"Nous avons reçu une demande de désabonnement pour l'adresse courriel, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
+"Nous avons reçu une demande de désabonnement pour l'adresse courriel, <a "
+"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"\" /> </a>"
 
 #.   <input onclick="javascript:window.close()" class="standAlone" type="button" value="button_close" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -220,8 +226,8 @@ msgstr "Entrer un courriel valide"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_mfrom_mailing_list"
 msgstr ""
-"Courriel apparaissant comme émetteur du message lors de l'envoi de "
-"courriels à la liste de diffusion."
+"Courriel apparaissant comme émetteur du message lors de l'envoi de courriels "
+"à la liste de diffusion."
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
@@ -303,16 +309,6 @@ msgid "heading_subscribtion_welcome"
 msgstr "Bienvenue sur la mailing list"
 
 #.   <span>
-#.                   label_<span replace="event_key" />
-#.                 </span>
-#.   <span>
-#.                     label_<span replace="event_key" />
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "label_<span replace=\"event_key\" />"
-msgstr "F "
-
-#.   <span>
 #.                 Are anonymous subscriptions allowed ?
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -356,6 +352,13 @@ msgid "label_follow_subscriptions_instructions"
 msgstr ""
 "Veuiller suivre les instructions se trouvant dans le courriel que vous allez "
 "recevoir."
+
+#.   <div>
+#.           Currently you haven't any subscriptions for this object/context.
+#.         </div>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_no_subscriptions"
+msgstr "Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
 
 # ## PSMS ##########################################
 #.   <span>
@@ -534,6 +537,9 @@ msgstr "Bienvenue sur la liste de diffusion."
 
 msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr "Vous avez été retiré de la liste de diffusion."
+
+#~ msgid "label_<span replace=\"event_key\" />"
+#~ msgstr "F "
 
 #~ msgid "An email has been sent to you to confirm your subscription."
 #~ msgstr "Un courriel de confirmation.vous a été adressé."

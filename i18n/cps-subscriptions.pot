@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-10 04:33default\n"
+"POT-Creation-Date: 2004-03-29 10:42default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -29,6 +29,12 @@ msgstr ""
 #.   <span>
 #.                      <span replace="events/?event_key" />
 #.                    </span>
+#.   <span>
+#.                   <span replace="events/?event_key" />
+#.                 </span>
+#.   <span>
+#.                     <span replace="events/?event_key" />
+#.                   </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"events/?event_key\" />"
 msgstr ""
@@ -281,16 +287,6 @@ msgid "heading_subscribtion_welcome"
 msgstr ""
 
 #.   <span>
-#.                   label_<span replace="event_key" />
-#.                 </span>
-#.   <span>
-#.                     label_<span replace="event_key" />
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "label_<span replace=\"event_key\" />"
-msgstr ""
-
-#.   <span>
 #.                 Are anonymous subscriptions allowed ?
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -331,6 +327,13 @@ msgstr ""
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
+msgstr ""
+
+#.   <div>
+#.           Currently you haven't any subscriptions for this object/context.
+#.         </div>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_no_subscriptions"
 msgstr ""
 
 #.   <span>
