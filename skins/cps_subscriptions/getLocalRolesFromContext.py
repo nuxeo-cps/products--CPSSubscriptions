@@ -7,10 +7,12 @@ Override this one in your owan application if you defined new roles.
 workspaces_local_roles = {'WorkspaceManager': 'label_workspace_manager',
                           'WorkspaceMember' : 'label_workspace_member',
                           'WorkspaceReader' : 'label_workspace_reader',
+                          'Owner'           : 'label_owner',
                           }
 sections_local_roles = {'SectionManager'  : 'label_section_manager',
                         'SectionReviewer' : 'label_section_reviewer',
                         'SectionReader'   : 'label_section_reader',
+                        'Owner'           : 'label_owner',
                         }
 
 if context.portal_type == 'Workspace':
