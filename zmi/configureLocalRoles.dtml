@@ -1,0 +1,203 @@
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+
+<h2>Local role areas / Subcription contexts / Relevant local roles</h2>
+
+<h4>Vocabulary</h4>
+<ul>
+  <li>
+    <strong>Local role areas</strong>
+    In a CPS default portal you will find two different areas : Workspace /
+    Section areas. <br />
+    The id of the area is the id of the portal_type of the main container of
+    the area
+  </li>
+  <li>
+    <strong>Subscription contexts</strong>
+    portal_types for wich you want to have the subscription facilites :
+    CPSForum, Workspace, Section, ....
+  </li>
+  <li>
+    <strong>Relavant Local Roles</strong>
+    Here relevant local roles for the given subscription context
+  </li>
+</ul>
+
+<i>Cf.
+CPSSubscriptions/cps_subscriptions_installer/getCPSSubscriptionsRelevantLocalRoles.py
+for the structure</i>
+
+<p>You may defined them on the fly from here or use the API dedicated to that</p>
+
+<hr />
+
+<dtml-let areas="mapping_local_roles_context.keys()">
+<ul>
+  <dtml-in areas>
+  <li>
+      <dtml-let area=sequence-item>
+        <strong>
+          <dtml-var area><br />
+        </strong>
+        <dtml-in expr="mapping_local_roles_context[area].keys()">
+          <ul>
+            <dtml-let context=sequence-item>
+            <li>
+              <dtml-var context>
+              <ul>
+                <dtml-in expr="mapping_local_roles_context[area][context].keys()">
+                  <dtml-let role_key=sequence-item>
+                    <li>
+                      <dtml-var role_key>
+                    (<dtml-var expr="mapping_local_roles_context[area][context][role_key]">)
+                    </li>
+                  </dtml-let>
+                </dtml-in>
+              </ul>
+            </li>
+            </dtml-let>
+          </ul>
+        </dtml-in>
+      </dtml-let>
+    </li>
+  </dtml-in>
+</ul>
+</dtml-let>
+
+<hr />
+
+<h3>Add a new area</h3>
+
+<form action="manage_addLocalRoleArea" method="post">
+<p class="form-help">
+  You can add a new local roles area for your need.
+</p>
+
+<table cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">
+        Area (portal_type)
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="area_portal_type" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td valign="top">
+      <div class="form-element">
+      <input class="form-element" type="submit" name="submit"
+       value="Add" />
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<hr />
+
+<h3>Add a new portal_type within an area</h3>
+
+<form action="manage_addPortalTypeToArea" method="post">
+<p class="form-help">
+  You can add a new portal_type within an existing area
+</p>
+
+<table cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">
+      Area (Cf. above)
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="area_portal_type" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-optional">
+      portal_type
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="portal_type" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td valign="top">
+      <div class="form-element">
+      <input class="form-element" type="submit" name="submit"
+       value="Add" />
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<hr />
+
+<h3>Add a new local roles within a portal_type within an area</h3>
+
+<form action="manage_addLocalRoleToPortalTypeToArea" method="post">
+<p class="form-help">
+  You can add a new local role to an existing portal_type within an existing area
+</p>
+
+<table cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">
+      Area (Cf. above)
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="area_portal_type" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-optional">
+      portal_type
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="portal_type" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-optional">
+      Local role (such as 'WorkspaceManager')
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="role_id" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-optional">
+      Local role label (such as 'label_workspace_manager')
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input type="text" name="role_label" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td valign="top">
+      <div class="form-element">
+      <input class="form-element" type="submit" name="submit"
+       value="Add" />
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<dtml-var manage_page_footer>
