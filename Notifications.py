@@ -132,11 +132,9 @@ class MailNotificationRule(NotificationRule):
 
         return body
 
-    def _makeInfoDict(self, event_type, object):
+    def _makeInfoDict(self, event_type, object, infos={}):
         """Building the infos dict used for processing the email.
         """
-
-        infos = {}
 
         portal_subscriptions = getToolByName(self, 'portal_subscriptions')
         mcat = self.Localizer.default
@@ -156,7 +154,7 @@ class MailNotificationRule(NotificationRule):
         infos['event'] = event_type
 
         infos['object_title'] = object.Title()
-        infos['object_url'] = object.absolute_url()
+        infos['object_url'] = infos.get('url', object.absolute_url())
         infos['object_parent'] = aq_parent(aq_inner(object)).Title()
         infos['object_type'] = getattr(object, 'portal_type', '')
 
@@ -178,7 +176,7 @@ class MailNotificationRule(NotificationRule):
         # to implement : members and groups
         #
 
-        infos = self._makeInfoDict(event_type, object)
+        infos = self._makeInfoDict(event_type, object, infos)
 
         if not infos:
             return
