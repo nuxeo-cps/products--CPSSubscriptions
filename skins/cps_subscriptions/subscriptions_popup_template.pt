@@ -26,7 +26,7 @@ tal:define="
   CPSD_bmt_mark nocall:CPSD_BMT/setMarker;
   CPSD_bmt_elapsed nocall:CPSD_BMT/getProfiling;"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <head>
-<metal:block use-macro="here/header_lib/macros/header">
+<metal:block use-macro="here/header_lib_header/macros/header">
   <metal:block fill-slot="base"><metal:block define-slot="base"><base
     href="" tal:attributes="href
     string:${here_url}/"></metal:block></metal:block>

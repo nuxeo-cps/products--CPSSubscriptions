@@ -1,0 +1,64 @@
+<!-- a subscriptions_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ###### Explicit/black emails for a given event --&gt;
+-->
+
+<metal:block define-macro="display_explicit_recipients_management">
+  <tal:block define="subtool here/portal_subscriptions;
+    event_key request/event_key|nothing;
+    event_id string:subscription__${event_key};
+    subscription_container python:getattr(here,
+    subtool.getSubscriptionContainerId(), None);
+    event python:getattr(subscription_container, event_id, None);
+    event_explicit_recipients_rules
+    python:event and
+    event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule') or [];
+    event_explicit_recipients_rule
+    python:event_explicit_recipients_rules != [] and
+    event_explicit_recipients_rules[0] or nothing;
+    explicit_emails python:event_explicit_recipients_rule and
+    event_explicit_recipients_rule.getEmails() or [];
+    black_list python:event and
+    event.getRecipientEmailsBlackList() or [];
+    ">
+    <br />
+    <!-- EMAILS -->
+    <form action="." name="form" tal:attributes="action here/absolute_url">
+      <div class="document">
+        <div class="row">
+          <div class="label">
+            <span i18n:translate="label_emails">
+              Explicit E-Mails
+            </span>
+          </div>
+          <div class="row">
+            <textarea cols="40" rows="10" name="explicit_emails:lines" wrap="soft" tal:content="python:'\n'.join(explicit_emails)"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- END EMAILS -->
+      <!-- BLACK LIST -->
+      <div class="document">
+        <div class="row">
+          <div class="label">
+            <span i18n:translate="label_black_list">
+              E-Mails Black list
+            </span>
+          </div>
+          <div class="row">
+            <textarea cols="40" rows="10" name="black_list:lines" wrap="soft" tal:content="python:'\n'.join(black_list)"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- END BLACK LIST -->
+      <input type="hidden" name="event_id" tal:attributes="value event_id" />
+      <input type="submit" class="standAlone" value="button_change"
+        name="folder_explicit_notifications_edit:method"
+        i18n:attributes="value" />
+      <input type="button" class="standAlone" value="button_back"
+        onclick="javascript:history.back()" i18n:attributes="value" />
+    </form>
+  </tal:block>
+</metal:block>

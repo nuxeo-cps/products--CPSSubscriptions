@@ -2,14 +2,14 @@
                    email request/email|nothing;
                    ok python:event_id and email and 1 or nothing">
 
-  <metal:block use-macro="here/content_lib/macros/master">
+  <metal:block use-macro="here/content_lib_master/macros/master">
     <metal:block fill-slot="header">
       <h1 i18n:translate="heading_confirm_subscribtion">
         Confirm subscription for <span tal:replace="event_id" />
       </h1>
     </metal:block>
     <metal:block fill-slot="main">
-      <metal:block use-macro="here/subscriptions_lib/macros/user_confirm_subscribe" />
+      <metal:block use-macro="here/subscriptions_lib_user_confirm_subscribe/macros/user_confirm_subscribe" />
     </metal:block>
   </metal:block>
 </tal:block>

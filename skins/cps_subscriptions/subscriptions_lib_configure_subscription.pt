@@ -1,0 +1,64 @@
+<!-- a subscriptions_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ###### Subscription Configuration --&gt;
+-->
+
+<metal:block define-macro="configure_subscription">
+  <tal:block define="subtool here/portal_subscriptions;
+      event_id request/event_key|nothing;
+      subscription_container python:subtool.getSubscriptionContainerFromContext(here);
+      event python:subscription_container.getSubscriptionById(event_id);
+      roles_allowed_to_subscribe python: event and event.getRolesAllowedToSubscribe() or [];
+      ">
+      <div class="group">
+        <form action="." name="form"
+              tal:attributes="action here/absolute_url">
+          <div class="row">
+            <div class="label">
+              <span i18n:translate="label_roles_allowed_to_subscribe">
+                Current local roles
+              </span>
+            </div>
+            <div class="field">
+              <textarea cols="40" rows="10"
+                        name="roles_allowed_to_subscribe:lines" wrap="soft" tal:content="python:'\n'.join(roles_allowed_to_subscribe)"></textarea>
+            </div>
+          </div>
+          <p><input type="submit" value="button_change"
+                    class="standalone" name="subscription_edit:method"
+                    i18n:attributes="value" />
+             <input type="hidden" name="event_id" value="event_id"
+                    tal:attributes="value event_id" />
+             <input type="button" class="standalone" value="button_back"
+                    onclick="javascript:history.back()" i18n:attributes="value" />
+          </p>
+        </form>
+      </div>
+      <div class="group">
+        <form action="." name="form2" method="post" enctype="multipart/form-data"
+              tal:attributes="action here/absolute_url">
+          <div class="row">
+            <div class="label">
+              <span i18n:translate="label_import_emais_list">
+                Import a list of emails from a file. (text file with one email per ligne)
+              </span>
+            </div>
+            <div class="row">
+              <p>
+                <input type="file" name="file" value="button_import" />
+              </p>
+              <input type="submit" value="button_import"
+                    class="standalone" name="subscription_import:method"
+                    i18n:attributes="value" />
+             <input type="hidden" name="event_id" value="event_id"
+                    tal:attributes="value event_id" />
+             <input type="button" class="standalone" value="button_back"
+                    onclick="javascript:history.back()" i18n:attributes="value" />
+            </div>
+          </div>
+        </form>
+      </div>
+  </tal:block>
+</metal:block>

@@ -1,5 +1,5 @@
 <tal:block define="email request/email|nothing">
-<metal:block use-macro="here/content_lib/macros/master">
+<metal:block use-macro="here/content_lib_master/macros/master">
   <metal:block fill-slot="header">
     <h1 i18n:translate="heading_ok_unsubscription"
         tal:condition="email">

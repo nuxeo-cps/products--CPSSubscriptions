@@ -1,10 +1,10 @@
-<metal:block use-macro="here/content_lib/macros/master">
+<metal:block use-macro="here/content_lib_master/macros/master">
   <metal:block fill-slot="header">
     <h1 i18n:translate="heading_manage_local_notifications">
       Local Notifications Management
     </h1>
   </metal:block>
   <metal:block fill-slot="main">
-    <metal:block use-macro="here/subscriptions_lib/macros/display_subscriptions_table" />
+    <metal:block use-macro="here/subscriptions_lib_display_subscriptions_table/macros/display_subscriptions_table" />
   </metal:block>
 </metal:block>

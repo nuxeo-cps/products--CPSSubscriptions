@@ -6,7 +6,7 @@
     </h1>
   </metal:block>
   <metal:block fill-slot="main">
-    <metal:block use-macro="here/subscriptions_lib/macros/display_all_notifications_subscribers" />
+    <metal:block use-macro="here/subscriptions_lib_display_all_notifications_subscribers/macros/display_all_notifications_subscribers" />
   </metal:block>
 </metal:block>
 </tal:block>

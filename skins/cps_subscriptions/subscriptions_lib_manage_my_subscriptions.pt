@@ -1,0 +1,87 @@
+<!-- a subscriptions_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ######################################################## --&gt;
+&lt;pre&gt;Manage my subscriptions form&lt;/pre&gt;
+-->
+
+<metal:block define-macro="manage_my_subscriptions">
+  <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
+    subscriptions_struct python:subscriptions_tool.getAllSubscriptionsFor()">
+    <span i18n:translate="">
+      Below are the subscriptions you belong to all over the portal
+    </span>
+    <div class="group" tal:condition="subscriptions_struct">
+      <table align="center" cellpadding="2" cellspacing="1" width="100%">
+        <tr class="even">
+          <td align="left">
+            <strong>
+              <span i18n:translate="label_subscription_where">
+                Where
+              </span>
+            </strong>
+          </td>
+          <td align="center">
+            <strong>
+              <span i18n:translate="label_subscription_description">
+                Description
+              </span>
+            </strong>
+          </td>
+          <td align="center">
+            <strong>
+              <span i18n:translate="label_subscription_manage">
+                Infos / Unsubscribe
+              </span>
+            </strong>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tal:block repeat="elt subscriptions_struct">
+          <tr tal:define="class python:test(repeat['elt'].even(), 'odd', 'even')"
+            tal:attributes="class class">
+            <td align="left">
+              <a href=""
+                tal:attributes="href string:${elt/path}">
+                  <span tal:replace="elt/title" />
+              </a>
+            </td>
+            <td align="center">
+              <strong>
+              <span i18n:translate="">
+                  <span tal:replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
+              </span>
+              </strong>
+            </td>
+            <td align="center">
+              <tal:block condition="elt/canSubscribe">
+              <a href="" tal:attributes="href string:${elt/path}/folder_subscribe_form">
+                <span i18n:translate="label_click_here">
+                  Click here
+                </span>
+              </a>
+              </tal:block>
+              <tal:block condition="not:elt/canSubscribe">
+                 <span i18n:translate="label_subscriptions_closed">
+                   subscriptions / unsubscriptions are closed
+                 </span>
+              </tal:block>
+            </td>
+          </tr>
+        </tal:block>
+      </table>
+      <br />
+      <input type="button" class="standalone" value="button_back"
+        onclick="javascript:history.back()"
+        i18n:attributes="value" />
+    </div>
+    <div class="group" tal:condition="not:subscriptions_struct" align="center">
+      <span i18n:translate="label_subscriptions_no_subscription_yet">
+        You currently do not belong to any subscriptions.
+      </span>
+    </div>
+  </tal:block>
+</metal:block>

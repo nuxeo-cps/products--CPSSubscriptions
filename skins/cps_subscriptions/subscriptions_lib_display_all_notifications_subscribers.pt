@@ -1,0 +1,52 @@
+<!-- a subscriptions_lib macro -->
+<!-- $Id$ -->
+
+<!--
+
+-->
+
+<metal:block define-macro="display_all_notifications_subscribers">
+  <tal:block define="recipients python:here.portal_subscriptions.getRecipientsFor(infos={'context':here})">
+    <br />
+    <table border="0" width="80%" align="center" cellpadding="5"
+      cellspacing="1">
+      <tr>
+        <td align="left">
+          <strong>
+            <span i18n:translate="label_subscriptions_email">
+              E-Mails
+            </span>
+          </strong>
+        </td>
+        <td align="left">
+          <strong>
+            <span i18n:translate="label_subcriptions_fullname">
+              Full Name
+            </span>
+          </strong>
+        </td>
+      </tr>
+      <tr tal:repeat="recipient_mail python:recipients.keys()"
+        tal:attributes="class python:test(repeat['recipient_mail'].even(),
+        'even','odd')">
+        <tal:block condition="recipient_mail">
+          <td align="left">
+            <a href="." tal:attributes="href string:mailto:${recipient_mail}">
+              <span tal:replace="recipient_mail" />
+            </a>
+          </td>
+          <td tal:define="m python:recipients[recipient_mail];
+                          name_to_display python:here.getMemberFullNameFromId(m)">
+            <span tal:replace="name_to_display" />
+          </td>
+        </tal:block>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+          <input type="button" class="standAlone" value="button_close"
+            onclick="javascript:window.close()"
+            i18n:attributes="value" />
+        </td>
+      </tr>
+  </tal:block>
+</metal:block>

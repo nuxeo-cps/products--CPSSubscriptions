@@ -1,0 +1,35 @@
+<!-- a subscriptions_lib macro -->
+<!-- $Id$ -->
+
+<!--
+&lt;!-- ###### Confirm UnSubscriptions --&gt;
+-->
+
+<metal:block define-macro="user_confirm_unsubscribe">
+  <br />
+  <span i18n:translate="">
+    Mailing list unsubscription confirmation for the event
+    <span i18n:translate="event_id" />
+    in <span tal:replace="here/title_or_id" />
+    at <a href="here/absolute_url">
+      <span tal:replace="here/absolute_url" />
+    </a>
+  </span>
+  <br /><br />
+  <span i18n:translate="">
+    We have received a request for unsubscription with the email
+    address, <a href=""
+      tal:attributes="href string:mailto:${email}">
+      <span tal:replace="email" />
+    </a>
+  </span>
+  <br /><br />
+  <span i18n:translate="">
+    Ton confirm that you want to be removed from this mailing list, click
+    <a href=""
+      tal:attributes="href
+      string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
+      here
+    </a>
+  </span>
+</metal:block>
