@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.13.2 [R1 build 2004/09/03-13:41 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Don't install specific indexes anymore. They are not in use right now
+
+*******************************************
 ** CPSSubscriptions V0.13.1 [R1 build 2004/08/16-15:36 by ben]
 
 Requires:
