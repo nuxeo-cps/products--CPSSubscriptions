@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- new events for CPSForum posts/comments: unpublish, reject, delete
 Bug fixes:
 ~~~~~~~~~~
 -
