@@ -147,3 +147,16 @@ msgstr ""
 msgid "button_unsubscribe"
 msgstr ""
 
+### Subscription modes ############################
+
+msgid "mode_daily"
+msgstr ""
+
+msgid "mode_weekly"
+msgstr ""
+
+msgid "mode_monthly"
+msgstr ""
+
+msgid "mode_real_time"
+msgstr ""

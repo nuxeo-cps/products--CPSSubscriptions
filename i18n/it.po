@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-05-24 16:24default\n"
+"POT-Creation-Date: 2004-06-17 17:19default\n"
 "PO-Revision-Date: 2004-05-10 16:45+0100\n"
 "Last-Translator: Paolo Dina <paolo@php3.it>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -357,6 +357,17 @@ msgid "header_subscription_allowed"
 msgstr " Le iscrizioni sono permesse ?"
 
 #    <h4>
+#            Are subscriptions allowed and to whom ?
+#          </h4>
+#.   <h4>
+#.              You can choose below your subscription mode for your above subscriptions
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#, fuzzy
+msgid "header_user_subscribption_mode"
+msgstr " Le iscrizioni sono permesse ?"
+
+#    <h4>
 #            When/where to notify ?
 #          </h4>
 #.   <h4>
@@ -638,6 +649,17 @@ msgid "label_subscription_manage"
 msgstr "Amministra"
 
 #    <span>
+#                  Infos / Unsubscribe
+#                </span>
+#.   <span>
+#.                 Subscription modes
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#, fuzzy
+msgid "label_subscription_modes"
+msgstr "Amministra"
+
+#    <span>
 #                  Where
 #                </span>
 #.   <span>
@@ -688,6 +710,18 @@ msgstr ""
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_you_are_no_registred"
 msgstr "Ora sei un abbonato."
+
+#.   <span>
+#.                   Real time
+#.                 </span>
+#.   <option selected="" value="mode_real_time">
+#.                 <span>
+#.                   Real time
+#.                 </span>
+#.               </option>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "mode_real_time"
+msgstr ""
 
 msgid "label_workspace_manager"
 msgstr "Responsabile dell'area di lavoro"
@@ -812,3 +846,13 @@ msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_need
 msgstr ""
 "Sei stato rimosso dalla lista di diffusione. Se intendi farne ancora parte "
 "puoi contattare l'amministratore della lista."
+
+# ## Subscription modes ############################
+msgid "mode_daily"
+msgstr ""
+
+msgid "mode_weekly"
+msgstr ""
+
+msgid "mode_monthly"
+msgstr ""

@@ -3,11 +3,12 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Possible to specify portal_types / events for which we gonna render the content 
-  type within the body of the notification email. 
+- Possible to specify portal_types / events for which we gonna render the content
+  type within the body of the notification email.
   Accessible from the tool.
 - Archives are now available within the portal_subscriptions
-
+- It's possible to subscribe on reglar basis in a given context
+  (i.e : daily / weekly  / monthly)
 Bug fixes:
 ~~~~~~~~~~
 -
@@ -15,3 +16,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Cleanups on the actions of subscriptions_tool
 - portal_subscriptions is a BTreeFolder2 since it's going to store NotificationMessageBody objects
+- API to cope with scheduling when launched from an external tool such as crond
