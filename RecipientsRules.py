@@ -1,5 +1,5 @@
-# Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
@@ -28,12 +28,19 @@ Classes defining how to compute recipients. They are stored within
 the subscription container.
 """
 
+from DateTime.DateTime import DateTime
+
 from Globals import InitializeClass, MessageDialog
 from Acquisition import aq_base, aq_parent, aq_inner
-from AccessControl import ClassSecurityInfo
+
+from AccessControl import ClassSecurityInfo, getSecurityManager
 
 from Products.CMFCore.PortalFolder import PortalFolder
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
+
+from Products.CMFCore.Expression import Expression
+from Products.CMFCore.Expression import getEngine
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -59,6 +66,8 @@ class ComputedRecipientsRule(RecipientsRule):
 
     Several computed recipients rule can be stored within a subscription
     container.
+
+    XXX : has to be tested !
     """
 
     meta_type = "Computed Recipients Rule"
@@ -66,12 +75,158 @@ class ComputedRecipientsRule(RecipientsRule):
 
     security = ClassSecurityInfo()
 
+    #
+    # - expression -- A TALES expression returning a mapping
+    #        with recipients. In the expression, the following namespace
+    #        is available:
+    #
+    #        - portal: The portal object.
+    #
+    #        - context: The context object (proxy) where the triggering
+    #          event occured.
+    #
+    #        - proxy: Alias for context.
+    #
+    #        - doc: context.getContent().
+    #
+    #        - container: The context's container.
+    #
+    #        - ancestor: If 'ancestor_local' or 'ancestor_merged' was
+    #          used for recipient_roles_origins, that object, else None.
+    #
+    #        - event_type: The triggering event type.
+    #
+    #        - triggering_user: The user who triggered the original
+    #          action.
+    #
+    #       - DateTime: A DateTime constructor.
+    #
+
+    _properties = (
+        {'id' : 'expression',
+         'type' : 'string',
+         'mode' : 'w',
+         'label' : 'TALES expression',
+         },
+        {'id': 'roles',
+         'type': 'lines',
+         'mode': 'w',
+         'label': 'Roles'},
+        )
+
+    expression = 'python:1'
+    expression_c = Expression(expression)
+    roles = ''
+
+    _properties_post_process_tales = (
+        ('expression', 'expression_c')
+        )
+
+    def __init__(self, id, title=''):
+        """Init the expression attrs
+        """
+        PortalFolder.__init__(self, id, title=title)
+        self.id = id
+        self.expression = 'python:1'
+        self.expression_c = Expression(self.expression)
+        self.roles = ''
+
+    def getExpression(self, context):
+        """
+        """
+        if not self.expression_c:
+            return 0
+        expr_context = self._createExpressionContext(context)
+        return self.expression_c(expr_context)
+
+    def _createExpressionContext(self, context):
+        """Create an expression context for expression evaluation
+        """
+        mapping = {
+            'portal': getToolByName(self, 'portal_url').getPortalObject(),
+            'context': context,
+            'proxy' : context,
+            'doc': context.getContent(),
+            'container': aq_parent(aq_inner(context)),
+            'DateTime': DateTime,
+            'Triggering_user': getSecurityManager().getUser(),
+            'nothing': None,
+            }
+        return getEngine().getContext(mapping)
+
+    security.declarePublic('getRoles')
+    def getRoles(self):
+        """Returns the roles for which the recipient rule is going to work
+        """
+        return self.roles
+
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        raise NotImplementedError
+
+        if self.getExpression(object):
+            member_email_mapping = {}
+            mtool = self.portal_membership
+            subtool = self.portal_subscriptions
+            if getattr(object, 'portal_type') in \
+                   subtool.getContainerPortalTypes():
+                container = object
+            else:
+                container = aq_parent(aq_inner(object))
+
+            if getattr(self, 'notify_no_local'):
+                if subtool.getSubscriptionContainerId() in container.objectIds():
+                    return {}
+
+            if not getattr(self, 'notify_local_only'):
+                #
+                # Using merged local roles
+                #
+                merged_local_roles = mtool.getMergedLocalRoles(container)
+                for entry in merged_local_roles.keys():
+                    for role in self.getRoles():
+                        if role in merged_local_roles[entry]:
+                            if entry.startswith('user:'):
+                                member_ids = [entry.split(':')[1]]
+                            if entry.startswith('group:'):
+                                group_id = entry.split(':')[1]
+                                aclu = getattr(self, 'acl_users', None)
+                                if group_id == 'role':
+                                    group_id = group_id + ':' + entry.split(':')[2]
+                                group = aclu.getGroupById(group_id)
+                                member_ids = group.getUsers()
+                            for member_id in member_ids:
+                                member = mtool.getMemberById(member_id)
+                                if member is not None:
+                                    email = self.getMemberEmail(member_id)
+                                    member_email_mapping[email] = member_id
+                #
+                # Using roles defined only in the context
+                #
+                local_roles = container.get_local_roles()
+                for member in local_roles:
+                    member_id = member[0]
+                    for role in self.getRoles():
+                        if role in member[1]:
+                            email = self.getMemberEmail(member_id)
+                            member_email_mapping[email] = member_id
+
+                local_group_roles = container.get_local_group_roles()
+                for group in local_group_roles:
+                    for role in self.getRoles():
+                        if role in group[1]:
+                            group_id = group[0]
+                            aclu = getattr(self, 'acl_users', None)
+                            group = aclu.getGroupById(group_id)
+                            group_users = group.getUsers()
+                            for member_id in group_users:
+                                email = self.getMemberEmail(member_id)
+                                member_email_mapping[email] = member_id
+                return member_email_mapping
+            else:
+                return {}
 
 InitializeClass(ComputedRecipientsRule)
 
@@ -205,7 +360,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self.emails = emails
 
-    security.declareProtected(ModifyPortalContent, "getRecipients")
+    security.declareProtected(View, "getRecipients")
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
@@ -334,9 +489,9 @@ class RoleRecipientsRule(RecipientsRule):
     def addRole(self, role):
         """ Add a new role
         """
-        self.role += [role]
+        self.roles += [role]
 
-    security.declareProtected(ModifyPortalContent, "getRecipients")
+    security.declareProtected(View, "getRecipients")
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
