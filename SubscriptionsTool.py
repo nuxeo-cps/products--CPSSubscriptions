@@ -1,5 +1,5 @@
-# Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
@@ -64,29 +64,103 @@ class SubscriptionsTool(UniqueObject, Folder):
     security = ClassSecurityInfo()
 
     _properties = (
+        {'id': 'notify_hidden_object',
+         'type': 'boolean', 'mode':'w',
+         'label' : 'Notify hidden files'},
+         {'id': 'event_default_email_title',
+         'type':'string', 'mode':'r',
+         'label':'Default email title'},
+        {'id': 'event_default_email_body',
+         'type':'text', 'mode':'r',
+         'label':'Default email body'},
+        {'id': 'event_error_email_body',
+         'type' : 'text', 'mode':'r',
+         'label': 'Error email body',},
         {'id':'mapping_context_events',
-         'type':'string', 'mode':'r', 'label':'Mapping context / events'},
+         'type':'string', 'mode':'r',
+         'label':'Mapping context / events'},
+        {'id': 'mapping_event_email_content',
+         'type': 'string', 'mode': 'r',
+         'label' : 'Mapping event email content'},
         )
-
-    mapping_context_events = {}
 
     ###################################################
     # ZMI
     ###################################################
 
     manage_options = (
-        Folder.manage_options +
-        ({'label': "Events", 'action': 'manage_events',},) +
-        ())
+        {'label': "About",
+         'action': 'about'
+         },
+        {'label': "Events and context / Add",
+         'action': 'manage_events',
+         },
+        {'label': "Edit events content messages",
+         'action': 'manage_edit_events',
+         },
+        ) + Folder.manage_options[2:4]
 
     security.declareProtected(ManagePortal, 'manage_events')
     manage_events = DTMLFile('zmi/configureEvents', globals())
+
+    security.declareProtected(ManagePortal, 'about')
+    about = DTMLFile('zmi/about_portal_subscriptions', globals())
+
+    security.declareProtected(ManagePortal, 'manage_edit_events')
+    manage_edit_events = DTMLFile('zmi/editEvents', globals())
+
+    security.declareProtected(ManagePortal, 'manage_edit_event')
+    manage_edit_event = DTMLFile('zmi/configureEvent', globals())
+
+    def manage_editDefaultEventMessage(self,
+                                       event_default_email_title,
+                                       event_default_email_body,
+                                       event_error_email_body,
+                                       REQUEST=None):
+        """Edit the default event email
+        """
+
+        self._p_changed = 1
+
+        # No %(sthg)s in the error message. It's the purpose of that kind of
+        # message.
+
+        if '%' in event_error_email_body:
+            event_error_email_body = event_error_email_body.replace('%', '')
+
+        self.event_default_email_title = event_default_email_title
+        self.event_default_email_body = event_default_email_body
+        self.event_error_email_body = event_error_email_body
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_edit_events')
+
+    def manage_editEventMessage(self,
+                                event_id,
+                                event_email_title,
+                                event_email_body,
+                                REQUEST=None):
+        """Edit a custom event message
+        """
+
+        self._p_changed = 1
+
+        struct = [event_email_title,
+                  event_email_body]
+
+        self.mapping_event_email_content[event_id] = struct
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_edit_events')
 
 
     def manage_addEventType(self, event_where, event_id, event_label,
                             REQUEST=None):
         """ Adds a new event id in a given context
         """
+
+        self._p_changed = 1
+
         mapping_context_events = self.mapping_context_events
         if mapping_context_events.has_key(event_where):
             if not self.mapping_context_events[event_where].has_key(event_id):
@@ -96,18 +170,36 @@ class SubscriptionsTool(UniqueObject, Folder):
             self.mapping_context_events[event_where][event_id] = event_label
         self.mapping_context_events = mapping_context_events
 
+        self.mapping_event_email_content[event_id] = [self.getDefaultMessageTitle(),
+                                                      self.getDefaultMessageBody()]
+
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_events')
+
 
     ###################################################
     # SUBSCRIPTIONS TOOL API
     ###################################################
 
+    def __init__(self):
+        """Initialization of default properties.
+        """
+
+        self.notify_hidden_object = 0
+
+        self.mapping_context_events = {}
+        self.mapping_event_email_content = {}
+
+        self.event_default_email_title = ''
+        self.event_default_email_body = ''
+        self.event_error_email_body = ''
+
+
     #
     # ID's
     #
 
-    security.declarePublic("getSubscriptionContainerId")
+    security.declarePublic('getSubscriptionContainerId')
     def getSubscriptionContainerId(self):
         """ Returns the default id for subscription containers
 
@@ -115,7 +207,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         """
         return SUBSCRIPTION_CONTAINER
 
-    security.declarePublic("getExplicitRecipientsRuleId")
+    security.declarePublic('getExplicitRecipientsRuleId')
     def getExplicitRecipientsRuleId(self):
         """ Returns an in use id.
 
@@ -123,7 +215,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         """
         return EXPLICIT_RECIPIENTS_RULE_ID
 
-    security.declarePublic("getMailNotificationRuleObjectId")
+    security.declarePublic('getMailNotificationRuleObjectId')
     def getMailNotificationRuleObjectId(self):
         """ Returns an in use id.
 
@@ -135,7 +227,58 @@ class SubscriptionsTool(UniqueObject, Folder):
     # ACCESSORS
     #
 
-    security.declarePublic("getEventsFromContext")
+    security.declarePublic('getDefaultMessageTitle')
+    def getDefaultMessageTitle(self, event_id=None):
+        """Returns the default event message title.
+
+        If event_id then look for the current title that applied
+        to this given event.
+        """
+        if event_id is not None:
+            if self.mapping_event_email_content.has_key(event_id):
+                return self.mapping_event_email_content[event_id][0]
+        else:
+            if not self.event_default_email_title:
+                # Init of the variable here.
+                self.event_default_email_title = self.getMailTemplate()['mail_subject']
+            return self.event_default_email_title
+
+    security.declarePublic('getDefaultMessageBody')
+    def getDefaultMessageBody(self, event_id=None):
+        """Returns the default event message title
+
+        If event_id then look for the current title that applied
+        to this given event.
+        """
+        if event_id is not None:
+            if self.mapping_event_email_content.has_key(event_id):
+                return self.mapping_event_email_content[event_id][1]
+        else:
+            if not self.event_default_email_body:
+                # Init of the variable here.
+                self.event_default_email_body = self.getMailTemplate()['mail_body']
+            return self.event_default_email_body
+
+    security.declarePublic('getErrorMessageBody')
+    def getErrorMessageBody(self, event_id=None):
+        """Returns the error event message title
+
+        Used especially when the user edited the body of the event
+        but put wrong variable names.
+
+        If event_id is specified then let's check if we get a custom
+        one.
+        """
+        if event_id is not None:
+            if self.mapping_event_email_content.has_key(event_id):
+                return self.mapping_event_email_content[event_id][2]
+        else:
+            if not self.event_error_email_body:
+                # Init of the variable here.
+                self.event_error_email_body = self.getMailTemplate()['mail_error_body']
+            return self.event_error_email_body
+
+    security.declarePublic('getEventsFromContext')
     def getEventsFromContext(self, context=None):
         """ Returns events given a context.
         """
@@ -145,11 +288,17 @@ class SubscriptionsTool(UniqueObject, Folder):
                 return self.mapping_context_events[context_portal_type]
         return {}
 
-    security.declarePublic("getContainerPortalTypes")
+    security.declarePublic('getContainerPortalTypes')
     def getContainerPortalTypes(self):
         """Get all portal types in when we can set notifications
         """
         return self.mapping_context_events.keys()
+
+    security.declarePublic('getRecordedEvents')
+    def getRecordedEvents(self):
+        """Returns recorded events
+        """
+        return self.mapping_event_email_content.keys()
 
     #
     # NOTIFICATIONS API
