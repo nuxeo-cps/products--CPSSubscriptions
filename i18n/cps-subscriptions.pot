@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-04-29 20:05default\n"
+"POT-Creation-Date: 2004-04-30 17:04default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -484,6 +484,12 @@ msgstr ""
 msgid "label_manager"
 msgstr ""
 
+msgid "label_forum_poster"
+msgstr ""
+
+msgid "label_forum_moderator"
+msgstr ""
+
 msgid "label_workflow_create"
 msgstr ""
 
@@ -521,6 +527,12 @@ msgid "label_new_versions"
 msgstr ""
 
 msgid "label_forum_new_message"
+msgstr ""
+
+msgid "label_forum_new_post"
+msgstr ""
+
+msgid "label_forum_new_comment"
 msgstr ""
 
 # ## ACTIONS ######################################

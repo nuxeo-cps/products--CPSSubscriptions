@@ -1,6 +1,7 @@
 # translation of en.po to 
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
 # translation of en.po to Francais
 # translation of en.po to Français
 # Gettext Message File for default.
@@ -11,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-04-29 20:05default\n"
-"PO-Revision-Date: 2004-04-29 20:11+0200\n"
+"POT-Creation-Date: 2004-04-30 17:04default\n"
+"PO-Revision-Date: 2004-04-30 17:05+0200\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -515,6 +516,12 @@ msgstr "Owner"
 msgid "label_manager"
 msgstr "Manager"
 
+msgid "label_forum_poster"
+msgstr "Forum poster"
+
+msgid "label_forum_moderator"
+msgstr "Forum moderator"
+
 msgid "label_workflow_create"
 msgstr "Content creation"
 
@@ -553,6 +560,12 @@ msgstr "New document version"
 
 msgid "label_forum_new_message"
 msgstr "New forum post"
+
+msgid "label_forum_new_post"
+msgstr "New forum post "
+
+msgid "label_forum_new_comment"
+msgstr "New comment"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"

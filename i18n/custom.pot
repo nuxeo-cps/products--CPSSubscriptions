@@ -42,6 +42,12 @@ msgstr ""
 msgid "label_manager"
 msgstr ""
 
+msgid "label_forum_poster"
+msgstr ""
+
+msgid "label_forum_moderator"
+msgstr ""
+
 msgid "label_workflow_create"
 msgstr ""
 
@@ -79,6 +85,12 @@ msgid "label_new_versions"
 msgstr ""
 
 msgid "label_forum_new_message"
+msgstr ""
+
+msgid "label_forum_new_post"
+msgstr ""
+
+msgid "label_forum_new_comment"
 msgstr ""
 
 ### ACTIONS ######################################
