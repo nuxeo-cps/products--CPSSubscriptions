@@ -1,7 +1,10 @@
 ##parameters=REQUEST
 #$Id$
 """ Edit the local subscriptions configuration.
+
+Manager / WorkspaceManager / SectionManager can do that.
 """
+
 # XXX use the tool methods to get prefixes and constantes for ids.
 
 from zLOG import LOG, DEBUG
@@ -9,38 +12,26 @@ from zLOG import LOG, DEBUG
 if REQUEST is not None:
     if REQUEST.form:
         subscription_id = context.portal_subscriptions.getSubscriptionContainerId()
-
-        #
-        # Full Update
-        #
-
         if subscription_id not in context.objectIds():
             context.manage_addProduct['CPSSubscriptions'].addSubscriptionContainer()
 
         subscription_folder = getattr(context, subscription_id)
 
-        #
-        # Subscription Folder parameters
-        #
-
+        # @www
         kw = {}
         kw['notify_local_only'] = REQUEST.form.get('notify_local_only', 0) and 1
         kw['notify_no_local'] = REQUEST.form.get('notify_no_local', 0) and 1
         kw['subscription_allowed'] = REQUEST.form.get('subscription_allowed', 0) and 1
         kw['anonymous_subscription_allowed'] = REQUEST.form.get('anonymous_subscription_allowed', 0) and 1
+        kw['mfrom'] = REQUEST.form.get('mfrom', '')
+
         subscription_folder.updateProperties(**kw)
 
-        #
         # Let's take the event/roles the user request for change
-        #
-
         role_events = REQUEST.form.get('role_event', [])
         LOG("REQUEST", DEBUG, role_events)
 
-        #
-        # Now cleaning the ones the user removed
-        #
-
+        # Cleaning unwanted ones
         all_requested_subscription = ['subscription__'+x.split(':')[1] for x in role_events]
         for subscription_id in subscription_folder.objectIds():
             current_event_subscription = getattr(subscription_folder,
@@ -56,10 +47,7 @@ if REQUEST is not None:
                        not event.startswith('explicit'):
                         current_event_subscription.manage_delObjects([event])
 
-        #
-        # Now update
-        #
-
+        # Updating
         for role_event in role_events:
             role = role_event.split(':')[0]
             event = role_event.split(':')[1]
