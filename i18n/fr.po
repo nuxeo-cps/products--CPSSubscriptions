@@ -113,7 +113,7 @@ msgstr "Alerter unquemenent lors d'évènement arrivant dans les sous-répertoires"
 #.                </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_other"
-msgstr "Autres"
+msgstr "Liste"
 
 #.   <span>
 #.             See all subscribers
