@@ -46,19 +46,31 @@ class Subscription(PortalFolder):
     security = ClassSecurityInfo()
 
     _properties = PortalFolder._properties + \
-                  ({'id': 'filter_event_types', 'type': 'lines', 'mode': 'w',
+                  ({'id': 'filter_event_types',
+                    'type': 'lines',
+                    'mode': 'w',
                     'label': 'Filter Event Types'},
-                   {'id': 'filter_object_types', 'type': 'lines', 'mode': 'w',
+                   {'id': 'filter_object_types',
+                    'type': 'lines',
+                    'mode': 'w',
                     'label': 'Filter Object Types'},
-                   {'id': 'recipient_emails_black_list', 'type': 'lines',
+                   {'id': 'recipient_emails_black_list',
+                    'type': 'lines',
                     'mode': 'w',
                     'label': 'Recipient Emails Black List'},
-                   {'id': 'notification_type', 'type': 'string', 'mode': 'w',
+                   {'id': 'roles_allowed_to_subscribe',
+                    'type':'lines',
+                    'mode':'w',
+                    'label' : 'Roles Allowed to susbcribe'},
+                   {'id': 'notification_type',
+                    'type': 'string',
+                    'mode': 'w',
                     'label': 'Notification Type'},
                    )
 
     filter_event_types = []
     filter_object_types = []
+    roles_allowed_to_subscribe = []
     recipient_emails_black_list = []
     notification_type = 'email'
 
@@ -87,7 +99,7 @@ class Subscription(PortalFolder):
         return self.filter_event_types
 
     def addEventType(self, event_type):
-        """ Adds a new event type on wich to r        ex: workflow_modify
+        """ Adds a new event type on wich
         """
         if event_type not in self.getFilterEventTypes():
             self.filter_event_types += [event_type]
@@ -99,6 +111,25 @@ class Subscription(PortalFolder):
         context object's portal_type is in object_types.
         """
         return self.filter_object_types
+
+    def getRolesAllowedToSubscribe(self):
+        """Returns the list of roles allowed to susbcribe to this event
+
+        [] means everybody
+        """
+        return self.roles_allowed_to_subscribe
+
+    def setRolesAllowedToSubscribe(self, roles=()):
+        """Set the roles allowed to susbcribe
+        """
+        self._p_changed = 1
+        self.roles_allowed_to_subscribe = roles
+
+    def addRolesAllowedToSSubscribe(self, role=''):
+        """Add a role allowed to subscribe to this event
+        """
+        if role and role not in self.getTRolesAllowedToSubscribe():
+            self.roles_allowed_to_subscribe.append(role)
 
     def addObjectType(self, object_type):
         """Adds a new object type concerned with the subscription.
@@ -207,10 +238,12 @@ def addSubscription(self, id=None, title='', REQUEST=None):
     subscription = getattr(self, id)
 
     # Explicit recipients rules (Compulsory for subscriptions)
-    subscription.manage_addProduct['CPSSubscriptions'].addExplicitRecipientsRule()
+    subscription.manage_addProduct[
+        'CPSSubscriptions'].addExplicitRecipientsRule()
 
     # Mail Notification is default notification right now.
-    subscription.manage_addProduct['CPSSubscriptions'].addMailNotificationRule()
+    subscription.manage_addProduct[
+        'CPSSubscriptions'].addMailNotificationRule()
 
     if REQUEST is not None:
         REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
