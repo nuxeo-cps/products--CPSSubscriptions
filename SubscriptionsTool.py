@@ -522,6 +522,15 @@ class SubscriptionsTool(UniqueObject, Folder):
         """
         return self.mapping_event_email_content.keys()
 
+    security.declarePublic('getI18nFor')
+    def getI18nFor(self, event_id=''):
+        """Return the i18n string for the given event_id
+        """
+        for key_portal_type in self.mapping_context_events.keys():
+            for key_event in self.mapping_context_events[key_portal_type].keys():
+                if key_event == event_id:
+                    return self.mapping_context_events[key_portal_type][key_event]
+
     #########################################################
     #########################################################
 
