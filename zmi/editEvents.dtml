@@ -58,6 +58,10 @@ Fullname of the user who is at the origin of the event</li>
 
 <li><code>kwargs_comment</code><br />
 Comments which where given by the user when she asks for a workflow transition</li>
+
+<li><code>infos</code><br />
+Dictionnary you may give to evtool.notify() containing whatever
+
 </ul>
 
 <form action="manage_editDefaultEventMessage">
