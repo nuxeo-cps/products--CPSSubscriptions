@@ -8,7 +8,7 @@ une de vos skin
 
 mail_subject = "[Notification] %(notification_title)s sur l'objet %(object_title)s"
 mail_body = \
-"""%(object_type)s a générer une notification sur %(notification_title)s.
+"""%(object_type)s a généré une notification sur %(notification_title)s.
 
 Identifiant: %(user_name)s (%(user_id)s)
 Type d'événement: %(event)s
@@ -27,6 +27,9 @@ subscribe_confirm_email_title = \
 """
 subscribe_confirm_email_body = \
 """Confirmation d'abonnement à la liste de diffusion: %(event_id)s
+
+Nous avaons reçu une demande d'abonnement pour votre adresse email,
+%(email)s, pour la liste %(event_id)s.
 
 Vous devez confimer votre abonnement sur la page:
 
@@ -60,13 +63,13 @@ unsubscribe_confirm_email_title = \
 """
 
 unsubscribe_confirm_email_body = \
-"""Vous avez demandé de vous désabonner de la liste de diffusion :
+"""Vous avez demandé à vous désabonner de la liste de diffusion :
 
-%(object_title)s at :
+%(object_title)s à :
 
 %(object_url)s
 
-Aller sur la page suivite pour confirmer :
+Aller sur la page suivante pour confirmer :
 
 %(url)s
 """
