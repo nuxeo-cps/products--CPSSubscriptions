@@ -144,8 +144,12 @@ class Subscription(PortalFolder):
                                                          object,
                                                          infos)
             for pt_recipient in pt_recipients.keys():
-                recipients[pt_recipient] = pt_recipients[pt_recipient]
-
+                if pt_recipient not in self.getRecipientEmailsBlackList():
+                    recipients[pt_recipient] = pt_recipients[pt_recipient]
+                else:
+                    LOG("::CPSSubscriptions :: black list for ",
+                        INFO,
+                        pt_recipient)
 
         #
         # Notify the recipients
