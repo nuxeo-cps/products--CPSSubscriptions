@@ -722,7 +722,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         return getattr(context, subscription_id)
 
     security.declarePublic('getSusbcriptionContainerFromContext')
-    def getSubscriptionContainerFromContext(self, context):
+    def getSubscriptionContainerFromContext(self, context, force_local_creation=0):
         """Returns a subscriptions container id.
 
         Lookup to find one through acquisition
@@ -740,8 +740,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         auth_user = mtool.getAuthenticatedMember()
 
 
-        if (container is None and
-            _checkPermission(ModifyPortalContent, context)):
+        if (container is None or force_local_creation) \
+            and _checkPermission(ModifyPortalContent, context):
             container = self.addSubscriptionContainerInContext(context)
         return container
 
