@@ -11,7 +11,7 @@
 <p>
 <em>
   Take care with the %(XX)s notation. It's the variables that are going to be
-  used to send mails.
+  used to send emails.
 </em>
 </p>
 <p>
