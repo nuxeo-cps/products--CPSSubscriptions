@@ -4,8 +4,8 @@ Requires:
 New features:
 ~~~~~~~~~~~~~
 - Now the variables user_id and user_name correspond to the user who is at the
-  origin of the event.  The variable object_creator_id and object_creator_name
-  correspond to the user who created the object on which the event occured This
+  origin of the event. The variable object_creator_id and object_creator_name
+  correspond to the user who created the object on which the event occured. This
   is what people generally want and expect.
 Bug fixes:
 ~~~~~~~~~~
