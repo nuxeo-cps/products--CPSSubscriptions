@@ -180,14 +180,14 @@ class SubscriptionsTool(UniqueObject, Folder):
                                 event_id,
                                 event_email_title,
                                 event_email_body,
-                                subscribe_confirm_email_body,
-                                subscribe_confirm_email_title,
-                                subscribe_welcome_email_body,
-                                subscribe_welcome_email_title,
-                                unsubscribe_email_title,
-                                unsubscribe_email_body,
-                                unsubscribe_confirm_email_title,
-                                unsubscribe_confirm_email_body,
+                                subscribe_confirm_email_body='',
+                                subscribe_confirm_email_title='',
+                                subscribe_welcome_email_body='',
+                                subscribe_welcome_email_title='',
+                                unsubscribe_email_title='',
+                                unsubscribe_email_body='',
+                                unsubscribe_confirm_email_title='',
+                                unsubscribe_confirm_email_body='',
                                 REQUEST=None):
         """Edit a custom event message
         """
@@ -628,17 +628,59 @@ class SubscriptionsTool(UniqueObject, Folder):
         return subscriptions_list
 
     security.declarePublic('isSubscriberFor')
-    def isSubscriberFor(self, event_id, context, email=''):
+    def isSubscriberFor(self, event_id, context, email='', role_based=0):
         """Is a given member subscriber for a given email in the given context
         """
+
+        subscriptions = self.getSubscriptionsFor(event_id, context)
+        if not subscriptions:
+            return 0
+
+        subscription = subscriptions[0]
+
+        membership_tool = getToolByName(self, 'portal_membership')
+        if not membership_tool.isAnonymousUser():
+            member = membership_tool.getAuthenticatedMember()
+            member_id = member.getMemberId()
+            member_email = self.getMemberEmail(member_id)
+
+        if role_based:
+            # Check here if the member is computed based on his local roles
+            recipient_mails = []
+            role_recipients_rules = subscription.getRecipientsRules(
+                                    recipients_rule_type='Role Recipient Rule')
+            for recipients_rule in role_recipients_rules:
+                current_recipients = recipients_rule.getRecipients(
+                                                        object=context)
+                # Cause we may have several persons with the same email
+                has_role = 0
+                for role in recipients_rule.getRoles():
+                    if member.has_role(role, context):
+                        has_role = 1
+                if not has_role:
+                    return 0
+
+                # Let's check the emails now
+                for mail in current_recipients.keys():
+                    if mail not in recipient_mails:
+                        recipient_mails.append(mail)
+
+            return member_email in recipient_mails
+
+
+        explicits = getattr(subscription,
+                            self.getExplicitRecipientsRuleId(),
+                            None)
+        if not explicits:
+            return 0
+
         if not email:
-            membership_tool = getToolByName(self, 'portal_membership')
-            if not membership_tool.isAnonymousUser():
-                member = membership_tool.getAuthenticatedMember()
-                member_id = member.getMemberId()
-                email = self.getMemberEmail(member_id)
-            else:
-                return 0
-        return email in self.getRecipientsFor(event_id, context).keys()
+            # members
+            # FIXME TODO Groups
+            return member_id in explicits.getMembers()
+        else:
+            # Anonymous
+            return email in explicits.getEmails()
+        return
 
 InitializeClass(SubscriptionsTool)
