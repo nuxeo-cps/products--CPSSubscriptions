@@ -75,11 +75,11 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.log("Checking CPS Subscriptions Tool")
         if not getToolByName(self.portal, 'portal_subscriptions', 0):
             self.log("Deleting existing CPS Subscriptions Tool")
-            #self.portal.manage_delObjects(['portal_subscriptions',])
             self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
             self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
                                       'Subscriptions Tool')
-	    self.setupEvents()
+            portal_subscriptions = getToolByName(self.portal, 'portal_subscriptions')
+	    portal_subscriptions.setupEvents()
 
     def installNewPermissions(self):
         """Installs new subscriptions dedicated permissions
@@ -199,25 +199,6 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                 self.log("portal_subscribtions already subscriber")
         else:
             raise ('DEPENDENCY ERROR : portal_eventservice')
-
-    def setupEvents(self):
-        """ Setup events on which to react
-        """
-
-        subscriptions_tool = getToolByName(self.portal,
-                                           'portal_subscriptions',
-                                           0)
-
-        if subscriptions_tool:
-            mapping_context_events = self.portal.getEvents()
-            for context in mapping_context_events.keys():
-                for event_id in mapping_context_events[context].keys():
-                    subscriptions_tool.manage_addEventType(context,
-                                                           event_id,
-                                                           mapping_context_events[
-                        context][event_id])
-        else:
-            raise "Hum,....portal_subscriptions disapears on the middle of the install process..."
 
     def setupCatalogSpecifics(self):
         """Setup specifics catalog thingies.

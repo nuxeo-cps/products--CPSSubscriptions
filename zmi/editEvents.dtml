@@ -4,19 +4,18 @@
 <h3>Default message for events</h3>
 <p>
  This message appears in the mails sent at notification time.
- <br>
+ <br />
  You may customize it by filling the form below.
- <br>
+ <br />
  Notice, you can also customize every event type by clicking the name of the
  event above.
 </p>
-
-<i>
+<p>
+<em>
   Take care with the %(XX)s notation. It's the variables that are going to be
   used to send mails.
-</i>
-<br><br>
-
+</em>
+</p>
 <form action="manage_editDefaultEventMessage">
  <table cellspacing="0" cellpadding="2" border="0">
  <tr>
@@ -26,7 +25,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_error_email_body"  cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
+      <textarea name="event_error_email_body" cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
     </td>
  </tr>
  <tr>
@@ -36,7 +35,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_confirm_email_title"  cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailTitle()"></textarea>
+      <textarea name="subscribe_confirm_email_title" cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailTitle()"></textarea>
     </td>
  </tr>
  <tr>
@@ -46,7 +45,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_confirm_email_body"  cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailBody()"></textarea>
+      <textarea name="subscribe_confirm_email_body" cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailBody()"></textarea>
     </td>
  </tr>
  <tr>
@@ -56,7 +55,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_welcome_email_title"  cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailTitle()"></textarea>
+      <textarea name="subscribe_welcome_email_title" cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailTitle()"></textarea>
     </td>
  </tr>
  <tr>
@@ -66,7 +65,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_welcome_email_body"  cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
+      <textarea name="subscribe_welcome_email_body" cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
     </td>
  </tr>
   <tr>
@@ -76,7 +75,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_email_title"  cols="55" rows="10"><dtml-var "getUnSubscribeEmailTitle()"></textarea>
+      <textarea name="unsubscribe_email_title" cols="55" rows="10"><dtml-var "getUnSubscribeEmailTitle()"></textarea>
     </td>
  </tr>
  <tr>
@@ -86,7 +85,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_email_body"  cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
+      <textarea name="unsubscribe_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
     </td>
  </tr>
    <tr>
@@ -96,7 +95,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_confirm_email_title"  cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailTitle()"></textarea>
+      <textarea name="unsubscribe_confirm_email_title" cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailTitle()"></textarea>
     </td>
  </tr>
  <tr>
@@ -106,35 +105,30 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_confirm_email_body"  cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailBody()"></textarea>
+      <textarea name="unsubscribe_confirm_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailBody()"></textarea>
     </td>
  </tr>
  <tr>
     <td>&nbsp;</td>
-    <td align="right" valign="top">
+    <td valign="top">
       <div class="form-element">
-      <input class="form-element" type="submit" name="submit"
-       value="Save" />
+      <input class="form-element" type="submit" name="action" value="Save" />
       </div>
     </td>
   </tr>
+</table>
 </form>
-
-
-<table cellspacing="0" cellpadding="2" border="0">
 <hr>
-<h3>Specific event messages</h3>
 
+<h3>Specific event messages</h3>
 <p>
   You can edit for each event the content of the notifcation message that
   will be use at global scope. (i.e: everywhere the event will append)
 </p>
-
 <p>
   Below are listed all the recorded events in all the contexts. Follow the
   link to edit a given event.
 </p>
-
 <ul>
 <dtml-in expr="getRecordedEvents()">
   <li>
@@ -144,5 +138,17 @@
   </li>
 </dtml-in>
 </ul>
-</table>
+<hr>
+
+<h3>Reset all messages</h3>
+<form action="manage_resetEventMessages">
+<p>
+Reset all messages (default and specific) to their default values
+(all your message customization will be lost)?
+</p>
+<p>
+<input class="form-element" type="submit" name="action" value="Reset" />
+</p>
+</form>
+
 <dtml-var manage_page_footer>

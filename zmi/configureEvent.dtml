@@ -2,7 +2,6 @@
 <dtml-var manage_tabs>
 
 <h3>Edit event&nbsp;::&nbsp;<dtml-var event_id>&nbsp;::&nbsp;</h3>
-
 <p>
   You can change the default message for all events of type
   <strong><dtml-var event_id></strong>
@@ -10,7 +9,7 @@
 
 <form action="manage_editEventMessage">
 <input type="hidden" name="event_id"
-       value="<dtml-var event_id>"
+       value="<dtml-var event_id>">
  <table cellspacing="0" cellpadding="2" border="0">
  <dtml-let the_event_id=event_id>
  <tr>
@@ -33,12 +32,12 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_email_body"  cols="55" rows="10"><dtml-var expr="getDefaultMessageBody(event_id)"></textarea>
+      <textarea name="event_email_body" cols="55" rows="10"><dtml-var expr="getDefaultMessageBody(event_id)"></textarea>
     </td>
  </tr>
  <tr>
     <td>&nbsp;</td>
-    <td align="right" valign="top">
+    <td valign="top">
       <div class="form-element">
       <input class="form-element" type="submit" name="submit"
        value="Save" />

@@ -2,7 +2,6 @@
 <dtml-var manage_tabs>
 
 <h3>Already recorded events within the following contexts</h3>
-
 <p>
   Contexts correspond to portal_types containers in which an event occur.
 </p>
@@ -13,7 +12,7 @@
     <dtml-in keys>
       <dtml-let context=sequence-item>
         <strong>
-          <dtml-var context><br>
+          <dtml-var context><br />
         </strong>
         <dtml-in expr="mapping_context_events[context].keys()">
           <ul>
@@ -32,7 +31,7 @@
 
 <h3>Add a new event type.</h3>
 
-<form action="manage_addEventType" method="POST">
+<form action="manage_addEventType" method="post">
 <p class="form-help">
   You can add a new event to react on in a given context.
 </p>
@@ -69,7 +68,7 @@
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td align="left" valign="top">
+    <td valign="top">
       <div class="form-element">
       <input class="form-element" type="submit" name="submit"
        value="Add" />

@@ -134,9 +134,14 @@ class SubscriptionsTool(UniqueObject, Folder):
     security.declareProtected(ManagePortal, 'manage_edit_event')
     manage_edit_event = DTMLFile('zmi/configureEvent', globals())
 
+    def manage_resetEventMessages(self, REQUEST=None):
+        """Reset the email messages to their default values.
+        """
+        self.resetEvents()
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_edit_events')
+
     def manage_editDefaultEventMessage(self,
-                                       event_default_email_title,
-                                       event_default_email_body,
                                        event_error_email_body,
                                        subscribe_confirm_email_body,
                                        subscribe_confirm_email_title,
@@ -147,7 +152,7 @@ class SubscriptionsTool(UniqueObject, Folder):
                                        unsubscribe_confirm_email_title,
                                        unsubscribe_confirm_email_body,
                                        REQUEST=None):
-        """Edit the default event email
+        """Edit the default event email messages.
         """
         self._p_changed = 1
 
@@ -157,8 +162,6 @@ class SubscriptionsTool(UniqueObject, Folder):
             event_error_email_body = event_error_email_body.replace('%', '')
 
         # Notifications
-        self.event_default_email_title = event_default_email_title
-        self.event_default_email_body = event_default_email_body
         self.event_error_email_body = event_error_email_body
 
         # Subscriptions
@@ -174,7 +177,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         self.unsubscribe_confirm_email_title = unsubscribe_confirm_email_title
 
         if REQUEST is not None:
-            REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_edit_events')
+            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_edit_events')
 
     def manage_editEventMessage(self,
                                 event_id,
@@ -207,7 +210,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         self.mapping_event_email_content[event_id] = struct
 
         if REQUEST is not None:
-            REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_edit_events')
+            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_edit_events')
 
 
     def manage_addEventType(self, event_where, event_id, event_label, REQUEST=None):
@@ -237,7 +240,7 @@ class SubscriptionsTool(UniqueObject, Folder):
             self.getUnSubscribeEmailBody(),]
 
         if REQUEST is not None:
-            REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_events')
+            REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_events')
 
 
     ###################################################
@@ -259,7 +262,6 @@ class SubscriptionsTool(UniqueObject, Folder):
         self.event_default_email_body = ''
         self.event_error_email_body = ''
 
-
         # Subscriptions
         self.subscribe_confirm_email_title = ''
         self.subscribe_confirm_email_body = ''
@@ -274,6 +276,23 @@ class SubscriptionsTool(UniqueObject, Folder):
 
     ######################################################
     #####################################################
+
+    security.declarePublic('setupEvents')
+    def setupEvents(self):
+        """ Setup events on which to react
+        """
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        mapping_context_events = portal.getEvents()
+        for context in mapping_context_events.keys():
+            for event_id in mapping_context_events[context].keys():
+                self.manage_addEventType(context, event_id,
+                                         mapping_context_events[context]
+                                         [event_id])
+
+    security.declarePublic('resetEvents')
+    def resetEvents(self):
+        self.__init__()
+        self.setupEvents()
 
     security.declarePublic('getSubscriptionContainerId')
     def getSubscriptionContainerId(self):
