@@ -622,8 +622,15 @@
               <span tal:replace="recipient_mail" />
             </a>
           </td>
-          <td align="center">
-            <span tal:replace="python:recipients[recipient_mail]" />
+          <td tal:define="m python:recipients[recipient_mail];
+                          mtool mtool|here/portal_membership;
+                          entry python:mtool.getMemberById(m);
+                          full_name python:(entry.getProperty('givenName', '') + 
+                                           ' ' + entry.getProperty('sn', '')).strip();
+                          name_to_display python:test(full_name, 
+                                           full_name + ' (' + m + ')',
+                                           m)">
+            <span tal:replace="name_to_display" />
           </td>
         </tal:block>
       </tr>
