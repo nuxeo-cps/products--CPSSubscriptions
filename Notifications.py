@@ -49,6 +49,8 @@ import mimify
 import mimetools
 import MimeWriter
 
+from types import StringType, TupleType
+
 from Globals import InitializeClass, MessageDialog
 from Products.MailHost.MailHost import MailHostError
 from Acquisition import aq_base, aq_parent, aq_inner
@@ -122,11 +124,30 @@ class NotificationRule(PortalFolder):
 
         return rendered_message.getvalue()
 
+    def _validateStructure(self, mail_infos):
+        """Validate the mail_infos structure
+        """
+
+        return  (isinstance(mail_infos.get('sender_email'), StringType) and
+                 isinstance(mail_infos.get('to'), StringType) and
+                 isinstance(mail_infos.get('subject'), StringType) and
+                 isinstance(mail_infos.get('body'), TupleType) and
+                 len(mail_infos.get('body')) == 2)
+
     def sendMail(self, mail_infos, object=None, event_id=None, mailhost=None):
         """Send a mail
 
         mail_infos contains all the needed information
         """
+
+        # Check the mail strucuture
+        # It could be build by the user with whatever stuffs within.
+        if not self._validateStructure(mail_infos):
+            LOG("::  CPSSubscriptions  :: sendMail() :: for",
+                INFO,
+                "Error while sending mail",
+                "check the email of the recipients")
+            return -1
 
         raw_message = self.getRawMessage(mail_infos, object, event_id)
 
