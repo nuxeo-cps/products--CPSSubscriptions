@@ -700,7 +700,7 @@ msgstr "Où"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_closed"
-msgstr "Les abonnements ne plus autorisés ici"
+msgstr "Les abonnements ne sont plus autorisés ici"
 
 #.   <span>
 #.                 E-Mails
