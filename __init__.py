@@ -33,6 +33,7 @@ from Products.CMFCore.CMFCorePermissions import AddPortalContent,\
      ModifyPortalContent
 
 import SubscriptionsTool
+import PlaceFullSubscriptionFolder
 import Subscription
 import RecipientsRules
 import Notifications
@@ -77,11 +78,17 @@ def initialize(registar):
     Initalization of CPSSubscriptions components
     """
 
-    # Placefull subscription object
+    # Place Full Subscription Folder
+    registar.registerClass(\
+        PlaceFullSubscriptionFolder.PlaceFullSubscriptionFolder,
+        permission=AddPortalContent,
+        constructors=(\
+        PlaceFullSubscriptionFolder.addPlaceFullSubscriptionFolder, ))
+
+    # Subscription object
     registar.registerClass(Subscription.Subscription,
                            permission=ModifyPortalContent,
                            constructors=(Subscription.addSubscription,))
-
 
     # Recipients Rules
     ContentInit(
