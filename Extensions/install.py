@@ -62,7 +62,6 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.installActions()
         self.installNewPermissions()
         self.setupSubscriber()
-        self.setupEvents()
         self.setupTranslations()
         self.setupCatalogSpecifics()
         self.log("End of Install/Update : CPSSubscriptions Product")
@@ -74,12 +73,13 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         """
 
         self.log("Checking CPS Subscriptions Tool")
-        if getToolByName(self.portal, 'portal_subscriptions', 0):
+        if not getToolByName(self.portal, 'portal_subscriptions', 0):
             self.log("Deleting existing CPS Subscriptions Tool")
-            self.portal.manage_delObjects(['portal_subscriptions',])
-        self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
-        self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
-                'Subscriptions Tool')
+            #self.portal.manage_delObjects(['portal_subscriptions',])
+            self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
+            self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
+                                      'Subscriptions Tool')
+	    self.setupEvents()
 
     def installNewPermissions(self):
         """Installs new subscriptions dedicated permissions
