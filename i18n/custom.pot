@@ -41,7 +41,19 @@ msgstr ""
 
 msgid "label_forum_new_message"
 msgstr ""
- 
+
+msgid "label_publication_of_documents"
+msgstr ""
+
+msgid "label_submission_of_documents"
+msgstr  ""
+
+msgid "label_rejecttion_of_documents"
+msgstr ""
+
+msgid "label_unpublication_of_documents"
+msgstr ""
+
 msgid "label_workspace_manager"
 msgstr ""
 

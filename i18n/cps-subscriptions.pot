@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-05 02:39default\n"
+"POT-Creation-Date: 2004-03-05 14:02default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -356,6 +356,18 @@ msgid "label_new_versions"
 msgstr ""
 
 msgid "label_forum_new_message"
+msgstr ""
+
+msgid "label_publication_of_documents"
+msgstr ""
+
+msgid "label_submission_of_documents"
+msgstr ""
+
+msgid "label_rejecttion_of_documents"
+msgstr ""
+
+msgid "label_unpublication_of_documents"
 msgstr ""
 
 msgid "label_workspace_manager"
