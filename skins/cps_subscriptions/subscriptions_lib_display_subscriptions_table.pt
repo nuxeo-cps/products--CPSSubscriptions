@@ -116,7 +116,8 @@
               id="subscription_allowed" class="noborder"
               checked="checked"
               tal:attributes="checked python:subscription_folder and
-              subscription_folder.isSubscriptionAllowed() or None"
+              subscription_folder.isSubscriptionAllowed()
+              or not subscription_folder and default"
               />
             <label for="subscription_allowed"
               i18n:translate="label_allow_user_subscriptions">
@@ -127,8 +128,8 @@
               id="unsubscription_allowed" class="noborder"
               checked="checked"
               tal:attributes="checked python:subscription_folder and
-              subscription_folder.isUnSubscriptionAllowed() or None"
-              />
+              subscription_folder.isUnSubscriptionAllowed()"
+              or not subscription_folder and default/>
             <label for="unsubscription_allowed"
               i18n:translate="label_allow_user_unsubscriptions">
               Allow user local roles based unsubscriptions
@@ -137,8 +138,8 @@
             <input type="checkbox" name="anonymous_subscription_allowed"
               id="anonymous_subscription_allowed" class="noborder"
               tal:attributes="checked python:subscription_folder and
-              subscription_folder.isAnonymousSubscriptionAllowed() or 0"
-              />
+              subscription_folder.isAnonymousSubscriptionAllowed()"
+              or not subscription_folder and default/>
             <label for="anonymous_subscription_allowed"
               i18n:translate="label_allow_anonymous_subscriptions">
               Allow anonymous subscriptions
