@@ -12,4 +12,4 @@ New internal features:
 - splitting macro lib in progress
 - Better layout and accessibility for
   subscriptions_lib_display_subscriptions_table.pt through the use of the new
-  CPSDefault listing CSS class.
+  CPSDefault listing CSS class (closes #458).

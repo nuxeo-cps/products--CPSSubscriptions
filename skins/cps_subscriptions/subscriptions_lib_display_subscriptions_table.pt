@@ -24,9 +24,9 @@
     -->
   </script>
   <div class="group">
-    <h3 i18n:translate="header_available_events">
+    <h2 i18n:translate="header_available_events">
       Available events in here
-    </h3>
+    </h2>
     <tal:block define="subtool nocall:here/portal_subscriptions;
 		       context_lcs python:subtool.getRelevantLocalRolesFromContext(here)">
       <form action="." name="form" tal:attributes="action here/absolute_url">
@@ -78,82 +78,102 @@
 	  </tal:block>
 	</table>
 
-	<h3 i18n:translate="header_when_where_to_notify">
+	<h2 i18n:translate="header_when_where_to_notify">
 	  When/where to notify ?
-	</h3>
+	</h2>
         <tal:block define="subscription_folder python:getattr(here,
           here.portal_subscriptions.getSubscriptionContainerId(), 0)">
-          <table border="0" align="center" style="width: 100%">
+          <table border="0" style="width: 100%">
             <tr>
-              <td i18n:translate="label_notifications_local_only">
-                  Notify local only
-              </td>
-              <td align="left">
-                <input type="checkbox" name="notify_local_only" class="noborder"
+              <td>
+                <input type="checkbox" name="notify_local_only"
+                  id="notify_local_only" class="noborder"
                   tal:attributes="checked python:subscription_folder and
                   subscription_folder.isNotificationLocalOnly() or 0"
                   />
               </td>
+              <td>
+                <label for="notify_local_only"
+                  i18n:translate="label_notifications_local_only">
+                  Notify local only
+                </label>
+              </td>
             </tr>
             <tr>
-              <td i18n:translate="label_notifications_no_local">
-                  Notify no local
-              </td>
-              <td align="left">
-                <input type="checkbox" name="notify_no_local" class="noborder"
+              <td>
+                <input type="checkbox" name="notify_no_local"
+                  id="notify_no_local" class="noborder"
                   tal:attributes="checked python:subscription_folder and
                   subscription_folder.isNotificationNoLocal() or 0"
                   />
               </td>
+              <td>
+                <label for="notify_no_local"
+                  i18n:translate="label_notifications_no_local">
+                  Notify no local
+                </label>
+              </td>
             </tr>
           </table>
         </tal:block>
 
-	<h3 i18n:translate="header_subscription_allowed">
+	<h2 i18n:translate="header_subscription_allowed">
 	  Are subscriptions allowed and to whom ?
-	</h3>
+	</h2>
         <tal:block define="global subscription_folder python:getattr(here,
           here.portal_subscriptions.getSubscriptionContainerId(), 0)">
-          <table border="0" align="center" style="width: 100%">
+          <table border="0" style="width: 100%">
             <tr>
-              <td i18n:translate="label_subscription_allowed">
-                  Are subscription allowed ?
-              </td>
-              <td align="left">
-                <input type="checkbox" name="subscription_allowed" class="noborder"
+              <td>
+                <input type="checkbox" name="subscription_allowed"
+                  id="subscription_allowed" class="noborder"
                   tal:attributes="checked python:subscription_folder and
                   subscription_folder.isSubscriptionAllowed() or 0"
                   />
               </td>
+              <td>
+                <label for="subscription_allowed"
+                  i18n:translate="label_subscription_allowed">
+                  Are subscription allowed?
+                </label>
+              </td>
             </tr>
             <tr>
-              <td i18n:translate="label_unsubscription_allowed">
-                  Are unsubscription allowed ?
-              </td>
-              <td align="left">
-                <input type="checkbox" name="unsubscription_allowed" class="noborder"
+              <td>
+                <input type="checkbox" name="unsubscription_allowed"
+                  id="unsubscription_allowed" class="noborder"
                   tal:attributes="checked python:subscription_folder and
                   subscription_folder.isUnSubscriptionAllowed() or 0"
                   />
               </td>
+              <td>
+                <label for="unsubscription_allowed"
+                  i18n:translate="label_unsubscription_allowed">
+                  Are unsubscription allowed?
+                </label>
+              </td>
             </tr>
             <tr>
-              <td i18n:translate="label_anonymous_subscription_allowed">
-                  Are anonymous subscriptions allowed ?
-              </td>
-              <td align="left">
-                <input type="checkbox" name="anonymous_subscription_allowed" class="noborder"
+              <td>
+                <input type="checkbox" name="anonymous_subscription_allowed"
+                  id="anonymous_subscription_allowed" class="noborder"
                   tal:attributes="checked python:subscription_folder and
                   subscription_folder.isAnonymousSubscriptionAllowed() or 0"
                   />
+              </td>
+              <td>
+                <label for="anonymous_subscription_allowed"
+                  i18n:translate="label_anonymous_subscription_allowed">
+                  Are anonymous subscriptions allowed?
+                </label>
               </td>
             </tr>
           </table>
         </tal:block>
 
-	<h3 i18n:translate="header_mfrom_mailing_list">
+	<h2 i18n:translate="header_mfrom_mailing_list">
 	  Sender address for outgoing emails
-	</h3>
+	</h2>
 	<p i18n:translate="description_do_not_modify_or_enter_email_address">
 	  You should not modify the following field unless you have specific
 	  needs, and if so, you should enter a valid email address like,
@@ -169,18 +189,18 @@
           </tal:block>
         </p>
 
-	<h3 i18n:translate="header_notified_people">
+	<h2 i18n:translate="header_notified_people">
 	  Notified people
-	</h3>
+	</h2>
 	<a href="."
 	  tal:attributes="href string:javascript:open_subscribers_window()"
 	  i18n:translate="label_see_all_subscribers">
 	    See all subscribers
 	</a>
 
-	<h3 i18n:translate="header_save_changes">
+	<h2 i18n:translate="header_save_changes">
 	  Save changes
-	</h3>
+	</h2>
         <p>
           <label for="saveChanges"
             i18n:translate="description_save_changes">Save changes you have done:</label>
