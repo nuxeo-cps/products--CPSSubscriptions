@@ -6,8 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- Retrieves the email address for the SubscriptionContainer from the
-  portal_properties + better explaining text.
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

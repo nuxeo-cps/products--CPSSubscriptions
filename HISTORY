@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.5.1 [R1 build 2004/04/22-14:50 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Retrieves the email address for the SubscriptionContainer from the
+  portal_properties + better explaining text.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.5.0 [R1 build 2004/04/20-12:02 by madarche]
 
 Requires:
