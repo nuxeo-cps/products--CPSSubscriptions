@@ -109,7 +109,8 @@ class MailNotificationRule(NotificationRule):
         """
 
         try:
-            subject = self.portal_subscriptions.getDefaultMessageTitle(event_id=infos['event']) %infos
+            subject = self.portal_subscriptions.getDefaultMessageTitle(
+                event_id=infos['event']) %infos
         except (KeyError,):
             # If the user put wrong variables
             subject = "No Subject"
@@ -123,7 +124,8 @@ class MailNotificationRule(NotificationRule):
         """
 
         try:
-            body = self.portal_subscriptions.getDefaultMessageBody(event_id=infos['event']) %infos
+            body = self.portal_subscriptions.getDefaultMessageBody(
+                event_id=infos['event']) %infos
         except (KeyError,):
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
@@ -149,6 +151,7 @@ class MailNotificationRule(NotificationRule):
                                                           event_type)).encode(
             "ISO-8859-15", 'ignore')
 
+        infos['portal_title'] = self.portal_url.getPortalObject().Title()
         infos['notification_title'] = event_from_context
         infos['event'] = event_type
 
