@@ -1,3 +1,4 @@
+# -*- coding: ISO-8859-15 -*-
 # Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (C) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministère de L'intérieur (MISILL)
