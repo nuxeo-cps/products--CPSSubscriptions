@@ -427,13 +427,21 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declareProtected(ManageSubscriptions, 'updateSubscriberEmails')
     def updateSubscriberEmails(self, email=''):
-        """Add pending email subscription
+        """Add email subscription (explicit)
         """
         if email:
-            # Maybe check of email not in other lists ?
-            self.emails_subscribers.append(email)
+            if email not in self.getSubscriberEmails():
+                self.emails_subscribers.append(email)
             return 1
         return 0
+
+    security.declareProtected(ManageSubscriptions, 'importEmailsSubscriberList')
+    def importEmailsSubscriberList(self, list=[]):
+        """Add the list of emails to the subscriber list
+        """
+        self._p_changed = 1
+        for email in list:
+            self.updateSubscriberEmails(email)
 
     ######################################################
     ######################################################
