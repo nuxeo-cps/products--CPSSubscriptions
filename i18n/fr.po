@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2004-03-10 04:33default\n"
-"PO-Revision-Date: 2004-03-18 09:43+0100\n"
+"PO-Revision-Date: 2004-03-18 12:03+0100\n"
 "Last-Translator: emmanuel <epietriga@nuxeo.com>\n"
 "Language-Team: francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -211,21 +211,21 @@ msgstr "FAKE"
 #.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_available_events"
-msgstr "Evènements disponibles ici.v"
+msgstr "Evénements disponibles ici.v"
 
 #.   <h4>
 #.       Below are events open for subscriptions.
 #.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
-msgstr "Evènements auxquels vous pouvez vous abonner."
+msgstr "Evénements auxquels vous pouvez vous abonner."
 
 #.   <h4>
 #.         Below are the events you may unsubscribe
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events_to_sunsubscribe"
-msgstr "Evènements auxquels vous pouvez vous désabonner."
+msgstr "Evénements desquels vous pouvez vous désabonner."
 
 #.   <strong>
 #.                 <span>
@@ -346,7 +346,7 @@ msgstr "Les abonnements pour les anonymes sont-ils authorisés ? "
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_black_list"
-msgstr "Liste de courriels à bloquer pour cet évènement"
+msgstr "Liste de courriels à bloquer pour cet événement"
 
 #.   <span>
 #.                   Click here
@@ -360,7 +360,7 @@ msgstr "Gérer"
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_emails"
-msgstr "Courriels à ajouter pour cet évènement"
+msgstr "Courriels à ajouter pour cet événement"
 
 #.   <span>
 #.                   Enter a valid email
@@ -399,7 +399,7 @@ msgstr "Alerter uniquement les persones ayant des rôles locaux dans ce répertoir
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
-msgstr "Alerter uniquement lors d'évènements se produisant dans les sous-espaces"
+msgstr "Alerter uniquement lors d'événements se produisant dans les sous-espaces"
 
 #.   <span>
 #.                  Others
@@ -413,7 +413,7 @@ msgstr "Autres"
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_see_all_subscribers"
-msgstr "Voir toutes les personnes alertées pour tous les évènements."
+msgstr "Voir toutes les personnes alertées pour tous les événements."
 
 # ## LABELS #######################################
 #.   <span>
@@ -511,7 +511,7 @@ msgid "label_workflow_unpublish"
 msgstr "Dépublication de contenu"
 
 msgid "label_calendar_new_event"
-msgstr "A la création d'un nouvel évènement dans l'agenda"
+msgstr "A la création d'un nouvel événement dans l'agenda"
 
 msgid "label_forum_comment_create"
 msgstr "A la création d'un commentaire"
@@ -540,7 +540,7 @@ msgid "psm_notifications_changed"
 msgstr "Alertes locales modifiées."
 
 msgid "psm_please_choose_at_least_one_event_for subscription"
-msgstr "Veuillez choisir au moins un évènement ?"
+msgstr "Veuillez choisir au moins un événement ?"
 
 msgid "psm_email_sent_to_you"
 msgstr "Un courriel de confirmation vous a été envoyé."
