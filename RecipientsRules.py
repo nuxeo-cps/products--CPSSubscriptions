@@ -342,18 +342,25 @@ class RoleRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
+
         member_email_mapping = {}
         mtool = self.portal_membership
-        container = aq_parent(aq_inner(object))
         subtool = self.portal_subscriptions
+        if getattr(object, 'portal_type') in \
+               subtool.getContainerPortalTypes():
+            container = object
+        else:
+            container = aq_parent(aq_inner(object))
+
         if getattr(self, 'notify_no_local'):
             if subtool.getSubscriptionContainerId() in container.objectIds():
                 return {}
+
         if not getattr(self, 'notify_local_only'):
             #
             # Using merged local roles
             #
-            merged_local_roles = mtool.getMergedLocalRoles(object)
+            merged_local_roles = mtool.getMergedLocalRoles(container)
             for entry in merged_local_roles.keys():
                 for role in self.getRoles():
                     if role in merged_local_roles[entry]:
@@ -369,24 +376,20 @@ class RoleRecipientsRule(RecipientsRule):
                         for member_id in member_ids:
                             member = mtool.getMemberById(member_id)
                             if member is not None:
-                                email = member.getProperty('email')
-                                if email != '':
-                                    member_email_mapping[email] = member_id
-        else:
+                                email = self.getMemberEmail(member_id)
+                                member_email_mapping[email] = member_id
             #
             # Using roles defined only in the context
             #
-            local_roles = object.get_local_roles()
+            local_roles = container.get_local_roles()
             for member in local_roles:
                 member_id = member[0]
                 for role in self.getRoles():
                     if role in member[1]:
-                        email = mtool.getMemberById(
-                            member_id).getProperty('email')
-                        if email != '':
-                            member_email_mapping[email] = member_id
+                        email = self.getMemberEmail(member_id)
+                        member_email_mapping[email] = member_id
 
-            local_group_roles = object.get_local_group_roles()
+            local_group_roles = container.get_local_group_roles()
             for group in local_group_roles:
                 for role in self.getRoles():
                     if role in group[1]:
@@ -395,10 +398,8 @@ class RoleRecipientsRule(RecipientsRule):
                         group = aclu.getGroupById(group_id)
                         group_users = group.getUsers()
                         for member_id in group_users:
-                            email = mtool.getMemberById(member_id).getProperty(
-                                'email')
-                            if email != '':
-                                member_email_mapping[email] = member_id
+                            email = self.getMemberEmail(member_id)
+                            member_email_mapping[email] = member_id
         return member_email_mapping
 
 InitializeClass(RoleRecipientsRule)
