@@ -23,6 +23,9 @@
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """ Recipients Rules classes
+
+Classes defining how to compute recipients. They are stored within
+the subscription container.
 """
 
 from Globals import InitializeClass, MessageDialog
@@ -45,7 +48,7 @@ class RecipientsRule(PortalFolder):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        pass
+        raise NotImplementedError
 
 InitializeClass(RecipientsRule)
 
@@ -53,6 +56,9 @@ InitializeClass(RecipientsRule)
 
 class ComputedRecipientsRule(RecipientsRule):
     """Computed Recipient Rules
+
+    Several computed recipients rule can be stored within a subscription
+    container.
     """
 
     meta_type = "Computed Recipients Rule"
@@ -65,30 +71,14 @@ class ComputedRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        return {}
+        raise NotImplementedError
 
 InitializeClass(ComputedRecipientsRule)
 
 def addComputedRecipientsRule(self, id=None, REQUEST=None):
     """ Add a computed recipients rule
     """
-
-    id = 'computed_recipients_rule'
-    if hasattr(aq_base(self), id):
-        return MessageDialog(
-            title='Item Exists',
-            message='This object already contains an %s' % ob.id,
-            action='%s/manage_main' % REQUEST['URL1'])
-
-    ob = ComputedRecipientsRule(id, title='Computed Recipients Rule')
-    self._setObject(id, ob)
-
-    LOG('addComputedRecipientsRule', DEBUG,
-        'adding recipients rule  %s/%s' % (self.absolute_url(), id))
-
-    if REQUEST is not None:
-        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
-
+    raise NotImplementedError
 
 ########################################################
 
@@ -96,6 +86,7 @@ class ExplicitRecipientsRule(RecipientsRule):
     """Explicit Recipient Rules Class
 
     Explicit member/groups/emails information.
+    Only one explicit recipients rule object per subscription container.
     """
 
     #
@@ -263,7 +254,7 @@ def addExplicitRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
     """ Add an explicit recipients rule
     """
 
-    id = 'explicit__recipients_rule'
+    id = self.portal_subscriptions.getExplicitRecipientsRuleId()
 
     if hasattr(aq_base(self), id):
         return MessageDialog(
@@ -283,6 +274,9 @@ class RoleRecipientsRule(RecipientsRule):
     """ Role Recipient Rules Class
 
     Roles based recipients rule computing.
+
+    Several role recipients rule objects can exists within a subscription
+    container
     """
 
     meta_type = "Role Recipient Rule"
@@ -353,7 +347,7 @@ class RoleRecipientsRule(RecipientsRule):
         container = aq_parent(aq_inner(object))
         subtool = self.portal_subscriptions
         if getattr(self, 'notify_no_local'):
-            if subtool.getSubscriptionId() in container.objectIds():
+            if subtool.getSubscriptionContainerId() in container.objectIds():
                 return {}
         if not getattr(self, 'notify_local_only'):
             #
@@ -430,7 +424,11 @@ def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
 
 class WorkflowImpliedRecipientsRule(RecipientsRule):
     """Workflow Implied Recipient Rule
+
+    Several workflow implied recipients rule objects can be stored within a
+    subscription container.
     """
+
     meta_type = "Workflow Implied Recipient Rule"
     portal_type = meta_type
 
@@ -441,28 +439,13 @@ class WorkflowImpliedRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        return {}
+        raise NotImplementedError
 
 InitializeClass(WorkflowImpliedRecipientsRule)
 
 def addWorkflowImpliedRecipientsRule(self, id=None, REQUEST=None):
     """ Add a roles explicit Recipient rules
     """
-
-    id = 'workflow_implied_recipients_rule'
-    if hasattr(aq_base(self), id):
-        return MessageDialog(
-            title='Item Exists',
-            message='This object already contains an %s' % ob.id,
-            action='%s/manage_main' % REQUEST['URL1'])
-
-    ob = WorkflowImpliedRecipientsRule(id, title='Explicit Recipients Rule')
-    self._setObject(id, ob)
-
-    LOG('addWorkflowImpliedRecipientsRule', DEBUG,
-        'adding recipients rule  %s/%s' % (self.absolute_url(), id))
-
-    if REQUEST is not None:
-        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
+    raise NotImplementedError
 
 #############################################################
