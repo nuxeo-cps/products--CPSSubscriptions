@@ -3,10 +3,15 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Now the variables user_id and user_name correspond to the user who is at the
+  origin of the event.  The variable object_creator_id and object_creator_name
+  correspond to the user who created the object on which the event occured This
+  is what people generally want and expect.
 Bug fixes:
 ~~~~~~~~~~
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- user_id and user_name are not what they used to be
+  user_id   => object_creator_id
+  user_name => object_creator_name

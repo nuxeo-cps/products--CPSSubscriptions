@@ -4,361 +4,361 @@
 <!-- ###### Checkboxes wixthin a table used to configure notifications based on roles -->
 <metal:block define-macro="display_subscriptions_table">
   <script type="text/javascript" tal:content="structure string:<!--
-      var absolute_url = '${here/absolute_url}'
-      -->">
+    var absolute_url = '${here/absolute_url}'
+    -->">
   </script>
   <script type="text/javascript">
-      <!--
-      function open_subscribers_window() {
-        selector_window = window.open(absolute_url + '/folder_notifications_all_subscribers_view', 'popup_select', 'toolbar=0,scrollbars=1,location=0,statusbar=0,' +
-        'menubar=0,resizable=0,dependent=1,width=500,height=500');
-        if (! selector_window.opener)
-          selector_window.opener = window
-      }
-      -->
+    <!--
+    function open_subscribers_window() {
+    selector_window = window.open(absolute_url + '/folder_notifications_all_subscribers_view', 'popup_select', 'toolbar=0,scrollbars=1,location=0,statusbar=0,' +
+    'menubar=0,resizable=0,dependent=1,width=500,height=500');
+    if (! selector_window.opener)
+    selector_window.opener = window
+    }
+    -->
   </script>
   <div class="group">
-  <h4 i18n:translate="header_available_events">
-    Available events in here
-  </h4>
-  <tal:block define="context_lcs here/getLocalRolesFromContext">
-    <form action="." name="form" tal:attributes="action here/absolute_url">
-	  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="FormLayout">
-	    <tr>
-	      <td>
-            <i>
-              <span i18n:translate="">
-                Notification type
-              </span>
-            </i>
-	      </td>
-          <td tal:repeat="role python:context_lcs.keys()">
-            <i>
-            <span i18n:translate="">
-                <span tal:replace="context_lcs/?role" />
-            </span>
-            </i>
-          </td>
-	      <td>
-            <i>
-             <span i18n:translate="label_other">
-               Others
-             </span>
-            </i>
-          </td>
-	    </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <br />
-        <tal:block define="events python:here.portal_subscriptions.getEventsFromContext(context=here)">
-	       <tr tal:repeat="event_key python:events.keys()"
-               tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
-	         <td>
-               <strong>
-                 <span i18n:translate="">
-                   <span tal:replace="events/?event_key" />
-                 </span>
-               </strong>
-             </td>
-             <tal:block repeat="role python:context_lcs.keys()">
-  	           <td align="center">
-                 <input type="checkbox" name="role_event:list"
-                        tal:attributes="value string:${role}:${event_key};
-                                        checked python:here.isRoleSubscribedToEvent(event_key, role)" />
-               </td>
-             </tal:block>
-	         <td align="center">
-               <a href="."
+    <h4 i18n:translate="header_available_events">
+      Available events in here
+    </h4>
+    <tal:block define="context_lcs here/getLocalRolesFromContext">
+      <form action="." name="form" tal:attributes="action here/absolute_url">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="FormLayout">
+          <tr>
+            <td>
+              <em>
+                <span i18n:translate="">
+                  Notification type
+                </span>
+              </em>
+            </td>
+            <td tal:repeat="role python:context_lcs.keys()">
+              <em>
+                <span i18n:translate="">
+                  <span tal:replace="context_lcs/?role" />
+                </span>
+              </em>
+            </td>
+            <td>
+              <em>
+                <span i18n:translate="label_other">
+                  Others
+                </span>
+              </em>
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <br />
+          <tal:block define="events python:here.portal_subscriptions.getEventsFromContext(context=here)">
+            <tr tal:repeat="event_key python:events.keys()"
+              tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+              <td>
+                <strong>
+                  <span i18n:translate="">
+                    <span tal:replace="events/?event_key" />
+                  </span>
+                </strong>
+              </td>
+              <tal:block repeat="role python:context_lcs.keys()">
+                <td align="center">
+                  <input type="checkbox" name="role_event:list"
+                    tal:attributes="value string:${role}:${event_key};
+                    checked python:here.isRoleSubscribedToEvent(event_key, role)" />
+                </td>
+              </tal:block>
+              <td align="center">
+                <a href="."
                   tal:attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
                   <span i18n:translate="label_notifications_add">
                     Choose
                   </span>
-               </a>
-             </td>
-	       </tr>
+                </a>
+              </td>
+            </tr>
+          </tal:block>
+        </table>
+        <br />
+        <h4 i18n:translate="header_when_where_to_notify">
+          When/where to notify ?
+        </h4>
+        <br />
+        <tal:block define="subscription_folder python:getattr(here,
+          here.portal_subscriptions.getSubscriptionContainerId(), 0)">
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center">
+                <span i18n:translate="label_notifications_local_only">
+                  Notify local only
+                </span>
+              </td>
+              <td align="left">
+                <input type="checkbox" name="notify_local_only"
+                  tal:attributes="checked python:subscription_folder and
+                  subscription_folder.isNotificationLocalOnly() or 0"
+                  />
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <span i18n:translate="label_notifications_no_local">
+                  Notify no local
+                </span>
+              </td>
+              <td align="left">
+                <input type="checkbox" name="notify_no_local"
+                  tal:attributes="checked python:subscription_folder and
+                  subscription_folder.isNotificationNoLocal() or 0"
+                  />
+              </td>
+            </tr>
+          </table>
         </tal:block>
-	  </table>
-      <br>
-      <h4 i18n:translate="header_when_where_to_notify">
-        When/where to notify ?
-      </h4>
-      <br>
-      <tal:block define="subscription_folder python:getattr(here,
-      here.portal_subscriptions.getSubscriptionContainerId(), 0)">
-        <table border="0" align="center" width="100%">
-        <tr>
-          <td align="center">
-            <span i18n:translate="label_notifications_local_only">
-              Notify local only
-            </span>
-          </td>
-          <td align="left">
-            <input type="checkbox" name="notify_local_only"
-                   tal:attributes="checked python:subscription_folder and
-      subscription_folder.isNotificationLocalOnly() or 0"
-                   />
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <span i18n:translate="label_notifications_no_local">
-              Notify no local
-            </span>
-          </td>
-          <td align="left">
-            <input type="checkbox" name="notify_no_local"
-                   tal:attributes="checked python:subscription_folder and
-      subscription_folder.isNotificationNoLocal() or 0"
-                   />
-          </td>
-        </tr>
-        </table>
-      </tal:block>
-      <br>
-      <h4 i18n:translate="header_subscription_allowed">
-        Are subscriptions allowed and to whom ?
-      </h4>
-      <br>
-      <tal:block define="global subscription_folder python:getattr(here,
-      here.portal_subscriptions.getSubscriptionContainerId(), 0)">
-        <table border="0" align="center" width="100%">
-        <tr>
-          <td align="center">
-            <span i18n:translate="label_subscription_allowed">
-              Are subscription allowed ?
-            </span>
-          </td>
-          <td align="left">
-            <input type="checkbox" name="subscription_allowed"
-                   tal:attributes="checked python:subscription_folder and
-      subscription_folder.isSubscriptionAllowed() or 0"
-                   />
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <span i18n:translate="label_unsubscription_allowed">
-              Are unsubscription allowed ?
-            </span>
-          </td>
-          <td align="left">
-            <input type="checkbox" name="unsubscription_allowed"
-                   tal:attributes="checked python:subscription_folder and
-      subscription_folder.isUnSubscriptionAllowed() or 0"
-                   />
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <span i18n:translate="label_anonymous_subscription_allowed">
-              Are anonymous subscriptions allowed ?
-            </span>
-          </td>
-          <td align="left">
-            <input type="checkbox" name="anonymous_subscription_allowed"
-                   tal:attributes="checked python:subscription_folder and
-      subscription_folder.isAnonymousSubscriptionAllowed() or 0"
-                   />
-          </td>
-        </tr>
-        </table>
-      </tal:block>
-      <br>
-      <h4 i18n:translate="header_mfrom_mailing_list">
-        Sender address for outgoing emails
-      </h4>
-      <p i18n:translate="description_do_not_modify_or_enter_email_address">
-        You should not modify the following field unless you have specific
-        needs, and if so, you should enter a valid email address like,
-	for example, system@mysite.net
-      </p>
-      <tal:block define="current_mfrom python:subscription_folder and
-      subscription_folder.getMailFrom() or ''">
-        <table border="0" align="center" width="100%">
-          <tr>
-            <td align="center">
-             <input type="text" name="mfrom" value=""
-                    tal:attributes="value current_mfrom" />
-            </td>
-          </tr>
-        </table>
-      </tal:block>
-      <br />
-      <hr />
-      <a href="."
-         tal:attributes="href string:javascript:open_subscribers_window()">
-        <span i18n:translate="label_see_all_subscribers">
-          See all subscribers
-        </span>
-      </a>
-      <br />
-      <br />
-      <input type="submit" name="folder_notifications_edit:method"
-             value="button_change" class="standAlone"
-                   i18n:attributes="value" />
-    </form>
-  </tal:block>
+        <br />
+        <h4 i18n:translate="header_subscription_allowed">
+          Are subscriptions allowed and to whom ?
+        </h4>
+        <br />
+        <tal:block define="global subscription_folder python:getattr(here,
+          here.portal_subscriptions.getSubscriptionContainerId(), 0)">
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center">
+                <span i18n:translate="label_subscription_allowed">
+                  Are subscription allowed ?
+                </span>
+              </td>
+              <td align="left">
+                <input type="checkbox" name="subscription_allowed"
+                  tal:attributes="checked python:subscription_folder and
+                  subscription_folder.isSubscriptionAllowed() or 0"
+                  />
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <span i18n:translate="label_unsubscription_allowed">
+                  Are unsubscription allowed ?
+                </span>
+              </td>
+              <td align="left">
+                <input type="checkbox" name="unsubscription_allowed"
+                  tal:attributes="checked python:subscription_folder and
+                  subscription_folder.isUnSubscriptionAllowed() or 0"
+                  />
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <span i18n:translate="label_anonymous_subscription_allowed">
+                  Are anonymous subscriptions allowed ?
+                </span>
+              </td>
+              <td align="left">
+                <input type="checkbox" name="anonymous_subscription_allowed"
+                  tal:attributes="checked python:subscription_folder and
+                  subscription_folder.isAnonymousSubscriptionAllowed() or 0"
+                  />
+              </td>
+            </tr>
+          </table>
+        </tal:block>
+        <br />
+        <h4 i18n:translate="header_mfrom_mailing_list">
+          Sender address for outgoing emails
+        </h4>
+        <p i18n:translate="description_do_not_modify_or_enter_email_address">
+          You should not modify the following field unless you have specific
+          needs, and if so, you should enter a valid email address like,
+          for example, system@mysite.net
+        </p>
+        <tal:block define="current_mfrom python:subscription_folder and
+          subscription_folder.getMailFrom() or ''">
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center">
+                <input type="text" name="mfrom" value=""
+                  tal:attributes="value current_mfrom" />
+              </td>
+            </tr>
+          </table>
+        </tal:block>
+        <br />
+        <hr />
+        <a href="."
+          tal:attributes="href string:javascript:open_subscribers_window()">
+          <span i18n:translate="label_see_all_subscribers">
+            See all subscribers
+          </span>
+        </a>
+        <br />
+        <br />
+        <input type="submit" name="folder_notifications_edit:method"
+          value="button_change" class="standAlone"
+          i18n:attributes="value" />
+      </form>
+    </tal:block>
   </div>
 </metal:block>
 
 <!-- ###### User can see available subscriptions -->
 <metal:block define-macro="display_user_subscribe">
-<tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
-                   subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
-                   events python:subscriptions_tool.getEventsFromContext(context=here);
-                   isAno python:here.portal_membership.isAnonymousUser();
-                   email request/email|nothing;
-                   unsubscribe_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, email)];
-                   role_based_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, role_based=1)];
-                   subscribe_list python:[x for x in events.keys() if not subscriptions_tool.isSubscriberFor(x, here, email) and x not in role_based_list];
-                   ">
-  <h4 i18n:translate="header_choose_the_events">
-    Below are events open for subscriptions.
-  </h4>
-  <div class="group">
-  <tal:block condition="subscribe_list">
-    <form name="form" method="get" action="."
+  <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
+    subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
+    events python:subscriptions_tool.getEventsFromContext(context=here);
+    isAno python:here.portal_membership.isAnonymousUser();
+    email request/email|nothing;
+    unsubscribe_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, email)];
+    role_based_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, role_based=1)];
+    subscribe_list python:[x for x in events.keys() if not subscriptions_tool.isSubscriberFor(x, here, email) and x not in role_based_list];
+    ">
+    <h4 i18n:translate="header_choose_the_events">
+      Below are events open for subscriptions.
+    </h4>
+    <div class="group">
+      <tal:block condition="subscribe_list">
+        <form name="form" method="get" action="."
           tal:attributes="action string:${here/absolute_url}">
-      <table width="100%" align="center">
-        <tr tal:repeat="event_key subscribe_list"
-            tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
-          <td>
-            <strong>
-              <span i18n:translate="">
-                <span tal:replace="events/?event_key" />
-              </span>
-            </strong>
-          </td>
-          <td align="left">
-            <input type="checkbox"
-                   tal:condition="python:1"
-                   tal:attributes="name string:event_ids:list;
-                                   value event_key;
-                                   checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
-          </td>
-        </tr>
-        </table>
-        <tal:block condition="python:not email and isAno">
-        <hr />
-          <table width="100%" align="center" cellspacing="2" cellpadding="5">
-          <tr>
-            <td align="right">
-              <strong i18n:translate="header_enter_your_email">
-              <span i18n:translate="label_enter_your_email">
-                Enter a valid email
-              </span>
-          </strong>
-            </td>
-            <td align="left">
-              <input type="text"
-                     size="30"
-                     name="subscriber_email"
-                     value="">
-            </td>
-          </tr>
+          <table width="100%" align="center">
+            <tr tal:repeat="event_key subscribe_list"
+              tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+              <td>
+                <strong>
+                  <span i18n:translate="">
+                    <span tal:replace="events/?event_key" />
+                  </span>
+                </strong>
+              </td>
+              <td align="left">
+                <input type="checkbox"
+                  tal:condition="python:1"
+                  tal:attributes="name string:event_ids:list;
+                  value event_key;
+                  checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
+              </td>
+            </tr>
           </table>
+          <tal:block condition="python:not email and isAno">
+            <hr />
+            <table width="100%" align="center" cellspacing="2" cellpadding="5">
+              <tr>
+                <td align="right">
+                  <strong i18n:translate="header_enter_your_email">
+                    <span i18n:translate="label_enter_your_email">
+                      Enter a valid email
+                    </span>
+                  </strong>
+                </td>
+                <td align="left">
+                  <input type="text"
+                    size="30"
+                    name="subscriber_email"
+                    value="">
+                </td>
+              </tr>
+            </table>
+          </tal:block>
+          <br />
+          <input type="submit" class="standAlone" name="folder_subscribe:method"
+            value="button_subscribe"
+            i18n:attributes="value">
+            <input tal:condition="isAno"
+              type="submit" class="standAlone" name="folder_unsubscribe:method"
+              value="button_unsubscribe"
+              i18n:attributes="value">
+        </form>
+      </tal:block>
+      <tal:block condition="not:subscribe_list">
+        <div translate="label_no_subscriptions">
+          No event opened for subscsriptions in here.
+        </div>
+      </tal:block>
+    </div>
+    <tal:block condition="not:isAno">
+      <br />
+      <h4 i18n:translate="header_choose_the_events_to_sunsubscribe">
+        Below are the events you may unsubscribe
+      </h4>
+      <div class="group">
+        <tal:block condition="unsubscribe_list">
+          <form name="form" method="get" action="."
+            tal:attributes="action string:${here/absolute_url}">
+            <table width="100%" align="center">
+              <tr tal:repeat="event_key unsubscribe_list"
+                tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+                <td>
+                  <strong>
+                    <span i18n:translate="">
+                      <span tal:replace="events/?event_key" />
+                    </span>
+                  </strong>
+                </td>
+                <td align="left">
+                  <input type="checkbox"
+                    tal:condition="python:1"
+                    tal:attributes="name string:event_ids:list;
+                    value event_key;
+                    checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
+                </td>
+              </tr>
+            </table>
+            <br />
+            <input type="submit" class="standAlone" name="folder_unsubscribe:method"
+              value="button_unsubscribe"
+              i18n:attributes="value">
+          </form>
         </tal:block>
-        <br />
-        <input type="submit" class="standAlone" name="folder_subscribe:method"
-               value="button_subscribe"
-               i18n:attributes="value">
-        <input tal:condition="isAno"
-               type="submit" class="standAlone" name="folder_unsubscribe:method"
-               value="button_unsubscribe"
-               i18n:attributes="value">
-    </form>
-  </tal:block>
-  <tal:block condition="not:subscribe_list">
-    <div translate="label_no_subscriptions">
-      No event opened for subscsriptions in here.
-    </div>
-  </tal:block>
-  </div>
-  <tal:block condition="not:isAno">
-    <br />
-    <h4 i18n:translate="header_choose_the_events_to_sunsubscribe">
-      Below are the events you may unsubscribe
-    </h4>
-    <div class="group">
-    <tal:block condition="unsubscribe_list">
-      <form name="form" method="get" action="."
-            tal:attributes="action string:${here/absolute_url}">
-        <table width="100%" align="center">
-          <tr tal:repeat="event_key unsubscribe_list"
-              tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
-            <td>
-              <strong>
-                <span i18n:translate="">
-                  <span tal:replace="events/?event_key" />
-                </span>
-              </strong>
-            </td>
-            <td align="left">
-              <input type="checkbox"
-                     tal:condition="python:1"
-                     tal:attributes="name string:event_ids:list;
-                                     value event_key;
-                                     checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
-            </td>
-          </tr>
-          </table>
-          <br />
-          <input type="submit" class="standAlone" name="folder_unsubscribe:method"
-                 value="button_unsubscribe"
-                 i18n:attributes="value">
-      </form>
-    </tal:block>
-    <tal:block condition="not:unsubscribe_list">
-      <div i18n:translate="label_no_subscriptions">
-        Currently you haven't any subscriptions in this context or for this object.
+        <tal:block condition="not:unsubscribe_list">
+          <div i18n:translate="label_no_subscriptions">
+            Currently you haven't any subscriptions in this context or for this object.
+          </div>
+        </tal:block>
       </div>
     </tal:block>
-    </div>
-  </tal:block>
-  <tal:block condition="not:isAno">
-    <br />
-    <h4 i18n:translate="header_subscribption_based_on_local_roles">
-      Below are the events for which you are subsribed because of your local roles
-    </h4>
-    <div class="group">
-    <tal:block condition="role_based_list">
-      <form name="form" method="get" action="."
+    <tal:block condition="not:isAno">
+      <br />
+      <h4 i18n:translate="header_subscribption_based_on_local_roles">
+        Below are the events for which you are subsribed because of your local roles
+      </h4>
+      <div class="group">
+        <tal:block condition="role_based_list">
+          <form name="form" method="get" action="."
             tal:attributes="action string:${here/absolute_url}">
-        <table width="100%" align="center">
-          <tr tal:repeat="event_key role_based_list"
-              tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
-            <td>
-              <strong>
-                <span i18n:translate="">
-                  <span tal:replace="events/?event_key" />
-                </span>
-              </strong>
-            </td>
-            <td align="left">
-              <input type="checkbox"
-                     tal:condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0"
-                     tal:attributes="name string:event_ids:list;
-                                     value event_key;
-                                     checked python:subscriptions_tool.isSubscriberFor(event_key, here, role_based=1)">
-            </td>
-          </tr>
-          </table>
-          <br />
-          <input type="submit" class="standAlone" name="folder_unsubscribe_role_based_member:method"
-                 tal:condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0"
-                 value="button_unsubscribe"
-                 i18n:attributes="value">
-      </form>
-    </tal:block>
-    <tal:block condition="not:role_based_list">
-      <div i18n:translate="label_no_subscriptions_based_on_local_roles">
-        Currently you haven't any subscriptions in this context or for this object based on your local roles
+            <table width="100%" align="center">
+              <tr tal:repeat="event_key role_based_list"
+                tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+                <td>
+                  <strong>
+                    <span i18n:translate="">
+                      <span tal:replace="events/?event_key" />
+                    </span>
+                  </strong>
+                </td>
+                <td align="left">
+                  <input type="checkbox"
+                    tal:condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0"
+                    tal:attributes="name string:event_ids:list;
+                    value event_key;
+                    checked python:subscriptions_tool.isSubscriberFor(event_key, here, role_based=1)">
+                </td>
+              </tr>
+            </table>
+            <br />
+            <input type="submit" class="standAlone" name="folder_unsubscribe_role_based_member:method"
+              tal:condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0"
+              value="button_unsubscribe"
+              i18n:attributes="value">
+          </form>
+        </tal:block>
+        <tal:block condition="not:role_based_list">
+          <div i18n:translate="label_no_subscriptions_based_on_local_roles">
+            Currently you haven't any subscriptions in this context or for this object based on your local roles
+          </div>
+        </tal:block>
       </div>
     </tal:block>
-    </div>
   </tal:block>
-</tal:block>
 </metal:block>
 
 <!-- ###### Confirm Subscriptions -->
@@ -370,25 +370,25 @@
     <span i18n:translate="event_id" />
     in <span tal:replace="here/title_or_id" />
     at <a href="here/absolute_url">
-         <span tal:replace="here/absolute_url" />
-       </a>
+      <span tal:replace="here/absolute_url" />
+    </a>
   </span>
   <br /><br />
   <span i18n:translate="">
     We have received a request for subscription with the email
     address, <a href=""
-                tal:attributes="href string:mailto:${email}">
-                <span tal:replace="email" />
-             </a>
+      tal:attributes="href string:mailto:${email}">
+      <span tal:replace="email" />
+    </a>
   </span>
   <br /><br />
   <span i18n:translate="">
-   Ton confirm that you want to be added to this mailing list, click
-   <a href=""
+    Ton confirm that you want to be added to this mailing list, click
+    <a href=""
       tal:attributes="href
-  string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
+      string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
       here
-   </a>
+    </a>
   </span>
 </metal:block>
 
@@ -401,130 +401,130 @@
     <span i18n:translate="event_id" />
     in <span tal:replace="here/title_or_id" />
     at <a href="here/absolute_url">
-         <span tal:replace="here/absolute_url" />
-       </a>
+      <span tal:replace="here/absolute_url" />
+    </a>
   </span>
   <br /><br />
   <span i18n:translate="">
     We have received a request for unsubscription with the email
     address, <a href=""
-                tal:attributes="href string:mailto:${email}">
-                <span tal:replace="email" />
-             </a>
+      tal:attributes="href string:mailto:${email}">
+      <span tal:replace="email" />
+    </a>
   </span>
   <br /><br />
   <span i18n:translate="">
-   Ton confirm that you want to be removed from this mailing list, click
-   <a href=""
+    Ton confirm that you want to be removed from this mailing list, click
+    <a href=""
       tal:attributes="href
-  string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
+      string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
       here
-   </a>
+    </a>
   </span>
 </metal:block>
 
 <!-- ###### Explicit/black emails for a given event -->
 <metal:block define-macro="display_explicit_recipients_management">
-<tal:block define="subtool here/portal_subscriptions;
-                   event_key request/event_key|nothing;
-                   event_id string:subscription__${event_key};
-                   subscription_container python:getattr(here,
-                   subtool.getSubscriptionContainerId(), None);
-                   event python:getattr(subscription_container, event_id, None);
-                   event_explicit_recipients_rules
+  <tal:block define="subtool here/portal_subscriptions;
+    event_key request/event_key|nothing;
+    event_id string:subscription__${event_key};
+    subscription_container python:getattr(here,
+    subtool.getSubscriptionContainerId(), None);
+    event python:getattr(subscription_container, event_id, None);
+    event_explicit_recipients_rules
     python:event and
     event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule') or [];
-                   event_explicit_recipients_rule
-                   python:event_explicit_recipients_rules != [] and
-                   event_explicit_recipients_rules[0] or nothing;
-                   explicit_emails python:event_explicit_recipients_rule and
-                   event_explicit_recipients_rule.getEmails() or [];
-                   black_list python:event and
-                   event.getRecipientEmailsBlackList() or [];
-                   ">
-  <br />
-  <!-- EMAILS -->
-  <form action="." name="form" tal:attributes="action here/absolute_url">
-  <div class="document">
-    <div class="row">
-      <div class="label">
-        <span i18n:translate="label_emails">
-          Explicit E-Mails
-        </span>
+    event_explicit_recipients_rule
+    python:event_explicit_recipients_rules != [] and
+    event_explicit_recipients_rules[0] or nothing;
+    explicit_emails python:event_explicit_recipients_rule and
+    event_explicit_recipients_rule.getEmails() or [];
+    black_list python:event and
+    event.getRecipientEmailsBlackList() or [];
+    ">
+    <br />
+    <!-- EMAILS -->
+    <form action="." name="form" tal:attributes="action here/absolute_url">
+      <div class="document">
+        <div class="row">
+          <div class="label">
+            <span i18n:translate="label_emails">
+              Explicit E-Mails
+            </span>
+          </div>
+          <div class="row">
+            <textarea cols="40" rows="10" name="explicit_emails:lines" wrap="soft" tal:content="python:'\n'.join(explicit_emails)"></textarea>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <textarea cols="40" rows="10" name="explicit_emails:lines" wrap="soft" tal:content="python:'\n'.join(explicit_emails)"></textarea>
+      <!-- END EMAILS -->
+      <!-- BLACK LIST -->
+      <div class="document">
+        <div class="row">
+          <div class="label">
+            <span i18n:translate="label_black_list">
+              E-Mails Black list
+            </span>
+          </div>
+          <div class="row">
+            <textarea cols="40" rows="10" name="black_list:lines" wrap="soft" tal:content="python:'\n'.join(black_list)"></textarea>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <!-- END EMAILS -->
-  <!-- BLACK LIST -->
-  <div class="document">
-    <div class="row">
-      <div class="label">
-        <span i18n:translate="label_black_list">
-          E-Mails Black list
-        </span>
-      </div>
-      <div class="row">
-        <textarea cols="40" rows="10" name="black_list:lines" wrap="soft" tal:content="python:'\n'.join(black_list)"></textarea>
-      </div>
-    </div>
-  </div>
-  <!-- END BLACK LIST -->
-  <input type="hidden" name="event_id" tal:attributes="value event_id" />
-  <input type="submit" class="standAlone" value="button_change"
-         name="folder_explicit_notifications_edit:method"
-         i18n:attributes="value" />
-  <input type="button" class="standAlone" value="button_back"
-         onclick="javascript:history.back()" i18n:attributes="value" />
-</form>
-</tal:block>
+      <!-- END BLACK LIST -->
+      <input type="hidden" name="event_id" tal:attributes="value event_id" />
+      <input type="submit" class="standAlone" value="button_change"
+        name="folder_explicit_notifications_edit:method"
+        i18n:attributes="value" />
+      <input type="button" class="standAlone" value="button_back"
+        onclick="javascript:history.back()" i18n:attributes="value" />
+    </form>
+  </tal:block>
 </metal:block>
 
 <metal:block define-macro="display_all_notifications_subscribers">
-<tal:block define="recipients python:here.portal_subscriptions.getRecipientsFor(infos={'context':here})">
-  <br />
-  <table border="0" width="80%" align="center" cellpadding="5"
-  cellspacing="1">
-    <tr>
-      <td align="left">
-        <strong>
-          <span i18n:translate="label_subscriptions_email">
-            E-Mails
-          </span>
-        </strong>
-      </td>
-      <td align="left">
-        <strong>
-          <span i18n:translate="label_subcriptions_fullname">
-            Full Name
-          </span>
-        </strong>
-      </td>
-    </tr>
-    <tr tal:repeat="recipient_mail python:recipients.keys()"
-        tal:attributes="class python:test(repeat['recipient_mail'].even(),
-    'even','odd')">
-      <tal:block condition="recipient_mail">
+  <tal:block define="recipients python:here.portal_subscriptions.getRecipientsFor(infos={'context':here})">
+    <br />
+    <table border="0" width="80%" align="center" cellpadding="5"
+      cellspacing="1">
+      <tr>
         <td align="left">
-          <a href="." tal:attributes="href string:mailto:${recipient_mail}">
-            <span tal:replace="recipient_mail" />
-          </a>
+          <strong>
+            <span i18n:translate="label_subscriptions_email">
+              E-Mails
+            </span>
+          </strong>
         </td>
-        <td align="center">
-          <span tal:replace="python:recipients[recipient_mail]" />
+        <td align="left">
+          <strong>
+            <span i18n:translate="label_subcriptions_fullname">
+              Full Name
+            </span>
+          </strong>
         </td>
-      </tal:block>
-    </tr>
-    <tr>
-      <td colspan="2" align="right">
-        <input type="button" class="standAlone" value="button_close"
-               onclick="javascript:window.close()"
-               i18n:attributes="value" />
-     </td>
-   </tr>
-</tal:block>
+      </tr>
+      <tr tal:repeat="recipient_mail python:recipients.keys()"
+        tal:attributes="class python:test(repeat['recipient_mail'].even(),
+        'even','odd')">
+        <tal:block condition="recipient_mail">
+          <td align="left">
+            <a href="." tal:attributes="href string:mailto:${recipient_mail}">
+              <span tal:replace="recipient_mail" />
+            </a>
+          </td>
+          <td align="center">
+            <span tal:replace="python:recipients[recipient_mail]" />
+          </td>
+        </tal:block>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+          <input type="button" class="standAlone" value="button_close"
+            onclick="javascript:window.close()"
+            i18n:attributes="value" />
+        </td>
+      </tr>
+  </tal:block>
 </metal:block>
 
 <!-- ######################################################## -->
@@ -532,74 +532,74 @@
 
 <metal:block define-macro="manage_my_subscriptions">
   <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
-                     subscriptions_struct python:subscriptions_tool.getAllSubscriptionsFor()">
+    subscriptions_struct python:subscriptions_tool.getAllSubscriptionsFor()">
     <span i18n:translate="">
       Below are the subscriptions you belong to all over the portal
     </span>
     <div class="group" tal:condition="subscriptions_struct">
-    <table align="center" width="100%" cellpadding="2" cellspacing="1">
-      <tr class="even">
-        <td align="left">
-          <strong>
-            <span i18n:translate="label_subscription_where">
-              Where
-            </span>
-          </strong>
-        </td>
-        <td align="center">
-          <strong>
-            <span i18n:translate="label_subscription_description">
-              Description
-            </span>
-          </strong>
-        </td>
-        <td align="center">
-          <strong>
-            <span i18n:translate="label_subscription_manage">
-              Infos / Unsubscribe
-            </span>
-          </strong>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="3">&nbsp;</td>
-      </tr>
-      <tal:block repeat="elt subscriptions_struct">
-        <tr tal:define="class python:test(repeat['elt'].even(), 'odd', 'even')"
-            tal:attributes="class class">
+      <table align="center" width="100%" cellpadding="2" cellspacing="1">
+        <tr class="even">
           <td align="left">
-           <a href=""
-              tal:attributes="href string:${elt/path}">
-              <span tal:replace="elt/title" />
-           </a>
-          </td>
-          <td align="left">
-            <span i18n:translate="">
-              <span
-              tal:replace="python:subscriptions_tool.getI18nFor(elt['event_id'])"
-              />
-           </span>
+            <strong>
+              <span i18n:translate="label_subscription_where">
+                Where
+              </span>
+            </strong>
           </td>
           <td align="center">
-           <a href=""
-              tal:attributes="href string:${elt/path}/folder_subscribe_form">
-              <span i18n:translate="label_click_here">
-                Click here
+            <strong>
+              <span i18n:translate="label_subscription_description">
+                Description
               </span>
-           </a>
+            </strong>
+          </td>
+          <td align="center">
+            <strong>
+              <span i18n:translate="label_subscription_manage">
+                Infos / Unsubscribe
+              </span>
+            </strong>
           </td>
         </tr>
-      </tal:block>
-    </table>
-    <br />
-    <input type="button" class="standAlone" value="button_back"
-           onclick="javascript:history.back()"
-           i18n:attributes="value" />
-     </div>
-     <div class="group" tal:condition="not:subscriptions_struct" align="center">
-       <span i18n:translate="label_subscriptions_no_subscription_yet">
-         You currently do not belong to any subscriptions.
-       </span>
-     </div>
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tal:block repeat="elt subscriptions_struct">
+          <tr tal:define="class python:test(repeat['elt'].even(), 'odd', 'even')"
+            tal:attributes="class class">
+            <td align="left">
+              <a href=""
+                tal:attributes="href string:${elt/path}">
+                <span tal:replace="elt/title" />
+              </a>
+            </td>
+            <td align="left">
+              <span i18n:translate="">
+                <span
+                  tal:replace="python:subscriptions_tool.getI18nFor(elt['event_id'])"
+                  />
+              </span>
+            </td>
+            <td align="center">
+              <a href=""
+                tal:attributes="href string:${elt/path}/folder_subscribe_form">
+                <span i18n:translate="label_click_here">
+                  Click here
+                </span>
+              </a>
+            </td>
+          </tr>
+        </tal:block>
+      </table>
+      <br />
+      <input type="button" class="standAlone" value="button_back"
+        onclick="javascript:history.back()"
+        i18n:attributes="value" />
+    </div>
+    <div class="group" tal:condition="not:subscriptions_struct" align="center">
+      <span i18n:translate="label_subscriptions_no_subscription_yet">
+        You currently do not belong to any subscriptions.
+      </span>
+    </div>
   </tal:block>
 </metal:block>

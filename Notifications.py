@@ -52,6 +52,7 @@ import MimeWriter
 from Globals import InitializeClass, MessageDialog
 from Products.MailHost.MailHost import MailHostError
 from Acquisition import aq_base, aq_parent, aq_inner
+from AccessControl import getSecurityManager
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.CMFCorePermissions import ManagePortal
@@ -237,9 +238,14 @@ class MailNotificationRule(NotificationRule):
         infos['object_parent_url'] = aq_parent(aq_inner(object)).absolute_url()
         infos['object_type'] = getattr(object, 'portal_type', '')
 
-        infos['user_id'] = object.Creator()
-        infos['user_name'] = getattr(self.portal_membership.getMemberById(
+        infos['object_creator_id'] = object.Creator()
+        infos['object_creator_name'] = getattr(self.portal_membership.getMemberById(
             object.Creator()), 'fullname', '')
+
+        # The user whose action is at the origin of the event
+        user = getSecurityManager().getUser()
+        infos['user_id'] = user.getId()
+        infos['user_name'] = user.getUserName()
 
         for k, v in infos.get('kwargs', {}).items():
             infos['kwargs_' + k] = v

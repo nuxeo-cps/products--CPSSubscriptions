@@ -16,6 +16,50 @@
   used to send mails.
 </em>
 </p>
+<p>
+  The available variables are the folowing:
+</p>
+<ul style="font-size: smaller;">
+<li><code>portal_title</code><br />
+Title of the portal</li>
+
+<li><code>info_url</code><br />
+URL of the page summarizing the subscription informations</li>
+
+<li><code>notification_title<code><br />
+Title of the notification</li>
+
+<li><code>event</code><br />
+Id of the event</li>
+
+<li><code>object_title</code><br />
+Tiltle of the object generating the notification</li>
+
+<li><code>object_url</code><br />
+URL of the object generating the notification</li>
+
+<li><code>object_parent_title</code><br />
+Parent object Title</li>
+
+<li><code>object_type</code><br />
+portal_type of the object generating the notifications</li>
+
+<li><code>object_creator_id</code><br />
+Id of the user who created the object on which the event occured</li>
+
+<li><code>object_creator_name</code><br />
+Fullname of the user who created the object on which the event occured</li>
+
+<li><code>user_id</code><br />
+Id of the user who is at the origin of the event</li>
+
+<li><code>user_name</code><br />
+Fullname of the user who is at the origin of the event</li>
+
+<li><code>kwargs_comment</code><br />
+Comments which where given by the user when she asks for a workflow transition</li>
+</ul>
+
 <form action="manage_editDefaultEventMessage">
  <table cellspacing="0" cellpadding="2" border="0">
  <tr>
