@@ -248,6 +248,11 @@ Event subscriptions and notifications
               by the subscription. The subscription is valid only if the
               context object's portal_type is in object_types.
 
+          Recipient filtering:
+
+           - recipient_emails_black_list -- The emails the subscription is
+             blocking.
+
           Notifications:
 
             - notification_types -- What kinds of action are taken for
