@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
--
+- CPSInstaller
 New features:
 ~~~~~~~~~~~~~
 - Adding the Manager role
@@ -9,4 +9,4 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- New permissions 'Can Subscribe' for subscription container
