@@ -15,7 +15,10 @@ workspace = {'workflow_create' : 'label_workflow_create',
              'sys_del_object' : 'label_workflow_delete',
              'workflow_cut_copy_paste' : 'label_workflow_cut_copy_paste',
              'forum_new_comment' : 'label_forum_new_comment',
-             'forum_comment_published' : 'label_forum_comment_published'}
+             'forum_comment_published' : 'label_forum_comment_published',
+             'forum_comment_unpublished' : 'label_forum_comment_unpublished',
+             'forum_comment_rejected' : 'label_forum_comment_rejected',
+             'forum_comment_deleted' : 'label_forum_comment_deleted',}
 
 section = {'workflow_publish' : 'label_workflow_publish',
            'workflow_accept' : 'label_workflow_accept',
@@ -29,6 +32,9 @@ section = {'workflow_publish' : 'label_workflow_publish',
 
 cps_forum = {'forum_new_post' : 'label_forum_new_post',
              'forum_post_published' : 'label_forum_post_published',
+             'forum_post_unpublished' : 'label_forum_post_unpublished',
+             'forum_post_rejected' : 'label_forum_post_rejected',
+             'forum_post_deleted' : 'label_forum_post_deleted',
              }
 
 
