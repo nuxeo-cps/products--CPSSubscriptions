@@ -7,6 +7,7 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Integer overflow with python2.1 while generating the id for the NotificationMessageBody.
+- Validation of the mail_infos strucuture before trying to send the mail
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- 
