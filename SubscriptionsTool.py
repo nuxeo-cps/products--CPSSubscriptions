@@ -1,6 +1,6 @@
-# Copyright (C) 2003 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2003 CGEY <http://cgey.com>
-# Copyright (c) 2003 Ministère de L'intérieur (MISILL)
+# Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (C) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Florent Guillaume <fg@nuxeo.com>
@@ -29,11 +29,11 @@ Defines the Subscriptions Tool class
 
 from OFS.Folder import Folder
 from Globals import InitializeClass, DTMLFile
-from Acquisition import aq_base, aq_parent, aq_inner
+from Acquisition import aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
 
-from Products.CMFCore.CMFCorePermissions import ManagePortal, ModifyPortalContent
+from Products.CMFCore.CMFCorePermissions import ManagePortal
 from Products.CMFCore.utils import UniqueObject
 
 from zLOG import LOG, DEBUG
@@ -51,8 +51,8 @@ MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
 class SubscriptionsTool(UniqueObject, Folder):
     """Subscriptions Tool
 
-    portal_subcriptions is the central tool with the necessary methods to query
-    the subscriptions and execute them.
+    portal_subcriptions is the central tool with the necessary methods
+    to query the subscriptions and execute them.
 
     The subscriptions are looked up locally in a .cps_subscriptions folder in
     the object.
@@ -83,7 +83,8 @@ class SubscriptionsTool(UniqueObject, Folder):
     manage_events = DTMLFile('zmi/configureEvents', globals())
 
 
-    def manage_addEventType(self, event_where, event_id, event_label, REQUEST=None):
+    def manage_addEventType(self, event_where, event_id, event_label,
+                            REQUEST=None):
         """ Adds a new event id in a given context
         """
         mapping_context_events = self.mapping_context_events
@@ -212,7 +213,6 @@ class SubscriptionsTool(UniqueObject, Folder):
                     pt_recipients = pt_recipient_rule.getRecipients(event_type,
                                                                     object,
                                                                     infos)
-                    LOG("YYYYY", DEBUG, pt_recipients)
                     for pt_recipient in pt_recipients.keys():
                         recipients[pt_recipient] = pt_recipients[pt_recipient]
         return recipients

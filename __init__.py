@@ -1,6 +1,6 @@
-# Copyright (C) 2003 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2003 CGEY <http://cgey.com>
-# Copyright (c) 2003 Ministère de L'intérieur (MISILL)
+# Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (C) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Florent Guillaume <fg@nuxeo.com>
@@ -45,31 +45,26 @@ import Notifications
 recipientsRulesClasses = ( RecipientsRules.ComputedRecipientsRule,
                            RecipientsRules.ExplicitRecipientsRule,
                            RecipientsRules.RoleRecipientsRule,
-                           RecipientsRules.WorkflowImpliedRecipientsRule,
-                           )
+                           RecipientsRules.WorkflowImpliedRecipientsRule,)
 
-recipientsRulesConstructors = ( RecipientsRules.addComputedRecipientsRule,
-                                RecipientsRules.addExplicitRecipientsRule,
-                                RecipientsRules.addRoleRecipientsRule,
-                                RecipientsRules.addWorkflowImpliedRecipientsRule,
-                                )
+recipRulesConstructors = ( RecipientsRules.addComputedRecipientsRule,
+                           RecipientsRules.addExplicitRecipientsRule,
+                           RecipientsRules.addRoleRecipientsRule,
+                           RecipientsRules.addWorkflowImpliedRecipientsRule,)
 
 #
 # Notification Types
 #
 
-notificationsClasses = ( Notifications.MailNotificationRule,
-                         )
+notificationsClasses = ( Notifications.MailNotificationRule,)
 
-notificationsConstructors = ( Notifications.addMailNotificationRule,
-                             )
+notificationsConstructors = ( Notifications.addMailNotificationRule,)
 
 #
 # Subscription Tool
 #
 
-tools = ( SubscriptionsTool.SubscriptionsTool,
-         )
+tools = ( SubscriptionsTool.SubscriptionsTool,)
 
 registerDirectory('skins', globals())
 
@@ -96,14 +91,12 @@ def initialize(registar):
         content_types = recipientsRulesClasses + \
         notificationsClasses,
         permission = AddPortalContent,
-        extra_constructors = recipientsRulesConstructors + \
-        notificationsConstructors,
-        ).initialize(registar)
+        extra_constructors = recipRulesConstructors + \
+        notificationsConstructors,).initialize(registar)
 
     # Portal Subscriptions Tool
     ToolInit(
         'CPS Subsriptions Tool',
         tools = tools,
         product_name = 'CPSSubscriptions',
-        icon = 'tool.gif',
-        ).initialize(registar)
+        icon = 'tool.gif',).initialize(registar)
