@@ -36,7 +36,7 @@ from RecipientsRules import RecipientsRule, \
      addComputedRecipientsRule, addExplicitRecipientsRule, \
      addRoleRecipientsRule, addWorkflowImpliedRecipientsRule
 
-from Notifications import NotificationRule, addMailNotificationRule
+from Notifications import addMailNotificationRule
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -130,19 +130,38 @@ class Subscription(PortalFolder):
         else:
             return event_type in filtered_event_types
 
+    def getNotificationRules(self):
+        """ Returns the notification rule associate to this object
+        """
+        return [x for x in self.objectValues() if hasattr(x,
+                                                       'notifyRecipients')]
     def sendEvent(self, event_type, object, infos):
         """Send an event to the subscription.
         """
+
+        #
+        # Computing recipients for this subscription
+        #
+
         recipients_rules = self.getRecipientsRules()
         recipients = {}
         for recipient_rule in recipients_rules:
-            pt_recipients = recipient_rule.getRecipients(event_type, object, infos)
+            pt_recipients = recipient_rule.getRecipients(event_type,
+                                                         object,
+                                                         infos)
             for pt_recipient in pt_recipients.keys():
                 recipients[pt_recipient] = pt_recipients[pt_recipient]
 
         LOG(" RECIPIENTS FOR SUBSCRIPTION ->", DEBUG, recipients)
 
-        # XXX Get the notification types and then do sthg
+        #
+        # Notify the recipients
+        # Check all the notification rules for this subscription
+        #
+
+        notification_rules = self.getNotificationRules()
+        for notification_rule in notification_rules:
+            notification_rule.notifyRecipients(emails=recipients.keys())
 
     def getRecipientsRules(self, recipients_rule_type=None):
         """Get the recipient rules objects.
@@ -170,7 +189,6 @@ class Subscription(PortalFolder):
 def addSubscription(self, id=None, title='', REQUEST=None):
     """Add a Subscriptions object"""
 
-    self = self.this()
     if id is None:
         id = self.computeId()
     if hasattr(aq_base(self), id):
@@ -184,8 +202,5 @@ def addSubscription(self, id=None, title='', REQUEST=None):
 
     subscription = getattr(self, id)
 
-    LOG('addSubscriptions', INFO,
-        'adding subscriptions %s/%s' % (self.absolute_url(), id))
-
     if REQUEST is not None:
-        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
