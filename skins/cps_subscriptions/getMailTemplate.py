@@ -54,6 +54,30 @@ If you ever want to unsubscribe or change your options, visit your subscription 
 %(info_url)s
 """
 
+unsubscribe_email_title = \
+"""[%(portal_title)s] Unsubscription
+"""
+
+unsubscribe_email_body = \
+"""You have been unsubscribed from the mailing list at %(object_title)s at %(object_url)s
+"""
+
+unsubscribe_confirm_email_title = \
+"""[%(portal_title)s] Confirm  unsubscription
+"""
+
+unsubscribe_confirm_email_body = \
+"""You requested to unsubscribe to the mailing list :
+
+%(object_title)s at :
+
+%(object_url)s
+
+Follow the link below to confirm :
+
+%(url)s
+"""
+
 template = {}
 template['mail_subject'] = mail_subject
 template['mail_body'] = mail_body
@@ -62,5 +86,9 @@ template['subscribe_confirm_email_title'] = subscribe_confirm_email_title
 template['subscribe_confirm_email_body'] = subscribe_confirm_email_body
 template['subscribe_welcome_email_title'] = subscribe_welcome_email_title
 template['subscribe_welcome_email_body'] = subscribe_welcome_email_body
+template['unsubscribe_email_title'] = unsubscribe_email_title
+template['unsubscribe_email_body'] = unsubscribe_email_body
+template['unsubscribe_confirm_email_title'] = unsubscribe_confirm_email_title
+template['unsubscribe_confirm_email_body'] = unsubscribe_confirm_email_body
 
 return template
