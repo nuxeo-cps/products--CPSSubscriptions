@@ -34,7 +34,7 @@ from Products.CMFCore.utils import getToolByName
 
 from zLOG import LOG, DEBUG, INFO
 
-class Notification(PortalFolder):
+class NotificationRule(PortalFolder):
     """Base Notification Class.
 
     All the Notifications will sub-class this one.
@@ -44,7 +44,7 @@ class Notification(PortalFolder):
 
 ################################################################
 
-class MailNotification(Notification):
+class MailNotification(NotificationRule):
     """Mail Notification
 
     Sending mail to the recipients of the notifications.
