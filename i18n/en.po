@@ -10,6 +10,7 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -18,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-05 16:54default\n"
-"PO-Revision-Date: 2004-03-05 16:57+0100\n"
+"POT-Creation-Date: 2004-03-05 18:01default\n"
+"PO-Revision-Date: 2004-03-05 18:01+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -137,11 +138,11 @@ msgstr "Modify"
 msgid "button_close"
 msgstr "Close"
 
-#.   <input value="button_ok" class="standAlone" name="folder_subscribe_submit" type="submit">
+#.   <input value="button_subscribe" class="standAlone" name="folder_subscribe_submit" type="submit">
 #.     </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "button_ok"
-msgstr "ok"
+msgid "button_subscribe"
+msgstr "Subscribe"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -450,4 +451,10 @@ msgstr "Sorry, you need to subscribe before trying to confirm"
 
 msgid "psm_welcome_to_mailing_list"
 msgstr "Welcome to the mailing list."
+
+msgid "button_unsubscribe"
+msgstr "Unsubscribe"
+
+#~ msgid "button_ok"
+#~ msgstr "ok"
 

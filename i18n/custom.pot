@@ -109,3 +109,12 @@ msgstr ""
 
 msgid "psm_welcome_to_mailing_list"
 msgstr ""
+
+### BUTTONS ########################################
+
+msgid "button_subscribe"
+msgstr ""
+
+msgid "button_unsubscribe"
+msgstr ""
+
