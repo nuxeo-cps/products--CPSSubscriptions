@@ -1108,7 +1108,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         if subscription_mode in self.mapping_modes.keys():
             table = self.notification_scheduling_table.get(
-                self.mapping_modes[subscription_mode], [])
+                self.mapping_modes[subscription_mode], {})
 
             # XXX send them all at the same time with bcc
             for email in table.keys():
