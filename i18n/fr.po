@@ -1,6 +1,7 @@
 # translation of fr.po to 
 # translation of fr.po to
 # translation of fr.po to
+# translation of fr.po to
 # translation of fr.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -10,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2004-02-25 17:42default\n"
-"PO-Revision-Date: 2004-02-25 17:46+0100\n"
+"PO-Revision-Date: 2004-02-26 18:41+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -81,14 +82,14 @@ msgstr "Gérer les alertes"
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_black_list"
-msgstr "Liste de courriels à bloquer pour cet évènement"
+msgstr "Liste de courriels à bloquer pour cet événement"
 
 #.   <span>
 #.             Explicit E-Mails
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_emails"
-msgstr "Courriels à ajouter pour cet évènement"
+msgstr "Courriels à ajouter pour cet évé\tnement"
 
 # ## PSMS ##########################################
 #.   <span>
@@ -110,7 +111,7 @@ msgstr "Alerter uniquement les persones ayant des rôles locaux dans ce répertoir
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
-msgstr "Alerter uniquemenent lors d'évènements arrivant dans les sous-espaces"
+msgstr "Alerter uniquemenent lors d'événements arrivant dans les sous-espaces"
 
 #.   <span>
 #.                  Others
@@ -124,7 +125,7 @@ msgstr "Autres"
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_see_all_subscribers"
-msgstr "Voir toutes les personnes alertées pour tous les évènements."
+msgstr "Voir toutes les personnes alertées pour tous les événements."
 
 # ## LABELS #######################################
 #.   <span>
@@ -152,7 +153,7 @@ msgid "label_cut_copy_paste_of_documents"
 msgstr "Au Copier/coller d'un élément"
 
 msgid "label_calendar_new_event"
-msgstr "A la création d'un nouvel évènement dans l'agenda"
+msgstr "A la création d'un nouvel événement dans l'agenda"
 
 msgid "label_forum_comment_create"
 msgstr "A la création d'un commentaire"
