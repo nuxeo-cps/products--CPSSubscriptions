@@ -205,5 +205,11 @@ def addSubscription(self, id=None, title='', REQUEST=None):
 
     subscription = getattr(self, id)
 
+    # Explicit recipients rules (Compulsory for subscriptions)
+    subscription.manage_addProduct['CPSSubscriptions'].addExplicitRecipientsRule()
+
+    # Mail Notification is default notification right now.
+    subscription.manage_addProduct['CPSSubscriptions'].addMailNotificationRule()
+
     if REQUEST is not None:
         REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
