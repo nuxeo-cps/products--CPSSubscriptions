@@ -67,3 +67,18 @@ msgstr ""
 msgid "psm_notifications_changed"
 msgstr ""
 
+msgid "psm_please_choose_at_least_one_event_for subscription"
+msgstr ""
+
+msgid "psm_email_sent_to_you"
+msgstr ""
+
+msgid "psm_subscription_not_taken_into_consideration"
+msgstr ""
+
+
+msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
+msgstr ""
+
+msgid "psm_welcome_to_mailing_list"
+msgstr ""

@@ -2,6 +2,7 @@
 # translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to
+# translation of fr.po to
 # translation of fr.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -10,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-02-25 17:42default\n"
-"PO-Revision-Date: 2004-02-26 18:41+0100\n"
+"POT-Creation-Date: 2004-03-04 10:02default\n"
+"PO-Revision-Date: 2004-03-04 12:01+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -34,9 +35,37 @@ msgstr "FAKE"
 #.   <span>
 #.                      <span replace="events/?event_key" />
 #.                    </span>
+#.   <span>
+#.                 <span replace="events/?event_key" />
+#.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"events/?event_key\" />"
 msgstr "FAKE"
+
+#.   <span>
+#.          An email has been sent to you to confirm your subscription.
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+msgid "An email has been sent to you to confirm your subscription."
+msgstr "Un courriel de confirmation.vous a été adressé."
+
+#.   <span>
+#.       Mailing list subscription confirmation for the event
+#.       <span />
+#.       in <span replace="here/title_or_id" />
+#.       at <a href="here/absolute_url">
+#.            <span replace="here/absolute_url" />
+#.          </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Mailing list subscription confirmation for the event <span /> in <span "
+"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
+msgstr ""
+"Confirmation de l'abonnement à la liste de diffusion <span /> dans <span "
+"replace=\"here/title_or_id\" /> à l'adresse <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
 
 #.   <span>
 #.                   Notification type
@@ -44,6 +73,39 @@ msgstr "FAKE"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "Notification type"
 msgstr "Types d'alertes"
+
+#.   <span>
+#.      Ton confirm that you want to be added to this mailing list, click
+#.      <a href="" attributes="href
+#.     string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
+#.         here
+#.      </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Ton confirm that you want to be added to this mailing list, click <a href="
+"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
+"email=${email}&event_id=${event_id}\"> here </a>"
+msgstr ""
+"Pour confirmer que vous désirez vous abonnemer à la liste de diffusion, cliquer <a href="
+"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
+"email=${email}&event_id=${event_id}\"> ici </a>f"
+
+#.   <span>
+#.       We have received a request for subscription with the email
+#.       address, <a href="" attributes="href string:mailto:${email}">
+#.                   <span replace="email" />
+#.                </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"We have received a request for subscription with the email address, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
+msgstr ""
+"Nous avons reçu une demande d'abonnement pour l'adresse courriel, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
 
 #.   <input onclick="javascript:history.back()" class="standAlone" type="button" value="button_back" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -61,6 +123,68 @@ msgstr "Modifier"
 msgid "button_close"
 msgstr "Fermer"
 
+#.   <input value="button_ok" class="standAlone" name="folder_subscribe_submit" type="submit">
+#.             </input>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_ok"
+msgstr "ok"
+
+#.   <span />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "event_id"
+msgstr "FAKE"
+
+#.   <h4>
+#.       Available events in here
+#.     </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_available_events"
+msgstr "Evènements disponibles ici.v"
+
+#.   <h4>
+#.       Events open for subscriptions
+#.     </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_choose_the_events"
+msgstr "Evénements auxquels vous pouvez vous abonner"
+
+#.   <h4>
+#.               <span>
+#.                 Enter a valid email
+#.               </span>
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_enter_your_email"
+msgstr "Entrer un courriel valide"
+
+#.   <h4>
+#.           Sender address for outgoing emails
+#.         </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_mfrom_mailing_list"
+msgstr "Courriel apparaissant sur comme émetteur du message lors de l'envoie de courriels à la liste de diffusion."
+
+#.   <h4>
+#.           Are subscriptions allowed and to whom ?
+#.         </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_subscription_allowed"
+msgstr "Les abonnements sont-ils authorisés ? "
+
+#.   <h4>
+#.           When/where to notify ?
+#.         </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_when_where_to_notify"
+msgstr "Quand/Où alerter ? "
+
+#.   <h1 condition="not:email">
+#.         I Subscribe
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+msgid "heading_I_subscribe"
+msgstr "Je m'abonnne"
+
 #.   <h1>
 #.         All Subscribers
 #.       </h1>
@@ -70,12 +194,40 @@ msgid "heading_all_subscribers"
 msgstr "Toutes les personnes alertées"
 
 #.   <h1>
+#.           Confirm subscription for <span replace="event_id" />
+#.         </h1>
+#: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
+msgid "heading_confirm_subscribtion"
+msgstr "Confirmation de l'abonnement à <span replace='event_id' />"
+
+#.   <h1>
 #.         Local Notifications Management
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
 #: ../skins/cps_subscriptions/folder_notifications_form.pt
 msgid "heading_manage_local_notifications"
 msgstr "Gérer les alertes"
+
+#.   <h1 condition="email">
+#.         Subscription taken into consideration
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+msgid "heading_ok_subscription"
+msgstr "Abonnement pris "
+
+#.   <h1>
+#.         Welcome !
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "heading_subscribtion_welcome"
+msgstr "Bienvenue"
+
+#.   <span>
+#.                 Are anonymous subscriptions allowed ?
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_anonymous_subscription_allowed"
+msgstr "Les abonnements pour les anonymes sont-ils authorisés ? "
 
 #.   <span>
 #.             E-Mails Black list
@@ -90,6 +242,13 @@ msgstr "Liste de courriels à bloquer pour cet événement"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_emails"
 msgstr "Courriels à ajouter pour cet évé\tnement"
+
+#.   <span>
+#.                 Enter a valid email
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_enter_your_email"
+msgstr "Entrer un courriel valide"
 
 # ## PSMS ##########################################
 #.   <span>
@@ -134,6 +293,13 @@ msgstr "Voir toutes les personnes alertées pour tous les événements."
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subcriptions_fullname"
 msgstr "Nom Complet"
+
+#.   <span>
+#.                 Are subscription allowed ?
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_allowed"
+msgstr "Les abonnements sont-ils authorisés ? "
 
 #.   <span>
 #.               E-Mails
@@ -189,4 +355,19 @@ msgstr "Je m'abonne"
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
 msgstr "Alertes locales modifiées."
+
+msgid "psm_please_choose_at_least_one_event_for subscription"
+msgstr "Veuillez choisir au moins un événement ?"
+
+msgid "psm_email_sent_to_you"
+msgstr "Un courriel de confirmation vous a été envoyé."
+
+msgid "psm_subscription_not_taken_into_consideration"
+msgstr "L'abonnement a été pris en compte."
+
+msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
+msgstr "Veuillez vous abonner avant d'essayer de confirmer."
+
+msgid "psm_welcome_to_mailing_list"
+msgstr "Bienvenue sur la liste de diffusion."
 
