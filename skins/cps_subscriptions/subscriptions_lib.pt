@@ -286,7 +286,7 @@
         </form>
       </tal:block>
       <tal:block condition="not:subscribe_list">
-        <div translate="label_no_subscriptions">
+        <div i18n:translate="label_no_subscriptions">
           No event opened for subscsriptions in here.
         </div>
       </tal:block>
