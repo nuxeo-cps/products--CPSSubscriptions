@@ -27,6 +27,8 @@ __author__ = "Julien Anguenot <ja@nuxeo.com>"
   - 'Can subscribe' : user may subscribe
 
   - 'View My Subscriptions' : user may view all his subscriptions
+
+  - 'Can Notify Content' : user may notify a document by hand
 """
 
 from Products.CMFCore.CMFCorePermissions import setDefaultRoles
@@ -39,3 +41,6 @@ setDefaultRoles( CanSubscribe, ('Manager',))
 
 ViewMySubscriptions = 'View My Subscriptions'
 setDefaultRoles( ViewMySubscriptions, ('Manager', 'Member'))
+
+CanNotifyContent = 'Can Notify Content'
+setDefaultRoles( CanNotifyContent, ('Manager', 'Owner', 'Member'))
