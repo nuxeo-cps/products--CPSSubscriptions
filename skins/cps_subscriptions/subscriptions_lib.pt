@@ -623,13 +623,7 @@
             </a>
           </td>
           <td tal:define="m python:recipients[recipient_mail];
-                          mtool mtool|here/portal_membership;
-                          entry python:mtool.getMemberById(m);
-                          full_name python:(entry.getProperty('givenName', '') + 
-                                           ' ' + entry.getProperty('sn', '')).strip();
-                          name_to_display python:test(full_name, 
-                                           full_name + ' (' + m + ')',
-                                           m)">
+                          name_to_display python:here.getMemberFullNameFromId(m)">
             <span tal:replace="name_to_display" />
           </td>
         </tal:block>
