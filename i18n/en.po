@@ -8,6 +8,7 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
 # translation of en.po to francais
 # translation of en.po to
 # translation of en.po to
@@ -25,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
 "POT-Creation-Date: 2004-10-06 15:52default\n"
-"PO-Revision-Date: 2004-10-06 15:53+0200\n"
+"PO-Revision-Date: 2004-10-06 19:48+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -339,7 +340,7 @@ msgstr "My subscriptions"
 #.         </h1>
 #: from ../skins/cps_subscriptions/content_notify_email_form.pt
 msgid "heading_notify_content_form"
-msgstr "Search members to add to recipients list"
+msgstr "Search members having rights on the document."
 
 #.   <h1>
 #.       Search results
