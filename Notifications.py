@@ -205,9 +205,17 @@ class MailNotificationRule(NotificationRule):
         Is proccessed with the infos given as parameters.
         """
 
+        _translation_table = string.maketrans(
+            r"""ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜİàáâãäåçèéêëìíîïñòóôõöøùúûüıÿ""",
+            r"""AAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy""")
+
         try:
             subject = self.portal_subscriptions.getDefaultMessageTitle(
                 event_id=infos['event']) % infos
+            # Temporary fix for suppressing accented chars, old Mime
+            # modules of Python can't hndle properly non-ASCII in
+            # subject header.
+            subject = subject.translate(_translation_table)
         except (KeyError, TypeError):
             # If the user put wrong variables
             subject = "No Subject"
