@@ -407,7 +407,6 @@ class MailNotificationRule(NotificationRule):
 
         subject = tool.getSubscribeConfirmEmailTitle() % infos
         body = tool.getSubscribeConfirmEmailBody() % infos
-        LOG("XXXXXXXXXXXX", INFO, body)
 
         # For building the E-Mail
         mail_infos = {}
