@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.3.6 [R1 build 2004/04/07-09:38 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Adding 'info_url' as a new available variable for messages
+Bug fixes:
+~~~~~~~~~~
+- i18n needs to be worked on
+
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.3.5 [R1 build 2004/03/31-12:58 by madarche]
 
 Requires:
