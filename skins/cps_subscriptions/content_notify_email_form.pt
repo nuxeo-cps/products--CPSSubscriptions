@@ -1,0 +1,25 @@
+<tal:block define="
+  global dirname request/dirname|string:members;
+  global dir here/portal_directories/?dirname;
+  global dirtitle dir/title_or_id;
+  validate python: request.has_key('cpsdirectory_search_button');
+  dummy python:request.set('formaction', 'content_notify_email_form');
+  dummy2 python:request.set('input_id', request.get('input_id'));
+  res python: dir.renderSearchDetailed(request=request, validate=validate,
+                                       callback='content_notify_email_do_search_results');
+  global rendered_main python: res[0];
+  global ok python: res[1];
+  ds python: res[2];
+  global portal_status_message python: (validate and not ok and
+  'psm_content_error') or '';">
+  <metal:block use-macro="here/main_template/macros/master">
+    <metal:block fill-slot="header">
+      <h1 i18n:translate="heading_notify_content_form">
+        Search members to add to recipients list
+      </h1>
+    </metal:block>
+    <metal:block fill-slot="main">
+      <div tal:replace="structure rendered_main">Rendered main...</div>
+    </metal:block>
+  </metal:block>
+</tal:block>

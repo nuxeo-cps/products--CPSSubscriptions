@@ -1,0 +1,105 @@
+<tal:block define="results options/results;
+                   portal_url here/portal_url;
+                   dirname here/getId;
+                   title_field here/title_field;
+                   fields python:here.getDirectoryResultFields(dirname)[:3];
+                   ">
+<metal:block use-macro="here/light_template/macros/master">
+<metal:block fill-slot="header" />
+<metal:block fill-slot="head">
+  <h1 i18n:translate="heading_notify_members_search_results">
+    Search results
+  </h1>
+</metal:block>
+<metal:block fill-slot="main">
+
+<div tal:condition="not:results">
+  <div class="group" align="center">
+    <span i18n:translate="label_no_results" />
+  </div>
+<p>
+  <input type="button" class="standalone" value="button_back"
+       onclick="javascript:history.back()" i18n:attributes="value" />
+</p>
+</div>
+
+<div class="group">
+<form action="content_notify_sendmail" method="POST"
+      tal:attributes="action python:request['URL1']+'/content_notify_sendmail'">
+
+<div class="group" tal:condition="results">
+<table tal:condition="results" border="0" width="100%">
+<tr>
+  <th>&nbsp;</th>
+  <tal:block repeat="field python:fields">
+    <th i18n:translate="" tal:content="field/title">id</th>
+  </tal:block>
+</tr>
+<tal:block repeat="result results">
+  <tal:block define="id python:result[0];
+                     data python:result[1];
+                     even repeat/result/even;
+                     ">
+  <tr tal:attributes="class python:test(even, 'even', 'odd')">
+    <td align="center">
+      <input type="checkbox" name="members:list" value="id"
+        tal:attributes="value id"/>
+    </td>
+    <tal:block repeat="field fields">
+    <td>
+      <a href="."
+        tal:attributes="href string:${portal_url}/cpsdirectory_entry_view?dirname=${dirname}&id=${id}"
+        ><b tal:content="python:data.get(field['id'])">john</b></a>
+    </td>
+    </tal:block>
+  </tr>
+  </tal:block>
+</tal:block>
+</table>
+</div>
+
+<div class="row">
+  <div class="label">
+      <span i18n:translate="label_notify_content_add_emails">
+         Add explicitly recipients emails (one email per ligne)
+      </span>
+  </div>
+  <div class="field" align="center">
+    <textarea name="explicit_recipients_emails:lines" rows="10" cols="60"></textarea>
+  </div>
+</div>
+
+<div class="row">
+  <div class="label">
+      <span i18n:translate="label_mail_subject">
+         Mail Subject
+      </span>
+  </div>
+  <div class="field" align="center">
+    <input type="text" name="mail_subject" size="65" value="" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="label">
+      <span i18n:translate="label_mail_body">
+         Mail body
+      </span>
+  </div>
+  <div class="field" align="center">
+    <textarea name="mail_body" rows="10" cols="60"></textarea>
+  </div>
+</div>
+
+<p>
+<input type="submit" class="standalone" value="button_ok"
+       name="content_notify_sendmail"
+       i18n:attributes="value" />
+<input type="button" class="standalone" value="button_back"
+       onclick="javascript:history.back()" i18n:attributes="value" />
+</p>
+</form>
+</div>
+</metal:block>
+</metal:block>
+</tal:block>
