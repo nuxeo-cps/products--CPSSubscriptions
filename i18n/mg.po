@@ -1,0 +1,818 @@
+# translation of mg.po to 
+# translation of mg.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to francais
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to Francais
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+# Julien Anguenot <ja@nuxeo.com>, 2004.
+# Julien Anguenot <anguenot@nuxeo.com>, 2004.
+# emmanuel <epietriga@nuxeo.com>, 2004.
+# DARCHE <madarche@nuxeo.com>, 2004.
+msgid ""
+msgstr ""
+"Project-Id-Version: mg\n"
+"POT-Creation-Date: 2004-10-13 11:58default\n"
+"PO-Revision-Date: 2004-11-24 13:44+0300\n"
+"Last-Translator: \n"
+"Language-Team:  <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+"X-Generator: KBabel 1.3\n"
+
+#.   <span>
+#.                     <span replace="context_lcs/?role" />
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "<span replace=\"context_lcs/?role\" />"
+msgstr "FAKE"
+
+#.   <span>
+#.                       <span replace="events/?event_key" />
+#.                     </span>
+#.   <span>
+#.                         <span replace="events/?event_key" />
+#.                       </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "<span replace=\"events/?event_key\" />"
+msgstr "FAKE"
+
+#.   <span>
+#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgstr "FAKE"
+
+#.   <span>
+#.         Below are the subscriptions you belong to all over the portal
+#.       </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Below are the subscriptions you belong to all over the portal"
+msgstr "Ireto avy ireo fanjifanao eto anivon'ny tranonkala."
+
+#.   <span>
+#.       Mailing list subscription confirmation for the event
+#.       <span />
+#.       in <span replace="here/title_or_id" />
+#.       at <a href="here/absolute_url">
+#.         <span replace="here/absolute_url" />
+#.       </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Mailing list subscription confirmation for the event <span /> in <span "
+"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
+msgstr ""
+"Voasoratra ao amin'ny liste de diffusion ianao <span /> ao amin'ny <span "
+"replace=\"here/title_or_id\" /> amin'ity adiresy ity <a href=\"here/absolute_url\"> "
+"<span replace=\"here/absolute_url\" /> </a> "
+
+#.   <span>
+#.       Mailing list unsubscription confirmation for the event
+#.       <span />
+#.       in <span replace="here/title_or_id" />
+#.       at <a href="here/absolute_url">
+#.         <span replace="here/absolute_url" />
+#.       </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Mailing list unsubscription confirmation for the event <span /> in <span "
+"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
+msgstr ""
+"Tsy mpanjifa intsony ianao manomboka izao <span /> ao amin'ny <span "
+"replace=\"here/title_or_id\" /> amin'ity adiresy ity <a href=\"here/absolute_url\"> "
+"<span replace=\"here/absolute_url\" /> </a> "
+
+#.   <span>
+#.                     Notification type
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Notification type"
+msgstr "Karazana fampilazana"
+
+#.   <span>
+#.          Please, follow the instruction included in the mail you will shortly receive
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid "Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Araho ireo toromarika ao anaty mailaka ho voarainao atsy ho atsy. "
+
+#.   <span>
+#.       Ton confirm that you want to be added to this mailing list, click
+#.       <a href="" attributes="href
+#.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
+#.         here
+#.       </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Ton confirm that you want to be added to this mailing list, click <a href="
+"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
+"email=${email}&event_id=${event_id}\"> here </a>"
+msgstr ""
+"Mba ho famafisana ny fanirianao ho tsy mpanjifa intsony ao amin'ny liste de diffusion<a href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> Tsindrio eto </a>f"
+
+#.   <span>
+#.       Ton confirm that you want to be removed from this mailing list, click
+#.       <a href="" attributes="href
+#.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
+#.         here
+#.       </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Ton confirm that you want to be removed from this mailing list, click <a "
+"href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr ""
+"Mba ho famafisana ny fanirianao ho tsy mpanjifa intsony ao amin'ny liste de diffusion<a href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> Tsindrio eto </a>f"
+
+#.   <span>
+#.       We have received a request for subscription with the email
+#.       address, <a href="" attributes="href string:mailto:${email}">
+#.         <span replace="email" />
+#.       </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"We have received a request for subscription with the email address, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
+msgstr ""
+"Voaray tamin'ny mailaka ny fangatahana ho mpanjifa, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
+
+#.   <span>
+#.       We have received a request for unsubscription with the email
+#.       address, <a href="" attributes="href string:mailto:${email}">
+#.         <span replace="email" />
+#.       </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"We have received a request for unsubscription with the email address, <a "
+"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"\" /> </a>"
+msgstr ""
+"Voaray tamin'ny mailaka ny fangatahana ho mpanjifa, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
+
+#.   <i>
+#.         You may allowed only members with given local roles to subscribe to this
+#.         givent event.  For instance, you may not want the anonymous users
+#.         (public) to subscribe to the event 'reject content' within sections.  For
+#.         this, just pick up the local roles below for which you want to give the
+#.         possiblity to the users granted with these local roles to subscribe to
+#.         this event.  If you do not specify any local roles then the event is
+#.         opened to everybody for subscriptions.
+#.       </i>
+#: from ../skins/cps_subscriptions/subscription_edit_form.pt
+msgid ""
+"You may allowed only members with given local roles to subscribe to this "
+"givent event. For instance, you may not want the anonymous users (public) to "
+"subscribe to the event 'reject content' within sections. For this, just pick "
+"up the local roles below for which you want to give the possiblity to the "
+"users granted with these local roles to subscribe to this event. If you do "
+"not specify any local roles then the event is opened to everybody for "
+"subscriptions."
+msgstr "Manana fahafahana mampihena ny fanjifana amin'ity zava-mitranga ity ho an'ny mpanjifa manana andraikitra eto anivon'ny tranonkala. Ohatra, azo atao ny tsy manome alalana ireo mpampiasa tsy fantatra anarana tsy hanjifa amin'ny zava-mitranga 'Rejet de publication de contenu' ao amin'ny sections. Noho izany mifidiana andraikitra ao amin'ny lisitra eo ambany eo ka ny mpampiasa manana andraikitra izay nofidianao eo ambany ihany no afaka hahita ny zava-mitranga. Raha tsy mifidy andraikitra mihitsy ianao dia azo jeren'ny rehetra ny zava-mitranga."
+
+#.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_close"
+msgstr "Hidina"
+
+#.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_import"
+msgstr "Sintonina"
+
+#.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
+#.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
+#.           </input></input>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_subscribe"
+msgstr "Manjifa"
+
+#.   <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
+#.           </input>
+#.   <input name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
+#.             </input>
+#.   <input name="folder_unsubscribe_role_based_member:method" type="submit" class="standAlone" value="button_unsubscribe" condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0">
+#.             </input>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_unsubscribe"
+msgstr "Miala tsy hisoratra anarana"
+
+#.   <p>
+#.             You should not modify the following field unless you have specific
+#.             needs, and if so, you should enter a valid email address like,
+#.             for example, system@mysite.net
+#.           </p>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "description_do_not_modify_or_enter_email_address"
+msgstr "Tsy tokony hanova ny mailakanao ianao raha tsy hoe misy zavatra manokana tadiavinao, raha izany tokoa dia mampidira mailaka manana endrika hoe, ohatra,systeme@monsite.net"
+
+#.   <span />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "event_id"
+msgstr "FAKE"
+
+#.   <h4>
+#.         Available events in here
+#.       </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_available_events"
+msgstr "Zava-mitranga misy ankehitriny"
+
+#.   <h4>
+#.         Below are events open for subscriptions.
+#.       </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_choose_the_events"
+msgstr "Zava-mitranga izay ahafahanao misoratra anarana"
+
+#.   <h4>
+#.           Below are the events you may unsubscribe
+#.         </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_choose_the_events_to_sunsubscribe"
+msgstr "Zava-mitranga izay azonao ialana tsy ho mpanjifa"
+
+#.   <strong>
+#.                       <span>
+#.                         Enter a valid email
+#.                       </span>
+#.                     </strong>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_enter_your_email"
+msgstr "Tsy mety io mailaka io"
+
+#.   <h4>
+#.             Sender address for outgoing emails
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_mfrom_mailing_list"
+msgstr "Mailaky ny mpandefa ho an'ny taratasy elektronika mivoaka"
+
+#.   <h4>
+#.           Below are the events for which you are subsribed because of your local roles
+#.         </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_subscribption_based_on_local_roles"
+msgstr "Ianao dia mpanjifa amin'ireo zava-mitranga eo ambany ireo noho ny andraikitra anananao"
+
+#.   <h4>
+#.             Are subscriptions allowed and to whom ?
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_subscription_allowed"
+msgstr "Azo atao ve ny misoratra anarana?"
+
+#.   <h4>
+#.              You can choose below your subscription mode for your above subscriptions
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_user_subscribption_mode"
+msgstr "Afaka mifidy eo ambany ny fomba fanjifanao ianao ho an'ny fomba fanjifanao eo ambony"
+
+#.   <h4>
+#.             When/where to notify ?
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_when_where_to_notify"
+msgstr "Oviana/Aiza no mila fanairana?"
+
+#.   <h1 condition="not:email">
+#.         I Subscribe
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+msgid "heading_I_subscribe"
+msgstr "Liste de diffusion"
+
+#.   <h1>
+#.         All Subscribers
+#.       </h1>
+#: from
+#: ../skins/cps_subscriptions/folder_notifications_all_subscribers_view.pt
+msgid "heading_all_subscribers"
+msgstr "Ireo olona rehetra voalaza"
+
+#.   <h1>
+#.           Confirm subscription for <span replace="event_id" />
+#.         </h1>
+#: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
+msgid "heading_confirm_subscribtion"
+msgstr "Voamarina ny fanjifanao amin'ny <span replace='event_id' />"
+
+#.   <h1>
+#.           Confirm unsubscription for <span replace="event_id" />
+#.         </h1>
+#: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
+msgid "heading_confirm_unsubscribtion"
+msgstr "Voamarina ny tsy ho fanjifanao amin'ny <span replace='event_id' />"
+
+#.   <span>
+#.           Edit subscription
+#.         </span>
+#: from ../skins/cps_subscriptions/subscription_edit_form.pt
+msgid "heading_label_edit"
+msgstr "Manova"
+
+#.   <h1>
+#.         Local Notifications Management
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
+#: ../skins/cps_subscriptions/folder_notifications_form.pt
+msgid "heading_manage_local_notifications"
+msgstr "Mandrindra ny fampilazana"
+
+#.   <h1>
+#.         My subscriptions
+#.       </h1>
+#: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
+msgid "heading_my_subscriptions"
+msgstr "Ireo fanjifako"
+
+# ## ACTIONS ######################################
+#.   <h1>
+#.           Search members to add to recipients list
+#.         </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_form.pt
+msgid "heading_notify_content_form"
+msgstr "Tadiavo ireo mpikambana manana zo hiasa amin'ity antontandahasoratra ity "
+
+#.   <h1>
+#.       Search results
+#.     </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "heading_notify_members_search_results"
+msgstr "Valin'ny fikarohana"
+
+#.   <h1 condition="email">
+#.         Subscription taken into consideration
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+msgid "heading_ok_subscription"
+msgstr "Ireo fanjifako"
+
+#.   <h1 condition="email">
+#.         Unsubscription taken into consideration
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid "heading_ok_unsubscription"
+msgstr "Tsy mpanjifa n'aiza n'aiza ianao"
+
+#.   <h1>
+#.         You are now part of the mailing list.
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "heading_subscribtion_welcome"
+msgstr "Tongasoa ato amin'ny mailing list"
+
+#.   <th content="field/title">id</th>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "id"
+msgstr "FAKE "
+
+#.   <span>
+#.         label_<span replace="request/event_key|nothing">
+#.         Susbcription ID
+#.       </span>
+#.       </span>
+#: from ../skins/cps_subscriptions/subscription_edit_form.pt
+msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgstr "DYN"
+
+#.   <span>
+#.                     Are anonymous subscriptions allowed ?
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_anonymous_subscription_allowed"
+msgstr "Ny fanjifana ho an'ireo tsy mitonona anarana ve azo atao ? "
+
+#.   <span>
+#.                 E-Mails Black list
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_black_list"
+msgstr "Lisitr'ireo mailaka tsy ekena ho an'ity zava-mitranga ity"
+
+#.   <span>
+#.                     Click here
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_click_here"
+msgstr "Mandrindra"
+
+#.   <span>
+#.                     Configure
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_configure"
+msgstr "Manamboatra"
+
+#.   <span>
+#.                 Explicit E-Mails
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_emails"
+msgstr "Adiresy mailaka :"
+
+#.   <span>
+#.                         Enter a valid email
+#.                       </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_enter_your_email"
+msgstr "Ampidiro ny mailakao"
+
+#.   <span>
+#.          Please, follow the instruction included in the mail you will shortly receive
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+#: ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "label_follow_subscriptions_instructions"
+msgstr "Araho ireo toromarika ao amin'ny mailaka izay ho raisinao."
+
+#.   <span>
+#.                   Import a list of emails from a file. (text file with one email per ligne)
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_import_emais_list"
+msgstr "Misintona lisitra mailaka avy amin'ny fichier (fichier texte misy mailaka iray isaky ny andalana iray) "
+
+#.   <span>
+#.            Mail body
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_mail_body"
+msgstr "Ny votoatin'ny hafatra"
+
+#.   <span>
+#.            Mail Subject
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_mail_subject"
+msgstr "Mikasika ny hafatra "
+
+#.   <span />
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_no_results"
+msgstr "Tsy misy valiny ny fikarohanao "
+
+#.   <div>
+#.               Currently you haven't any subscriptions in this context or for this object.
+#.             </div>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_no_subscriptions"
+msgstr "Hatramin'izao dia tsy manana fanjifana amin'io contexte io sy amin'io objet io ianao."
+
+#.   <div>
+#.               Currently you haven't any subscriptions in this context or for this object based on your local roles
+#.             </div>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_no_subscriptions_based_on_local_roles"
+msgstr "Tsy misy fanjifana avy amin'ny andraikitra eto anivon'ny tranonkala. "
+
+# ## PSMS ##########################################
+#.   <span>
+#.                       Edit
+#.                     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notification_edit"
+msgstr "Manova"
+
+# ## PSMS ##########################################
+#.   <span>
+#.                       Choose
+#.                     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notifications_add"
+msgstr "Lisitra"
+
+#.   <span>
+#.                     Notify local only
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notifications_local_only"
+msgstr "Lazao ireo olona izay manana andraikitra ato anatin'ity repertoara ity."
+
+#.   <span>
+#.                     Notify no local
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notifications_no_local"
+msgstr "Lazao rehefa misy zava-mitranga ao amin'ny zana-paritra fiasana"
+
+# ## PSMS ##########################################
+#.   <span>
+#.            Add explicitly recipients emails (one email per ligne)
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_notify_content_add_emails"
+msgstr "Manampy mailaka "
+
+#.   <span>
+#.                     Others
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_other"
+msgstr "Hafa"
+
+#.   <span>
+#.                   Current local roles
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_roles_allowed_to_subscribe"
+msgstr "Andraikitra anaty izay manome alalana ny olona ho mpanjifa an'io zava-mitranga io"
+
+#.   <span>
+#.               See all subscribers
+#.             </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_see_all_subscribers"
+msgstr "Mijery ireo olona rehetra voalaza ho an'ny zava-mitranga rehetra."
+
+# ## LABELS #######################################
+#.   <span>
+#.                 Full Name
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subcriptions_fullname"
+msgstr "Anarana feno"
+
+#.   <span>
+#.                     Are subscription allowed ?
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_allowed"
+msgstr "Mahazo misoratra anarana ho mpanjifa ve?"
+
+#.   <span>
+#.                   Description
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_description"
+msgstr "Fanazavana"
+
+#.   <span>
+#.                   Infos / Unsubscribe
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_manage"
+msgstr "Mitantana"
+
+#.   <span>
+#.                 Subscription modes
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_modes"
+msgstr "Fomba fanjifana"
+
+#.   <span>
+#.                   Where
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_where"
+msgstr "Aiza"
+
+#.   <span>
+#.                      subscriptions / unsubscriptions are closed
+#.                    </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscriptions_closed"
+msgstr "Tsy mahazo manjifa eto intsony"
+
+#.   <span>
+#.                 E-Mails
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscriptions_email"
+msgstr "Mailaka"
+
+#.   <span>
+#.           You currently do not belong to any subscriptions.
+#.         </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscriptions_no_subscription_yet"
+msgstr "Mbola tsy mpanjifa n'aiza n'aiza ianao"
+
+#.   <span>
+#.                     Are unsubscription allowed ?
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_unsubscription_allowed"
+msgstr "Azo omena alalana tsy ho mpanjifa intsony ve ireo mpanjifa nampiana avy tao amin'ny 'Fanamboarana mifototra amin'ny andraikitra anaty'? "
+
+#.   <span>
+#.         You are now a subscriber.
+#.       </span>
+#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "label_you_are_no_registred"
+msgstr "Mpanjifa ianao izao."
+
+#.   <span>
+#.                   Real time
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "mode_real_time"
+msgstr "Eo noho eo"
+
+msgid "label_workspace_manager"
+msgstr "Mpiandraikitra faritra fiasana"
+
+msgid "label_workspace_member"
+msgstr "Mpikambana amin'ny faritra fiasana"
+
+msgid "label_workspace_reader"
+msgstr "Mpamaky faritra fiasana"
+
+msgid "label_section_manager"
+msgstr "Mpiandraikitra sehatra"
+
+msgid "label_section_reviewer"
+msgstr "Mpankato sehatra"
+
+msgid "label_section_reader"
+msgstr "Mpamaky sehatra"
+
+msgid "label_owner"
+msgstr "Mpamorona"
+
+msgid "label_manager"
+msgstr "Tompon'andraikitra"
+
+msgid "label_forum_poster"
+msgstr "Mpamela hafatra ny forum"
+
+msgid "label_forum_moderator"
+msgstr "Mpandrindra ny forum"
+
+msgid "label_workflow_create"
+msgstr "Famoronana votoatiny"
+
+msgid "label_workflow_modify"
+msgstr "Fanovana ny votoatiny"
+
+msgid "label_workflow_cut_copy_paste"
+msgstr "Adika/Apetaka ny votoatiny"
+
+msgid "label_workflow_publish"
+msgstr "Fampielezana ny votoatiny"
+
+msgid "label_workflow_accept"
+msgstr "Fankatoavana sy fampielezana ny votoatiny"
+
+msgid "label_workflow_delete"
+msgstr "Famonoana ny votoatiny"
+
+msgid "label_workflow_submit"
+msgstr "Fandefasana ny votoatiny"
+
+msgid "label_workflow_reject"
+msgstr "Fandavana ny fampielezana ny votoatiny"
+
+msgid "label_workflow_unpublish"
+msgstr "Fanafoanana ny fampielezana ny votoatiny"
+
+msgid "label_calendar_new_event"
+msgstr "Famoronana zava-mitranga vaovao ao amin'ny diary"
+
+msgid "label_forum_comment_create"
+msgstr "Famoronana fanamarihana"
+
+msgid "label_reply_to_personnal_post"
+msgstr "A la réponse à une contribution personnelle"
+
+msgid "label_new_versions"
+msgstr "Famoronana laharana ho an'ny antotan-dahatsoratra"
+
+msgid "label_forum_new_message"
+msgstr "Famoronana hafatra forum vaovao"
+
+msgid "label_forum_new_post"
+msgstr "Famoronana hafatra"
+
+msgid "label_forum_new_comment"
+msgstr "Famoronana fanamarihana"
+
+msgid "label_forum_post_published"
+msgstr "Fampielezana hafatra"
+
+msgid "label_forum_post_unpublished"
+msgstr "Fanafoanana fampielezana hafatra"
+
+msgid "label_forum_post_rejected"
+msgstr "Fandavana hafatra"
+
+msgid "label_forum_post_deleted"
+msgstr "Famonoana hafatra"
+
+msgid "label_forum_comment_published"
+msgstr "Fampielezana fanamarihana"
+
+msgid "label_forum_comment_unpublished"
+msgstr "Fanafoanana fampielezana fanamarihana"
+
+msgid "label_forum_comment_rejected"
+msgstr "Fandavana fanamarihana"
+
+msgid "label_forum_comment_deleted"
+msgstr "Famonoana fanamarihana"
+
+# ## PSMS ##########################################
+msgid "label_notification_related_document"
+msgstr "Rohy amin'ireo antotan-dahatsoratra"
+
+# ## ACTIONS ######################################
+msgid "action_folder_notifications"
+msgstr "Fitantanana ireo fampilazana"
+
+msgid "action_my_subscriptions"
+msgstr "Ireo fanjifako"
+
+msgid "action_folder_subscribe"
+msgstr "Fanjifana"
+
+# ## ACTIONS ######################################
+msgid "action_notify_content"
+msgstr "Mandefa fampilazana amin'ny mailaka"
+
+# ## PSMS ##########################################
+msgid "psm_notifications_changed"
+msgstr "Voaova ireo fampilazana ato amin'ny tranonkala."
+
+msgid "psm_please_choose_at_least_one_event_for subscription"
+msgstr "Iangaviana ianao hifidy zava-mitranga iray farafahakeliny ?"
+
+msgid "psm_email_sent_to_you"
+msgstr "Nandefasana mailaka fanamafisana iray ianao."
+
+msgid "psm_subscription_not_taken_into_consideration"
+msgstr "Tsy noraisina ny fanjifana."
+
+msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
+msgstr "Iangaviana ianao hiditra ho mpanjifa alohan'ny hanandrana ny fanamafisana."
+
+msgid "psm_welcome_to_mailing_list"
+msgstr "Tongasoa eto amin'ny liste de diffusion"
+
+msgid "psm_you_are_removed_from_the_mailing_list"
+msgstr "Nasorina tao amin'ny liste de diffusion ianao."
+
+msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
+msgstr "Nesorina tao amin'ny liste de diffusion ianao. Manantona ny mpandraikitra ny tranonkala raha mbola maniry ho ao anaty mailing list indray ianao."
+
+msgid "psm_please_choose_at_least_one_event_for unsubscription"
+msgstr "Iangaviana mba hifidy na dia zava-mitranga iray ianao?"
+
+msgid "psm_an_email_has_been_sent"
+msgstr "Lasa ilay mailaka"
+
+msgid "psm_subscription_updated"
+msgstr "Vita soa amn-tsara ny fanamboarana ny zava-mitranga"
+
+# ## Subscription modes ############################
+msgid "mode_daily"
+msgstr "Isan'andro"
+
+msgid "mode_weekly"
+msgstr "Isan-kerinandro"
+
+msgid "mode_monthly"
+msgstr "Isam-bolana"
+
+msgid "bc_manage_my_subscriptions"
+msgstr "Ireo fanjifako"
+
