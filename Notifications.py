@@ -77,7 +77,7 @@ class NotificationRule(PortalFolder):
         """
         raise NotImplementedError
 
-    def getRawMessage(self, infos, object):
+    def getRawMessage(self, infos, object, event_id):
         """ Renders an RFC822 compliant message.
         """
 
@@ -105,16 +105,25 @@ class NotificationRule(PortalFolder):
         writer._fp.write('Content-Transfer-Encoding: 8bit\n')
 
         #
-        # XXX : it's an hack. Should maintain a list of portal_type
-        # for which we want to have a render instead of checking only the
-        # portal type for the NewsLetter
+        # Let's check if render the conten because of the portal_type
+        # or because of the event id.
+        # This is defined tool side.
         #
 
+        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
+
+        rendered_portal_types = subscriptions_tool.getRenderedPortalTypes()
+        rendered_events = subscriptions_tool.getRenderedEvents()
+
         if (object is not None and
-            getattr(object, 'portal_type', None) == 'NewsLetter'):
+            getattr(object, 'portal_type', None) in  rendered_portal_types or
+            event_id in rendered_events):
             try:
                 infos['body'] = object.getContent().render()
             except AttributeError:
+                # Not a CPSDocument
+                # XXX : we might handle whatever sort of content for rendering
+                # in here. Using the main_template flag maybe.
                 pass
 
             # text/html then
@@ -135,13 +144,13 @@ class NotificationRule(PortalFolder):
 
         return rendered_message.getvalue()
 
-    def sendMail(self, mail_infos, object=None):
+    def sendMail(self, mail_infos, object=None, event_id=None):
         """Send a mail
 
         mail_infos contains all the needed information
         """
 
-        raw_message = self.getRawMessage(mail_infos, object)
+        raw_message = self.getRawMessage(mail_infos, object, event_id)
 
         LOG(":: CPSSubscriptions :: sendMail() :: for",
             INFO,
@@ -313,7 +322,7 @@ class MailNotificationRule(NotificationRule):
             mail_infos['to'] = email
             mail_infos['body'] = body
 
-            self.sendMail(mail_infos, object)
+            self.sendMail(mail_infos, object, event_id=infos['event'])
 
         # Dealing with members
         for member in members:
