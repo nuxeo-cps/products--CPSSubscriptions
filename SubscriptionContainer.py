@@ -79,6 +79,10 @@ class SubscriptionContainer(CPSBaseFolder):
                     'type':'string',
                     'mode':'w',
                     'label' : 'Language'},
+                   {'id': 'user_modes',
+                    'type':'string',
+                    'mode':'w',
+                    'label' : 'What frequence the user choose for its notifications'},
                    )
 
     notify_local_only = 0
@@ -88,6 +92,7 @@ class SubscriptionContainer(CPSBaseFolder):
     anonymous_subscription_allowed = 0
     mfrom = ''
     lang  = 'en'
+    user_modes = {}
 
     def __init__(self, id, title=''):
         """ Constructor
@@ -102,6 +107,7 @@ class SubscriptionContainer(CPSBaseFolder):
         self.anonymous_subscription_allowed = 0
         self.mfrom = ''
         self.lang = 'en'
+        self.user_modes = {}
 
     security.declarePublic('getMailFrom')
     def getMailFrom(self):
@@ -212,6 +218,28 @@ class SubscriptionContainer(CPSBaseFolder):
         return [x for x in self.objectValues() if getattr(x,
                                                           'getFilterEventTypes',
                                                           0)]
+
+    ##################################################################
+    ##################################################################
+
+    security.declareProtected(CanSubscribe, 'updateUserMode')
+    def updateUserMode(self, email, mode):
+        """Update user mode
+        """
+        user_modes = self.user_modes
+        if email and mode:
+            user_modes[email] = mode
+        self.user_modes = user_modes
+
+    security.declareProtected(CanSubscribe, 'getUserMode')
+    def getUserMode(self, email):
+        """Return the mode corresponding to a given email
+        """
+        if email in self.user_modes.keys():
+            return self.user_modes[email]
+        else:
+            # No mode == real time (default value)
+            return 'mode_real_time'
 
 InitializeClass(SubscriptionContainer)
 
