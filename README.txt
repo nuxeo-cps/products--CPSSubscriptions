@@ -23,7 +23,7 @@ Definition :
   - Notifications
 
     CPSSubscriptions can right now handle mail notifications but it could be
-    extended to SMS notifications, or whatever too, easily thanks the
+    extended to SMS, Jabber or whatever notifications thanks the
     architecture modularity.
 
 Features :
