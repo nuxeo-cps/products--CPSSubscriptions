@@ -14,9 +14,8 @@ if not email and event_id:
 else:
     # XXX -> move this code to subscriptions tool
     subscriptions_tool = context.portal_subscriptions
-    container_id = subscriptions_tool.getSubscriptionContainerId()
     explicit_sub_id = subscriptions_tool.getExplicitRecipientsRuleId()
-    subscriptions_folder = getattr(context, container_id)
+    subscriptions_folder = subscriptions_tool.getSubscriptionContainerFromContext(context)
     event_subscription = getattr(subscriptions_folder, 'subscription__'+event_id)
     explicit_subscriptions = getattr(event_subscription, explicit_sub_id)
     explicit_subscriptions.anonymousConfirmSubscribe(email, event_id, context)
