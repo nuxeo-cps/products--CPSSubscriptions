@@ -89,7 +89,90 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
             self.portal.manage_addProduct['CPSSubscriptions'].manage_addTool('Subscriptions Tool')
         else:
-            pass
+            # XXX waiting for the CPSIO import / export
+            # FIXME !!!
+            # Save the current portal_subscriptions properties
+            # tmp for compatibility with version < 0.10
+
+            tool = getToolByName(self.portal, 'portal_subscriptions')
+
+            if getattr(tool, 'notification_scheduling_table', None) is None:
+
+                notify_hidden_object = getattr(tool,
+                                               'notify_hidden_object',
+                                               0)
+                mapping_context_events = getattr(tool,
+                                                 'mapping_context_events',
+                                                 {})
+                mapping_event_email_content = getattr(tool,
+                                                      'mapping_event_email_content',
+                                                      {})
+                event_default_email_title = getattr(tool,
+                                                    'event_default_email_title',
+                                                    '')
+                event_default_email_body = getattr(tool,
+                                                   'event_default_email_body',
+                                                   '')
+                event_error_email_body = getattr(tool,
+                                                 'event_error_email_body',
+                                                 '')
+                subscribe_confirm_email_title = getattr(tool,
+                                                        'subscribe_confirm_email_title',
+                                                        '')
+                subscribe_confirm_email_body = getattr(tool,
+                                                       'subscribe_confirm_email_body',
+                                                       '')
+                subscribe_welcome_email_title = getattr(tool,
+                                                        'subscribe_welcome_email_title',
+                                                        '')
+                subscribe_welcome_email_body = getattr(tool,
+                                                       'subscribe_welcome_email_body',
+                                                       '')
+                unsubscribe_confirm_email_title = getattr(tool,
+                                                          'unsubscribe_confirm_email_title',
+                                                          '')
+                unsubscribe_confirm_email_body = getattr(tool,
+                                                         'unsubscribe_confirm_email_body',
+                                                         '')
+                unsubscribe_email_title = getattr(tool,
+                                                  'unsubscribe_email_title',
+                                                  '')
+                unsubscribe_email_body = getattr(tool,
+                                                 'unsubscribe_email_body',
+                                                 '')
+                render_content_for_portal_types = getattr(tool,
+                                                          'render_content_for_portal_types',
+                                                          [])
+                render_content_for_events = getattr(tool,
+                                                    'render_content_for_events',
+                                                    [])
+                notification_scheduling_table = getattr(tool,
+                                                        'notification_scheduling_table',
+                                                        {})
+                # Delete and create a new tool
+                self.portal.manage_delObjects(['portal_subscriptions'])
+                self.portal.manage_addProduct['CPSSubscriptions'].manage_addTool('Subscriptions Tool')
+                # Restore values
+                tool = getToolByName(self.portal, 'portal_subscriptions')
+
+                tool.notify_hidden_object = notify_hidden_object
+                tool.mapping_context_events = mapping_context_events
+                tool.mapping_event_email_content = mapping_event_email_content
+                tool.event_default_email_title = event_default_email_title
+                tool.event_default_email_body = event_default_email_body
+                tool.event_error_email_body = event_error_email_body
+                tool.subscribe_confirm_email_title = subscribe_confirm_email_title
+                tool.subscribe_confirm_email_body = subscribe_confirm_email_body
+                tool.subscribe_welcome_email_title = subscribe_welcome_email_title
+                tool.subscribe_welcome_email_body = subscribe_welcome_email_body
+                tool.unsubscribe_confirm_email_title = unsubscribe_confirm_email_title
+                tool.unsubscribe_confirm_email_body = unsubscribe_confirm_email_body
+                tool.unsubscribe_email_title = unsubscribe_email_title
+                tool.unsubscribe_email_body = unsubscribe_email_body
+                tool.render_content_for_portal_types = render_content_for_portal_types
+                tool.render_content_for_events = render_content_for_events
+                tool.notification_scheduling_table = notification_scheduling_table
+
         self.portal.portal_subscriptions.setupEvents()
 
     def installNewPermissions(self):
