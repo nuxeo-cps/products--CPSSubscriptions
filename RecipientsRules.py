@@ -42,7 +42,7 @@ from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.Expression import getEngine
 
-from CPSSubscriptionsPermissions import CanSubscribe
+from CPSSubscriptionsPermissions import CanSubscribe, ManageSubscriptions
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -300,7 +300,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                         continue
             return res
 
-    security.declareProtected(ModifyPortalContent, "getMemberStrucById")
+    security.declareProtected(ManageSubscriptions, "getMemberStrucById")
     def getMemberStructById(self, member_id):
         """Return the index of member_id in the list
         """
@@ -309,7 +309,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                 return member_struct
         return -1
 
-    security.declareProtected(ModifyPortalContent, "updateMembers")
+    security.declareProtected(ManageSubscriptions, "updateMembers")
     def updateMembers(self, member_struct={}):
         """Add explicitly member in a given context
 
@@ -353,7 +353,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                     return 1
         return 0
 
-    security.declareProtected(ModifyPortalContent, "removeMember")
+    security.declareProtected(ManageSubscriptions, "removeMember")
     def removeMember(self, member_id, context_relative_url):
         """Remove the member defined by member_id in a given context.
 
@@ -392,7 +392,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         return self.groups
 
-    security.declareProtected(ModifyPortalContent, "updateGroups")
+    security.declareProtected(ManageSubscriptions, "updateGroups")
     def updateGroups(self, group_ids=[]):
         """Add explicitly group ids
         """
@@ -414,7 +414,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         return self.emails
 
-    security.declareProtected(ModifyPortalContent, "updateEmails")
+    security.declareProtected(ManageSubscriptions, "updateEmails")
     def updateEmails(self, emails=[]):
         """Add explicitly emails
         """
@@ -431,7 +431,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         return self.emails_pending_add
 
-    security.declareProtected(ModifyPortalContent, "updatePendingEmails")
+    security.declareProtected(ManageSubscriptions, "updatePendingEmails")
     def updatePendingEmails(self, email=''):
         """Add pending email subscription
         """
@@ -453,7 +453,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         return self.emails_pending_delete
 
-    security.declareProtected(ModifyPortalContent, 'updatePendingDeleteEmails')
+    security.declareProtected(ManageSubscriptions, 'updatePendingDeleteEmails')
     def updatePendingDeleteEmails(self, email=''):
         """Add pending email subscription
         """
@@ -466,7 +466,7 @@ class ExplicitRecipientsRule(RecipientsRule):
     ######################################################
     ######################################################
 
-    security.declareProtected(ModifyPortalContent, 'getSubscriberEmails')
+    security.declareProtected(ManageSubscriptions, 'getSubscriberEmails')
     def getSubscriberEmails(self):
         """Returns the anonymous subscriber emails
 
@@ -474,7 +474,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         return self.emails_subscribers
 
-    security.declareProtected(ModifyPortalContent, 'updateSubscriberEmails')
+    security.declareProtected(ManageSubscriptions, 'updateSubscriberEmails')
     def updateSubscriberEmails(self, email=''):
         """Add pending email subscription
         """
@@ -824,7 +824,7 @@ class RoleRecipientsRule(RecipientsRule):
 
         return self.roles
 
-    security.declareProtected(ModifyPortalContent, 'addRole')
+    security.declareProtected(ManageSubscriptions, 'addRole')
     def addRole(self, role):
         """Add a new role
         """
@@ -838,7 +838,7 @@ class RoleRecipientsRule(RecipientsRule):
 
         return self.unsubscribed_members
 
-    security.declareProtected(ModifyPortalContent, 'addUnSubscribedMember')
+    security.declareProtected(ManageSubscriptions, 'addUnSubscribedMember')
     def addUnSubscribedMember(self, member_id=''):
         """A member is unsubscribing
         """

@@ -35,7 +35,7 @@ from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
 
-from CPSSubscriptionsPermissions import CanSubscribe
+from CPSSubscriptionsPermissions import CanSubscribe, ManageSubscriptions
 
 class SubscriptionContainer(PortalFolder):
     """ Subscription Container Class
@@ -163,7 +163,7 @@ class SubscriptionContainer(PortalFolder):
         """
         return self.anonymous_subscription_allowed
 
-    security.declareProtected(ModifyPortalContent, 'updateProperties')
+    security.declareProtected(ManageSubscriptions, 'updateProperties')
     def updateProperties(self, **kw):
         """ Update Subscription Folder Properties
 
@@ -182,7 +182,7 @@ class SubscriptionContainer(PortalFolder):
             perms.append('Anonymous')
         self.changePermissions(perms=perms)
 
-    security.declareProtected(ModifyPortalContent, 'changePermissions')
+    security.declareProtected(ManageSubscriptions, 'changePermissions')
     def changePermissions(self, perms=[]):
         """Change CanSubscribe permissions
         """
