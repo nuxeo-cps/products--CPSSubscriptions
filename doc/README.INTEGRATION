@@ -14,6 +14,12 @@
 
      (See getEvents.py in CPSSubscriptiosn skins for the syntax.)
 
+      Add a getLocalRolesFromContext.py within your skins directory.
+
+     (See getLocalRolesFromContent in CPSSubscriptions skins for the syntax.)
+
+    Notice, both will be merged soon.
+
  2 - Content of sent messages.
 
        Define a getMailTemplate.py files within your skins directory based on the
