@@ -17,7 +17,7 @@ if REQUEST is not None:
             LOG("Deleteting the subscription Folder", DEBUG, subscription_id)
             context.manage_delObjects([subscription_id])
         context.manage_addProduct[
-            'CPSSubscriptions'].addPlaceFullSubscriptionFolder()
+            'CPSSubscriptions'].addSubscriptionContainer()
 
         subscription_folder = getattr(context, subscription_id)
 
