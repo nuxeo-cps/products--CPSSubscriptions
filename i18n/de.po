@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
-"POT-Creation-Date: 2004-06-17 17:19default\n"
+"POT-Creation-Date: 2004-07-19 16:05default\n"
 "PO-Revision-Date: 2004-07-12 18:19+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -34,7 +34,8 @@ msgstr "FAKE"
 #.                   <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgid ""
+"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr "FAKE"
 
 #.   <span>
@@ -91,8 +92,10 @@ msgstr "Ereignis Typ"
 #.          Please, follow the instruction included in the mail you will shortly receive
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid "Please, follow the instruction included in the mail you will shortly receive"
-msgstr "Bitte folgen Sie den Anweisungen in der EMail die sie gleich erhalten werden."
+msgid ""
+"Please, follow the instruction included in the mail you will shortly receive"
+msgstr ""
+"Bitte folgen Sie den Anweisungen in der EMail die sie gleich erhalten werden."
 
 #.   <span>
 #.       Ton confirm that you want to be added to this mailing list, click
@@ -107,9 +110,9 @@ msgid ""
 "\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
 "email=${email}&event_id=${event_id}\"> here </a>"
 msgstr ""
-" Um zu bestätigen das Sie an der Mailing Liste teilnehmen wollen klicken Sie <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> hier </a>"
+" Um zu bestätigen das Sie an der Mailing Liste teilnehmen wollen klicken Sie "
+"<a href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> hier </a>"
 
 #.   <span>
 #.       Ton confirm that you want to be removed from this mailing list, click
@@ -124,9 +127,9 @@ msgid ""
 "href=\"\" attributes=\"href string:${here/absolute_url}/"
 "folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
 msgstr ""
-"Um zu bestätigen das Sie sich von der Mailing Liste abmelden wollen, klicken Sie <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> hier </a>"
+"Um zu bestätigen das Sie sich von der Mailing Liste abmelden wollen, klicken "
+"Sie <a href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> hier </a>"
 
 #.   <span>
 #.       We have received a request for subscription with the email
@@ -140,9 +143,9 @@ msgid ""
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
 msgstr ""
-"Wir haben eine Anfrage erhalten für ein Abonnement mit der EMail-Adresse, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
+"Wir haben eine Anfrage erhalten für ein Abonnement mit der EMail-Adresse, <a "
+"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"\" /> </a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -190,9 +193,9 @@ msgstr "Beenden"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "description_do_not_modify_or_enter_email_address"
 msgstr ""
-"Sie sollten das folgende Feld nicht verändern solange Sie keine speziellen Anforderungen haben, "
-"und wenn, dann sollten Sie eine gültige EMail-Adresse angeben wie zB "
-"system@mysite.net"
+"Sie sollten das folgende Feld nicht verändern solange Sie keine speziellen "
+"Anforderungen haben, und wenn, dann sollten Sie eine gültige EMail-Adresse "
+"angeben wie zB system@mysite.net"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -241,7 +244,9 @@ msgstr "Absender Adresse für ausgehende EMails"
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr "Unten stehen die Ereignisse die Sie abonniert haben aufgrund Ihrer lokalen Rollen"
+msgstr ""
+"Unten stehen die Ereignisse die Sie abonniert haben aufgrund Ihrer lokalen "
+"Rollen"
 
 #.   <h4>
 #.             Are subscriptions allowed and to whom ?
@@ -255,7 +260,9 @@ msgstr " Sind Abonnements erlaubt und für Wen ?"
 #.           </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_user_subscribption_mode"
-msgstr "Sie können hier den Abonnement Modus auswählen für die oben stehenden Abonnements"
+msgstr ""
+"Sie können hier den Abonnement Modus auswählen für die oben stehenden "
+"Abonnements"
 
 #.   <h4>
 #.             When/where to notify ?
@@ -291,7 +298,8 @@ msgstr "Bestätigen Sie das Abonnement für <span replace='event_id' />"
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
 msgid "heading_confirm_unsubscribtion"
-msgstr "Bestätigen Sie die Abmeldung des Abonnements für <span replace='event_id' />"
+msgstr ""
+"Bestätigen Sie die Abmeldung des Abonnements für <span replace='event_id' />"
 
 #.   <h1>
 #.         Local Notifications Management
@@ -370,14 +378,17 @@ msgstr "Geben Sie eine gültige EMail ein"
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr "Bitte folgen Sie den Anweisungen in der EMail die Sie gleich erhalten werden"
+msgstr ""
+"Bitte folgen Sie den Anweisungen in der EMail die Sie gleich erhalten werden"
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object.
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions"
-msgstr "Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses Objekt."
+msgstr ""
+"Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses "
+"Objekt."
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -385,8 +396,8 @@ msgstr "Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses O
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions_based_on_local_roles"
 msgstr ""
-"Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses Objekt "
-" aufgrund Ihrer lokalen Rollen "
+"Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses "
+"Objekt  aufgrund Ihrer lokalen Rollen "
 
 # ## PSMS ##########################################
 #.   <span>
@@ -487,7 +498,8 @@ msgstr "Sie sind derzeit an keinen Abonnements beteiligt."
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_unsubscription_allowed"
 msgstr ""
-"Sind Abonnements beendbar für die Teilnehmer die als Ereignis-Empfänger aufgrund ihrer lokalen Rollen gelten ?"
+"Sind Abonnements beendbar für die Teilnehmer die als Ereignis-Empfänger "
+"aufgrund ihrer lokalen Rollen gelten ?"
 
 #.   <span>
 #.         You are now a subscriber.
@@ -499,11 +511,6 @@ msgstr "Sie sind jetzt Abonnement."
 #.   <span>
 #.                   Real time
 #.                 </span>
-#.   <option selected="" value="mode_real_time">
-#.                 <span>
-#.                   Real time
-#.                 </span>
-#.               </option>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "mode_real_time"
 msgstr "Prompt"
@@ -589,8 +596,32 @@ msgstr "Antwort Erstellen"
 msgid "label_forum_post_published"
 msgstr "Nachricht publizieren"
 
+#, fuzzy
+msgid "label_forum_post_unpublished"
+msgstr "Nachricht publizieren"
+
+#, fuzzy
+msgid "label_forum_post_rejected"
+msgstr "Forum Poster"
+
+#, fuzzy
+msgid "label_forum_post_deleted"
+msgstr "Forum Poster"
+
 msgid "label_forum_comment_published"
 msgstr "Antwort publizieren"
+
+#, fuzzy
+msgid "label_forum_comment_unpublished"
+msgstr "Antwort publizieren"
+
+#, fuzzy
+msgid "label_forum_comment_rejected"
+msgstr "Neues Forum"
+
+#, fuzzy
+msgid "label_forum_comment_deleted"
+msgstr "Neues Forum"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -616,7 +647,8 @@ msgid "psm_subscription_not_taken_into_consideration"
 msgstr "Abonnement wird nicht weiter verfolgt"
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
-msgstr "Sorry, Sie müssen erst abonnieren bevor Sie das Abonnement bestätigen können"
+msgstr ""
+"Sorry, Sie müssen erst abonnieren bevor Sie das Abonnement bestätigen können"
 
 msgid "psm_welcome_to_mailing_list"
 msgstr "Willkommen bei der Mailing Liste."
@@ -626,8 +658,12 @@ msgstr "Sie wurden von der Mailing Liste abgemeldet"
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
 msgstr ""
-"Sie wurden von  der Mailing Liste abgemeldet. Wenn Sie sich wieder anmelden wollen "
-"müssen Sie den Administrator dieser Liste anschreiben. "
+"Sie wurden von  der Mailing Liste abgemeldet. Wenn Sie sich wieder anmelden "
+"wollen müssen Sie den Administrator dieser Liste anschreiben. "
+
+#, fuzzy
+msgid "psm_please_choose_at_least_one_event_for unsubscription"
+msgstr "Bitte wählen Sie mindestens ein Ereignis für das Abonnement aus"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
@@ -638,4 +674,3 @@ msgstr "Wöchentlich"
 
 msgid "mode_monthly"
 msgstr "Monatlich"
-

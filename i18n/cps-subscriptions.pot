@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-07-07 09:03default\n"
+"POT-Creation-Date: 2004-07-19 16:05default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -621,6 +621,9 @@ msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr ""
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
+msgstr ""
+
+msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr ""
 
 # ## Subscription modes ############################

@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- if anonymous unsusbcribe to an event he's not registered then portal fell
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

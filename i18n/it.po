@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-07-07 09:03default\n"
+"POT-Creation-Date: 2004-07-19 16:05default\n"
 "PO-Revision-Date: 2004-05-10 16:45+0100\n"
 "Last-Translator: Paolo Dina <paolo@php3.it>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -865,6 +865,10 @@ msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_need
 msgstr ""
 "Sei stato rimosso dalla lista di diffusione. Se intendi farne ancora parte "
 "puoi contattare l'amministratore della lista."
+
+#, fuzzy
+msgid "psm_please_choose_at_least_one_event_for unsubscription"
+msgstr "Per cortesia, scegli almeno un evento per l'iscrizione"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
