@@ -113,7 +113,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
             if 'portal_subscriptions' not in subscribers:
                 self.log("Adding portal_subscribtions as subscriber")
                 portal_eventservice.manage_addSubscriber(
-                    subscriber='portal_subscriptionns',
+                    subscriber='portal_subscriptions',
                     action='event',
                     meta_type='*',
                     event_type='*',
