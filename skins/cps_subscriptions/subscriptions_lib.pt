@@ -357,6 +357,40 @@
           </div>
         </tal:block>
       </div>
+       <h4 i18n:translate="header_user_subscribption_mode">
+           You can choose below your subscription mode for your above subscriptions
+        </h4>
+        <tal:block define="member_id python:here.portal_membership.getAuthenticatedMember().getMemberId();
+                           user_email python:email and email or here.getMemberEmail(member_id)">
+        <div class="group">
+          <form name="form" method="get" action="."
+                tal:attributes="action string:${here/absolute_url}">
+            <span i18n:translate="label_subscription_modes">
+              Subscription modes
+            </span>&nbsp;
+            <select name="subscription_mode">
+            <option value="mode_real_time" selected>
+              <span i18n:translate="mode_real_time">
+                Real time
+              </span>
+            </option>
+            <tal:block repeat="mode subscriptions_tool/getSubscriptionModes">
+              <option tal:attributes="value mode;
+                                      selected
+                                      python:subscription_folder and mode ==
+                                      subscription_folder.getUserMode(user_email) or 0">
+                <span i18n:translate="" tal:content="mode" />
+              </option>
+            </tal:block>&nbsp;
+            </select>
+            <input type="hidden" name="email"
+                   tal:attributes="value user_email" />
+            <input type="submit" value="button_ok" class="standAlone"
+                  name="folder_subscription_set_mode:method"
+                  i18n:attributes="value" />
+          </form>
+        </div>
+        </tal:block>
     </tal:block>
   </tal:block>
 </metal:block>
