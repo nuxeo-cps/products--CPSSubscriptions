@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
--
+- CPSDefault > 3.24.0
 New features:
 ~~~~~~~~~~~~~
 -
@@ -9,4 +9,4 @@ Bug fixes:
 - if anonymous unsusbcribe to an event he's not registered then portal fell
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- use workflow_delete coming from CPSDefault instead of the sys_del_object which is to low level. (was working while deleting from ZMI too.)
