@@ -639,33 +639,34 @@ class SubscriptionsTool(UniqueObject, Folder):
         subscription = subscriptions[0]
 
         membership_tool = getToolByName(self, 'portal_membership')
-        if not membership_tool.isAnonymousUser():
+        isAno = membership_tool.isAnonymousUser()
+        if not isAno:
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
             member_email = self.getMemberEmail(member_id)
 
-        if role_based:
-            # Check here if the member is computed based on his local roles
-            recipient_mails = []
-            role_recipients_rules = subscription.getRecipientsRules(
-                                    recipients_rule_type='Role Recipient Rule')
-            for recipients_rule in role_recipients_rules:
-                current_recipients = recipients_rule.getRecipients(
-                                                        object=context)
-                # Cause we may have several persons with the same email
-                has_role = 0
-                for role in recipients_rule.getRoles():
-                    if member.has_role(role, context):
-                        has_role = 1
-                if not has_role:
-                    return 0
+            if role_based:
+                # Check here if the member is computed based on his local roles
+                recipient_mails = []
+                role_recipients_rules = subscription.getRecipientsRules(
+                    recipients_rule_type='Role Recipient Rule')
+                for recipients_rule in role_recipients_rules:
+                    current_recipients = recipients_rule.getRecipients(
+                                                          object=context)
+                    # Cause we may have several persons with the same email
+                    has_role = 0
+                    for role in recipients_rule.getRoles():
+                        if member.has_role(role, context):
+                            has_role = 1
+                        if not has_role:
+                            return 0
 
-                # Let's check the emails now
-                for mail in current_recipients.keys():
-                    if mail not in recipient_mails:
-                        recipient_mails.append(mail)
+                    # Let's check the emails now
+                    for mail in current_recipients.keys():
+                        if mail not in recipient_mails:
+                            recipient_mails.append(mail)
 
-            return member_email in recipient_mails
+                return member_email in recipient_mails
 
 
         explicits = getattr(subscription,
@@ -674,7 +675,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         if not explicits:
             return 0
 
-        if not email:
+        if not email and not isAno:
             # members
             # FIXME TODO Groups
             return member_id in explicits.getMembers()
