@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-01-20 15:39default\n"
+"POT-Creation-Date: 2004-02-25 17:42default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -171,6 +171,12 @@ msgstr ""
 
 # ## ACTIONS ###################################### 
 msgid "action_folder_notifications"
+msgstr ""
+
+msgid "action_my_subscriptions"
+msgstr ""
+
+msgid "action_folder_subscribe"
 msgstr ""
 
 # ## PSMS ##########################################

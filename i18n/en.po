@@ -1,14 +1,17 @@
+# translation of en.po to 
+# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Julien Anguenot <ja@nuxeo.com>, 2004.
+# Julien Anguenot <anguenot@nuxeo.com>, 2004.
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-01-20 15:39default\n"
-"PO-Revision-Date: 2004-01-20 15:41+0100\n"
-"Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
-"Language-Team: Français <fr@li.org>\n"
+"POT-Creation-Date: 2004-02-25 17:42default\n"
+"PO-Revision-Date: 2004-02-25 17:47+0100\n"
+"Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
+"Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,6 +177,12 @@ msgstr "Workspace Reader"
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Notifications Management"
+
+msgid "action_my_subscriptions"
+msgstr "My subscriptions"
+
+msgid "action_folder_subscribe"
+msgstr "I subscribe"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
