@@ -188,7 +188,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
 
         for perm, roles in subscription_workspace_perms.items():
             self.portal[WORKSPACES_ID].manage_permission(perm, roles, 1)
-        for perm, roles in subscription_workspace_perms.items():
+        for perm, roles in subscription_sections_perms.items():
             self.portal[SECTIONS_ID].manage_permission(perm, roles, 1)
 
     def installActions(self):
