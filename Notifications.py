@@ -1,6 +1,6 @@
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
-# Copyright (c) 2004 Ministère de L'intérieur (MISILL)
+# Copyright (c) 2004 Ministere de L'interieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Florent Guillaume <fg@nuxeo.com>
@@ -52,7 +52,7 @@ from Products.CMFCore.PortalFolder import PortalFolder
 
 from zLOG import LOG, INFO, DEBUG
 
-logKey = 'Notifications'
+logKey = 'CPSSubscriptions'
 
 class NotificationRule(PortalFolder):
     """Base Notification rule Class.
@@ -68,16 +68,6 @@ class NotificationRule(PortalFolder):
         """
         raise NotImplementedError
 
-    def getSMTPServerName(self):
-        """Returns the name of the SMTP server
-        """
-        return self.MailHost.smtp_host
-
-    def getSMTPServerPort(self):
-        """Returns the port for the smtp host
-        """
-        return self.MailHost.smtp_port
-
     def getRawMessage(self, infos):
         """ Renders an RFC822 compliant message.
         """
@@ -91,24 +81,9 @@ class NotificationRule(PortalFolder):
 
         # Subject
         subject = infos['subject']
-        #infp = cStringIO.StringIO(subject)
-        #outfp = cStringIO.StringIO()
-        #quopri.encode(infp, outfp, 1)
-        #subject = outfp.getvalue()
         subject = string.replace(subject, "\n", "")
-        #subject = string.replace(subject, " ", "_")
 
         # Header
-        LOG(logKey, DEBUG, "subject = %s" % subject)
-        if string.find(subject, "?") == -1:
-            # XXX FIXME
-            #subject = "=?iso-8859-1?Q?%s?=" % subject
-            pass
-        else:
-            # XXX FIXME
-            #subject = string.replace(subject, "?", "=3F")
-            #subject = "=?iso-8859-1?Q?%s?=" % subject
-            pass
         writer.addheader('subject', subject)
 
         # To
@@ -117,7 +92,6 @@ class NotificationRule(PortalFolder):
 
         # Misc
         writer.addheader('X-Mailer', 'Nuxeo CPS : CPSSubscriptions')
-
         writer.flushheaders()
         writer._fp.write('Content-Transfer-Encoding: quoted-printable\n')
         body_writer = writer.startbody('text/plain; charset=iso-8859-15',
@@ -131,7 +105,6 @@ class NotificationRule(PortalFolder):
         mimetools.copyliteral(body, body_writer)
 
         return rendered_message.getvalue()
-
 
     def sendMail(self, mail_infos):
         """Send a mail
@@ -254,7 +227,7 @@ class MailNotificationRule(NotificationRule):
         infos['object_url'] = infos.get('url', object.absolute_url())
         infos['object_parent_title'] = aq_parent(aq_inner(object)).Title()
         infos['object_parent_url'] = aq_parent(aq_inner(object)).absolute_url()
-	infos['object_type'] = getattr(object, 'portal_type', '')
+        infos['object_type'] = getattr(object, 'portal_type', '')
 
         infos['user_id'] = object.Creator()
         infos['user_name'] = getattr(self.portal_membership.getMemberById(
