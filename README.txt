@@ -145,13 +145,13 @@ What CPSSubscriptions doesn't provide:
 
   - No mailing list content type as CPS2 or CPSMailingLists used to
     provide.
-  - No Newsletters content type neither. (A CPSNewsLetters will handle this
-    feature and will use CPSSubscriptions for sending emails.)
+  - No Newsletters content type neither in here. CPSDocument will provide the
+    content type and CPSSubscriptions will handle the delivery of the
+newsletters.
 
 Installation:
 
- - Classic External method installation right now. Will be integrated within
-   CPS3.1
+ - Classic External method installation right now.
  - CPSSubscriptions depends on CPSDirectory
 
 More information:
