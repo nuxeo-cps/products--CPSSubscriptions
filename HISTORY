@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.14.2 [R1 build 2004/10/21-15:38 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- fix: remove global role Manager from the folder_notifications_form
+  you need to reinstall cpssubscription
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.14.1 [R1 build 2004/10/20-13:51 by anguenot]
 
 Requires:

@@ -6,8 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- fix: remove global role Manager from the folder_notifications_form
-  you need to reinstall cpssubscription
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
