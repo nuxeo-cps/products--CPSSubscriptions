@@ -32,6 +32,7 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base, aq_parent, aq_inner
 
+from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.utils import UniqueObject
 
 from Subscription import Subscription
@@ -53,6 +54,7 @@ class SubscriptionsTool(UniqueObject, Folder):
 
     security = ClassSecurityInfo()
 
+    security.declarePublic("getSubscriptionId")
     def getSubscriptionId(self):
         """ Returns the default id for subscription object
 
@@ -61,6 +63,13 @@ class SubscriptionsTool(UniqueObject, Folder):
         default_id = '.cps_subscriptions'
         return default_id
 
+    security.declarePublic("getExplicitRecipientsRuleId")
+    def getExplicitRecipientsRuleId(self):
+        """ Returns an in use id.
+
+        Id in use for the ExplicitRecipientsRule object
+        """
+        return 'explicit__recipients_rule'
 
     security.declarePrivate('notify_event')
     def notify_event(self, event_type, object, infos):
@@ -72,13 +81,43 @@ class SubscriptionsTool(UniqueObject, Folder):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
+        recipients = self.getRecipientsFor(event_type, object, infos)
 
+        LOG("############## ALL RECIPIENTS ###############", DEBUG, recipients)
+
+        # XXX getting the nofication type and doing sthg now.
+
+    security.declareProtected(ModifyPortalContent, 'getSubscriptionsFor')
+    def getSubscriptionsFor(self, event_type, object, infos=None):
+        """Get the subscriptions applicable for this event.
+
+        Some of the parameters may be None to get all subscriptions.
+        """
+
+        subscriptions = []
+        subscriptionContainer = getattr(object,
+                                     self.getSubscriptionId(), 0)
+        if subscriptionContainer:
+            subscriptions += subscriptionContainer.getSubscriptions()
+            subscriptions = [x for x in subscriptions \
+                             if 'subscription__'+event_type == x.id]
+        return subscriptions
+
+    security.declareProtected(ModifyPortalContent, 'getRecipientsFor')
+    def getRecipientsFor(self, event_type, object, infos=None):
+        """Get all the recipients for a given event_type and
+        for a given object.
+
+        infos may be None
+        """
         subscriptions = self.getSubscriptionsFor(event_type,
                                                  object,
                                                  infos)
         recipients = {}
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
+                black_list = subscription.getRecipientEmailsBlackList()
+                LOG("BLACK LIST >>>>>>>>>>>>>>>", DEBUG, black_list)
                 recipients_rules = subscription.getRecipientsRules()
                 for recipients_rule in recipients_rules:
                     subscription_recipients = recipients_rule.getRecipients(\
@@ -88,26 +127,6 @@ class SubscriptionsTool(UniqueObject, Folder):
                     for key in subscription_recipients.keys():
                         if key not in recipients.keys():
                             recipients[key] = subscription_recipients[key]
-
-        LOG("############## ALL RECIPIENTS ###############", DEBUG, recipients)
-
-        # XXX getting the nofication type and doing sthg now.
-
-    def getSubscriptionsFor(self, event_type, object, infos=None):
-        """Get the subscriptions applicable for this event.
-
-        Some of the parameters may be None to get all subscriptions.
-        """
-
-        subscriptions = []
-        subscriptionFolder = getattr(object,
-                                     self.getSubscriptionId(), 0)
-        if subscriptionFolder:
-            subscriptions += subscriptionFolder.getSubscriptions()
-
-            # XXX need to do sthg about the id.
-            subscriptions = [x for x in subscriptions \
-                             if 'subscription__'+event_type == x.id]
-        return subscriptions
+        return recipients
 
 InitializeClass(SubscriptionsTool)
