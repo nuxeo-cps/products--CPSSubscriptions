@@ -83,7 +83,14 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         {'id': 'notification_scheduling_table',
          'type': 'text', 'mode':'r',
          'label': 'Notification scheduling table'},
+        {'id': 'mapping_modes',
+         'type': 'string', 'mode':'r',
+         'label': 'Subscription modes'},
         )
+
+    mapping_modes = {'weekly' : 'mode_weekly',
+                     'monthly': 'mode_monthly',
+                     'daily'  : 'mode_daily'}
 
     ###################################################
     # ZMI
@@ -271,9 +278,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         # message_ids : list of the message ids stored in the portal_subscriptions
         self.notification_scheduling_table = {}
 
-        self._mapping_modes = {'weekly' : 'mode_weekly',
-                               'monthly': 'mode_monthly',
-                               'daily'  : 'mode_daily'}
+        self.mapping_modes = {'weekly' : 'mode_weekly',
+                              'monthly': 'mode_monthly',
+                              'daily'  : 'mode_daily'}
 
     ######################################################
     #####################################################
@@ -850,7 +857,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
     def getSubscriptionModes(self):
         """Returns the susbcriptions mode
         """
-        return self._mapping_modes.values()
+        return self.mapping_modes.values()
 
     def scheduleNotificationMessageFor(self, user_mode, email, message_id):
         """Add within the scheduling table the message_id for a the given user within
@@ -935,9 +942,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         from Notifications import NotificationRule
         notification_vector = NotificationRule('fake')
 
-        if subscription_mode in self._mapping_modes.keys():
+        if subscription_mode in self.mapping_modes.keys():
             table = self.notification_scheduling_table.get(
-                self._mapping_modes[subscription_mode], [])
+                self.mapping_modes[subscription_mode], [])
 
             # XXX send them all at the same time with bcc
             for email in table.keys():
@@ -958,7 +965,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
             for email in table.keys():
                 table[email] = []
             self.notification_scheduling_table[
-                self._mapping_modes[subscription_mode]] = table
+                self.mapping_modes[subscription_mode]] = table
         else:
             return -1
 
