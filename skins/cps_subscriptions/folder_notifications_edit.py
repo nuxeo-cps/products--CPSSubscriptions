@@ -5,13 +5,14 @@
 Manager / WorkspaceManager / SectionManager can do that.
 """
 
-# XXX use the tool methods to get prefixes and constantes for ids.
-
 from zLOG import LOG, DEBUG
 
 if REQUEST is not None:
     if REQUEST.form:
-        subscription_id = context.portal_subscriptions.getSubscriptionContainerId()
+        subtool = context.portal_subscriptions
+
+        # Checking if we have here a placefull subscription container
+        subscription_id = subtool.getSubscriptionContainerId()
         if subscription_id not in context.objectIds():
             context.manage_addProduct['CPSSubscriptions'].addSubscriptionContainer()
 
@@ -19,18 +20,23 @@ if REQUEST is not None:
 
         # @www
         kw = {}
-        kw['notify_local_only'] = REQUEST.form.get('notify_local_only', 0) and 1
-        kw['notify_no_local'] = REQUEST.form.get('notify_no_local', 0) and 1
-        kw['subscription_allowed'] = REQUEST.form.get('subscription_allowed', 0) and 1
-        kw['unsubscription_allowed'] = REQUEST.form.get('unsubscription_allowed', 0) and 1
-        kw['anonymous_subscription_allowed'] = REQUEST.form.get('anonymous_subscription_allowed', 0) and 1
+        kw['notify_local_only'] = REQUEST.form.get(
+            'notify_local_only', 0) and 1
+        kw['notify_no_local'] = REQUEST.form.get(
+            'notify_no_local', 0) and 1
+        kw['subscription_allowed'] = REQUEST.form.get(
+            'subscription_allowed', 0) and 1
+        kw['unsubscription_allowed'] = REQUEST.form.get(
+            'unsubscription_allowed', 0) and 1
+        kw['anonymous_subscription_allowed'] = REQUEST.form.get(
+            'anonymous_subscription_allowed', 0) and 1
         kw['mfrom'] = REQUEST.form.get('mfrom', '')
 
+        # Update properties
         subscription_folder.updateProperties(**kw)
 
         # Let's take the event/roles the user request for change
         role_events = REQUEST.form.get('role_event', [])
-        LOG("REQUEST", DEBUG, role_events)
 
         # Cleaning / reinit
         for subscription_id in subscription_folder.objectIds():
@@ -38,27 +44,12 @@ if REQUEST is not None:
                          subscription_id)
             to_delete = [x for x in ob.objectValues() if
                          x.meta_type == 'Role Recipient Rule']
-            to_delete =  [x.id for x in to_delete if x not in [y.split(':')[0] for y in role_events]]
+            to_delete =  [x.id for x in to_delete if x not in [
+                y.split(':')[0] for y in role_events]]
             try:
                 ob.manage_delObjects(to_delete)
             except:
                 pass
-
-        # Cleaning unwanted ones
-         #all_requested_subscription = ['subscription__'+x.split(':')[1] for x in role_events]
-         #for subscription_id in subscription_folder.objectIds():
-         #    current_event_subscription = getattr(subscription_folder,
-         #                                         subscription_id)
-         #    if subscription_id not in all_requested_subscription:
-         #        if 'explicit__recipients_rule' not in current_event_subscription.objectIds():
-         #            subscription_folder.manage_delObjects([subscription_id])
-         #    else:
-         #        for event in current_event_subscription.objectIds():
-         #            requested_role_for_subscriptions = [x.split(':')[0]+'__recipients_rule'  \
-         #                                                for x in role_events if x.split(':')[1] == event]
-         #            if event not in requested_role_for_subscriptions and not event.startswith('explicit') and \
-         #               not event.startswith('explicit'):
-         #                current_event_subscription.manage_delObjects([event])
 
         # Updating
         for role_event in role_events:
