@@ -9,6 +9,7 @@
 # translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to
+# translation of fr.po to
 # translation of fr.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -18,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2004-03-05 19:13default\n"
-"PO-Revision-Date: 2004-03-05 18:02+0100\n"
+"PO-Revision-Date: 2004-03-08 09:54+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -275,8 +276,7 @@ msgstr "Liste"
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_local_only"
-msgstr ""
-"Alerter uniquement les persones ayant des rôles locaux dans ce répertoire."
+msgstr "Alerter uniquement les persones ayant des rôles locaux dans ce répertoire."
 
 #.   <span>
 #.                 Notify no local
@@ -363,33 +363,29 @@ msgstr "Lecteur"
 msgid "label_owner"
 msgstr "Créateur"
 
-#, fuzzy
 msgid "label_workflow_create"
-msgstr "Lecteur"
+msgstr "Création de contenu"
 
 msgid "label_workflow_modify"
-msgstr ""
+msgstr "Modification de contenu"
 
-#, fuzzy
 msgid "label_workflow_cut_copy_paste"
-msgstr "Au Copier/coller de contenu"
+msgstr "Copier/coller de contenu"
 
 msgid "label_workflow_publish"
-msgstr ""
+msgstr "Publication de contenu"
 
-#, fuzzy
 msgid "label_workflow_accept"
-msgstr "Lecteur"
+msgstr "Acceptation et publication de contenu"
 
 msgid "label_workflow_submit"
-msgstr ""
+msgstr "Soumission de contenu"
 
-#, fuzzy
 msgid "label_workflow_reject"
-msgstr "Lecteur"
+msgstr "Rejet de publication de contenu"
 
 msgid "label_workflow_unpublish"
-msgstr ""
+msgstr "Dépublication de contenu"
 
 msgid "label_calendar_new_event"
 msgstr "A la création d'un nouvel événement dans l'agenda"
@@ -475,3 +471,4 @@ msgstr "Se désinscrire"
 
 #~ msgid "button_ok"
 #~ msgstr "ok"
+
