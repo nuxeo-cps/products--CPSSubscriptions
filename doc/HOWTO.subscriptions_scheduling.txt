@@ -1,0 +1,53 @@
+$Id$
+
+What ?
+-------
+
+To request the CPS Portal to send mails according to the daily / weekly /
+monthly subscriptions.
+
+How ?
+--------
+
+Since Zope (CPS neither)  doesn't provide Scheduler (And I think this is
+much more better like that...), you need to use crond to preform what's
+above.
+
+Configurations :
+-----------------
+
+You need wget installed on your *NIX to request the portal
+
+Daily notifications :
+-----------------------
+
+Add within your /etc/cron.daily/ the following script.
+
+cat <<'EOF' >portal_XXX_daily_subscriptions
+#!/bin/sh
+wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=daily
+EOF
+
+Weekly notifications :
+-----------------------
+
+Add within your /etc/cron.weekly/ the following script.
+
+cat <<'EOF' >portal_XXX_weekly_subscriptions
+#!/bin/sh
+wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=weekly
+EOF
+
+Monthly notifications :
+-----------------------
+
+Add within your /etc/cron.monthly/ the following script.
+
+cat <<'EOF' >portal_XXX_monthly_subscriptions
+#!/bin/sh
+wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=monthly
+EOF
+
+I don't have any idea on how to do that with redmond's systems... sorry...
+
+
