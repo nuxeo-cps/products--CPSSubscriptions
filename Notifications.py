@@ -143,8 +143,9 @@ class NotificationRule(PortalFolder):
 
         try:
             self.MailHost.send(raw_message)
-        except SMTPSenderRefused:
-            LOG("::  CPSSubscriptions  :: sendMail() :: for",
+        except:
+	    # FIXME check the exceptions throwed 
+            LqOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail")
 
