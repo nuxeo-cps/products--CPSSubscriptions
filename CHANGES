@@ -3,13 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Propagates the kwargs sent along with events from workflows
+-
 Bug fixes:
 ~~~~~~~~~~
-- One should not use mutable objects as default value for functions
-  def _makeInfoDict(self, event_type, object, infos={}) ->
-  def _makeInfoDict(self, event_type, object, infos=None)
-
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

@@ -1,4 +1,23 @@
 *******************************************
+** CPSSubscriptions V0.4.0 [R1 build 2004/04/09-16:09 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Propagates the kwargs sent along with events from workflows
+Bug fixes:
+~~~~~~~~~~
+- One should not use mutable objects as default value for functions
+  def _makeInfoDict(self, event_type, object, infos={}) ->
+  def _makeInfoDict(self, event_type, object, infos=None)
+
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.3.7 [R1 build 2004/04/09-15:21 by anguenot]
 
 Requires:
