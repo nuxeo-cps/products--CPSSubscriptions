@@ -19,4 +19,4 @@ same email as the member
 - Remocing all the notifications wasn't working
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- Spécific permissions are now defined in the CPSSubscriptionsPermissions module.
