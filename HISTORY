@@ -1,4 +1,23 @@
 *******************************************
+** CPSSubscriptions V0.14.0 [R1 build 2004/10/18-14:52 by ben]
+
+Requires:
+~~~~~~~~~
+- CPSDirectory > 1.18.0
+New features:
+~~~~~~~~~~~~~
+- Notification of content on every object.
+- Fix bugs on rendering of content within mail in the NewsLetter case. Images were not showing up in the mail body
+- #386 : This is possible to filter events on local roles though the management interface.
+- Possible to import a list of existing emails within a given subscription though the management interface.
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.13.4 [R1 build 2004/09/28-16:42 by anguenot]
 
 Requires:
