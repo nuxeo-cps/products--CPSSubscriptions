@@ -256,7 +256,7 @@ class MailNotificationRule(NotificationRule):
             return {}
         event_from_context = mcat(
             events_from_context.get(event_type,
-                                    event_type)).encode("ISO-8859-15",
+                                    event_type)).encode('ISO-8859-15',
                                                         'ignore')
 
         infos['portal_title'] = self.portal_url.getPortalObject().Title()
@@ -281,11 +281,8 @@ class MailNotificationRule(NotificationRule):
         infos['object_creator_id'] = object_creator_id
         infos['object_creator_name'] = object_creator_name
 
-        #
-        # Includes the object attributes so that user can use them
+        # Including the object attributes so that user can use them
         # within the notification messages too.
-        #
-
         try:
             rep_ob = object.getContent()
             schema = rep_ob.getTypeInfo().getDataModel(rep_ob, object)
@@ -297,9 +294,8 @@ class MailNotificationRule(NotificationRule):
                 if not attr.startswith('_'):
                     infos[attr] = value
 
-        ##############################################################
-
-        # The user whose action is at the origin of the event
+        # Including information about the user whose action is at the origin of
+        # the event.
         user_id = getSecurityManager().getUser().getId()
         user = memberDirectory.getEntry(user_id, default=None)
         user_name = ''
@@ -308,13 +304,14 @@ class MailNotificationRule(NotificationRule):
         infos['user_id'] = user_id
         infos['user_name'] = user_name
 
+        # Including kwargs that are added by the workflow
         for k, v in infos.get('kwargs', {}).items():
             infos['kwargs_' + k] = v
 
         LOG("INFOS------------", DEBUG, infos)
         return infos
 
-    security.declareProtected(ManagePortal, "notifyRecipients")
+    security.declareProtected(ManagePortal, 'notifyRecipients')
     def notifyRecipients(self,
                          event_type,
                          object,
