@@ -8,7 +8,7 @@ Check if the confirmation can be done and then do the hob.
 if not email and event_id:
     if context.REQUEST is not None:
         psm = 'psm_you_need_to_subscribe_before_trying_to_confirm'
-        context.REQUEST.RESPONSE.redirect(context.absolute_url()+'?psm=%s' \
+        context.REQUEST.RESPONSE.redirect(context.absolute_url()+'?portal_status_message=%s' \
                                           %(psm))
 else:
     # XXX -> move this code to subscriptions tool
