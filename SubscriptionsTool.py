@@ -143,9 +143,13 @@ class SubscriptionsTool(UniqueObject, Folder):
             context_portal_type = context.portal_type
             if self.mapping_context_events.has_key(context_portal_type):
                 return self.mapping_context_events[context_portal_type]
-            else:
-                return self.mapping_context_events['Portal']
         return {}
+
+    security.declarePublic("getContainerPortalTypes")
+    def getContainerPortalTypes(self):
+        """Get all portal types in when we can set notifications
+        """
+        return self.mapping_context_events.keys()
 
     #
     # NOTIFICATIONS API
