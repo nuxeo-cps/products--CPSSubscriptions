@@ -39,6 +39,7 @@ import mimetools
 import MimeWriter
 
 from Globals import InitializeClass, MessageDialog
+from Products.MailHost.MailHost import MailHostError
 from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
@@ -97,11 +98,11 @@ class NotificationRule(PortalFolder):
         # Header
         LOG(logKey, DEBUG, "subject = %s" % subject)
         if string.find(subject, "?") == -1:
-            # FIXME
+            # XXX FIXME
             #subject = "=?iso-8859-1?Q?%s?=" % subject
             pass
         else:
-            # FIXME
+            # XXX FIXME
             #subject = string.replace(subject, "?", "=3F")
             #subject = "=?iso-8859-1?Q?%s?=" % subject
             pass
@@ -143,8 +144,7 @@ class NotificationRule(PortalFolder):
 
         try:
             self.MailHost.send(raw_message)
-        except:
-	    # FIXME check the exceptions throwed
+        except MailHostError:
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail")
