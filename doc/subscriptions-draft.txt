@@ -329,10 +329,6 @@ Event subscriptions and notifications
 
     	  - groups -- The ids of the groups subscribed manually.
 
-          - groups_allow_add -- Whether groups are allowed to subscribe /
-            unsubscribe manually to the Subscription (adding themselves to
-            the recipient_groups).
-
           - emails -- The emails subscribed manually.
 
           - emails_allow_add -- Whether anonymous visitors are allowed
@@ -411,7 +407,7 @@ Event subscriptions and notifications
       that can be reused easily.
 
     - Where to place these mailing objects? Locally or globaly ?
-      [JA: Locally so that each Manager can edit the body]
+      [JA:Globally (portal_subscriptions) and locally (Notification rules)
 
     - We need a way for local administrators to add a new subscription
       from a fixed predetermined list, without having able to
