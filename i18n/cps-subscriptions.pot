@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-08 09:55default\n"
+"POT-Creation-Date: 2004-03-10 03:59default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -29,18 +29,8 @@ msgstr ""
 #.   <span>
 #.                      <span replace="events/?event_key" />
 #.                    </span>
-#.   <span>
-#.                 <span replace="events/?event_key" />
-#.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"events/?event_key\" />"
-msgstr ""
-
-#.   <span>
-#.          An email has been sent to you to confirm your subscription.
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
-msgid "An email has been sent to you to confirm your subscription."
 msgstr ""
 
 #.   <span>
@@ -70,6 +60,14 @@ msgstr ""
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "Notification type"
+msgstr ""
+
+#.   <span>
+#.          Please, follow the instruction included in the mail you will shortly receive
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid ""
+"Please, follow the instruction included in the mail you will shortly receive"
 msgstr ""
 
 #.   <span>
@@ -105,14 +103,13 @@ msgid "button_close"
 msgstr ""
 
 #.   <input value="button_subscribe" class="standAlone" name="folder_subscribe:method" type="submit">
-#.         <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
-#.     </input></input>
+#.       </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_subscribe"
 msgstr ""
 
 #.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
-#.     </input>
+#.         </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
 msgstr ""
@@ -129,18 +126,25 @@ msgstr ""
 msgid "header_available_events"
 msgstr ""
 
-#.   <span>
+#.   <h4>
 #.       Below are events open for subscriptions.
-#.     </span>
+#.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
 msgstr ""
 
 #.   <h4>
-#.               <span>
-#.                 Enter a valid email
-#.               </span>
-#.           </h4>
+#.         Below are the events you may unsubscribe
+#.       </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_choose_the_events_to_sunsubscribe"
+msgstr ""
+
+#.   <strong>
+#.                 <span>
+#.                   Enter a valid email
+#.                 </span>
+#.             </strong>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_enter_your_email"
 msgstr ""
@@ -210,11 +214,28 @@ msgstr ""
 msgid "heading_ok_subscription"
 msgstr ""
 
+#.   <h1 condition="email">
+#.         Unsubscription taken into consideration
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid "heading_ok_unsubscription"
+msgstr ""
+
 #.   <h1>
-#.         Welcome !
+#.         You are now part of the mailing list.
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
+msgstr ""
+
+#.   <span>
+#.                   label_<span replace="event_key" />
+#.                 </span>
+#.   <span>
+#.                     label_<span replace="event_key" />
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_<span replace=\"event_key\" />"
 msgstr ""
 
 #.   <span>
@@ -246,10 +267,18 @@ msgid "label_emails"
 msgstr ""
 
 #.   <span>
-#.                 Enter a valid email
-#.               </span>
+#.                   Enter a valid email
+#.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_enter_your_email"
+msgstr ""
+
+#.   <span>
+#.          Please, follow the instruction included in the mail you will shortly receive
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+#: ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "label_follow_subscriptions_instructions"
 msgstr ""
 
 #.   <span>
@@ -327,6 +356,13 @@ msgstr ""
 #.             </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscriptions_email"
+msgstr ""
+
+#.   <span>
+#.         You are now a subscriber.
+#.       </span>
+#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "label_you_are_no_registred"
 msgstr ""
 
 # ## LABELS #######################################

@@ -14,6 +14,10 @@
 # translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
 # translation of fr.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -22,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-03-08 09:55default\n"
-"PO-Revision-Date: 2004-03-09 10:50+0100\n"
+"POT-Creation-Date: 2004-03-10 03:59default\n"
+"PO-Revision-Date: 2004-03-10 04:00+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -46,19 +50,9 @@ msgstr "FAKE"
 #.   <span>
 #.                      <span replace="events/?event_key" />
 #.                    </span>
-#.   <span>
-#.                 <span replace="events/?event_key" />
-#.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"events/?event_key\" />"
 msgstr "FAKE"
-
-#.   <span>
-#.          An email has been sent to you to confirm your subscription.
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
-msgid "An email has been sent to you to confirm your subscription."
-msgstr "Un courriel de confirmation.vous a été adressé."
 
 #.   <span>
 #.         Below are the subscriptions you belong to all over the portal
@@ -91,6 +85,13 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "Notification type"
 msgstr "Types d'alertes"
+
+#.   <span>
+#.          Please, follow the instruction included in the mail you will shortly receive
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid "Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Veuillze suivre les instructions qui vont vous être transmises par courriel."
 
 #.   <span>
 #.      Ton confirm that you want to be added to this mailing list, click
@@ -131,14 +132,13 @@ msgid "button_close"
 msgstr "Fermer"
 
 #.   <input value="button_subscribe" class="standAlone" name="folder_subscribe:method" type="submit">
-#.         <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
-#.     </input></input>
+#.       </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_subscribe"
 msgstr "S'abonner"
 
 #.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
-#.     </input>
+#.         </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
 msgstr "Se désinscrire"
@@ -155,18 +155,25 @@ msgstr "FAKE"
 msgid "header_available_events"
 msgstr "Evènements disponibles ici.v"
 
-#.   <span>
+#.   <h4>
 #.       Below are events open for subscriptions.
-#.     </span>
+#.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
 msgstr "Evénements auxquels vous pouvez vous abonner."
 
 #.   <h4>
-#.               <span>
-#.                 Enter a valid email
-#.               </span>
-#.           </h4>
+#.         Below are the events you may unsubscribe
+#.       </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_choose_the_events_to_sunsubscribe"
+msgstr "Evénements auxquels vous pouvez vous désabonner."
+
+#.   <strong>
+#.                 <span>
+#.                   Enter a valid email
+#.                 </span>
+#.             </strong>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_enter_your_email"
 msgstr "Entrer un courriel valide"
@@ -238,12 +245,29 @@ msgstr "Mes abonnements"
 msgid "heading_ok_subscription"
 msgstr "Abonnement pris en compte"
 
+#.   <h1 condition="email">
+#.         Unsubscription taken into consideration
+#.       </h1>
+#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid "heading_ok_unsubscription"
+msgstr "Désabonnement pris en compte"
+
 #.   <h1>
-#.         Welcome !
+#.         You are now part of the mailing list.
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
-msgstr "Bienvenue"
+msgstr "Bienvenue sur la mailing list"
+
+#.   <span>
+#.                   label_<span replace="event_key" />
+#.                 </span>
+#.   <span>
+#.                     label_<span replace="event_key" />
+#.                   </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_<span replace=\"event_key\" />"
+msgstr "F "
 
 #.   <span>
 #.                 Are anonymous subscriptions allowed ?
@@ -274,11 +298,19 @@ msgid "label_emails"
 msgstr "Courriels à ajouter pour cet évé\tnement"
 
 #.   <span>
-#.                 Enter a valid email
-#.               </span>
+#.                   Enter a valid email
+#.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_enter_your_email"
 msgstr "Entrer un courriel valide"
+
+#.   <span>
+#.          Please, follow the instruction included in the mail you will shortly receive
+#.        </span>
+#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+#: ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "label_follow_subscriptions_instructions"
+msgstr "Veuiller suivre les instructions se trouvant dans le courriel que vous allez recevoir."
 
 # ## PSMS ##########################################
 #.   <span>
@@ -358,6 +390,13 @@ msgstr "Où"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscriptions_email"
 msgstr "Courriel"
+
+#.   <span>
+#.         You are now a subscriber.
+#.       </span>
+#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+msgid "label_you_are_no_registred"
+msgstr "Vous êtes maintenant abonné."
 
 msgid "label_workspace_manager"
 msgstr "Responsable"
@@ -447,6 +486,9 @@ msgstr "Veuillez vous abonner avant d'essayer de confirmer."
 
 msgid "psm_welcome_to_mailing_list"
 msgstr "Bienvenue sur la liste de diffusion."
+
+#~ msgid "An email has been sent to you to confirm your subscription."
+#~ msgstr "Un courriel de confirmation.vous a été adressé."
 
 # ## LABELS #######################################
 #~ msgid "label_creation_of_documents"
