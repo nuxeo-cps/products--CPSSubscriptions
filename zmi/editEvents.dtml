@@ -54,6 +54,46 @@
     </td>
  </tr>
  <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Confirm email Title
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="subscribe_confirm_email_title"  cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailTitle()"></textarea>
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Confirm email body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="subscribe_confirm_email_body"  cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailBody()"></textarea>
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Welcome email Title
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="subscribe_welcome_email_title"  cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailTitle()"></textarea>
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Welcome email body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="subscribe_welcome_email_body"  cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
+    </td>
+ </tr>
+ <tr>
     <td>&nbsp;</td>
     <td align="right" valign="top">
       <div class="form-element">
