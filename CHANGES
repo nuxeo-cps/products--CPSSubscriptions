@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Add malagasy translation
 Bug fixes:
 ~~~~~~~~~~
 - fix: folder_subscribe_form: msg "No event opened for subscsriptions in here."
