@@ -36,8 +36,7 @@ from RecipientsRules import RecipientsRule, \
      addComputedRecipientsRule, addExplicitRecipientsRule, \
      addRoleRecipientsRule, addWorkflowImpliedRecipientsRule
 
-from Notifications import NotificationRule, \
-     addMailNotification
+from Notifications import NotificationRule, addMailNotificationRule
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -83,7 +82,7 @@ class Subscription(PortalFolder):
     def addEventType(self, event_type):
         """ Adds a new event type on wich to r        ex: workflow_modify
         """
-        if event_type not in getFilterEventTypes():
+        if event_type not in self.getFilterEventTypes():
             self.filter_event_types += [event_type]
 
     def getFilterObjectTypes(self):
