@@ -984,13 +984,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         if compiled_body_html:
             infos_html = infos
             infos_html['body'] = (compiled_body_html, 'text/html')
-            subscription_mode_label = mcat('mode_'+subscription_mode) + ' V2 '
+            subscription_mode_label = mcat('mode_'+subscription_mode).encode("ISO-8859-15", "ignore") + ' V2 '
             infos_html['subject'] = '[%s] %s' %(portal_title, subscription_mode_label)
         else:
             infos_html = None
 
         if compiled_body_text:
-            subscription_mode_label = mcat('mode_'+subscription_mode) + ' V1 '
+            subscription_mode_label = mcat('mode_'+subscription_mode).encode("ISO-8859-15", "ignore") + ' V1 '
             infos['subject'] = '[%s] %s' %(portal_title, subscription_mode_label)
             infos['body'] = (compiled_body_text, 'text/plain')
         else:
