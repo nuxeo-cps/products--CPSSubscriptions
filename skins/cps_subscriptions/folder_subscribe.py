@@ -30,7 +30,7 @@ if REQUEST is not None:
             else:
                 psm = 'psm_subscription_not_taken_into_consideration'
 
-    return REQUEST.RESPONSE.redirect("%s/%s?portal_status_message=%s&email=%s" %(context.absolute_url(),
+        return REQUEST.RESPONSE.redirect("%s/%s?portal_status_message=%s&email=%s" %(context.absolute_url(),
                                                                              'folder_subscribe_form',
                                                                              psm,
                                                                              email))
