@@ -197,6 +197,13 @@ class SubscriptionContainer(CPSBaseFolder):
             self.manage_permission(perm, roles, 1)
         self.reindexObjectSecurity()
 
+
+    security.declareProtected(CanSubscribe, 'addSubscription')
+    def addSubscription(self, id=None):
+        """Add a subscription object within the subscription folder
+        """
+        self.manage_addProduct['CPSSubscriptions'].addSubscription(id=id)
+
     security.declarePublic('getSubscriptions')
     def getSubscriptions(self):
         """ Get all Subscriptions contained in here.
