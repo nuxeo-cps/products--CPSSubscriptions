@@ -1,7 +1,7 @@
 <!-- CPSSubscriptions : zpt's macro lib -->
 <!-- $Id$ -->
 
-<!-- ###### Checkboxes wixthin a table used to configure notifications base on roles -->
+<!-- ###### Checkboxes wixthin a table used to configure notifications based on roles -->
 <metal:block define-macro="display_subscriptions_table">
   <script type="text/javascript" tal:content="structure string:<!--
       var absolute_url = '${here/absolute_url}'
@@ -17,6 +17,9 @@
       }
       -->
   </script>
+  <h4 i18n:translate="header_available_events">
+    Available events in here
+  </h4>
   <tal:block define="context_lcs here/getLocalRolesFromContext">
     <form action="." name="form" tal:attributes="action here/absolute_url">
 	  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="FormLayout">
@@ -75,9 +78,11 @@
 	       </tr>
         </tal:block>
 	  </table>
-      <br />
-      <hr />
-      <br />
+      <br>
+      <h4 i18n:translate="header_when_where_to_notify">
+        When/where to notify ? 
+      </h4>
+      <br>
       <tal:block define="subscription_folder python:getattr(here,
       here.portal_subscriptions.getSubscriptionContainerId(), 0)">
         <table border="0" align="center" width="100%">
@@ -109,6 +114,42 @@
         </tr>
         </table>
       </tal:block>
+      <br>
+      <h4 i18n:translate="header_subscription_allowed">
+        Are subscriptions allowed and to whom ?
+      </h4>
+      <br>
+      <tal:block define="subscription_folder python:getattr(here,
+      here.portal_subscriptions.getSubscriptionContainerId(), 0)">
+        <table border="0" align="center" width="100%">
+        <tr>
+          <td align="center">
+            <span i18n:translate="label_subscription_allowed">
+              Are subscription allowed ?
+            </span>
+          </td>
+          <td align="left">
+            <input type="checkbox" name="subscription_allowed"
+                   tal:attributes="checked python:subscription_folder and
+      subscription_folder.isSubscriptionAllowed() or 0"
+                   />
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <span i18n:translate="label_anonymous_subscription_allowed">
+              Are anonymous subscriptions allowed ?
+            </span>
+          </td>
+          <td align="left">
+            <input type="checkbox" name="anonymous_subscription_allowed"
+                   tal:attributes="checked python:subscription_folder and
+      subscription_folder.isAnonymousSubscriptionAllowed() or 0"
+                   />
+          </td>
+        </tr>
+        </table>
+      </tal:block>
       <br />
       <hr />
       <a href="."
@@ -124,6 +165,60 @@
                    i18n:attributes="value" />
     </form>
   </tal:block>
+</metal:block>
+
+<!-- ###### User can see available subscriptions -->
+<metal:block define-macro="display_user_subscribe">
+<tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
+                   subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
+                   events python:subscriptions_tool.getEventsFromContext(context=here)">
+
+<h4 i18n:translate="header_choose_the_events">
+  Events open for subscriptions
+</h4>
+<br>
+<form name="form" method="get" action="."
+      tal:attributes="action string:${here/absolute_url}/folder_subscribe">
+  <table width="100%" align="center">
+    <tr tal:repeat="event_key python:events.keys()"
+        tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+      <td>
+        <strong>
+          <span i18n:translate="">
+            <span tal:replace="events/?event_key" />
+          </span>
+        </strong>
+      </td>
+      <td align="left">
+        <input type="checkbox"
+               tal:attributes="name string:event_ids:list;
+                               value event_key;
+                               checked python:0">
+      </td>
+    </tr>
+    </table>
+    <h4 i18n:translate="header_enter_your_email">
+        <span i18n:translate="label_enter_your_email">
+          Enter a valid email
+        </span>
+    </h4>
+    <table width="100%" align="center">
+    <tr>
+      <td align="left">
+        <input type="text"
+               size="30"
+               name="subscriber_email"
+               value="your_email@domain.com">
+      </td>
+      <td align="left">
+        <input type="submit" class="standAlone" name="folder_subscribe_submit"
+               value="button_submit"
+               i18n:attributes="value">
+      </td>
+    </tr>
+    </table>
+</form>
+</tal:block>
 </metal:block>
 
 <!-- ###### Explicit/black emails for a given event -->
