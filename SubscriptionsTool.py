@@ -40,6 +40,7 @@ from Products.CMFCore.CMFCorePermissions import ManagePortal, View, \
      ModifyPortalContent
 from Products.CMFCore.utils import UniqueObject, getToolByName, \
      _checkPermission
+from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
 from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
 from Notifications import NotificationRule
@@ -57,7 +58,7 @@ SUBSCRIPTION_PREFIX = 'subscription__'
 
 ##############################################################
 
-class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
+class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     """Subscriptions Tool
 
     portal_subcriptions is the central tool with the necessary methods
@@ -100,6 +101,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                      'daily'  : 'mode_daily'}
 
     mapping_local_roles_context = {}
+    _actions = ()
 
     ###################################################
     # ZMI
@@ -109,6 +111,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         {'label': "About",
          'action': 'about'
          },
+        ) + ActionProviderBase.manage_options + (
         {'label': "Events / contexts",
          'action': 'manage_events',
          },
