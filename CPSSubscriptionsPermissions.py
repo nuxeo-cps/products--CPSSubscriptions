@@ -22,6 +22,8 @@ __author__ = "Julien Anguenot <ja@nuxeo.com>"
 """CPS Subscriptions Permissions
 
   - 'Manage Subscriptions' : Manage subscriptions
+
+  - 'Can subscribe' : user may subscribe
 """
 
 from Products.CMFCore.CMFCorePermissions import setDefaultRoles
@@ -29,3 +31,5 @@ from Products.CMFCore.CMFCorePermissions import setDefaultRoles
 ManageSubscriptions = 'Manage Subscriptions'
 setDefaultRoles( ManageSubscriptions, ('Manager'))
 
+CanSubscribe = 'Can subscribe'
+setDefaultRoles( CanSubscribe, ('Manager',))
