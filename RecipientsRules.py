@@ -135,6 +135,7 @@ def addExplicitRecipientsRule(self, id=None, REQUEST=None):
 class RoleRecipientsRule(RecipientsRule):
     """Role Recipient Rules
     """
+
     meta_type = "Role Recipient Rules"
     portal_type = meta_type
 
@@ -152,6 +153,23 @@ class RoleRecipientsRule(RecipientsRule):
     roles = []
     origins = {}
     ancestor_object_types = []
+
+    #
+    # - roles -- The roles subscribed.
+    # - origins -- A sequence describing how roles are looked up. It
+    #   can contain the following keys:
+    # - 'local': Direct local roles from the context object are
+    #   used.
+    # - 'merged': All merged local roles of the context object are
+    #   used.
+    # - 'ancestor_local': Direct local roles found on an ancestor
+    #   object of type in ancestor_object_types. Only the closest
+    #   matching ancestor object is used.
+    # - 'ancestor_merged': Idem but with merged local roles.
+    # - ancestor_object_types -- The portal types of the ancestor
+    #   where a lookup of local roles is done if origins contains
+    #  'ancestor_local' or 'ancestor_merged'.
+    #
 
     def __init__(self, id, title='', **kw):
         """RoleRecipientsRule Constructor
@@ -180,14 +198,68 @@ class RoleRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        return {}
+        member_email_mapping = {}
+        mtool = self.portal_membership
+        container = aq_parent(aq_inner(object))
+        subtool = self.portal_subscriptions
+        if getattr(self, 'notify_no_local'):
+            if subtool.getSubscriptionId() in container.objectIds():
+                return {}
+        if not getattr(self, 'notify_local_only'):
+            #
+            # Using merged local roles
+            #
+            merged_local_roles = mtool.getMergedLocalRoles(container)
+            for entry in merged_local_roles.keys():
+                for role in self.getRoles():
+                    if role in merged_local_roles[entry]:
+                        if entry.startswith('user:'):
+                            member_ids = [entry.split(':')[1]]
+                        if entry.startswith('group:'):
+                            group_id = entry.split(':')[1]
+                            aclu = getattr(self, 'acl_users', None)
+                            if group_id == 'role':
+                                group_id = group_id + ':' + entry.split(':')[2]
+                            group = aclu.getGroupById(group_id)
+                            member_ids = group.getUsers()
+                        for member_id in member_ids:
+                            member = mtool.getMemberById(member_id)
+                            if member is not None:
+                                email = member.getProperty('email')
+                                if email != '':
+                                    member_email_mapping[email] = member_id
+        else:
+            #
+            # Using roles defined only in the context
+            #
+            local_roles = container.get_local_roles()
+            for member in local_roles:
+                member_id = member[0]
+                for role in self.getRoles():
+                    if role in member[1]:
+                        email = mtool.getMemberById(member_id).getProperty('email')
+                        if email != '':
+                            member_email_mapping[email] = member_id
+
+            local_group_roles = container.get_local_group_roles()
+            for group in local_group_roles:
+                for role in self.getRoles():
+                    if role in group[1]:
+                        group_id = group[0]
+                        aclu = getattr(self, 'acl_users', None)
+                        group = aclu.getGroupById(group_id)
+                        group_users = group.getUsers()
+                        for member_id in group_users:
+                            email = mtool.getMemberById(member_id).getProperty('email')
+                            if email != '':
+                                member_email_mapping[email] = member_id
+        return member_email_mapping
 
 InitializeClass(RoleRecipientsRule)
 
 def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
     """ Add a roles explicit Recipient rules
     """
-    self = self.this()
     if not id:
         id = self.computeId()
     if hasattr(aq_base(self), id):
@@ -198,9 +270,6 @@ def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
 
     ob = RoleRecipientsRule(id, title=title, **kw)
     self._setObject(id, ob)
-
-    LOG('addRoleRecipientsRule', INFO,
-        'adding recipients rule  %s/%s' % (self.absolute_url(), id))
 
     if REQUEST is not None:
         REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
