@@ -195,31 +195,32 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         Action category : folder
         """
 
+        self.verifyActionProvider('portal_subscriptions')
+
         #
         # Cleaning actions
         #
 
         actiondelmap = {
+            # cleaning old place where actions were set
             'portal_actions': ('folder_notifications',
                                'folder_subscribe',
                                'my_subscriptions',
-                               'notify_content')
+                               'notify_content'),
+            # cleaning place were actions are set
+            'portal_subscriptions': ('folder_notifications',
+                                     'folder_subscribe',
+                                     'my_subscriptions',
+                                     'notify_content'),
             }
-        for tool, actionids in actiondelmap.items():
-            actions = list(self.portal[tool]._actions)
-            new_actions = []
-            for ac in actions:
-                id = ac.id
-                if id not in actionids:
-                    new_actions.append(ac)
-                self.portal[tool]._actions = new_actions
+        self.deleteActions(actiondelmap)
 
         #
         # ACTION : Manage subscriptions
         # category : folder
         #
 
-        self.portal['portal_actions'].addAction(
+        self.portal['portal_subscriptions'].addAction(
             id='folder_notifications',
             name='action_folder_notifications',
             action='string: ${object_url}/folder_notifications_form',
@@ -234,7 +235,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         # category : user
         #
 
-        self.portal['portal_actions'].addAction(
+        self.portal['portal_subscriptions'].addAction(
             id='my_subscriptions',
             name='action_my_subscriptions',
             action='string: ${portal_url}/manage_my_subscriptions_form',
@@ -249,7 +250,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         # category : object
         #
 
-        self.portal['portal_actions'].addAction(
+        self.portal['portal_subscriptions'].addAction(
             id='notify_content',
             name='action_notify_content',
             action='string: ${object_url}/content_notify_email_form',
@@ -266,7 +267,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
 
         # FIXME : cheking if subscription allowed in the context
 
-        self.portal['portal_actions'].addAction(
+        self.portal['portal_subscriptions'].addAction(
             id='folder_subscribe',
             name='action_folder_subscribe',
             action='string: ${object_url}/folder_subscribe_form',
