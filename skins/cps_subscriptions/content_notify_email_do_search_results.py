@@ -28,7 +28,14 @@ for field in result_fields:
     if field.get('process'):
         process_fields[field['id']] = field['process']
 
-results = dir.searchEntries(return_fields=return_fields, **mapping)
+    call_context = kw.get('call_context')
+    if call_context is not None:
+        mtool = context.portal_membership
+        dict_roles = mtool.getMergedLocalRoles(call_context, withgroups=0)
+        search_restricted_list = dict_roles.keys()
+        mapping['search_restricted_member_list'] = search_restricted_list
+    results = dir.searchEntries(return_fields=return_fields,
+                                **mapping)
 
 for field, process_meth in process_fields.items():
     meth = getattr(context, process_meth, None)
