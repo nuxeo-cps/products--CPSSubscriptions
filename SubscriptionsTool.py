@@ -227,6 +227,13 @@ class SubscriptionsTool(UniqueObject, Folder):
     # ACCESSORS
     #
 
+    security.declarePublic('getSubscriptablePortalTypes')
+    def getSubscriptablePortalTypes(self):
+        """Returns the possible subscriptable portal types
+        """
+        # XXX filtering
+        return self.mapping_context_events.keys()
+
     security.declarePublic('getDefaultMessageTitle')
     def getDefaultMessageTitle(self, event_id=None):
         """Returns the default event message title.
