@@ -12,12 +12,15 @@ events = {}
 
 workspace = {'workflow_create' : 'label_workflow_create',
              'workflow_modify' : 'label_workflow_modify',
+             'workflow_delete' : 'label_workflow_delete',
              'workflow_cut_copy_paste' : 'label_workflow_cut_copy_paste',
-             }
+             'forum_new_comment' : 'label_forum_new_comment',
+             'forum_comment_published' : 'label_forum_comment_published'}
 
 section = {'workflow_publish' : 'label_workflow_publish',
            'workflow_accept' : 'label_workflow_accept',
            'workflow_modify' : 'label_workflow_modify',
+           'workflow_delete' : 'label_workflow_delete',
            'workflow_submit'  : 'label_workflow_submit',
            'workflow_cut_copy_paste' : 'label_workflow_cut_copy_paste',
            'workflow_reject' : 'label_workflow_reject',
@@ -25,11 +28,12 @@ section = {'workflow_publish' : 'label_workflow_publish',
            }
 
 cps_forum = {'forum_new_post' : 'label_forum_new_post',
-             'forum_new_comment' : 'label_forum_new_comment',
              'forum_post_published' : 'label_forum_post_published',
-             'forum_comment_published' : 'label_forum_comment_published'}
+             }
 
-cps_forum_post = {'forum_new_post' : 'label_forum_new_post',}
+
+cps_forum_post = {'forum_new_post' : 'label_forum_new_post',
+                  'forum_post_published' : 'label_forum_post_published',}
 
 ###################################
 
