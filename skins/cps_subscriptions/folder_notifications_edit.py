@@ -22,6 +22,7 @@ if REQUEST is not None:
         kw['notify_local_only'] = REQUEST.form.get('notify_local_only', 0) and 1
         kw['notify_no_local'] = REQUEST.form.get('notify_no_local', 0) and 1
         kw['subscription_allowed'] = REQUEST.form.get('subscription_allowed', 0) and 1
+        kw['unsubscription_allowed'] = REQUEST.form.get('unsubscription_allowed', 0) and 1
         kw['anonymous_subscription_allowed'] = REQUEST.form.get('anonymous_subscription_allowed', 0) and 1
         kw['mfrom'] = REQUEST.form.get('mfrom', '')
 
