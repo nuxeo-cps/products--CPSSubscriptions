@@ -9,4 +9,4 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- If it's a newsletter mail sending things then ask for a rendering of the document instead of looking for a notification message.

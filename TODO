@@ -4,7 +4,7 @@ $Id$
 
   x Unsubsribe Members / Anonymous
   o Anonymous subscriptions management
-  o ComputedRecipientsRule interface + testing
+  x ComputedRecipientsRule
   o WorkflowImpliedRecipientsRule to implement
  
 - Notifications
@@ -16,7 +16,8 @@ $Id$
 
   o Export configuration
   o Context -> event -> content instead of event -> content
-
+  o Ability to specify events for which we'll make a render of the object 
+    instead of using 
 - Default 
 
   o What events ? 
