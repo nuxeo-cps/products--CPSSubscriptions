@@ -74,7 +74,6 @@ class CPSSubscriptionsInstaller(BaseInstaller):
 
         self.log("Checking CPS Subscriptions Tool")
         if not getToolByName(self.portal, 'portal_subscriptions', 0):
-            self.log("Deleting existing CPS Subscriptions Tool")
             self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
             self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
                                       'Subscriptions Tool')
