@@ -7,6 +7,7 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Only change the event_email_content if the event doesn't exist
+- Mail content in 8bit
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Allowing the notifications at the root of the portal for directories for instance
