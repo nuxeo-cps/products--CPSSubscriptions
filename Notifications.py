@@ -36,7 +36,7 @@ from smtplib import SMTPException
 # Trying to import the TimeOut error class of CPSRSS is installed
 try:
     from Products.CPSRSS.timeoutsocket import Timeout
-except:
+except ImportError:
     class Timeout:
         pass
 
@@ -127,7 +127,7 @@ class NotificationRule(PortalFolder):
 
         try:
             self.MailHost.send(raw_message)
-        except (socket.error, MailHostError, SMTPException, Timeoqut):
+        except (socket.error, MailHostError, SMTPException, Timeout):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail",
