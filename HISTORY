@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.4.4 [R1 build 2004/04/19-09:54 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Fix while asking the recipients while passing the context explicitly
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.4.3 [R1 build 2004/04/16-14:32 by madarche]
 
 Requires:
