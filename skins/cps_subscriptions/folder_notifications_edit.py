@@ -13,11 +13,10 @@ if REQUEST is not None:
         # Full Update
         #
 
-        if subscription_id in context.objectIds():
-            LOG("Deleteting the subscription Folder", DEBUG, subscription_id)
-            context.manage_delObjects([subscription_id])
-        context.manage_addProduct[
-            'CPSSubscriptions'].addSubscriptionContainer()
+        if subscription_id not in context.objectIds():
+            #LOG("Deleteting the subscription Folder", DEBUG, subscription_id)
+            #context.manage_delObjects([subscription_id])
+            context.manage_addProduct['CPSSubscriptions'].addSubscriptionContainer()
 
         subscription_folder = getattr(context, subscription_id)
 
@@ -36,6 +35,27 @@ if REQUEST is not None:
 
         role_events = REQUEST.form.get('role_event', [])
         LOG("REQUEST", DEBUG, role_events)
+
+        #
+        # Now cleaning the ones the user removed
+        #
+
+        all_requested_subscription = ['subscription__'+x.split(':')[1] for x in role_events]
+        for subscription_id in subscription_folder.objectIds():
+            if subscription_id not in all_requested_subscription:
+                subscription_folder.manage_delObjects([subscription_id])
+            else:
+                current_event_subscription = getattr(subscription_folder,
+                                                     subscription_id)
+            for event in current_event_subscription.objectIds():
+                requested_role_for_subscriptions = [x.split(':')[0]+'__recipients_rule'  \
+                                                    for x in role_events if x.split(':')[1] == event]
+                if event not in requested_role_for_subscriptions:
+                    current_event_subscription.manage_delObjects([event])
+
+        #
+        # Now update
+        #
 
         for role_event in role_events:
             role = role_event.split(':')[0]
