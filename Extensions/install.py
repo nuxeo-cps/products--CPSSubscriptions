@@ -68,7 +68,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         """
 
         self.log("Checking CPS Subscriptions Tool")
-        if getToolByName(self.portal, 'portal_subscriptions'):
+        if getToolByName(self.portal, 'portal_subscriptions', 0):
             self.log("Deleting existing CPS Subscriptions Tool")
             self.portal.manage_delObjects(['portal_subscriptions',])
         self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
@@ -104,7 +104,8 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         """
 
         portal_eventservice = getToolByName(self.portal,
-                                            'portal_eventservice')
+                                            'portal_eventservice',
+                                            0)
         if portal_eventservice:
             objs = portal_eventservice.objectValues()
             subscribers = []
