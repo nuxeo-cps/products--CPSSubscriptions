@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-03-05 18:01default\n"
+"POT-Creation-Date: 2004-03-05 19:00default\n"
 "PO-Revision-Date: 2004-03-05 18:02+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -120,27 +120,10 @@ msgstr ""
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
 
-#.   <input onclick="javascript:history.back()" class="standAlone" type="button" value="button_back" />
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "button_back"
-msgstr "Retour"
-
-#.   <input value="button_change" class="standAlone" name="folder_notifications_edit:method" type="submit" />
-#.   <input value="button_change" class="standAlone" type="submit" name="folder_explicit_notifications_edit:method" />
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "button_change"
-msgstr "Modifier"
-
 #.   <input onclick="javascript:window.close()" class="standAlone" type="button" value="button_close" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_close"
 msgstr "Fermer"
-
-#.   <input value="button_subscribe" class="standAlone" name="folder_subscribe_submit" type="submit">
-#.     </input>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "button_subscribe"
-msgstr "Je m'abonne"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -292,7 +275,8 @@ msgstr "Liste"
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_local_only"
-msgstr "Alerter uniquement les persones ayant des rôles locaux dans ce répertoire."
+msgstr ""
+"Alerter uniquement les persones ayant des rôles locaux dans ce répertoire."
 
 #.   <span>
 #.                 Notify no local
@@ -452,9 +436,17 @@ msgstr "Veuillez vous abonner avant d'essayer de confirmer."
 msgid "psm_welcome_to_mailing_list"
 msgstr "Bienvenue sur la liste de diffusion."
 
+msgid "button_subscribe"
+msgstr "Je m'abonne"
+
 msgid "button_unsubscribe"
 msgstr "Se désinscrire"
 
+#~ msgid "button_back"
+#~ msgstr "Retour"
+
+#~ msgid "button_change"
+#~ msgstr "Modifier"
+
 #~ msgid "button_ok"
 #~ msgstr "ok"
-

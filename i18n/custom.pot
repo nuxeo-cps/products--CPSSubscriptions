@@ -78,7 +78,7 @@ msgstr ""
 msgid "label_owner"
 msgstr ""
 
-### ACTIONS ###################################### 
+### ACTIONS ######################################
 
 msgid "action_folder_notifications"
 msgstr ""
