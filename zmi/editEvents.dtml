@@ -22,30 +22,6 @@
  <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      Default Title
-      </div>
-    </td>
-    <td align="left" valign="top">
-      <input type="text"
-             name="event_default_email_title"
-             value='<dtml-var expr="getDefaultMessageTitle()">'
-             size="60" />
-    </td>
- </tr>
- <tr>
-   <td align="left" valign="top">
-      <div class="form-label">
-      Default Body
-      </div>
-    </td>
-    <td align="left" valign="top">
-      <textarea name="event_default_email_body"  cols="55"
-      rows="10"><dtml-var expr="getDefaultMessageBody()"></textarea>
-    </td>
- </tr>
- <tr>
-   <td align="left" valign="top">
-      <div class="form-label">
       Error Body
       </div>
     </td>
