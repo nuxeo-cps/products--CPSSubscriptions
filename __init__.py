@@ -42,13 +42,11 @@ import Notifications
 # Recipients Rules
 #
 
-recipientsRulesClasses = ( RecipientsRules.ComputedRecipientsRule,
-                           RecipientsRules.ExplicitRecipientsRule,
+recipientsRulesClasses = ( RecipientsRules.ExplicitRecipientsRule,
                            RecipientsRules.RoleRecipientsRule,
                            RecipientsRules.WorkflowImpliedRecipientsRule,)
 
-recipRulesConstructors = ( RecipientsRules.addComputedRecipientsRule,
-                           RecipientsRules.addExplicitRecipientsRule,
+recipRulesConstructors = ( RecipientsRules.addExplicitRecipientsRule,
                            RecipientsRules.addRoleRecipientsRule,
                            RecipientsRules.addWorkflowImpliedRecipientsRule,)
 
@@ -56,7 +54,7 @@ recipRulesConstructors = ( RecipientsRules.addComputedRecipientsRule,
 # Notification Types
 #
 
-notificationsClasses = ( Notifications.MailNotificationRule,)
+notificationsClasses = ( Notifications.MailNotificationRule, )
 
 notificationsConstructors = ( Notifications.addMailNotificationRule,)
 
@@ -69,8 +67,7 @@ tools = ( SubscriptionsTool.SubscriptionsTool,)
 registerDirectory('skins', globals())
 
 def initialize(registar):
-    """
-    Initalization of CPSSubscriptions components
+    """Initalization of CPSSubscriptions components
     """
 
     # Place Full Subscription Container
@@ -84,6 +81,12 @@ def initialize(registar):
     registar.registerClass(Subscription.Subscription,
                            permission=ModifyPortalContent,
                            constructors=(Subscription.addSubscription,))
+
+    # Computed Recipients Rules
+    registar.registerClass(RecipientsRules.ComputedRecipientsRule,
+                           permission=ModifyPortalContent,
+                           constructors=(RecipientsRules.addComputedRecipientsRuleForm,
+                                         RecipientsRules.addComputedRecipientsRule,))
 
     # Recipients Rules
     ContentInit(
