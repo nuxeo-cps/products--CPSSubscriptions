@@ -135,13 +135,15 @@
                    subtool.getSubscriptionId(), None);
                    event python:getattr(subscription_container, event_id, None);
                    event_explicit_recipients_rules
-    python:event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule');
+    python:event and
+    event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule') or [];
                    event_explicit_recipients_rule
                    python:event_explicit_recipients_rules != [] and
                    event_explicit_recipients_rules[0] or nothing;
                    explicit_emails python:event_explicit_recipients_rule and
                    event_explicit_recipients_rule.getEmails() or [];
-                   black_list event/getRecipientEmailsBlackList;
+                   black_list python:event and
+                   event.getRecipientEmailsBlackList() or [];
                    ">
   <br />
   <!-- EMAILS -->
