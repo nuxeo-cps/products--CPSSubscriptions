@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-03-31 12:12default\n"
-"PO-Revision-Date: 2004-03-31 11:59+0200\n"
+"POT-Creation-Date: 2004-04-07 11:16default\n"
+"PO-Revision-Date: 2004-04-07 11:22+0200\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -98,10 +98,8 @@ msgstr "Types d'alertes"
 #.          Please, follow the instruction included in the mail you will shortly receive
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr ""
-"Veuillez suivre les instructions qui vont vous être transmises par courriel."
+msgid "Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Veuillez suivre les instructions qui vont vous être transmises par courriel."
 
 #.   <span>
 #.      Ton confirm that you want to be added to this mailing list, click
@@ -250,9 +248,7 @@ msgstr "Adresse électronique de l'émetteur pour les courriels sortants"
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr ""
-"Les évènements ci-dessous sont ceux pour lesquels vous êtes abonnésfonction "
-"de vos rôles locaux."
+msgstr "Les événements ci-dessous sont ceux pour lesquels vous êtes abonnés de par vos rôles locaux"
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
@@ -383,8 +379,7 @@ msgstr ""
 #.         </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions"
-msgstr ""
-"Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
+msgstr "Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
 
 #.   <div>
 #.           Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -406,16 +401,14 @@ msgstr "Liste"
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_local_only"
-msgstr ""
-"Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire."
+msgstr "Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire."
 
 #.   <span>
 #.                 Notify no local
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
-msgstr ""
-"Alerter uniquement lors d'événements se produisant dans les sous-espaces"
+msgstr "Alerter uniquement lors d'événements se produisant dans les sous-espaces"
 
 #.   <span>
 #.                  Others
@@ -631,3 +624,4 @@ msgstr ""
 
 #~ msgid "button_ok"
 #~ msgstr "ok"
+

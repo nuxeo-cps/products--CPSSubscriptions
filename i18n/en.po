@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-31 12:12default\n"
-"PO-Revision-Date: 2004-03-31 11:59+0200\n"
+"POT-Creation-Date: 2004-04-07 11:16default\n"
+"PO-Revision-Date: 2004-04-07 11:17+0200\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -98,10 +98,8 @@ msgstr "Notification type"
 #.          Please, follow the instruction included in the mail you will shortly receive
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr ""
-"Please, follow the instruction included in the mail you will shortly receive"
+msgid "Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Please, follow the instruction included in the mail you will shortly receive"
 
 #.   <span>
 #.      Ton confirm that you want to be added to this mailing list, click
@@ -220,14 +218,14 @@ msgstr "Available events in this context"
 #.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
-msgstr "Below are the events you may subscribe"
+msgstr "Below are the events you may subscribe to"
 
 #.   <h4>
 #.         Below are the events you may unsubscribe
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events_to_sunsubscribe"
-msgstr "Below are the events you may unsubscribe "
+msgstr "Below are the events you may unsubscribe from"
 
 #.   <strong>
 #.                 <span>
@@ -250,8 +248,7 @@ msgstr "Sender address for outgoing emails"
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr ""
-"Below are the events for which you are subscribed because of your local roles"
+msgstr "Below are the events to which you are subscribed because of your local roles"
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
@@ -373,16 +370,14 @@ msgstr "Enter a valid email"
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr ""
-"Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Please, follow the instruction included in the mail you will shortly receive"
 
 #.   <div>
 #.           Currently you haven't any subscriptions in this context or for this object.
 #.         </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions"
-msgstr ""
-"Currently you haven't any subscriptions in this context or for this object."
+msgstr "Currently you haven't any subscriptions in this context or for this object."
 
 #.   <div>
 #.           Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -629,3 +624,4 @@ msgstr ""
 
 #~ msgid "button_ok"
 #~ msgstr "ok"
+
