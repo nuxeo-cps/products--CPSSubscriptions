@@ -1,4 +1,22 @@
 *******************************************
+** CPSSubscriptions V0.8.1 [R1 build 2004/05/24-16:05 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- #357 : There shouldn't be two kinds of events for CPSForum to subscribe to
+- #353 : Error when user wants to subscribe to a CPSForum
+- #356 : No notification is sent when a user modifies or deletes an object
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- infos is available within the mapping used to compute the TALES expression in the ComputeRecipientsRule class
+
+*******************************************
 ** CPSSubscriptions V0.8.0 [R1 build 2004/05/21-14:23 by madarche]
 
 Requires:
