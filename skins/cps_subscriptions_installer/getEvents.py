@@ -2,10 +2,13 @@
 #$Id$
 """ Returns the CPS Subscriptions events
 
-Use by the installer. The events dictionnary key is the portal type of the
-container where you'd like to be able to get notifications features.
+This script is used by the CPSSubscriptions installer.
 
-The key is the portal_type of the containers.
+The events dictionary key is the portal type of the container where you'd like
+to be able to get notifications features.
+
+Then each container is in turn a dictionary which keys are the transition names
+of their workflow suffixed with the 'workflow_' string.
 """
 
 events = {}
@@ -14,7 +17,6 @@ workspace = {'workflow_create' : 'label_workflow_create',
              'workflow_modify' : 'label_workflow_modify',
              'workflow_delete' : 'label_workflow_delete',
              'workflow_cut_copy_paste' : 'label_workflow_cut_copy_paste',
-             'workflow_checkin_draft' : 'label_workflow_checkin_draft',
              'forum_new_comment' : 'label_forum_new_comment',
              'forum_comment_published' : 'label_forum_comment_published',
              'forum_comment_unpublished' : 'label_forum_comment_unpublished',
