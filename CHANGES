@@ -12,3 +12,5 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - improve install using CPSInstaller for indexes and catalog metadata
+- adding a french template for email getMailTemplate_fr.py
+  you need to copy this file as getMailTemplate.py in your skin
