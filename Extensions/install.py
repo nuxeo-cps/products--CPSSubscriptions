@@ -141,7 +141,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             id='folder_notifications',
             name='action_folder_notifications',
             action='string: ${object_url}/folder_notifications_form',
-            condition="python:hasattr(object, 'portal_type') and object.portal_type in portal.portal_subscriptions.getContainerPortalTypes() and object.portal_type != 'Portal'",
+            condition="python:hasattr(object, 'portal_type') and object.portal_type in portal.portal_subscriptions.getContainerPortalTypes()",
             permission=(ManageSubscriptions,),
             category='folder',
             visible=1)
@@ -174,7 +174,6 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             name='action_folder_subscribe',
             action='string: ${object_url}/folder_subscribe_form',
             condition="python:hasattr(object, 'portal_type') and \
-            object.portal_type != 'Portal' and \
             object.portal_type in portal.portal_subscriptions.getSubscribablePortalTypes() and \
             hasattr(object, portal.portal_subscriptions.getSubscriptionContainerId()) and \
             getattr(object, portal.portal_subscriptions.getSubscriptionContainerId()).isSubscriptionAllowed()" ,
