@@ -15,3 +15,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - New permissions 'Can Subscribe' for subscription container
 - New permissions 'View My Subscriptions' to access the subscription board"
+- Cleanup permissions in classes
