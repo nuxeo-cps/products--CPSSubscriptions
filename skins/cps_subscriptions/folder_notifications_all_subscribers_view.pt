@@ -1,4 +1,5 @@
-<metal:block use-macro="here/subscriptions_popup_template/macros/master">
+<tal:block define="emptybody python:1">
+<metal:block use-macro="here/main_template/macros/master">
   <metal:block fill-slot="header">
     <h1 i18n:translate="heading_all_subscribers">
       All Subscribers
@@ -8,3 +9,4 @@
     <metal:block use-macro="here/subscriptions_lib/macros/display_all_notifications_subscribers" />
   </metal:block>
 </metal:block>
+</tal:block>
