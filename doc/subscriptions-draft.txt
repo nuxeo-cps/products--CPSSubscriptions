@@ -42,9 +42,12 @@ Event subscriptions and notifications
 
     When?
 
-      - Workflow transition (create, edit, submit, publish, accept)
+      - Workflow transition (create, edit, submit, publish, accept,
+        copy/cut/paste, )
 
-      - Other (?)
+      - Forum related eventes (New post, Reply to post, New comment)
+
+      - Other
 
     Do what?
 
@@ -250,12 +253,12 @@ Event subscriptions and notifications
             - notification_types -- What kinds of action are taken for
               the recipients:
 
-              - 'tales': Call notification_expression_str.
+              - 'tales': Call notification_expression.
 
               - 'email': Send an email to each recipient, according to
-                notification_email_expression_str.
+                notification_email_expression.
 
-            - notification_expression_str -- A TALES expression called
+            - notification_expression -- A TALES expression called
               for each recipient. In the expression, the same namespace
               as in ComputedRecipient is available, with in addition:
 
@@ -264,10 +267,10 @@ Event subscriptions and notifications
               - member: The member if the recipient is a member, or
                 None.
 
-            - notification_email_expression_str -- A TALES expression
+            - notification_email_expression -- A TALES expression
               returning the email headers and body as a string. No mail
               is sent if it returns a false value. In the expression,
-              the same namespace as in action_expression_str is
+              the same namespace as in action_expression is
               available.
 
       Recipients:
@@ -286,7 +289,7 @@ Event subscriptions and notifications
 
         ComputedRecipientsRule
 
-          - expression_str -- A TALES expression returning a mapping
+          - expression -- A TALES expression returning a mapping
             with recipients. In the expression, the following namespace
             is available:
 
@@ -397,6 +400,7 @@ Event subscriptions and notifications
       that can be reused easily.
 
     - Where to place these mailing objects? Locally or globaly ?
+      [JA: Locally so that each Manager can edit the body]
 
     - We need a way for local administrators to add a new subscription
       from a fixed predetermined list, without having able to
