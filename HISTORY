@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.2.1 [R1 build 2004/03/12-16:04 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Do not compute i18n labels for the mailing list user form
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.2.0 [R1 build 2004/03/10-14:45 by anguenot]
 
 Requires:
