@@ -93,6 +93,46 @@
       <textarea name="subscribe_welcome_email_body"  cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
     </td>
  </tr>
+  <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      UnSubscribe email Title
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="unsubscribe_email_title"  cols="55" rows="10"><dtml-var "getUnSubscribeEmailTitle()"></textarea>
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      UnSubsribe email body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="unsubscribe_email_body"  cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
+    </td>
+ </tr>
+   <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Confirm UnSubscribe email Title
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="unsubscribe_confirm_email_title"  cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailTitle()"></textarea>
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Confirm UnSubsribe email body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="unsubscribe_confirm_email_body"  cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailBody()"></textarea>
+    </td>
+ </tr>
  <tr>
     <td>&nbsp;</td>
     <td align="right" valign="top">
