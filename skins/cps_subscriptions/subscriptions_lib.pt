@@ -574,7 +574,9 @@
            </a>
           </td>
           <td align="left">
-             <span tal:content="elt/description" />
+            <span i18n:translate="">
+              label_<span tal:replace="elt/event_id" />
+            </span>
           </td>
           <td align="center">
            <a href=""
