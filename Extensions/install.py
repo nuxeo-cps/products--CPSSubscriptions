@@ -30,7 +30,7 @@ from zLOG import LOG, INFO, DEBUG
 import os, sys
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
+from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent, setDefaultRoles
 from Products.CPSDefault.Installer import BaseInstaller
 
 SECTIONS_ID = 'sections'
@@ -58,6 +58,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.setupSkins(SKINS)
         self.setupSubscriptionsTool()
         self.installActions()
+        self.installNewPermissions()
         self.setupSubscriber()
         self.setupEvents()
         self.setupTranslations()
@@ -77,27 +78,103 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
                 'Subscriptions Tool')
 
+    def installNewPermissions(self):
+        """Installs new subscriptions dedicated permissions
+        """
+
+        self.log("Installing new subscriptions permissions")
+
+        ManageSubscriptions = 'Manage Subscriptions'
+        setDefaultRoles( ManageSubscriptions, ('Manager'))
+
+
+        subscription_workspace_perms = {
+            ManageSubscriptions : ['Manager', 'WorkspaceManager'],
+            }
+        subscription_sections_perms = {
+            ManageSubscriptions : ['Manager', 'SectionManager'],
+            }
+
+        for perm, roles in subscription_workspace_perms.items():
+            self.portal[WORKSPACES_ID].manage_permission(perm, roles, 0)
+        for perm, roles in subscription_workspace_perms.items():
+            self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
+
     def installActions(self):
-        """ Installs a new action permitting to manage notifications
-        within CPS.
+        """ Installs new actions permitting to manage notifications
+        within CPS, to manage its subscriptions and to subscribe.
 
         Action category : folder
         """
 
-        action_found = 0
-        for action in self.portal['portal_actions'].listActions():
-            if action.id == 'folder_notifications':
-                action_found = 1
-        if not action_found:
-            self.portal['portal_actions'].addAction(
-                id='folder_notifications',
-                name='action_folder_notifications',
-                action='string: ${folder_url}/folder_notifications_form',
-                condition="python:hasattr(object, 'portal_type') and object.portal_type not in ('Section', 'Portal')",
-                permission=(ModifyPortalContent,),
-                category='folder',
-                visible=1)
-            self.log(" Added Action folder Notifications")
+        #
+        # Cleaning actions
+        #
+
+        actiondelmap = {
+            'portal_actions': ('folder_notifications',
+                               'folder_subscribe',
+                               'my_subscriptions')
+            }
+        for tool, actionids in actiondelmap.items():
+            actions = list(self.portal[tool]._actions)
+            new_actions = []
+            for ac in actions:
+                id = ac.id
+                if id not in actionids:
+                    new_actions.append(ac)
+                self.portal[tool]._actions = new_actions
+
+        #
+        # ACTION : Manage subscriptions
+        # category : folder
+        #
+
+        self.portal['portal_actions'].addAction(
+            id='folder_notifications',
+            name='action_folder_notifications',
+            action='string: ${folder_url}/folder_notifications_form',
+            condition="python:hasattr(object, 'portal_type') and object.portal_type not in ('Section', 'Portal')",
+            permission=('ManageSubsriptions',),
+            category='folder',
+            visible=1)
+        self.log(" Added Action folder Notifications")
+
+        #
+        # ACTION : Manage my subscriptions
+        # category : user
+        #
+
+        self.portal['portal_actions'].addAction(
+            id='my_subscriptions',
+            name='action_my_subscriptions',
+            action='string: ${portal_url}/manage_my_subscriptions_form',
+            condition="python:not portal.portal_membership.isAnonymousUser()",
+            permission=(View,),
+            category='user',
+            visible=1)
+        self.log(" Added Action My Subscriptions")
+
+        #
+        # ACTION : Subscribe
+        # category : folder
+        #
+
+        # FIXME : cheking if subscription allowed in the context
+
+        self.portal['portal_actions'].addAction(
+            id='folder_subscribe',
+            name='action_folder_subscribe',
+            action='string: ${folder_url}/folder_subscribe_form',
+            condition="python:hasattr(object, 'portal_type') and \
+            object.portal_type != 'Portal' and \
+            object.portal_type in portal.portal_subscriptions.getSubscriptablePortalTypes() and \
+            hasattr(object, portal.portal_subscriptions.getSubscriptionContainerId()) and \
+            getattr(object, portal.portal_subscriptions.getSubscriptionContainerId()).isSubscriptionAllowed()" ,
+            permission=(View,),
+            category='folder',
+            visible=1)
+        self.log(" Added Action folder Subscribe")
 
     def setupSubscriber(self):
         """ Adds portal_subscriptions as subscriber of portal_eventservice
