@@ -35,7 +35,9 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.CMFCorePermissions import ManagePortal
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
-from zLOG import LOG, DEBUG
+from CPSSubscriptionsPermissions import ViewMySubscriptions
+
+from zLOG import LOG, DEBUG, INFO
 
 ##############################################################
 
@@ -555,12 +557,19 @@ class SubscriptionsTool(UniqueObject, Folder):
         Some of the parameters may be None to get all subscriptions.
         """
         subscriptions = []
+
+        if object is None:
+            return subscriptions
+
         subscriptionContainer = getattr(object,
-                                     self.getSubscriptionContainerId(), 0)
+                                        self.getSubscriptionContainerId(),
+                                        None)
+
         if subscriptionContainer:
             subscriptions += subscriptionContainer.getSubscriptions()
-            subscriptions = [x for x in subscriptions
-                             if 'subscription__' + event_type == x.id]
+            if event_type:
+                subscriptions = [x for x in subscriptions
+                                 if 'subscription__' + event_type == x.id]
         return subscriptions
 
     security.declarePublic("getRecipientsFor")
@@ -599,32 +608,54 @@ class SubscriptionsTool(UniqueObject, Folder):
     #############################################################
     #############################################################
 
-    security.declarePublic('getAllSubscriptionsFor')
-    def getAllSubscriptionsFor(self, email=None, context=None):
-        """Returns all the subscriptions for a given member/email.
+    def _makeEltDict(self, ob):
+        """Build a dict with an object
+
+        Used within the getAllSubscriptionsFor method
+        """
+        elt = {}
+        elt['title'] = ob.title_or_id()
+        if getattr(ob, 'getContent'):
+            doc = ob.getContent()
+            elt['description'] = doc.Description()
+        else:
+            elt['description'] = ob.Description()
+        elt['path'] = ob.absolute_url()
+        return elt
+
+    security.declareProtected(ViewMySubscriptions, 'getAllSubscriptionsFor')
+    def getAllSubscriptionsFor(self, member_id='', context=None):
+        """Returns all the subscriptions for a given member/email or
+        for the authenticated member.
+
+        It's possible to restrict to the context as well.
 
         Catalog research. getRecipients is indexed for the subscriptions
         container.
 
-        Notice, anonymous user can as well check their subscriptions.
+        Anonymous can't acces this ressource since it's protected by
+        the ViewMySubscriptions permission reserved to members.
         """
-        # XXX Implement for anonymous
 
-        membership_tool = getToolByName(self, 'portal_membership')
-        isAnonymousUser = membership_tool.isAnonymousUser()
+        #
+        # Preparing needed information for the research
+        # Authenticated member or member given member_id ?
+        # Localy or globaly ?
+        #
 
-        if not isAnonymousUser:
+        # Member information
+        if not member_id:
+            membership_tool = getToolByName(self, 'portal_membership')
             member_id = membership_tool.getAuthenticatedMember().getMemberId()
-            email = self.getMemberEmail(member_id)
+        email = self.getMemberEmail(member_id)
 
-        if not email:
-            return []
-
+        # Place
         if context is not None:
             path = context.absolute_url()
         else:
             path = getToolByName(self, 'portal_url').getPortalPath()
 
+        # Get the subscriptions containers
         catalog = getToolByName(self, 'portal_catalog')
         portal_type = 'CPS PlaceFull Subscription Container'
 
@@ -632,22 +663,50 @@ class SubscriptionsTool(UniqueObject, Folder):
                                             portal_type,
                                             'path':path,})
 
+        #
+        # Now let's get the subcription containers and check if the computed
+        # member is a subscriber from there.
+        #
+
         subscriptions_list = []
         for container in containers:
             container_parent = aq_parent(aq_inner(container.getObject()))
-            recipients = self.getRecipientsFor(
-                infos={'context':container_parent})
-            if email in recipients.keys():
-                elt = {}
-                elt['title'] = container_parent.title_or_id()
-                if getattr(container_parent, 'getContent'):
-                    doc = container_parent.getContent()
-                    elt['description'] = doc.Description()
-                else:
-                    elt['description'] = container_parent.Description()
-                elt['path'] = container_parent.absolute_url()
-                subscriptions_list.append(elt)
+            # Fetch the subscriptions in the given container
+            subscriptions = self.getSubscriptionsFor(None, container_parent)
+            for subscription in subscriptions:
+                for recipients_rule in subscription.getRecipientsRules():
 
+                    #
+                    # Explict subscriptions specific case
+                    #
+                    # The reason is that the member might have subscribe
+                    # from another place thant the place where the container is
+                    # For instance :
+                    #     /sections (place where the subscriptions container)
+                    #     /sections/sub1 (Place where the member subscribed)
+                    #     /sections/sub2 (nothing)
+                    #     /Sections/sub2/subsub2 (Another place where the
+                    #                             member subscribed)
+                    #
+
+                    if recipients_rule.meta_type == 'Explicit Recipients Rule':
+                        subscriber = recipients_rule.getMemberStructById(member_id)
+                        if subscriber != -1:
+                            urls = subscriber['subscription_relative_url']
+                            for url in urls:
+                                ob = self.restrictedTraverse(url)
+                                elt = self._makeEltDict(ob)
+                                subscriptions_list.append(elt)
+
+                    #
+                    # Standard case (Role based computed recipients)
+                    #
+
+                    else:
+                        recipients = recipients_rule.getRecipients('', container_parent, {})
+                        if email in recipients.keys():
+                            elt = self._makeEltDict(container_parent)
+                            subscriptions_list.append(elt)
         return subscriptions_list
 
     security.declarePublic('isSubscriberFor')
