@@ -166,6 +166,8 @@ class ComputedRecipientsRule(RecipientsRule):
         Returns a mapping with 'members' and 'emails' as keys.
         """
 
+        ## FIXME roles or not roles based ? or what ?
+
         if self.getExpression(object):
             member_email_mapping = {}
             mtool = self.portal_membership
@@ -262,18 +264,16 @@ class ExplicitRecipientsRule(RecipientsRule):
     _properties = RecipientsRule._properties + \
                   ({'id': 'members', 'type': 'lines', 'mode': 'w',
                     'label': 'Members subscribed manually'},
-                   {'id': 'members_allow_add', 'type': 'lines', 'mode': 'w',
+                   {'id': 'members_allow_add', 'type': 'boolean', 'mode': 'w',
                     'label': 'Members Allow Add'},
                    {'id': 'groups', 'type': 'lines', 'mode': 'w',
                     'label': 'Groups subscribed manually'},
                    {'id': 'groups_allow_add', 'type': 'lines', 'mode': 'w',
                     'label': 'Groups Allow Add'},
                    {'id': 'emails', 'type': 'lines', 'mode': 'w',
-                    'label': 'Emails subscribed Manually'},
-                   {'id': 'emails_allow_add', 'type': 'lines', 'mode': 'w',
-                    'label': 'Emails Allow Add'},
-                   {'id': 'emails_confirm', 'type': 'lines', 'mode': 'w',
-                    'label': 'Emails to be confirmed'},
+                    'label': 'Emails subscribed'},
+                   {'id': 'emails', 'type': 'lines', 'mode': 'w',
+                    'label': 'Emails Subscribe Manually'},
                    {'id': 'emails_pending_add', 'type': 'lines', 'mode': 'w',
                     'label': 'Emails Pending Add'},
                    {'id': 'emails_pending_delete', 'type': 'lines', 'mode': 'w',
@@ -281,12 +281,10 @@ class ExplicitRecipientsRule(RecipientsRule):
                    )
 
     members = []
-    members_allow_add = []
+    members_allow_add = 0
     groups = []
-    groups_allow_add = []
     emails = []
-    emails_allow_add = []
-    emails_confirm = []
+    emails_subsribers = []
     emails_pending_add = []
     emails_pending_delete = []
 
@@ -359,6 +357,25 @@ class ExplicitRecipientsRule(RecipientsRule):
         """ Add explicitly emails
         """
         self.emails = emails
+
+    security.declarePublic("getPendingEmails")
+    def getPendingEmails(self):
+        """ Return all the emails subscribed manually
+
+        Returns a list of emails
+        """
+        return self.emails_pending_add
+
+    security.declareProtected(ModifyPortalContent, "updatePendingEmails")
+    def updatePendingEmails(self, email=''):
+        """ Add pending email subscription
+        """
+        if email and \
+           email not in self.getPendingEmail() and \
+           email not in self.getEmails():
+            self.emails_pending_add.append(email)
+            return 1
+        return 0
 
     security.declareProtected(View, "getRecipients")
     def getRecipients(self, event_type, object, infos):
