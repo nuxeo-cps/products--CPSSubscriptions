@@ -31,6 +31,9 @@ Notifications are subclasses of NotificationRule and store also as
 subobjects, like RecipientsRule.
 """
 
+from smtplib import SMTPException
+
+import socket
 import cStringIO
 import string
 import quopri
@@ -144,11 +147,11 @@ class NotificationRule(PortalFolder):
 
         try:
             self.MailHost.send(raw_message)
-        except:
-            # FIXME find gaierror exception
+        except (socket.error, MailHostError, SMTPException):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
-                "Error while sending mail")
+                "Error while sending mail",
+                "check your SMTP parameters or mailfrom address")
 
 InitializeClass(NotificationRule)
 
