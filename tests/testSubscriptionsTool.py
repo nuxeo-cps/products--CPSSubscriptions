@@ -161,6 +161,54 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
             self.assertNotEqual(events_in_context, {})
             self.assertEqual(isinstance(events_in_context, DictType), 1)
 
+    def testSubscriptionsToolRenderedPortalTypeRegistration(self):
+
+        #
+        # Tests adding some portal_types that have to be rendered at
+        # notification time and then added to the notification email body
+        #
+
+        portal_type_ok= 'XXXX'
+        portal_type_not_ok = ('XXXXXXXXXX',)
+        currents = self.subscriptions_tool.getRenderedPortalTypes()
+        self.assertEqual(currents, [])
+
+        self.assertEqual(self.subscriptions_tool.addRenderedPortalType(
+            portal_type_ok),
+                         1)
+        currents = self.subscriptions_tool.getRenderedPortalTypes()
+        self.assertEqual(currents, [portal_type_ok])
+
+        self.assertEqual(self.subscriptions_tool.addRenderedPortalType(
+            portal_type_not_ok),
+                         0)
+        currents = self.subscriptions_tool.getRenderedPortalTypes()
+        self.assertEqual(currents, [portal_type_ok])
+
+    def testSubscriptionsToolRenderedEventsRegistration(self):
+
+        #
+        # Tests adding some events that have to be rendered at
+        # notification time and then added to the notification email body
+        #
+
+        event_id_ok= 'XXXX'
+        event_id_not_ok = ('XXXXXXXXXX',)
+        currents = self.subscriptions_tool.getRenderedEvents()
+        self.assertEqual(currents, [])
+
+        self.assertEqual(self.subscriptions_tool.addRenderedEvent(
+            event_id_ok),
+                         1)
+        currents = self.subscriptions_tool.getRenderedEvents()
+        self.assertEqual(currents, [event_id_ok])
+
+        self.assertEqual(self.subscriptions_tool.addRenderedEvent(
+            event_id_not_ok),
+                         0)
+        currents = self.subscriptions_tool.getRenderedEvents()
+        self.assertEqual(currents, [event_id_ok])
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestSubscriptionsTool))
