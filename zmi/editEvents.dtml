@@ -172,7 +172,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
 <h3>Specific event messages</h3>
 <p>
   You can edit for each event the content of the notifcation message that
-  will be use at global scope. (i.e: everywhere the event will append)
+  will be use at global scope (i.e: everywhere the event will append).
 </p>
 <p>
   Below are listed all the recorded events in all the contexts. Follow the
