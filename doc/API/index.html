@@ -27,6 +27,144 @@
         <tr>
         <td>
         
+<h3>CPSSubscriptions</h3>
+<h4>                  Event subscriptions and notifications</h4>
+<p>                                  ---</p>
+<p>  $Id$</p>
+<p>  This component provides subscriptions and notifications for CPS3.</p>
+<h3>Definition :</h3>
+
+<ul>
+<li>Subscription<p>    A subscription, within CPSSubscriptions, can be seen as a mailing list
+    subscription. It is usually linked to a given event and portal members
+    or visitors can be notified when this given event occurs by either
+    subscribing or either having roles which are setup to be notify on these
+    given events by a manager. Or still being part explicitly of the mailing
+    list. (Manager can do that)</p>
+</li>
+<li>Notifications<p>    CPSSubscriptions can right now handle mail notifications but it could be
+    extended to SMS, Jabber or whatever notifications thanks the
+    architecture modularity.</p>
+</li>
+
+</ul>
+<h3>Features :</h3>
+
+<ol>
+<li>- Placefull notification management.<p>      Managers (WorkspaceManager, SectionManager, ...) can set recipients
+    rules based on roles on folders such as Workspaces, Sections, Forums,
+    etc..</p>
+<p>    They have a new action <code>Notifications management</code> available where they
+    are granted with Manager privileges. A dedicated management form is then
+    provided to them where they can do the following :
+<ul>
+<li>Say who is going to be notified when a given event occur in
+        here. Such as "I want the WorkspaceMembers" being notified when a
+        new document is created in this workspace" or "I want the
+        SectionReviewer being notified when a document has been published in
+        this section" or still "I want the posters being notified when a
+        reply has been done on one of their personal posts" etc...
+        Notice, the use cases can be easily extended to more complex cases.</li>
+<li>Can open or close a given event for a Member or Anonymous
+        subscription</li>
+<li>Can add Explicit persons an a given event to be notified
+<ul>
+<li>Adding explicit emails
+         - Adding explicit members
+         - Adding explicit groups</li>
+
+</ul>
+</li>
+<li>Can put some emails in a black lists for a given event.</li>
+<li>Configuration options
+<ul>
+<li>Notify only people having local roles in here or not.
+        - Notify only events happening in sub-folders
+        - Are subscription allowed ?
+        - Are anonymous subscriptions allowed ?
+        - Email appearing as sender for the outgoing emails. (Default
+          creator of the folder</li>
+
+</ul>
+</li>
+<li>Possibility of seeing all the members / emails for all events.</li>
+
+</ul>
+<p>   Basically, the mailing lists content such as the ones in CPS2 are now
+   merged within the CPS3 and more particularly within folders.  So no need
+   with CPSSubscriptions, to create several mailing lists in a given
+   folder.</p>
+<p>   A well, the settings for a subscriptions is placefull. It means, that
+   the settings are in use in the sub-folders but they can be overrides too
+   the same way by performing a notification management on a sub-folders.</p>
+<p>   To sum up : CPSSubscriptions provides now integrated mailing lists on
+   containers. (See 4 - Notifications administrative management through ZMI
+   for more information about configuration)</p>
+</p>
+</li>
+<li>- Members / Portal visitors subscriptions<p>      An action on the portal, folder action, <code>I subscribe</code> permits members
+      / Anonymous to subscribe to event opened for subscriptions.</p>
+<h4>     a) Members subscriptions</h4>
+<p>        If a folder is open for subscriptions then members can request for
+     subscriptions.</p>
+<p>        He choose in the list of events which one is interested in and
+        submit.</p>
+<p>        Either, the subscription will be taken into consideration straight
+        forward either a confirmation email will be sent and the member will
+        have to follow a link and confirm the subscription.</p>
+<h5>     b) Anonymous Subscriptions</h5>
+<p>        If a folder is opened for anonymous subscriptions then an anonymous
+        can request for subscriptions.</p>
+<p>        He has to choose the event he is interested in and then submit.
+        Always, he will have to confirm the subscription. A confirmation
+        email is sent to him providing a confirmation link on the portal.</p>
+<p>        A given email cannot be spawn more than once since the requested
+        emails are kept so that you can't request more than once for a given
+        address.</p>
+</li>
+<li>- Managing subscriptions as a member of the portal<p>    CPSSubscriptions provides the possibility for a member to manage all the
+    subscriptions he belongs to everywhere on the portal through a single
+    action.</p>
+<p>    He can access this, by following the action <code>My subscriptions</code> on the
+    portal appearing within the user actions.</p>
+<p>    An interface will show him all the subscriptions he belongs to and where
+    they are located on the portal. Thus, the member, can handle its
+    subscriptions from a single access point.</p>
+<p>    To summarize : CPSSubscriptions provides a subscription centralized
+    management interface for the member of the portal.</p>
+</li>
+<li>- Administrative management through ZMI for notifications<h4>    a) Add new events <code>somewhere</code> in the portal.</h4>
+<p>       You can add some subscriptable container types such as Forum, Chat or
+    whatever from the subscriptions tool as Manager in the ZMI.</p>
+<h4>    b) Edit / customize sent messages on notifications and subscriptions.</h4>
+<p>       You can customize default message email content ans as well providing
+       custom content for given events.</p>
+</li>
+
+</ol>
+<h3>What doesn't provide CPSSubscriptions :</h3>
+
+<ul>
+<li>No mailing list content type as CPS2 or CPSMailingLists used to
+    provide.
+  - No Newsletters content type neither. (A CPSNewsLetters will handle this
+    feature and will use CPSSubscriptions for sending emails.)</li>
+
+</ul>
+<h3>Installation :</h3>
+
+<ul>
+<li>Classic External method installation right now. Will be integrated within
+   CPS3.1</li>
+
+</ul>
+<h3>More information :</h3>
+
+<ul>
+<li>docs sub folders.
+   - API docs sub-folder</li>
+
+</ul>
 <table border="0" cellpadding="5" cellspacing="0" width="100%">
 
         <tr>
@@ -71,7 +209,7 @@
         <p><i><a href="index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Feb 20 18:51:04 2004 by
+        on Fri Mar  5 02:18:23 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

@@ -90,19 +90,29 @@ Folder<br>
               <tr>
             <td align="LEFT" valign="TOP">
 <a href="#__init__">__init__</a><br>
+<a href="#getAllSubscriptionsFor">getAllSubscriptionsFor</a><br>
 <a href="#getContainerPortalTypes">getContainerPortalTypes</a><br>
 <a href="#getDefaultMessageBody">getDefaultMessageBody</a><br>
 <a href="#getDefaultMessageTitle">getDefaultMessageTitle</a><br>
 <a href="#getErrorMessageBody">getErrorMessageBody</a><br>
 <a href="#getEventsFromContext">getEventsFromContext</a><br>
 <a href="#getExplicitRecipientsRuleId">getExplicitRecipientsRuleId</a><br>
-<a href="#getMailNotificationRuleObjectId">getMailNotificationRuleObjectId</a><br>
 </td>
 <td align="LEFT" valign="TOP">
+<a href="#getMailNotificationRuleObjectId">getMailNotificationRuleObjectId</a><br>
 <a href="#getRecipientsFor">getRecipientsFor</a><br>
 <a href="#getRecordedEvents">getRecordedEvents</a><br>
+<a href="#getSubscribeConfirmEmailBody">getSubscribeConfirmEmailBody</a><br>
+<a href="#getSubscribeConfirmEmailTitle">getSubscribeConfirmEmailTitle</a><br>
+<a href="#getSubscribeWelcomeEmailBody">getSubscribeWelcomeEmailBody</a><br>
+<a href="#getSubscribeWelcomeEmailTitle">getSubscribeWelcomeEmailTitle</a><br>
+<a href="#getSubscriptablePortalTypes">getSubscriptablePortalTypes</a><br>
+</td>
+<td align="LEFT" valign="TOP">
+<a href="#getSubscriptionContainerFromContext">getSubscriptionContainerFromContext</a><br>
 <a href="#getSubscriptionContainerId">getSubscriptionContainerId</a><br>
 <a href="#getSubscriptionsFor">getSubscriptionsFor</a><br>
+<a href="#isSubscriberFor">isSubscriberFor</a><br>
 <a href="#manage_addEventType">manage_addEventType</a><br>
 <a href="#manage_editDefaultEventMessage">manage_editDefaultEventMessage</a><br>
 <a href="#manage_editEventMessage">manage_editEventMessage</a><br>
@@ -139,6 +149,41 @@ __init__ ( self )
 </pre></font>
 
 <p>Initialization of default properties.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getAllSubscriptionsFor"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getAllSubscriptionsFor&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getAllSubscriptionsFor (
+        self,
+        email=None,
+        context=None,
+        )
+
+</pre></font>
+
+<h3>Returns all the subscriptions for a given member/email.</h3>
+<p>        Catalog research. getRecipients is indexed for the subscriptions
+        container.</p>
+<p>        Notice, anonymous user can as well check their subscriptions.</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -417,6 +462,183 @@ getRecordedEvents ( self )
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="getSubscribeConfirmEmailBody"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscribeConfirmEmailBody&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscribeConfirmEmailBody ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the subcribe confirmation email body</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSubscribeConfirmEmailTitle"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscribeConfirmEmailTitle&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscribeConfirmEmailTitle ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the subcribe confirmation email title</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSubscribeWelcomeEmailBody"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscribeWelcomeEmailBody&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscribeWelcomeEmailBody ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the subcribe welcome email body</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSubscribeWelcomeEmailTitle"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscribeWelcomeEmailTitle&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscribeWelcomeEmailTitle ( self,  event_id=None )
+
+</pre></font>
+
+<h3>Returns the subcribe welcome email title</h3>
+<p>        If event_id is specified then let's check if we get a custom
+        one for the given event.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSubscriptablePortalTypes"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscriptablePortalTypes&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscriptablePortalTypes ( self )
+
+</pre></font>
+
+<p>Returns the possible subscriptable portal types</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSubscriptionContainerFromContext"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscriptionContainerFromContext&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscriptionContainerFromContext ( self,  context )
+
+</pre></font>
+
+<h3>Returns a subscriptions container id.</h3>
+<p>        Lookup to find one through acquisition</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="getSubscriptionContainerId"></a>&nbsp;
                 </font>
             </th>
@@ -480,6 +702,39 @@ getSubscriptionsFor (
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="isSubscriberFor"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">isSubscriberFor&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+isSubscriberFor (
+        self,
+        event_id,
+        context,
+        email='',
+        )
+
+</pre></font>
+
+<p>Is a given member subscriber for a given email in the given context</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="manage_addEventType"></a>&nbsp;
                 </font>
             </th>
@@ -533,6 +788,10 @@ manage_editDefaultEventMessage (
         event_default_email_title,
         event_default_email_body,
         event_error_email_body,
+        subscribe_confirm_email_body,
+        subscribe_confirm_email_title,
+        subscribe_welcome_email_body,
+        subscribe_welcome_email_title,
         REQUEST=None,
         )
 
@@ -567,6 +826,10 @@ manage_editEventMessage (
         event_id,
         event_email_title,
         event_email_body,
+        subscribe_confirm_email_body,
+        subscribe_confirm_email_title,
+        subscribe_welcome_email_body,
+        subscribe_welcome_email_title,
         REQUEST=None,
         )
 
@@ -623,7 +886,7 @@ notify_event (
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Feb 20 18:51:04 2004 by
+        on Fri Mar  5 02:18:23 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

@@ -82,9 +82,12 @@ PortalFolder<br>
         <td>
         
 <a href="#__init__">__init__</a><br>
+<a href="#getMailFrom">getMailFrom</a><br>
 <a href="#getSubscriptions">getSubscriptions</a><br>
+<a href="#isAnonymousSubscriptionAllowed">isAnonymousSubscriptionAllowed</a><br>
 <a href="#isNotificationLocalOnly">isNotificationLocalOnly</a><br>
 <a href="#isNotificationNoLocal">isNotificationNoLocal</a><br>
+<a href="#isSubscriptionAllowed">isSubscriptionAllowed</a><br>
 <a href="#updateProperties">updateProperties</a><br>
 
 
@@ -129,6 +132,36 @@ __init__ (
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="getMailFrom"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getMailFrom&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getMailFrom ( self )
+
+</pre></font>
+
+<p>Returns the default mail from for the mails
+        that are going to be sent by this container<p>        More likely the WorkspaceManager</p>
+</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="getSubscriptions"></a>&nbsp;
                 </font>
             </th>
@@ -148,6 +181,34 @@ getSubscriptions ( self )
 </pre></font>
 
 <p>Get all Subscriptions contained in here.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="isAnonymousSubscriptionAllowed"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">isAnonymousSubscriptionAllowed&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+isAnonymousSubscriptionAllowed ( self )
+
+</pre></font>
+
+<p>Is Anonymous Subscription Allowed ?</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -217,6 +278,34 @@ isNotificationNoLocal ( self )
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="isSubscriptionAllowed"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">isSubscriptionAllowed&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+isSubscriptionAllowed ( self )
+
+</pre></font>
+
+<p>Is Subscription Allowed ?</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="updateProperties"></a>&nbsp;
                 </font>
             </th>
@@ -250,7 +339,7 @@ updateProperties ( self,  **kw )
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Feb 20 18:51:04 2004 by
+        on Fri Mar  5 02:18:23 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

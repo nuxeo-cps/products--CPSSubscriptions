@@ -91,7 +91,9 @@ PortalFolder<br>
 <a href="#_getMailFrom">_getMailFrom</a><br>
 <a href="#_getSubject">_getSubject</a><br>
 <a href="#_makeInfoDict">_makeInfoDict</a><br>
+<a href="#notifyConfirmSubscription">notifyConfirmSubscription</a><br>
 <a href="#notifyRecipients">notifyRecipients</a><br>
+<a href="#notifyWelcomeSubscription">notifyWelcomeSubscription</a><br>
 
 
         <tr>
@@ -213,11 +215,47 @@ _makeInfoDict (
         self,
         event_type,
         object,
+        infos={},
         )
 
 </pre></font>
 
 <p>Building the infos dict used for processing the email.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="notifyConfirmSubscription"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">notifyConfirmSubscription&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+notifyConfirmSubscription (
+        self,
+        event_id,
+        object,
+        email,
+        context,
+        )
+
+</pre></font>
+
+<h3>Mail notification for subscription</h3>
+<p>        This method is called when soemone want to subscribe</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -256,6 +294,41 @@ notifyRecipients (
 
 <h3>Notify recipients</h3>
 <p>        This method will be called by the Subscription object.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="notifyWelcomeSubscription"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">notifyWelcomeSubscription&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+notifyWelcomeSubscription (
+        self,
+        event_id,
+        object,
+        email,
+        context,
+        )
+
+</pre></font>
+
+<h3>Mail notification for subscription welcome message</h3>
+<p>        This method is called when someone just subscribe</p>
 </td></tr>
 </td></tr>
 </table>
@@ -269,7 +342,7 @@ notifyRecipients (
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Feb 20 18:51:04 2004 by
+        on Fri Mar  5 02:18:23 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         

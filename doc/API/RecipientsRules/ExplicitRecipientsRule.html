@@ -87,14 +87,128 @@ PortalFolder<br>
         <tr>
         <td>
         
+
+            <table border="0" cellspacing="2" cellpadding="2" width="100%">
+              <tr>
+            <td align="LEFT" valign="TOP">
+<a href="#__init__">__init__</a><br>
+<a href="#anonymousConfirmSubscribe">anonymousConfirmSubscribe</a><br>
+<a href="#anonymousSubscribe">anonymousSubscribe</a><br>
 <a href="#getEmails">getEmails</a><br>
 <a href="#getGroups">getGroups</a><br>
 <a href="#getMembers">getMembers</a><br>
+<a href="#getPendingEmails">getPendingEmails</a><br>
+</td>
+<td align="LEFT" valign="TOP">
 <a href="#getRecipients">getRecipients</a><br>
+<a href="#getSubscriberEmails">getSubscriberEmails</a><br>
 <a href="#updateEmails">updateEmails</a><br>
 <a href="#updateGroups">updateGroups</a><br>
 <a href="#updateMembers">updateMembers</a><br>
+<a href="#updatePendingEmails">updatePendingEmails</a><br>
+<a href="#updateSubscriberEmails">updateSubscriberEmails</a><br>
+</td>
+</tr>
+            </table>
+            
 
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="__init__"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">__init__&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+__init__ (
+        self,
+        id,
+        title='',
+        )
+
+</pre></font>
+
+<p>Init the expression attrs</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="anonymousConfirmSubscribe"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">anonymousConfirmSubscribe&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+anonymousConfirmSubscribe (
+        self,
+        email,
+        event_id,
+        context,
+        )
+
+</pre></font>
+
+<p>Anonymous confirm the subscription</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="anonymousSubscribe"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">anonymousSubscribe&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+anonymousSubscribe (
+        self,
+        email,
+        event_id,
+        context,
+        )
+
+</pre></font>
+
+<p>Anonymous is asking for a subscription</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -191,6 +305,35 @@ getMembers ( self )
                 width="20%"
                 >
                 <font color="#000000">
+                  <a name="getPendingEmails"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getPendingEmails&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getPendingEmails ( self )
+
+</pre></font>
+
+<h3>Return all the emails subscribed manually</h3>
+<p>        Returns a list of emails</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
                   <a name="getRecipients"></a>&nbsp;
                 </font>
             </th>
@@ -216,6 +359,35 @@ getRecipients (
 
 <h3>Get the recipients.</h3>
 <p>        Returns a mapping with <code>members</code> and <code>emails</code> as keys.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="getSubscriberEmails"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">getSubscriberEmails&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+getSubscriberEmails ( self )
+
+</pre></font>
+
+<h3>Returns the anonymous subscriber emails</h3>
+<p>        return a list of emails</p>
 
         <tr>
             <th bgcolor="#99ccff"
@@ -300,6 +472,62 @@ updateMembers ( self,  member_ids=[] )
 </pre></font>
 
 <p>Add explicitly member ids</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="updatePendingEmails"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">updatePendingEmails&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+updatePendingEmails ( self,  email='' )
+
+</pre></font>
+
+<p>Add pending email subscription</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="updateSubscriberEmails"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">updateSubscriberEmails&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+updateSubscriberEmails ( self,  email='' )
+
+</pre></font>
+
+<p>Add pending email subscription</p>
 </td></tr>
 </td></tr>
 </table>
@@ -313,7 +541,7 @@ updateMembers ( self,  member_ids=[] )
         <p><i><a href="../index.html">Table of Contents</a></i></p>
 
         <font size="-2"><i>This document was automatically generated
-        on Fri Feb 20 18:51:04 2004 by
+        on Fri Mar  5 02:18:23 2004 by
         <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
         WORKING</i></font>
         
