@@ -30,15 +30,17 @@ Defines the Subscriptions Tool class
 
 from types import DictType, StringType
 
-from OFS.Folder import Folder
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
+
+from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 from Products.CMFCore.CMFCorePermissions import ManagePortal
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
 from CPSSubscriptionsPermissions import ViewMySubscriptions
+from NotificationMessageBody import addNotificationMessageBody
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -51,7 +53,7 @@ MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
 
 ##############################################################
 
-class SubscriptionsTool(UniqueObject, Folder):
+class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
     """Subscriptions Tool
 
     portal_subcriptions is the central tool with the necessary methods
@@ -92,7 +94,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         {'label': "Edit events content messages",
          'action': 'manage_edit_events',
          },
-        ) + Folder.manage_options[2:4]
+        ) + CMFBTreeFolder.manage_options[0:1] + \
+        CMFBTreeFolder.manage_options[2:4]
 
     security.declareProtected(ManagePortal, 'manage_events')
     manage_events = DTMLFile('zmi/configureEvents', globals())
@@ -224,6 +227,10 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         Core attributs and default messages contents
         """
+
+        # Btree constructor to store notification message body
+        CMFBTreeFolder.__init__(self, self.id)
+
         # Core attrs
         self.notify_hidden_object = 0
         self.mapping_context_events = {}
@@ -808,5 +815,14 @@ class SubscriptionsTool(UniqueObject, Folder):
             # Anonymous
             return email in explicits.getEmails()
         return
+
+    ################################################################
+    ################################################################
+
+    security.declareProtected(ManagePortal, 'addNotificationMessageBodyObject')
+    def addNotificationMessageBodyObject(self, message_body=''):
+        """Add a notification Message Body
+        """
+        addNotificationMessageBody(self, message_body=message_body)
 
 InitializeClass(SubscriptionsTool)
