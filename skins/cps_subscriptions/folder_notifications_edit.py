@@ -28,7 +28,6 @@ if REQUEST is not None:
         kw = {}
         kw['notify_local_only'] = REQUEST.form.get('notify_local_only', 0) and 1
         kw['notify_no_local'] = REQUEST.form.get('notify_no_local', 0) and 1
-        LOG("KWKWKKWKWKWKKWKWK", DEBUG, 'XXXX'+str(kw))
         subscription_folder.updateProperties(**kw)
 
         #
@@ -56,6 +55,11 @@ if REQUEST is not None:
             current_event_subscription = getattr(subscription_folder,
                                                  'subscription__'+event)
             current_event_subscription.addEventType(event)
+            # Default -> mail notification
+            if not hasattr(current_event_subscription,
+                           context.portal_subscriptions.getMailNotificationRuleObjectId()):
+                current_event_subscription.manage_addProduct[
+                    'CPSSubscriptions'].addMailNotificationRule()
             #
             # Then for the the given event let's check if the role is subscribed
             # already

@@ -39,6 +39,11 @@ if REQUEST is not None:
             event.manage_addProduct[
                 'CPSSubscriptions'].addExplicitRecipientsRule()
 
+        # Default -> mail notification
+        if not hasattr(event, context.portal_subscriptions.getMailNotificationRuleObjectId()):
+            event.manage_addProduct[
+                'CPSSubscriptions'].addMailNotificationRule()
+
         explicit_recipients_rule = getattr(event, explicit_recipients_rule_id)
         explicit_emails = REQUEST.form.get('explicit_emails', [])
         explicit_recipients_rule.updateEmails(explicit_emails)
