@@ -652,7 +652,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                 return self.mapping_context_events[context_portal_type]
         return {}
 
-    security.declarePublic('getFilteredEventsFromContext')
+    security.declarePublic('getFilteredAllowedToSubscribeEventsFromContext')
     def getFilteredAllowedToSubscribeEventsFromContext(self, context=None):
         """Returns events given context filtered on roles
         """
@@ -666,7 +666,10 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         res = {}
         for event_id in event_ids_from_context:
             subscription = container.getSubscriptionById(event_id)
-            roles_allowed = subscription.getRolesAllowedToSubscribe()
+            if subscription is not None:
+                roles_allowed = subscription.getRolesAllowedToSubscribe()
+            else:
+                roles_allowed = []
 
             ok = 0
             # No filter in here
