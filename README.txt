@@ -93,8 +93,8 @@ Features:
         If a folder is open for subscriptions then members can request for
         subscriptions.
 
-        He choose in the list of events which one he is interested in and
-        submit.
+        He chooses in the list of events which one he is interested in and
+        submits.
 
         Either, the subscription will be taken into consideration straight
         forward either a confirmation email will be sent and the member will
