@@ -10,6 +10,10 @@
 # translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
+# translation of fr.po to
 # translation of fr.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -19,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: 2004-03-08 09:55default\n"
-"PO-Revision-Date: 2004-03-08 09:54+0100\n"
+"PO-Revision-Date: 2004-03-09 10:50+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +135,7 @@ msgstr "Fermer"
 #.     </input></input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_subscribe"
-msgstr "Je m'abonne"
+msgstr "S'abonner"
 
 #.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
 #.     </input>
@@ -156,7 +160,7 @@ msgstr "Evènements disponibles ici.v"
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
-msgstr "Evénements auxquels vous pouvez vous abonner"
+msgstr "Evénements auxquels vous pouvez vous abonner."
 
 #.   <h4>
 #.               <span>
@@ -195,7 +199,7 @@ msgstr "Quand/Où alerter ? "
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_I_subscribe"
-msgstr "Je m'abonnne"
+msgstr "Listes de diffusions"
 
 #.   <h1>
 #.         All Subscribers
@@ -232,7 +236,7 @@ msgstr "Mes abonnements"
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_ok_subscription"
-msgstr "Abonnement pris "
+msgstr "Abonnement pris en compte"
 
 #.   <h1>
 #.         Welcome !
@@ -289,16 +293,14 @@ msgstr "Liste"
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_local_only"
-msgstr ""
-"Alerter uniquement les persones ayant des rôles locaux dans ce répertoire."
+msgstr "Alerter uniquement les persones ayant des rôles locaux dans ce répertoire."
 
 #.   <span>
 #.                 Notify no local
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
-msgstr ""
-"Alerter uniquemenent lors d'événements se produisant dans les sous-espaces"
+msgstr "Alerter uniquemenent lors d'événements se produisant dans les sous-espaces"
 
 #.   <span>
 #.                  Others
@@ -425,7 +427,7 @@ msgid "action_my_subscriptions"
 msgstr "Mes abonnements"
 
 msgid "action_folder_subscribe"
-msgstr "Je m'abonne"
+msgstr "Liste de diffusions"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
@@ -480,3 +482,4 @@ msgstr "Bienvenue sur la liste de diffusion."
 
 #~ msgid "button_ok"
 #~ msgstr "ok"
+

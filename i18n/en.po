@@ -12,6 +12,7 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -21,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
 "POT-Creation-Date: 2004-03-08 09:55default\n"
-"PO-Revision-Date: 2004-03-08 09:53+0100\n"
+"PO-Revision-Date: 2004-03-08 16:39+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -195,7 +196,7 @@ msgstr " When/where to notify ?"
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_I_subscribe"
-msgstr "I Subscribe"
+msgstr "I subscribe"
 
 #.   <h1>
 #.         All Subscribers
@@ -423,7 +424,7 @@ msgid "action_my_subscriptions"
 msgstr "My subscriptions"
 
 msgid "action_folder_subscribe"
-msgstr "I subscribe"
+msgstr "Mailing lists"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
@@ -478,3 +479,4 @@ msgstr "Welcome to the mailing list."
 
 #~ msgid "button_ok"
 #~ msgstr "ok"
+
