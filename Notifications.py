@@ -77,7 +77,7 @@ class NotificationRule(PortalFolder):
         """
         raise NotImplementedError
 
-    def getRawMessage(self, infos):
+    def getRawMessage(self, infos, object):
         """ Renders an RFC822 compliant message.
         """
 
@@ -103,10 +103,30 @@ class NotificationRule(PortalFolder):
         writer.addheader('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')
         writer.flushheaders()
         writer._fp.write('Content-Transfer-Encoding: 8bit\n')
-        body_writer = writer.startbody('text/plain; charset=iso-8859-15',
-                                       [],
-                                       {'Content-Transfer-Encoding':
-                                        '8bit'})
+
+        #
+        # XXX : it's an hack. Should maintain a list of portal_type
+        # for which we want to have a render instead of checking only the
+        # portal type for the NewsLetter
+        #
+
+        if (object is not None and
+            getattr(object, 'portal_type', None) == 'NewsLetter'):
+            try:
+                infos['body'] = object.getContent().render()
+            except AttributeError:
+                pass
+
+            # text/html then
+            body_writer = writer.startbody('text/html; charset=iso-8859-15',
+                                           [],
+                                           {'Content-Transfer-Encoding':
+                                            '8bit'})
+        else:
+            body_writer = writer.startbody('text/plain; charset=iso-8859-15',
+                                           [],
+                                           {'Content-Transfer-Encoding':
+                                            '8bit'})
 
         body = '\n' + infos['body']
         body = cStringIO.StringIO(body)
@@ -115,13 +135,13 @@ class NotificationRule(PortalFolder):
 
         return rendered_message.getvalue()
 
-    def sendMail(self, mail_infos):
+    def sendMail(self, mail_infos, object=None):
         """Send a mail
 
         mail_infos contains all the needed information
         """
 
-        raw_message = self.getRawMessage(mail_infos)
+        raw_message = self.getRawMessage(mail_infos, object)
 
         LOG(":: CPSSubscriptions :: sendMail() :: for",
             INFO,
@@ -302,7 +322,7 @@ class MailNotificationRule(NotificationRule):
             mail_infos['to'] = email
             mail_infos['body'] = body
 
-            self.sendMail(mail_infos)
+            self.sendMail(mail_infos, object)
 
         # Dealing with members
         for member in members:
@@ -331,6 +351,7 @@ class MailNotificationRule(NotificationRule):
                      + event_id \
                      + "&email=" \
                      + email
+
 
         # Pre process for body/subject
         infos = {'portal_title': portal.Title(),
