@@ -114,8 +114,9 @@
 	  <p>
             <input type="checkbox" name="subscription_allowed"
               id="subscription_allowed" class="noborder"
+              checked="checked"
               tal:attributes="checked python:subscription_folder and
-              subscription_folder.isSubscriptionAllowed() or 1"
+              subscription_folder.isSubscriptionAllowed() or None"
               />
             <label for="subscription_allowed"
               i18n:translate="label_allow_user_subscriptions">
@@ -124,8 +125,9 @@
             <br/>
             <input type="checkbox" name="unsubscription_allowed"
               id="unsubscription_allowed" class="noborder"
+              checked="checked"
               tal:attributes="checked python:subscription_folder and
-              subscription_folder.isUnSubscriptionAllowed() or 1"
+              subscription_folder.isUnSubscriptionAllowed() or None"
               />
             <label for="unsubscription_allowed"
               i18n:translate="label_allow_user_unsubscriptions">
