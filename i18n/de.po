@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
-"POT-Creation-Date: 2004-10-06 03:24default\n"
+"POT-Creation-Date: 2004-10-06 15:52default\n"
 "PO-Revision-Date: 2004-07-12 18:19+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -316,6 +316,22 @@ msgstr "Ereignis Management"
 msgid "heading_my_subscriptions"
 msgstr "Meine Abonnements"
 
+# ## ACTIONS ######################################
+#.   <h1>
+#.           Search members to add to recipients list
+#.         </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_form.pt
+#, fuzzy
+msgid "heading_notify_content_form"
+msgstr "Ereignis Management"
+
+#.   <h1>
+#.       Search results
+#.     </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "heading_notify_members_search_results"
+msgstr ""
+
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
 #.       </h1>
@@ -336,6 +352,11 @@ msgstr "Abonnement Beendung wird geprüft"
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
 msgstr "Willkommen bei der Mailing Liste."
+
+#.   <th content="field/title">id</th>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "id"
+msgstr ""
 
 #.   <span>
 #.                     Are anonymous subscriptions allowed ?
@@ -381,6 +402,30 @@ msgid "label_follow_subscriptions_instructions"
 msgstr ""
 "Bitte folgen Sie den Anweisungen in der EMail die Sie gleich erhalten werden"
 
+#.   <span>
+#.            Mail body
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_mail_body"
+msgstr "Diese EMail Adressen benachrichtigen:"
+
+#.   <span>
+#.            Mail Subject
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_mail_subject"
+msgstr "Diese EMail Adressen benachrichtigen:"
+
+#.   <span />
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_no_results"
+msgstr ""
+"Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses "
+"Objekt."
+
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object.
 #.             </div>
@@ -420,6 +465,15 @@ msgstr "Benachrichtige nur Teilnehmer die hier lokale Rollen besitzen"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
 msgstr "Benachrichtige nur über Ereignisse in Sub Foldern "
+
+# ## PSMS ##########################################
+#.   <span>
+#.            Add explicitly recipients emails (one email per ligne)
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_notify_content_add_emails"
+msgstr "Wähle"
 
 #.   <span>
 #.                     Others
@@ -631,6 +685,11 @@ msgstr "Neues Forum"
 msgid "label_forum_comment_deleted"
 msgstr "Neues Forum"
 
+# ## PSMS ##########################################
+#, fuzzy
+msgid "label_notification_related_document"
+msgstr "Wähle"
+
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Ereignis Management"
@@ -677,6 +736,10 @@ msgstr ""
 #, fuzzy
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Bitte wählen Sie mindestens ein Ereignis für das Abonnement aus"
+
+#, fuzzy
+msgid "psm_an_email_has_been_sent"
+msgstr "Eine EMail wurde an sie versandt"
 
 # ## Subscription modes ############################
 msgid "mode_daily"

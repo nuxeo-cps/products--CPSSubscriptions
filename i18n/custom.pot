@@ -120,6 +120,9 @@ msgstr ""
 msgid "label_forum_comment_deleted"
 msgstr ""
 
+msgid "label_notification_related_document"
+msgstr ""
+
 ### ACTIONS ######################################
 
 msgid "action_folder_notifications"
@@ -161,6 +164,9 @@ msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_need
 msgstr ""
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
+msgstr ""
+
+msgid "psm_an_email_has_been_sent"
 msgstr ""
 
 ### BUTTONS ########################################

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-10-06 03:24default\n"
+"POT-Creation-Date: 2004-10-06 15:52default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -295,6 +295,20 @@ msgstr ""
 msgid "heading_my_subscriptions"
 msgstr ""
 
+#.   <h1>
+#.           Search members to add to recipients list
+#.         </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_form.pt
+msgid "heading_notify_content_form"
+msgstr ""
+
+#.   <h1>
+#.       Search results
+#.     </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "heading_notify_members_search_results"
+msgstr ""
+
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
 #.       </h1>
@@ -314,6 +328,11 @@ msgstr ""
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
+msgstr ""
+
+#.   <th content="field/title">id</th>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "id"
 msgstr ""
 
 #.   <span>
@@ -359,6 +378,25 @@ msgstr ""
 msgid "label_follow_subscriptions_instructions"
 msgstr ""
 
+#.   <span>
+#.            Mail body
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_mail_body"
+msgstr ""
+
+#.   <span>
+#.            Mail Subject
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_mail_subject"
+msgstr ""
+
+#.   <span />
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_no_results"
+msgstr ""
+
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object.
 #.             </div>
@@ -392,6 +430,13 @@ msgstr ""
 #.                   </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
+msgstr ""
+
+#.   <span>
+#.            Add explicitly recipients emails (one email per ligne)
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "label_notify_content_add_emails"
 msgstr ""
 
 #.   <span>
@@ -595,6 +640,9 @@ msgstr ""
 msgid "label_forum_comment_deleted"
 msgstr ""
 
+msgid "label_notification_related_document"
+msgstr ""
+
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr ""
@@ -634,6 +682,9 @@ msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_need
 msgstr ""
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
+msgstr ""
+
+msgid "psm_an_email_has_been_sent"
 msgstr ""
 
 # ## Subscription modes ############################

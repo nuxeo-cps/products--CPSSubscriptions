@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions\n"
-"POT-Creation-Date: 2004-10-06 03:24default\n"
+"POT-Creation-Date: 2004-10-06 15:52default\n"
 "PO-Revision-Date: 2004-10-01 08:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: Fabio Nosari <fabnos@fastwebnet.it>\n"
@@ -323,6 +323,22 @@ msgstr "Gestione delle notifiche"
 msgid "heading_my_subscriptions"
 msgstr "Sottoscrizioni personali"
 
+# ## ACTIONS ######################################
+#.   <h1>
+#.           Search members to add to recipients list
+#.         </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_form.pt
+#, fuzzy
+msgid "heading_notify_content_form"
+msgstr "Notifica"
+
+#.   <h1>
+#.       Search results
+#.     </h1>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "heading_notify_members_search_results"
+msgstr ""
+
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
 #.       </h1>
@@ -343,6 +359,11 @@ msgstr "Disiscrizioni prese in considerazione"
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
 msgstr "Benvenuto nella lista di diffusione."
+
+#.   <th content="field/title">id</th>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+msgid "id"
+msgstr ""
 
 #.   <span>
 #.                     Are anonymous subscriptions allowed ?
@@ -387,6 +408,30 @@ msgstr "Inserisci un indirizzo di posta valido"
 msgid "label_follow_subscriptions_instructions"
 msgstr "Segui le istruzioni incluse nella e-mail che riceverai a breve"
 
+#.   <span>
+#.            Mail body
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_mail_body"
+msgstr "Liste di diffusione da includere per questo avvenimento:"
+
+#.   <span>
+#.            Mail Subject
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_mail_subject"
+msgstr "Liste di diffusione da includere per questo avvenimento:"
+
+#.   <span />
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_no_results"
+msgstr ""
+"Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o "
+"per questo oggetto."
+
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object.
 #.             </div>
@@ -428,6 +473,14 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
 msgstr "notifica solamente gli eventi che avvengono nelle sotto cartelle"
+
+#.   <span>
+#.            Add explicitly recipients emails (one email per ligne)
+#.         </span>
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#, fuzzy
+msgid "label_notify_content_add_emails"
+msgstr "Aggiungi"
 
 #.   <span>
 #.                     Others
@@ -634,6 +687,10 @@ msgstr "Rifiuto nell'accettazione di un commento"
 msgid "label_forum_comment_deleted"
 msgstr "Eliminazione di un commento"
 
+#, fuzzy
+msgid "label_notification_related_document"
+msgstr "Aggiungi"
+
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Notifica"
@@ -681,6 +738,10 @@ msgstr ""
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Per effettuare la disiscrizione, devi scegliere almeno un avvenimento."
+
+#, fuzzy
+msgid "psm_an_email_has_been_sent"
+msgstr "Ti è stato inviato un messaggio di posta elettronica."
 
 # ## Subscription modes ############################
 msgid "mode_daily"
