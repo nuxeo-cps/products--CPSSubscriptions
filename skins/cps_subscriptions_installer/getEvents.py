@@ -16,7 +16,7 @@ workspace = {'workflow_create' : 'label_creation_of_documents',
 ###################################
 
 dict['Workspace'] = workspace
-
+dict['Portal'] = workspace
 #
 # Custom events
 #
