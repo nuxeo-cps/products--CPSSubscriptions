@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- fix malformed URI reference for actions
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - splitting macro lib in progress
