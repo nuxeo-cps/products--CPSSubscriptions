@@ -203,7 +203,7 @@ class MailNotificationRule(NotificationRule):
 
         try:
             subject = self.portal_subscriptions.getDefaultMessageTitle(
-                event_id=infos['event']) %infos
+                event_id=infos['event']) % infos
         except (KeyError,):
             # If the user put wrong variables
             subject = "No Subject"
@@ -218,16 +218,18 @@ class MailNotificationRule(NotificationRule):
 
         try:
             body = self.portal_subscriptions.getDefaultMessageBody(
-                event_id=infos['event']) %infos
+                event_id=infos['event']) % infos
         except (KeyError,):
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
 
         return body
 
-    def _makeInfoDict(self, event_type, object, infos={}):
+    def _makeInfoDict(self, event_type, object, infos=None):
         """Building the infos dict used for processing the email.
         """
+        if infos is None:
+            infos = {}
 
         portal_subscriptions = getToolByName(self, 'portal_subscriptions')
         context = aq_parent(aq_inner(object))
@@ -256,6 +258,9 @@ class MailNotificationRule(NotificationRule):
         infos['user_id'] = object.Creator()
         infos['user_name'] = getattr(self.portal_membership.getMemberById(
             object.Creator()), 'fullname', '')
+
+        for k, v in infos.get('kwargs', {}).items():
+            infos['kwargs_' + k] = v
 
         return infos
 
@@ -334,8 +339,8 @@ class MailNotificationRule(NotificationRule):
                  'email'       : email,
                  'mfrom'       : container.getMailFrom()}
 
-        subject = tool.getSubscribeConfirmEmailTitle() %infos
-        body = tool.getSubscribeConfirmEmailBody() %infos
+        subject = tool.getSubscribeConfirmEmailTitle() % infos
+        body = tool.getSubscribeConfirmEmailBody() % infos
 
         # For building the E-Mail
         mail_infos = {}
@@ -371,8 +376,8 @@ class MailNotificationRule(NotificationRule):
                  'email'       : email,
                  'mfrom'       : container.getMailFrom()}
 
-        subject = tool.getSubscribeWelcomeEmailTitle() %infos
-        body = tool.getSubscribeWelcomeEmailBody() %infos
+        subject = tool.getSubscribeWelcomeEmailTitle() % infos
+        body = tool.getSubscribeWelcomeEmailBody() % infos
 
         # Post process
         infos['body'] =  body
@@ -415,8 +420,8 @@ class MailNotificationRule(NotificationRule):
                  'email'       : email,
                  'mfrom'       : container.getMailFrom()}
 
-        subject = tool.getUnSubscribeEmailTitle() %infos
-        body = tool.getUnSubscribeEmailBody() %infos
+        subject = tool.getUnSubscribeEmailTitle() % infos
+        body = tool.getUnSubscribeEmailBody() % infos
 
         # Post process
         infos['body'] =  body
@@ -463,8 +468,8 @@ class MailNotificationRule(NotificationRule):
                  'email'       : email,
                  'mfrom'       : container.getMailFrom()}
 
-        subject = tool.getUnSubscribeConfirmEmailTitle() %infos
-        body = tool.getUnSubscribeConfirmEmailBody() %infos
+        subject = tool.getUnSubscribeConfirmEmailTitle() % infos
+        body = tool.getUnSubscribeConfirmEmailBody() % infos
 
         # Post process
         infos['body'] =  body

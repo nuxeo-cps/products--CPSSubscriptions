@@ -48,6 +48,12 @@
         - user_id : Id of the user who provided an action that generated the notification.
         - user_name : Fullname of the user who provided an action that generated the notification.
 
+        - kwargs_xxx : Specific information from workflows. Warning : those
+	  variables can only be used for event messages coming from workflows,
+	  otherwise it will generate errors. The most common use of those
+	  variables is probably "kwargs_comment", which tells which comments
+	  where given by the user when she asks for a workflow transition.
+
 3 - Customization of given notification event messages
 
      Through the ZMI you may edit the content of messages.
