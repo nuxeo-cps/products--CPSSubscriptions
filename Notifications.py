@@ -145,7 +145,7 @@ class NotificationRule(PortalFolder):
             self.MailHost.send(raw_message)
         except:
 	    # FIXME check the exceptions throwed 
-            LqOG("::  CPSSubscriptions  :: sendMail() :: for",
+            LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail")
 
