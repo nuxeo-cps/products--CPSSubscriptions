@@ -62,6 +62,9 @@ Comments which where given by the user when she asks for a workflow transition</
 <li><code>infos</code><br />
 Dictionnary you may give to evtool.notify() containing whatever
 
+<li><code>Field values / Attribute values of the object</code><br />
+You may access to all the field values of the schemas if the object is a FlexibleTypeInformation or all attribute values in the case of a 'normal' zope object
+
 </ul>
 
 <form action="manage_editDefaultEventMessage">
