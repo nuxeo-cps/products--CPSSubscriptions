@@ -1,3 +1,10 @@
+<tal:block define="mcat nocall:here/Localizer/default;
+                   dummy python:request.set('breadcrumb_set',
+                   [{'id':'manage_my_subscriptions',
+                     'url': here.portal_url()+'/manage_my_subscriptions_form',
+                     'longtitle': mcat('bc_manage_my_subscriptions'),
+                     'title': mcat('bc_manage_my_subscriptions'),},])
+                  ">
 <metal:block use-macro="here/content_lib/macros/master">
   <metal:block fill-slot="header">
     <h1 i18n:translate="heading_my_subscriptions">
@@ -8,3 +15,4 @@
     <metal:block use-macro="here/subscriptions_lib/macros/manage_my_subscriptions" />
   </metal:block>
 </metal:block>
+</tal:block>
