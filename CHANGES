@@ -5,10 +5,13 @@ New features:
 ~~~~~~~~~~~~~
 - Possible to specify portal_types / events for which we gonna render the content 
   type within the body of the notification email. 
-- Accessible from the tool.
+  Accessible from the tool.
+- Archives are now available within the portal_subscriptions
+
 Bug fixes:
 ~~~~~~~~~~
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Cleanups on the actions of subscriptions_tool
+- portal_subscriptions is a BTreeFolder2 since it's going to store NotificationMessageBody objects
