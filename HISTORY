@@ -1,4 +1,27 @@
 *******************************************
+** CPSSubscriptions V0.6.0 [R1 build 2004/05/04-10:01 by anguenot]
+
+Requires:
+~~~~~~~~~
+- CPSInstaller >= 0.4
+New features:
+~~~~~~~~~~~~~
+- Adding the Manager role
+- Add CPSForum and ForumPost as subscribable contexts
+- Add an upgrade method for the old CPSSubscriptions instances
+Bug fixes:
+~~~~~~~~~~
+- Acquisition was a problem before if a container was defined in a restricted area such as the top of tree. Members hadn't enough rights to use the subsription since they didn't have any rights on the top.
+- 'My Subscriptions' board now cope with sub trees and central subscription container.
+- to mail field wasn't well formed for some MTA
+- Indexation of subsription containers was buggy with Zope-2.6.x.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- New permissions 'Can Subscribe' for subscription container
+- New permissions 'View My Subscriptions' to access the subscription board"
+- Cleanup permissions in classes
+
+*******************************************
 ** CPSSubscriptions V0.5.1 [R1 build 2004/04/22-14:50 by madarche]
 
 Requires:
