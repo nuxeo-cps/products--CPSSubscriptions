@@ -1,4 +1,22 @@
 *******************************************
+** CPSSubscriptions V0.8.0 [R1 build 2004/05/21-14:23 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- now possible to register for forum post publishing events
+
+Bug fixes:
+~~~~~~~~~~
+- User names in generated emails are now the user fullnames as returned by the
+  portal directory.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.7.0 [R1 build 2004/05/17-15:48 by madarche]
 
 Requires:
