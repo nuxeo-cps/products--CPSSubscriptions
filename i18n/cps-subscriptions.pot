@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-06-17 17:19default\n"
+"POT-Creation-Date: 2004-07-07 09:03default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -481,11 +481,6 @@ msgstr ""
 #.   <span>
 #.                   Real time
 #.                 </span>
-#.   <option selected="" value="mode_real_time">
-#.                 <span>
-#.                   Real time
-#.                 </span>
-#.               </option>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "mode_real_time"
 msgstr ""
@@ -572,7 +567,25 @@ msgstr ""
 msgid "label_forum_post_published"
 msgstr ""
 
+msgid "label_forum_post_unpublished"
+msgstr ""
+
+msgid "label_forum_post_rejected"
+msgstr ""
+
+msgid "label_forum_post_deleted"
+msgstr ""
+
 msgid "label_forum_comment_published"
+msgstr ""
+
+msgid "label_forum_comment_unpublished"
+msgstr ""
+
+msgid "label_forum_comment_rejected"
+msgstr ""
+
+msgid "label_forum_comment_deleted"
 msgstr ""
 
 # ## ACTIONS ######################################

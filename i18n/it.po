@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-06-17 17:19default\n"
+"POT-Creation-Date: 2004-07-07 09:03default\n"
 "PO-Revision-Date: 2004-05-10 16:45+0100\n"
 "Last-Translator: Paolo Dina <paolo@php3.it>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -714,11 +714,6 @@ msgstr "Ora sei un abbonato."
 #.   <span>
 #.                   Real time
 #.                 </span>
-#.   <option selected="" value="mode_real_time">
-#.                 <span>
-#.                   Real time
-#.                 </span>
-#.               </option>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "mode_real_time"
 msgstr ""
@@ -807,7 +802,31 @@ msgid "label_forum_post_published"
 msgstr "Scrittore forum"
 
 #, fuzzy
+msgid "label_forum_post_unpublished"
+msgstr "Scrittore forum"
+
+#, fuzzy
+msgid "label_forum_post_rejected"
+msgstr "Scrittore forum"
+
+#, fuzzy
+msgid "label_forum_post_deleted"
+msgstr "Scrittore forum"
+
+#, fuzzy
 msgid "label_forum_comment_published"
+msgstr "Creazione di un nuovo commento sul forum"
+
+#, fuzzy
+msgid "label_forum_comment_unpublished"
+msgstr "Creazione di un nuovo commento sul forum"
+
+#, fuzzy
+msgid "label_forum_comment_rejected"
+msgstr "Creazione di un nuovo commento sul forum"
+
+#, fuzzy
+msgid "label_forum_comment_deleted"
 msgstr "Creazione di un nuovo commento sul forum"
 
 # ## ACTIONS ######################################

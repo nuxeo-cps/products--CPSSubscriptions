@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2004-05-24 16:24default\n"
+"POT-Creation-Date: 2004-07-07 09:03default\n"
 "PO-Revision-Date: 2004-06-08 16:55-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@curiango.ipen.br>\n"
 "Language-Team: Português do Brasil <pt@li.org>\n"
@@ -261,6 +261,14 @@ msgid "header_subscription_allowed"
 msgstr "Subscrições são permitidas e para quem?"
 
 #.   <h4>
+#.              You can choose below your subscription mode for your above subscriptions
+#.           </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#, fuzzy
+msgid "header_user_subscribption_mode"
+msgstr "Subscrições são permitidas e para quem?"
+
+#.   <h4>
 #.             When/where to notify ?
 #.           </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -457,6 +465,14 @@ msgid "label_subscription_manage"
 msgstr "Informações/Desubscrever"
 
 #.   <span>
+#.                 Subscription modes
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#, fuzzy
+msgid "label_subscription_modes"
+msgstr "Informações/Desubscrever"
+
+#.   <span>
 #.                   Where
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -490,6 +506,13 @@ msgstr "São desubscrições permitidas?"
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_you_are_no_registred"
 msgstr "Você é agora um subscritor."
+
+#.   <span>
+#.                   Real time
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "mode_real_time"
+msgstr ""
 
 # ## LABELS #######################################
 msgid "label_workspace_manager"
@@ -573,8 +596,32 @@ msgstr "Novo comentário"
 msgid "label_forum_post_published"
 msgstr "Postador"
 
+#, fuzzy
+msgid "label_forum_post_unpublished"
+msgstr "Postador"
+
+#, fuzzy
+msgid "label_forum_post_rejected"
+msgstr "Postador de fórum"
+
+#, fuzzy
+msgid "label_forum_post_deleted"
+msgstr "Postador de fórum"
+
 msgid "label_forum_comment_published"
 msgstr "Criar comentário"
+
+#, fuzzy
+msgid "label_forum_comment_unpublished"
+msgstr "Criar comentário"
+
+#, fuzzy
+msgid "label_forum_comment_rejected"
+msgstr "Criar"
+
+#, fuzzy
+msgid "label_forum_comment_deleted"
+msgstr "Criar"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -610,3 +657,13 @@ msgstr "Você foi removido da lista de discussão!"
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
 msgstr "Você foi removido da lista; contacte o administrador se necessário."
+
+# ## Subscription modes ############################
+msgid "mode_daily"
+msgstr ""
+
+msgid "mode_weekly"
+msgstr ""
+
+msgid "mode_monthly"
+msgstr ""

@@ -1,4 +1,4 @@
-# translation of fr.po to 
+# translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to francais
@@ -16,10 +16,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-06-17 17:19default\n"
-"PO-Revision-Date: 2004-06-17 17:19+0200\n"
-"Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
-"Language-Team:  <fr@li.org>\n"
+"POT-Creation-Date: 2004-07-07 09:03default\n"
+"PO-Revision-Date: 2004-07-07 09:04+0200\n"
+"Last-Translator: emmanuel <epietriga@nuxeo.com>\n"
+"Language-Team: francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
-"X-Generator: KBabel 1.3\n"
+"X-Generator: KBabel 1.3.1\n"
 
 #.   <span>
 #.                     <span replace="context_lcs/?role" />
@@ -521,11 +521,6 @@ msgstr "Vous êtes maintenant abonné."
 #.   <span>
 #.                   Real time
 #.                 </span>
-#.   <option selected="" value="mode_real_time">
-#.                 <span>
-#.                   Real time
-#.                 </span>
-#.               </option>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "mode_real_time"
 msgstr "Temps réel"
@@ -611,8 +606,26 @@ msgstr "Création d'un commentaire"
 msgid "label_forum_post_published"
 msgstr "Publication d'un message"
 
+msgid "label_forum_post_unpublished"
+msgstr "Dépublication d'un message"
+
+msgid "label_forum_post_rejected"
+msgstr "Rejet d'un message"
+
+msgid "label_forum_post_deleted"
+msgstr "Suppression d'un message"
+
 msgid "label_forum_comment_published"
 msgstr "Publication d'un commentaire"
+
+msgid "label_forum_comment_unpublished"
+msgstr "Dépublication d'un commentaire"
+
+msgid "label_forum_comment_rejected"
+msgstr "Rejet d'un commentaire"
+
+msgid "label_forum_comment_deleted"
+msgstr "Suppression d'un commentaire"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"

@@ -99,7 +99,25 @@ msgstr ""
 msgid "label_forum_post_published"
 msgstr ""
 
+msgid "label_forum_post_unpublished"
+msgstr ""
+
+msgid "label_forum_post_rejected"
+msgstr ""
+
+msgid "label_forum_post_deleted"
+msgstr ""
+
 msgid "label_forum_comment_published"
+msgstr ""
+
+msgid "label_forum_comment_unpublished"
+msgstr ""
+
+msgid "label_forum_comment_rejected"
+msgstr ""
+
+msgid "label_forum_comment_deleted"
 msgstr ""
 
 ### ACTIONS ######################################
