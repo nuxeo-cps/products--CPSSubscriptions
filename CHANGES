@@ -3,10 +3,12 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Possible to specify portal_types / events for which we gonna render the content 
+  type within the body of the notification email. 
+- Accessible from the tool.
 Bug fixes:
 ~~~~~~~~~~
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- Cleanups on the actions of subscriptions_tool
