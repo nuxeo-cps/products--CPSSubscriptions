@@ -29,8 +29,14 @@ email) but that's not mandatory (triggering an arbitrary script for instance).
 
 Notifications are subclasses of NotificationRule and store also as
 subobjects, like RecipientsRule.
-
 """
+
+import cStringIO
+import string
+import quopri
+import mimify
+import mimetools
+import MimeWriter
 
 from Globals import InitializeClass, MessageDialog
 from Acquisition import aq_base, aq_parent, aq_inner
@@ -55,6 +61,80 @@ class NotificationRule(PortalFolder):
         This method will be called by the Subscription object.
         """
         raise NotImplementedError
+
+    def getSMTPServerName(self):
+        """Returns the name of the SMTP server
+        """
+        return self.MailHost.smtp_host
+
+    def getSMTPServerPort(self):
+        """Returns the port for the smtp host
+        """
+        return self.MailHost.smtp_port
+
+    def getRawMessage(self, infos):
+        """ Renders an RFC822 compliant message.
+        """
+
+        rendered_message = cStringIO.StringIO()
+        writer = MimeWriter.MimeWriter(rendered_message)
+
+        # Sender
+        sender = "%s <%s>" % (infos['sender_email'], infos['sender_email'])
+        writer.addheader('From', sender)
+
+        # Subject
+        subj = infos['subject']
+        infp = cStringIO.StringIO(subj)
+        outfp = cStringIO.StringIO()
+        quopri.encode(infp, outfp, 1)
+        subject = outfp.getvalue()
+        subject = string.replace(subject, "\n", "")
+        subject = string.replace(subject, " ", "_")
+
+        # Header
+        if string.find(subject, "?") == -1:
+            subject = "=?iso-8859-1?Q?%s?=" % subject
+        else:
+            subject = string.replace(subject, "?", "=3F")
+            subject = "=?iso-8859-1?Q?%s?=" % subject
+        writer.addheader('subject', subject)
+
+        # To
+        writer.addheader(string.capitalize('to'),
+                         mimify.mime_encode_header(infos['to']))
+
+        # Misc
+        writer.addheader('X-Mailer', 'Nuxeo CPS : CPSSubscriptions')
+
+        writer.flushheaders()
+        writer._fp.write('Content-Transfer-Encoding: quoted-printable\n')
+        body_writer = writer.startbody('text/plain;',
+                                       [],
+                                       {'Content-Transfer-Encoding':
+                                        'quoted-printable'})
+
+        body = '\n'+infos['body']
+        body = cStringIO.StringIO(body)
+        body.seek(0)
+        mimetools.copyliteral(body, body_writer)
+
+        return rendered_message.getvalue()
+
+
+    def sendMail(self, mail_infos):
+        """Send a mail
+
+        mail_infos contains all the needed information
+        """
+
+        raw_message = self.getRawMessage(mail_infos)
+
+        LOG(":: CPSSubscriptions :: sendMail() :: for",
+            INFO,
+            mail_infos)
+
+        self.MailHost.send(raw_message)
 
 InitializeClass(NotificationRule)
 
@@ -145,9 +225,10 @@ class MailNotificationRule(NotificationRule):
         # Just more secure in case of the event configuration is badly done.
         if events_from_context is None:
             return {}
-        event_from_context = mcat(events_from_context.get(event_type,
-                                                          event_type)).encode("ISO-8859-15",
-                                                                              'ignore')
+        event_from_context = mcat(
+            events_from_context.get(event_type,
+                                    event_type)).encode("ISO-8859-15",
+                                                        'ignore')
 
         infos['portal_title'] = self.portal_url.getPortalObject().Title()
         infos['notification_title'] = event_from_context
@@ -161,20 +242,28 @@ class MailNotificationRule(NotificationRule):
         infos['user_id'] = object.Creator()
         infos['user_name'] = getattr(self.portal_membership.getMemberById(
             object.Creator()), 'fullname', '')
+
         return infos
 
+    ##################################################################
+    ##################################################################
+
     security.declareProtected(ManagePortal, "notifyRecipients")
-    def notifyRecipients(self, event_type, object,
-                         infos=None, emails=[], members=[], groups=[], **kw):
+    def notifyRecipients(self,
+                         event_type,
+                         object,
+                         infos=None,
+                         emails=[],
+                         members=[],
+                         groups=[],
+                         **kw):
         """ Notify recipients
 
-        This method will be called by the Subscription object.
+        This method will be called by the Subscription object when a
+        notification occurs.
         """
 
-        #
-        # XXX Dealing only with emails right now.
-        # to implement : members and groups
-        #
+        portal = getToolByName(self,'portal_url').getPortalObject()
 
         infos = self._makeInfoDict(event_type, object, infos)
         mfrom = self._getMailFrom(object)
@@ -185,14 +274,27 @@ class MailNotificationRule(NotificationRule):
             INFO,
             infos)
 
+        # Dealing with emails
         for email in emails:
-            LOG("::MailNotificationRule :: SENDING MAIL :: TO ",
-                INFO,
-                email)
-            self.MailHost.send(messageText=body,
-                               mto=[email],
-                               mfrom=mfrom,
-                               subject=subject)
+            mail_infos = {}
+            mail_infos['sender_name'] = portal.Title()
+            mail_infos['sender_email'] = mfrom
+            mail_infos['subject'] = subject
+            mail_infos['to'] = email
+            mail_infos['body'] = body
+
+            self.sendMail(mail_infos)
+
+        # Dealing with members
+        for member in members:
+            pass
+
+        # Dealing with groups
+        for group in groups:
+            pass
+
+    #####################################################################
+    #####################################################################
 
     security.declareProtected(ManagePortal, "notifyConfirmSubscription")
     def notifyConfirmSubscription(self, event_id, object, email, context):
@@ -201,41 +303,36 @@ class MailNotificationRule(NotificationRule):
         This method is called when soemone want to subscribe
         """
 
-        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
-        sub_container = subscriptions_tool.getSubscriptionContainerFromContext(context)
+        tool = getToolByName(self, 'portal_subscriptions')
+        container = tool.getSubscriptionContainerFromContext(context)
         portal = getToolByName(self,'portal_url').getPortalObject()
-        object_url = context.absolute_url() + \
-                     '/folder_confirm_subscribe_form?email=%s&event_id=%s'\
-                     %(email, event_id)
+        object_url = context.absolute_url() \
+                     + '/folder_confirm_subscribe_form?fake=subscriptions' \
+                     + '&event_id='\
+                     + event_id \
+                     + '&email='\
+                     + email
 
         # Pre process for body/subject
         infos = {'portal_title': portal.Title(),
-                 'object_url'  : object_url,
+                 'object_url'  : repr(object_url),
                  'event_id'    : event_id,
                  'email'       : email,
-                 'mfrom'       : sub_container.getMailFrom()}
+                 'mfrom'       : container.getMailFrom()}
 
-        subject = subscriptions_tool.getSubscribeConfirmEmailTitle() \
-                  %infos
-        body = subscriptions_tool.getSubscribeConfirmEmailBody() \
-               %infos
+        subject = tool.getSubscribeConfirmEmailTitle() %infos
+        body = tool.getSubscribeConfirmEmailBody() %infos
 
-        # Post process
-        infos['body'] =  body
-        infos['subject'] = subject.replace('\n', '')
+        # For building the E-Mail
+        mail_infos = {}
+        mail_infos['sender_name'] = infos.get('portal_title')
+        mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
+        mail_infos['subject'] = subject
+        mail_infos['to'] = email
+        mail_infos['body'] = body
 
-        mfrom = infos.get('mfrom', 'no_mail@no_mail.com')
-        subject = infos.get('subject', 'No Subject')
-        body = infos.get('body', '')
-
-        LOG(":: CPSSubscriptions :: notifySubscription :: on",
-            INFO,
-            infos)
-
-        self.MailHost.send(messageText=body,
-                           mto=[email],
-                           mfrom=mfrom,
-                           subject=subject)
+        # Send mail then.
+        self.sendMail(mail_infos)
 
     security.declareProtected(ManagePortal, "notifyWelcomeSubscription")
     def notifyWelcomeSubscription(self, event_id, object, email, context):
@@ -244,10 +341,10 @@ class MailNotificationRule(NotificationRule):
         This method is called when someone just subscribe
         """
 
-        # XXX code sucks.
-        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
-        sub_container = subscriptions_tool.getSubscriptionContainerFromContext(context)
+        tool = getToolByName(self, 'portal_subscriptions')
         portal = getToolByName(self,'portal_url').getPortalObject()
+        container = tool.getSubscriptionContainerFromContext(context)
+
         info_url = context.absolute_url() + '/folder_subscribe_form'
         object_url = context.absolute_url()
 
@@ -258,27 +355,69 @@ class MailNotificationRule(NotificationRule):
                  'info_url'    : info_url,
                  'event_id'    : event_id,
                  'email'       : email,
-                 'mfrom'       : sub_container.getMailFrom()}
+                 'mfrom'       : container.getMailFrom()}
 
-        subject = subscriptions_tool.getSubscribeWelcomeEmailTitle() %infos
-        body = subscriptions_tool.getSubscribeWelcomeEmailBody() %infos
+        subject = tool.getSubscribeWelcomeEmailTitle() %infos
+        body = tool.getSubscribeWelcomeEmailBody() %infos
 
         # Post process
         infos['body'] =  body
         infos['subject'] = subject.replace('\n', '')
 
-        mfrom = infos.get('mfrom', 'no_mail@no_mail.com')
-        subject = infos.get('subject', 'No Subject')
-        body = infos.get('body', '')
+        # For building the E-Mail
+        mail_infos = {}
+        mail_infos['sender_name'] = infos.get('portal_title')
+        mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
+        mail_infos['subject'] = infos.get('subject', 'No Subject')
+        mail_infos['to'] = email
+        mail_infos['body'] = infos.get('body', '')
 
-        LOG(":: CPSSubscriptions :: notifySubscription :: on",
-            INFO,
-            infos)
+        # Send mail then.
+        self.sendMail(mail_infos)
 
-        self.MailHost.send(messageText=body,
-                           mto=[email.strip()],
-                           mfrom=mfrom,
-                           subject=subject)
+    ###################################################################
+    ###################################################################
+
+    security.declareProtected(ManagePortal, "notifyUnSubscribe")
+    def notifyUnSubscribe(self, event_id, object, email, context):
+        """ Mail notification for unsubscription message
+
+        This method is called when someone just unsubscribe
+        """
+
+        tool = getToolByName(self, 'portal_subscriptions')
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        container = tool.getSubscriptionContainerFromContext(context)
+
+        info_url = context.absolute_url() + '/folder_subscribe_form'
+        object_url = context.absolute_url()
+
+        # infos contains information needed to generated messages
+        infos = {'portal_title': portal.Title(),
+                 'object_url'  : object_url,
+                 'object_title': context.title_or_id(),
+                 'info_url'    : info_url,
+                 'event_id'    : event_id,
+                 'email'       : email,
+                 'mfrom'       : container.getMailFrom()}
+
+        subject = tool.getUnSubscribeEmailTitle() %infos
+        body = tool.getUnSubscribeEmailBody() %infos
+
+        # Post process
+        infos['body'] =  body
+        infos['subject'] = subject.replace('\n', '')
+
+        # For building the E-Mail
+        mail_infos = {}
+        mail_infos['sender_name'] = infos.get('portal_title')
+        mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
+        mail_infos['subject'] = infos.get('subject', 'No Subject')
+        mail_infos['to'] = email
+        mail_infos['body'] = infos.get('body', '')
+
+        # Send mail then.
+        self.sendMail(mail_infos)
 
 InitializeClass(MailNotificationRule)
 
