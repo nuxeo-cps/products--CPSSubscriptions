@@ -1,742 +1,391 @@
-# translation of en.po to 
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to Francais
-# translation of en.po to Français
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
-# Julien Anguenot <ja@nuxeo.com>, 2004.
-# Julien Anguenot <anguenot@nuxeo.com>, 2004.
-# DARCHE <madarche@nuxeo.com>, 2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-28 18:36default\n"
-"PO-Revision-Date: 2004-05-10 16:45+0100\n"
-"Last-Translator: Paolo Dina <paolo@php3.it>\n"
-"Language-Team:  <janguenot@nuxeo.com>\n"
+"Project-Id-Version: CPSSubscriptions\n"
+"POT-Creation-Date: 2004-07-19 16:05default\n"
+"PO-Revision-Date: 2004-10-01 08:27+0100\n"
+"Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
+"Language-Team: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
 
-#    <span>
-#                    <span replace="context_lcs/?role" />
-#                </span>
 #.   <span>
-#.                     <span replace="context_lcs/?role" />
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"context_lcs/?role\" />"
-msgstr "FAKE"
+msgstr ""
 
 #.   <span>
-#.                       <span replace="events/?event_key" />
-#.                     </span>
-#.   <span>
-#.                         <span replace="events/?event_key" />
-#.                       </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "<span replace=\"events/?event_key\" />"
-msgstr "FAKE"
-
-#.   <span>
-#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr ""
 
-#    <span>
-#          Below are the subscriptions you belong to all over the portal
-#        </span>
 #.   <span>
-#.         Below are the subscriptions you belong to all over the portal
-#.       </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgstr ""
+
+#.   <span>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "Below are the subscriptions you belong to all over the portal"
-msgstr ""
-"Sotto sono elencati gli abbonamenti a cui appartieni all'interno del portale"
+msgstr "Di seguito sono elencate tutte le sottoscrizioni, interne al portale, alle quali hai aderito:"
 
-#    <span>
-#        Mailing list subscription confirmation for the event
-#        <span />
-#        in <span replace="here/title_or_id" />
-#        at <a href="here/absolute_url">
-#             <span replace="here/absolute_url" />
-#           </a>
-#      </span>
 #.   <span>
-#.       Mailing list subscription confirmation for the event
-#.       <span />
-#.       in <span replace="here/title_or_id" />
-#.       at <a href="here/absolute_url">
-#.         <span replace="here/absolute_url" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"Mailing list subscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Confermato l'abbonamento alla lista di diffusione <span /> in <span replace="
-"\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace="
-"\"here/absolute_url\" /> </a>"
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Mailing list subscription confirmation for the event <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
+msgstr "Viene confermato l'abbonamento alla lista di diffusione <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
 
-#    <span>
-#        Mailing list unsubscription confirmation for the event
-#        <span />
-#        in <span replace="here/title_or_id" />
-#        at <a href="here/absolute_url">
-#             <span replace="here/absolute_url" />
-#           </a>
-#      </span>
 #.   <span>
-#.       Mailing list unsubscription confirmation for the event
-#.       <span />
-#.       in <span replace="here/title_or_id" />
-#.       at <a href="here/absolute_url">
-#.         <span replace="here/absolute_url" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"Mailing list unsubscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Confermata la disiscrizione alla lista di diffusione <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Mailing list unsubscription confirmation for the event <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
+msgstr "Viene confermata la disiscrizione alla lista di diffusione <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
 
-#    <span>
-#                    Notification type
-#                  </span>
 #.   <span>
-#.                     Notification type
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "Notification type"
-msgstr "Tipo di notifica"
+msgstr "Tipo di notifica per:"
 
-#    <span>
-#           Please, follow the instruction included in the mail you will shortly receive
-#         </span>
 #.   <span>
-#.          Please, follow the instruction included in the mail you will shortly receive
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr ""
-"Per cortesia, segui le istruzioni che potrai leggere nella mail che ti "
-"arriverà a breve"
+#: from
+#: ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+msgid "Please, follow the instruction included in the mail you will shortly receive"
+msgstr "Segui le istruzioni che potrai leggere nella e-mail che ti arriverà a breve."
 
-#    <span>
-#       Ton confirm that you want to be added to this mailing list, click
-#       <a href="" attributes="href
-#      string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
-#          here
-#       </a>
-#      </span>
 #.   <span>
-#.       Ton confirm that you want to be added to this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
-#.         here
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"Ton confirm that you want to be added to this mailing list, click <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Per confermare di voler essere aggiunto a questa lista di diffusione, clicca "
-"<a href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> quì </a>"
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Ton confirm that you want to be added to this mailing list, click <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr "Per confermare di voler essere aggiunto a questa lista di diffusione, clicca <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> quì </a>"
 
-#    <span>
-#       Ton confirm that you want to be removed from this mailing list, click
-#       <a href="" attributes="href
-#      string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
-#          here
-#       </a>
-#      </span>
 #.   <span>
-#.       Ton confirm that you want to be removed from this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
-#.         here
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"Ton confirm that you want to be removed from this mailing list, click <a "
-"href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Per confermare di voler essere rimosso da questa lista di diffusione, clicca "
-"<a href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> quì </a>"
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Ton confirm that you want to be removed from this mailing list, click <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr "Per confermare di voler essere rimosso da questa lista di diffusione, clicca <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> quì </a>"
 
-#    <span>
-#        We have received a request for subscription with the email
-#        address, <a href="" attributes="href string:mailto:${email}">
-#                    <span replace="email" />
-#                 </a>
-#      </span>
 #.   <span>
-#.       We have received a request for subscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
-#.         <span replace="email" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"We have received a request for subscription with the email address, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
-msgstr ""
-"Abbiamo ricevuto una richiesta di iscrizione per questo indirizzo di posta "
-"elettronica, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span "
-"replace=\"email\" /> </a>"
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "We have received a request for subscription with the email address, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
+msgstr "E' pervenuta una richiesta di iscrizione per questo indirizzo di posta elettronica, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
 
-#    <span>
-#        We have received a request for unsubscription with the email
-#        address, <a href="" attributes="href string:mailto:${email}">
-#                    <span replace="email" />
-#                 </a>
-#      </span>
 #.   <span>
-#.       We have received a request for unsubscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
-#.         <span replace="email" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid ""
-"We have received a request for unsubscription with the email address, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
-msgstr ""
-"Abbiamo ricevuto una richiesta di disiscrizione per questo indirizzo di "
-"posta elettronica, <a href=\"\" attributes=\"href string:mailto:${email}\"> "
-"<span replace=\"email\" /> </a>"
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "We have received a request for unsubscription with the email address, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
+msgstr "E' pervenuta una richiesta di disiscrizione per questo indirizzo di posta elettronica, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
 
-#    <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
 #.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_close"
 msgstr "Chiudi"
 
-#    <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
-#            <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
-#        </input></input>
 #.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
-#.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
-#.           </input></input>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_subscribe"
-msgstr "Iscrizione"
+msgstr "Sottoscrivi"
 
-#    <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
-#        </input>
-#    <input name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
-#          </input>
-#    <input name="folder_unsubscribe_role_based_member:method" type="submit" class="standAlone" value="button_unsubscribe" condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0">
-#          </input>
 #.   <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
-#.           </input>
-#.   <input name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
-#.             </input>
-#.   <input name="folder_unsubscribe_role_based_member:method" type="submit" class="standAlone" value="button_unsubscribe" condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0">
-#.             </input>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
-msgstr "Disiscrizione"
+msgstr "Abbandona la sottoscrizione"
 
-#    <p>
-#            You should not modify the following field unless you have specific
-#            needs, and if so, you should enter a valid email address like,
-#    	for example, system@mysite.net
-#          </p>
 #.   <p>
-#.             You should not modify the following field unless you have specific
-#.             needs, and if so, you should enter a valid email address like,
-#.             for example, system@mysite.net
-#.           </p>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "description_do_not_modify_or_enter_email_address"
-msgstr ""
-"Non dovresti modificare il seguente campo a meno ché tu abbia esigenze "
-"specifiche, ed in questo caso dovresti comunque inserire un indirizzo di "
-"posta valido, come ad esempio sistema@ilmiosito.it"
+msgstr "Non devi modificare i campi successivi a meno che tu non abbia delle necessità specifiche.<br> In questo caso dovrai inserire un indirizzo valido come per esempio: sistema@miosito.net"
 
-#    <span />
 #.   <span />
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "event_id"
-msgstr "FAKE"
+msgstr "ID dell'avvenimento"
 
-#    <h4>
-#        Available events in here
-#      </h4>
 #.   <h4>
-#.         Available events in here
-#.       </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_available_events"
-msgstr "Eventi disponibili in questo contesto"
+msgstr "Notifiche disponibili in questo contesto:"
 
-#    <h4>
-#        Below are events open for subscriptions.
-#      </h4>
 #.   <h4>
-#.         Below are events open for subscriptions.
-#.       </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
-msgstr "Sotto sono elencati gli eventi a cui puoi iscriverti"
+msgstr "Scegli a quali sottoscrizioni vuoi iscriverti: "
 
-#    <h4>
-#          Below are the events you may unsubscribe
-#        </h4>
 #.   <h4>
-#.           Below are the events you may unsubscribe
-#.         </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events_to_sunsubscribe"
-msgstr "Sotto sono elencati gli eventu da cui puoi disiscriverti"
+msgstr "Scegli quali sottoscrizioni vuoi abbandonare: "
 
-#    <strong>
-#                  <span>
-#                    Enter a valid email
-#                  </span>
-#              </strong>
 #.   <strong>
-#.                       <span>
-#.                         Enter a valid email
-#.                       </span>
-#.                     </strong>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_enter_your_email"
 msgstr "Inserisci un indirizzo di posta elettronica valido"
 
-#    <h4>
-#            Sender address for outgoing emails
-#          </h4>
 #.   <h4>
-#.             Sender address for outgoing emails
-#.           </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_mfrom_mailing_list"
-msgstr "Indirizzo del mittente per la posta in uscita"
+msgstr "Indirizzo del mittente per la posta in uscita:"
 
-#    <h4>
-#          Below are the events for which you are subsribed because of your local roles
-#        </h4>
 #.   <h4>
-#.           Below are the events for which you are subsribed because of your local roles
-#.         </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr ""
-"Sotto sono elencati gli eventi a cui sei iscritto in seguito ai ruoli locali"
+msgstr "Di seguito,  sono elencati gli avvenimenti a cui sei iscritto in funzione dei ruoli locali"
 
-#    <h4>
-#            Are subscriptions allowed and to whom ?
-#          </h4>
 #.   <h4>
-#.             Are subscriptions allowed and to whom ?
-#.           </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscription_allowed"
-msgstr " Le iscrizioni sono permesse ?"
+msgstr "Amministra le sottoscrizioni:"
 
-#    <h4>
-#            Are subscriptions allowed and to whom ?
-#          </h4>
 #.   <h4>
-#.              You can choose below your subscription mode for your above subscriptions
-#.           </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-#, fuzzy
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_user_subscribption_mode"
-msgstr " Le iscrizioni sono permesse ?"
+msgstr "Consenti le iscrizioni?"
 
-#    <h4>
-#            When/where to notify ?
-#          </h4>
 #.   <h4>
-#.             When/where to notify ?
-#.           </h4>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_when_where_to_notify"
-msgstr " Quando/dove la notifica ?"
+msgstr "Quando e come notificare:"
 
-#    <h1 condition="not:email">
-#          I Subscribe
-#        </h1>
 #.   <h1 condition="not:email">
-#.         I Subscribe
-#.       </h1>
-#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_I_subscribe"
 msgstr "Liste di diffusione"
 
-#    <h1>
-#          All Subscribers
-#        </h1>
 #.   <h1>
-#.         All Subscribers
-#.       </h1>
 #: from
 #: ../skins/cps_subscriptions/folder_notifications_all_subscribers_view.pt
 msgid "heading_all_subscribers"
 msgstr "Tutti gli iscritti"
 
-#    <h1>
-#            Confirm subscription for <span replace="event_id" />
-#          </h1>
 #.   <h1>
-#.           Confirm subscription for <span replace="event_id" />
-#.         </h1>
-#: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
 msgid "heading_confirm_subscribtion"
-msgstr "Conferma la sottoscrizione per <span replace='event_id' />"
+msgstr "Conferma la sottoscrizione per: <span replace='event_id' />"
 
-#    <h1>
-#            Confirm unsubscription for <span replace="event_id" />
-#          </h1>
 #.   <h1>
-#.           Confirm unsubscription for <span replace="event_id" />
-#.         </h1>
-#: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
 msgid "heading_confirm_unsubscribtion"
-msgstr "Conferma la disiscrizione per <span replace='event_id' />"
+msgstr "Conferma la disiscrizione per: <span replace='event_id' />"
 
-#    <h1>
-#          Local Notifications Management
-#        </h1>
 #.   <h1>
-#.         Local Notifications Management
-#.       </h1>
-#: from ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
 #: ../skins/cps_subscriptions/folder_notifications_form.pt
 msgid "heading_manage_local_notifications"
-msgstr "Notifiche locali"
+msgstr "Gestione delle notifiche"
 
-#    <h1>
-#          My subscriptions
-#        </h1>
 #.   <h1>
-#.         My subscriptions
-#.       </h1>
-#: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
+#: from
+#: ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr "Le mie iscrizioni"
+msgstr "Sottoscrizioni personali"
 
-#    <h1 condition="email">
-#          Subscription taken into consideration
-#        </h1>
 #.   <h1 condition="email">
-#.         Subscription taken into consideration
-#.       </h1>
-#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_ok_subscription"
 msgstr "Iscrizioni prese in considerazione"
 
-#    <h1 condition="email">
-#          Unsubscription taken into consideration
-#        </h1>
 #.   <h1 condition="email">
-#.         Unsubscription taken into consideration
-#.       </h1>
-#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "heading_ok_unsubscription"
 msgstr "Disiscrizioni prese in considerazione"
 
-#    <h1>
-#          You are now part of the mailing list.
-#        </h1>
 #.   <h1>
-#.         You are now part of the mailing list.
-#.       </h1>
-#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+#: from
+#: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
-msgstr "Benvenuti alle liste di diffusione."
+msgstr "Benvenuto nella lista di diffusione."
 
-#    <span>
-#                  Are anonymous subscriptions allowed ?
-#                </span>
 #.   <span>
-#.                     Are anonymous subscriptions allowed ?
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_anonymous_subscription_allowed"
-msgstr "Sono consentite le iscrizioni anonime ?"
+msgstr "autorizza le sottoscrizioni per gli utenti anonimi "
 
-#    <span>
-#              E-Mails Black list
-#            </span>
 #.   <span>
-#.                 E-Mails Black list
-#.               </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_black_list"
-msgstr "Lista degli indirizzi bloccati a causa di qualche fatto accaduto"
+msgstr "Liste di diffusione da escludere per questo avvenimento:"
 
-#    <span>
-#                    Click here
-#                  </span>
 #.   <span>
-#.                     Click here
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_click_here"
-msgstr "Clicca quì"
+msgstr "Clicca qui"
 
-#    <span>
-#              Explicit E-Mails
-#            </span>
 #.   <span>
-#.                 Explicit E-Mails
-#.               </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_emails"
-msgstr "Email esplicite"
+msgstr "Liste di diffusione da includere per questo avvenimento:"
 
-#    <span>
-#                    Enter a valid email
-#                  </span>
 #.   <span>
-#.                         Enter a valid email
-#.                       </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_enter_your_email"
 msgstr "Inserisci un indirizzo di posta valido"
 
-#    <span>
-#           Please, follow the instruction included in the mail you will shortly receive
-#         </span>
 #.   <span>
-#.          Please, follow the instruction included in the mail you will shortly receive
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_subscribe_form.pt
+#: from
+#: ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr ""
-"Per cortesia, segui le istruzioni incluse nella mail che riceverai a breve"
+msgstr "Segui le istruzioni incluse nella e-mail che riceverai a breve"
 
-#    <div>
-#            Currently you haven't any subscriptions in this context or for this object.
-#          </div>
 #.   <div>
-#.               Currently you haven't any subscriptions in this context or for this object.
-#.             </div>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions"
-msgstr ""
-"Attualmente non hai alcuna iscrizione in questo contesto o per questo "
-"oggetto."
+msgstr "Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o per questo oggetto."
 
-#    <div>
-#            Currently you haven't any subscriptions in this context or for this object based on your local roles
-#          </div>
 #.   <div>
-#.               Currently you haven't any subscriptions in this context or for this object based on your local roles
-#.             </div>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions_based_on_local_roles"
-msgstr ""
-"Attualmente non hai alcuna iscrizione in questo contesto o per questo "
-"oggetto dovuta ai tuoi ruoli locali"
+msgstr "Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o per questo oggetto in funzione dei permessi che ti sono stati attribuiti attraverso i ruoli locali."
 
-# ## PSMS ##########################################
-#    <span>
-#                        Choose
-#                      </span>
 #.   <span>
-#.                       Choose
-#.                     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_add"
-msgstr "Scegli"
+msgstr "Aggiungi"
 
-#    <span>
-#                  Notify local only
-#                </span>
 #.   <span>
-#.                     Notify local only
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_local_only"
-msgstr ""
-"Notifica solamente le persone che possiedono ruoli locali in questa posizione"
+msgstr "avverti solamente gli utenti che possiedono dei ruoli locali in questo contesto"
 
-#    <span>
-#                  Notify no local
-#                </span>
 #.   <span>
-#.                     Notify no local
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_notifications_no_local"
-msgstr "Notifica solamente gli eventi che avvengono nelle sotto cartelle"
+msgstr "notifica solamente gli eventi che avvengono nelle sotto cartelle"
 
-#    <span>
-#                   Others
-#                 </span>
 #.   <span>
-#.                     Others
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_other"
 msgstr "Altro"
 
-#    <span>
-#              See all subscribers
-#            </span>
 #.   <span>
-#.               See all subscribers
-#.             </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_see_all_subscribers"
-msgstr "Visualizza tutti gli iscritti per tutti gli eventi"
+msgstr "Visualizza tutti gli utenti avvisati per tutti gli avvenimenti."
 
-# ## LABELS #######################################
-#    <span>
-#                Full Name
-#              </span>
 #.   <span>
-#.                 Full Name
-#.               </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subcriptions_fullname"
 msgstr "Nome completo"
 
-#    <span>
-#                  Are subscription allowed ?
-#                </span>
 #.   <span>
-#.                     Are subscription allowed ?
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscription_allowed"
-msgstr "Le iscrizioni sono consentite ?"
+msgstr "autorizza le sottoscrizioni"
 
-#    <span>
-#                  Description
-#                </span>
 #.   <span>
-#.                   Description
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscription_description"
 msgstr "Descrizione"
 
-#    <span>
-#                  Infos / Unsubscribe
-#                </span>
 #.   <span>
-#.                   Infos / Unsubscribe
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscription_manage"
 msgstr "Amministra"
 
-#    <span>
-#                  Infos / Unsubscribe
-#                </span>
 #.   <span>
-#.                 Subscription modes
-#.               </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-#, fuzzy
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscription_modes"
-msgstr "Amministra"
+msgstr "Modalità di sottoscrizione"
 
-#    <span>
-#                  Where
-#                </span>
 #.   <span>
-#.                   Where
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscription_where"
 msgstr "Dove"
 
-#    <span>
-#                  Are subscription allowed ?
-#                </span>
 #.   <span>
-#.                      subscriptions / unsubscriptions are closed
-#.                    </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
-#, fuzzy
-msgid "label_subscriptions_closed"
-msgstr "Le iscrizioni sono consentite ?"
-
-#    <span>
-#                E-Mails
-#              </span>
-#.   <span>
-#.                 E-Mails
-#.               </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscriptions_email"
 msgstr "Indirizzi di posta"
 
-#    <span>
-#             You currently do not belong to any subscriptions.
-#           </span>
 #.   <span>
-#.           You currently do not belong to any subscriptions.
-#.         </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscriptions_no_subscription_yet"
-msgstr "Attualmente non appartieni ad alcuna sottoscrizione."
+msgstr "Attualmente, non sei iscritto ad alcun abbonamento interno del portale."
 
-#    <span>
-#                  Are unsubscription allowed ?
-#                </span>
 #.   <span>
-#.                     Are unsubscription allowed ?
-#.                   </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_unsubscription_allowed"
-msgstr ""
-"Le disiscrizioni sono consentite per i collaboratori aggiunti a partire "
-"dalla configurazione basata sui ruoli locali?"
+msgstr "autorizza le disiscrizioni per i collaboratori aggiunti <br>a partire dalla configurazione basata sui ruoli locali"
 
-#    <span>
-#          You are now a subscriber.
-#        </span>
 #.   <span>
-#.         You are now a subscriber.
-#.       </span>
-#: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
+#: from
+#: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_you_are_no_registred"
-msgstr "Ora sei un abbonato."
+msgstr "Attualmente, non appartieni ad alcuna sottoscrizione."
 
 #.   <span>
-#.                   Real time
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "mode_real_time"
-msgstr ""
+msgstr "In tempo reale"
 
+# ## LABELS #######################################
 msgid "label_workspace_manager"
-msgstr "Responsabile dell'area di lavoro"
+msgstr "Responsabile dell'ambiente di lavoro"
 
 msgid "label_workspace_member"
-msgstr "Collaboratore dell'area di lavoro"
+msgstr "Collaboratore dell'ambiente di lavoro"
 
 msgid "label_workspace_reader"
-msgstr "Lettore dell'area di lavoro"
+msgstr "Lettore dell'ambiente di lavoro"
 
 msgid "label_section_manager"
 msgstr "Responsabile di sezione"
@@ -748,16 +397,16 @@ msgid "label_section_reader"
 msgstr "Lettore di sezione"
 
 msgid "label_owner"
-msgstr "Possessore"
+msgstr "Proprietario"
 
 msgid "label_manager"
 msgstr "Responsabile"
 
 msgid "label_forum_poster"
-msgstr "Scrittore forum"
+msgstr "Utente di forum"
 
 msgid "label_forum_moderator"
-msgstr "Moderatore forum"
+msgstr "Moderatore del forum"
 
 msgid "label_workflow_create"
 msgstr "Crea contenuto"
@@ -766,32 +415,31 @@ msgid "label_workflow_modify"
 msgstr "Modifica contenuto"
 
 msgid "label_workflow_cut_copy_paste"
-msgstr "Copia / incolla contenuto"
+msgstr "Taglia/Copia/Incolla contenuto"
 
 msgid "label_workflow_publish"
-msgstr "Pubblica contenuto"
+msgstr "Pubblica un contenuto"
 
 msgid "label_workflow_accept"
-msgstr "Accettazione di contenuto in pubblicazione"
+msgstr "Accettazione di un contenuto in pubblicazione"
 
-#, fuzzy
 msgid "label_workflow_delete"
-msgstr "Rifiuto di contenuto in pubblicazione"
+msgstr "Elimina contenuto"
 
 msgid "label_workflow_submit"
-msgstr "Invio di contenuto"
+msgstr "Invio di un contenuto"
 
 msgid "label_workflow_reject"
-msgstr "Rifiuto di contenuto in pubblicazione"
+msgstr "Rifiuto di un contenuto in pubblicazione"
 
 msgid "label_workflow_unpublish"
-msgstr "Ritiro di contenuto pubblicato"
+msgstr "Ritiro di un contenuto pubblicato"
 
 msgid "label_calendar_new_event"
 msgstr "Pianificazione di un nuovo evento"
 
 msgid "label_forum_comment_create"
-msgstr "Creazione di un nuovo commento sul forum"
+msgstr "Creazione di un nuovo commento"
 
 msgid "label_reply_to_personnal_post"
 msgstr "Nuova risposta ad un messaggio personale"
@@ -803,97 +451,80 @@ msgid "label_forum_new_message"
 msgstr "Nuovo messaggio sul forum"
 
 msgid "label_forum_new_post"
-msgstr "Nuovo messaggio sul forum"
+msgstr "Creazione di un messaggio"
 
 msgid "label_forum_new_comment"
 msgstr "Nuovo commento"
 
-#, fuzzy
 msgid "label_forum_post_published"
-msgstr "Scrittore forum"
+msgstr "Pubblicazione di un messaggio"
 
-#, fuzzy
 msgid "label_forum_post_unpublished"
-msgstr "Scrittore forum"
+msgstr "Ritiro di un messaggio, dalla pubblicazione"
 
-#, fuzzy
 msgid "label_forum_post_rejected"
-msgstr "Scrittore forum"
+msgstr "Rifiuto di un messaggio"
 
-#, fuzzy
 msgid "label_forum_post_deleted"
-msgstr "Scrittore forum"
+msgstr "Eliminazione di un messaggio"
 
-#, fuzzy
 msgid "label_forum_comment_published"
-msgstr "Creazione di un nuovo commento sul forum"
+msgstr "Pubblicazione di un commento"
 
-#, fuzzy
 msgid "label_forum_comment_unpublished"
-msgstr "Creazione di un nuovo commento sul forum"
+msgstr "Ritiro di un commento dalla pubblicazione "
 
-#, fuzzy
 msgid "label_forum_comment_rejected"
-msgstr "Creazione di un nuovo commento sul forum"
+msgstr "Rifiuto nell'accettazione di un commento"
 
-#, fuzzy
 msgid "label_forum_comment_deleted"
-msgstr "Creazione di un nuovo commento sul forum"
+msgstr "Eliminazione di un commento"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
-msgstr "Gestione delle notifiche"
+msgstr "Notifica"
 
 msgid "action_my_subscriptions"
-msgstr "I miei abbonamenti"
+msgstr "Sottoscrizioni personali"
 
 msgid "action_folder_subscribe"
-msgstr "Abbonamenti"
+msgstr "Sottoscrivi"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
-msgstr "Notifiche locali modificate"
+msgstr "Le notifiche locali sono state modificate."
 
 msgid "psm_please_choose_at_least_one_event_for subscription"
-msgstr "Per cortesia, scegli almeno un evento per l'iscrizione"
+msgstr "Scegli almeno un avvenimento a cui desideri iscriverti."
 
 msgid "psm_email_sent_to_you"
-msgstr "Ti è stata inviato un messaggio di posta elettronica"
+msgstr "Ti è stato inviato un messaggio di posta elettronica."
 
 msgid "psm_subscription_not_taken_into_consideration"
-msgstr "Iscrizioni non prese in considerazione"
+msgstr "Sottoscrizioni non prese in considerazione."
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
-msgstr "Spiacente ma devi abbonarti prima di cercare di confermare"
+msgstr "Prima di effettuare la conferma, devi necessariamente avere già effettuato la sottoscrizione."
 
 msgid "psm_welcome_to_mailing_list"
-msgstr "Benvenuto alla lista di diffusione"
+msgstr "Benvenuto nella lista di diffusione."
 
 msgid "psm_you_are_removed_from_the_mailing_list"
-msgstr "Sei stato rimosso da questa lista di diffusione"
+msgstr "Sei stato rimosso dalla lista di diffusione."
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
-msgstr ""
-"Sei stato rimosso dalla lista di diffusione. Se intendi farne ancora parte "
-"puoi contattare l'amministratore della lista."
+msgstr "Sei stato rimosso da questa lista di diffusione. <br>Se desideri ancora essere iscritto, occorre che tu contatti direttamente il responsabile della lista."
 
-#, fuzzy
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
-msgstr "Per cortesia, scegli almeno un evento per l'iscrizione"
+msgstr "Per effettuare la disiscrizione, devi scegliere almeno un avvenimento."
 
 # ## Subscription modes ############################
 msgid "mode_daily"
-msgstr ""
+msgstr "Giornaliero"
 
 msgid "mode_weekly"
-msgstr ""
+msgstr "Settimanale"
 
 msgid "mode_monthly"
-msgstr ""
+msgstr "Mensile"
 
-#    <h1>
-#          My subscriptions
-#        </h1>
-#, fuzzy
-msgid "bc_manage_my_subscriptions"
-msgstr "Le mie iscrizioni"
