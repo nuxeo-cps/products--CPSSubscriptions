@@ -24,24 +24,28 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """ Subscriptions Tool
 
-portal_subcriptions is the central tool with the necessary methods to query the
-subscriptions and execute them.
-
-The subscriptions are looked up locally in a .cps_subscriptions folder in the
-object.  """
+Defines the Subscriptions Tool class
+"""
 
 from OFS.Folder import Folder
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_base, aq_parent, aq_inner
 
 from Products.CMFCore.utils import UniqueObject
 
 from Subscription import Subscription
 
+from zLOG import LOG, DEBUG
+
 class SubscriptionsTool(UniqueObject, Folder):
     """Subscriptions Tool
 
-    XXX : comments
+    portal_subcriptions is the central tool with the necessary methods to query
+    the subscriptions and execute them.
+
+    The subscriptions are looked up locally in a .cps_subscriptions folder in
+    the object.
     """
 
     id = 'portal_subscriptions'
@@ -57,6 +61,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         default_id = '.cps_subscriptions'
         return default_id
 
+
+    security.declarePrivate('notify_event')
     def notify_event(self, event_type, object, infos):
         """Standard event hook.
 
@@ -66,13 +72,42 @@ class SubscriptionsTool(UniqueObject, Folder):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
-        pass
 
-    def getSubscriptionsFor(self, event_type, object, infos):
+        subscriptions = self.getSubscriptionsFor(event_type,
+                                                 object,
+                                                 infos)
+        recipients = {}
+        for subscription in subscriptions:
+            if subscription.isInterestedInEvent(event_type, object, infos):
+                recipients_rules = subscription.getRecipientsRules()
+                for recipients_rule in recipients_rules:
+                    subscription_recipients = recipients_rule.getRecipients(\
+                     event_type,
+                     object,
+                     infos)
+                    for key in subscription_recipients.keys():
+                        if key not in recipients.keys():
+                            recipients[key] = subscription_recipients[key]
+
+        LOG("############## ALL RECIPIENTS ###############", DEBUG, recipients)
+
+        # XXX getting the nofication type and doing sthg now.
+
+    def getSubscriptionsFor(self, event_type, object, infos=None):
         """Get the subscriptions applicable for this event.
 
         Some of the parameters may be None to get all subscriptions.
         """
-        pass
+
+        subscriptions = []
+        subscriptionFolder = getattr(object,
+                                     self.getSubscriptionId(), 0)
+        if subscriptionFolder:
+            subscriptions += subscriptionFolder.getSubscriptions()
+
+            # XXX need to do sthg about the id.
+            subscriptions = [x for x in subscriptions \
+                             if 'subscription__'+event_type == x.id]
+        return subscriptions
 
 InitializeClass(SubscriptionsTool)
