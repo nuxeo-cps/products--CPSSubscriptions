@@ -607,7 +607,7 @@ class SubscriptionsTool(UniqueObject, Folder):
     #############################################################
     #############################################################
 
-    def _makeEltDict(self, ob):
+    def _makeEltDict(self, ob, subscription):
         """Build a dict with an object
 
         Used within the getAllSubscriptionsFor method
@@ -620,6 +620,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         else:
             elt['description'] = ob.Description()
         elt['path'] = ob.absolute_url()
+        event_id = subscription.id.split('__')[1]
+        elt['event_id'] = event_id
         return elt
 
     security.declareProtected(ViewMySubscriptions, 'getAllSubscriptionsFor')
@@ -694,7 +696,7 @@ class SubscriptionsTool(UniqueObject, Folder):
                             urls = subscriber['subscription_relative_url']
                             for url in urls:
                                 ob = self.restrictedTraverse(url)
-                                elt = self._makeEltDict(ob)
+                                elt = self._makeEltDict(ob, subscription)
                                 subscriptions_list.append(elt)
 
                     #
