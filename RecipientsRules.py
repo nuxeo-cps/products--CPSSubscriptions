@@ -31,6 +31,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -46,6 +47,8 @@ class RecipientsRule(PortalFolder):
         Returns a mapping with 'members' and 'emails' as keys.
         """
         pass
+
+InitializeClass(RecipientsRule)
 
 #######################################################
 
@@ -63,7 +66,7 @@ class ComputedRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        pass
+        return {}
 
 InitializeClass(ComputedRecipientsRule)
 
@@ -103,7 +106,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        pass
+        return {}
 
 InitializeClass(ExplicitRecipientsRule)
 
@@ -137,27 +140,63 @@ class RoleRecipientsRule(RecipientsRule):
 
     security = ClassSecurityInfo()
 
+    _properties = RecipientsRule._properties + \
+                  ({'id': 'roles', 'type': 'lines', 'mode': 'w',
+                    'label': 'Roles'},
+                   {'id': 'origins', 'type': 'string', 'mode': 'r',
+                    'label': 'Origins'},
+                   {'id': 'ancestor_object_types', 'type': 'lines', 'mode': 'w',
+                    'label': 'Ancestor Object Type'},
+                   )
+
+    roles = []
+    origins = {}
+    ancestor_object_types = []
+
+    def __init__(self, id, title='', **kw):
+        """RoleRecipientsRule Constructor
+
+        Call parent constructor and Init the properties
+        """
+        RecipientsRule.__init__(self, id, title)
+        self.roles = kw.get('roles', [])
+        self.origins = kw.get('origins', {})
+        self.ancestor_object_types = kw.get('ancestor_object_types', [])
+
+    security.declareProtected(View, 'getRoles')
+    def getRoles(self):
+        """ Returns the roles subscribed.
+        """
+        return self.roles
+
+    security.declareProtected(ModifyPortalContent, 'addRole')
+    def addRole(self, role):
+        """ Add a new role
+        """
+        self.role += [role]
+
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        pass
+        return {}
 
 InitializeClass(RoleRecipientsRule)
 
-def addRoleRecipientsRule(self, id=None, REQUEST=None):
+def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
     """ Add a roles explicit Recipient rules
     """
     self = self.this()
-    id = 'role_recipients_rule'
+    if not id:
+        id = self.computeId()
     if hasattr(aq_base(self), id):
         return MessageDialog(
             title='Item Exists',
             message='This object already contains an %s' % ob.id,
             action='%s/manage_main' % REQUEST['URL1'])
 
-    ob = RoleRecipientsRule(id, title='Explicit Recipients Rule')
+    ob = RoleRecipientsRule(id, title=title, **kw)
     self._setObject(id, ob)
 
     LOG('addRoleRecipientsRule', INFO,
@@ -181,7 +220,7 @@ class WorkflowImpliedRecipientsRule(RecipientsRule):
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        pass
+        return {}
 
 InitializeClass(WorkflowImpliedRecipientsRule)
 
