@@ -28,9 +28,12 @@ Defines the Subscriptions Tool class
 """
 
 from OFS.Folder import Folder
-from Globals import InitializeClass
+from Globals import InitializeClass, DTMLFile
+from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
+
+from Products.CMFCore.CMFCorePermissions import ManagePortal, ModifyPortalContent
 from Products.CMFCore.utils import UniqueObject
 
 from zLOG import LOG, DEBUG
@@ -60,6 +63,49 @@ class SubscriptionsTool(UniqueObject, Folder):
 
     security = ClassSecurityInfo()
 
+    _properties = (
+        {'id':'mapping_context_events',
+         'type':'string', 'mode':'r', 'label':'Mapping context / events'},
+        )
+
+    mapping_context_events = {}
+
+    ###################################################
+    # ZMI
+    ###################################################
+
+    manage_options = (
+        Folder.manage_options +
+        ({'label': "Events", 'action': 'manage_events',},) +
+        ())
+
+    security.declareProtected(ManagePortal, 'manage_events')
+    manage_events = DTMLFile('zmi/configureEvents', globals())
+
+
+    def manage_addEventType(self, event_where, event_id, event_label, REQUEST=None):
+        """ Adds a new event id in a given context
+        """
+        mapping_context_events = self.mapping_context_events
+        if mapping_context_events.has_key(event_where):
+            if not self.mapping_context_events[event_where].has_key(event_id):
+                self.mapping_context_events[event_where][event_id] = event_label
+        else:
+            self.mapping_context_events[event_where] = {}
+            self.mapping_context_events[event_where][event_id] = event_label
+        self.mapping_context_events = mapping_context_events
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_events')
+
+    ###################################################
+    # SUBSCRIPTIONS TOOL API
+    ###################################################
+
+    #
+    # ID's
+    #
+
     security.declarePublic("getSubscriptionContainerId")
     def getSubscriptionContainerId(self):
         """ Returns the default id for subscription containers
@@ -84,7 +130,27 @@ class SubscriptionsTool(UniqueObject, Folder):
         """
         return MAIL_NOTIFICATION_RULE_ID
 
-    security.declarePrivate('notify_event')
+    #
+    # ACCESSORS
+    #
+
+    security.declarePublic("getEventsFromContext")
+    def getEventsFromContext(self, context=None):
+        """ Returns events given a context.
+        """
+        if context is not None:
+            context_portal_type = context.portal_type
+            if self.mapping_context_events.has_key(context_portal_type):
+                return self.mapping_context_events[context_portal_type]
+            else:
+                raise NotImplementedError
+        return {}
+
+    #
+    # NOTIFICATIONS API
+    #
+
+    security.declarePrivate("notify_event")
     def notify_event(self, event_type, object, infos):
         """Standard event hook.
 
@@ -125,14 +191,21 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         The black list parameter will pass within the infos parameter.
         """
+
         recipients = {}
+
+        if object is None and infos.has_key('context'):
+            object = infos['context']
+        container = aq_parent(aq_inner(object))
+
         if event_type:
             subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         else:
-            events = self.getEventTypesFromContext() # skins
+            events = self.getEventsFromContext(context=container)
             subscriptions = []
-            for event in events:
+            for event in events.keys():
                 subscriptions += self.getSubscriptionsFor(event, object, infos)
+
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
                 for pt_recipient_rule in subscription.getRecipientsRules():
