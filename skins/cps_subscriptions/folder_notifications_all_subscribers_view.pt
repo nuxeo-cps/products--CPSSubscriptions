@@ -1,0 +1,10 @@
+<metal:block use-macro="here/subscriptions_popup_template/macros/master">
+  <metal:block fill-slot="header">
+    <h1 i18n:translate="heading_all_subscribers">
+      All Subscribers
+    </h1>
+  </metal:block>
+  <metal:block fill-slot="main">
+    <metal:block use-macro="here/subscriptions_lib/macros/display_all_notifications_subscribers" />
+  </metal:block>
+</metal:block>
