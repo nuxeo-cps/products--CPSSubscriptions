@@ -4,10 +4,13 @@ Requires:
 New features:
 ~~~~~~~~~~~~~
 - Adding the Manager role
+- Add CPSForum and ForumPost as subscribable contexts
+- Add an upgrade method for the old CPSSubscriptions instances
 Bug fixes:
 ~~~~~~~~~~
 - Acquisition was a problem before if a container was defined in a restricted area such as the top of tree. Members hadn't enough rights to use the subsription since they didn't have any rights on the top.
 - 'My Subscriptions' board now cope with sub trees and central subscription container.
+- to mail field wasn't well formed for some MTA
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - New permissions 'Can Subscribe' for subscription container
