@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-05 19:00default\n"
+"POT-Creation-Date: 2004-03-05 19:13default\n"
 "PO-Revision-Date: 2004-03-05 18:01+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -341,50 +341,6 @@ msgstr "Where"
 msgid "label_subscriptions_email"
 msgstr "E-Mails"
 
-# ## LABELS #######################################
-msgid "label_creation_of_documents"
-msgstr "Content creation"
-
-msgid "label_modification_of_documents"
-msgstr "Content modification"
-
-msgid "label_cut_copy_paste_of_documents"
-msgstr "Content copy / paste "
-
-msgid "label_calendar_new_event"
-msgstr "New planning event"
-
-msgid "label_forum_comment_create"
-msgstr "New forum post"
-
-msgid "label_reply_to_personnal_post"
-msgstr "New reply to personnal post"
-
-msgid "label_new_versions"
-msgstr "New document version"
-
-msgid "label_forum_new_message"
-msgstr "New forum post"
-
-# ## LABELS #######################################
-msgid "label_publication_of_documents"
-msgstr "Content publication"
-
-# ## LABELS #######################################
-msgid "label_publication_accept_of_documents"
-msgstr "Content acceptance for publication"
-
-msgid "label_submission_of_documents"
-msgstr "Content submissions"
-
-# ## LABELS #######################################
-msgid "label_rejection_of_documents"
-msgstr "Content rejection"
-
-# ## LABELS #######################################
-msgid "label_unpublication_of_documents"
-msgstr "Content unpublication"
-
 msgid "label_workspace_manager"
 msgstr "Workspace Manager"
 
@@ -405,6 +361,49 @@ msgstr "Section Reader"
 
 msgid "label_owner"
 msgstr "Owner"
+
+#, fuzzy
+msgid "label_workflow_create"
+msgstr "Workspace Reader"
+
+msgid "label_workflow_modify"
+msgstr ""
+
+#, fuzzy
+msgid "label_workflow_cut_copy_paste"
+msgstr "Content copy / paste "
+
+msgid "label_workflow_publish"
+msgstr ""
+
+#, fuzzy
+msgid "label_workflow_accept"
+msgstr "Workspace Reader"
+
+msgid "label_workflow_submit"
+msgstr ""
+
+#, fuzzy
+msgid "label_workflow_reject"
+msgstr "Workspace Reader"
+
+msgid "label_workflow_unpublish"
+msgstr ""
+
+msgid "label_calendar_new_event"
+msgstr "New planning event"
+
+msgid "label_forum_comment_create"
+msgstr "New forum post"
+
+msgid "label_reply_to_personnal_post"
+msgstr "New reply to personnal post"
+
+msgid "label_new_versions"
+msgstr "New document version"
+
+msgid "label_forum_new_message"
+msgstr "New forum post"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -440,6 +439,32 @@ msgstr "Subscribe"
 
 msgid "button_unsubscribe"
 msgstr "Unsubscribe"
+
+# ## LABELS #######################################
+#~ msgid "label_creation_of_documents"
+#~ msgstr "Content creation"
+
+#~ msgid "label_modification_of_documents"
+#~ msgstr "Content modification"
+
+# ## LABELS #######################################
+#~ msgid "label_publication_of_documents"
+#~ msgstr "Content publication"
+
+# ## LABELS #######################################
+#~ msgid "label_publication_accept_of_documents"
+#~ msgstr "Content acceptance for publication"
+
+#~ msgid "label_submission_of_documents"
+#~ msgstr "Content submissions"
+
+# ## LABELS #######################################
+#~ msgid "label_rejection_of_documents"
+#~ msgstr "Content rejection"
+
+# ## LABELS #######################################
+#~ msgid "label_unpublication_of_documents"
+#~ msgstr "Content unpublication"
 
 #~ msgid "button_back"
 #~ msgstr "Back"

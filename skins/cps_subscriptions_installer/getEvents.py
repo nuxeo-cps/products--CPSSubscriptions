@@ -10,18 +10,18 @@ The key is the portal_type of the containers.
 
 dict = {}
 
-workspace = {'workflow_create' : 'label_creation_of_documents',
-             'workflow_modify' : 'label_modification_of_documents',
-             'workflow_cut_copy_paste' : 'label_cut_copy_paste_of_documents',
+workspace = {'workflow_create' : 'label_workflow_create',
+             'workflow_modify' : 'label_workflow_modify',
+             'workflow_cut_copy_paste' : 'label_workflow_cut_copy_paste',
              }
 
-section = {'workflow_publish' : 'label_publication_of_documents',
-           'workflow_accept' : 'label_publication_accept_of_documents',
-           'workflow_modify' : 'label_modification_of_documents',
-           'workflow_submit'  : 'label_submission_of_documents',
-           'workflow_cut_copy_paste' : 'label_cut_copy_paste_of_documents',
-           'workflow_reject' : 'label_rejecttion_of_documents',
-           'workflow_unpublish' : 'label_unpublication_of_documents',
+section = {'workflow_publish' : 'label_workflow_publish',
+           'workflow_accept' : 'label_workflow_accept',
+           'workflow_modify' : 'label_workflow_modify',
+           'workflow_submit'  : 'label_workflow_submit',
+           'workflow_cut_copy_paste' : 'label_workflow_cut_copy_paste',
+           'workflow_reject' : 'label_workflow_reject',
+           'workflow_unpublish' : 'label_workflow_unpublish',
            }
 
 ###################################

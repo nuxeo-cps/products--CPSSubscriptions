@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-05 19:00default\n"
+"POT-Creation-Date: 2004-03-05 19:13default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -317,45 +317,6 @@ msgid "label_subscriptions_email"
 msgstr ""
 
 # ## LABELS #######################################
-msgid "label_creation_of_documents"
-msgstr ""
-
-msgid "label_modification_of_documents"
-msgstr ""
-
-msgid "label_cut_copy_paste_of_documents"
-msgstr ""
-
-msgid "label_calendar_new_event"
-msgstr ""
-
-msgid "label_forum_comment_create"
-msgstr ""
-
-msgid "label_reply_to_personnal_post"
-msgstr ""
-
-msgid "label_new_versions"
-msgstr ""
-
-msgid "label_forum_new_message"
-msgstr ""
-
-msgid "label_publication_of_documents"
-msgstr ""
-
-msgid "label_publication_accept_of_documents"
-msgstr ""
-
-msgid "label_submission_of_documents"
-msgstr ""
-
-msgid "label_rejection_of_documents"
-msgstr ""
-
-msgid "label_unpublication_of_documents"
-msgstr ""
-
 msgid "label_workspace_manager"
 msgstr ""
 
@@ -375,6 +336,45 @@ msgid "label_section_reader"
 msgstr ""
 
 msgid "label_owner"
+msgstr ""
+
+msgid "label_workflow_create"
+msgstr ""
+
+msgid "label_workflow_modify"
+msgstr ""
+
+msgid "label_workflow_cut_copy_paste"
+msgstr ""
+
+msgid "label_workflow_publish"
+msgstr ""
+
+msgid "label_workflow_accept"
+msgstr ""
+
+msgid "label_workflow_submit"
+msgstr ""
+
+msgid "label_workflow_reject"
+msgstr ""
+
+msgid "label_workflow_unpublish"
+msgstr ""
+
+msgid "label_calendar_new_event"
+msgstr ""
+
+msgid "label_forum_comment_create"
+msgstr ""
+
+msgid "label_reply_to_personnal_post"
+msgstr ""
+
+msgid "label_new_versions"
+msgstr ""
+
+msgid "label_forum_new_message"
 msgstr ""
 
 # ## ACTIONS ######################################
