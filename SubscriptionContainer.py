@@ -49,7 +49,7 @@ class SubscriptionContainer(CPSBaseFolder):
 
     security = ClassSecurityInfo()
 
-    _properties = PortalFolder._properties + \
+    _properties = CPSBaseFolder._properties + \
                   ({'id': 'notify_local_only',
                     'type': 'boolean',
                     'mode': 'w',
@@ -93,7 +93,7 @@ class SubscriptionContainer(CPSBaseFolder):
 
         Parent's class and attributes intialization
         """
-        PortalFolder.__init__(self, id, title=title)
+        CPSBaseFolder.__init__(self, id, title=title)
         self.notify_local_only = 0
         self.notify_no_local = 0
         self.subscription_allowed = 0
