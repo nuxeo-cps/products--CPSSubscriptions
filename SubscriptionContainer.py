@@ -51,11 +51,16 @@ class SubscriptionContainer(PortalFolder):
                     'label': 'Notify Local Only'},
                    {'id': 'notify_no_local', 'type': 'boolean', 'mode': 'w',
                     'label': 'Notify No Local'},
+                   {'id': 'subscription_allowed', 'type': 'boolean', 'mode':'w',
+                    'label' : 'Subscription Allowed ?'},
+                   {'id': 'anonymous_subscription_allowed', 'type': 'boolean', 'mode':'w',
+                    'label' : 'Anonymous Subscription Allowed ?'},
                    )
 
-    # xxx maybe should move to subscription object ?
     notify_local_only = 0
     notify_no_local = 0
+    subscription_allowed = 0
+    anonymous_subscription_allowed = 0
 
     def __init__(self, id, title=''):
         """ Constructor
@@ -63,8 +68,10 @@ class SubscriptionContainer(PortalFolder):
         Parent's class and attributes intialization
         """
         PortalFolder.__init__(self, id, title=title)
-        notify_local_only = 0
-        notify_no_local = 0
+        self.notify_local_only = 0
+        self.notify_no_local = 0
+        self.subscription_allowed = 0
+        self.anonymous_subscription_allowed = 0
 
     security.declarePublic("isNotificationLocalOnly")
     def isNotificationLocalOnly(self):
@@ -83,6 +90,22 @@ class SubscriptionContainer(PortalFolder):
         within the sub-folders
         """
         return self.notify_no_local
+
+    security.declarePublic('isSubscriptionAllowed')
+    def isSubscriptionAllowed(self):
+        """Is Subscription Allowed ?
+        """
+        membership_tool = getToolByName(self, 'portal_membership')
+        if membership_tool.isAnonymousUser():
+            return (self.subscription_allowed and \
+                    self.anonymous_subscription_allowed)
+        return self.subscription_allowed
+
+    security.declarePublic('isAnonymousSubscriptionAllowed')
+    def isAnonymousSubscriptionAllowed(self):
+        """Is Anonymous Subscription Allowed ?
+        """
+        return self.anonymous_subscription_allowed
 
     security.declareProtected(ModifyPortalContent, "updateProperties")
     def updateProperties(self, **kw):
