@@ -60,6 +60,40 @@
         </tal:block>
 	  </table>
       <br />
+      <hr />
+      <br />
+      <tal:block define="subscription_folder python:getattr(here,
+      here.portal_subscriptions.getSubscriptionId(), 0)">
+        <table border="0" align="center" width="100%">
+        <tr>
+          <td align="center">
+            <span i18n:translate="label_notifications_local_only">
+              Notify local only
+            </span>
+          </td>
+          <td align="left">
+            <input type="checkbox" name="notify_local_only"
+                   tal:attributes="checked python:subscription_folder.isNotificationLocalOnly()"
+                   />
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <span i18n:translate="label_notifications_no_local">
+              Notify no local
+            </span>
+          </td>
+          <td align="left">
+            <input type="checkbox" name="notify_no_local"
+                   tal:attributes="checked python:subscription_folder.isNotificationNoLocal()"
+                   />
+          </td>
+        </tr>
+        </table>
+      </tal:block>
+      <br />
+      <hr />
+      <br />
       <input type="submit" name="folder_notifications_edit:method"
              value="button_change" class="standAlone"
                    i18n:attributes="value" />
