@@ -6,7 +6,8 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- fix malformed URI reference for actions
+- Fix malformed URI reference for actions
+- Allowed user subscription and unsubscription by default.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - splitting macro lib in progress

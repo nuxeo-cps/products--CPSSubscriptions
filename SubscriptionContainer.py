@@ -87,8 +87,8 @@ class SubscriptionContainer(CPSBaseFolder):
 
     notify_local_only = 0
     notify_no_local = 0
-    subscription_allowed = 0
-    unsubscription_allowed = 0
+    subscription_allowed = 1
+    unsubscription_allowed = 1
     anonymous_subscription_allowed = 0
     mfrom = ''
     lang  = 'en'
@@ -102,8 +102,8 @@ class SubscriptionContainer(CPSBaseFolder):
         CPSBaseFolder.__init__(self, id, title=title)
         self.notify_local_only = 0
         self.notify_no_local = 0
-        self.subscription_allowed = 0
-        self.unsubscription_allowed = 0
+        self.subscription_allowed = 1
+        self.unsubscription_allowed = 1
         self.anonymous_subscription_allowed = 0
         self.mfrom = ''
         self.lang = 'en'
