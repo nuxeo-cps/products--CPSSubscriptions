@@ -32,6 +32,13 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
 
+from RecipientsRules import RecipientsRule, \
+     addComputedRecipientsRule, addExplicitRecipientsRule, \
+     addRoleRecipientsRule, addWorkflowImpliedRecipientsRule
+
+from Notifications import NotificationRule, \
+     addMailNotification
+
 from zLOG import LOG, DEBUG, INFO
 
 class Subscription(PortalFolder):
@@ -74,9 +81,7 @@ class Subscription(PortalFolder):
         return self.filter_event_types
 
     def addEventType(self, event_type):
-        """ Adds a new event type on wich to react
-
-        ex: workflow_modify
+        """ Adds a new event type on wich to r        ex: workflow_modify
         """
         if event_type not in getFilterEventTypes():
             self.filter_event_types += [event_type]
@@ -87,18 +92,21 @@ class Subscription(PortalFolder):
         The subscription is valid only if the
         context object's portal_type is in object_types.
         """
-        return self.gilter_object_types
+        return self.filter_object_types
 
     def addObjectType(self, object_type):
         """Adds a new object type concerned with the subscription.
-
         """
         if object_type not in self.getFilterObjectTypes():
             self.filter_object_types += [object_type]
 
     def isInterestedInEvent(self, event_type, object, infos):
         """Is the subscription interested in the given event."""
-        pass
+        filtered_event_types = self.getFilterEventTypes()
+        if filtered_event_types == []:
+            return 1
+        else:
+            return event_type in filtered_event_types
 
     def sendEvent(self, event_type, object, infos):
         """Send an event to the subscription."""
@@ -107,27 +115,27 @@ class Subscription(PortalFolder):
     def getRecipientsRules(self):
         """Get the recipient rules objects.
 
-        XXX matching what ?
+        All of them ?
         """
-        # For tests.
-        role_recipients_rule = 'role_recipients_role'
-        return getattr(self, role_recipients_rule)
+        return [x for x in self.objectValues() \
+                if getattr(x, 'getRecipients', 0)]
 
-def addSubscription(self, id=None, REQUEST=None):
+def addSubscription(self, id=None, title='', REQUEST=None):
     """Add a Subscriptions object"""
 
     self = self.this()
-    subtool = getToolByName(self, 'portal_subscriptions')
-    id = subtool.getSubscriptionId()
-
+    if id is None:
+        id = self.computeId()
     if hasattr(aq_base(self), id):
         return MessageDialog(
             title='Item Exists',
             message='This object already contains an %s' % ob.id,
             action='%s/manage_main' % REQUEST['URL1'])
 
-    ob = Subscription(id, title='Placefull Subscription')
+    ob = Subscription(id, title=title)
     self._setObject(id, ob)
+
+    subscription = getattr(self, id)
 
     LOG('addSubscriptions', INFO,
         'adding subscriptions %s/%s' % (self.absolute_url(), id))
