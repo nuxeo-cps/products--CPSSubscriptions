@@ -1,4 +1,22 @@
 *******************************************
+** CPSSubscriptions V0.10.1 [R1 build 2004/06/18-18:12 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Integer overflow with python2.1 while generating the id for the NotificationMessageBody.
+- Validation of the mail_infos strucuture before trying to send the mail
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- mapping_modes is a public attributes on portal_subscriptions for backward compatability with older versions
+- bacwards compatibility with versions < 0.10. Dirty way within the installer. Waiting for XML export / import with CPSIO
+
+*******************************************
 ** CPSSubscriptions V0.10.0 [R1 build 2004/06/17-20:18 by anguenot]
 
 Requires:
