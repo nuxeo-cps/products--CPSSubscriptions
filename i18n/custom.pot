@@ -103,11 +103,13 @@ msgstr ""
 msgid "psm_subscription_not_taken_into_consideration"
 msgstr ""
 
-
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr ""
 
 msgid "psm_welcome_to_mailing_list"
+msgstr ""
+
+msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr ""
 
 ### BUTTONS ########################################

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-10 03:59default\n"
+"POT-Creation-Date: 2004-03-10 04:33default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -56,6 +56,21 @@ msgid ""
 msgstr ""
 
 #.   <span>
+#.       Mailing list unsubscription confirmation for the event
+#.       <span />
+#.       in <span replace="here/title_or_id" />
+#.       at <a href="here/absolute_url">
+#.            <span replace="here/absolute_url" />
+#.          </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Mailing list unsubscription confirmation for the event <span /> in <span "
+"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
+msgstr ""
+
+#.   <span>
 #.                   Notification type
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -85,6 +100,20 @@ msgid ""
 msgstr ""
 
 #.   <span>
+#.      Ton confirm that you want to be removed from this mailing list, click
+#.      <a href="" attributes="href
+#.     string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
+#.         here
+#.      </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"Ton confirm that you want to be removed from this mailing list, click <a "
+"href=\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr ""
+
+#.   <span>
 #.       We have received a request for subscription with the email
 #.       address, <a href="" attributes="href string:mailto:${email}">
 #.                   <span replace="email" />
@@ -97,17 +126,33 @@ msgid ""
 "</a>"
 msgstr ""
 
+#.   <span>
+#.       We have received a request for unsubscription with the email
+#.       address, <a href="" attributes="href string:mailto:${email}">
+#.                   <span replace="email" />
+#.                </a>
+#.     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid ""
+"We have received a request for unsubscription with the email address, <a "
+"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"\" /> </a>"
+msgstr ""
+
 #.   <input onclick="javascript:window.close()" class="standAlone" type="button" value="button_close" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_close"
 msgstr ""
 
 #.   <input value="button_subscribe" class="standAlone" name="folder_subscribe:method" type="submit">
-#.       </input>
+#.           <input condition="isAno" value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.       </input></input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_subscribe"
 msgstr ""
 
+#.   <input condition="isAno" value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.       </input>
 #.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
 #.         </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -190,6 +235,13 @@ msgstr ""
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
 msgid "heading_confirm_subscribtion"
+msgstr ""
+
+#.   <h1>
+#.           Confirm unsubscription for <span replace="event_id" />
+#.         </h1>
+#: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
+msgid "heading_confirm_unsubscribtion"
 msgstr ""
 
 #.   <h1>
@@ -453,4 +505,7 @@ msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr ""
 
 msgid "psm_welcome_to_mailing_list"
+msgstr ""
+
+msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr ""
