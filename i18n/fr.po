@@ -649,7 +649,7 @@ msgid "psm_email_sent_to_you"
 msgstr "Un courriel de confirmation vous a été envoyé."
 
 msgid "psm_subscription_not_taken_into_consideration"
-msgstr "L'abonnement a été pris en compte."
+msgstr "L'abonnement n'a pas été pris en compte."
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr "Veuillez vous abonner avant d'essayer de confirmer."
