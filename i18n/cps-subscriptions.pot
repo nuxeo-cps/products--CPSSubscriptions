@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-04-22 16:21default\n"
+"POT-Creation-Date: 2004-04-26 15:54default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -472,6 +472,9 @@ msgid "label_section_reader"
 msgstr ""
 
 msgid "label_owner"
+msgstr ""
+
+msgid "label_manager"
 msgstr ""
 
 msgid "label_workflow_create"

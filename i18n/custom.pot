@@ -39,6 +39,9 @@ msgstr ""
 msgid "label_owner"
 msgstr ""
 
+msgid "label_manager"
+msgstr ""
+
 msgid "label_workflow_create"
 msgstr ""
 

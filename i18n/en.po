@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-04-22 16:21default\n"
-"PO-Revision-Date: 2004-04-22 16:22+0200\n"
+"POT-Creation-Date: 2004-04-26 15:54default\n"
+"PO-Revision-Date: 2004-04-26 15:55+0200\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -196,7 +196,10 @@ msgstr "Unsubscribe"
 #.         </p>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "description_do_not_modify_or_enter_email_address"
-msgstr "You should not modify the following field unless you have specific needs, and if so, you should enter a valid email address like, for example, system@mysite.net"
+msgstr ""
+"You should not modify the following field unless you have specific needs, "
+"and if so, you should enter a valid email address like, for example, "
+"system@mysite.net"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
@@ -500,6 +503,9 @@ msgstr "Section Reader"
 
 msgid "label_owner"
 msgstr "Owner"
+
+msgid "label_manager"
+msgstr "Manager"
 
 msgid "label_workflow_create"
 msgstr "Content creation"
