@@ -272,6 +272,25 @@ class MailNotificationRule(NotificationRule):
         infos['object_creator_id'] = object_creator_id
         infos['object_creator_name'] = object_creator_name
 
+        #
+        # Includes the object attributes so that user can use them
+        # within the notification messages too.
+        #
+
+        try:
+            rep_ob = object.getContent()
+            schema = rep_ob.getTypeInfo().getDataModel(rep_ob, object)
+            for attr, value in schema.items():
+                infos[attr] = value
+        except AttributeError:
+            # Not a Flexible Type Information
+            for attr, value in object.__dict__.items():
+                if not attr.startswith('_'):
+                    infos[attr] = value
+
+        ##############################################################
+        ##############################################################
+
         # The user whose action is at the origin of the event
         user_id = getSecurityManager().getUser().getId()
         user = memberDirectory.getEntry(user_id, default=None)
@@ -284,6 +303,7 @@ class MailNotificationRule(NotificationRule):
         for k, v in infos.get('kwargs', {}).items():
             infos['kwargs_' + k] = v
 
+        LOG("INFOS------------", DEBUG, infos)
         return infos
 
     ##################################################################
