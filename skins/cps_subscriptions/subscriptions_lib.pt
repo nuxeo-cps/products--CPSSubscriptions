@@ -1,7 +1,22 @@
 <!-- CPSSubscriptions : zpt's macro lib -->
 <!-- $Id$ -->
 
+<!-- ###### Checkboxes wixthin a table used to configure notifications base on roles -->
 <metal:block define-macro="display_subscriptions_table">
+  <script type="text/javascript" tal:content="structure string:<!--
+      var absolute_url = '${here/absolute_url}'
+      -->">
+  </script>
+  <script type="text/javascript">
+      <!--
+      function open_subscribers_window() {
+        selector_window = window.open(absolute_url + '/folder_notifications_all_subscribers_view', 'popup_select', 'toolbar=0,scrollbars=1,location=0,statusbar=0,' +
+        'menubar=0,resizable=0,dependent=1,width=500,height=500');
+        if (! selector_window.opener)
+          selector_window.opener = window
+      }
+      -->
+  </script>
   <tal:block define="context_lcs here/getLocalRolesFromContext">
     <form action="." name="form" tal:attributes="action here/absolute_url">
 	  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="FormLayout">
@@ -23,8 +38,8 @@
 	      <td>
             <i>
              <span i18n:translate="label_other">
-              Other
-              </span>
+               Others
+             </span>
             </i>
           </td>
 	    </tr>
@@ -50,10 +65,11 @@
                </td>
              </tal:block>
 	         <td align="center">
-               <a href="#">
-                 <span i18n:translate="label_list">
-                   List
-                 </span>
+               <a href="."
+                  tal:attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
+                  <span i18n:translate="label_notifications_add">
+                    Choose
+                  </span>
                </a>
              </td>
 	       </tr>
@@ -95,10 +111,119 @@
       </tal:block>
       <br />
       <hr />
+      <a href="."
+         tal:attributes="href string:javascript:open_subscribers_window()">
+        <span i18n:translate="label_see_all_subscribers">
+          See all subscribers
+        </span>
+      </a>
+      <br />
       <br />
       <input type="submit" name="folder_notifications_edit:method"
              value="button_change" class="standAlone"
                    i18n:attributes="value" />
     </form>
   </tal:block>
+</metal:block>
+
+<!-- ###### Explicit/black emails for a given event -->
+<metal:block define-macro="display_explicit_recipients_management">
+<tal:block define="subtool here/portal_subscriptions;
+                   event_key request/event_key|nothing;
+                   event_id string:subscription__${event_key};
+                   subscription_container python:getattr(here,
+                   subtool.getSubscriptionId(), None);
+                   event python:getattr(subscription_container, event_id, None);
+                   event_explicit_recipients_rules
+    python:event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule');
+                   event_explicit_recipients_rule
+                   python:event_explicit_recipients_rules != [] and
+                   event_explicit_recipients_rules[0] or nothing;
+                   explicit_emails python:event_explicit_recipients_rule and
+                   event_explicit_recipients_rule.getEmails() or [];
+                   black_list event/getRecipientEmailsBlackList;
+                   ">
+  <br />
+  <!-- EMAILS -->
+  <form action="." name="form" tal:attributes="action here/absolute_url">
+  <div class="document">
+    <div class="row">
+      <div class="label">
+        <span i18n:translate="label_emails">
+          Explicit E-Mails
+        </span>
+      </div>
+      <div class="row">
+        <textarea cols="40" rows="10" name="explicit_emails:lines" wrap="soft" tal:content="python:'\n'.join(explicit_emails)"></textarea>
+      </div>
+    </div>
+  </div>
+  <!-- END EMAILS -->
+  <!-- BLACK LIST -->
+  <div class="document">
+    <div class="row">
+      <div class="label">
+        <span i18n:translate="label_black_list">
+          E-Mails Black list
+        </span>
+      </div>
+      <div class="row">
+        <textarea cols="40" rows="10" name="black_list:lines" wrap="soft" tal:content="python:'\n'.join(black_list)"></textarea>
+      </div>
+    </div>
+  </div>
+  <!-- END BLACK LIST -->
+  <input type="hidden" name="event_id" tal:attributes="value event_id" />
+  <input type="submit" class="standAlone" value="button_change"
+         name="folder_explicit_notifications_edit:method"
+         i18n:attributes="value" />
+  <input type="button" class="standAlone" value="button_back"
+         onclick="javascript:history.back()" i18n:attributes="value" />
+</form>
+</tal:block>
+</metal:block>
+
+<metal:block define-macro="display_all_notifications_subscribers">
+<tal:block define="recipients here/getAllRecipientsFor">
+  <br />
+  <table border="0" width="80%" align="center" cellpadding="5"
+  cellspacing="1">
+    <tr>
+      <td align="left">
+        <strong>
+          <span i18n:translate="label_subscriptions_email">
+            E-Mails
+          </span>
+        </strong>
+      </td>
+      <td align="left">
+        <strong>
+          <span i18n:translate="label_subcriptions_fullname">
+            Full Name
+          </span>
+        </strong>
+      </td>
+    </tr>
+    <tr tal:repeat="recipient_mail python:recipients.keys()"
+        tal:attributes="class python:test(repeat['recipient_mail'].even(),
+    'even','odd')">
+      <tal:block condition="recipient_mail">
+        <td align="left">
+          <a href="." tal:attributes="href string:mailto:${recipient_mail}">
+            <span tal:replace="recipient_mail" />
+          </a>
+        </td>
+        <td align="center">
+          <span tal:replace="python:recipients[recipient_mail]" />
+        </td>
+      </tal:block>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <input type="button" class="standAlone" value="button_close"
+               onclick="javascript:window.close()"
+               i18n:attributes="value" />
+     </td>
+   </tr>
+</tal:block>
 </metal:block>
