@@ -11,3 +11,4 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - mapping_modes is a public attributes on portal_subscriptions for backward compatability with older versions
+- bacwards compatibility with versions < 0.10. Dirty way within the installer. Waiting for XML export / import with CPSIO
