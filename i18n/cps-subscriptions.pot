@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-01-15 11:15default\n"
+"POT-Creation-Date: 2004-01-16 12:43default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -40,30 +40,99 @@ msgstr ""
 msgid "Notification type"
 msgstr ""
 
+#.   <input onclick="javascript:history.back()" class="standAlone" type="button" value="button_back" />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_back"
+msgstr ""
+
 #.   <input value="button_change" class="standAlone" name="folder_notifications_edit:method" type="submit" />
+#.   <input value="button_change" class="standAlone" type="submit" name="folder_explicit_notifications_edit:method" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_change"
+msgstr ""
+
+#.   <input onclick="javascript:window.close()" class="standAlone" type="button" value="button_close" />
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "button_close"
+msgstr ""
+
+#.   <h1>
+#.         All Subscribers
+#.       </h1>
+#: from
+#: ../skins/cps_subscriptions/folder_notifications_all_subscribers_view.pt
+msgid "heading_all_subscribers"
 msgstr ""
 
 #.   <h1>
 #.         Local Notifications Management
 #.       </h1>
-#: from ../skins/cps_subscriptions/folder_notifications_form.pt
+#: from ../skins/cps_subscriptions/folder_explicit_notifications_form.pt
+#: ../skins/cps_subscriptions/folder_notifications_form.pt
 msgid "heading_manage_local_notifications"
 msgstr ""
 
 #.   <span>
-#.                      List
-#.                    </span>
+#.             E-Mails Black list
+#.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
-msgid "label_list"
+msgid "label_black_list"
 msgstr ""
 
 #.   <span>
-#.                 Other
-#.                 </span>
+#.             Explicit E-Mails
+#.           </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_emails"
+msgstr ""
+
+#.   <span>
+#.                       Choose
+#.                     </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notifications_add"
+msgstr ""
+
+#.   <span>
+#.                 Notify local only
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notifications_local_only"
+msgstr ""
+
+#.   <span>
+#.                 Notify no local
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_notifications_no_local"
+msgstr ""
+
+#.   <span>
+#.                  Others
+#.                </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_other"
+msgstr ""
+
+#.   <span>
+#.             See all subscribers
+#.           </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_see_all_subscribers"
+msgstr ""
+
+#.   <span>
+#.               Full Name
+#.             </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subcriptions_fullname"
+msgstr ""
+
+#.   <span>
+#.               E-Mails
+#.             </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscriptions_email"
 msgstr ""
 
 # ## LABELS #######################################
