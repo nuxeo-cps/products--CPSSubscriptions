@@ -173,10 +173,6 @@ class MailNotificationRule(NotificationRule):
 
     def _getMailFrom(self, object, infos):
         """ Return an email for the mail from field of the mail.
-
-        1 - Creator of the object if an object has been created.
-        2 - CPS Administator.
-        3 - Others ?
         """
 
         mtool = self.portal_membership
@@ -184,11 +180,6 @@ class MailNotificationRule(NotificationRule):
 
         mail_from = infos.get('email_from')
 
-        if creator:
-            # Skins if different name for the email field.
-            email_creator = self.getMemberEmail(creator.getMemberId())
-            if email_creator is not None:
-                mail_from = email_creator
         if not mail_from:
             pprops = self.portal_properties
             mail_from = getattr(pprops, 'email_from_address', None)
