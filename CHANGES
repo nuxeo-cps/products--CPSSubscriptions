@@ -16,6 +16,7 @@ same email as the member
 - Default title and default body for the sent messages are not editable anymore
  globally through ZMI since it's overrided with the specific event messages
 
+- Remocing all the notifications wasn't working
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
