@@ -291,6 +291,8 @@ class SubscriptionsTool(UniqueObject, Folder):
 
     security.declarePublic('resetEvents')
     def resetEvents(self):
+        """ Reset events
+        """
         self.__init__()
         self.setupEvents()
 
