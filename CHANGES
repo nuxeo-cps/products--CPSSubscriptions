@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Fix DTML method="POST" missing. get method was in use and this HTTP header was to big and the publisher was complaining about that...
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
