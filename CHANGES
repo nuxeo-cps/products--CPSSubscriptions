@@ -7,7 +7,7 @@ New features:
   to get rid of deprecated CPSMailingList objects
 Bug fixes:
 ~~~~~~~~~~
--
+- Fic unit tests when adding CPSNewsLetters in the product list
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
