@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.6.2 [R1 build 2004/05/07-17:11 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Computed Recipients Rule implemented implemented. You may add some within the ZMI
+Bug fixes:
+~~~~~~~~~~
+- Only change the event_email_content if the event doesn't exist
+- Mail content in 8bit
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Allowing the notifications at the root of the portal for directories for instance
+
+*******************************************
 ** CPSSubscriptions V0.6.1 [R1 build 2004/05/05-09:35 by madarche]
 
 Requires:
