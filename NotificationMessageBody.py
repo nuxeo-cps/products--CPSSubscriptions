@@ -110,7 +110,7 @@ def addNotificationMessageBody(self,
     if not id:
         id = aq_base(self).generateId(prefix='message_',
                                       suffix='',
-                                      rand_ceiling=9999999999)
+                                      rand_ceiling=999999999)
 
     ob = NotificationMessageBody(id,
                                  title=title,
