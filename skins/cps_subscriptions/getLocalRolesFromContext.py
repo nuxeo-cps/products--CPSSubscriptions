@@ -1,4 +1,5 @@
-##parameters=
+##parameters=loadcustom=1
+#$Id$
 """
 Returns the local roles in the context. (Workspace/Section for CPS)
 Override this one in your owan application if you defined new roles.
