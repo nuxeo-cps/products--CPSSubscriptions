@@ -30,15 +30,15 @@
     | Solutions web pour mieux collaborer</title>
   <metal:block define-slot="base">
     <!-- Additional head elements -->
-    <base tal:attributes="href string:${here/absolute_url}/">
+    <base tal:attributes="href string:${here/absolute_url}/" />
   </metal:block>
   <metal:block define-slot="script_plus" />
   <link rel="Stylesheet" type="text/css" href=""
-    tal:attributes="href string:${base_url}nuxeo_css1.css">
+    tal:attributes="href string:${base_url}nuxeo_css1.css" />
   <style type="text/css" media="all"
     tal:content="string:@import url(${base_url}nuxeo_css2.css);"></style>
   <link rel="Stylesheet" type="text/css" href=""
-             tal:attributes="href string:${base_url}document.css">
+             tal:attributes="href string:${base_url}document.css" />
 </head>
 
 <body bgcolor="white">
