@@ -45,6 +45,7 @@ from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
 from Notifications import NotificationRule
 from NotificationMessageBody import addNotificationMessageBody
+from Products.ZCatalog.ZCatalog import ZCatalog
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -884,13 +885,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # Get the subscriptions containers
         catalog = getToolByName(self, 'portal_catalog')
         portal_type = 'CPS PlaceFull Subscription Container'
-
-        containers = catalog.searchResults({'portal_type':
-                                            portal_type,
-                                            'path':path,})
-        LOG(":: CPSSubscriptions :: catalog search for containers",
-            INFO,
-            str(containers))
+        query = {'portal_type': portal_type, 'path': path}
+        # Here we search the Catalog without view restriction
+        # because .cps_subsciption may be herited from unaccessible
+        # parent folder
+        containers = ZCatalog.searchResults(catalog, None, **query)
+        LOG(":: CPSSubscriptions :: catalog search for containers" % query,
+            INFO, str([x.getPath() for x in containers]))
 
         #
         # Now let's get the subcription containers and check if the computed
