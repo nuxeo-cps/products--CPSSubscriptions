@@ -33,6 +33,13 @@ subobjects, like RecipientsRule.
 
 from smtplib import SMTPException
 
+# Trying to import the TimeOut error class of CPSRSS is installed
+try:
+    from Products.CPSRSS.timeoutsocket import Timeout
+except:
+    class Timeout:
+        pass
+
 import socket
 import cStringIO
 import string
@@ -120,7 +127,7 @@ class NotificationRule(PortalFolder):
 
         try:
             self.MailHost.send(raw_message)
-        except (socket.error, MailHostError, SMTPException):
+        except (socket.error, MailHostError, SMTPException, Timeoqut):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail",
