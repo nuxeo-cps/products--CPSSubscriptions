@@ -63,6 +63,9 @@ msgstr ""
 msgid "label_workflow_accept"
 msgstr ""
 
+msgid "label_workflow_delete"
+msgstr ""
+
 msgid "label_workflow_submit"
 msgstr ""
 

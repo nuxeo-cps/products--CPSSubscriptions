@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-05-19 15:11default\n"
+"POT-Creation-Date: 2004-05-24 16:24default\n"
 "PO-Revision-Date: 2004-05-10 16:45+0100\n"
 "Last-Translator: Paolo Dina <paolo@php3.it>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -227,7 +227,7 @@ msgstr ""
 "<span replace=\"email\" /> </a>"
 
 #    <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
-#.   <input onclick="javascript:window.close()" class="standAlone" type="button" value="button_close" />
+#.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_close"
 msgstr "Chiudi"
@@ -235,8 +235,8 @@ msgstr "Chiudi"
 #    <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
 #            <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #        </input></input>
-#.   <input value="button_subscribe" class="standAlone" name="folder_subscribe:method" type="submit">
-#.               <input condition="isAno" value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
+#.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #.           </input></input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_subscribe"
@@ -248,11 +248,11 @@ msgstr "Iscrizione"
 #          </input>
 #    <input name="folder_unsubscribe_role_based_member:method" type="submit" class="standAlone" value="button_unsubscribe" condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0">
 #          </input>
-#.   <input condition="isAno" value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.   <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #.           </input>
-#.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
+#.   <input name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #.             </input>
-#.   <input condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0" value="button_unsubscribe" class="standAlone" name="folder_unsubscribe_role_based_member:method" type="submit">
+#.   <input name="folder_unsubscribe_role_based_member:method" type="submit" class="standAlone" value="button_unsubscribe" condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0">
 #.             </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
@@ -733,6 +733,10 @@ msgstr "Pubblica contenuto"
 
 msgid "label_workflow_accept"
 msgstr "Accettazione di contenuto in pubblicazione"
+
+#, fuzzy
+msgid "label_workflow_delete"
+msgstr "Rifiuto di contenuto in pubblicazione"
 
 msgid "label_workflow_submit"
 msgstr "Invio di contenuto"
