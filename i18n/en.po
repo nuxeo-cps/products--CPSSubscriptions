@@ -1,25 +1,3 @@
-# translation of en.po to 
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
