@@ -213,21 +213,21 @@ msgstr "FAKE"
 #.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_available_events"
-msgstr "Evénements disponibles dans ce contexte"
+msgstr "Événements disponibles dans ce contexte"
 
 #.   <h4>
 #.       Below are events open for subscriptions.
 #.     </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
-msgstr "Evénements auxquels vous pouvez vous abonner"
+msgstr "Événements auxquels vous pouvez vous abonner"
 
 #.   <h4>
 #.         Below are the events you may unsubscribe
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events_to_sunsubscribe"
-msgstr "Evénements desquels vous pouvez vous désabonner"
+msgstr "Événements desquels vous pouvez vous désabonner"
 
 #.   <strong>
 #.                 <span>
