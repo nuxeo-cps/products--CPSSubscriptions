@@ -122,7 +122,8 @@ class MailNotificationRule(NotificationRule):
         # Just more secure in case of the event configuration is badly done.
         if events_from_context is None:
             return {}
-        event_from_context = mcat(events_from_context[event_type]).encode(
+        event_from_context = mcat(events_from_context.get(event_type,
+                                                          event_type)).encode(
             "ISO-8859-15", 'ignore')
 
         infos['notification_title'] = event_from_context
