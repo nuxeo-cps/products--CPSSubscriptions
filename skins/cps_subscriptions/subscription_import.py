@@ -7,9 +7,11 @@ $Id$
 import re
 
 subtool = context.portal_subscriptions
-subscription_container = subtool.getSubscriptionContainerFromContext(context)
+subscription_container = subtool.getSubscriptionContainerFromContext(context, force_local_creation=1)
+
 event = subscription_container.getSubscriptionById(event_id)
-recipients_rule = event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule')[0]
+if event is not None:
+    recipients_rule = event.getRecipientsRules(recipients_rule_type='Explicit Recipients Rule')[0]
 
 stripped = [x.strip() for x in file.readlines()]
 
