@@ -11,4 +11,4 @@ Bug fixes:
 - Fix persistence problem thx to clafoutislifestyle [at] free.fr
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- improve install using CPSInstaller for indexes and catalog metadata
