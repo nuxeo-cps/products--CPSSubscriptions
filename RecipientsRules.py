@@ -557,6 +557,9 @@ class ExplicitRecipientsRule(RecipientsRule):
                                                            self,
                                                            member_email,
                                                            context)
+                # reindex the subscription  container for Zope-2.6.2
+                subscription_container = getattr(context, '.cps_subscriptions')
+                subscription_container.reindexObject()
                 return 1
         return 0
 
@@ -660,6 +663,9 @@ class ExplicitRecipientsRule(RecipientsRule):
                                                     self,
                                                     member_email,
                                                     context)
+                # reindex the subscription  container for Zope-2.6.2
+                subscription_container = getattr(context, '.cps_subscriptions')
+                subscription_container.reindexObject()
                 return 1
         return 0
 
