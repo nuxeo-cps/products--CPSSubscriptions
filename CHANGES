@@ -7,6 +7,8 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Acquisition was a problem before if a container was defined in a restricted area such as the top of tree. Members hadn't enough rights to use the subsription since they didn't have any rights on the top.
+- 'My Subscriptions' board now cope with sub trees and central subscription container.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - New permissions 'Can Subscribe' for subscription container
+- New permissions 'View My Subscriptions' to access the subscription board"
