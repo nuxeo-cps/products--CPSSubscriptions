@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.13.3 [R1 build 2004/09/13-21:58 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- ValuError cause of weired characters coming from the user side.
+  Notifications.py : _getBody()
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.13.2 [R1 build 2004/09/03-13:41 by ben]
 
 Requires:
