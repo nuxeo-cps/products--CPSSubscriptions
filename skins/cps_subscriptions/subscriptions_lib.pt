@@ -73,7 +73,8 @@
           </td>
           <td align="left">
             <input type="checkbox" name="notify_local_only"
-                   tal:attributes="checked python:subscription_folder.isNotificationLocalOnly()"
+                   tal:attributes="checked python:subscription_folder and
+      subscription_folder.isNotificationLocalOnly() or 0"
                    />
           </td>
         </tr>
@@ -85,7 +86,8 @@
           </td>
           <td align="left">
             <input type="checkbox" name="notify_no_local"
-                   tal:attributes="checked python:subscription_folder.isNotificationNoLocal()"
+                   tal:attributes="checked python:subscription_folder and
+      subscription_folder.isNotificationNoLocal() or 0"
                    />
           </td>
         </tr>
