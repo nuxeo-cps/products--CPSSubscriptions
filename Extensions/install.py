@@ -265,7 +265,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         self.log("Installing external method to update existing instance")
         cpsubscriptions_upgrade_old_instance = ExternalMethod(
             'UPGRADE SUBSCRIPTIONS',
-            'ATTENTION ! YOU GOTTA KNOW WHAT YOU ARE DOING',
+            'WARNING: USE ONLY IF YOU KNOW WHAT YOU ARE DOING',
             'CPSSubscriptions.install',
             'updateContainers')
 
