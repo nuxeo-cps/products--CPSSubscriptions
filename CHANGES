@@ -6,9 +6,13 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- External method removeOldCPSMailingListObjects works even if 
+- External method removeOldCPSMailingListObjects works even if
   CPSMailingList is removed
   i.e. the script remove broken objects from CPSMailingList
+- When searching for people to alert (content_notify_email_form), the page
+  displayed could crash on certain circumstances (Error Type:
+  UnboundLocalError, Error Value: local variable 'mtool' referenced before
+  assignment)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
