@@ -1,27 +1,3 @@
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to francais
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to
-# translation of en.po to Francais
-# translation of en.po to Français
-# Gettext Message File for default.
-# Your Name <your@email>, Year
 # Julien Anguenot <ja@nuxeo.com>, 2004.
 # Julien Anguenot <anguenot@nuxeo.com>, 2004.
 # DARCHE <madarche@nuxeo.com>, 2004, 2005.
@@ -49,7 +25,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "<block replace=\"context_lcs/?role\" />"
-msgstr "NotiFAKE"
+msgstr "FAKE"
 
 #.   <block>
 #.   		    <span replace="events/?event_key" />
@@ -897,12 +873,6 @@ msgstr "Monthly"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "My subscriptions "
-
-#, fuzzy
-#~ msgid "label_allow_subscriptions"
-#~ msgstr ""
-#~ "Currently you haven't any subscriptions in this context or for this "
-#~ "object."
 
 #~ msgid "header_subscription_allowed"
 #~ msgstr " Are subscriptions allowed and to whom ?"
