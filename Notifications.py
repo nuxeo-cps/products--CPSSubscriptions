@@ -148,8 +148,8 @@ class MailNotificationRule(NotificationRule):
         if events_from_context is None:
             return {}
         event_from_context = mcat(events_from_context.get(event_type,
-                                                          event_type)).encode(
-            "ISO-8859-15", 'ignore')
+                                                          event_type)).encode("ISO-8859-15",
+                                                                              'ignore')
 
         infos['portal_title'] = self.portal_url.getPortalObject().Title()
         infos['notification_title'] = event_from_context
