@@ -24,10 +24,17 @@ section = {'workflow_publish' : 'label_workflow_publish',
            'workflow_unpublish' : 'label_workflow_unpublish',
            }
 
+cps_forum = {'forum_new_post' : 'label_forum_new_post',
+             'forum_new_comment' : 'label_forum_new_comment'}
+
+cps_forum_post = {'forum_new_post' : 'label_forum_new_post',}
+
 ###################################
 
 events['Workspace'] = workspace
 events['Section'] = section
+events['CPSForum'] = cps_forum
+events['ForumPost'] = cps_forum_post
 events['Portal'] = workspace   # Has to disappear soon.
 
 
