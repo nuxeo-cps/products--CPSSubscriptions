@@ -30,14 +30,20 @@ Defines the Subscriptions Tool class
 from OFS.Folder import Folder
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base, aq_parent, aq_inner
 
-from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.utils import UniqueObject
 
-from Subscription import Subscription
-
 from zLOG import LOG, DEBUG
+
+##############################################################
+
+## GLOBAL IDS
+
+SUBSCRIPTION_CONTAINER = '.cps_subscriptions'
+EXPLICIT_RECIPIENTS_RULE_ID = 'explicit__recipients_rule'
+MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
+
+##############################################################
 
 class SubscriptionsTool(UniqueObject, Folder):
     """Subscriptions Tool
@@ -54,14 +60,13 @@ class SubscriptionsTool(UniqueObject, Folder):
 
     security = ClassSecurityInfo()
 
-    security.declarePublic("getSubscriptionId")
-    def getSubscriptionId(self):
-        """ Returns the default id for subscription object
+    security.declarePublic("getSubscriptionContainerId")
+    def getSubscriptionContainerId(self):
+        """ Returns the default id for subscription containers
 
         .cps_subscriptions by default
         """
-        default_id = '.cps_subscriptions'
-        return default_id
+        return SUBSCRIPTION_CONTAINER
 
     security.declarePublic("getExplicitRecipientsRuleId")
     def getExplicitRecipientsRuleId(self):
@@ -69,7 +74,15 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         Id in use for the ExplicitRecipientsRule object
         """
-        return 'explicit__recipients_rule'
+        return EXPLICIT_RECIPIENTS_RULE_ID
+
+    security.declarePublic("getMailNotificationRuleObjectId")
+    def getMailNotificationRuleObjectId(self):
+        """ Returns an in use id.
+
+        Id in use for the MailNoticationRule object.
+        """
+        return MAIL_NOTIFICATION_RULE_ID
 
     security.declarePrivate('notify_event')
     def notify_event(self, event_type, object, infos):
@@ -98,7 +111,7 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         subscriptions = []
         subscriptionContainer = getattr(object,
-                                     self.getSubscriptionId(), 0)
+                                     self.getSubscriptionContainerId(), 0)
         if subscriptionContainer:
             subscriptions += subscriptionContainer.getSubscriptions()
             subscriptions = [x for x in subscriptions \

@@ -22,7 +22,14 @@
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
-""" Notification classes
+""" Notification rule classes
+
+The something that is actually done.  Usually it involves Recipients (sending
+email) but that's not mandatory (triggering an arbitrary script for instance).
+
+Notifications are subclasses of NotificationRule and store also as
+subobjects, like RecipientsRule.
+
 """
 
 from Globals import InitializeClass, DTMLFile, MessageDialog
@@ -35,17 +42,18 @@ from Products.CMFCore.utils import getToolByName
 from zLOG import LOG, DEBUG, INFO
 
 class NotificationRule(PortalFolder):
-    """Base Notification Class.
+    """Base Notification rule Class.
 
-    All the Notifications will sub-class this one.
-    Sort of abstract class
+    All the Notifications will sub-class this one and implement a notification
+    type.
     """
 
-    def execNotification(self, recipients):
-        """ Exec the notification
+    def notifyRecipients(self, emails=[], members=[], **kw):
+        """ Notify recipients
 
-        XXX recipients struct still to be defined
+        This method will be called by the Subscription method.
         """
+        raise NotImplementedError
 
 InitializeClass(NotificationRule)
 
@@ -54,33 +62,28 @@ InitializeClass(NotificationRule)
 class MailNotificationRule(NotificationRule):
     """Mail Notification
 
-    Sending mail to the recipients of the notifications.
+    Sending mail to the recipients of the subscription.
     """
-    meta_type = "Mail Notification"
+
+    meta_type = "Mail Notification Rule"
     portal_type = meta_type
 
-    def execNotification(self, recipients):
-        """ Exec the notification
+    def notifyRecipients(self, emails=[], members=[], **kw):
+        """ Notify recipients
 
-        XXX recipients struct still to be defined
+        This method will be called by the Subscription method.
         """
-        pass
+        raise NotImplementedError
 
-    def sendMails(self, recipients):
-        """ Do send mails
-
-        Aim of this notification rule
-        """
-        pass
 
 InitializeClass(MailNotificationRule)
 
 def addMailNotificationRule(self, id=None, title='', REQUEST=None, **kw):
-    """Add a Mail Notification
+    """Add a Mail Notification Rule object type
     """
-    self = self.this()
-    if not id:
-        id = self.computeId()
+
+    id = self.portal_subscriptions.getMailNotificationRuleObjectId()
+
     if hasattr(aq_base(self), id):
         return MessageDialog(
             title='Item Exists',

@@ -79,7 +79,7 @@
       <hr />
       <br />
       <tal:block define="subscription_folder python:getattr(here,
-      here.portal_subscriptions.getSubscriptionId(), 0)">
+      here.portal_subscriptions.getSubscriptionContainerId(), 0)">
         <table border="0" align="center" width="100%">
         <tr>
           <td align="center">
@@ -132,7 +132,7 @@
                    event_key request/event_key|nothing;
                    event_id string:subscription__${event_key};
                    subscription_container python:getattr(here,
-                   subtool.getSubscriptionId(), None);
+                   subtool.getSubscriptionContainerId(), None);
                    event python:getattr(subscription_container, event_id, None);
                    event_explicit_recipients_rules
     python:event and

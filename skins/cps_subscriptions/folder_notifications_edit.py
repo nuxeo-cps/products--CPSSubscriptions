@@ -7,7 +7,7 @@ from zLOG import LOG, DEBUG
 
 if REQUEST is not None:
     if REQUEST.form:
-        subscription_id = context.portal_subscriptions.getSubscriptionId()
+        subscription_id = context.portal_subscriptions.getSubscriptionContainerId()
 
         #
         # Full Update

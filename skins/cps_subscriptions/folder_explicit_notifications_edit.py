@@ -14,7 +14,7 @@ if REQUEST is not None:
         # Checking if there's a local subscription container
         #
 
-        subscription_id = context.portal_subscriptions.getSubscriptionId()
+        subscription_id = context.portal_subscriptions.getSubscriptionContainerId()
         if subscription_id not in context.objectIds():
             context.manage_addProduct[
                 'CPSSubscriptions'].addSubscriptionContainer()

@@ -24,20 +24,16 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """ Subscription Container Folder Class
 
-This is a placefull subscriptions folder holding the configuration.
+This is a placefull subscription container holding the configuration.
 """
 
-from Globals import InitializeClass, DTMLFile, MessageDialog
-from Acquisition import aq_base, aq_parent, aq_inner
+from Globals import InitializeClass, MessageDialog
+from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
-
-from Subscription import addSubscription
-
-from zLOG import LOG, DEBUG, INFO
 
 class SubscriptionContainer(PortalFolder):
     """ Subscription Container Class
@@ -57,6 +53,7 @@ class SubscriptionContainer(PortalFolder):
                     'label': 'Notify No Local'},
                    )
 
+    # xxx maybe should move to subscription object ?
     notify_local_only = 0
     notify_no_local = 0
 
@@ -112,9 +109,8 @@ InitializeClass(SubscriptionContainer)
 def addSubscriptionContainer(self, id=None, REQUEST=None):
     """ Add a Subscription Folder Container """
 
-    self = self.this()
     subtool = getToolByName(self, 'portal_subscriptions')
-    id = subtool.getSubscriptionId()
+    id = subtool.getSubscriptionContainerId()
 
     if hasattr(aq_base(self), id):
         return MessageDialog(
@@ -125,10 +121,5 @@ def addSubscriptionContainer(self, id=None, REQUEST=None):
     ob = SubscriptionContainer(id, title='Placefull Subscription Container')
     self._setObject(id, ob)
 
-    subscription_folder = getattr(self, id)
-
-    LOG('addSubscriptionContainer', INFO,
-        'adding subscriptions %s/%s' % (self.absolute_url(), id))
-
     if REQUEST is not None:
-        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
