@@ -76,7 +76,7 @@ class NotificationRule(PortalFolder):
         writer = MimeWriter.MimeWriter(rendered_message)
 
         # Sender
-        sender = "%s <%s>" % (infos['sender_email'], infos['sender_email'])
+        sender = '"%s" <%s>' % (infos['sender_email'], infos['sender_email'])
         writer.addheader('From', sender)
 
         # Subject
@@ -91,7 +91,7 @@ class NotificationRule(PortalFolder):
                          mimify.mime_encode_header(infos['to']))
 
         # Misc
-        writer.addheader('X-Mailer', 'Nuxeo CPS : CPSSubscriptions')
+        writer.addheader('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')
         writer.flushheaders()
         writer._fp.write('Content-Transfer-Encoding: quoted-printable\n')
         body_writer = writer.startbody('text/plain; charset=iso-8859-15',
