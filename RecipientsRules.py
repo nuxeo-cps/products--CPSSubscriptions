@@ -507,6 +507,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         # Members subscriptions.
         else:
+            stupid = 0
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
@@ -514,12 +515,15 @@ class ExplicitRecipientsRule(RecipientsRule):
             # FIXME
             if member_id in self.getMembers():
                 self.members.remove(member_id)
+                stupid = 1
             if member_email in self.email_subscribers:
                 self.emails_subscribers.remove(member_email)
-            NotificationRule.notifyUnSubscribe(event_id,
-                                               self,
-                                               member_email,
-                                               context)
+                stupid = 1
+            if stupid:
+                NotificationRule.notifyUnSubscribe(event_id,
+                                                   self,
+                                                   member_email,
+                                                   context)
                 return 1
         return 0
 
