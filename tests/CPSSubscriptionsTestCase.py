@@ -25,11 +25,12 @@ class CPSSubscriptionsInstaller(CPSTestCase.CPSInstaller):
         portal = getattr(self.app, id)
 
         # Install the CPSSubscriptions product
-        cpssubscriptions_installer = ExternalMethod('cpsubscriptions_installer',
-                                                    '',
-                                                    'CPSSubscriptions.install',
-                                                    'install')
-        portal._setObject('cpssubscriptions_installer', cpssubscriptions_installer)
+        if 'cpssubscriptions_installer' not in portal.objectIds():
+            cpssubscriptions_installer = ExternalMethod('cpsubscriptions_installer',
+                                                        '',
+                                                        'CPSSubscriptions.install',
+                                                        'install')
+            portal._setObject('cpssubscriptions_installer', cpssubscriptions_installer)
         portal.cpssubscriptions_installer()
 
 CPSTestCase.setupPortal(PortalInstaller=CPSSubscriptionsInstaller)

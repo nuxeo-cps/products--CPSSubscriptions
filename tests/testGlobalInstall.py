@@ -5,6 +5,9 @@ if __name__ == '__main__':
 from pprint import pprint
 import unittest
 from Testing import ZopeTestCase
+
+from Products.ExternalMethod.ExternalMethod import ExternalMethod
+
 import CPSSubscriptionsTestCase
 from Products.CMFCore.utils import getToolByName
 
@@ -17,11 +20,12 @@ class TestGlobalInstall(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
 
     def testInstallerScript(self):
         # Check installation script
-        from Products.ExternalMethod.ExternalMethod import ExternalMethod
-        installer = ExternalMethod('installer',
-            'CPS Subscriptions INSTALLER', 'CPSSubscriptions.install',
-            'install')
-        self.portal._setObject('installer', installer)
+        if 'installer' not in self.portal.objectIds():
+            installer = ExternalMethod('installer',
+                                       'CPS Subscriptions INSTALLER',
+                                       'CPSSubscriptions.install',
+                                       'install')
+            self.portal._setObject('installer', installer)
         self.portal.installer()
         # Check Subscriptions Tool
         subscriptions_tool = getToolByName(self.portal, 'portal_subscriptions')
