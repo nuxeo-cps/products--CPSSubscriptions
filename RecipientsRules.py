@@ -339,9 +339,9 @@ class ExplicitRecipientsRule(RecipientsRule):
     def updatePendingEmails(self, email=''):
         """Add pending email subscription
         """
-        if email and \
-           email not in self.getPendingEmails() and \
-           email not in self.getEmails():
+        if (email and
+            email not in self.getPendingEmails() and
+            email not in self.getEmails()):
             self.emails_pending_add.append(email)
             return 1
         return 0
