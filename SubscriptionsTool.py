@@ -27,6 +27,8 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 Defines the Subscriptions Tool class
 """
 
+from types import DictType
+
 from OFS.Folder import Folder
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner
@@ -587,6 +589,7 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         The black list parameter will pass within the infos parameter.
         """
+
         recipients = {}
 
         if object is None and infos.has_key('context'):
@@ -609,8 +612,14 @@ class SubscriptionsTool(UniqueObject, Folder):
                     pt_recipients = pt_recipient_rule.getRecipients(event_type,
                                                                     object,
                                                                     infos)
-                    for pt_recipient in pt_recipients.keys():
-                        recipients[pt_recipient] = pt_recipients[pt_recipient]
+                    if isinstance(pt_recipients, DictType):
+                        for pt_recipient in pt_recipients.keys():
+                            recipients[pt_recipient] = pt_recipients[pt_recipient]
+                    else:
+                        LOG("::CPSSubscriptions :: ComputeRecipientsRules ERROR",
+                            INFO,
+                            "You should provide a dictionnary",
+                            pt_recipient_rule.absolute_url())
         return recipients
 
     #############################################################
