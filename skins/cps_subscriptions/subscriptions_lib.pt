@@ -480,7 +480,7 @@
       event_id request/event_key|nothing;
       subscription_container python:subtool.getSubscriptionContainerFromContext(here);
       event python:subscription_container.getSubscriptionById(event_id);
-      roles_allowed_to_subscribe event/getRolesAllowedToSubscribe
+      roles_allowed_to_subscribe python: event and event.getRolesAllowedToSubscribe() or [];
       ">
       <div class="group">
         <form action="." name="form"
