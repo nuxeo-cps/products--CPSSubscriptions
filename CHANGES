@@ -3,10 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Allowing to pass a mail_from entry within the info while calling the notify to replace the std email from that used to be computed.
+-
 Bug fixes:
 ~~~~~~~~~~
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- If it's a newsletter mail sending things then ask for a rendering of the document instead of looking for a notification message.
+-
