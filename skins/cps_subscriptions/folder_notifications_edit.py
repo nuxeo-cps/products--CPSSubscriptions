@@ -32,21 +32,33 @@ if REQUEST is not None:
         role_events = REQUEST.form.get('role_event', [])
         LOG("REQUEST", DEBUG, role_events)
 
-        # Cleaning unwanted ones
-        all_requested_subscription = ['subscription__'+x.split(':')[1] for x in role_events]
+        # Cleaning / reinit
         for subscription_id in subscription_folder.objectIds():
-            current_event_subscription = getattr(subscription_folder,
-                                                 subscription_id)
-            if subscription_id not in all_requested_subscription:
-                if 'explicit__recipients_rule' not in current_event_subscription.objectIds():
-                    subscription_folder.manage_delObjects([subscription_id])
-            else:
-                for event in current_event_subscription.objectIds():
-                    requested_role_for_subscriptions = [x.split(':')[0]+'__recipients_rule'  \
-                                                        for x in role_events if x.split(':')[1] == event]
-                    if event not in requested_role_for_subscriptions and not event.startswith('explicit') and \
-                       not event.startswith('explicit'):
-                        current_event_subscription.manage_delObjects([event])
+            ob = getattr(subscription_folder,
+                         subscription_id)
+            to_delete = [x for x in ob.objectValues() if
+                         x.meta_type == 'Role Recipient Rule']
+            to_delete =  [x.id for x in to_delete if x not in [y.split(':')[0] for y in role_events]]
+            try:
+                ob.manage_delObjects(to_delete)
+            except:
+                pass
+
+        # Cleaning unwanted ones
+         #all_requested_subscription = ['subscription__'+x.split(':')[1] for x in role_events]
+         #for subscription_id in subscription_folder.objectIds():
+         #    current_event_subscription = getattr(subscription_folder,
+         #                                         subscription_id)
+         #    if subscription_id not in all_requested_subscription:
+         #        if 'explicit__recipients_rule' not in current_event_subscription.objectIds():
+         #            subscription_folder.manage_delObjects([subscription_id])
+         #    else:
+         #        for event in current_event_subscription.objectIds():
+         #            requested_role_for_subscriptions = [x.split(':')[0]+'__recipients_rule'  \
+         #                                                for x in role_events if x.split(':')[1] == event]
+         #            if event not in requested_role_for_subscriptions and not event.startswith('explicit') and \
+         #               not event.startswith('explicit'):
+         #                current_event_subscription.manage_delObjects([event])
 
         # Updating
         for role_event in role_events:
