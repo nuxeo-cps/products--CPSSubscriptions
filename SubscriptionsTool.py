@@ -709,7 +709,7 @@ class SubscriptionsTool(UniqueObject, Folder):
                     else:
                         recipients = recipients_rule.getRecipients('', container_parent, {})
                         if email in recipients.keys():
-                            elt = self._makeEltDict(container_parent)
+                            elt = self._makeEltDict(container_parent, subscription)
                             subscriptions_list.append(elt)
         return subscriptions_list
 
