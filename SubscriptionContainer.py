@@ -193,7 +193,7 @@ class SubscriptionContainer(PortalFolder):
 
         for perm, roles in new_perms.items():
             self.manage_permission(perm, roles, 1)
-        self.reindexObjectSecucurity()
+        self.reindexObjectSecurity()
 
     security.declarePublic('getSubscriptions')
     def getSubscriptions(self):
