@@ -6,17 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- External method removeOldCPSMailingListObjects works even if
-  CPSMailingList is removed
-  i.e. the script remove broken objects from CPSMailingList
-- When searching for people to alert (content_notify_email_form), the page
-  displayed could crash on certain circumstances (Error Type:
-  UnboundLocalError, Error Value: local variable 'mtool' referenced before
-  assignment)
-- XHTML-ification "POST" -> "post".
-- Fix small bug while editing in ZMI
-- Fix: "My Subsciption" page is empty if subscriber container is not accessible
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- Moving actions from portal_actions to portal_subscriptions, which is now an
-  action provider.
+-
