@@ -72,7 +72,6 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         self.setupTranslations()
         self.setupCatalogSpecifics()
         self.finalize()
-        self.reindexCatalog()
         self.installUpdateExMethod()
         self.log("End of Install/Update : CPSSubscriptions Product")
 
@@ -308,10 +307,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         The point in here is being able to get where a given members/email has
         some subscriptions
         """
-
         self.log("Setting some specifics on catalog")
-
-        catalog = getToolByName(self.portal, 'portal_catalog')
         indexes = {
             'getSubscriptions': 'FieldIndex',
             }
@@ -320,20 +316,9 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             ]
 
         for ix, typ in indexes.items():
-            if ix in catalog.Indexes.objectIds():
-                self.log("  %s: ok" % ix)
-            else:
-                prod = catalog.Indexes.manage_addProduct['PluginIndexes']
-                constr = getattr(prod, 'manage_add%s' % typ)
-                constr(ix)
-                self.log("  %s: added" % ix)
+            self.addPortalCatalogIndex(ix, typ)
         for md in metadata:
-            if md in catalog.schema():
-                self.log("  %s: ok" % md)
-            else:
-                catalog.addColumn(md)
-                self.log("  %s: added" % md)
-
+            self.addPortalCatalogMetadata(md)
         self.log("End if setting some specifics on catalog")
 
     def installUpdateExMethod(self):
