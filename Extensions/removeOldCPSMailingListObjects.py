@@ -30,7 +30,6 @@ from zLOG import LOG, INFO, DEBUG
 from Products.CMFCore.utils import getToolByName
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
-
 def removeOldCPSMailingListObjects(self):
     installer = CPSInstaller(self,
                              product_name="removeOldCPSMailingListObjects")
@@ -43,11 +42,23 @@ def removeOldCPSMailingListObjects(self):
         installer.log("  removing %s objects" % ptype)
         items = installer.portal.portal_catalog(portal_type=ptype)
         installer.log("    found %s objects" % len(items))
+        item_count = 0
         for item in items:
-            ob = item.getObject()
-            #installer.log("     remove %s" % ob.getId())
-            ob.aq_parent.folder_delete(ids=[ob.getId()])
-        installer.log("    deleted done")
+            item_path = item.getPath()
+            parent_path = item_path.split('/')[:-1]
+            item_id = item_path.split('/')[-1]
+            if parent_path and item_path:
+                installer.log("   remove %s" % item_path)
+                # need this hack because of broken object
+                parent = self.unrestrictedTraverse(parent_path)
+                try:
+                    parent.folder_delete(ids=[item_id])
+                    item_count += 1
+                except AttributeError:
+                    # invalid catalog entry ?
+                    pass
+
+        installer.log("    deleted %s done" % item_count)
         if hasattr(ttool, ptype):
             installer.log("    remove portal_type %s" % ptype)
             ttool.manage_delObjects([ptype])
