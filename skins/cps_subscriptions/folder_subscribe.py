@@ -9,9 +9,10 @@ from zLOG import LOG, DEBUG
 
 if REQUEST is not None:
     if REQUEST.form:
+        psm = "psm_please_choose_at_least_one_event_for subscription"
         # @www
         email = REQUEST.form.get('subscriber_email', None)
-        event_ids = REQUEST.form.get('event_ids', None)
+        event_ids = REQUEST.form.get('event_ids',  [])
         subscriptions_tool = context.portal_subscriptions
         subscription_folder = subscriptions_tool.getSubscriptionContainerFromContext(context)
         for event_id in event_ids:
@@ -24,7 +25,7 @@ if REQUEST is not None:
             else:
                 psm = 'psm_subscription_not_taken_into_consideration'
 
-return REQUEST.RESPONSE.redirect("%s/%s?portal_status_message=%s&email=%s" %(context.absolute_url(),
+    return REQUEST.RESPONSE.redirect("%s/%s?portal_status_message=%s&email=%s" %(context.absolute_url(),
                                                                              'folder_subscribe_form',
                                                                              psm,
                                                                              email))
