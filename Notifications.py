@@ -419,6 +419,54 @@ class MailNotificationRule(NotificationRule):
         # Send mail then.
         self.sendMail(mail_infos)
 
+    security.declareProtected(ManagePortal, "notifyConfirmUnSubscribe")
+    def notifyConfirmUnSubscribe(self, event_id, object, email, context):
+        """ Mail notification for confirm unsubscription message
+
+        This method is called when someone just confirm the unsubscription
+        """
+
+        tool = getToolByName(self, 'portal_subscriptions')
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        container = tool.getSubscriptionContainerFromContext(context)
+
+        info_url = context.absolute_url() + '/folder_subscribe_form'
+        object_url = context.absolute_url()
+        url = context.absolute_url() \
+              + '/folder_confirm_unsubscribe_form?fake=subscriptions' \
+              '&event_id='\
+              + event_id \
+              + '&email='\
+              + email
+
+        # infos contains information needed to generated messages
+        infos = {'portal_title': portal.Title(),
+                 'object_url'  : object_url,
+                 'url'         : url,
+                 'object_title': context.title_or_id(),
+                 'info_url'    : info_url,
+                 'event_id'    : event_id,
+                 'email'       : email,
+                 'mfrom'       : container.getMailFrom()}
+
+        subject = tool.getUnSubscribeConfirmEmailTitle() %infos
+        body = tool.getUnSubscribeConfirmEmailBody() %infos
+
+        # Post process
+        infos['body'] =  body
+        infos['subject'] = subject.replace('\n', '')
+
+        # For building the E-Mail
+        mail_infos = {}
+        mail_infos['sender_name'] = infos.get('portal_title')
+        mail_infos['sender_email'] = infos.get('mfrom', 'no_mail@no_mail.com')
+        mail_infos['subject'] = infos.get('subject', 'No Subject')
+        mail_infos['to'] = email
+        mail_infos['body'] = infos.get('body', '')
+
+        # Send mail then.
+        self.sendMail(mail_infos)
+
 InitializeClass(MailNotificationRule)
 
 def addMailNotificationRule(self, id=None, title='', REQUEST=None, **kw):
