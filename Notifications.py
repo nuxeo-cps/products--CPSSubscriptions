@@ -199,6 +199,92 @@ class MailNotificationRule(NotificationRule):
                                mfrom=mfrom,
                                subject=subject)
 
+    security.declareProtected(ManagePortal, "notifyConfirmSubscription")
+    def notifyConfirmSubscription(self, event_id, object, email, context):
+        """ Mail notification for subscription
+
+        This method is called when soemone want to subscribe
+        """
+
+        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
+        sub_container = subscriptions_tool.getSubscriptionContainerFromContext(context)
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        object_url = context.absolute_url() + \
+                     '/folder_confirm_subscribe_form?email=%s&event_id=%s'\
+                     %(email, event_id)
+
+        # Pre process for body/subject
+        infos = {'portal_title': portal.Title(),
+                 'object_url'  : object_url,
+                 'event_id'    : event_id,
+                 'email'       : email,
+                 'mfrom'       : sub_container.getMailFrom()}
+
+        subject = subscriptions_tool.getSubscribeConfirmEmailTitle() \
+                  %infos
+        body = subscriptions_tool.getSubscribeConfirmEmailBody() \
+               %infos
+
+        # Post process
+        infos['body'] =  body
+        infos['subject'] = subject.replace('\n', '')
+
+        mfrom = infos.get('mfrom', 'no_mail@no_mail.com')
+        subject = infos.get('subject', 'No Subject')
+        body = infos.get('body', '')
+
+        LOG(":: CPSSubscriptions :: notifySubscription :: on",
+            INFO,
+            infos)
+
+        self.MailHost.send(messageText=body,
+                           mto=[email],
+                           mfrom=mfrom,
+                           subject=subject)
+
+    security.declareProtected(ManagePortal, "notifyWelcomeSubscription")
+    def notifyWelcomeSubscription(self, event_id, object, email, context):
+        """ Mail notification for subscription welcome message
+
+        This method is called when someone just subscribe
+        """
+
+        # FIXME : sent message is messy
+        subscriptions_tool = getToolByName(self, 'portal_subscriptions')
+        sub_container = subscriptions_tool.getSubscriptionContainerFromContext(context)
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        info_url = context.absolute_url() + '/folder_subscribe_form'
+        object_url = context.absolute_url()
+
+        # Pre process for body/subject
+        infos = {'portal_title': portal.Title(),
+                 'object_url'  : object_url,
+                 'object_title': context.title_or_id(),
+                 'info_url'    : info_url,
+                 'event_id'    : event_id,
+                 'email'       : email,
+                 'mfrom'       : sub_container.getMailFrom()}
+
+        subject = subscriptions_tool.getSubscribeWelcomeEmailTitle() %infos
+        body = subscriptions_tool.getSubscribeWelcomeEmailBody() %infos
+
+        # Post process
+        infos['body'] =  body
+        infos['subject'] = subject.replace('\n', '')
+
+        mfrom = infos.get('mfrom', 'no_mail@no_mail.com')
+        subject = infos.get('subject', 'No Subject')
+        body = infos.get('body', '')
+
+        LOG(":: CPSSubscriptions :: notifySubscription :: on",
+            INFO,
+            infos)
+
+        self.MailHost.send(messageText=body,
+                           mto=[email.strip()],
+                           mfrom=mfrom,
+                           subject=subject)
+
 InitializeClass(MailNotificationRule)
 
 def addMailNotificationRule(self, id=None, title='', REQUEST=None, **kw):
