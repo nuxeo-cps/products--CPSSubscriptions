@@ -13,10 +13,11 @@ mail_body = \
 Identifiant: %(user_name)s (%(user_id)s)
 Type d'événement: %(event)s
 URL: %(object_url)s
+Commentaires : %(comments)s
 """
 
 mail_error_body = \
-"""An error occurs while computing the body of the email.
+"""An error occurred while computing the body of the email message.
 
 Please contact, the administrator of the portal.
 """

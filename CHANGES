@@ -3,7 +3,8 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Added a new "comments" variable available for all message and which takes its
+  value from the workflow transitions.
 Bug fixes:
 ~~~~~~~~~~
 - Fix malformed URI reference for actions

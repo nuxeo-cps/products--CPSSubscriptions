@@ -304,11 +304,24 @@ class MailNotificationRule(NotificationRule):
         infos['user_id'] = user_id
         infos['user_name'] = user_name
 
-        # Including kwargs that are added by the workflow
+        # Making sure that there is always an available "comments" variable so
+        # that this variable is always available for all email message bodies and
+        # thus will prevent producing KeyError errors.
+        if infos.get('comments') is None:
+            infos['comments'] = ''
+
+        # Including kwargs that are added by the workflow. We are especially
+        # interested in the transition comments of the workflow. If those
+        # transition comments from the workflow exist we use them as the
+        # comments variable.
         for k, v in infos.get('kwargs', {}).items():
             infos['kwargs_' + k] = v
+        if infos.get('kwargs_comment') is not None:
+            infos['comments'] = infos['kwargs_comment']
+        if infos.get('kwargs_comments') is not None:
+            infos['comments'] = infos['kwargs_comments']
 
-        LOG("INFOS------------", DEBUG, infos)
+        LOG('CPSSubscriptions', DEBUG, "available infos in emails: %s" % infos)
         return infos
 
     security.declareProtected(ManagePortal, 'notifyRecipients')
@@ -345,7 +358,7 @@ class MailNotificationRule(NotificationRule):
         rendered_events = subscriptions_tool.getRenderedEvents()
 
         if (object is not None and
-            getattr(object, 'portal_type', None) in  rendered_portal_types or
+            getattr(object, 'portal_type', None) in rendered_portal_types or
             infos.get('event') in rendered_events):
             try:
                 body = object.getContent().render(proxy=object)

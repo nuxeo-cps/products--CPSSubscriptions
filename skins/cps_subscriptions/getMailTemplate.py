@@ -13,10 +13,11 @@ Additional info:
 User name: %(user_name)s (%(user_id)s)
 Event type: %(event)s
 URL: %(object_url)s
+Comments: %(comments)s
 """
 
 mail_error_body = \
-"""An error occurs while computing the body of the email.
+"""An error occured while computing the body of the email message.
 
 Please contact, the administrator of the portal.
 """
