@@ -15,6 +15,7 @@ Bug fixes:
   assignment)
 - XHTML-ification "POST" -> "post".
 - Fix small bug while editing in ZMI
+- Fix: "My Subsciption" page is empty if subscriber container is not accessible
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Moving actions from portal_actions to portal_subscriptions, which is now an
