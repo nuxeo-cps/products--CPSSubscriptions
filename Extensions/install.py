@@ -31,18 +31,19 @@ import os, sys
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent, setDefaultRoles
-from Products.CPSDefault.Installer import BaseInstaller
+from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
-from Products.CPSSubscriptions.CPSSubscriptionsPermissions import ManageSubscriptions
+from Products.CPSSubscriptions.CPSSubscriptionsPermissions import ManageSubscriptions, \
+     CanSubscribe
 
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
-SKINS = (
-    ('cps_subscriptions', 'Products/CPSSubscriptions/skins/cps_subscriptions',),
-    ('cps_subscriptions_installer', 'Products/CPSSubscriptions/skins/cps_subscriptions_installer',),
-    )
+SKINS = {
+    'cps_subscriptions' :'Products/CPSSubscriptions/skins/cps_subscriptions',
+    'cps_subscriptions_installer':  'Products/CPSSubscriptions/skins/cps_subscriptions_installer',
+    }
 
-class CPSSubscriptionsInstaller(BaseInstaller):
+class CPSSubscriptionsInstaller(CPSInstaller):
     """ Installer class for CPS Subscriptions component
 
     Intended to be use as an Installer/Updater tool.
@@ -57,13 +58,17 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         """
 
         self.log("Install/Update : CPSSubscriptions Product")
-        self.setupSkins(SKINS)
+        self.verifySkins(SKINS)
+        self.resetSkinCache()
         self.setupSubscriptionsTool()
         self.installActions()
         self.installNewPermissions()
         self.setupSubscriber()
+        self.verifyNewPermissions()
         self.setupTranslations()
         self.setupCatalogSpecifics()
+        self.finalize()
+        self.reindexCatalog()
         self.log("End of Install/Update : CPSSubscriptions Product")
 
     def setupSubscriptionsTool(self):
@@ -198,6 +203,18 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                 self.log("portal_subscribtions already subscriber")
         else:
             raise ('DEPENDENCY ERROR : portal_eventservice')
+
+
+    def verifyNewPermissions(self):
+        """Verify New Roles
+        """
+
+        self.setupPortalPermissions({
+            CanSubscribe : ['Manager',
+                            ],
+            ManageSubscriptions : ['Manager',
+                                   ],
+            })
 
     def setupCatalogSpecifics(self):
         """Setup specifics catalog thingies.
