@@ -40,6 +40,7 @@ from Products.CMFCore.CMFCorePermissions import ManagePortal, View
 from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
 
 from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
+from Notifications import NotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 
 from zLOG import LOG, DEBUG, INFO
@@ -764,7 +765,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
             elt['canSubscribe'] = _checkPermission(CanSubscribe, sub)
         else:
             elt['canSubscribe'] = 0
-            
+
         return elt
 
     security.declareProtected(ViewMySubscriptions, 'getAllSubscriptionsFor')
@@ -1013,7 +1014,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
 
         self._p_changed = 1
 
-        from Notifications import NotificationRule
         notification_vector = NotificationRule('fake')
 
         if subscription_mode in self.mapping_modes.keys():
@@ -1158,6 +1158,29 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                 area = self.getLocalRoleArea(context_area)
                 return area.get(context_portal_type, {})
         return {}
+
+    #########################################################################
+    #########################################################################
+
+    def sendmail(self, infos={}):
+        """Send a mail given a mapping
+        """
+
+        #
+        # Create an object capable of sending this mail
+        # using the mailHost
+        #
+
+        notification_obj = NotificationRule('fake')
+
+
+        # Get the mailhost in here
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        mailhost = portal.MailHost
+
+        # Send it !
+        cerror = notification_obj.sendMail(infos, mailhost=mailhost)
+        return cerror
 
     def all_meta_types(self):
         """Allowed meta types
