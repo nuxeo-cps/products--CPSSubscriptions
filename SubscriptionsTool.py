@@ -74,10 +74,15 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
          'label' : 'Notify hidden files'},
         {'id': 'render_content_for_portal_types',
          'type': 'lines', 'mode':'w',
-         'label' : 'Render the content type for the following content types'},
+         'label' : 'Render the content type responsible of the notification \
+         within the notification email body for the following content types'},
         {'id': 'render_content_for_events',
          'type': 'lines', 'mode':'w',
-         'label' : 'Render the content type for the following events'},
+         'label' : 'Render the content type responsible of the notification \
+         within the notification email bodyfor the following events'},
+        {'id': 'notification_scheduling_table',
+         'type': 'text', 'mode':'r',
+         'label': 'Notification scheduling table'},
         )
 
     ###################################################
@@ -256,6 +261,19 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         # Rendering content at notification time
         self.render_content_for_portal_types = []
         self.render_content_for_events = []
+
+        # Here, it's stored the notification scheduling table
+        # Structure :
+        # mode | email | message_ids
+        #
+        # Mode  : One of the above subscription modes
+        # Email : email of the recipient
+        # message_ids : list of the message ids stored in the portal_subscriptions
+        self.notification_scheduling_table = {}
+
+        self._mapping_modes = {'weekly' : 'mode_weekly',
+                               'monthly': 'mode_monthly',
+                               'daily'  : 'mode_daily'}
 
     ######################################################
     #####################################################
@@ -820,9 +838,128 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
     ################################################################
 
     security.declareProtected(ManagePortal, 'addNotificationMessageBodyObject')
-    def addNotificationMessageBodyObject(self, message_body=''):
+    def addNotificationMessageBodyObject(self, message_body='', mime_type='text/plain'):
         """Add a notification Message Body
         """
-        addNotificationMessageBody(self, message_body=message_body)
+        id = addNotificationMessageBody(self,
+                                        message_body=message_body,
+                                        mime_type=mime_type)
+        return id
+
+    security.declarePublic('getSubscriptionModes')
+    def getSubscriptionModes(self):
+        """Returns the susbcriptions mode
+        """
+        return self._mapping_modes.values()
+
+    def scheduleNotificationMessageFor(self, user_mode, email, message_id):
+        """Add within the scheduling table the message_id for a the given user within
+        the given category
+        """
+
+        self._p_changed = 1
+
+        if user_mode and email and message_id:
+            if not self.notification_scheduling_table.has_key(user_mode):
+                if user_mode in self.getSubscriptionModes():
+                    self.notification_scheduling_table[user_mode] = {}
+                else:
+                    return -1
+
+            mode_entry = self.notification_scheduling_table[user_mode]
+            if not mode_entry.has_key(email):
+                mode_entry[email] = []
+
+            if message_id not in mode_entry[email]:
+                mode_entry[email].append(message_id)
+
+            self.notification_scheduling_table[user_mode] = mode_entry
+            return 0
+        return -1
+
+    def _getMailInfoFor(self, subscription_mode, email_to, messages):
+        """Build the infos dict
+
+        It will compile several notification messages body.
+        """
+
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        portal_title = getattr(portal, 'title', 'Portal')
+        mcat = self.Localizer.default
+
+        infos = {}
+        infos['sender_email'] = getattr(portal,
+                                        'email_from_address',
+                                        'nobody@nobody.com')
+        infos['sender_name']  = getattr(portal,
+                                        'email_from_name',
+                                        'Portal administrator')
+        infos['to'] = email_to
+
+        # Message body
+        compiled_body_text = ""
+        compiled_body_html = ""
+        for message_id in messages:
+            message = getattr(self, message_id, None)
+            if message is not None:
+                mime_type = message.getMimeType()
+                if mime_type == 'text/html':
+                    compiled_body_html += "<br /><br />"
+                    compiled_body_html += message.getMessageBody()
+                else:
+                    compiled_body_text += '\n\n'
+                    compiled_body_text += message.getMessageBody()
+
+        if compiled_body_html:
+            infos_html = infos
+            infos_html['body'] = (compiled_body_html, 'text/html')
+            subscription_mode_label = mcat('mode_'+subscription_mode) + ' V2 '
+            infos_html['subject'] = '[%s] %s' %(portal_title, subscription_mode_label)
+        else:
+            infos_html = None
+
+        if compiled_body_text:
+            subscription_mode_label = mcat('mode_'+subscription_mode) + ' V1 '
+            infos['subject'] = '[%s] %s' %(portal_title, subscription_mode_label)
+            infos['body'] = (compiled_body_text, 'text/plain')
+        else:
+            infos = None
+
+        return infos, infos_html
+
+    security.declareProtected(ManagePortal, 'scheduleMessages')
+    def scheduleMessages(self, subscription_mode=''):
+        """Schedule Message for a given subscription_mode
+        """
+
+        from Notifications import NotificationRule
+        notification_vector = NotificationRule('fake')
+
+        if subscription_mode in self._mapping_modes.keys():
+            table = self.notification_scheduling_table.get(
+                self._mapping_modes[subscription_mode], [])
+
+            # XXX send them all at the same time with bcc
+            for email in table.keys():
+                text, html = self._getMailInfoFor(subscription_mode,
+                                                  email,
+                                                  table[email])
+                portal = getToolByName(self, 'portal_url').getPortalObject()
+                mailhost = portal.MailHost
+                # XXX
+                # For the moment I have to send 2 sepate mail since
+                # the NotificationRule can't handle 2 body parts
+                if text is not None:
+                    notification_vector.sendMail(mail_infos=text, mailhost=mailhost)
+                if html is not None:
+                    notification_vector.sendMail(mail_infos=html, mailhost=mailhost)
+
+            # Cleaning the scheduling table
+            for email in table.keys():
+                table[email] = []
+            self.notification_scheduling_table[
+                self._mapping_modes[subscription_mode]] = table
+        else:
+            return -1
 
 InitializeClass(SubscriptionsTool)
