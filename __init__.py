@@ -24,7 +24,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """ CPS Subscriptions component
 
-XXX : commments
+This component provides notifications and subscribtions for CPS3.
 """
 
 from Products.CMFCore.utils import ContentInit, ToolInit
@@ -58,10 +58,10 @@ recipientsRulesConstructors = ( RecipientsRules.addComputedRecipientsRule,
 # Notification Types
 #
 
-notificationsClasses = ( Notifications.MailNotification,
+notificationsClasses = ( Notifications.MailNotificationRule,
                          )
 
-notificationsConstructors = ( Notifications.addMailNotification,
+notificationsConstructors = ( Notifications.addMailNotificationRule,
                              )
 
 #

@@ -40,11 +40,18 @@ class NotificationRule(PortalFolder):
     All the Notifications will sub-class this one.
     Sort of abstract class
     """
-    pass
+
+    def execNotification(self, recipients):
+        """ Exec the notification
+
+        XXX recipients struct still to be defined
+        """
+
+InitializeClass(NotificationRule)
 
 ################################################################
 
-class MailNotification(NotificationRule):
+class MailNotificationRule(NotificationRule):
     """Mail Notification
 
     Sending mail to the recipients of the notifications.
@@ -52,7 +59,39 @@ class MailNotification(NotificationRule):
     meta_type = "Mail Notification"
     portal_type = meta_type
 
-def addMailNotification(self, id=None, REQUEST=None):
+    def execNotification(self, recipients):
+        """ Exec the notification
+
+        XXX recipients struct still to be defined
+        """
+        pass
+
+    def sendMails(self, recipients):
+        """ Do send mails
+
+        Aim of this notification rule
+        """
+        pass
+
+InitializeClass(MailNotificationRule)
+
+def addMailNotificationRule(self, id=None, title='', REQUEST=None, **kw):
     """Add a Mail Notification
     """
-    pass
+    self = self.this()
+    if not id:
+        id = self.computeId()
+    if hasattr(aq_base(self), id):
+        return MessageDialog(
+            title='Item Exists',
+            message='This object already contains an %s' % ob.id,
+            action='%s/manage_main' % REQUEST['URL1'])
+
+    ob = MailNotificationRule(id, title=title, **kw)
+    self._setObject(id, ob)
+
+    LOG('addRoleRecipientsRule', INFO,
+        'adding recipients rule  %s/%s' % (self.absolute_url(), id))
+
+    if REQUEST is not None:
+        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
