@@ -154,7 +154,8 @@
       <h4 i18n:translate="header_mfrom_mailing_list">
         Sender address for outgoing emails
       </h4>
-      <tal:block define="current_mfrom subscription_folder/getMailFrom">
+      <tal:block define="current_mfrom python:subscription_folder and
+      subscription_folder.getMailFrom() or ''">
         <table border="0" align="center" width="100%">
           <tr>
             <td align="center">
