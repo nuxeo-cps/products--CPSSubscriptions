@@ -32,9 +32,8 @@ from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
-
 from Products.CMFCore.CMFCorePermissions import ManagePortal
-from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.utils import UniqueObject, getToolByName
 
 from zLOG import LOG, DEBUG
 
@@ -490,5 +489,57 @@ class SubscriptionsTool(UniqueObject, Folder):
                     for pt_recipient in pt_recipients.keys():
                         recipients[pt_recipient] = pt_recipients[pt_recipient]
         return recipients
+
+    #############################################################
+    #############################################################
+
+    security.declarePublic('getAllSubscriptionsFor')
+    def getAllSubscriptionsFor(self, email=None, context=None):
+        """Returns all the subscriptions for a given member/email.
+
+        Catalog research. getRecipients is indexed for the subscriptions
+        container.
+
+        Notice, anonymous user can as well check their subscriptions.
+        """
+
+        # XXX Implement for anonymous
+
+        membership_tool = getToolByName(self, 'portal_membership')
+        isAnonymousUser = membership_tool.isAnonymousUser()
+
+        if not isAnonymousUser:
+            member_id = membership_tool.getAuthenticatedMember().getMemberId()
+            email = self.getMemberEmail(member_id)
+
+        if not email:
+            return []
+
+        if context is not None:
+            path = context.absolute_url()
+        else:
+            path = getToolByName(self, 'portal_url').getPortalPath()
+
+        catalog = getToolByName(self, 'portal_catalog')
+
+        containers = catalog.searchResults({'portal_type':
+                                            'CPS PlaceFull Subscription Container',
+                                            'path':path,})
+
+        subscriptions_list = []
+        for container in containers:
+            container_parent = aq_parent(aq_inner(container.getObject()))
+            recipients = self.getRecipientsFor(infos={'context':container_parent})
+            if email in recipients.keys():
+                elt = {}
+                elt['title'] = container_parent.title_or_id()
+                if getattr(container_parent, 'getContent'):
+                    elt['description'] = container_parent.getContent().Description()
+                else:
+                    elt['description'] = container_parent.Description()
+                elt['path'] = container_parent.absolute_url()
+                subscriptions_list.append(elt)
+
+        return subscriptions_list
 
 InitializeClass(SubscriptionsTool)
