@@ -1003,6 +1003,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         """Schedule Message for a given subscription_mode
         """
 
+        self._p_changed = 1
+
         from Notifications import NotificationRule
         notification_vector = NotificationRule('fake')
 
