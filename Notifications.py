@@ -94,10 +94,14 @@ class NotificationRule(PortalFolder):
 
         # Header
         if string.find(subject, "?") == -1:
-            subject = "=?iso-8859-1?Q?%s?=" % subject
+            # FIXME
+            #subject = "=?iso-8859-1?Q?%s?=" % subject
+            pass
         else:
-            subject = string.replace(subject, "?", "=3F")
-            subject = "=?iso-8859-1?Q?%s?=" % subject
+            # FIXME
+            #subject = string.replace(subject, "?", "=3F")
+            #subject = "=?iso-8859-1?Q?%s?=" % subject
+            pass
         writer.addheader('subject', subject)
 
         # To
