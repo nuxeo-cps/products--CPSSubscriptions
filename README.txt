@@ -9,7 +9,7 @@
 
   This component provides subscriptions and notifications for CPS3.
 
-Definition :
+Definition:
 
   - Subscription
 
@@ -26,24 +26,24 @@ Definition :
     extended to SMS, Jabber or whatever notifications thanks the
     architecture modularity.
 
-Features :
+Features:
 
   1 - Placeful notification management.
 
-      Person granted with the 'ManageSubscriptions' permissions (Manage,
-    WorkspaceManager, SectionManager, ..) can set recipients rules based on
-    roles on folders such as Workspaces, Sections, Forums, etc..
+    Person granted with the 'ManageSubscriptions' permissions (Manage,
+    WorkspaceManager, SectionManager, ...) can set recipients rules based on
+    roles on folders such as Workspaces, Sections, Forums, etc.
 
     They have a new action 'Notifications management' available where they
     are granted with 'ManageSubscriptions' privileges. A dedicated
-    management form is then provided to them where they can do the following
-    :
+    management form is then provided to them where they can do the following:
+
       - Say who is going to be notified when a given event occur in
         here. Such as "I want the WorkspaceMembers" being notified when a
         new document is created in this workspace" or "I want the
         SectionReviewer being notified when a document has been published in
         this section" or still "I want the posters being notified when a
-        reply has been done on one of their personal posts" etc...  Notice,
+        reply has been done on one of their personal posts" etc. Notice,
         the use cases can be easily extended to some more complex cases.
 
       - Can open or close a given event for a Member or Anonymous
@@ -79,7 +79,7 @@ Features :
    the settings are in use in the sub-folders but they can be overrides too
    the same way by performing a notification management on a sub-folders.
 
-   To sum up : CPSSubscriptions provides now integrated mailing lists on
+   To sum up: CPSSubscriptions provides now integrated mailing lists on
    containers. (See 4 - Notifications administrative management through ZMI
    for more information about configuration)
 
@@ -91,7 +91,7 @@ Features :
      a) Members subscriptions
 
         If a folder is open for subscriptions then members can request for
-     subscriptions.
+        subscriptions.
 
         He choose in the list of events which one he is interested in and
         submit.
@@ -126,7 +126,7 @@ Features :
     they are located on the portal. Thus, the member, can handle its
     subscriptions from a single access point.
 
-    To summarize : CPSSubscriptions provides a subscription centralized
+    To summarize: CPSSubscriptions provides a subscription centralized
     management interface for the member of the portal.
 
   4 - Administrative management through ZMI for notifications
@@ -134,26 +134,26 @@ Features :
     a) Add new events 'somewhere' in the portal.
 
        You can add some subscriptable container types such as Forum, Chat or
-    whatever from the subscriptions tool as Manager in the ZMI.
+       whatever from the subscriptions tool as Manager in the ZMI.
 
     b) Edit / customize sent messages on notifications and subscriptions.
 
        You can customize default message email content ans as well providing
        custom content for given events.
 
-What doesn't provide CPSSubscriptions :
+What doesn't provide CPSSubscriptions:
 
   - No mailing list content type as CPS2 or CPSMailingLists used to
     provide.
   - No Newsletters content type neither. (A CPSNewsLetters will handle this
     feature and will use CPSSubscriptions for sending emails.)
 
-Installation :
+Installation:
 
  - Classic External method installation right now. Will be integrated within
    CPS3.1
 
-More information :
+More information:
 
    - doc sub folders. (Especially, the README.INTEGRATION)
    - doc/API sub-folder
