@@ -17,10 +17,13 @@ if REQUEST is not None:
         event_ids = REQUEST.form.get('event_ids',  [])
         subscriptions_tool = context.portal_subscriptions
         subscription_folder = subscriptions_tool.getSubscriptionContainerFromContext(context)
+        explicit_recipients_rule_id = context.portal_subscriptions.getExplicitRecipientsRuleId()
         for event_id in event_ids:
             internal_event_id = 'subscription__'+event_id
-            event = getattr(subscription_folder, internal_event_id)
-            explicit_recipients_rule_id = context.portal_subscriptions.getExplicitRecipientsRuleId()
+            event = getattr(subscription_folder, internal_event_id, None)
+            if event is None:
+                subscription_folder.addSubscription(internal_event_id)
+                event = getattr(subscription_folder, internal_event_id)
             explicit_recipients_rule = getattr(event, explicit_recipients_rule_id)
             stupid = 1
             if not explicit_recipients_rule.subscribeTo(email, event_id, context):
