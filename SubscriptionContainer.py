@@ -210,14 +210,24 @@ class SubscriptionContainer(CPSBaseFolder):
         """
         self.manage_addProduct['CPSSubscriptions'].addSubscription(id=id)
 
+    def getSubscriptionById(self, subscription_id=''):
+        """Return a susbcription object given an id
+        """
+        subtool = getToolByName(self, 'portal_subscriptions')
+        subscription_prefix = subtool.getSubscriptionObjectPrefix()
+
+        if not subscription_id.startswith(subscription_prefix):
+            subscription_id = subscription_prefix + subscription_id
+
+        return getattr(self, subscription_id, None)
+
     security.declarePublic('getSubscriptions')
     def getSubscriptions(self):
         """ Get all Subscriptions contained in here.
         """
         # XXX : find sthg else to find these subscription objects
-        return [x for x in self.objectValues() if getattr(x,
-                                                          'getFilterEventTypes',
-                                                          0)]
+        return [x for x in self.objectValues()
+                if getattr(x, 'getFilterEventTypes', 0)]
 
     ##################################################################
     ##################################################################
