@@ -70,7 +70,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         self.setupRelevantLocalRoles()
         self.verifyNewPermissions()
         self.setupTranslations()
-        self.setupCatalogSpecifics()
+        ##self.setupCatalogSpecifics()
         self.finalize()
         self.installUpdateExMethod()
         self.log("End of Install/Update : CPSSubscriptions Product")
