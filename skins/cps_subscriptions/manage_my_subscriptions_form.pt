@@ -1,0 +1,10 @@
+<metal:block use-macro="here/content_lib/macros/master">
+  <metal:block fill-slot="header">
+    <h1 i18n:translate="heading_my_subscriptions">
+      My subscriptions
+    </h1>
+  </metal:block>
+  <metal:block fill-slot="main">
+    <metal:block use-macro="here/subscriptions_lib/macros/manage_my_subscriptions" />
+  </metal:block>
+</metal:block>
