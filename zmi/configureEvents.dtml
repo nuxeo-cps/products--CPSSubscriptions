@@ -1,7 +1,11 @@
 <dtml-var manage_page_header>
 <dtml-var manage_tabs>
 
-<h3>Already recorded events</h3>
+<h3>Already recorded events within the following contexts</h3>
+
+<p>
+  Contexts correspond to portal_types containers in which an event occur.
+</p>
 
 <dtml-let keys="mapping_context_events.keys()">
 <ul>
