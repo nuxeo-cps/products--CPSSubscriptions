@@ -144,7 +144,7 @@ class SubscriptionsTool(UniqueObject, Folder):
             if self.mapping_context_events.has_key(context_portal_type):
                 return self.mapping_context_events[context_portal_type]
             else:
-                raise NotImplementedError
+                return self.mapping_context_events['Portal']
         return {}
 
     #
