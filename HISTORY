@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.2.0 [R1 build 2004/03/10-14:45 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Unsubscription / confirmation anaonymous / members
+Bug fixes:
+~~~~~~~~~~
+- Some big fix.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.1.0 [R1 build 2004/03/05-18:31 by anguenot]
 
 Requires:
