@@ -14,6 +14,7 @@ Bug fixes:
   UnboundLocalError, Error Value: local variable 'mtool' referenced before
   assignment)
 - XHTML-ification "POST" -> "post".
+- Fix small bug while editing in ZMI
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
