@@ -403,8 +403,8 @@ class ExplicitRecipientsRule(RecipientsRule):
     ######################################################
     ######################################################
 
-    security.declareProtected(View, "anonymousSubscribe")
-    def anonymousSubscribe(self, email, event_id, context):
+    security.declareProtected(View, "subscribeTo")
+    def subscribeTo(self, email, event_id, context):
         """Anonymous is asking for a subscription
         """
         if self.updatePendingEmails(email):
@@ -421,8 +421,8 @@ class ExplicitRecipientsRule(RecipientsRule):
                 return 1
         return 0
 
-    security.declareProtected(View, 'anonymousConfirmSubscribe')
-    def anonymousConfirmSubscribe(self, email, event_id, context):
+    security.declareProtected(View, 'confirmSubscribeTo')
+    def confirmSubscribeTo(self, email, event_id, context):
         """Anonymous confirm the subscription
         """
 
@@ -442,6 +442,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                                                            email,
                                                            context)
                 return 1
+
         return 0
 
     #####################################################
