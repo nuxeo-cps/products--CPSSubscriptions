@@ -138,6 +138,19 @@
         </tr>
         <tr>
           <td align="center">
+            <span i18n:translate="label_unsubscription_allowed">
+              Are unsubscription allowed ?
+            </span>
+          </td>
+          <td align="left">
+            <input type="checkbox" name="unsubscription_allowed"
+                   tal:attributes="checked python:subscription_folder and
+      subscription_folder.isUnSubscriptionAllowed() or 0"
+                   />
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
             <span i18n:translate="label_anonymous_subscription_allowed">
               Are anonymous subscriptions allowed ?
             </span>
@@ -191,8 +204,9 @@
                    events python:subscriptions_tool.getEventsFromContext(context=here);
                    isAno python:here.portal_membership.isAnonymousUser();
                    email request/email|nothing;
-                   subscribe_list python:[x for x in events.keys() if not subscriptions_tool.isSubscriberFor(x, here, email)];
                    unsubscribe_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, email)];
+                   role_based_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, role_based=1)];
+                   subscribe_list python:[x for x in events.keys() if not subscriptions_tool.isSubscriberFor(x, here, email) and x not in role_based_list];
                    ">
   <h4 i18n:translate="header_choose_the_events">
     Below are events open for subscriptions.
@@ -293,6 +307,48 @@
     <tal:block condition="not:unsubscribe_list">
       <div i18n:translate="label_no_subscriptions">
         Currently you haven't any subscriptions in this context or for this object.
+      </div>
+    </tal:block>
+    </div>
+  </tal:block>
+  <tal:block condition="not:isAno">
+    <br />
+    <h4 i18n:translate="header_subscribption_based_on_local_roles">
+      Below are the events for which you are subsribed because of your local roles
+    </h4>
+    <div class="group">
+    <tal:block condition="role_based_list">
+      <form name="form" method="get" action="."
+            tal:attributes="action string:${here/absolute_url}">
+        <table width="100%" align="center">
+          <tr tal:repeat="event_key role_based_list"
+              tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+            <td>
+              <strong>
+                <span i18n:translate="">
+                  <span tal:replace="events/?event_key" />
+                </span>
+              </strong>
+            </td>
+            <td align="left">
+              <input type="checkbox"
+                     tal:condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0"
+                     tal:attributes="name string:event_ids:list;
+                                     value event_key;
+                                     checked python:subscriptions_tool.isSubscriberFor(event_key, here, role_based=1)">
+            </td>
+          </tr>
+          </table>
+          <br />
+          <input type="submit" class="standAlone" name="folder_unsubscribe_role_based_member:method"
+                 tal:condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0"
+                 value="button_unsubscribe"
+                 i18n:attributes="value">
+      </form>
+    </tal:block>
+    <tal:block condition="not:role_based_list">
+      <div i18n:translate="label_no_subscriptions_based_on_local_roles">
+        Currently you haven't any subscriptions in this context or for this object based on your local roles
       </div>
     </tal:block>
     </div>
