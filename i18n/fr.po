@@ -50,7 +50,8 @@ msgstr "FAKE"
 #.                 </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgid ""
+"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr "FAKE"
 
 #.   <span>
@@ -108,8 +109,10 @@ msgstr "Types d'alertes"
 #.          Please, follow the instruction included in the mail you will shortly receive
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid "Please, follow the instruction included in the mail you will shortly receive"
-msgstr "Veuillez suivre les instructions qui vont vous être transmises par courriel."
+msgid ""
+"Please, follow the instruction included in the mail you will shortly receive"
+msgstr ""
+"Veuillez suivre les instructions qui vont vous être transmises par courriel."
 
 #.   <span>
 #.       Ton confirm that you want to be added to this mailing list, click
@@ -205,7 +208,8 @@ msgstr ""
 "choisissez les roles locaux dans la liste ci-dessous et l'événement sera "
 "disponible uniquement pour les utilisateurs ayant les rôles locaux que vous "
 "allez spécifier ci-dessous. Si vous ne spécifiez aucun rôle local, alors "
-"l'événement sera disponibe à tous. (Il s'agit de la configuration par défaut.)"
+"l'événement sera disponibe à tous. (Il s'agit de la configuration par "
+"défaut.)"
 
 #.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
 #: from
@@ -447,7 +451,8 @@ msgstr "FAKE "
 #.       </span>
 #.       </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgid ""
+"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr "DYN"
 
 #.   <label for="anonymous_subscription_allowed">
@@ -557,7 +562,8 @@ msgstr "Aucun membre ne correspond à votre recherche"
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
-msgstr "Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
+msgstr ""
+"Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -598,7 +604,8 @@ msgstr "Ajouter des courriels de destinataires"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_local_roles"
-msgstr "Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire"
+msgstr ""
+"Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire"
 
 #.   <label for="notify_no_local">
 #.                     Only notify for events happening in sub-folders
@@ -606,7 +613,9 @@ msgstr "Alerter uniquement les personnes ayant des rôles locaux dans ce répertoi
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
-msgstr "Alerter uniquement pour les événements se produisant dans des sous-répertoires"
+msgstr ""
+"Alerter uniquement pour les événements se produisant dans des sous-"
+"répertoires"
 
 #.   <td>Others</td>
 #: from
@@ -881,22 +890,3 @@ msgstr "Mensuel"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Mes abonnements"
-
-#~ msgid "header_subscription_allowed"
-#~ msgstr "Les abonnements sont-ils autorisés ? "
-
-#~ msgid "header_when_where_to_notify"
-#~ msgstr "Quand/où alerter ?"
-
-#~ msgid "label_notifications_no_local"
-#~ msgstr ""
-#~ "Alerter uniquement lors d'événements se produisant dans les sous-espaces"
-
-#~ msgid "label_subscription_allowed"
-#~ msgstr "Les abonnements sont-ils autorisés ? "
-
-#~ msgid "label_unsubscription_allowed"
-#~ msgstr ""
-#~ "Les désabonnements sont-ils autorisés pour les members ajoutés à partir "
-#~ "de la configuration basée sur les roles locaux ? "
-

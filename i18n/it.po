@@ -209,12 +209,6 @@ msgstr ""
 msgid "button_close"
 msgstr "Chiudi"
 
-#.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
-#: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#, fuzzy
-msgid "button_import"
-msgstr "Chiudi"
-
 #.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
 #.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
 #.           </input></input>
@@ -245,13 +239,6 @@ msgstr ""
 "necessità specifiche.<br> In questo caso dovrai inserire un indirizzo valido "
 "come per esempio: sistema@miosito.net"
 
-#.   <label for="saveChanges">Save changes you have done:</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "description_save_changes"
-msgstr "Amministra"
-
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
@@ -280,15 +267,6 @@ msgstr "Scegli a quali sottoscrizioni vuoi iscriverti: "
 msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Scegli quali sottoscrizioni vuoi abbandonare: "
 
-#.   <h2>
-#.   	  Contextual notifications
-#.   	</h2>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "header_contextual_notifications"
-msgstr "Gestione delle notifiche"
-
 #.   <strong>
 #.                       <span>
 #.                         Enter a valid email
@@ -313,24 +291,6 @@ msgstr "Indirizzo del mittente per la posta in uscita:"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr ""
-
-#.   <h2>
-#.   	  Save changes
-#.   	</h2>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "header_save_changes"
-msgstr "Notifiche disponibili in questo contesto:"
-
-#.   <h2>
-#.   	  Subscribing/unsubscribing
-#.   	</h2>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "header_subscribing_unsubscribing"
-msgstr "Consenti le iscrizioni?"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -399,15 +359,6 @@ msgstr "Gestione delle notifiche"
 msgid "heading_my_subscriptions"
 msgstr "Sottoscrizioni personali"
 
-# ## ACTIONS ######################################
-#.   <h1>
-#.           Search members to add to recipients list
-#.         </h1>
-#: from ../skins/cps_subscriptions/content_notify_email_form.pt
-#, fuzzy
-msgid "heading_notify_content_form"
-msgstr "Notifica"
-
 #.   <h1>
 #.       Search results
 #.     </h1>
@@ -451,37 +402,6 @@ msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr ""
 
-#.   <label for="anonymous_subscription_allowed">
-#.   		  Allow anonymous subscriptions
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_allow_anonymous_subscriptions"
-msgstr "autorizza le sottoscrizioni per gli utenti anonimi "
-
-#.   <label for="subscription_allowed">
-#.   		  Allow user subscriptions
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_allow_user_subscriptions"
-msgstr ""
-"Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o "
-"per questo oggetto."
-
-#.   <label for="unsubscription_allowed">
-#.   		  Allow user local roles based unsubscriptions
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_allow_user_unsubscriptions"
-msgstr ""
-"Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o "
-"per questo oggetto."
-
 #.   <span>
 #.                 E-Mails Black list
 #.               </span>
@@ -497,13 +417,6 @@ msgstr "Liste di diffusione da escludere per questo avvenimento:"
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_click_here"
 msgstr "Clicca qui"
-
-#.   <td>Configure</td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_configure"
-msgstr "Proprietario"
 
 #.   <span>
 #.                 Explicit E-Mails
@@ -528,38 +441,6 @@ msgstr "Inserisci un indirizzo di posta valido"
 msgid "label_follow_subscriptions_instructions"
 msgstr "Segui le istruzioni incluse nella e-mail che riceverai a breve"
 
-#.   <span>
-#.                   Import a list of emails from a file. (text file with one email per ligne)
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#, fuzzy
-msgid "label_import_emais_list"
-msgstr "Liste di diffusione da includere per questo avvenimento:"
-
-#.   <span>
-#.            Mail body
-#.         </span>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
-msgid "label_mail_body"
-msgstr "Liste di diffusione da includere per questo avvenimento:"
-
-#.   <span>
-#.            Mail Subject
-#.         </span>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
-msgid "label_mail_subject"
-msgstr "Liste di diffusione da includere per questo avvenimento:"
-
-#.   <span />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
-msgid "label_no_results"
-msgstr ""
-"Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o "
-"per questo oggetto."
-
 #.   <div>
 #.             No event opened for subscsriptions in here.
 #.           </div>
@@ -582,15 +463,6 @@ msgstr ""
 "per questo oggetto in funzione dei permessi che ti sono stati attribuiti "
 "attraverso i ruoli locali."
 
-#.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
-#.   		    Edit
-#.   		</a>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_notification_edit"
-msgstr "Aggiungi"
-
 #.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
 #.   		    Choose
 #.   		</a>
@@ -598,25 +470,6 @@ msgstr "Aggiungi"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
 msgstr "Aggiungi"
-
-#.   <span>
-#.            Add explicitly recipients emails (one email per ligne)
-#.         </span>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
-msgid "label_notify_content_add_emails"
-msgstr "Aggiungi"
-
-#.   <label for="notify_local_only">
-#.                     Only notify people having local roles in this folder
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_only_notify_local_roles"
-msgstr ""
-"avverti solamente gli utenti che possiedono dei ruoli locali in questo "
-"contesto"
 
 #.   <label for="notify_no_local">
 #.                     Only notify for events happening in sub-folders
@@ -632,14 +485,6 @@ msgstr ""
 msgid "label_other"
 msgstr "Altro"
 
-#.   <span>
-#.                   Current local roles
-#.                 </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#, fuzzy
-msgid "label_roles_allowed_to_subscribe"
-msgstr "Visualizza tutti gli utenti avvisati per tutti gli avvenimenti."
-
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
 #.   	    See all subscribers
 #.   	</a>
@@ -647,13 +492,6 @@ msgstr "Visualizza tutti gli utenti avvisati per tutti gli avvenimenti."
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
 msgstr "Visualizza tutti gli utenti avvisati per tutti gli avvenimenti."
-
-#.   <label for="senderEmailAddress">Email address of sender:</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_sender_email_address"
-msgstr "Inserisci un indirizzo di posta valido"
 
 #.   <span>
 #.                 Full Name
@@ -693,15 +531,6 @@ msgstr "Modalità di sottoscrizione"
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscription_where"
 msgstr "Dove"
-
-#.   <span>
-#.                      subscriptions / unsubscriptions are closed
-#.                    </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-#, fuzzy
-msgid "label_subscriptions_closed"
-msgstr "autorizza le sottoscrizioni"
 
 #.   <span>
 #.                 E-Mails
@@ -837,10 +666,6 @@ msgstr "Rifiuto nell'accettazione di un commento"
 msgid "label_forum_comment_deleted"
 msgstr "Eliminazione di un commento"
 
-#, fuzzy
-msgid "label_notification_related_document"
-msgstr "Aggiungi"
-
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Notifica"
@@ -850,11 +675,6 @@ msgstr "Sottoscrizioni personali"
 
 msgid "action_folder_subscribe"
 msgstr "Sottoscrivi"
-
-# ## ACTIONS ######################################
-#, fuzzy
-msgid "action_notify_content"
-msgstr "Notifica"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
@@ -889,14 +709,6 @@ msgstr ""
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Per effettuare la disiscrizione, devi scegliere almeno un avvenimento."
 
-#, fuzzy
-msgid "psm_an_email_has_been_sent"
-msgstr "Ti è stato inviato un messaggio di posta elettronica."
-
-#, fuzzy
-msgid "psm_subscription_updated"
-msgstr "autorizza le sottoscrizioni"
-
 # ## Subscription modes ############################
 msgid "mode_daily"
 msgstr "Giornaliero"
@@ -906,30 +718,3 @@ msgstr "Settimanale"
 
 msgid "mode_monthly"
 msgstr "Mensile"
-
-#, fuzzy
-msgid "bc_manage_my_subscriptions"
-msgstr "Sottoscrizioni personali"
-
-#, fuzzy
-#~ msgid "label_allow_subscriptions"
-#~ msgstr ""
-#~ "Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto "
-#~ "o per questo oggetto."
-
-#~ msgid "header_subscription_allowed"
-#~ msgstr "Amministra le sottoscrizioni:"
-
-#~ msgid "header_when_where_to_notify"
-#~ msgstr "Quando e come notificare:"
-
-#~ msgid "label_notifications_no_local"
-#~ msgstr "notifica solamente gli eventi che avvengono nelle sotto cartelle"
-
-#~ msgid "label_subscription_allowed"
-#~ msgstr "autorizza le sottoscrizioni"
-
-#~ msgid "label_unsubscription_allowed"
-#~ msgstr ""
-#~ "autorizza le disiscrizioni per i collaboratori aggiunti <br>a partire "
-#~ "dalla configurazione basata sui ruoli locali"

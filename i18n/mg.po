@@ -44,15 +44,6 @@ msgstr ""
 "X-Generator: KBabel 1.3\n"
 
 #.   <block>
-#.   		  <block replace="context_lcs/?role" />
-#.   		</block>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "<block replace=\"context_lcs/?role\" />"
-msgstr "FAKE"
-
-#.   <block>
 #.   		    <span replace="events/?event_key" />
 #.   		  </block>
 #.   <span>
@@ -272,13 +263,6 @@ msgstr ""
 "tadiavinao, raha izany tokoa dia mampidira mailaka manana endrika hoe, "
 "ohatra,systeme@monsite.net"
 
-#.   <label for="saveChanges">Save changes you have done:</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "description_save_changes"
-msgstr "Mitantana"
-
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
@@ -307,15 +291,6 @@ msgstr "Zava-mitranga izay ahafahanao misoratra anarana"
 msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Zava-mitranga izay azonao ialana tsy ho mpanjifa"
 
-#.   <h2>
-#.   	  Contextual notifications
-#.   	</h2>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "header_contextual_notifications"
-msgstr "Mandrindra ny fampilazana"
-
 #.   <strong>
 #.                       <span>
 #.                         Enter a valid email
@@ -340,26 +315,6 @@ msgstr "Mailaky ny mpandefa ho an'ny taratasy elektronika mivoaka"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr ""
-
-#.   <h2>
-#.   	  Save changes
-#.   	</h2>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "header_save_changes"
-msgstr "Zava-mitranga misy ankehitriny"
-
-#.   <h2>
-#.   	  Subscribing/unsubscribing
-#.   	</h2>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "header_subscribing_unsubscribing"
-msgstr ""
-"Afaka mifidy eo ambany ny fomba fanjifanao ianao ho an'ny fomba fanjifanao "
-"eo ambony"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -482,37 +437,6 @@ msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr "DYN"
 
-#.   <label for="anonymous_subscription_allowed">
-#.   		  Allow anonymous subscriptions
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_allow_anonymous_subscriptions"
-msgstr "Ny fanjifana ho an'ireo tsy mitonona anarana ve azo atao ? "
-
-#.   <label for="subscription_allowed">
-#.   		  Allow user subscriptions
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_allow_user_subscriptions"
-msgstr ""
-"Hatramin'izao dia tsy manana fanjifana amin'io contexte io sy amin'io objet "
-"io ianao."
-
-#.   <label for="unsubscription_allowed">
-#.   		  Allow user local roles based unsubscriptions
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_allow_user_unsubscriptions"
-msgstr ""
-"Hatramin'izao dia tsy manana fanjifana amin'io contexte io sy amin'io objet "
-"io ianao."
-
 #.   <span>
 #.                 E-Mails Black list
 #.               </span>
@@ -631,16 +555,6 @@ msgstr "Lisitra"
 msgid "label_notify_content_add_emails"
 msgstr "Manampy mailaka "
 
-#.   <label for="notify_local_only">
-#.                     Only notify people having local roles in this folder
-#.   		</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_only_notify_local_roles"
-msgstr ""
-"Lazao ireo olona izay manana andraikitra ato anatin'ity repertoara ity."
-
 #.   <label for="notify_no_local">
 #.                     Only notify for events happening in sub-folders
 #.   		</label>
@@ -671,13 +585,6 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
 msgstr "Mijery ireo olona rehetra voalaza ho an'ny zava-mitranga rehetra."
-
-#.   <label for="senderEmailAddress">Email address of sender:</label>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "label_sender_email_address"
-msgstr "Ampidiro ny mailakao"
 
 # ## LABELS #######################################
 #.   <span>
@@ -926,26 +833,3 @@ msgstr "Isam-bolana"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Ireo fanjifako"
-
-#, fuzzy
-#~ msgid "label_allow_subscriptions"
-#~ msgstr ""
-#~ "Hatramin'izao dia tsy manana fanjifana amin'io contexte io sy amin'io "
-#~ "objet io ianao."
-
-#~ msgid "header_subscription_allowed"
-#~ msgstr "Azo atao ve ny misoratra anarana?"
-
-#~ msgid "header_when_where_to_notify"
-#~ msgstr "Oviana/Aiza no mila fanairana?"
-
-#~ msgid "label_notifications_no_local"
-#~ msgstr "Lazao rehefa misy zava-mitranga ao amin'ny zana-paritra fiasana"
-
-#~ msgid "label_subscription_allowed"
-#~ msgstr "Mahazo misoratra anarana ho mpanjifa ve?"
-
-#~ msgid "label_unsubscription_allowed"
-#~ msgstr ""
-#~ "Azo omena alalana tsy ho mpanjifa intsony ve ireo mpanjifa nampiana avy "
-#~ "tao amin'ny 'Fanamboarana mifototra amin'ny andraikitra anaty'? "
