@@ -40,7 +40,7 @@ from Products.CMFCore.CMFCorePermissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from zLOG import LOG, INFO
+from zLOG import LOG, INFO, DEBUG
 
 class NotificationRule(PortalFolder):
     """Base Notification rule Class.
@@ -119,6 +119,9 @@ class MailNotificationRule(NotificationRule):
         events_from_context = portal_subscriptions.getEventsFromContext(
             context=aq_parent(aq_inner(object)))
 
+        # Just more secure in case of the event configuration is badly done.
+        if events_from_context is None:
+            return {}
         event_from_context = mcat(events_from_context[event_type]).encode(
             "ISO-8859-15", 'ignore')
 
@@ -148,6 +151,9 @@ class MailNotificationRule(NotificationRule):
         #
 
         infos = self._makeInfoDict(event_type, object)
+
+        if not infos:
+            return
 
         LOG(":: CPSSubscriptions :: MailNotificationRule :: on",
             INFO,
