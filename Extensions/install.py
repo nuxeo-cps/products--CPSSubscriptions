@@ -151,7 +151,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             name='action_my_subscriptions',
             action='string: ${portal_url}/manage_my_subscriptions_form',
             condition="python:not portal.portal_membership.isAnonymousUser()",
-            permission=(ManageMySubscriptions,),
+            permission=(ViewMySubscriptions,),
             category='user',
             visible=1)
         self.log(" Added Action My Subscriptions")
