@@ -112,6 +112,9 @@ msgstr ""
 msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr ""
 
+msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
+msgstr ""
+
 ### BUTTONS ########################################
 
 msgid "button_subscribe"

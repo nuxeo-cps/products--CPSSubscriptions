@@ -1,3 +1,5 @@
+# translation of en.po to 
+# translation of en.po to
 # translation of en.po to Francais
 # translation of en.po to Français
 # Gettext Message File for default.
@@ -8,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-29 10:42default\n"
-"PO-Revision-Date: 2004-03-29 10:57+0200\n"
-"Last-Translator: DARCHE <madarche@nuxeo.com>\n"
-"Language-Team: Francais <fr@li.org>\n"
+"POT-Creation-Date: 2004-03-30 19:37default\n"
+"PO-Revision-Date: 2004-03-30 19:39+0200\n"
+"Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
+"Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +22,7 @@ msgstr ""
 "Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.0.2\n"
 
 #.   <span>
 #.                   <span replace="context_lcs/?role" />
@@ -181,6 +183,8 @@ msgstr "Subscribe"
 #.       </input>
 #.   <input value="button_unsubscribe" class="standAlone" name="folder_unsubscribe:method" type="submit">
 #.         </input>
+#.   <input condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0" value="button_unsubscribe" class="standAlone" name="folder_unsubscribe_role_based_member:method" type="submit">
+#.         </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
 msgstr "Unsubscribe"
@@ -226,6 +230,13 @@ msgstr "Enter a valid email"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_mfrom_mailing_list"
 msgstr "Sender address for outgoing emails"
+
+#.   <h4>
+#.         Below are the events for which you are subsribed because of your local roles
+#.       </h4>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "header_subscribption_based_on_local_roles"
+msgstr "Below are the events for which you are subscribed because of your local roles"
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
@@ -350,11 +361,18 @@ msgid "label_follow_subscriptions_instructions"
 msgstr "Please, follow the instruction included in the mail you will shortly receive"
 
 #.   <div>
-#.           Currently you haven't any subscriptions for this object/context.
+#.           Currently you haven't any subscriptions in this context or for this object.
 #.         </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions"
 msgstr "Currently you haven't any subscriptions in this context or for this object."
+
+#.   <div>
+#.           Currently you haven't any subscriptions in this context or for this object based on your local roles
+#.         </div>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_no_subscriptions_based_on_local_roles"
+msgstr "Currently you haven't any subscriptions in this context or for this object based on your local roles"
 
 # ## PSMS ##########################################
 #.   <span>
@@ -434,6 +452,15 @@ msgstr "Where"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscriptions_email"
 msgstr "E-Mails"
+
+#.   <span>
+#.                 Are unsubscription allowed ?
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_unsubscription_allowed"
+msgstr ""
+"Are unsubscription allowed for members computed as recipients based on their "
+"roles?"
 
 #.   <span>
 #.         You are now a subscriber.
@@ -533,6 +560,13 @@ msgstr "Welcome to the mailing list."
 
 msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr "You have been removed from the mailing list"
+
+msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
+msgstr "You have been removed from the mailing list. If you want to be part of this mailing list again you got to contact the adminstrator of the mailing list."
+
+#, fuzzy
+#~ msgid "button_unsubscribed"
+#~ msgstr "Unsubscribe"
 
 #~ msgid "label_<span replace=\"event_key\" />"
 #~ msgstr "FAKE "
