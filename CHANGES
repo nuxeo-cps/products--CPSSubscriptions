@@ -3,11 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- New control in the ZMI to reset email messages to their default values
+-
 Bug fixes:
 ~~~~~~~~~~
-- Saving default message for events doesn't crash anymore (the API has been
-  updated)
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

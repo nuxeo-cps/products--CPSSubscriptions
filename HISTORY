@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.5.0 [R1 build 2004/04/20-12:02 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- New control in the ZMI to reset email messages to their default values
+Bug fixes:
+~~~~~~~~~~
+- Saving default message for events doesn't crash anymore (the API has been
+  updated)
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.4.4 [R1 build 2004/04/19-09:54 by madarche]
 
 Requires:
