@@ -56,10 +56,13 @@ class Subscription(PortalFolder):
                     'label': 'Filter Event Types'},
                    {'id': 'filter_object_types', 'type': 'lines', 'mode': 'w',
                     'label': 'Filter Object Types'},
+                   {'id': 'recipient_emails_black_list', 'type': 'lines', 'mode': 'w',
+                    'label': 'Recipient Emails Black List'},
                    )
 
     filter_event_types = []
     filter_object_types = []
+    recipient_emails_black_list = []
 
     def __init__(self, id, title=''):
         """Constructor
@@ -71,6 +74,9 @@ class Subscription(PortalFolder):
 
         # The types of the objects concerned by the subscription.
         self.filter_object_types = []
+
+        # The recipients emails blocked by the subscription
+        self.recipients_emails_black_list = []
 
     def getFilterEventTypes(self):
         """ Returns the event types on which to react
@@ -99,6 +105,17 @@ class Subscription(PortalFolder):
         if object_type not in self.getFilterObjectTypes():
             self.filter_object_types += [object_type]
 
+    def getRecipientEmailsBlackList(self):
+        """ Returns the list of emails blocked by the
+        subscription.
+        """
+        return self.recipient_emails_black_list
+
+    def updateRecipientEmailsBlackList(self, emails=[]):
+        """ Adds a new email to the emails black list
+        """
+        self.recipient_emails_black_list = emails
+
     def isInterestedInEvent(self, event_type, object, infos):
         """Is the subscription interested in the given event."""
         filtered_event_types = self.getFilterEventTypes()
@@ -111,13 +128,28 @@ class Subscription(PortalFolder):
         """Send an event to the subscription."""
         pass
 
-    def getRecipientsRules(self):
+    def getRecipientsRules(self, recipients_rule_type=None):
         """Get the recipient rules objects.
 
-        All of them ?
+        if recipient_rule_type is None, then we return all
+        the recipients rule objects defined for a this given
+        subscription object. If not None we return the given
+        recipients rule objects matching the requested type.
+
+        The different types of recipients rule objects :
+          - Role Recipients Rulz
+          - Explicit Recipients Rule
+          - Computed Recipents Rule
+          - Workflow Implied Recipients Rule
+
         """
-        return [x for x in self.objectValues() \
-                if getattr(x, 'getRecipients', 0)]
+        all_recipients_rules = [x for x in self.objectValues()
+                                if getattr(x, 'getRecipients', 0)]
+        if recipients_rule_type is None:
+            return all_recipients_rules
+        else:
+            return [x for x in all_recipients_rules \
+                    if x.meta_type == recipients_rule_type]
 
 def addSubscription(self, id=None, title='', REQUEST=None):
     """Add a Subscriptions object"""
