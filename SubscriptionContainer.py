@@ -35,6 +35,8 @@ from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
 
+from CPSSubscriptionsPermissions import CanSubscribe
+
 class SubscriptionContainer(PortalFolder):
     """ Subscription Container Class
 
@@ -118,7 +120,7 @@ class SubscriptionContainer(PortalFolder):
         """
         return self.lang
 
-    security.declarePublic("isNotificationLocalOnly")
+    security.declarePublic('isNotificationLocalOnly')
     def isNotificationLocalOnly(self):
         """Are notifications local only ?
 
@@ -127,7 +129,7 @@ class SubscriptionContainer(PortalFolder):
         """
         return self.notify_local_only
 
-    security.declarePublic("isNotificationNoLocal")
+    security.declarePublic('isNotificationNoLocal')
     def isNotificationNoLocal(self):
         """Are notifications no local ?
 
@@ -161,7 +163,7 @@ class SubscriptionContainer(PortalFolder):
         """
         return self.anonymous_subscription_allowed
 
-    security.declareProtected(ModifyPortalContent, "updateProperties")
+    security.declareProtected(ModifyPortalContent, 'updateProperties')
     def updateProperties(self, **kw):
         """ Update Subscription Folder Properties
 
@@ -171,8 +173,27 @@ class SubscriptionContainer(PortalFolder):
             for prop in kw.keys():
                 if hasattr(self, prop):
                     setattr(self, prop, kw[prop])
+        perms = []
 
-    security.declarePublic("getSubscriptions")
+        # Update permissions
+        if self.subscription_allowed and 1:
+            perms.append('Authenticated')
+        if self.anonymous_subscription_allowed and 1:
+            perms.append('Anonymous')
+        self.changePermissions(perms=perms)
+
+    security.declareProtected(ModifyPortalContent, 'changePermissions')
+    def changePermissions(self, perms=[]):
+        """Change CanSubscribe permissions
+        """
+        new_perms = {
+            CanSubscribe : perms
+            }
+
+        for perm, roles in new_perms.items():
+            self.manage_permission(perm, roles, 1)
+
+    security.declarePublic('getSubscriptions')
     def getSubscriptions(self):
         """ Get all Subscriptions contained in here.
         """
@@ -184,7 +205,8 @@ class SubscriptionContainer(PortalFolder):
 InitializeClass(SubscriptionContainer)
 
 def addSubscriptionContainer(self, id=None, REQUEST=None):
-    """ Add a Subscription Folder Container """
+    """Add a Subscription Folder Container
+    """
 
     subtool = getToolByName(self, 'portal_subscriptions')
     id = subtool.getSubscriptionContainerId()
