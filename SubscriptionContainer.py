@@ -55,12 +55,15 @@ class SubscriptionContainer(PortalFolder):
                     'label' : 'Subscription Allowed ?'},
                    {'id': 'anonymous_subscription_allowed', 'type': 'boolean', 'mode':'w',
                     'label' : 'Anonymous Subscription Allowed ?'},
+                   {'id': 'mfrom', 'type':'string', 'mode':'w',
+                    'label' : 'Mail From'},
                    )
 
     notify_local_only = 0
     notify_no_local = 0
     subscription_allowed = 0
     anonymous_subscription_allowed = 0
+    mfrom = ''
 
     def __init__(self, id, title=''):
         """ Constructor
@@ -72,6 +75,18 @@ class SubscriptionContainer(PortalFolder):
         self.notify_no_local = 0
         self.subscription_allowed = 0
         self.anonymous_subscription_allowed = 0
+        self.mfrom = ''
+
+    security.declarePublic('getMailFrom')
+    def getMailFrom(self):
+        """Returns the default mail from for the mails
+        that are going to be sent by this container
+
+        More likely the WorkspaceManager
+        """
+        if not self.mfrom:
+            self.mfrom = self.getMemberEmail(self.Creator())
+        return self.mfrom
 
     security.declarePublic("isNotificationLocalOnly")
     def isNotificationLocalOnly(self):
