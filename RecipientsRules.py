@@ -76,33 +76,6 @@ class ComputedRecipientsRule(RecipientsRule):
 
     security = ClassSecurityInfo()
 
-    #
-    # - expression -- A TALES expression returning a mapping
-    #        with recipients. In the expression, the following namespace
-    #        is available:
-    #
-    #        - portal: The portal object.
-    #
-    #        - context: The context object (proxy) where the triggering
-    #          event occured.
-    #
-    #        - proxy: Alias for context.
-    #
-    #        - doc: context.getContent().
-    #
-    #        - container: The context's container.
-    #
-    #        - ancestor: If 'ancestor_local' or 'ancestor_merged' was
-    #          used for recipient_roles_origins, that object, else None.
-    #
-    #        - event_type: The triggering event type.
-    #
-    #        - triggering_user: The user who triggered the original
-    #          action.
-    #
-    #       - DateTime: A DateTime constructor.
-    #
-
     _properties = (
         {'id' : 'expression',
          'type' : 'string',
@@ -507,20 +480,19 @@ class ExplicitRecipientsRule(RecipientsRule):
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = self.getMemberEmail(member_id)
-            # FIXME
+
             if member_id in self.getMembers():
                 self.members.remove(member_id)
-                stupid = 1
-            if member_email in self.emails_subscribers:
-                self.emails_subscribers.remove(member_email)
                 stupid = 1
             if stupid:
                 NotificationRule.notifyUnSubscribe(event_id,
                                                    self,
-                                                   member_email,
+                                                   member_id,
                                                    context)
                 return 1
+            else:
+                # FIXME LOGS
+                pass
         return 0
 
     security.declareProtected(View, 'confirmUnSubscribeTo')
@@ -646,28 +618,16 @@ class RoleRecipientsRule(RecipientsRule):
                     'label': 'Origins'},
                    {'id': 'ancestor_object_types', 'type': 'lines', 'mode': 'w',
                     'label': 'Ancestor Object Type'},
+                   {'id': 'unsubscribed_members', 'type': 'lines', 'mode': 'w',
+                    'label': 'Unsubsribed members'},
                    )
 
     roles = []
+    unsubscribed_members = []
+
+    # XXX
     origins = {}
     ancestor_object_types = []
-
-    #
-    # - roles -- The roles subscribed.
-    # - origins -- A sequence describing how roles are looked up. It
-    #   can contain the following keys:
-    # - 'local': Direct local roles from the context object are
-    #   used.
-    # - 'merged': All merged local roles of the context object are
-    #   used.
-    # - 'ancestor_local': Direct local roles found on an ancestor
-    #   object of type in ancestor_object_types. Only the closest
-    #   matching ancestor object is used.
-    # - 'ancestor_merged': Idem but with merged local roles.
-    # - ancestor_object_types -- The portal types of the ancestor
-    #   where a lookup of local roles is done if origins contains
-    #  'ancestor_local' or 'ancestor_merged'.
-    #
 
     def __init__(self, id, title='', **kw):
         """RoleRecipientsRule Constructor
@@ -678,21 +638,39 @@ class RoleRecipientsRule(RecipientsRule):
         self.roles = kw.get('roles', [])
         self.origins = kw.get('origins', {})
         self.ancestor_object_types = kw.get('ancestor_object_types', [])
+        self.unsubscribed_members = []
 
     security.declareProtected(View, 'getRoles')
     def getRoles(self):
         """Returns the roles subscribed.
         """
+
         return self.roles
 
     security.declareProtected(ModifyPortalContent, 'addRole')
     def addRole(self, role):
         """Add a new role
         """
+
         self.roles += [role]
 
+    security.declarePublic('getUnSubscribedMembers')
+    def getUnSubscribedMembers(self):
+        """Returns the list of members who unsusbribed
+        """
+
+        return self.unsubscribed_members
+
+    security.declareProtected(ModifyPortalContent, 'addUnSubscribedMember')
+    def addUnSubscribedMember(self, member_id=''):
+        """A member is unsubscribing
+        """
+
+        if member_id not in self.getUnSubscribedMembers():
+            self.unsubscribed_members.append(member_id)
+
     security.declareProtected(View, "getRecipients")
-    def getRecipients(self, event_type, object, infos):
+    def getRecipients(self, event_type='', object=None, infos={}):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
@@ -756,6 +734,17 @@ class RoleRecipientsRule(RecipientsRule):
                         for member_id in group_users:
                             email = self.getMemberEmail(member_id)
                             member_email_mapping[email] = member_id
+
+
+        #
+        # Removing the members who asked for unsubsciption
+        #
+
+        for member_id in self.getUnSubscribedMembers():
+            member_email = self.getMemberEmail(member_id)
+            if member_email in member_email_mapping.keys():
+                del member_email_mapping[member_email]
+
         return member_email_mapping
 
 InitializeClass(RoleRecipientsRule)

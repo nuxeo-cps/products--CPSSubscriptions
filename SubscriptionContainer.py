@@ -47,23 +47,40 @@ class SubscriptionContainer(PortalFolder):
     security = ClassSecurityInfo()
 
     _properties = PortalFolder._properties + \
-                  ({'id': 'notify_local_only', 'type': 'boolean', 'mode': 'w',
+                  ({'id': 'notify_local_only',
+                    'type': 'boolean',
+                    'mode': 'w',
                     'label': 'Notify Local Only'},
-                   {'id': 'notify_no_local', 'type': 'boolean', 'mode': 'w',
+                   {'id': 'notify_no_local',
+                    'type': 'boolean',
+                    'mode': 'w',
                     'label': 'Notify No Local'},
-                   {'id': 'subscription_allowed', 'type': 'boolean', 'mode':'w',
+                   {'id': 'subscription_allowed',
+                    'type': 'boolean',
+                    'mode':'w',
                     'label' : 'Subscription Allowed ?'},
-                   {'id': 'anonymous_subscription_allowed', 'type': 'boolean', 'mode':'w',
+                   {'id': 'unsubscription_allowed',
+                    'type': 'boolean',
+                    'mode':'w',
+                    'label' : 'Unsubscription Allowed ?'},
+                   {'id': 'anonymous_subscription_allowed',
+                    'type': 'boolean',
+                    'mode':'w',
                     'label' : 'Anonymous Subscription Allowed ?'},
-                   {'id': 'mfrom', 'type':'string', 'mode':'w',
+                   {'id': 'mfrom',
+                    'type':'string',
+                    'mode':'w',
                     'label' : 'Mail From'},
-                   {'id': 'lang', 'type':'string', 'mode':'w',
+                   {'id': 'lang',
+                    'type':'string',
+                    'mode':'w',
                     'label' : 'Language'},
                    )
 
     notify_local_only = 0
     notify_no_local = 0
     subscription_allowed = 0
+    unsubscription_allowed = 0
     anonymous_subscription_allowed = 0
     mfrom = ''
     lang  = 'en'
@@ -77,6 +94,7 @@ class SubscriptionContainer(PortalFolder):
         self.notify_local_only = 0
         self.notify_no_local = 0
         self.subscription_allowed = 0
+        self.unsubscription_allowed = 0
         self.anonymous_subscription_allowed = 0
         self.mfrom = ''
         self.lang = 'en'
@@ -126,6 +144,15 @@ class SubscriptionContainer(PortalFolder):
             return (self.subscription_allowed and \
                     self.anonymous_subscription_allowed)
         return self.subscription_allowed
+
+    security.declarePublic('isUnSubscriptionAllowed')
+    def isUnSubscriptionAllowed(self):
+        """Is UnSubscription Allowed ?
+
+        Usefull to provide the possibility to users to unsubscribe if
+        they are computed as recipients based on their roles
+        """
+        return self.unsubscription_allowed
 
     security.declarePublic('isAnonymousSubscriptionAllowed')
     def isAnonymousSubscriptionAllowed(self):
