@@ -1,5 +1,5 @@
-# Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
@@ -82,30 +82,53 @@ class MailNotificationRule(NotificationRule):
 
         mtool = self.portal_membership
         creator = object.Creator()
-        email_creator = mtool.getMemberById(creator).getProperty('email')
+        creator_user = mtool.getMemberById(creator)
 
-        if email_creator:
-            return email_creator
+        returned_email = ''
+        if creator_user:
+            email_creator = creator_user.getProperty('email')
+            if email_creator is not None:
+                returned_email = email_creator
         else:
             pprops = self.portal_properties
             cps_admin_email = getattr(pprops,
                                       'email_from_address',
-                                      'no_mail@nuxeo.com')
-            return cps_admin_email
+                                      'no_mail@no_mail.com')
+            returned_email = cps_admin_email
+
+        # FIXME
+        if returned_email:
+            return returned_email
+        else:
+            return 'no_mail@no_mail.com'
 
     def _getSubject(self, infos):
         """ Returns the subject of the email.
 
         Is proccessed with the infos given as parameters.
         """
-        return self.getMailTemplate(infos=infos)['mail_subject']
+
+        try:
+            subject = self.portal_subscriptions.getDefaultMessageTitle(event_id=infos['event']) %infos
+        except (KeyError,):
+            # If the user put wrong variables
+            subject = "No Subject"
+
+        return subject
 
     def _getBody(self, infos):
         """ Returns the body of the email.
 
         Is proccessed with the infos given as parameters.
         """
-        return self.getMailTemplate(infos=infos)['mail_body']
+
+        try:
+            body = self.portal_subscriptions.getDefaultMessageBody(event_id=infos['event']) %infos
+        except (KeyError,):
+            # If the user put wrong variables
+            body = self.portal_subscriptions.getErrorMessageBody()
+
+        return body
 
     def _makeInfoDict(self, event_type, object):
         """Building the infos dict used for processing the email.
