@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-04 10:02default\n"
+"POT-Creation-Date: 2004-03-05 02:39default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -41,6 +41,13 @@ msgstr ""
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "An email has been sent to you to confirm your subscription."
+msgstr ""
+
+#.   <span>
+#.         Below are the subscriptions you belong to all over the portal
+#.       </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "Below are the subscriptions you belong to all over the portal"
 msgstr ""
 
 #.   <span>
@@ -109,7 +116,7 @@ msgid "button_close"
 msgstr ""
 
 #.   <input value="button_ok" class="standAlone" name="folder_subscribe_submit" type="submit">
-#.             </input>
+#.     </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_ok"
 msgstr ""
@@ -126,9 +133,9 @@ msgstr ""
 msgid "header_available_events"
 msgstr ""
 
-#.   <h4>
-#.       Events open for subscriptions
-#.     </h4>
+#.   <span>
+#.       Below are events open for subscriptions.
+#.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_choose_the_events"
 msgstr ""
@@ -193,6 +200,13 @@ msgstr ""
 msgid "heading_manage_local_notifications"
 msgstr ""
 
+#.   <h1>
+#.         My subscriptions
+#.       </h1>
+#: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
+msgid "heading_my_subscriptions"
+msgstr ""
+
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
 #.       </h1>
@@ -219,6 +233,13 @@ msgstr ""
 #.           </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_black_list"
+msgstr ""
+
+#.   <span>
+#.                   Click here
+#.                 </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_click_here"
 msgstr ""
 
 #.   <span>
@@ -282,6 +303,27 @@ msgstr ""
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_subscription_allowed"
+msgstr ""
+
+#.   <span>
+#.                 Description
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_description"
+msgstr ""
+
+#.   <span>
+#.                 Infos / Unsubscribe
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_manage"
+msgstr ""
+
+#.   <span>
+#.                 Where
+#.               </span>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "label_subscription_where"
 msgstr ""
 
 #.   <span>
