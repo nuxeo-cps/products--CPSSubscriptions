@@ -32,12 +32,13 @@ from Acquisition import aq_base, aq_inner, aq_parent
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
-from Products.CMFCore.PortalFolder import PortalFolder
+from Products.CPSCore.CPSBase import CPSBaseFolder
+
 from Products.CMFCore.utils import getToolByName
 
 from CPSSubscriptionsPermissions import CanSubscribe, ManageSubscriptions
 
-class SubscriptionContainer(PortalFolder):
+class SubscriptionContainer(CPSBaseFolder):
     """ Subscription Container Class
 
     Placefull Object containing subscription information.
