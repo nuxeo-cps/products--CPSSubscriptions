@@ -1,0 +1,37 @@
+$Id$
+
+About the computed recipients rule objects.
+
+You may create ComputedRecipientsRules object within your subscription
+object.
+
+It is containing a tales expression as attribut.
+
+expression -- A TALES expression returning a mapping with recipients.
+
+**ATTENTION** : your TALES expression should return a dictionnary with
+  emails as keys (ie: {'ex@example.com' : 'ex@example.com'}). If you are not
+  respecting this format this is not going to work.
+
+The following namespace is available:
+
+- portal: The portal object.
+
+- context: The context object (proxy) where the triggering
+  event occured.
+
+- proxy: Alias for context.
+
+- doc: context.getContent().
+
+- container: The context's container.
+
+- ancestor: If 'ancestor_local' or 'ancestor_merged' was
+  used for recipient_roles_origins, that object, else None.
+
+- event_type: The triggering event type.
+
+- triggering_user: The user who triggered the original
+  action.
+
+- DateTime: A DateTime constructor.
