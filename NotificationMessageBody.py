@@ -30,7 +30,7 @@ portal_subscriptions will store objects of this type.
 
 import time
 
-from Globals import InitializeClass, MessageDialog, DTMLFile
+from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
 
@@ -52,19 +52,28 @@ class NotificationMessageBody(PortalFolder):
 
     _properties = ({'id': 'message_body',
                     'type': 'text', 'mode':'w',
-                    'label' : 'Message body'},)
+                    'label' : 'Message body'},
+                   {'id': 'mime_type',
+                    'type': 'string', 'mode':'w',
+                    'label' : 'Mime Type'},)
+
+    mime_type = 'text/plain'
 
     manage_options = PortalFolder.manage_options[2:4]
 
     security = ClassSecurityInfo()
 
-    def __init__(self, id, title='', message_body='', **kw):
+    def __init__(self, id, title='',
+                 message_body='',
+                 mime_type='text/plain',
+                 **kw):
         """Constructor
 
         Only take the message_body as a parameter
         """
         PortalFolder.__init__(self, id, title, **kw)
         self.message_body = message_body
+        self.mime_type = mime_type
 
     security.declareProtected(ModifyPortalContent, 'updateMessageBody')
     def updateMessageBody(self, message_body=''):
@@ -76,7 +85,13 @@ class NotificationMessageBody(PortalFolder):
     def getMessageBody(self):
         """Return the message body
         """
-        return self.mesage_body
+        return self.message_body
+
+    security.declareProtected(View, 'getMimeType')
+    def getMimeType(self):
+        """Return the mime type of the message body
+        """
+        return self.mime_type
 
 InitializeClass(NotificationMessageBody)
 
@@ -84,23 +99,27 @@ def addNotificationMessageBody(self,
                                id=None,
                                title='',
                                message_body='',
+                               mime_type='text/plain',
                                REQUEST=None,
                                **kw):
-    """Add a roles explicit Recipient rules
+    """Add a Notification Message body
     """
+
+    # Use the BTreeFolder2 id generation facility
+    # We are sure overlap is avoided
     if not id:
-        id = str(time.time())
-    if hasattr(aq_base(self), id):
-        return MessageDialog(
-            title='Item Exists',
-            message='This object already contains an %s' % ob.id,
-            action='%s/manage_main' % REQUEST['URL1'])
+        id = aq_base(self).generateId(prefix='message_',
+                                      suffix='',
+                                      rand_ceiling=9999999999)
 
     ob = NotificationMessageBody(id,
                                  title=title,
                                  message_body=message_body,
+                                 mime_type=mime_type,
                                  **kw)
     self._setObject(id, ob)
 
     if REQUEST is not None:
         REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
+    else:
+        return id
