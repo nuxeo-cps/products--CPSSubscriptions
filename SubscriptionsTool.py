@@ -220,14 +220,12 @@ class SubscriptionsTool(UniqueObject, Folder):
         """
         self._p_changed = 1
 
-        mapping_context_events = self.mapping_context_events
-        if mapping_context_events.has_key(event_where):
+        if self.mapping_context_events.has_key(event_where):
             if not self.mapping_context_events[event_where].has_key(event_id):
                 self.mapping_context_events[event_where][event_id] = event_label
         else:
             self.mapping_context_events[event_where] = {}
             self.mapping_context_events[event_where][event_id] = event_label
-        self.mapping_context_events = mapping_context_events
 
         self.mapping_event_email_content[event_id] = [
             self.getDefaultMessageTitle(),
@@ -287,7 +285,8 @@ class SubscriptionsTool(UniqueObject, Folder):
         mapping_context_events = portal.getEvents()
         for context in mapping_context_events.keys():
             for event_id in mapping_context_events[context].keys():
-                self.manage_addEventType(context, event_id,
+                self.manage_addEventType(context,
+                                         event_id,
                                          mapping_context_events[context]
                                          [event_id])
 
