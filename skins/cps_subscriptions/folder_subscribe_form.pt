@@ -1,10 +1,24 @@
+<tal:block define="email request/email|nothing">
 <metal:block use-macro="here/content_lib/macros/master">
   <metal:block fill-slot="header">
-    <h1 i18n:translate="heading_I_subscribe">
+    <h1 i18n:translate="heading_I_subscribe"
+        tal:condition="not:email">
       I Subscribe
+    </h1>
+    <h1 i18n:translate="heading_ok_subscription"
+        tal:condition="email">
+      Subscription taken into consideration
     </h1>
   </metal:block>
   <metal:block fill-slot="main">
+   <tal:block condition="not:email">
     <metal:block use-macro="here/subscriptions_lib/macros/display_user_subscribe" />
+   </tal:block>
+   <tal:block condition="email">
+     <span i18n:translate="">
+       An email has been sent to you to confirm your subscription.
+     </span>
+   </tal:block>
   </metal:block>
 </metal:block>
+</tal:block>
