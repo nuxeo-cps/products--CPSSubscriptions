@@ -177,9 +177,9 @@ class MailNotificationRule(NotificationRule):
         creator = mtool.getMemberById(object.Creator())
 
         mail_from = None
-        if creator_user:
+        if creator:
             # Skins if different name for the email field.
-            email_creator = self.getMemberEmail(creator_user.getMemberId())
+            email_creator = self.getMemberEmail(creator.getMemberId())
             if email_creator is not None:
                 mail_from = email_creator
         if not mail_from:
