@@ -6,7 +6,8 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- fix: folder_subscribe_form: msg "No event opened for subscsriptions in here."
+  is not i18n
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
