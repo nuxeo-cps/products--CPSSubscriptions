@@ -17,6 +17,7 @@
       }
       -->
   </script>
+  <div class="group">
   <h4 i18n:translate="header_available_events">
     Available events in here
   </h4>
@@ -180,6 +181,7 @@
                    i18n:attributes="value" />
     </form>
   </tal:block>
+  </div>
 </metal:block>
 
 <!-- ###### User can see available subscriptions -->
@@ -187,12 +189,13 @@
 <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
                    subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
                    events python:subscriptions_tool.getEventsFromContext(context=here);
+                   isAno python:here.portal_membership.isAnonymousUser();
                    email request/email|nothing;">
 
-  <h4 i18n:translate="header_choose_the_events">
-    Events open for subscriptions
-  </h4>
-  <br>
+  <span i18n:translate="header_choose_the_events">
+    Below are events open for subscriptions.
+  </span>
+  <div class="group">
   <form name="form" method="get" action="."
         tal:attributes="action string:${here/absolute_url}/folder_subscribe">
     <table width="100%" align="center">
@@ -210,11 +213,11 @@
                  tal:condition="python:1"
                  tal:attributes="name string:event_ids:list;
                                  value event_key;
-                                 checked python:0">
+                                 checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
         </td>
       </tr>
       </table>
-      <tal:block condition="not:email">
+      <tal:block condition="python:not email and isAno">
         <h4 i18n:translate="header_enter_your_email">
             <span i18n:translate="label_enter_your_email">
               Enter a valid email
@@ -229,15 +232,15 @@
                    name="subscriber_email"
                    value="your_email@domain.com">
           </td>
-          <td align="left">
-            <input type="submit" class="standAlone" name="folder_subscribe_submit"
-                   value="button_ok"
-                   i18n:attributes="value">
-          </td>
         </tr>
         </table>
       </tal:block>
+      <br />
+      <input type="submit" class="standAlone" name="folder_subscribe_submit"
+             value="button_ok"
+             i18n:attributes="value">
   </form>
+  </div>
 </tal:block>
 </metal:block>
 
