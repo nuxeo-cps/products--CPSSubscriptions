@@ -44,6 +44,7 @@ from Products.CMFCore.Expression import getEngine
 
 from zLOG import LOG, DEBUG, INFO
 
+
 class RecipientsRule(PortalFolder):
     """Recipients Rule Class.
 
@@ -179,7 +180,8 @@ class ComputedRecipientsRule(RecipientsRule):
                 container = aq_parent(aq_inner(object))
 
             if getattr(self, 'notify_no_local'):
-                if subtool.getSubscriptionContainerId() in container.objectIds():
+                if subtool.getSubscriptionContainerId() in \
+                       container.objectIds():
                     return {}
 
             if not getattr(self, 'notify_local_only'):
@@ -196,7 +198,9 @@ class ComputedRecipientsRule(RecipientsRule):
                                 group_id = entry.split(':')[1]
                                 aclu = getattr(self, 'acl_users', None)
                                 if group_id == 'role':
-                                    group_id = group_id + ':' + entry.split(':')[2]
+                                    group_id = group_id + \
+                                               ':' + \
+                                               entry.split(':')[2]
                                 group = aclu.getGroupById(group_id)
                                 member_ids = group.getUsers()
                             for member_id in member_ids:
@@ -268,11 +272,9 @@ class ExplicitRecipientsRule(RecipientsRule):
                     'label': 'Members Allow Add'},
                    {'id': 'groups', 'type': 'lines', 'mode': 'w',
                     'label': 'Groups subscribed manually'},
-                   {'id': 'groups_allow_add', 'type': 'lines', 'mode': 'w',
-                    'label': 'Groups Allow Add'},
                    {'id': 'emails', 'type': 'lines', 'mode': 'w',
                     'label': 'Emails subscribed'},
-                   {'id': 'emails', 'type': 'lines', 'mode': 'w',
+                   {'id': 'emails_subscribers', 'type': 'lines', 'mode': 'w',
                     'label': 'Emails Subscribe Manually'},
                    {'id': 'emails_pending_add', 'type': 'lines', 'mode': 'w',
                     'label': 'Emails Pending Add'},
@@ -284,33 +286,12 @@ class ExplicitRecipientsRule(RecipientsRule):
     members_allow_add = 0
     groups = []
     emails = []
-    emails_subsribers = []
+    emails_subscribers = []
     emails_pending_add = []
     emails_pending_delete = []
 
-    #
-    # - members -- The ids of the members subscribed manually.
-    #
-    # - members_allow_add -- Whether members are allowed to
-    #   subscribe / unsubscribe manually to the Subscription (adding
-    #   themselves to recipient_members).
-    #
-    # - emails -- The emails subscribed manually.
-    #
-    # - emails_allow_add -- Whether anonymous visitors are allowed
-    #   to subscribe / unsubscribe manually to the Subscription
-    #   (adding themselves to recipient_emails).
-    #
-    # - emails_confirm -- Whether the emails have to be confirmed
-    #   before being used. XXX this may be better as a global flag
-    #   of portal_subcriptions instead..
-    #
-    # - emails_pending_add -- The emails subscribed manually but not
-    #   yet confirmed.
-    #
-    # - emails_pending_delete -- The emails pending deletion from
-    #   recipient_emails but not yet confirmed.
-    #
+    ######################################################
+    ######################################################
 
     security.declarePublic("getMembers")
     def getMembers(self):
@@ -328,6 +309,9 @@ class ExplicitRecipientsRule(RecipientsRule):
             if member_id not in self.members:
                 self.members += [member_id]
 
+    ######################################################
+    ######################################################
+
     security.declarePublic("getGroups")
     def getGroups(self):
         """ Return all the group ids subscribed manually
@@ -344,6 +328,9 @@ class ExplicitRecipientsRule(RecipientsRule):
             if group_id not in self.groups:
                 self.groups += [group_id]
 
+    #####################################################
+    #####################################################
+
     security.declarePublic("getEmails")
     def getEmails(self):
         """ Return all the emails subscribed manually
@@ -358,6 +345,9 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self.emails = emails
 
+    #####################################################
+    #####################################################
+
     security.declarePublic("getPendingEmails")
     def getPendingEmails(self):
         """ Return all the emails subscribed manually
@@ -371,11 +361,79 @@ class ExplicitRecipientsRule(RecipientsRule):
         """ Add pending email subscription
         """
         if email and \
-           email not in self.getPendingEmail() and \
+           email not in self.getPendingEmails() and \
            email not in self.getEmails():
             self.emails_pending_add.append(email)
             return 1
         return 0
+
+    #####################################################
+    #####################################################
+
+    security.declareProtected(ModifyPortalContent, 'getSubscriberEmails')
+    def getSubscriberEmails(self):
+        """Returns the anonymous subscriber emails
+
+        return a list of emails
+        """
+        return self.emails_subscribers
+
+    security.declareProtected(ModifyPortalContent, "updateSubscriberEmails")
+    def updateSubscriberEmails(self, email=''):
+        """ Add pending email subscription
+        """
+        if email:
+            # Maybe check of email not in other lists ?
+            self.emails_subscribers.append(email)
+            return 1
+        return 0
+
+    ######################################################
+    ######################################################
+
+    security.declareProtected(View, "anonymousSubscribe")
+    def anonymousSubscribe(self, email, event_id, context):
+        """Anonymous is asking for a subscription
+        """
+        if self.updatePendingEmails(email):
+            NotificationRule = getattr(self, 'mail__notification_rule', None)
+            if NotificationRule is None:
+                LOG(" ::CPSSubscriptions:: anonymousSubscriptions()",
+                    INFO,
+                    "Error : No mail notification found")
+            else:
+                NotificationRule.notifyConfirmSubscription(event_id,
+                                                           self,
+                                                           email,
+                                                           context)
+                return 1
+        return 0
+
+    security.declareProtected(View, 'anonymousConfirmSubscribe')
+    def anonymousConfirmSubscribe(self, email, event_id, context):
+        """Anonymous confirm the subscription
+        """
+
+        self._p_changed = 1
+
+        if email in self.getPendingEmails():
+            self.emails_subscribers.append(email)
+            self.emails_pending_add.remove(email)
+            NotificationRule = getattr(self, 'mail__notification_rule', None)
+            if NotificationRule is None:
+                LOG(" ::CPSSubscriptions:: anonymousConfirmSubscriptions()",
+                    INFO,
+                    "Error : No mail notification found")
+            else:
+                NotificationRule.notifyWelcomeSubscription(event_id,
+                                                           self,
+                                                           email,
+                                                           context)
+                return 1
+        return 0
+
+    #####################################################
+    #####################################################
 
     security.declareProtected(View, "getRecipients")
     def getRecipients(self, event_type, object, infos):
@@ -412,10 +470,17 @@ class ExplicitRecipientsRule(RecipientsRule):
                 member_email_mapping[email] = member_id
 
         #
-        # Standalone emails
+        # Explicit emails
         #
 
         for email in self.getEmails():
+            member_email_mapping[email] = ''
+
+        #
+        # Anonymous subscribers emails
+        #
+
+        for email in self.getSubscriberEmails():
             member_email_mapping[email] = ''
 
         return member_email_mapping
