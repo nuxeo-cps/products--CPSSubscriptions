@@ -18,9 +18,7 @@ if REQUEST is not None:
                 '\n' + \
                 mcat('label_notification_related_document').encode('ISO-8859-15', 'ignore') + \
                 ' : ' + \
-                '<a href="%s"' %context.absolute_url() + \
-                '>%s'%context.title_or_id() + \
-                '</a>'
+                context.absolute_url()
 
     mtool = context.portal_membership
     member = mtool.getAuthenticatedMember()
