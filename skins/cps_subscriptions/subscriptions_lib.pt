@@ -271,7 +271,7 @@
             <td>
               <strong>
                 <span i18n:translate="">
-                  label_<span tal:replace="event_key" />
+                  <span tal:replace="events/?event_key" />
                 </span>
               </strong>
             </td>
