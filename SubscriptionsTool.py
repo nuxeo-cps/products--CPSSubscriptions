@@ -230,17 +230,19 @@ class SubscriptionsTool(UniqueObject, Folder):
             self.mapping_context_events[event_where] = {}
             self.mapping_context_events[event_where][event_id] = event_label
 
-        self.mapping_event_email_content[event_id] = [
-            self.getDefaultMessageTitle(),
-            self.getDefaultMessageBody(),
-            self.getSubscribeConfirmEmailTitle(),
-            self.getSubscribeConfirmEmailBody(),
-            self.getSubscribeWelcomeEmailTitle(),
-            self.getSubscribeWelcomeEmailBody(),
-            self.getUnSubscribeConfirmEmailTitle(),
-            self.getUnSubscribeConfirmEmailBody(),
-            self.getUnSubscribeEmailTitle(),
-            self.getUnSubscribeEmailBody(),]
+        if not self.mapping_event_email_content.has_key(event_id):
+            self.mapping_event_email_content[event_id] = [
+                self.getDefaultMessageTitle(),
+                self.getDefaultMessageBody(),
+                self.getSubscribeConfirmEmailTitle(),
+                self.getSubscribeConfirmEmailBody(),
+                self.getSubscribeWelcomeEmailTitle(),
+                self.getSubscribeWelcomeEmailBody(),
+                self.getUnSubscribeConfirmEmailTitle(),
+                self.getUnSubscribeConfirmEmailBody(),
+                self.getUnSubscribeEmailTitle(),
+                self.getUnSubscribeEmailBody(),
+                ]
 
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_events')

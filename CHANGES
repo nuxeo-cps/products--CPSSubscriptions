@@ -6,7 +6,7 @@ New features:
 - Computed Recipients Rule implemented implemented. You may add some within the ZMI
 Bug fixes:
 ~~~~~~~~~~
--
+- Only change the event_email_content if the event doesn't exist
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Allowing the notifications at the root of the portal for directories for instance
