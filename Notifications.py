@@ -144,7 +144,7 @@ class NotificationRule(PortalFolder):
         try:
             self.MailHost.send(raw_message)
         except:
-	    # FIXME check the exceptions throwed 
+	    # FIXME check the exceptions throwed
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail")
@@ -230,10 +230,10 @@ class MailNotificationRule(NotificationRule):
         """
 
         portal_subscriptions = getToolByName(self, 'portal_subscriptions')
+        context = aq_parent(aq_inner(object))
         mcat = self.Localizer.default
 
-        events_from_context = portal_subscriptions.getEventsFromContext(
-            context=aq_parent(aq_inner(object)))
+        events_from_context = portal_subscriptions.getEventsFromContext(context)
 
         # Just more secure in case of the event configuration is badly done.
         if events_from_context is None:
@@ -244,6 +244,7 @@ class MailNotificationRule(NotificationRule):
                                                         'ignore')
 
         infos['portal_title'] = self.portal_url.getPortalObject().Title()
+        infos['info_url'] = context.absolute_url() + '/folder_subscribe_form'
         infos['notification_title'] = event_from_context
         infos['event'] = event_type
 

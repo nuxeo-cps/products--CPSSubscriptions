@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Adding 'info_url' as a new available variable for messages
 Bug fixes:
 ~~~~~~~~~~
 -

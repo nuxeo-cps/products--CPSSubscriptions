@@ -38,10 +38,11 @@
      following syntax : %(variable_name)s
 
         - portal_title : Title of the portal
+        - info_url : URL of the page summarizing the subscription informations
         - notification_title : Title of the notification
         - event : Id of the event
         - object_title : Tiltle of the object generating the notification
-        - object_url   : Url of the object generating the notification
+        - object_url   : URL of the object generating the notification
         - object_parent_title : Parent object Title
         - object_type : portal_type of the object generating the notifications
         - user_id : Id of the user who provided an action that generated the notification.
