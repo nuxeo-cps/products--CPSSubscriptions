@@ -155,7 +155,7 @@ class MailNotificationRule(NotificationRule):
 
         infos['object_title'] = object.Title()
         infos['object_url'] = infos.get('url', object.absolute_url())
-        infos['object_parent'] = aq_parent(aq_inner(object)).Title()
+        infos['object_parent_title'] = aq_parent(aq_inner(object)).Title()
         infos['object_type'] = getattr(object, 'portal_type', '')
 
         infos['user_id'] = object.Creator()
