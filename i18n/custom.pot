@@ -45,10 +45,13 @@ msgstr ""
 msgid "label_publication_of_documents"
 msgstr ""
 
+msgid "label_publication_accept_of_documents"
+msgstr ""
+
 msgid "label_submission_of_documents"
 msgstr  ""
 
-msgid "label_rejecttion_of_documents"
+msgid "label_rejection_of_documents"
 msgstr ""
 
 msgid "label_unpublication_of_documents"
@@ -61,6 +64,18 @@ msgid "label_workspace_member"
 msgstr ""
 
 msgid "label_workspace_reader"
+msgstr ""
+
+msgid "label_section_manager"
+msgstr ""
+
+msgid "label_section_reviewer"
+msgstr ""
+
+msgid "label_section_reader"
+msgstr ""
+
+msgid "label_owner"
 msgstr ""
 
 ### ACTIONS ###################################### 

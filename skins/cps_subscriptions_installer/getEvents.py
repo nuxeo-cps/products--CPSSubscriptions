@@ -16,10 +16,11 @@ workspace = {'workflow_create' : 'label_creation_of_documents',
              }
 
 section = {'workflow_publish' : 'label_publication_of_documents',
+           'workflow_accept' : 'label_publication_accept_of_documents',
            'workflow_modify' : 'label_modification_of_documents',
-           'workfow_submit'  : 'label_submission_of_documents',
+           'workflow_submit'  : 'label_submission_of_documents',
            'workflow_cut_copy_paste' : 'label_cut_copy_paste_of_documents',
-           'workflowr_reject' : 'label_rejecttion_of_documents',
+           'workflow_reject' : 'label_rejecttion_of_documents',
            'workflow_unpublish' : 'label_unpublication_of_documents',
            }
 

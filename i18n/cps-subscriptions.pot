@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-05 14:02default\n"
+"POT-Creation-Date: 2004-03-05 16:54default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -361,10 +361,13 @@ msgstr ""
 msgid "label_publication_of_documents"
 msgstr ""
 
+msgid "label_publication_accept_of_documents"
+msgstr ""
+
 msgid "label_submission_of_documents"
 msgstr ""
 
-msgid "label_rejecttion_of_documents"
+msgid "label_rejection_of_documents"
 msgstr ""
 
 msgid "label_unpublication_of_documents"
@@ -377,6 +380,18 @@ msgid "label_workspace_member"
 msgstr ""
 
 msgid "label_workspace_reader"
+msgstr ""
+
+msgid "label_section_manager"
+msgstr ""
+
+msgid "label_section_reviewer"
+msgstr ""
+
+msgid "label_section_reader"
+msgstr ""
+
+msgid "label_owner"
 msgstr ""
 
 # ## ACTIONS ###################################### 

@@ -6,6 +6,10 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
+# translation of en.po to
+# translation of en.po to
+# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -14,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-05 14:02default\n"
-"PO-Revision-Date: 2004-03-05 14:14+0100\n"
+"POT-Creation-Date: 2004-03-05 16:54default\n"
+"PO-Revision-Date: 2004-03-05 16:57+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -355,13 +359,13 @@ msgstr "E-Mails"
 
 # ## LABELS #######################################
 msgid "label_creation_of_documents"
-msgstr "Document creation"
+msgstr "Content creation"
 
 msgid "label_modification_of_documents"
-msgstr "Document modification"
+msgstr "Content modification"
 
 msgid "label_cut_copy_paste_of_documents"
-msgstr "Document copy/paste "
+msgstr "Content copy / paste "
 
 msgid "label_calendar_new_event"
 msgstr "New planning event"
@@ -382,11 +386,15 @@ msgstr "New forum post"
 msgid "label_publication_of_documents"
 msgstr "Content publication"
 
+# ## LABELS #######################################
+msgid "label_publication_accept_of_documents"
+msgstr "Content acceptance for publication"
+
 msgid "label_submission_of_documents"
 msgstr "Content submissions"
 
 # ## LABELS #######################################
-msgid "label_rejecttion_of_documents"
+msgid "label_rejection_of_documents"
 msgstr "Content rejection"
 
 # ## LABELS #######################################
@@ -401,6 +409,18 @@ msgstr "Workspace Member"
 
 msgid "label_workspace_reader"
 msgstr "Workspace Reader"
+
+msgid "label_section_manager"
+msgstr "Section Manager"
+
+msgid "label_section_reviewer"
+msgstr "Section Reviewer"
+
+msgid "label_section_reader"
+msgstr "Section Reader"
+
+msgid "label_owner"
+msgstr "Owner"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
