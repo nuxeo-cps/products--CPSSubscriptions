@@ -96,10 +96,10 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         """
 
         subscription_workspace_perms = {
-            ManageSubscriptions : ['Manager', 'WorkspaceManager'],
+            ManageSubscriptions : ['Manager', 'Owner', 'WorkspaceManager', 'ForumModerator'],
             }
         subscription_sections_perms = {
-            ManageSubscriptions : ['Manager', 'SectionManager'],
+            ManageSubscriptions : ['Manager', 'Owner', 'SectionManager', 'ForumModerator'],
             }
 
         for perm, roles in subscription_workspace_perms.items():
