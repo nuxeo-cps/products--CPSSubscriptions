@@ -57,6 +57,8 @@ class SubscriptionContainer(PortalFolder):
                     'label' : 'Anonymous Subscription Allowed ?'},
                    {'id': 'mfrom', 'type':'string', 'mode':'w',
                     'label' : 'Mail From'},
+                   {'id': 'lang', 'type':'string', 'mode':'w',
+                    'label' : 'Language'},
                    )
 
     notify_local_only = 0
@@ -64,6 +66,7 @@ class SubscriptionContainer(PortalFolder):
     subscription_allowed = 0
     anonymous_subscription_allowed = 0
     mfrom = ''
+    lang  = 'en'
 
     def __init__(self, id, title=''):
         """ Constructor
@@ -76,6 +79,7 @@ class SubscriptionContainer(PortalFolder):
         self.subscription_allowed = 0
         self.anonymous_subscription_allowed = 0
         self.mfrom = ''
+        self.lang = 'en'
 
     security.declarePublic('getMailFrom')
     def getMailFrom(self):
@@ -87,6 +91,13 @@ class SubscriptionContainer(PortalFolder):
         if not self.mfrom:
             self.mfrom = self.getMemberEmail(self.Creator())
         return self.mfrom
+
+    def getLanguage(self):
+        """Returns the subscription language
+
+        Will be use when sending emails to the mailing list
+        """
+        return self.lang
 
     security.declarePublic("isNotificationLocalOnly")
     def isNotificationLocalOnly(self):
