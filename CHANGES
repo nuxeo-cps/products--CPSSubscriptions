@@ -6,7 +6,9 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- External method removeOldCPSMailingListObjects works even if 
+  CPSMailingList is removed
+  i.e. the script remove broken objects from CPSMailingList
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
