@@ -25,7 +25,9 @@ section = {'workflow_publish' : 'label_workflow_publish',
            }
 
 cps_forum = {'forum_new_post' : 'label_forum_new_post',
-             'forum_new_comment' : 'label_forum_new_comment'}
+             'forum_new_comment' : 'label_forum_new_comment',
+             'forum_post_published' : 'label_forum_post_published',
+             'forum_comment_published' : 'label_forum_comment_published'}
 
 cps_forum_post = {'forum_new_post' : 'label_forum_new_post',}
 
