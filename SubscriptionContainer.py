@@ -35,7 +35,7 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CPSCore.CPSBase import CPSBaseFolder
 
-from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import getToolByName, _checkPermission
 
 from CPSSubscriptionsPermissions import CanSubscribe, ManageSubscriptions
 
@@ -219,7 +219,17 @@ class SubscriptionContainer(CPSBaseFolder):
         if not subscription_id.startswith(subscription_prefix):
             subscription_id = subscription_prefix + subscription_id
 
-        return getattr(self, subscription_id, None)
+        subscription = getattr(self, subscription_id, None)
+  	
+	#
+	# Cope with the None case : the subscription doesn't exist yet
+	#
+
+        if (subscription is None and
+            _checkPermission(ModifyPortalContent, self)):
+            container = self.addSubscription(subscription_id)
+
+	return subscription
 
     security.declarePublic('getSubscriptions')
     def getSubscriptions(self):
