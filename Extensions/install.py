@@ -29,6 +29,7 @@ XXX : comments
 from zLOG import LOG, INFO, DEBUG
 
 import os, sys
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CPSDefault.Installer import BaseInstaller
 
@@ -54,6 +55,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
         self.setupSkins(SKINS)
         self.setupSubscriptionsTool()
         self.installActions()
+        self.setupSubscriber()
         self.setupTranslations()
         self.log("End of Setup/Intialization : CPSSubscriptions Product")
 
@@ -87,6 +89,32 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                 category='folder',
                 visible=1)
             self.log(" Added Action folder Notifications")
+
+    def setupSubscriber(self):
+        """
+        Add portal_subscriptions as subscriber within the
+        portal_eventservice
+        """
+
+        portal_eventservice = getToolByName(self.portal,
+                                            'portal_eventservice')
+        if portal_eventservice:
+            objs = portal_eventservice.objectValues()
+            subscribers = []
+            for obj in objs:
+                subscribers.append(obj.subscriber)
+            if 'portal_subscriptions' not in subscribers:
+                self.log("Adding portal_subscribtions as subscriber")
+                portal_eventservice.manage_addSubscriber(
+                    subscriber='portal_subscriptionns',
+                    action='notify',
+                    meta_type='*',
+                    event_type='*',
+                    notification_type='synchronous')
+            else:
+                self.log("portal_subscribtions already subscriber")
+        else:
+            raise ('DEPENDENCY ERROR : portal_eventservice')
 
 class CMFSubscriptionsInstaller(CPSSubscriptionsInstaller):
     pass
