@@ -511,12 +511,15 @@ class ExplicitRecipientsRule(RecipientsRule):
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
             member_email = self.getMemberEmail(member_id)
+            # FIXME
             if member_id in self.getMembers():
                 self.members.remove(member_id)
-                NotificationRule.notifyUnSubscribe(event_id,
-                                                   self,
-                                                   member_email,
-                                                   context)
+            if member_email in self.email_subscribers:
+                self.emails_subscribers.remove(member_email)
+            NotificationRule.notifyUnSubscribe(event_id,
+                                               self,
+                                               member_email,
+                                               context)
                 return 1
         return 0
 
