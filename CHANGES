@@ -11,3 +11,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - use workflow_delete coming from CPSDefault instead of the sys_del_object which is to low level. (was working while deleting from ZMI too.)
 - use a dedicated API for the subscriptions tool to display relevant local roles in a given context to a user. As well, this API permit, to handle full local roles customization. check through ZMI the portal_subscriptions tool
+- cosmetic on ZMI interface
