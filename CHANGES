@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
--
+- CPSDirectory > 1.18.0
 New features:
 ~~~~~~~~~~~~~
 - Notification of content on every object.
