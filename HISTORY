@@ -1,4 +1,22 @@
 *******************************************
+** CPSSubscriptions V0.11.0 [R1 build 2004/07/07-09:11 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- New events for CPSForum posts/comments: unpublish, reject, delete
+
+Bug fixes:
+~~~~~~~~~~
+- Fixed permissions on sections thanks to Julien Guille
+
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.10.1 [R1 build 2004/06/18-18:12 by anguenot]
 
 Requires:
