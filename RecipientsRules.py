@@ -426,7 +426,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
             member_email = self.getMemberEmail(member_id)
-            if self.updateMembers(member_id):
+            if self.updateMembers([member_id]):
                 NotificationRule.notifyWelcomeSubscription(event_id,
                                                            self,
                                                            member_email,
@@ -486,6 +486,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                     email = self.getMemberEmail(member_id)
                     member_email_mapping[email] = member_id
             except KeyError:
+                # XXX
                 pass
 
         # Explicit emails
