@@ -29,18 +29,23 @@ from zLOG import LOG, INFO, DEBUG
 
 import os, sys
 
+from Products.ExternalMethod.ExternalMethod import ExternalMethod
+
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent, setDefaultRoles
+from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent, \
+     setDefaultRoles
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
-from Products.CPSSubscriptions.CPSSubscriptionsPermissions import ManageSubscriptions, \
-     CanSubscribe, ViewMySubscriptions
+from Products.CPSSubscriptions.CPSSubscriptionsPermissions import \
+     ManageSubscriptions, CanSubscribe, ViewMySubscriptions
 
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = {
-    'cps_subscriptions' :'Products/CPSSubscriptions/skins/cps_subscriptions',
-    'cps_subscriptions_installer':  'Products/CPSSubscriptions/skins/cps_subscriptions_installer',
+    'cps_subscriptions' :
+    'Products/CPSSubscriptions/skins/cps_subscriptions',
+    'cps_subscriptions_installer':
+    'Products/CPSSubscriptions/skins/cps_subscriptions_installer',
     }
 
 class CPSSubscriptionsInstaller(CPSInstaller):
@@ -69,6 +74,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         self.setupCatalogSpecifics()
         self.finalize()
         self.reindexCatalog()
+        self.insallUpdateExMethod()
         self.log("End of Install/Update : CPSSubscriptions Product")
 
     def setupSubscriptionsTool(self):
@@ -252,6 +258,21 @@ class CPSSubscriptionsInstaller(CPSInstaller):
 
         self.log("End if setting some specifics on catalog")
 
+    def insallUpdateExMethod(self):
+        """Install an external method that permits to upgrade
+        latest changes
+        """
+        self.log("Installing external method to update existing instance")
+        cpsubscriptions_upgrade_old_instance = ExternalMethod(
+            'UPGRADE SUBSCRIPTIONS',
+            'ATTENTION ! YOU GOTTA KNOW WHAT YOU ARE DOING',
+            'CPSSubscriptions.install',
+            'updateContainers')
+
+        if 'cpsubscriptions_upgrade_old_instance' not in self.portal.objectIds():
+            self.portal._setObject('cpsubscriptions_upgrade_old_instance',
+                                   cpsubscriptions_upgrade_old_instance)
+
 ###############################################
 # __call__
 ###############################################
@@ -264,3 +285,50 @@ def install(self):
     installer = CPSSubscriptionsInstaller(self)
     installer.install()
     return installer.logResult()
+
+def updateContainers(self):
+    """Update container because of the incompatible
+    changed made recently. Use that from an external method
+    for your already existing projects
+    """
+
+    log = []
+    pr = log.append
+
+    pr("UPGRADE CPSSubscriptions old instance")
+    subtool = self.portal_subscriptions
+
+    # Fetching all the containers on the portal
+    catalog = self.portal_catalog
+    portal_type = 'CPS PlaceFull Subscription Container'
+    containers = catalog.searchResults({'portal_type':
+                                            portal_type,})
+    containers = [x.getObject() for x in containers]
+
+    for container in containers:
+        pr("Checking container at %s" %container.absolute_url())
+        #
+        # Permissions updating
+        #
+
+        container.updateProperties()
+
+        #
+        # Now removing existing subscription
+        # Only for explict subscribersà
+        # HUOM !! You're gonna loose all your explicit subscriptions
+        # Be sure you know you're doing
+        #
+
+        explicit_id = subtool.getExplicitRecipientsRuleId()
+        for subscription in container.getSubscriptions():
+            explicit = getattr(subscription, explicit_id, None)
+            if explicit is not None:
+                explicit.members = []
+                explicit.emails = []
+                explicit.emails_subscribers = []
+                explicit.emails_pending_add = []
+                explicit.emails_pending_delete = []
+
+    pr("DONE")
+    return '\n'.join(log)
