@@ -101,11 +101,11 @@ class NotificationRule(PortalFolder):
         # Misc
         writer.addheader('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')
         writer.flushheaders()
-        writer._fp.write('Content-Transfer-Encoding: quoted-printable\n')
+        writer._fp.write('Content-Transfer-Encoding: 8bit\n')
         body_writer = writer.startbody('text/plain; charset=iso-8859-15',
                                        [],
                                        {'Content-Transfer-Encoding':
-                                        'quoted-printable'})
+                                        '8bit'})
 
         body = '\n' + infos['body']
         body = cStringIO.StringIO(body)
@@ -124,7 +124,7 @@ class NotificationRule(PortalFolder):
 
         LOG(":: CPSSubscriptions :: sendMail() :: for",
             INFO,
-            mail_infos)
+            raw_message)
 
         try:
             self.MailHost.send(raw_message)
@@ -308,21 +308,22 @@ class MailNotificationRule(NotificationRule):
         container = tool.getSubscriptionContainerFromContext(context)
         portal = getToolByName(self,'portal_url').getPortalObject()
         object_url = context.absolute_url() \
-                     + '/folder_confirm_subscribe_form?fake=subscriptions' \
-                     + '&event_id='\
+                     + "/folder_confirm_subscribe_form?fake=subscriptions" \
+                     + "&event_id=" \
                      + event_id \
-                     + '&email='\
+                     + "&email=" \
                      + email
 
         # Pre process for body/subject
         infos = {'portal_title': portal.Title(),
-                 'object_url'  : repr(object_url),
+                 'object_url'  : object_url,
                  'event_id'    : event_id,
                  'email'       : email,
                  'mfrom'       : container.getMailFrom()}
 
         subject = tool.getSubscribeConfirmEmailTitle() % infos
         body = tool.getSubscribeConfirmEmailBody() % infos
+        LOG("XXXXXXXXXXXX", INFO, body)
 
         # For building the E-Mail
         mail_infos = {}
