@@ -1,10 +1,14 @@
                            CPSSubscriptions
 
-                          Integration on projects
+                  Integration on projects and cutomization
 
                                   ---
 
   $Id$
+
+ """ It's working with a default configuration in state. The following id useful
+     when you have custom workflow or new containers
+ """
 
 
  1 - Registering new events in given contexts
