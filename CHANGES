@@ -6,8 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- fix: abuse of table width 100%
-- fix: missing class noborder for checkbox
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

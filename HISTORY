@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.13.1 [R1 build 2004/08/16-15:36 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- fix: abuse of table width 100%
+- fix: missing class noborder for checkbox
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.13.0 [R1 build 2004/08/16-15:21 by ben]
 
 Requires:
