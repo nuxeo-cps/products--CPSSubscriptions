@@ -28,7 +28,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 Defines the Subscriptions Tool class
 """
 
-from types import DictType
+from types import DictType, StringType
 
 from OFS.Folder import Folder
 from Globals import InitializeClass, DTMLFile
@@ -70,45 +70,12 @@ class SubscriptionsTool(UniqueObject, Folder):
         {'id': 'notify_hidden_object',
          'type': 'boolean', 'mode':'w',
          'label' : 'Notify hidden files'},
-         {'id': 'event_default_email_title',
-         'type':'string', 'mode':'r',
-         'label':'Default email title'},
-        {'id': 'event_default_email_body',
-         'type':'text', 'mode':'r',
-         'label':'Default email body'},
-        {'id': 'event_error_email_body',
-         'type' : 'text', 'mode':'r',
-         'label': 'Error email body',},
-        {'id': 'subscribe_confirm_email_title',
-         'type' : 'string', 'mode':'r',
-         'label': 'Subscribe Confirm Email Title',},
-        {'id': 'subscribe_confirm_email_body',
-         'type' : 'text', 'mode':'r',
-         'label': 'Subscribe Confirm Email Body',},
-        {'id': 'subscribe_welcome_email_title',
-         'type' : 'string', 'mode':'r',
-         'label': 'Subscribe Email Welcome Title',},
-        {'id': 'subscribe_welcome_email_body',
-         'type' : 'text', 'mode':'r',
-         'label': 'Subscribe Email Welcome Body',},
-        {'id': 'unsubscribe_email_title',
-         'type' : 'string', 'mode':'r',
-         'label': 'UnSubscribe Email Title',},
-        {'id': 'unsubscribe_email_body',
-         'type' : 'text', 'mode':'r',
-         'label': 'UnSubscribe Email Body',},
-        {'id': 'unsubscribe_confirm_email_title',
-         'type' : 'string', 'mode':'r',
-         'label': 'UnSubscribe Confirm Email Title',},
-        {'id': 'unsubscribe_confirm_email_body',
-         'type' : 'text', 'mode':'r',
-         'label': 'UnSubscribe Confirm Email Body',},
-        {'id':'mapping_context_events',
-         'type':'string', 'mode':'r',
-         'label':'Mapping context / events'},
-        {'id': 'mapping_event_email_content',
-         'type': 'string', 'mode': 'r',
-         'label' : 'Mapping event email content'},
+        {'id': 'render_content_for_portal_types',
+         'type': 'lines', 'mode':'w',
+         'label' : 'Render the content type for the following content types'},
+        {'id': 'render_content_for_events',
+         'type': 'lines', 'mode':'w',
+         'label' : 'Render the content type for the following events'},
         )
 
     ###################################################
@@ -279,10 +246,60 @@ class SubscriptionsTool(UniqueObject, Folder):
         self.unsubscribe_email_title = ''
         self.unsubscribe_email_body = ''
 
+        # Rendering content at notification time
+        self.render_content_for_portal_types = []
+        self.render_content_for_events = []
+
     ######################################################
     #####################################################
 
-    security.declarePublic('setupEvents')
+    security.declareProtected(ManagePortal, 'addRenderedPortalTypes')
+    def addRenderedPortalType(self, portal_type=''):
+        """Add a portal type for wich the render of the content
+        type will be included into the notification email body.
+        """
+
+        self._p_changed = 1
+
+        if (isinstance(portal_type, StringType) and
+            portal_type not in self.render_content_for_portal_types):
+            self.render_content_for_portal_types.append(portal_type)
+            return 1
+        return 0
+
+    security.declareProtected(ManagePortal, 'addRenderedEvents')
+    def addRenderedEvent(self, event_id=''):
+        """Add an event for wich the render of the content
+        type will be included into the notification email body.
+        """
+
+        self._p_changed = 1
+
+        if (isinstance(event_id, StringType) and
+            event_id not in self.render_content_for_events):
+            self.render_content_for_events.append(event_id)
+            return 1
+        return 0
+
+    security.declarePublic('getRenderedPortalTypes')
+    def getRenderedPortalTypes(self):
+        """Return the portal_types that we are gonna render
+        and add the rendering within the email notification body
+        """
+        return self.render_content_for_portal_types
+
+    security.declarePublic('getRenderedEvents')
+    def getRenderedEvents(self):
+        """Return the events for wich  we are gonna render the content
+        type which is responsible of the notifications
+        and then add this rendering within the email notification body
+        """
+        return self.render_content_for_events
+
+    ###########################################################
+    ###########################################################
+
+    security.declareProtected(ManagePortal, 'setupEvents')
     def setupEvents(self):
         """ Setup events on which to react
         """
@@ -558,6 +575,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
+
         subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
