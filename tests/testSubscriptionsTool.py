@@ -17,35 +17,15 @@ from Testing import ZopeTestCase
 from Products.CMFCore.utils import getToolByName
 
 from Products.CPSSubscriptions.SubscriptionsTool import \
-     SUBSCRIPTION_CONTAINER_ID,\
-     EXPLICIT_RECIPIENTS_RULE_ID,\
+     SUBSCRIPTION_CONTAINER_ID, EXPLICIT_RECIPIENTS_RULE_ID,\
      MAIL_NOTIFICATION_RULE_ID
 
 import CPSSubscriptionsTestCase
-
-class DummyResponse:
-    def __init__(self):
-        self.headers = {}
-        self.data = ''
-
-    def setHeader(self, key, value):
-        self.headers[key] = value
-
-    def write(self, data):
-        self.data += data
-
-    def redirect(self, url):
-        self.redirect_url = url
-
 
 class Context:
     def __init__(self):
         self.portal_type = ''
 
-def randomText(max_len=10):
-    import random
-    return ''.join(
-        [chr(random.randint(32, 128)) for i in range(0, max_len)])
 
 class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     """Test Subscriptions Tool
@@ -70,11 +50,9 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
         self.logout()
 
     def testSubscriptionsToolFixtures(self):
-
         #
         # Test subscriptions tool fixtures
         #
-
         self.assertNotEqual(self.subscriptions_tool, None)
         self.assertEqual(self.subscriptions_tool.id,
                          'portal_subscriptions')
@@ -82,16 +60,15 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
                          'Subscriptions Tool')
 
     def testSubscriptionsToolAttributes(self):
-
         #
         # Test Subscriptions tool attributes
         #
 
-        # Default Attributes
+        # Default attributes
         self.assertEqual(getattr(self.subscriptions_tool,
                                  'notify_hidden_object'), 0)
 
-        # The following had been initialize with default values or some values
+        # The following had been initialized with default values or some values
         # had been defined by users already
 
         self.assertNotEqual(getattr(self.subscriptions_tool,
@@ -110,70 +87,64 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
                                  'event_error_email_body'), '')
 
     def testSubscriptionsToolGlobalIds(self):
-
         #
         # Test Subscriptions tool global ids
         #
-
-        self.assertEqual(self.subscriptions_tool.getSubscriptionContainerId(),
+        stool = self.subscriptions_tool
+        self.assertEqual(stool.getSubscriptionContainerId(),
                          SUBSCRIPTION_CONTAINER_ID)
-        self.assertEqual(self.subscriptions_tool.getExplicitRecipientsRuleId() ,
+        self.assertEqual(stool.getExplicitRecipientsRuleId() ,
                          EXPLICIT_RECIPIENTS_RULE_ID)
-        self.assertEqual(
-            self.subscriptions_tool.getMailNotificationRuleObjectId(),
-            MAIL_NOTIFICATION_RULE_ID)
+        self.assertEqual(stool.getMailNotificationRuleObjectId(),
+                         MAIL_NOTIFICATION_RULE_ID)
 
     def testSubscriptionsToolDefaultMessageElements(self):
-
         #
         # Test Subscriptions tool default message elements
         #
-
         default_message_title = self.subscriptions_tool.getDefaultMessageTitle()
         self.assertNotEqual(default_message_title, None)
         self.assertNotEqual(default_message_title, '')
-        self.assertEqual(isinstance(default_message_title, StringType), 1)
+        self.assert_(isinstance(default_message_title, StringType))
 
         default_message_body = self.subscriptions_tool.getDefaultMessageBody()
         self.assertNotEqual(default_message_body, None)
         self.assertNotEqual(default_message_body, '')
-        self.assertEqual(isinstance(default_message_body, StringType), 1)
+        self.assert_(isinstance(default_message_body, StringType))
 
         error_message_body = self.subscriptions_tool.getErrorMessageBody()
         self.assertNotEqual(error_message_body, None)
         self.assertNotEqual(error_message_body, '')
-        self.assertEqual(isinstance(error_message_body, StringType), 1)
+        self.assert_(isinstance(error_message_body, StringType))
 
     def testSubscriptionsToolEventsRegistration(self):
-
         #
         # Test events registration in all registred context
         #
 
         context = Context()
         portal_types = self.subscriptions_tool.getContainerPortalTypes()
-        self.assertEqual(isinstance(portal_types, ListType), 1)
+        self.assert_(isinstance(portal_types, ListType))
 
         for portal_type in portal_types:
             context.portal_type = portal_type
             events_in_context = self.subscriptions_tool.getEventsFromContext(
                 context)
             self.assertNotEqual(events_in_context, {})
-            self.assertEqual(isinstance(events_in_context, DictType), 1)
+            self.assert_(isinstance(events_in_context, DictType))
 
     def testSubscriptionsToolRenderedPortalTypeRegistration(self):
-
         #
         # Tests adding some portal_types that have to be rendered at
         # notification time and then added to the notification email body
         #
 
-        portal_type_ok= 'XXXX'
+        portal_type_ok = 'XXXX'
         portal_type_not_ok = ('XXXXXXXXXX',)
         currents = self.subscriptions_tool.getRenderedPortalTypes()
         initial_len = len(currents)
 
-        self.assertEqual(isinstance(currents, ListType), 1)
+        self.assert_(isinstance(currents, ListType))
 
         self.assertEqual(self.subscriptions_tool.addRenderedPortalType(
             portal_type_ok),
@@ -191,33 +162,32 @@ class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
         self.assertEqual(len(currents), new_len)
 
     def testSubscriptionsToolRenderedEventsRegistration(self):
-
         #
         # Tests adding some events that have to be rendered at
         # notification time and then added to the notification email body
         #
 
-        event_id_ok= 'XXXX'
+        event_id_ok = 'XXXX'
         event_id_not_ok = ('XXXXXXXXXX',)
         currents = self.subscriptions_tool.getRenderedEvents()
         initial_len = len(currents)
 
         # This variables could be initialized
         # Just check in here if the structure hosting is a list
-        self.assertEqual(isinstance(currents, ListType), 1)
+        self.assert_(isinstance(currents, ListType))
 
-        self.assertEqual(self.subscriptions_tool.addRenderedEvent(
-            event_id_ok),
-                         1)
+        self.assertEqual(
+            self.subscriptions_tool.addRenderedEvent(event_id_ok),
+            1)
 
         currents_plus = self.subscriptions_tool.getRenderedEvents()
         new_len = len(currents_plus)
 
-        self.assertEqual(new_len, initial_len+1)
+        self.assertEqual(new_len, initial_len + 1)
 
-        self.assertEqual(self.subscriptions_tool.addRenderedEvent(
-            event_id_not_ok),
-                         0)
+        self.assertEqual(
+            self.subscriptions_tool.addRenderedEvent(event_id_not_ok),
+            0)
         new_currents = self.subscriptions_tool.getRenderedEvents()
         self.assertEqual(new_len, len(new_currents))
 

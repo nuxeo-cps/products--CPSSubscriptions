@@ -23,7 +23,7 @@
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
-""" CPS Subscriptions component
+"""CPS Subscriptions component
 
 This component provides notifications and subscribtions for CPS3.
 """
@@ -44,29 +44,33 @@ import NotificationMessageBody
 # Recipients Rules
 #
 
-recipientsRulesClasses = ( RecipientsRules.ExplicitRecipientsRule,
-                           RecipientsRules.RoleRecipientsRule,
-                           RecipientsRules.WorkflowImpliedRecipientsRule,)
+recipientsRulesClasses = (
+    RecipientsRules.ExplicitRecipientsRule,
+    RecipientsRules.RoleRecipientsRule,
+    RecipientsRules.WorkflowImpliedRecipientsRule,)
 
-recipRulesConstructors = ( RecipientsRules.addExplicitRecipientsRule,
-                           RecipientsRules.addRoleRecipientsRule,
-                           RecipientsRules.addWorkflowImpliedRecipientsRule,)
+recipientRulesConstructors = (
+    RecipientsRules.addExplicitRecipientsRule,
+    RecipientsRules.addRoleRecipientsRule,
+    RecipientsRules.addWorkflowImpliedRecipientsRule,)
 
 #
 # Notification Types
 #
 
-notificationsClasses = ( Notifications.MailNotificationRule,
-                         NotificationMessageBody.NotificationMessageBody,)
+notificationsClasses = (
+    Notifications.MailNotificationRule,
+    NotificationMessageBody.NotificationMessageBody,)
 
-notificationsConstructors = ( Notifications.addMailNotificationRule,
-                              NotificationMessageBody.addNotificationMessageBody,)
+notificationsConstructors = (
+    Notifications.addMailNotificationRule,
+    NotificationMessageBody.addNotificationMessageBody,)
 
 #
 # Subscription Tool
 #
 
-tools = ( SubscriptionsTool.SubscriptionsTool,)
+tools = (SubscriptionsTool.SubscriptionsTool,)
 
 registerDirectory('skins', globals())
 
@@ -75,11 +79,10 @@ def initialize(registar):
     """
 
     # Place Full Subscription Container
-    registar.registerClass(\
+    registar.registerClass(
         SubscriptionContainer.SubscriptionContainer,
         permission=AddPortalContent,
-        constructors=(\
-        SubscriptionContainer.addSubscriptionContainer, ))
+        constructors=(SubscriptionContainer.addSubscriptionContainer,))
 
     # Subscription object
     registar.registerClass(Subscription.Subscription,
@@ -95,15 +98,16 @@ def initialize(registar):
     # Recipients Rules
     ContentInit(
         'CPS Subscriptions Elements',
-        content_types = recipientsRulesClasses + \
-        notificationsClasses,
-        permission = AddPortalContent,
-        extra_constructors = recipRulesConstructors + \
-        notificationsConstructors,).initialize(registar)
+        content_types=recipientsRulesClasses + notificationsClasses,
+        permission=AddPortalContent,
+        extra_constructors=recipientRulesConstructors + \
+            notificationsConstructors
+    ).initialize(registar)
 
     # Portal Subscriptions Tool
     ToolInit(
         'CPS Subsriptions Tool',
-        tools = tools,
-        product_name = 'CPSSubscriptions',
-        icon = 'tool.gif',).initialize(registar)
+        tools=tools,
+        product_name='CPSSubscriptions',
+        icon='tool.gif'
+    ).initialize(registar)
