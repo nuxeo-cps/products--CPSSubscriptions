@@ -1,4 +1,4 @@
-# translation of en.po to 
+# translation of en.po to
 # translation of en.po to
 # translation of en.po to Francais
 # translation of en.po to Français
@@ -10,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-31 11:11default\n"
-"PO-Revision-Date: 2004-03-30 19:39+0200\n"
-"Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
-"Language-Team:  <janguenot@nuxeo.com>\n"
+"POT-Creation-Date: 2004-03-31 12:12default\n"
+"PO-Revision-Date: 2004-03-31 11:59+0200\n"
+"Last-Translator: DARCHE <madarche@nuxeo.com>\n"
+"Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
-"X-Generator: KBabel 1.0.2\n"
+"X-Generator: KBabel 1.3.1\n"
 
 #.   <span>
 #.                   <span replace="context_lcs/?role" />
@@ -190,6 +190,18 @@ msgstr "Subscribe"
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
 msgstr "Unsubscribe"
+
+#.   <p>
+#.           You should leave the following field empty unless you have specific
+#.   	needs and if so you should enter a valid email address like,
+#.   	for example, system@mysite.net
+#.         </p>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "description_leave_empty_or_enter_email_address"
+msgstr ""
+"You should leave the following field empty unless you have specific needs "
+"and if so you should enter a valid email address like, for example, "
+"system@mysite.net"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt

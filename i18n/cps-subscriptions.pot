@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-03-31 11:11default\n"
+"POT-Creation-Date: 2004-03-31 12:12default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -165,6 +165,15 @@ msgstr ""
 #.         </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "button_unsubscribe"
+msgstr ""
+
+#.   <p>
+#.           You should leave the following field empty unless you have specific
+#.   	needs and if so you should enter a valid email address like,
+#.   	for example, system@mysite.net
+#.         </p>
+#: from ../skins/cps_subscriptions/subscriptions_lib.pt
+msgid "description_leave_empty_or_enter_email_address"
 msgstr ""
 
 #.   <span />

@@ -168,6 +168,11 @@
       <h4 i18n:translate="header_mfrom_mailing_list">
         Sender address for outgoing emails
       </h4>
+      <p i18n:translate="description_leave_empty_or_enter_email_address">
+        You should leave the following field empty unless you have specific
+	needs and if so you should enter a valid email address like,
+	for example, system@mysite.net
+      </p>
       <tal:block define="current_mfrom python:subscription_folder and
       subscription_folder.getMailFrom() or ''">
         <table border="0" align="center" width="100%">
