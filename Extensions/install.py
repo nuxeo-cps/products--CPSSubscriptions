@@ -91,7 +91,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
                 id='folder_notifications',
                 name='action_folder_notifications',
                 action='string: ${folder_url}/folder_notifications_form',
-                condition='',
+                condition="python:hasattr(object, 'portal_type') and object.portal_type not in ('Section', 'Portal')",
                 permission=(ModifyPortalContent,),
                 category='folder',
                 visible=1)
