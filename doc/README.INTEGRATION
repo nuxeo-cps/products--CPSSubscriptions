@@ -6,23 +6,26 @@
 
   $Id$
 
- """ It's working with a default configuration in state. The following id useful
-     when you have custom workflow or new containers
+ """ It's working with a default configuration in state. The following id
+     useful when you have custom workflows or new containers
  """
 
 
- 1 - Registering new events in given contexts
+  - Registering new events in given contexts
 
        Add a getCustomEvents.py file within your skins directory if you want to
      record new events and /or new contexts where you want notifications to be in use.
 
      (See getEvents.py in CPSSubscriptiosn skins for the syntax.)
 
-      Add a getLocalRolesFromContext.py within your skins directory.
+  - Registering new local roles
 
-     (See getLocalRolesFromContent in CPSSubscriptions skins for the syntax.)
+    If you're using different local roles than the default CPS ones you may do
+    the following :
 
-    Notice, both will be merged soon.
+    Add a getLocalRolesFromContext.py within your skins directory.
+
+   (See getLocalRolesFromContent in CPSSubscriptions skins for the syntax.)
 
  2 - Content of sent messages.
 
@@ -46,5 +49,8 @@
 
 3 - Customization of given notification event messages
 
-     Through the ZMI you may the content of messages.
+     Through the ZMI you may edit the content of messages.
+
+     - Global message content
+     - Event specific message content
 
