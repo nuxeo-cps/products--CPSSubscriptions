@@ -663,6 +663,9 @@ class SubscriptionsTool(UniqueObject, Folder):
         containers = catalog.searchResults({'portal_type':
                                             portal_type,
                                             'path':path,})
+        LOG(":: CPSSubscriptions :: catalog search for containers",
+            INFO,
+            str(containers))
 
         #
         # Now let's get the subcription containers and check if the computed
