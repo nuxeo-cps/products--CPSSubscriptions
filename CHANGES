@@ -7,7 +7,8 @@ New features:
 
 Bug fixes:
 ~~~~~~~~~~
--
+- User names in generated emails are now the user fullnames as returned by the
+  portal directory.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

@@ -214,6 +214,8 @@ class MailNotificationRule(NotificationRule):
             infos = {}
 
         portal_subscriptions = getToolByName(self, 'portal_subscriptions')
+        memberDirectory = getToolByName(self, 'portal_directories').members
+
         context = aq_parent(aq_inner(object))
         mcat = self.Localizer.default
 
@@ -238,14 +240,23 @@ class MailNotificationRule(NotificationRule):
         infos['object_parent_url'] = aq_parent(aq_inner(object)).absolute_url()
         infos['object_type'] = getattr(object, 'portal_type', '')
 
-        infos['object_creator_id'] = object.Creator()
-        infos['object_creator_name'] = getattr(self.portal_membership.getMemberById(
-            object.Creator()), 'fullname', '')
+        object_creator_id = object.Creator()
+        object_creator_user = memberDirectory.getEntry(object_creator_id,
+                                                       default=None)
+        object_creator_name = ''
+        if object_creator_user:
+            object_creator_name = object_creator_user.get('fullname')
+        infos['object_creator_id'] = object_creator_id
+        infos['object_creator_name'] = object_creator_name
 
         # The user whose action is at the origin of the event
-        user = getSecurityManager().getUser()
-        infos['user_id'] = user.getId()
-        infos['user_name'] = user.getUserName()
+        user_id = getSecurityManager().getUser().getId()
+        user = memberDirectory.getEntry(user_id, default=None)
+        user_name = ''
+        if user:
+            user_name = user.get('fullname')
+        infos['user_id'] = user_id
+        infos['user_name'] = user_name
 
         for k, v in infos.get('kwargs', {}).items():
             infos['kwargs_' + k] = v
@@ -270,7 +281,7 @@ class MailNotificationRule(NotificationRule):
         notification occurs.
         """
 
-        portal = getToolByName(self,'portal_url').getPortalObject()
+        portal = getToolByName(self, 'portal_url').getPortalObject()
 
         infos = self._makeInfoDict(event_type, object, infos)
         mfrom = self._getMailFrom(object)

@@ -141,7 +141,7 @@ Features:
        You can customize default message email content ans as well providing
        custom content for given events.
 
-What doesn't provide CPSSubscriptions:
+What CPSSubscriptions doesn't provide:
 
   - No mailing list content type as CPS2 or CPSMailingLists used to
     provide.
@@ -152,6 +152,7 @@ Installation:
 
  - Classic External method installation right now. Will be integrated within
    CPS3.1
+ - CPSSubscriptions depends on CPSDirectory
 
 More information:
 
