@@ -536,8 +536,7 @@
     <span i18n:translate="">
       Below are the subscriptions you belong to all over the portal
     </span>
-    <br /><br />
-    <div class="group">
+    <div class="group" tal:condition="subscriptions_struct">
     <table align="center" width="100%" cellpadding="2" cellspacing="1">
       <tr class="even">
         <td align="left">
@@ -592,6 +591,11 @@
     <input type="button" class="standAlone" value="button_back"
            onclick="javascript:history.back()"
            i18n:attributes="value" />
+     </div>
+     <div class="group" tal:condition="not:subscriptions_struct" align="center">
+       <span i18n:translate="label_subscriptions_no_subscription_yet">
+         You currently do not belong to any subscriptions.
+       </span>
      </div>
   </tal:block>
 </metal:block>
