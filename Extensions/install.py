@@ -165,7 +165,7 @@ class CPSSubscriptionsInstaller(BaseInstaller):
             action='string: ${object_url}/folder_subscribe_form',
             condition="python:hasattr(object, 'portal_type') and \
             object.portal_type != 'Portal' and \
-            object.portal_type in portal.portal_subscriptions.getSubscriptablePortalTypes() and \
+            object.portal_type in portal.portal_subscriptions.getSubscribablePortalTypes() and \
             hasattr(object, portal.portal_subscriptions.getSubscriptionContainerId()) and \
             getattr(object, portal.portal_subscriptions.getSubscriptionContainerId()).isSubscriptionAllowed()" ,
             permission=(View,),

@@ -471,8 +471,8 @@ class SubscriptionsTool(UniqueObject, Folder):
     #######################################################
     #######################################################
 
-    security.declarePublic('getSubscriptablePortalTypes')
-    def getSubscriptablePortalTypes(self):
+    security.declarePublic('getSubscribablePortalTypes')
+    def getSubscribablePortalTypes(self):
         """Returns the possible subscriptable portal types
         """
         # XXX filtering on what ? lookup ?
