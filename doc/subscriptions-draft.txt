@@ -322,6 +322,12 @@ Event subscriptions and notifications
             subscribe / unsubscribe manually to the Subscription (adding
             themselves to recipient_members).
 
+    	  - groups -- The ids of the groups subscribed manually.
+
+          - groups_allow_add -- Whether groups are allowed to subscribe /
+            unsubscribe manually to the Subscription (adding themselves to
+            the recipient_groups).
+
           - emails -- The emails subscribed manually.
 
           - emails_allow_add -- Whether anonymous visitors are allowed
