@@ -4,6 +4,7 @@ Requires:
 New features:
 ~~~~~~~~~~~~~
 - Notification of content on every object.
+- Fix bugs on rendering of content within mail in the NewsLetter case. Images were not showing up in the mail body
 Bug fixes:
 ~~~~~~~~~~
 -
