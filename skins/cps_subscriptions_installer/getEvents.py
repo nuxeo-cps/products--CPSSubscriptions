@@ -35,8 +35,6 @@ events['Workspace'] = workspace
 events['Section'] = section
 events['CPSForum'] = cps_forum
 events['ForumPost'] = cps_forum_post
-events['Portal'] = workspace   # Has to disappear soon.
-
 
 if loadcustom:
     cevents = context.getCustomEvents()
