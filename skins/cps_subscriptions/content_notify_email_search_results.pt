@@ -27,7 +27,9 @@
 <form action="content_notify_sendmail" method="POST"
       tal:attributes="action python:request['URL1']+'/content_notify_sendmail'">
 
+<strong i18n:translate="heading_search_results" />
 <div class="group" tal:condition="results">
+
 <table tal:condition="results" border="0" width="100%">
 <tr>
   <th>&nbsp;</th>
@@ -76,7 +78,7 @@
       </span>
   </div>
   <div class="field" align="center">
-    <input type="text" name="mail_subject" size="65" value="" />
+    <input type="text" name="mail_subject" size="62" value="" />
   </div>
 </div>
 
