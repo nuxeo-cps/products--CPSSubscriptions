@@ -3,14 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- new ExternalMethod removeOldCPSMailingListObjects
-  to get rid of deprecated CPSMailingList objects
+-
 Bug fixes:
 ~~~~~~~~~~
-- Fix unit tests when adding CPSNewsLetters in the product list
-- Fix persistence problem thx to clafoutislifestyle [at] free.fr
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- improve install using CPSInstaller for indexes and catalog metadata
-- adding a french template for email getMailTemplate_fr.py
-  you need to copy this file as getMailTemplate.py in your skin
+-

@@ -1,4 +1,24 @@
 *******************************************
+** CPSSubscriptions V0.13.0 [R1 build 2004/08/16-15:21 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- new ExternalMethod removeOldCPSMailingListObjects
+  to get rid of deprecated CPSMailingList objects
+Bug fixes:
+~~~~~~~~~~
+- Fix unit tests when adding CPSNewsLetters in the product list
+- Fix persistence problem thx to clafoutislifestyle [at] free.fr
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- improve install using CPSInstaller for indexes and catalog metadata
+- adding a french template for email getMailTemplate_fr.py
+  you need to copy this file as getMailTemplate.py in your skin
+
+*******************************************
 ** CPSSubscriptions V0.12.0 [R1 build 2004/07/30-10:03 by ben]
 
 Requires:
