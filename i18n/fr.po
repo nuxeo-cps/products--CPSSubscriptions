@@ -1,4 +1,4 @@
-# translation of fr.po to 
+# translation of fr.po to
 # translation of fr.po to
 # translation of fr.po to Francais
 # Gettext Message File for default.
@@ -10,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-03-30 19:37default\n"
-"PO-Revision-Date: 2004-03-30 19:41+0200\n"
-"Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
-"Language-Team:  <janguenot@nuxeo.com>\n"
+"POT-Creation-Date: 2004-03-31 11:11default\n"
+"PO-Revision-Date: 2004-03-31 11:14+0200\n"
+"Last-Translator: DARCHE <madarche@nuxeo.com>\n"
+"Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
-"X-Generator: KBabel 1.0.2\n"
+"X-Generator: KBabel 1.3.1\n"
 
 #.   <span>
 #.                   <span replace="context_lcs/?role" />
@@ -229,14 +229,16 @@ msgstr "Entrer une adresse électronique valide"
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_mfrom_mailing_list"
-msgstr "Adresse électronique de l'émetteur pour les courriels émis"
+msgstr "Adresse électronique de l'émetteur pour les courriels sortants"
 
 #.   <h4>
 #.         Below are the events for which you are subsribed because of your local roles
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr "Les évènements ci-dessous sont ceux pour lesquels vous êtes abonnésfonction de vos rôles locaux."
+msgstr ""
+"Les évènements ci-dessous sont ceux pour lesquels vous êtes abonnésfonction "
+"de vos rôles locaux."
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
@@ -564,7 +566,9 @@ msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr "Vous avez été retiré de la liste de diffusion."
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
-msgstr "Vous avez été retiré de la liste de diffusion. Contacter l'administrateur si vous voulez faire partie de cette mailing list de nouveau."
+msgstr ""
+"Vous avez été retiré de la liste de diffusion. Contacter l'administrateur si "
+"vous voulez faire partie de cette mailing list de nouveau."
 
 #, fuzzy
 #~ msgid "button_unsubscribed"

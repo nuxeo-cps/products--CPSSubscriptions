@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-03-30 19:37default\n"
+"POT-Creation-Date: 2004-03-31 11:11default\n"
 "PO-Revision-Date: 2004-03-30 19:39+0200\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
@@ -98,8 +98,10 @@ msgstr "Notification type"
 #.          Please, follow the instruction included in the mail you will shortly receive
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid "Please, follow the instruction included in the mail you will shortly receive"
-msgstr "Please, follow the instruction included in the mail you will shortly receive"
+msgid ""
+"Please, follow the instruction included in the mail you will shortly receive"
+msgstr ""
+"Please, follow the instruction included in the mail you will shortly receive"
 
 #.   <span>
 #.      Ton confirm that you want to be added to this mailing list, click
@@ -236,7 +238,8 @@ msgstr "Sender address for outgoing emails"
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr "Below are the events for which you are subscribed because of your local roles"
+msgstr ""
+"Below are the events for which you are subscribed because of your local roles"
 
 #.   <h4>
 #.           Are subscriptions allowed and to whom ?
@@ -358,21 +361,25 @@ msgstr "Enter a valid email"
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr "Please, follow the instruction included in the mail you will shortly receive"
+msgstr ""
+"Please, follow the instruction included in the mail you will shortly receive"
 
 #.   <div>
 #.           Currently you haven't any subscriptions in this context or for this object.
 #.         </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions"
-msgstr "Currently you haven't any subscriptions in this context or for this object."
+msgstr ""
+"Currently you haven't any subscriptions in this context or for this object."
 
 #.   <div>
 #.           Currently you haven't any subscriptions in this context or for this object based on your local roles
 #.         </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib.pt
 msgid "label_no_subscriptions_based_on_local_roles"
-msgstr "Currently you haven't any subscriptions in this context or for this object based on your local roles"
+msgstr ""
+"Currently you haven't any subscriptions in this context or for this object "
+"based on your local roles"
 
 # ## PSMS ##########################################
 #.   <span>
@@ -562,7 +569,9 @@ msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr "You have been removed from the mailing list"
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
-msgstr "You have been removed from the mailing list. If you want to be part of this mailing list again you got to contact the adminstrator of the mailing list."
+msgstr ""
+"You have been removed from the mailing list. If you want to be part of this "
+"mailing list again you got to contact the adminstrator of the mailing list."
 
 #, fuzzy
 #~ msgid "button_unsubscribed"
@@ -608,4 +617,3 @@ msgstr "You have been removed from the mailing list. If you want to be part of t
 
 #~ msgid "button_ok"
 #~ msgstr "ok"
-
