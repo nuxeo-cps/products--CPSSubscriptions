@@ -13,3 +13,4 @@ New internal features:
 - Better layout and accessibility for
   subscriptions_lib_display_subscriptions_table.pt through the use of the new
   CPSDefault listing CSS class (closes #458).
+- Better layout and wording for subscription options (closes #387).

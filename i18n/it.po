@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions\n"
-"POT-Creation-Date: 2005-01-13 12:47default\n"
+"POT-Creation-Date: 2005-01-14 09:04default\n"
 "PO-Revision-Date: 2004-10-01 08:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: Fabio Nosari <fabnos@fastwebnet.it>\n"
@@ -258,9 +258,9 @@ msgstr "Amministra"
 msgid "event_id"
 msgstr "ID dell'avvenimento"
 
-#.   <h3>
+#.   <h2>
 #.         Available events in here
-#.       </h3>
+#.       </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_available_events"
@@ -280,6 +280,15 @@ msgstr "Scegli a quali sottoscrizioni vuoi iscriverti: "
 msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Scegli quali sottoscrizioni vuoi abbandonare: "
 
+#.   <h2>
+#.   	  Contextual notifications
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "header_contextual_notifications"
+msgstr "Gestione delle notifiche"
+
 #.   <strong>
 #.                       <span>
 #.                         Enter a valid email
@@ -289,30 +298,39 @@ msgstr "Scegli quali sottoscrizioni vuoi abbandonare: "
 msgid "header_enter_your_email"
 msgstr "Inserisci un indirizzo di posta elettronica valido"
 
-#.   <h3>
+#.   <h2>
 #.   	  Sender address for outgoing emails
-#.   	</h3>
+#.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
 msgstr "Indirizzo del mittente per la posta in uscita:"
 
-#.   <h3>
+#.   <h2>
 #.   	  Notified people
-#.   	</h3>
+#.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr ""
 
-#.   <h3>
+#.   <h2>
 #.   	  Save changes
-#.   	</h3>
+#.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 #, fuzzy
 msgid "header_save_changes"
 msgstr "Notifiche disponibili in questo contesto:"
+
+#.   <h2>
+#.   	  Subscribing/unsubscribing
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "header_subscribing_unsubscribing"
+msgstr "Consenti le iscrizioni?"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -323,28 +341,12 @@ msgstr ""
 "Di seguito,  sono elencati gli avvenimenti a cui sei iscritto in funzione "
 "dei ruoli locali"
 
-#.   <h3>
-#.   	  Are subscriptions allowed and to whom ?
-#.   	</h3>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "header_subscription_allowed"
-msgstr "Amministra le sottoscrizioni:"
-
 #.   <h4>
 #.              You can choose below your subscription mode for your above subscriptions
 #.           </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_user_subscribption_mode"
 msgstr "Consenti le iscrizioni?"
-
-#.   <h3>
-#.   	  When/where to notify ?
-#.   	</h3>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "header_when_where_to_notify"
-msgstr "Quando e come notificare:"
 
 #.   <h1 condition="not:email">
 #.         I Subscribe
@@ -449,13 +451,36 @@ msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr ""
 
-#.   <td>
-#.                     Are anonymous subscriptions allowed ?
-#.                 </td>
+#.   <label for="anonymous_subscription_allowed">
+#.   		  Allow anonymous subscriptions
+#.   		</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_anonymous_subscription_allowed"
+#, fuzzy
+msgid "label_allow_anonymous_subscriptions"
 msgstr "autorizza le sottoscrizioni per gli utenti anonimi "
+
+#.   <label for="subscription_allowed">
+#.   		  Allow user subscriptions
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_allow_user_subscriptions"
+msgstr ""
+"Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o "
+"per questo oggetto."
+
+#.   <label for="unsubscription_allowed">
+#.   		  Allow user local roles based unsubscriptions
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_allow_user_unsubscriptions"
+msgstr ""
+"Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto o "
+"per questo oggetto."
 
 #.   <span>
 #.                 E-Mails Black list
@@ -574,24 +599,6 @@ msgstr "Aggiungi"
 msgid "label_notifications_add"
 msgstr "Aggiungi"
 
-#.   <td>
-#.                     Notify local only
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_notifications_local_only"
-msgstr ""
-"avverti solamente gli utenti che possiedono dei ruoli locali in questo "
-"contesto"
-
-#.   <td>
-#.                     Notify no local
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_notifications_no_local"
-msgstr "notifica solamente gli eventi che avvengono nelle sotto cartelle"
-
 #.   <span>
 #.            Add explicitly recipients emails (one email per ligne)
 #.         </span>
@@ -599,6 +606,25 @@ msgstr "notifica solamente gli eventi che avvengono nelle sotto cartelle"
 #, fuzzy
 msgid "label_notify_content_add_emails"
 msgstr "Aggiungi"
+
+#.   <label for="notify_local_only">
+#.                     Only notify people having local roles in this folder
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_only_notify_local_roles"
+msgstr ""
+"avverti solamente gli utenti che possiedono dei ruoli locali in questo "
+"contesto"
+
+#.   <label for="notify_no_local">
+#.                     Only notify for events happening in sub-folders
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "label_only_notify_subfolders"
+msgstr ""
 
 #.   <td>Others</td>
 #: from
@@ -636,14 +662,6 @@ msgstr "Inserisci un indirizzo di posta valido"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "label_subcriptions_fullname"
 msgstr "Nome completo"
-
-#.   <td>
-#.                     Are subscription allowed ?
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_subscription_allowed"
-msgstr "autorizza le sottoscrizioni"
 
 #.   <span>
 #.                   Description
@@ -701,16 +719,6 @@ msgstr "Indirizzi di posta"
 msgid "label_subscriptions_no_subscription_yet"
 msgstr ""
 "Attualmente, non sei iscritto ad alcun abbonamento interno del portale."
-
-#.   <td>
-#.                     Are unsubscription allowed ?
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_unsubscription_allowed"
-msgstr ""
-"autorizza le disiscrizioni per i collaboratori aggiunti <br>a partire dalla "
-"configurazione basata sui ruoli locali"
 
 #.   <span>
 #.         You are now a subscriber.
@@ -902,3 +910,26 @@ msgstr "Mensile"
 #, fuzzy
 msgid "bc_manage_my_subscriptions"
 msgstr "Sottoscrizioni personali"
+
+#, fuzzy
+#~ msgid "label_allow_subscriptions"
+#~ msgstr ""
+#~ "Attualmente, non sei titolare di alcuna sottoscrizione in questo contesto "
+#~ "o per questo oggetto."
+
+#~ msgid "header_subscription_allowed"
+#~ msgstr "Amministra le sottoscrizioni:"
+
+#~ msgid "header_when_where_to_notify"
+#~ msgstr "Quando e come notificare:"
+
+#~ msgid "label_notifications_no_local"
+#~ msgstr "notifica solamente gli eventi che avvengono nelle sotto cartelle"
+
+#~ msgid "label_subscription_allowed"
+#~ msgstr "autorizza le sottoscrizioni"
+
+#~ msgid "label_unsubscription_allowed"
+#~ msgstr ""
+#~ "autorizza le disiscrizioni per i collaboratori aggiunti <br>a partire "
+#~ "dalla configurazione basata sui ruoli locali"

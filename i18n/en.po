@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-01-13 12:47default\n"
-"PO-Revision-Date: 2005-01-14 08:28+0100\n"
+"POT-Creation-Date: 2005-01-14 09:04default\n"
+"PO-Revision-Date: 2005-01-14 09:06+0100\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,9 +48,8 @@ msgstr ""
 #.   		</block>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "<block replace=\"context_lcs/?role\" />"
-msgstr "FAKE"
+msgstr "NotiFAKE"
 
 #.   <block>
 #.   		    <span replace="events/?event_key" />
@@ -281,9 +280,9 @@ msgstr "Save changes"
 msgid "event_id"
 msgstr "FAKE"
 
-#.   <h3>
+#.   <h2>
 #.         Available events in here
-#.       </h3>
+#.       </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_available_events"
@@ -303,6 +302,14 @@ msgstr "Below are the events you may subscribe to"
 msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Below are the events you may unsubscribe from"
 
+#.   <h2>
+#.   	  Contextual notifications
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "header_contextual_notifications"
+msgstr "Contextual notifications"
+
 #.   <strong>
 #.                       <span>
 #.                         Enter a valid email
@@ -312,29 +319,37 @@ msgstr "Below are the events you may unsubscribe from"
 msgid "header_enter_your_email"
 msgstr "Enter a valid email"
 
-#.   <h3>
+#.   <h2>
 #.   	  Sender address for outgoing emails
-#.   	</h3>
+#.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
 msgstr "Sender address for outgoing emails"
 
-#.   <h3>
+#.   <h2>
 #.   	  Notified people
-#.   	</h3>
+#.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr "Notified people"
 
-#.   <h3>
+#.   <h2>
 #.   	  Save changes
-#.   	</h3>
+#.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_save_changes"
 msgstr "Save changes"
+
+#.   <h2>
+#.   	  Subscribing/unsubscribing
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "header_subscribing_unsubscribing"
+msgstr "Subscribing/unsubscribing"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -343,28 +358,12 @@ msgstr "Save changes"
 msgid "header_subscribption_based_on_local_roles"
 msgstr "Below are the events to which you are subscribed because of your local roles"
 
-#.   <h3>
-#.   	  Are subscriptions allowed and to whom ?
-#.   	</h3>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "header_subscription_allowed"
-msgstr " Are subscriptions allowed and to whom ?"
-
 #.   <h4>
 #.              You can choose below your subscription mode for your above subscriptions
 #.           </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_user_subscribption_mode"
 msgstr "You can choose below your subscription mode for your above subscriptions"
-
-#.   <h3>
-#.   	  When/where to notify ?
-#.   	</h3>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "header_when_where_to_notify"
-msgstr " When/where to notify ?"
 
 #.   <h1 condition="not:email">
 #.         I Subscribe
@@ -467,13 +466,29 @@ msgstr "FAKE"
 msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr "FAKE"
 
-#.   <td>
-#.                     Are anonymous subscriptions allowed ?
-#.                 </td>
+#.   <label for="anonymous_subscription_allowed">
+#.   		  Allow anonymous subscriptions
+#.   		</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_anonymous_subscription_allowed"
-msgstr "Are anonymous subscriptions allowed ?"
+msgid "label_allow_anonymous_subscriptions"
+msgstr "Allow anonymous subscriptions"
+
+#.   <label for="subscription_allowed">
+#.   		  Allow user subscriptions
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "label_allow_user_subscriptions"
+msgstr "Allow user subscriptions"
+
+#.   <label for="unsubscription_allowed">
+#.   		  Allow user local roles based unsubscriptions
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "label_allow_user_unsubscriptions"
+msgstr "Allow user unsubscriptions"
 
 #.   <span>
 #.                 E-Mails Black list
@@ -583,22 +598,6 @@ msgstr "Edit"
 msgid "label_notifications_add"
 msgstr "Choose"
 
-#.   <td>
-#.                     Notify local only
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_notifications_local_only"
-msgstr "Notify only people having local roles in here"
-
-#.   <td>
-#.                     Notify no local
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_notifications_no_local"
-msgstr "Notify only events happening in sub-folders"
-
 # ## PSMS ##########################################
 #.   <span>
 #.            Add explicitly recipients emails (one email per ligne)
@@ -606,6 +605,22 @@ msgstr "Notify only events happening in sub-folders"
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
 msgstr "Add explicitly recipients emails (one email per ligne)"
+
+#.   <label for="notify_local_only">
+#.                     Only notify people having local roles in this folder
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "label_only_notify_local_roles"
+msgstr "Only notify people having local roles in this folder"
+
+#.   <label for="notify_no_local">
+#.                     Only notify for events happening in sub-folders
+#.   		</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "label_only_notify_subfolders"
+msgstr "Only notify for events happening in sub-folders"
 
 #.   <td>Others</td>
 #: from
@@ -644,14 +659,6 @@ msgstr "Sender email address"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "label_subcriptions_fullname"
 msgstr "Fullname"
-
-#.   <td>
-#.                     Are subscription allowed ?
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_subscription_allowed"
-msgstr "Are subscription allowed ?"
 
 #.   <span>
 #.                   Description
@@ -707,16 +714,6 @@ msgstr "E-Mails"
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_no_subscription_yet"
 msgstr "You currently do not belong to any subscriptions."
-
-#.   <td>
-#.                     Are unsubscription allowed ?
-#.                 </td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "label_unsubscription_allowed"
-msgstr ""
-"Are unsubscription allowed for members computed as recipients based on their "
-"roles?"
 
 #.   <span>
 #.         You are now a subscriber.
@@ -900,4 +897,27 @@ msgstr "Monthly"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "My subscriptions "
+
+#, fuzzy
+#~ msgid "label_allow_subscriptions"
+#~ msgstr ""
+#~ "Currently you haven't any subscriptions in this context or for this "
+#~ "object."
+
+#~ msgid "header_subscription_allowed"
+#~ msgstr " Are subscriptions allowed and to whom ?"
+
+#~ msgid "header_when_where_to_notify"
+#~ msgstr " When/where to notify ?"
+
+#~ msgid "label_notifications_no_local"
+#~ msgstr "Notify only events happening in sub-folders"
+
+#~ msgid "label_subscription_allowed"
+#~ msgstr "Are subscription allowed ?"
+
+#~ msgid "label_unsubscription_allowed"
+#~ msgstr ""
+#~ "Are unsubscription allowed for members computed as recipients based on "
+#~ "their roles?"
 
