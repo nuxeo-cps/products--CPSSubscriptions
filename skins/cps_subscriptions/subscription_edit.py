@@ -4,9 +4,12 @@
 $Id$
 """
 subtool = context.portal_subscriptions
-subscription_container = subtool.getSubscriptionContainerFromContext(context)
+
+subscription_container = subtool.getSubscriptionContainerFromContext(context, force_local_creation=1)
+
 event = subscription_container.getSubscriptionById(event_id)
-event.setRolesAllowedToSubscribe(roles_allowed_to_subscribe)
+if event is not None:
+    event.setRolesAllowedToSubscribe(roles_allowed_to_subscribe)
 
 if REQUEST is not None:
     redirect_url = REQUEST['URL1'] + \
