@@ -701,7 +701,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         if not email and not isAno:
             # members
             # FIXME TODO Groups
-            return member_id in explicits.getMembers()
+            return member_id in explicits.getMemberIds(context=context)
         else:
             # Anonymous
             return email in explicits.getEmails()
