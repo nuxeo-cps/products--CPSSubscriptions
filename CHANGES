@@ -10,4 +10,4 @@ Bug fixes:
 - Validation of the mail_infos strucuture before trying to send the mail
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- 
+- mapping_modes is a public attributes on portal_subscriptions for backward compatability with older versions
