@@ -38,6 +38,7 @@ import SubscriptionContainer
 import Subscription
 import RecipientsRules
 import Notifications
+import NotificationMessageBody
 
 #
 # Recipients Rules
@@ -55,9 +56,11 @@ recipRulesConstructors = ( RecipientsRules.addExplicitRecipientsRule,
 # Notification Types
 #
 
-notificationsClasses = ( Notifications.MailNotificationRule, )
+notificationsClasses = ( Notifications.MailNotificationRule,
+                         NotificationMessageBody.NotificationMessageBody,)
 
-notificationsConstructors = ( Notifications.addMailNotificationRule,)
+notificationsConstructors = ( Notifications.addMailNotificationRule,
+                              NotificationMessageBody.addNotificationMessageBody,)
 
 #
 # Subscription Tool
