@@ -36,7 +36,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
-from Products.CMFCore.CMFCorePermissions import ManagePortal
+from Products.CMFCore.CMFCorePermissions import ManagePortal, View
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
 from CPSSubscriptionsPermissions import ViewMySubscriptions
@@ -86,11 +86,16 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         {'id': 'mapping_modes',
          'type': 'string', 'mode':'r',
          'label': 'Subscription modes'},
+        {'id': 'mapping_local_roles_context',
+         'type': 'string', 'mode':'r',
+         'label': 'Local roles within the different context'},
         )
 
     mapping_modes = {'weekly' : 'mode_weekly',
                      'monthly': 'mode_monthly',
                      'daily'  : 'mode_daily'}
+
+    mapping_local_roles_context = {}
 
     ###################################################
     # ZMI
@@ -100,10 +105,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         {'label': "About",
          'action': 'about'
          },
-        {'label': "Events and context / Add",
+        {'label': "Events / contexts",
          'action': 'manage_events',
          },
-        {'label': "Edit events content messages",
+        {'label': "Local roles / contexts",
+         'action': 'manage_local_roles_in_contexts',
+         },
+        {'label': "Events / Notification messages",
          'action': 'manage_edit_events',
          },
         ) + CMFBTreeFolder.manage_options[0:1] + \
@@ -120,6 +128,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
 
     security.declareProtected(ManagePortal, 'manage_edit_event')
     manage_edit_event = DTMLFile('zmi/configureEvent', globals())
+
+    security.declareProtected(ManagePortal, 'manage_local_roles_in_contexts')
+    manage_local_roles_in_contexts = DTMLFile('zmi/configureLocalRoles', globals())
 
     def manage_resetEventMessages(self, REQUEST=None):
         """Reset the email messages to their default values.
@@ -229,6 +240,56 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_events')
 
+    #######################################################################
+    #######################################################################
+
+    def manage_addLocalRoleArea(self,
+                                area_portal_type='',
+                                REQUEST=None):
+        """Add a local role area
+        """
+
+        if area_portal_type:
+            self.setLocalRolesArea(area=area_portal_type)
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url() +
+                                      '/manage_local_roles_in_contexts')
+
+    def manage_addPortalTypeToArea(self,
+                                   area_portal_type='',
+                                   portal_type='',
+                                   REQUEST=None):
+        """Add a new portal_type within an area
+        """
+
+        if area_portal_type and area_portal_type in self.getLocalRoleAreas():
+            if portal_type:
+                self.addPortalTypeToArea(area_portal_type, portal_type)
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url() +
+                                      '/manage_local_roles_in_contexts')
+
+    def manage_addLocalRoleToPortalTypeToArea(self,
+                                              area_portal_type='',
+                                              portal_type='',
+                                              role_id='',
+                                              role_label='',
+                                              REQUEST=None):
+        """Add a new local role within a portal_type within an area
+        """
+
+        if area_portal_type and area_portal_type in self.getLocalRoleAreas():
+            if portal_type and portal_type in self.getLocalRoleArea(area_portal_type).keys():
+                self.addLocalRoleToPortalTypeToArea(area_portal_type,
+                                                    portal_type,
+                                                    role_id,
+                                                    role_label)
+
+        if REQUEST is not None:
+            REQUEST.RESPONSE.redirect(self.absolute_url() +
+                                      '/manage_local_roles_in_contexts')
 
     ###################################################
     # SUBSCRIPTIONS TOOL API
@@ -281,6 +342,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         self.mapping_modes = {'weekly' : 'mode_weekly',
                               'monthly': 'mode_monthly',
                               'daily'  : 'mode_daily'}
+
+        # Local roles / context
+        self.mapping_local_roles_context = {}
 
     ######################################################
     #####################################################
@@ -968,5 +1032,121 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
                 self.mapping_modes[subscription_mode]] = table
         else:
             return -1
+
+    ###############################################################
+    ###############################################################
+
+    security.declareProtected(ManagePortal, 'setLocalRolesArea')
+    def setLocalRolesArea(self, area='', value={}):
+        """Add a portal area
+
+        An area is the 'Workspace' area or the 'Section' area or whatever
+        sub-part of your cps portal you may define it corresponds to the
+        portal_type of the main container
+
+        value : dictionnary containing the portal_type within the area
+        and then the corresponding local roles with the i18n labels
+
+        cf. cps_subscriptions_installer/getCPSSubscriptionsRelevantLocalRoles
+        """
+        self._p_changed = 1
+
+        if area and area not in self.getLocalRoleAreas():
+            self.mapping_local_roles_context[area] =  value
+        else:
+            for portal_type in value.keys():
+                if (portal_type not in
+                    self.mapping_local_roles_context[area].keys()):
+                    self.mapping_local_roles_context[
+                        area][portal_type] = value[portal_type]
+                else:
+                    for role in value[portal_type].keys():
+                        self.mapping_local_roles_context[area][
+                            portal_type][role] = value[portal_type][role]
+
+    security.declarePublic('getLocalRoleAreas')
+    def getLocalRoleAreas(self):
+        """Return the different local role areas defined
+        """
+        return self.mapping_local_roles_context.keys()
+
+    security.declarePublic('getLocalRoleArea')
+    def getLocalRoleArea(self, area=''):
+        """Return a local are given an area id
+
+        It returns a dictionnary struct.
+        cf. cps_subscriptions_installer/getCPSSubscriptionsRelevantLocalRoles
+        """
+        if not area:
+            self.setLocalRolesArea(area=area)
+        return self.mapping_local_roles_context.get(area)
+
+    security.declareProtected(ManagePortal, 'addPortalTypeToArea')
+    def addPortalTypeToArea(self, area='', portal_type=''):
+        """Add a portal_type to an area
+        """
+        self._p_changed = 1
+
+        if area and area in self.getLocalRoleAreas():
+            if portal_type and portal_type not in self.mapping_local_roles_context[area].keys():
+                self.mapping_local_roles_context[area][portal_type] = {}
+
+    security.declareProtected(ManagePortal, 'addLocalRoleToPortalTypeToArea')
+    def addLocalRoleToPortalTypeToArea(self,
+                                       area='',
+                                       portal_type='',
+                                       role_id='',
+                                       role_label=''):
+        """Add a new local role to a given portal_type within a given area
+        """
+        self._p_changed = 1
+
+        if area and area in self.getLocalRoleAreas():
+            if portal_type and portal_type in self.getLocalRoleArea(area).keys():
+                if role_id and role_id not in self.getLocalRoleArea(area)[portal_type]:
+                    if not role_label:
+                        role_label = role_id
+                    self.mapping_local_roles_context[area][portal_type][role_id] = role_label
+
+    ##############################################################
+    ##############################################################
+
+    def _getLocalRoleAreaFromContext(self, context):
+        """Get Local Role area from context
+        """
+        content_path = self.portal_url.getRelativeContentPath(context)
+        for container_id in content_path:
+            ob = self.restrictedTraverse(container_id)
+            portal_type = getattr(ob, 'portal_type', None)
+            if portal_type is not None and portal_type in self.getLocalRoleAreas():
+                return portal_type
+        return None
+
+    security.declareProtected(ManagePortal, 'setLocalRolesToContext')
+    def setLocalRolesToContext(self, area=None, context=None, local_roles_mapping={}):
+        """Add local roles to a given context (portal_type)
+
+        cf. cps_subscriptions_installer/getCPSSubscriptionsRelevantLocalRoles
+        """
+        self._p_changed = 1
+        self.mapping_local_roles_context[area][context] = local_roles_mapping
+
+    security.declareProtected(View, 'getRelevantLocalRolesFromContext')
+    def getRelevantLocalRolesFromContext(self, context=None):
+        """Returns relevant local roles for a given context (portal_type)
+
+        Only used to display relevant local roles to the user
+        """
+        if context is not None:
+            context_area = self._getLocalRoleAreaFromContext(context)
+            context_portal_type = getattr(context, 'portal_type', None)
+            LOG("context_area ----------", DEBUG, context_area)
+            LOG("context_portal_type ----------", DEBUG, context_portal_type)
+            if (context_area is not None and
+                context_portal_type is not None and
+                context_portal_type in self.getContainerPortalTypes()):
+                area = self.getLocalRoleArea(context_area)
+                return area.get(context_portal_type, {})
+        return {}
 
 InitializeClass(SubscriptionsTool)
