@@ -5,6 +5,8 @@
 It applies for a given event. The event_id is within the REQUEST.
 """
 
+from zLOG import LOG, DEBUG
+
 if REQUEST is not None:
     if REQUEST.form:
 
@@ -22,10 +24,10 @@ if REQUEST is not None:
         # Checking the given request event
         #
 
-        event_id = REQUEST.form.get('event_id', [])
+        event_id = REQUEST.form.get('event_id', None)
         if not hasattr(subscription_folder, event_id):
-            context.manage_addProduct[
-                'CPSSubscriptions'].addSubscription(id=evend_id)
+            subscription_folder.manage_addProduct[
+                'CPSSubscriptions'].addSubscription(id=event_id)
 
         #
         # Checking the explicit recipients rules
