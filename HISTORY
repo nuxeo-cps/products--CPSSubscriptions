@@ -1,4 +1,22 @@
 *******************************************
+** CPSSubscriptions V0.3.3 [R1 build 2004/03/15-16:11 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- i18n on subsribe form
+- AttributeError within RecipientsRules
+- Notify_local_only was buggy
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.3.2 [R1 build 2004/03/12-17:44 by anguenot]
 
 Requires:
