@@ -181,6 +181,7 @@ class SubscriptionContainer(PortalFolder):
         if self.anonymous_subscription_allowed and 1:
             perms.append('Anonymous')
         self.changePermissions(perms=perms)
+        self.reindexObject()
 
     security.declareProtected(ManageSubscriptions, 'changePermissions')
     def changePermissions(self, perms=[]):
@@ -192,6 +193,7 @@ class SubscriptionContainer(PortalFolder):
 
         for perm, roles in new_perms.items():
             self.manage_permission(perm, roles, 1)
+        self.reindexObjectSecucurity()
 
     security.declarePublic('getSubscriptions')
     def getSubscriptions(self):
