@@ -93,6 +93,12 @@ msgstr ""
 msgid "label_forum_new_comment"
 msgstr ""
 
+msgid "label_forum_post_published"
+msgstr ""
+
+msgid "label_forum_comment_published"
+msgstr ""
+
 ### ACTIONS ######################################
 
 msgid "action_folder_notifications"
