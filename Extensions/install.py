@@ -1,6 +1,6 @@
-# (C) Copyright 2003 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2003 CGEY <http://cgey.com>
-# Copyright (c) 2003 Ministère de L'intérieur (MISILL)
+# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Author: Julien Anguenot <ja@nuxeo.com>
 #
