@@ -42,7 +42,7 @@ from zLOG import LOG, DEBUG
 
 ## GLOBAL IDS
 
-SUBSCRIPTION_CONTAINER = '.cps_subscriptions'
+SUBSCRIPTION_CONTAINER_ID = '.cps_subscriptions'
 EXPLICIT_RECIPIENTS_RULE_ID = 'explicit__recipients_rule'
 MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
 
@@ -205,7 +205,7 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         .cps_subscriptions by default
         """
-        return SUBSCRIPTION_CONTAINER
+        return SUBSCRIPTION_CONTAINER_ID
 
     security.declarePublic('getExplicitRecipientsRuleId')
     def getExplicitRecipientsRuleId(self):
