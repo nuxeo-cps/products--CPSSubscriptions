@@ -25,12 +25,11 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """ Recipients Rules classes
 """
 
-from Globals import InitializeClass, DTMLFile, MessageDialog
+from Globals import InitializeClass, MessageDialog
 from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
-from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
 
 from zLOG import LOG, DEBUG, INFO
@@ -73,7 +72,7 @@ InitializeClass(ComputedRecipientsRule)
 def addComputedRecipientsRule(self, id=None, REQUEST=None):
     """ Add a computed recipients rule
     """
-    self = self.this()
+
     id = 'computed_recipients_rule'
     if hasattr(aq_base(self), id):
         return MessageDialog(
@@ -84,11 +83,11 @@ def addComputedRecipientsRule(self, id=None, REQUEST=None):
     ob = ComputedRecipientsRule(id, title='Computed Recipients Rule')
     self._setObject(id, ob)
 
-    LOG('addComputedRecipientsRule', INFO,
+    LOG('addComputedRecipientsRule', DEBUG,
         'adding recipients rule  %s/%s' % (self.absolute_url(), id))
 
     if REQUEST is not None:
-        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
 
 
 ########################################################
@@ -360,7 +359,7 @@ class RoleRecipientsRule(RecipientsRule):
             #
             # Using merged local roles
             #
-            merged_local_roles = mtool.getMergedLocalRoles(container)
+            merged_local_roles = mtool.getMergedLocalRoles(object)
             for entry in merged_local_roles.keys():
                 for role in self.getRoles():
                     if role in merged_local_roles[entry]:
@@ -383,16 +382,17 @@ class RoleRecipientsRule(RecipientsRule):
             #
             # Using roles defined only in the context
             #
-            local_roles = container.get_local_roles()
+            local_roles = object.get_local_roles()
             for member in local_roles:
                 member_id = member[0]
                 for role in self.getRoles():
                     if role in member[1]:
-                        email = mtool.getMemberById(member_id).getProperty('email')
+                        email = mtool.getMemberById(
+                            member_id).getProperty('email')
                         if email != '':
                             member_email_mapping[email] = member_id
 
-            local_group_roles = container.get_local_group_roles()
+            local_group_roles = object.get_local_group_roles()
             for group in local_group_roles:
                 for role in self.getRoles():
                     if role in group[1]:
@@ -401,7 +401,8 @@ class RoleRecipientsRule(RecipientsRule):
                         group = aclu.getGroupById(group_id)
                         group_users = group.getUsers()
                         for member_id in group_users:
-                            email = mtool.getMemberById(member_id).getProperty('email')
+                            email = mtool.getMemberById(member_id).getProperty(
+                                'email')
                             if email != '':
                                 member_email_mapping[email] = member_id
         return member_email_mapping
@@ -447,7 +448,7 @@ InitializeClass(WorkflowImpliedRecipientsRule)
 def addWorkflowImpliedRecipientsRule(self, id=None, REQUEST=None):
     """ Add a roles explicit Recipient rules
     """
-    self = self.this()
+
     id = 'workflow_implied_recipients_rule'
     if hasattr(aq_base(self), id):
         return MessageDialog(
@@ -458,10 +459,10 @@ def addWorkflowImpliedRecipientsRule(self, id=None, REQUEST=None):
     ob = WorkflowImpliedRecipientsRule(id, title='Explicit Recipients Rule')
     self._setObject(id, ob)
 
-    LOG('addWorkflowImpliedRecipientsRule', INFO,
+    LOG('addWorkflowImpliedRecipientsRule', DEBUG,
         'adding recipients rule  %s/%s' % (self.absolute_url(), id))
 
     if REQUEST is not None:
-        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
 
 #############################################################
