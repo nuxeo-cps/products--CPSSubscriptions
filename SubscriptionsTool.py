@@ -732,8 +732,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         mtool = getToolByName(self, 'portal_membership')
         auth_user = mtool.getAuthenticatedMember()
 
+
         if (container is None and
-            _checkPermission(ModifyPortalContent, auth_user)):
+            _checkPermission(ModifyPortalContent, context)):
             container = self.addSubscriptionContainerInContext(context)
         return container
 
