@@ -35,7 +35,7 @@ from Products.CMFCore.CMFCorePermissions import View
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
 from Products.CPSSubscriptions.CPSSubscriptionsPermissions import \
-     ManageSubscriptions, CanSubscribe, ViewMySubscriptions
+     ManageSubscriptions, CanSubscribe, ViewMySubscriptions, CanNotifyContent
 
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
@@ -202,7 +202,8 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         actiondelmap = {
             'portal_actions': ('folder_notifications',
                                'folder_subscribe',
-                               'my_subscriptions')
+                               'my_subscriptions',
+                               'notify_content')
             }
         for tool, actionids in actiondelmap.items():
             actions = list(self.portal[tool]._actions)
@@ -242,6 +243,21 @@ class CPSSubscriptionsInstaller(CPSInstaller):
             category='user',
             visible=1)
         self.log(" Added Action My Subscriptions")
+
+        #
+        # ACTION : Notify document
+        # category : object
+        #
+
+        self.portal['portal_actions'].addAction(
+            id='notify_content',
+            name='action_notify_content',
+            action='string: ${object_url}/content_notify_email_form',
+            condition="python:object.portal_type != 'Portal'",
+            permission=(CanNotifyContent,),
+            category='object',
+            visible=1)
+        self.log(" Added Action Notify Content")
 
         #
         # ACTION : Subscribe
