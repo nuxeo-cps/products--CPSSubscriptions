@@ -202,7 +202,7 @@ def addSubscriptionContainer(self, id=None, REQUEST=None):
 
     #
     # Let's create event subscriptions mapping the context.
-    # These information are know tool site.
+    # These information are know by tool site.
     # We need to create them right now for the subscriptions
     #
 
@@ -212,7 +212,8 @@ def addSubscriptionContainer(self, id=None, REQUEST=None):
     for event in events_in_context.keys():
         id = 'subscription__' + event
         title = 'Event '+ event # i18n
-        subscription_container.manage_addProduct['CPSSubscriptions'].addSubscription(id, title)
+        subscription_container.manage_addProduct[
+            'CPSSubscriptions'].addSubscription(id, title)
 
     if REQUEST is not None:
         REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
