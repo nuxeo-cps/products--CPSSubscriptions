@@ -1,0 +1,63 @@
+<html metal:define-macro="master"
+tal:define="
+  showthirdcol showthirdcol|python:1;
+  emptybody emptybody|nothing;
+  utool nocall:here/portal_url;
+  atool here/portal_actions;
+  mtool here/portal_membership;
+  ttool here/portal_trees;
+  wtool here/portal_workflow;
+  btool here/portal_boxes;
+  context_url python:here.getContextUrl(utool=utool);
+  base_url python:here.getBaseUrl(utool=utool);
+  here_url python:here.absolute_url();
+  boxes python:btool.getBoxes(here);
+  member mtool/getAuthenticatedMember;
+  isAnon mtool/isAnonymousUser;
+  actions python:atool.listFilteredActionsFor(here);
+  wf_state python:wtool.getInfoFor(here,'review_state','');
+  uname python: isAnon and 'Guest' or member.getUserName();
+  checkPerm nocall: mtool/checkPermission;
+  cpsmcat nocall:here/Localizer/default;
+  in_ws here/isInWorkspace;
+  CPSD_BMT python:here.Benchmarktimer('main_template');
+  CPSD_bmt_start nocall:CPSD_BMT/start;
+  CPSD_bmt_stop nocall:CPSD_BMT/stop;
+  CPSD_bmt_mark nocall:CPSD_BMT/setMarker;
+  CPSD_bmt_elapsed nocall:CPSD_BMT/getProfiling;"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head>
+<metal:block use-macro="here/header_lib/macros/header">
+  <metal:block fill-slot="base"><metal:block define-slot="base"><base
+    href="" tal:attributes="href
+    string:${here_url}/"></metal:block></metal:block>
+  <metal:block fill-slot="head_slot"><metal:block define-slot="head_slot"
+    /></metal:block>
+  <metal:block fill-slot="css_slot"><metal:block define-slot="css_slot"
+    /></metal:block>
+  <metal:block fill-slot="javascript_head_slot"><metal:block
+    define-slot="javascript_head_slot" />
+    <script type="text/javascript">
+    function setFocus() {
+       field = document.getElementById('field_focus')
+       if (field) {
+          field.focus();
+       }
+    }
+    </script>
+  </metal:block>
+</metal:block>
+</head>
+
+
+<body bgcolor="white">
+  <table cellspacing="0" border="0" cellpadding="0" width="100%" align="center">
+    <tr>
+      <td>
+        <metal:block define-slot="main">
+          Main
+        </metal:block>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
