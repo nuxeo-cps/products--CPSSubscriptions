@@ -3,10 +3,12 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- new events for CPSForum posts/comments: unpublish, reject, delete
+- New events for CPSForum posts/comments: unpublish, reject, delete
+
 Bug fixes:
 ~~~~~~~~~~
--
+- Fixed permissions on sections thanks to Julien Guille
+
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
