@@ -2,7 +2,7 @@
 #$Id$
 """ Edit the local subscriptions configuration.
 
-Manager / WorkspaceManager / SectionManager can do that.
+The ones with the ManageSubscriptions permission can do it
 """
 
 from zLOG import LOG, DEBUG
