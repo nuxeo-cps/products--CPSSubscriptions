@@ -42,6 +42,8 @@ from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.Expression import getEngine
 
+from CPSSubscriptionsPermissions import CanSubscribe
+
 from zLOG import LOG, DEBUG, INFO
 
 
@@ -275,19 +277,106 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declarePublic("getMembers")
     def getMembers(self):
-        """Return all the member ids subscribed manually
+        """Return all the member subscribed manually
 
         Returns a list of ids
         """
         return self.members
 
-    security.declareProtected(ModifyPortalContent, "updateMembers")
-    def updateMembers(self, member_ids=[]):
-        """Add explicitly member ids
+    security.declarePublic("getMemberIds")
+    def getMemberIds(self, context=None):
+        """Return all the member Ids subscribed manually
+
+        Returns a list of ids
         """
-        for member_id in member_ids:
-            if member_id not in self.members:
-                self.members += [member_id]
+        if context is None:
+            return [x['id'] for x in self.getMembers()]
+        else:
+            res = []
+            for member_struct in self.getMembers():
+                for url in member_struct['subscription_relative_url']:
+                    if self._includesContextURL(context, url):
+                        res.append(member_struct['id'])
+                        continue
+            return res
+
+    def _getMemberStructById(self, member_id):
+        """Return the index of member_id in the list
+        """
+        for member_struct in self.members:
+            if member_id == member_struct['id']:
+                return member_struct
+        return -1
+
+    security.declareProtected(ModifyPortalContent, "updateMembers")
+    def updateMembers(self, member_struct={}):
+        """Add explicitly member in a given context
+
+        Notice that a given could have subscribe from different part
+        of the tree.
+        """
+        self._p_changed = 1
+
+        if member_struct:
+            candidate_id = member_struct['id']
+            candidate_url = member_struct['subscription_relative_url'][0]
+            current_member_ids = self.getMemberIds()
+
+            #
+            # Here the member is not subscribed already
+            # So we simply add it
+            #
+
+            if candidate_id not in current_member_ids:
+                self.members += [member_struct]
+                return 1
+            else:
+
+                #
+                # Here, the member is already subscribed so let's see if it's
+                # from a different place
+                #
+
+                member_struct = self._getMemberStructById(candidate_id)
+                member_struct_urls = member_struct['subscription_relative_url']
+                if candidate_url not in member_struct_urls:
+                    member_struct_urls.append(candidate_url)
+                    member_struct['subscription_relative_url'] = member_struct_urls
+                    tmp_members = []
+                    for member in self.getMembers():
+                        if member['id'] != candidate_id:
+                            tmp_members.append(member)
+                        else:
+                            tmp_members.append(member_struct)
+                    self.members = tmp_members
+                    return 1
+        return 0
+
+    security.declareProtected(ModifyPortalContent, "removeMember")
+    def removeMember(self, member_id, context_relative_url):
+        """Remove the member defined by member_id in a given context.
+
+        If not context anymore then we'll remove the user completely
+        """
+        self._p_changed = 1
+
+        if member_id in self.getMemberIds():
+            member_struct = self._getMemberStructById(member_id)
+            urls = member_struct['subscription_relative_url']
+            if context_relative_url in urls:
+                new_urls = []
+                for url in urls:
+                    if url != context_relative_url:
+                        new_urls.append(url)
+                tmp_members = []
+                for member in self.getMembers():
+                    if member['id'] != member_id:
+                        tmp_members.append(member)
+                    else:
+                        if new_urls:
+                            member_struct['subscription_relative_url'] = new_urls
+                            tmp_members.append(member_struct)
+                self.members = tmp_members
                 return 1
         return 0
 
@@ -320,6 +409,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         """Return all the emails subscribed manually
 
         Returns a list of emails
+
         """
         return self.emails
 
@@ -396,7 +486,17 @@ class ExplicitRecipientsRule(RecipientsRule):
     ######################################################
     ######################################################
 
-    security.declareProtected(View, 'subscribeTo')
+    def _includesContextURL(self, context, url):
+        """Does url includes the context URL
+        """
+        utool = getToolByName(self, 'portal_url')
+        context_url = utool.getRelativeContentURL(context)
+        return context_url.startswith(url) and 1
+
+    ######################################################
+    ######################################################
+
+    security.declareProtected(CanSubscribe, 'subscribeTo')
     def subscribeTo(self, email, event_id, context):
         """Anonymous is asking for a subscription
         """
@@ -441,7 +541,17 @@ class ExplicitRecipientsRule(RecipientsRule):
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
             member_email = self.getMemberEmail(member_id) #skins
-            if self.updateMembers([member_id]):
+
+            # Building member struct with compuslory information
+            utool = getToolByName(self, 'portal_url')
+            context_relative_url = utool.getRelativeContentURL(context)
+
+            member_struct = {}
+            member_struct['id'] = member_id
+            member_struct['subscription_relative_url'] = [context_relative_url]
+
+            # Trying to subscribe the member
+            if self.updateMembers(member_struct):
                 notification_rule.notifyWelcomeSubscription(event_id,
                                                            self,
                                                            member_email,
@@ -449,7 +559,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                 return 1
         return 0
 
-    security.declareProtected(View, 'confirmSubscribeTo')
+    security.declareProtected(CanSubscribe, 'confirmSubscribeTo')
     def confirmSubscribeTo(self, email, event_id, context):
         """Anonymous confirm the subscription
 
@@ -498,7 +608,7 @@ class ExplicitRecipientsRule(RecipientsRule):
     #####################################################
     #####################################################
 
-    security.declareProtected(View, 'unSubscribeTo')
+    security.declareProtected(CanSubscribe, 'unSubscribeTo')
     def unSubscribeTo(self, email, event_id, context):
         """Unsubscribe to a given event subscribption
         """
@@ -538,8 +648,11 @@ class ExplicitRecipientsRule(RecipientsRule):
             member_id = member.getMemberId()
             member_email = self.getMemberEmail(member_id) #skins
 
-            if member_id in self.getMembers():
-                self.members.remove(member_id)
+            if member_id in self.getMemberIds():
+                # Building member struct with compuslory information
+                utool = getToolByName(self, 'portal_url')
+                context_relative_url = utool.getRelativeContentURL(context)
+                self.removeMember(member_id, context_relative_url)
                 stupid_flag = 1
             if stupid_flag:
                 notification_rule.notifyUnSubscribe(event_id,
@@ -549,7 +662,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                 return 1
         return 0
 
-    security.declareProtected(View, 'confirmUnSubscribeTo')
+    security.declareProtected(CanSubscribe, 'confirmUnSubscribeTo')
     def confirmUnSubscribeTo(self, email, event_id, context):
         """Confirm unsubscribe to a given event subscription
 
@@ -599,8 +712,19 @@ class ExplicitRecipientsRule(RecipientsRule):
         mtool = self.portal_membership
         aclu = getattr(self, 'acl_users', None)
 
+        #
+        # It might not be an event nortification but just a request
+        # in a given context such as the manager editing subscriptions
+        # parameters. Thus we won't change the context since the context is
+        # already given as a parameter (object)
+        #
+
+        subtool = getToolByName(self, 'portal_subscriptions')
+        if object.portal_type not in subtool.getSubscribablePortalTypes():
+            object = aq_parent(aq_inner(object))
+
         # Members subscribed
-        for member_id in self.getMembers():
+        for member_id in self.getMemberIds(context=object):
             email = self.getMemberEmail(member_id)
             member_email_mapping[email] = member_id
 
