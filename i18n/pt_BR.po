@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2004-09-28 18:36default\n"
+"POT-Creation-Date: 2004-10-06 03:24default\n"
 "PO-Revision-Date: 2004-08-31 16:52-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@curiango.ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -633,6 +633,11 @@ msgstr "Minhas Subscrições"
 
 msgid "action_folder_subscribe"
 msgstr "Subscrever"
+
+# ## ACTIONS ######################################
+#, fuzzy
+msgid "action_notify_content"
+msgstr "Administração de Notificações"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"

@@ -131,6 +131,9 @@ msgstr ""
 msgid "action_folder_subscribe"
 msgstr ""
 
+msgid "action_notify_content"
+msgstr ""
+
 ### PSMS ##########################################
 
 msgid "psm_notifications_changed"

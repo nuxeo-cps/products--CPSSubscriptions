@@ -5,6 +5,8 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
+# translation of en.po to
 # translation of en.po to francais
 # translation of en.po to
 # translation of en.po to
@@ -21,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-28 18:36default\n"
-"PO-Revision-Date: 2004-09-28 18:37+0200\n"
+"POT-Creation-Date: 2004-10-06 03:24default\n"
+"PO-Revision-Date: 2004-10-06 03:26+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -644,6 +646,10 @@ msgstr "My subscriptions"
 
 msgid "action_folder_subscribe"
 msgstr "Subscriptions"
+
+# ## ACTIONS ######################################
+msgid "action_notify_content"
+msgstr "Send a mail notification"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-28 18:36default\n"
+"POT-Creation-Date: 2004-10-06 03:24default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -603,6 +603,9 @@ msgid "action_my_subscriptions"
 msgstr ""
 
 msgid "action_folder_subscribe"
+msgstr ""
+
+msgid "action_notify_content"
 msgstr ""
 
 # ## PSMS ##########################################

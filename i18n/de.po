@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
-"POT-Creation-Date: 2004-09-28 18:36default\n"
+"POT-Creation-Date: 2004-10-06 03:24default\n"
 "PO-Revision-Date: 2004-07-12 18:19+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -640,6 +640,11 @@ msgstr "Meine Abonnements"
 
 msgid "action_folder_subscribe"
 msgstr "Abonnements"
+
+# ## ACTIONS ######################################
+#, fuzzy
+msgid "action_notify_content"
+msgstr "Ereignis Management"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
