@@ -1,4 +1,25 @@
 *******************************************
+** CPSSubscriptions V0.15.1 [R1 build 2004/12/13-08:25 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Add malagasy translation
+Bug fixes:
+~~~~~~~~~~
+- fix: folder_subscribe_form: msg "No event opened for subscsriptions in here."
+  is not i18n
+- fix: #435: traceback on scheduled notification
+- fix local creation while editing subscription  within a context with
+no subscription container defined. Now creates a susbcription
+container after this action's performed.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.15.0 [R1 build 2004/11/18-11:46 by ben]
 
 Requires:
