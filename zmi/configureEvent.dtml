@@ -7,7 +7,7 @@
   <strong><dtml-var event_id></strong>
 </p>
 
-<form action="manage_editEventMessage">
+<form action="manage_editEventMessage" method="POST">
 <input type="hidden" name="event_id"
        value="<dtml-var event_id>">
  <table cellspacing="0" cellpadding="2" border="0">

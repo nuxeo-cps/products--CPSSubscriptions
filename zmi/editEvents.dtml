@@ -67,7 +67,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
 
 </ul>
 
-<form action="manage_editDefaultEventMessage">
+<form action="manage_editDefaultEventMessage" method="POST">
  <table cellspacing="0" cellpadding="2" border="0">
  <tr>
    <td align="left" valign="top">
@@ -192,7 +192,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
 <hr>
 
 <h3>Reset all messages</h3>
-<form action="manage_resetEventMessages">
+<form action="manage_resetEventMessages" method="POST">
 <p>
 Reset all messages (default and specific) to their default values
 (all your message customization will be lost)?
