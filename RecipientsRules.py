@@ -300,7 +300,8 @@ class ExplicitRecipientsRule(RecipientsRule):
                         continue
             return res
 
-    def _getMemberStructById(self, member_id):
+    security.declareProtected(ModifyPortalContent, "getMemberStrucById")
+    def getMemberStructById(self, member_id):
         """Return the index of member_id in the list
         """
         for member_struct in self.members:
@@ -337,7 +338,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                 # from a different place
                 #
 
-                member_struct = self._getMemberStructById(candidate_id)
+                member_struct = self.getMemberStructById(candidate_id)
                 member_struct_urls = member_struct['subscription_relative_url']
                 if candidate_url not in member_struct_urls:
                     member_struct_urls.append(candidate_url)
@@ -361,7 +362,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         self._p_changed = 1
 
         if member_id in self.getMemberIds():
-            member_struct = self._getMemberStructById(member_id)
+            member_struct = self.getMemberStructById(member_id)
             urls = member_struct['subscription_relative_url']
             if context_relative_url in urls:
                 new_urls = []
@@ -720,7 +721,9 @@ class ExplicitRecipientsRule(RecipientsRule):
         #
 
         subtool = getToolByName(self, 'portal_subscriptions')
-        if object.portal_type not in subtool.getSubscribablePortalTypes():
+        if object is None:
+            pass
+        elif object.portal_type not in subtool.getSubscribablePortalTypes():
             object = aq_parent(aq_inner(object))
 
         # Members subscribed
