@@ -397,8 +397,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self._p_changed = 1
 
-        NotificationRule = getattr(self, 'mail__notification_rule', None)
-        if NotificationRule is None:
+        notification_rule = getattr(self, 'mail__notification_rule', None)
+        if notification_rule is None:
             LOG(" ::CPSSubscriptions:: subscribeTo()",
                 INFO,
                 "Error : No mail notification found")
@@ -407,7 +407,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         # Anonymous subscriptions
         if email:
             if self.updatePendingEmails(email):
-                NotificationRule.notifyConfirmSubscription(event_id,
+                notification_rule.notifyConfirmSubscription(event_id,
                                                            self,
                                                            email,
                                                            context)
@@ -420,7 +420,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             member_id = member.getMemberId()
             member_email = self.getMemberEmail(member_id)
             if self.updateMembers([member_id]):
-                NotificationRule.notifyWelcomeSubscription(event_id,
+                notification_rule.notifyWelcomeSubscription(event_id,
                                                            self,
                                                            member_email,
                                                            context)
@@ -433,8 +433,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self._p_changed = 1
 
-        NotificationRule = getattr(self, 'mail__notification_rule', None)
-        if NotificationRule is None:
+        notification_rule = getattr(self, 'mail__notification_rule', None)
+        if notification_rule is None:
             LOG(" ::CPSSubscriptions:: confirmSubscribeTo()",
                 INFO,
                 "Error : No mail notification found")
@@ -442,7 +442,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         if email in self.getPendingEmails():
             self.emails_subscribers.append(email)
             self.emails_pending_add.remove(email)
-            NotificationRule.notifyWelcomeSubscription(event_id,
+            notification_rule.notifyWelcomeSubscription(event_id,
                                                        self,
                                                        email,
                                                        context)
@@ -458,8 +458,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self._p_changed = 1
 
-        NotificationRule = getattr(self, 'mail__notification_rule', None)
-        if NotificationRule is None:
+        notification_rule = getattr(self, 'mail__notification_rule', None)
+        if notification_rule is None:
             LOG(" ::CPSSubscriptions:: unsubscribeTo()",
                 INFO,
                 "Error : No mail notification found")
@@ -468,7 +468,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         # Anonymous subscriptions
         if email:
             if self.updatePendingDeleteEmails(email):
-                NotificationRule.notifyConfirmUnSubscribe(event_id,
+                notification_rule.notifyConfirmUnSubscribe(event_id,
                                                           self,
                                                           email,
                                                           context)
@@ -476,16 +476,16 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         # Members subscriptions.
         else:
-            stupid = 0
+            stupid_flag = 0
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
 
             if member_id in self.getMembers():
                 self.members.remove(member_id)
-                stupid = 1
-            if stupid:
-                NotificationRule.notifyUnSubscribe(event_id,
+                stupid_flag = 1
+            if stupid_flag:
+                notification_rule.notifyUnSubscribe(event_id,
                                                    self,
                                                    member_id,
                                                    context)
@@ -501,8 +501,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         self._p_changed = 1
 
-        NotificationRule = getattr(self, 'mail__notification_rule', None)
-        if NotificationRule is None:
+        notification_rule = getattr(self, 'mail__notification_rule', None)
+        if notification_rule is None:
             LOG(" ::CPSSubscriptions:: confirmUnsubscribeTo()",
                 INFO,
                 "Error : No mail notification found")
@@ -513,7 +513,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             if email in self.getPendingDeleteEmails():
                 self.emails_subscribers.remove(email)
                 self.emails_pending_delete.remove(email)
-                NotificationRule.notifyUnSubscribe(event_id,
+                notification_rule.notifyUnSubscribe(event_id,
                                                    self,
                                                    email,
                                                    context)
@@ -528,7 +528,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         #    member_email = self.getMemberEmail(member_id)
         #    if member_id in self.getMembers():
         #        self.members.remove(member_id)
-        #        NotificationRule.notifyUnSubscribe(event_id,
+        #        notification_rule.notifyUnSubscribe(event_id,
         #                                           self,
         #                                           member_email,
         #                                           context)
