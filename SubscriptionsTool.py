@@ -552,8 +552,10 @@ class SubscriptionsTool(UniqueObject, Folder):
         recipients = {}
 
         if object is None and infos.has_key('context'):
-            object = infos['context']
-        container = aq_parent(aq_inner(object))
+            container = infos['context']
+            object = container
+        else:
+            container = aq_parent(aq_inner(object))
 
         if event_type:
             subscriptions = self.getSubscriptionsFor(event_type, object, infos)
