@@ -122,7 +122,7 @@ class NotificationRule(PortalFolder):
 
         return rendered_message.getvalue()
 
-    def sendMail(self, mail_infos, object=None, event_id=None):
+    def sendMail(self, mail_infos, object=None, event_id=None, mailhost=None):
         """Send a mail
 
         mail_infos contains all the needed information
@@ -135,7 +135,10 @@ class NotificationRule(PortalFolder):
             raw_message)
 
         try:
-            self.MailHost.send(raw_message)
+            if mailhost is not None:
+                mailhost.send(raw_message)
+            else:
+                self.MailHost.send(raw_message)
         except (socket.error, MailHostError, SMTPException, Timeout):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
@@ -318,6 +321,10 @@ class MailNotificationRule(NotificationRule):
             INFO,
             infos)
 
+        # Save the email notification body
+        archive_id = subscriptions_tool.addNotificationMessageBodyObject(body,
+                                                                         mime_type)
+
         # Dealing with emails
         # XXX should send all the email at the same time with bcc
         for email in emails:
@@ -328,12 +335,18 @@ class MailNotificationRule(NotificationRule):
             mail_infos['to'] = email
             mail_infos['body'] = (body, mime_type)
 
-            # Save the email notification body
-            subscriptions_tool.addNotificationMessageBodyObject(body)
+            # Check user_mode and take actions
+            container = subscriptions_tool.getSubscriptionContainerFromContext(self)
+            user_mode = container.getUserMode(email)
 
-            # Send the email
-            # XXX should check what kind of registration the user choose
-            self.sendMail(mail_infos, object, event_id=infos['event'])
+            if user_mode != 'mode_real_time':
+                # Store the message_id within the scheduling table for a given user.
+                subscriptions_tool.scheduleNotificationMessageFor(user_mode,
+                                                                  email,
+                                                                  archive_id)
+            else:
+                # Send the notification message
+                self.sendMail(mail_infos, object, event_id=infos['event'])
 
         # Dealing with members
         for member in members:
