@@ -94,49 +94,199 @@ def addComputedRecipientsRule(self, id=None, REQUEST=None):
 ########################################################
 
 class ExplicitRecipientsRule(RecipientsRule):
-    """Explicit Recipient Rules
+    """Explicit Recipient Rules Class
+
+    Explicit member/groups/emails information.
     """
-    meta_type = "Explicit Recipients Rules"
+
+    #
+    # For the moment the class provides these features :
+    # -> Adding explicitly members
+    # -> Adding explicitly groups
+    # -> Adding explicitly emails
+    #
+    # This is the class that has to be completed to handle anonymous/members
+    # subscribtions. <ja:15/01/2004>
+    #
+
+    meta_type = "Explicit Recipients Rule"
     portal_type = meta_type
 
     security = ClassSecurityInfo()
 
+    _properties = RecipientsRule._properties + \
+                  ({'id': 'members', 'type': 'lines', 'mode': 'w',
+                    'label': 'Members subscribed manually'},
+                   {'id': 'members_allow_add', 'type': 'lines', 'mode': 'w',
+                    'label': 'Members Allow Add'},
+                   {'id': 'groups', 'type': 'lines', 'mode': 'w',
+                    'label': 'Groups subscribed manually'},
+                   {'id': 'groups_allow_add', 'type': 'lines', 'mode': 'w',
+                    'label': 'Groups Allow Add'},
+                   {'id': 'emails', 'type': 'lines', 'mode': 'w',
+                    'label': 'Emails subscribed Manually'},
+                   {'id': 'emails_allow_add', 'type': 'lines', 'mode': 'w',
+                    'label': 'Emails Allow Add'},
+                   {'id': 'emails_confirm', 'type': 'lines', 'mode': 'w',
+                    'label': 'Emails to be confirmed'},
+                   {'id': 'emails_pending_add', 'type': 'lines', 'mode': 'w',
+                    'label': 'Emails Pending Add'},
+                   {'id': 'emails_pending_delete', 'type': 'lines', 'mode': 'w',
+                    'label': 'Emails Pending Delete'},
+                   )
+
+    members = []
+    members_allow_add = []
+    groups = []
+    groups_allow_add = []
+    emails = []
+    emails_allow_add = []
+    emails_confirm = []
+    emails_pending_add = []
+    emails_pending_delete = []
+
+    #
+    # - members -- The ids of the members subscribed manually.
+    #
+    # - members_allow_add -- Whether members are allowed to
+    #   subscribe / unsubscribe manually to the Subscription (adding
+    #   themselves to recipient_members).
+    #
+    # - emails -- The emails subscribed manually.
+    #
+    # - emails_allow_add -- Whether anonymous visitors are allowed
+    #   to subscribe / unsubscribe manually to the Subscription
+    #   (adding themselves to recipient_emails).
+    #
+    # - emails_confirm -- Whether the emails have to be confirmed
+    #   before being used. XXX this may be better as a global flag
+    #   of portal_subcriptions instead..
+    #
+    # - emails_pending_add -- The emails subscribed manually but not
+    #   yet confirmed.
+    #
+    # - emails_pending_delete -- The emails pending deletion from
+    #   recipient_emails but not yet confirmed.
+    #
+
+    security.declarePublic("getMembers")
+    def getMembers(self):
+        """ Return all the member ids subscribed manually
+
+        Returns a list of ids
+        """
+        return self.members
+
+    security.declareProtected(ModifyPortalContent, "updateMembers")
+    def updateMembers(self, member_ids=[]):
+        """ Add explicitly member ids
+        """
+        for member_id in member_ids:
+            if member_id not in self.members:
+                self.members += [member_id]
+
+    security.declarePublic("getGroups")
+    def getGroups(self):
+        """ Return all the group ids subscribed manually
+
+        Returns a list of ids
+        """
+        return self.groups
+
+    security.declareProtected(ModifyPortalContent, "updateGroups")
+    def updateGroups(self, group_ids=[]):
+        """ Add explicitly group ids
+        """
+        for group_id in group_ids:
+            if group_id not in self.groups:
+                self.groups += [group_id]
+
+    security.declarePublic("getEmails")
+    def getEmails(self):
+        """ Return all the emails subscribed manually
+
+        Returns a list of emails
+        """
+        return self.emails
+
+    security.declareProtected(ModifyPortalContent, "updateEmails")
+    def updateEmails(self, emails=[]):
+        """ Add explicitly emails
+        """
+        self.emails = emails
+
+    security.declareProtected(ModifyPortalContent, "getRecipients")
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-        return {}
+
+        member_email_mapping = {}
+        mtool = self.portal_membership
+        aclu = getattr(self, 'acl_users', None)
+
+        #
+        # Members subscribed manually
+        #
+
+        for member_id in self.getMembers():
+            member = mtool.getMemberById(member_id)
+            if member is not None:
+                email = member.getProperty('email')
+                member_email_mapping[email] = member_id
+
+        #
+        # Groups subscribed manually
+        #
+
+        for group_id in self.getGroups():
+            group = aclu.getGroupById(group_id)
+            group_users = group.getUsers()
+            for member_id in group_users:
+                member = mtool.getMemberById(member_id)
+            if member is not None:
+                email = member.getProperty('email')
+                member_email_mapping[email] = member_id
+
+        #
+        # Standalone emails
+        #
+
+        for email in self.getEmails():
+            member_email_mapping[email] = ''
+
+        return member_email_mapping
 
 InitializeClass(ExplicitRecipientsRule)
 
-def addExplicitRecipientsRule(self, id=None, REQUEST=None):
+def addExplicitRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
     """ Add an explicit recipients rule
     """
-    self = self.this()
-    id = 'explicit_recipients_rule'
+
+    id = 'explicit__recipients_rule'
+
     if hasattr(aq_base(self), id):
         return MessageDialog(
             title='Item Exists',
             message='This object already contains an %s' % ob.id,
             action='%s/manage_main' % REQUEST['URL1'])
 
-    ob = ExplicitRecipientsRule(id, title='Explicit Recipients Rule')
+    ob = ExplicitRecipientsRule(id, title='Explicit Recipients Rule', **kw)
     self._setObject(id, ob)
 
-    LOG('addExplicitRecipientsRule', INFO,
-        'adding recipients rule  %s/%s' % (self.absolute_url(), id))
-
     if REQUEST is not None:
-        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
 
 #########################################################
 
 class RoleRecipientsRule(RecipientsRule):
-    """Role Recipient Rules
+    """ Role Recipient Rules Class
+
+    Roles based recipients rule computing.
     """
 
-    meta_type = "Role Recipient Rules"
+    meta_type = "Role Recipient Rule"
     portal_type = meta_type
 
     security = ClassSecurityInfo()
@@ -193,6 +343,7 @@ class RoleRecipientsRule(RecipientsRule):
         """
         self.role += [role]
 
+    security.declareProtected(ModifyPortalContent, "getRecipients")
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
@@ -272,14 +423,14 @@ def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
     self._setObject(id, ob)
 
     if REQUEST is not None:
-        REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
 
 #########################################################
 
 class WorkflowImpliedRecipientsRule(RecipientsRule):
     """Workflow Implied Recipient Rule
     """
-    meta_type = "Workflow Implied Recipient Rules"
+    meta_type = "Workflow Implied Recipient Rule"
     portal_type = meta_type
 
     security = ClassSecurityInfo()
