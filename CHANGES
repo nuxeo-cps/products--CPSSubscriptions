@@ -6,8 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- Mail Header encoding.
-- Cleaning emails for backwards compatibily
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.3.0 [R1 build 2004/03/12-17:38 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Mail Header encoding.
+- Cleaning emails for backwards compatibily
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.2.2 [R1 build 2004/03/12-17:19 by anguenot]
 
 Requires:
