@@ -23,12 +23,15 @@
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """ PlaceFull Subscription Folder Class
+
+This is a placefull subscriptions folder holding the configuration.
 """
 
 from Globals import InitializeClass, DTMLFile, MessageDialog
 from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
+from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
 
@@ -47,11 +50,62 @@ class PlaceFullSubscriptionFolder(PortalFolder):
 
     security = ClassSecurityInfo()
 
+    _properties = PortalFolder._properties + \
+                  ({'id': 'notify_local_only', 'type': 'boolean', 'mode': 'w',
+                    'label': 'Notify Local Only'},
+                   {'id': 'notify_no_local', 'type': 'boolean', 'mode': 'w',
+                    'label': 'Notify No Local'},
+                   )
+
+    notify_local_only = 0
+    notify_no_local = 0
+
+    def __init__(self, id, title=''):
+        """ Constructor
+
+        Parent's class and attributes intialization
+        """
+        PortalFolder.__init__(self, id, title=title)
+        notify_local_only = 0
+        notify_no_local = 0
+
+    security.declarePublic("isNotificationLocalOnly")
+    def isNotificationLocalOnly(self):
+        """Are notifications local only ?
+
+        Is the notifications only for user having local roles in here
+        Do not infer with merged local roles.
+        """
+        return self.notify_local_only
+
+    security.declarePublic("isNotificationNoLocal")
+    def isNotificationNoLocal(self):
+        """Are notifications no local ?
+
+        Is the notifications only for users having local roles
+        within the sub-folders
+        """
+        return self.notify_no_local
+
+    security.declareProtected(ModifyPortalContent, "updateProperties")
+    def updateProperties(self, **kw):
+        """ Update Subscription Folder Properties
+
+        Using kw parameter dictionnnary holding the properties
+        """
+        if kw is not None:
+            for prop in kw.keys():
+                if hasattr(self, prop):
+                    setattr(self, prop, kw[prop])
+
     security.declarePublic("getSubscriptions")
     def getSubscriptions(self):
         """ Get all Subscriptions contained in here.
         """
-        return [x for x in self.objectValues() if x.getFilterEventTypes]
+        # XXX : find sthg else to find these subscription objects
+        return [x for x in self.objectValues() if getattr(x,
+                                                          'getFilterEventTypes',
+                                                          0)]
 
 InitializeClass(PlaceFullSubscriptionFolder)
 
@@ -72,13 +126,6 @@ def addPlaceFullSubscriptionFolder(self, id=None, REQUEST=None):
     self._setObject(id, ob)
 
     subscription_folder = getattr(self, id)
-
-    # Within skins to let the possiblity to users to customize it.
-    event_types = self.getEventTypesFromContext()
-    for event_type in event_types.keys():
-        addSubscription(subscription_folder,
-                        id='subscription__'+event_type,
-                        title=event_types[event_type])
 
     LOG('addPlaceFullSubscriptionFolder', INFO,
         'adding subscriptions %s/%s' % (self.absolute_url(), id))
