@@ -343,7 +343,7 @@ class MailNotificationRule(NotificationRule):
             getattr(object, 'portal_type', None) in  rendered_portal_types or
             infos.get('event') in rendered_events):
             try:
-                body = object.getContent().render()
+                body = object.getContent().render(proxy=object)
                 mime_type = 'text/html'
             except AttributeError:
                 # Not a CPSDocument
