@@ -28,7 +28,7 @@ This is a placefull subscription container holding the configuration.
 """
 
 from Globals import InitializeClass, MessageDialog
-from Acquisition import aq_base
+from Acquisition import aq_base, aq_inner, aq_parent
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.CMFCorePermissions import ModifyPortalContent
@@ -143,6 +143,22 @@ def addSubscriptionContainer(self, id=None, REQUEST=None):
 
     ob = SubscriptionContainer(id, title='Placefull Subscription Container')
     self._setObject(id, ob)
+
+    subscription_container = getattr(self, id)
+
+    #
+    # Let's create event subscriptions mapping the context.
+    # These information are know tool site.
+    # We need to create them right now for the subscriptions
+    #
+
+    parent = aq_parent(aq_inner(subscription_container))
+    events_in_context = subtool.getEventsFromContext(parent)
+
+    for event in events_in_context.keys():
+        id = 'subscription__' + event
+        title = 'Event '+ event # i18n
+        subscription_container.manage_addProduct['CPSSubscriptions'].addSubscription(id, title)
 
     if REQUEST is not None:
         REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
