@@ -174,24 +174,20 @@ class MailNotificationRule(NotificationRule):
         """
 
         mtool = self.portal_membership
-        creator = object.Creator()
-        creator_user = mtool.getMemberById(creator)
+        creator = mtool.getMemberById(object.Creator())
 
-        returned_email = ''
+        mail_from = None
         if creator_user:
-            email_creator = creator_user.getProperty('email')
+            # Skins if different name for the email field.
+            email_creator = self.getMemberEmail(creator_user.getMemberId())
             if email_creator is not None:
-                returned_email = email_creator
-        else:
+                mail_from = email_creator
+        if not mail_from:
             pprops = self.portal_properties
-            cps_admin_email = getattr(pprops,
-                                      'email_from_address',
-                                      'no_mail@no_mail.com')
-            returned_email = cps_admin_email
+            mail_from = getattr(pprops, 'email_from_address', None)
 
-        # FIXME
-        if returned_email:
-            return returned_email
+        if mail_from:
+            return mail_from
         else:
             return 'no_mail@no_mail.com'
 
