@@ -28,7 +28,7 @@
     <td align="left" valign="top">
       <input type="text"
              name="event_default_email_title"
-             value="<dtml-var event_default_email_title>"
+             value='<dtml-var expr="getDefaultMessageTitle()">'
              size="60" />
     </td>
  </tr>
@@ -39,7 +39,8 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_default_email_body"  cols="55" rows="10"><dtml-var event_default_email_body></textarea>
+      <textarea name="event_default_email_body"  cols="55"
+      rows="10"><dtml-var expr="getDefaultMessageBody()"></textarea>
     </td>
  </tr>
  <tr>
@@ -49,7 +50,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_error_email_body"  cols="55" rows="10"><dtml-var event_error_email_body></textarea>
+      <textarea name="event_error_email_body"  cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
     </td>
  </tr>
  <tr>
