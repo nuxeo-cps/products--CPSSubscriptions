@@ -297,7 +297,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declarePublic("getMembers")
     def getMembers(self):
-        """ Return all the member ids subscribed manually
+        """Return all the member ids subscribed manually
 
         Returns a list of ids
         """
@@ -305,7 +305,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declareProtected(ModifyPortalContent, "updateMembers")
     def updateMembers(self, member_ids=[]):
-        """ Add explicitly member ids
+        """Add explicitly member ids
         """
         for member_id in member_ids:
             if member_id not in self.members:
@@ -318,7 +318,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declarePublic("getGroups")
     def getGroups(self):
-        """ Return all the group ids subscribed manually
+        """Return all the group ids subscribed manually
 
         Returns a list of ids
         """
@@ -326,7 +326,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declareProtected(ModifyPortalContent, "updateGroups")
     def updateGroups(self, group_ids=[]):
-        """ Add explicitly group ids
+        """Add explicitly group ids
         """
         for group_id in group_ids:
             if group_id not in self.groups:
@@ -339,7 +339,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declarePublic("getEmails")
     def getEmails(self):
-        """ Return all the emails subscribed manually
+        """Return all the emails subscribed manually
 
         Returns a list of emails
         """
@@ -347,7 +347,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declareProtected(ModifyPortalContent, "updateEmails")
     def updateEmails(self, emails=[]):
-        """ Add explicitly emails
+        """Add explicitly emails
         """
         self.emails = emails
 
@@ -356,7 +356,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declarePublic("getPendingEmails")
     def getPendingEmails(self):
-        """ Return all the emails subscribed manually
+        """Return all the emails subscribed manually
 
         Returns a list of emails
         """
@@ -364,7 +364,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declareProtected(ModifyPortalContent, "updatePendingEmails")
     def updatePendingEmails(self, email=''):
-        """ Add pending email subscription
+        """Add pending email subscription
         """
         if email and \
            email not in self.getPendingEmails() and \
@@ -378,18 +378,17 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declarePublic("getPendingDeleteEmails")
     def getPendingDeleteEmails(self):
-        """ Return all the emails that are about to be deleted
+        """Return all the emails that are about to be deleted
 
         Returns a list of emails
         """
         return self.emails_pending_delete
 
-    security.declareProtected(ModifyPortalContent, "updatePendingDeleteEmails")
+    security.declareProtected(ModifyPortalContent, 'updatePendingDeleteEmails')
     def updatePendingDeleteEmails(self, email=''):
-        """ Add pending email subscription
+        """Add pending email subscription
         """
-        if email and \
-               email in self.getSubscriberEmails() or \
+        if email and email in self.getSubscriberEmails() or \
                email in self.getMails():
             self.emails_pending_delete.append(email)
             return 1
@@ -406,9 +405,9 @@ class ExplicitRecipientsRule(RecipientsRule):
         """
         return self.emails_subscribers
 
-    security.declareProtected(ModifyPortalContent, "updateSubscriberEmails")
+    security.declareProtected(ModifyPortalContent, 'updateSubscriberEmails')
     def updateSubscriberEmails(self, email=''):
-        """ Add pending email subscription
+        """Add pending email subscription
         """
         if email:
             # Maybe check of email not in other lists ?
@@ -419,11 +418,10 @@ class ExplicitRecipientsRule(RecipientsRule):
     ######################################################
     ######################################################
 
-    security.declareProtected(View, "subscribeTo")
+    security.declareProtected(View, 'subscribeTo')
     def subscribeTo(self, email, event_id, context):
         """Anonymous is asking for a subscription
         """
-
         self._p_changed = 1
 
         NotificationRule = getattr(self, 'mail__notification_rule', None)
@@ -460,8 +458,6 @@ class ExplicitRecipientsRule(RecipientsRule):
     def confirmSubscribeTo(self, email, event_id, context):
         """Anonymous confirm the subscription
         """
-
-
         self._p_changed = 1
 
         NotificationRule = getattr(self, 'mail__notification_rule', None)
@@ -500,9 +496,9 @@ class ExplicitRecipientsRule(RecipientsRule):
         if email:
             if self.updatePendingDeleteEmails(email):
                 NotificationRule.notifyConfirmUnSubscribe(event_id,
-                                                             self,
-                                                             email,
-                                                             context)
+                                                          self,
+                                                          email,
+                                                          context)
                 return 1
 
         # Members subscriptions.
@@ -611,9 +607,8 @@ class ExplicitRecipientsRule(RecipientsRule):
 InitializeClass(ExplicitRecipientsRule)
 
 def addExplicitRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
-    """ Add an explicit recipients rule
+    """Add an explicit recipients rule
     """
-
     id = self.portal_subscriptions.getExplicitRecipientsRuleId()
 
     if hasattr(aq_base(self), id):
@@ -631,7 +626,7 @@ def addExplicitRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
 #########################################################
 
 class RoleRecipientsRule(RecipientsRule):
-    """ Role Recipient Rules Class
+    """Role Recipient Rules Class
 
     Roles based recipients rule computing.
 
@@ -686,13 +681,13 @@ class RoleRecipientsRule(RecipientsRule):
 
     security.declareProtected(View, 'getRoles')
     def getRoles(self):
-        """ Returns the roles subscribed.
+        """Returns the roles subscribed.
         """
         return self.roles
 
     security.declareProtected(ModifyPortalContent, 'addRole')
     def addRole(self, role):
-        """ Add a new role
+        """Add a new role
         """
         self.roles += [role]
 
@@ -766,7 +761,7 @@ class RoleRecipientsRule(RecipientsRule):
 InitializeClass(RoleRecipientsRule)
 
 def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
-    """ Add a roles explicit Recipient rules
+    """Add a roles explicit Recipient rules
     """
     if not id:
         id = self.computeId()
@@ -806,7 +801,7 @@ class WorkflowImpliedRecipientsRule(RecipientsRule):
 InitializeClass(WorkflowImpliedRecipientsRule)
 
 def addWorkflowImpliedRecipientsRule(self, id=None, REQUEST=None):
-    """ Add a roles explicit Recipient rules
+    """Add a roles explicit Recipient rules
     """
     raise NotImplementedError
 

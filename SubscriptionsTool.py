@@ -22,7 +22,7 @@
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
-""" Subscriptions Tool
+"""Subscriptions Tool
 
 Defines the Subscriptions Tool class
 """
@@ -39,8 +39,7 @@ from zLOG import LOG, DEBUG
 
 ##############################################################
 
-## GLOBAL IDS
-
+# Global ids
 SUBSCRIPTION_CONTAINER_ID = '.cps_subscriptions'
 EXPLICIT_RECIPIENTS_RULE_ID = 'explicit__recipients_rule'
 MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
@@ -150,7 +149,6 @@ class SubscriptionsTool(UniqueObject, Folder):
                                        REQUEST=None):
         """Edit the default event email
         """
-
         self._p_changed = 1
 
         # No %(sthg)s in the error message. It's the purpose of that kind of
@@ -193,7 +191,6 @@ class SubscriptionsTool(UniqueObject, Folder):
                                 REQUEST=None):
         """Edit a custom event message
         """
-
         self._p_changed = 1
 
         struct = [event_email_title,
@@ -216,7 +213,6 @@ class SubscriptionsTool(UniqueObject, Folder):
     def manage_addEventType(self, event_where, event_id, event_label, REQUEST=None):
         """ Adds a new event id in a given context
         """
-
         self._p_changed = 1
 
         mapping_context_events = self.mapping_context_events
@@ -253,7 +249,6 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         Core attributs and default messages contents
         """
-
         # Core attrs
         self.notify_hidden_object = 0
         self.mapping_context_events = {}
@@ -527,10 +522,7 @@ class SubscriptionsTool(UniqueObject, Folder):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
-
-        subscriptions = self.getSubscriptionsFor(event_type,
-                                                 object,
-                                                 infos)
+        subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
                 subscription.sendEvent(event_type, object, infos)
@@ -541,14 +533,13 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         Some of the parameters may be None to get all subscriptions.
         """
-
         subscriptions = []
         subscriptionContainer = getattr(object,
                                      self.getSubscriptionContainerId(), 0)
         if subscriptionContainer:
             subscriptions += subscriptionContainer.getSubscriptions()
-            subscriptions = [x for x in subscriptions \
-                             if 'subscription__'+event_type == x.id]
+            subscriptions = [x for x in subscriptions
+                             if 'subscription__' + event_type == x.id]
         return subscriptions
 
     security.declarePublic("getRecipientsFor")
@@ -558,7 +549,6 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         The black list parameter will pass within the infos parameter.
         """
-
         recipients = {}
 
         if object is None and infos.has_key('context'):
@@ -595,7 +585,6 @@ class SubscriptionsTool(UniqueObject, Folder):
 
         Notice, anonymous user can as well check their subscriptions.
         """
-
         # XXX Implement for anonymous
 
         membership_tool = getToolByName(self, 'portal_membership')
@@ -642,7 +631,6 @@ class SubscriptionsTool(UniqueObject, Folder):
     def isSubscriberFor(self, event_id, context, email=''):
         """Is a given member subscriber for a given email in the given context
         """
-
         if not email:
             membership_tool = getToolByName(self, 'portal_membership')
             if not membership_tool.isAnonymousUser():
