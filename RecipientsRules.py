@@ -30,14 +30,14 @@ the subscription container.
 
 from DateTime.DateTime import DateTime
 
-from Globals import InitializeClass, MessageDialog
+from Globals import InitializeClass, MessageDialog, DTMLFile
 from Acquisition import aq_base, aq_parent, aq_inner
 
 from AccessControl import ClassSecurityInfo, getSecurityManager
 
 from Products.CMFCore.PortalFolder import PortalFolder
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
+from Products.CMFCore.CMFCorePermissions import View
 
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.Expression import getEngine
@@ -67,10 +67,11 @@ InitializeClass(RecipientsRule)
 class ComputedRecipientsRule(RecipientsRule):
     """Computed Recipient Rules
 
-    Several computed recipients rule can be stored within a subscription
+    Several computed recipients rules can be stored within a subscription
     container.
 
-    XXX : has to be tested !
+    It provides a tales expression that is supposed to return a dictionnary
+    with email as key.
     """
 
     meta_type = "Computed Recipients Rule"
@@ -84,15 +85,10 @@ class ComputedRecipientsRule(RecipientsRule):
          'mode' : 'w',
          'label' : 'TALES expression',
          },
-        {'id': 'roles',
-         'type': 'lines',
-         'mode': 'w',
-         'label': 'Roles'},
         )
 
-    expression = 'python:1'
+    expression = 'string:'
     expression_c = Expression(expression)
-    roles = ''
 
     _properties_post_process_tales = (
         ('expression', 'expression_c')
@@ -103,15 +99,16 @@ class ComputedRecipientsRule(RecipientsRule):
         """
         PortalFolder.__init__(self, id, title=title)
         self.id = id
-        self.expression = 'python:1'
+        self.expression = 'string:'
         self.expression_c = Expression(self.expression)
-        self.roles = ''
 
     def getExpression(self, context):
         """
         """
-        if not self.expression_c:
-            return 0
+        try:
+            self.expression_c = Expression(self.expression)
+        except AttributeError:
+            self.expression = 'string:'
         expr_context = self._createExpressionContext(context)
         return self.expression_c(expr_context)
 
@@ -130,91 +127,42 @@ class ComputedRecipientsRule(RecipientsRule):
             }
         return getEngine().getContext(mapping)
 
-    security.declarePublic('getRoles')
-    def getRoles(self):
-        """Returns the roles for which the recipient rule is going to work
-        """
-        return self.roles
-
     def getRecipients(self, event_type, object, infos):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
         """
-
-        ## FIXME roles or not roles based ? or what ?
-
-        if self.getExpression(object):
-            member_email_mapping = {}
-            mtool = self.portal_membership
-            subtool = self.portal_subscriptions
-            if getattr(object, 'portal_type') in \
-                   subtool.getContainerPortalTypes():
-                container = object
-            else:
-                container = aq_parent(aq_inner(object))
-
-            if getattr(self, 'notify_no_local'):
-                if subtool.getSubscriptionContainerId() in \
-                       container.objectIds():
-                    return {}
-
-            if not getattr(self, 'notify_local_only'):
-                #
-                # Using merged local roles
-                #
-                merged_local_roles = mtool.getMergedLocalRoles(container)
-                for entry in merged_local_roles.keys():
-                    for role in self.getRoles():
-                        if role in merged_local_roles[entry]:
-                            if entry.startswith('user:'):
-                                member_ids = [entry.split(':')[1]]
-                            if entry.startswith('group:'):
-                                group_id = entry.split(':')[1]
-                                aclu = getattr(self, 'acl_users', None)
-                                if group_id == 'role':
-                                    group_id = group_id + \
-                                               ':' + \
-                                               entry.split(':')[2]
-                                group = aclu.getGroupById(group_id)
-                                member_ids = group.getUsers()
-                            for member_id in member_ids:
-                                member = mtool.getMemberById(member_id)
-                                if member is not None:
-                                    email = self.getMemberEmail(member_id)
-                                    member_email_mapping[email] = member_id
-                #
-                # Using roles defined only in the context
-                #
-                local_roles = container.get_local_roles()
-                for member in local_roles:
-                    member_id = member[0]
-                    for role in self.getRoles():
-                        if role in member[1]:
-                            email = self.getMemberEmail(member_id)
-                            member_email_mapping[email] = member_id
-
-                local_group_roles = container.get_local_group_roles()
-                for group in local_group_roles:
-                    for role in self.getRoles():
-                        if role in group[1]:
-                            group_id = group[0]
-                            aclu = getattr(self, 'acl_users', None)
-                            group = aclu.getGroupById(group_id)
-                            group_users = group.getUsers()
-                            for member_id in group_users:
-                                email = self.getMemberEmail(member_id)
-                                member_email_mapping[email] = member_id
-                return member_email_mapping
-            else:
-                return {}
+        return self.getExpression(object)
 
 InitializeClass(ComputedRecipientsRule)
+
+addComputedRecipientsRuleForm = DTMLFile('zmi/computed_recipients_rules_addform',
+                                         globals())
 
 def addComputedRecipientsRule(self, id=None, REQUEST=None):
     """ Add a computed recipients rule
     """
-    raise NotImplementedError
+
+    if not id:
+        return MessageDialog(
+            title='No id provided',
+            message='You got to provide an id for this object',
+            action='%s/manage_main' % REQUEST['URL1'])
+
+    if id is not None:
+        id = id + '__recipients_rule'
+
+    if hasattr(aq_base(self), id):
+        return MessageDialog(
+            title='Item Exists',
+            message='This object already contains an %s' % ob.id,
+            action='%s/manage_main' % REQUEST['URL1'])
+
+    ob = ComputedRecipientsRule(id, title='Computed Recipients Rule')
+    self._setObject(id, ob)
+
+    if REQUEST is not None:
+        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
 
 ########################################################
 
