@@ -18,7 +18,7 @@ else:
     subscriptions_folder = subscriptions_tool.getSubscriptionContainerFromContext(context)
     event_subscription = getattr(subscriptions_folder, 'subscription__'+event_id)
     explicit_subscriptions = getattr(event_subscription, explicit_sub_id)
-    explicit_subscriptions.anonymousConfirmSubscribe(email, event_id, context)
+    explicit_subscriptions.confirmSubscribeTo(email, event_id, context)
     if context.REQUEST is not None:
         psm = 'psm_welcome_to_mailing_list'
         context.REQUEST.RESPONSE.redirect(context.absolute_url() + \

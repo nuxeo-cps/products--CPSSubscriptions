@@ -197,7 +197,7 @@
   </span>
   <div class="group">
   <form name="form" method="get" action="."
-        tal:attributes="action string:${here/absolute_url}/folder_subscribe">
+        tal:attributes="action string:${here/absolute_url}">
     <table width="100%" align="center">
       <tr tal:repeat="event_key python:events.keys()"
           tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
@@ -236,8 +236,11 @@
         </table>
       </tal:block>
       <br />
-      <input type="submit" class="standAlone" name="folder_subscribe_submit"
-             value="button_ok"
+      <input type="submit" class="standAlone" name="folder_subscribe:method"
+             value="button_subscribe"
+             i18n:attributes="value">
+      <input type="submit" class="standAlone" name="folder_unsubscribe:method"
+             value="button_unsubscribe"
              i18n:attributes="value">
   </form>
   </div>

@@ -7,6 +7,8 @@ The subscptions container should be already in here since the guy got the action
 
 from zLOG import LOG, DEBUG
 
+isAno = context.portal_membership.isAnonymousUser()
+
 if REQUEST is not None:
     if REQUEST.form:
         psm = "psm_please_choose_at_least_one_event_for subscription"
@@ -20,7 +22,10 @@ if REQUEST is not None:
             event = getattr(subscription_folder, internal_event_id)
             explicit_recipients_rule_id = context.portal_subscriptions.getExplicitRecipientsRuleId()
             explicit_recipients_rule = getattr(event, explicit_recipients_rule_id)
-            if explicit_recipients_rule.anonymousSubscribe(email, event_id, context):
+            stupid = 1
+            if not explicit_recipients_rule.subscribeTo(email, event_id, context):
+                stupid = 0
+            if stupid:
                 psm = 'psm_email_sent_to_you'
             else:
                 psm = 'psm_subscription_not_taken_into_consideration'
