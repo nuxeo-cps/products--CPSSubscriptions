@@ -234,10 +234,10 @@ class CPSSubscriptionsInstaller(BaseInstaller):
 
         catalog = getToolByName(self.portal, 'portal_catalog')
         indexes = {
-            'getRecipients' : 'FieldIndex',
+            'getSubscriptions' : 'FieldIndex',
             }
         metadata = [
-            'getRecipients',
+            'getSubscriptions',
             ]
 
         for ix, typ in indexes.items():
