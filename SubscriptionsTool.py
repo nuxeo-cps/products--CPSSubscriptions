@@ -37,9 +37,9 @@ from AccessControl import ClassSecurityInfo
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 from Products.CMFCore.CMFCorePermissions import ManagePortal, View
-from Products.CMFCore.utils import UniqueObject, getToolByName
+from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
 
-from CPSSubscriptionsPermissions import ViewMySubscriptions
+from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
 from NotificationMessageBody import addNotificationMessageBody
 
 from zLOG import LOG, DEBUG, INFO
@@ -757,6 +757,14 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder):
         elt['path'] = ob.absolute_url()
         event_id = subscription.id.split('__')[1]
         elt['event_id'] = event_id
+
+        # still canSubscribe ?
+        sub = getattr(ob, '.cps_subscriptions', 0)
+        if sub:
+            elt['canSubscribe'] = _checkPermission(CanSubscribe, sub)
+        else:
+            elt['canSubscribe'] = 0
+            
         return elt
 
     security.declareProtected(ViewMySubscriptions, 'getAllSubscriptionsFor')
