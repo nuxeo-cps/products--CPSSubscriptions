@@ -16,9 +16,9 @@ Definition :
     A subscription, within CPSSubscriptions, can be seen as a mailing list
     subscription. It is usually linked to a given event and portal members
     or visitors can be notified when this given event occurs by either
-    subscribing or either having roles which are setup to be notify on these
+    subscribing or either having roles which are setup to notify on these
     given events by a manager. Or still being part explicitly of the mailing
-    list. (Manager can do that)
+    list. (Manager can add email explicitly)
 
   - Notifications
 
@@ -28,28 +28,28 @@ Definition :
 
 Features :
 
-  1 - Placefull notification management.
+  1 - Placeful notification management.
 
-      Managers (WorkspaceManager, SectionManager, ...) can set recipients
-    rules based on roles on folders such as Workspaces, Sections, Forums,
-    etc..
+      Person granted with the 'ManageSubscriptions' permissions (Manage,
+    WorkspaceManager, SectionManager, ..) can set recipients rules based on
+    roles on folders such as Workspaces, Sections, Forums, etc..
 
     They have a new action 'Notifications management' available where they
-    are granted with Manager privileges. A dedicated management form is then
-    provided to them where they can do the following :
-
+    are granted with 'ManageSubscriptions' privileges. A dedicated
+    management form is then provided to them where they can do the following
+    :
       - Say who is going to be notified when a given event occur in
         here. Such as "I want the WorkspaceMembers" being notified when a
         new document is created in this workspace" or "I want the
         SectionReviewer being notified when a document has been published in
         this section" or still "I want the posters being notified when a
-        reply has been done on one of their personal posts" etc...
-        Notice, the use cases can be easily extended to more complex cases.
+        reply has been done on one of their personal posts" etc...  Notice,
+        the use cases can be easily extended to some more complex cases.
 
       - Can open or close a given event for a Member or Anonymous
         subscription
 
-      - Can add Explicit persons an a given event to be notified
+      - Can add explicit persons to a given event to be notified
 
          - Adding explicit emails
          - Adding explicit members
@@ -62,6 +62,8 @@ Features :
         - Notify only people having local roles in here or not.
         - Notify only events happening in sub-folders
         - Are subscription allowed ?
+        - Are unsubscription allowed for members computed as recipients
+          based on their roles?
         - Are anonymous subscriptions allowed ?
         - Email appearing as sender for the outgoing emails. (Default
           creator of the folder
@@ -69,11 +71,11 @@ Features :
       - Possibility of seeing all the members / emails for all events.
 
    Basically, the mailing lists content such as the ones in CPS2 are now
-   merged within the CPS3 and more particularly within folders.  So no need
+   merged within the CPS3 and more particularly within containers. So no need
    with CPSSubscriptions, to create several mailing lists in a given
    folder.
 
-   A well, the settings for a subscriptions is placefull. It means, that
+   A well, the settings for a subscription is placeful. It means, that
    the settings are in use in the sub-folders but they can be overrides too
    the same way by performing a notification management on a sub-folders.
 
@@ -91,7 +93,7 @@ Features :
         If a folder is open for subscriptions then members can request for
      subscriptions.
 
-        He choose in the list of events which one is interested in and
+        He choose in the list of events which one he is interested in and
         submit.
 
         Either, the subscription will be taken into consideration straight
@@ -114,7 +116,7 @@ Features :
   3 - Managing subscriptions as a member of the portal
 
     CPSSubscriptions provides the possibility for a member to manage all the
-    subscriptions he belongs to everywhere on the portal through a single
+    subscriptions he belongs to everywhere within the portal through a single
     action.
 
     He can access this, by following the action 'My subscriptions' on the
@@ -153,6 +155,5 @@ Installation :
 
 More information :
 
-   - docs sub folders.
-   - API docs sub-folder
-
+   - doc sub folders. (Especially, the README.INTEGRATION)
+   - doc/API sub-folder
