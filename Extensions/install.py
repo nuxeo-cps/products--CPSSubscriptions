@@ -84,12 +84,12 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         """
 
         self.log("Checking CPS Subscriptions Tool")
-        if not getToolByName(self.portal, 'portal_subscriptions', 0):
+        if getToolByName(self.portal, 'portal_subscriptions', None) is None:
             self.log(" Creating CPS Subscriptions Tool (portal_subscriptions)")
-            self.portal.manage_addProduct["CPSSubscriptions"].manage_addTool(\
-                                      'Subscriptions Tool')
-            portal_subscriptions = getToolByName(self.portal, 'portal_subscriptions')
-	    portal_subscriptions.setupEvents()
+            self.portal.manage_addProduct['CPSSubscriptions'].manage_addTool('Subscriptions Tool')
+        else:
+            pass
+        self.portal.portal_subscriptions.setupEvents()
 
     def installNewPermissions(self):
         """Installs new subscriptions dedicated permissions
