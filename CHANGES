@@ -6,9 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- Fixed a bad French translation.
-- #390 ; 'Mes abonnements' empty breadcrumb
-- manage_my_subscriptions form : check subcribtion perms before giving a link to the user
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

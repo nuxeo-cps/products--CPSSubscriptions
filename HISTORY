@@ -1,4 +1,22 @@
 *******************************************
+** CPSSubscriptions V0.13.4 [R1 build 2004/09/28-16:42 by anguenot]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Fixed a bad French translation.
+- #390 ; 'Mes abonnements' empty breadcrumb
+- manage_my_subscriptions form : check subcribtion perms before giving a link to the user
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.13.3 [R1 build 2004/09/13-21:58 by anguenot]
 
 Requires:
