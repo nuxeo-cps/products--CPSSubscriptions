@@ -1,4 +1,4 @@
-# -*- coding: ISO-8859-15 -*-
+# -*- codin: ISO-8859-15 -*-
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministère de L'intérieur (MISILL)
@@ -70,6 +70,7 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         self.installActions()
         self.installNewPermissions()
         self.setupSubscriber()
+        self.setupRelevantLocalRoles()
         self.verifyNewPermissions()
         self.setupTranslations()
         self.setupCatalogSpecifics()
@@ -355,6 +356,20 @@ class CPSSubscriptionsInstaller(CPSInstaller):
         if 'cpsubscriptions_upgrade_old_instance' not in self.portal.objectIds():
             self.portal._setObject('cpsubscriptions_upgrade_old_instance',
                                    cpsubscriptions_upgrade_old_instance)
+
+    def setupRelevantLocalRoles(self):
+        """portal_subscriptions is going to hold information about the relevant
+        local roles within a given context so that we can propose good local
+        Roles depending on this one
+        """
+
+        # Skins
+        context_local_roles_mapping = self.portal.getCPSSubscriptionsLocalRolesMapping()
+        subtool = getToolByName(self.portal, 'portal_subscriptions')
+
+        # Setting by area
+        for area in context_local_roles_mapping.keys():
+            subtool.setLocalRolesArea(area=area, value=context_local_roles_mapping[area])
 
 ###############################################
 # __call__
