@@ -1,4 +1,23 @@
 *******************************************
+** CPSSubscriptions V0.9.1 [R1 build 2004/06/14-09:18 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Being coherent in the logic of _getMailFrom from Notifications and getMailFrom
+  from SubscriptionContainer. Beside using the creator of the document in
+  _getMailFrom is pointless since all the workflow information is contained in
+  the email message body.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.9.0 [R1 build 2004/06/04-17:56 by anguenot]
 
 Requires:
