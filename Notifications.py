@@ -176,15 +176,10 @@ class MailNotificationRule(NotificationRule):
         # to implement : members and groups
         #
 
-        if infos is None:
-            infos = self._makeInfoDict(event_type, object, infos)
-            mfrom = self._getMailFrom(object)
-            subject = self._getSubject(infos)
-            body = self._getBody(infos)
-        else:
-            mfrom = infos.get('mfrom', 'no_mail@no_mail.com')
-            subject = infos.get('subject', 'No Subject')
-            body = infos.get('body', '')
+        infos = self._makeInfoDict(event_type, object, infos)
+        mfrom = self._getMailFrom(object)
+        subject = self._getSubject(infos)
+        body = self._getBody(infos)
 
         LOG(":: CPSSubscriptions :: MailNotificationRule :: on",
             INFO,
@@ -249,7 +244,7 @@ class MailNotificationRule(NotificationRule):
         This method is called when someone just subscribe
         """
 
-        # FIXME : sent message is messy
+        # XXX code sucks.
         subscriptions_tool = getToolByName(self, 'portal_subscriptions')
         sub_container = subscriptions_tool.getSubscriptionContainerFromContext(context)
         portal = getToolByName(self,'portal_url').getPortalObject()
