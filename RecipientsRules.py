@@ -250,16 +250,6 @@ class ExplicitRecipientsRule(RecipientsRule):
     Only one explicit recipients rule object per subscription container.
     """
 
-    #
-    # For the moment the class provides these features :
-    # -> Adding explicitly members
-    # -> Adding explicitly groups
-    # -> Adding explicitly emails
-    #
-    # This is the class that has to be completed to handle anonymous/members
-    # subscribtions. <ja:15/01/2004>
-    #
-
     meta_type = "Explicit Recipients Rule"
     portal_type = meta_type
 
@@ -320,6 +310,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         for member_id in member_ids:
             if member_id not in self.members:
                 self.members += [member_id]
+                return 1
+        return 0
 
     ######################################################
     ######################################################
@@ -339,6 +331,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         for group_id in group_ids:
             if group_id not in self.groups:
                 self.groups += [group_id]
+                return 1
+        return 0
 
     #####################################################
     #####################################################
@@ -407,16 +401,35 @@ class ExplicitRecipientsRule(RecipientsRule):
     def subscribeTo(self, email, event_id, context):
         """Anonymous is asking for a subscription
         """
-        if self.updatePendingEmails(email):
-            NotificationRule = getattr(self, 'mail__notification_rule', None)
-            if NotificationRule is None:
-                LOG(" ::CPSSubscriptions:: anonymousSubscriptions()",
-                    INFO,
-                    "Error : No mail notification found")
-            else:
+
+        self._p_changed = 1
+
+        NotificationRule = getattr(self, 'mail__notification_rule', None)
+        if NotificationRule is None:
+            LOG(" ::CPSSubscriptions:: subscribeTo()",
+                INFO,
+                "Error : No mail notification found")
+            return 0
+
+        # Anonymous subscriptions
+        if email:
+            if self.updatePendingEmails(email):
                 NotificationRule.notifyConfirmSubscription(event_id,
                                                            self,
                                                            email,
+                                                           context)
+                return 1
+
+        # Members subscriptions.
+        else:
+            membership_tool = getToolByName(self, 'portal_membership')
+            member = membership_tool.getAuthenticatedMember()
+            member_id = member.getMemberId()
+            member_email = self.getMemberEmail(member_id)
+            if self.updateMembers(member_id):
+                NotificationRule.notifyWelcomeSubscription(event_id,
+                                                           self,
+                                                           member_email,
                                                            context)
                 return 1
         return 0
@@ -426,23 +439,23 @@ class ExplicitRecipientsRule(RecipientsRule):
         """Anonymous confirm the subscription
         """
 
+
         self._p_changed = 1
+
+        NotificationRule = getattr(self, 'mail__notification_rule', None)
+        if NotificationRule is None:
+            LOG(" ::CPSSubscriptions:: confirmSubscribeTo()",
+                INFO,
+                "Error : No mail notification found")
 
         if email in self.getPendingEmails():
             self.emails_subscribers.append(email)
             self.emails_pending_add.remove(email)
-            NotificationRule = getattr(self, 'mail__notification_rule', None)
-            if NotificationRule is None:
-                LOG(" ::CPSSubscriptions:: anonymousConfirmSubscriptions()",
-                    INFO,
-                    "Error : No mail notification found")
-            else:
-                NotificationRule.notifyWelcomeSubscription(event_id,
-                                                           self,
-                                                           email,
-                                                           context)
-                return 1
-
+            NotificationRule.notifyWelcomeSubscription(event_id,
+                                                       self,
+                                                       email,
+                                                       context)
+            return 1
         return 0
 
     #####################################################
