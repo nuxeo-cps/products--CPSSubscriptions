@@ -32,7 +32,7 @@
           <td>&nbsp;</td>
         </tr>
         <br />
-        <tal:block define="events here/getAllEventTypesFromContext">
+        <tal:block define="events here/getEventTypesFromContext">
 	       <tr tal:repeat="event_key python:events.keys()"
                tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
 	         <td>
@@ -45,7 +45,8 @@
              <tal:block repeat="role python:context_lcs.keys()">
   	           <td align="center">
                  <input type="checkbox" name="role_event:list"
-                        tal:attributes="value string:${role}:${event_key}" />
+                        tal:attributes="value string:${role}:${event_key};
+                                        checked python:here.isRoleSubscribedToEvent(event_key, role)" />
                </td>
              </tal:block>
 	         <td align="center">
