@@ -58,11 +58,14 @@ class Subscription(PortalFolder):
                     'label': 'Filter Object Types'},
                    {'id': 'recipient_emails_black_list', 'type': 'lines', 'mode': 'w',
                     'label': 'Recipient Emails Black List'},
+                   {'id': 'notification_type', 'type': 'string', 'mode': 'w',
+                    'label': 'Notification Type'},
                    )
 
     filter_event_types = []
     filter_object_types = []
     recipient_emails_black_list = []
+    notification_type = 'email'
 
     def __init__(self, id, title=''):
         """Constructor
@@ -77,6 +80,9 @@ class Subscription(PortalFolder):
 
         # The recipients emails blocked by the subscription
         self.recipients_emails_black_list = []
+
+        # The type of notifications in use
+        self.notification_type = 'email'
 
     def getFilterEventTypes(self):
         """ Returns the event types on which to react
@@ -125,8 +131,18 @@ class Subscription(PortalFolder):
             return event_type in filtered_event_types
 
     def sendEvent(self, event_type, object, infos):
-        """Send an event to the subscription."""
-        pass
+        """Send an event to the subscription.
+        """
+        recipients_rules = self.getRecipientsRules()
+        recipients = {}
+        for recipient_rule in recipients_rules:
+            pt_recipients = recipient_rule.getRecipients(event_type, object, infos)
+            for pt_recipient in pt_recipients.keys():
+                recipients[pt_recipient] = pt_recipients[pt_recipient]
+
+        LOG(" RECIPIENTS FOR SUBSCRIPTION ->", DEBUG, recipients)
+
+        # XXX Get the notification types and then do sthg
 
     def getRecipientsRules(self, recipients_rule_type=None):
         """Get the recipient rules objects.
@@ -134,7 +150,7 @@ class Subscription(PortalFolder):
         if recipient_rule_type is None, then we return all
         the recipients rule objects defined for a this given
         subscription object. If not None we return the given
-        recipients rule objects matching the requested type.
+       recipients rule objects matching the requested type.
 
         The different types of recipients rule objects :
           - Role Recipients Rulz
