@@ -6,7 +6,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Non destructive installer, the email message values customzied by the admin
+- Non destructive installer, the email message values customized by the admin
   are not lost at each installation
 - New control in the ZMI to reset email messages to their default values
 Bug fixes:
