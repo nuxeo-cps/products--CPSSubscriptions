@@ -3,20 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-
-- Unsubscription possible when a member is computed as recipients based on his
-local roles
-
+-
 Bug fixes:
 ~~~~~~~~~~
-
-- unsubscription bugs when we add a member and someone who subscribed with the
-same email as the member
-
-- Default title and default body for the sent messages are not editable anymore
- globally through ZMI since it's overrided with the specific event messages
-
-- Remocing all the notifications wasn't working
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- Spécific permissions are now defined in the CPSSubscriptionsPermissions module.
+-
