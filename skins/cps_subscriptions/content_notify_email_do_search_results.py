@@ -29,8 +29,8 @@ for field in result_fields:
         process_fields[field['id']] = field['process']
 
     call_context = kw.get('call_context')
+    mtool = context.portal_membership
     if call_context is not None:
-        mtool = context.portal_membership
         dict_roles = mtool.getMergedLocalRoles(call_context, withgroups=0)
         search_restricted_list = dict_roles.keys()
         mapping['search_restricted_member_list'] = search_restricted_list
