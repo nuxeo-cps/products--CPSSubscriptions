@@ -472,40 +472,27 @@ class ExplicitRecipientsRule(RecipientsRule):
         mtool = self.portal_membership
         aclu = getattr(self, 'acl_users', None)
 
-        #
-        # Members subscribed manually
-        #
-
+        # Members subscribed
         for member_id in self.getMembers():
-            member = mtool.getMemberById(member_id)
-            if member is not None:
-                email = member.getProperty('email')
-                member_email_mapping[email] = member_id
+            email = self.getMemberEmail(member_id)
+            member_email_mapping[email] = member_id
 
-        #
-        # Groups subscribed manually
-        #
-
+        # Groups subscribed
         for group_id in self.getGroups():
-            group = aclu.getGroupById(group_id)
-            group_users = group.getUsers()
-            for member_id in group_users:
-                member = mtool.getMemberById(member_id)
-            if member is not None:
-                email = member.getProperty('email')
-                member_email_mapping[email] = member_id
+            try:
+                group = aclu.getGroupById(group_id)
+                group_users = group.getUsers()
+                for member_id in group_users:
+                    email = self.getMemberEmail(member_id)
+                    member_email_mapping[email] = member_id
+            except KeyError:
+                pass
 
-        #
         # Explicit emails
-        #
-
         for email in self.getEmails():
             member_email_mapping[email] = ''
 
-        #
         # Anonymous subscribers emails
-        #
-
         for email in self.getSubscriberEmails():
             member_email_mapping[email] = ''
 
