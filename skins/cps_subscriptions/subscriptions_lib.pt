@@ -575,8 +575,10 @@
           </td>
           <td align="left">
             <span i18n:translate="">
-              label_<span tal:replace="elt/event_id" />
-            </span>
+              <span
+              tal:replace="python:subscriptions_tool.getI18nFor(elt['event_id'])"
+              />
+           </span>
           </td>
           <td align="center">
            <a href=""
