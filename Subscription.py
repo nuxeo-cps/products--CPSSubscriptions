@@ -125,7 +125,7 @@ class Subscription(PortalFolder):
     def isInterestedInEvent(self, event_type, object, infos):
         """Is the subscription interested in the given event."""
         filtered_event_types = self.getFilterEventTypes()
-        if filtered_event_types == []:
+        if filtered_event_types == [] or not event_type:
             return 1
         else:
             return event_type in filtered_event_types
@@ -161,7 +161,10 @@ class Subscription(PortalFolder):
 
         notification_rules = self.getNotificationRules()
         for notification_rule in notification_rules:
-            notification_rule.notifyRecipients(emails=recipients.keys())
+            notification_rule.notifyRecipients(event_type,
+                                               object,
+                                               infos,
+                                               emails=recipients.keys())
 
     def getRecipientsRules(self, recipients_rule_type=None):
         """Get the recipient rules objects.
