@@ -572,7 +572,7 @@ msgid "label_workflow_accept"
 msgstr "Acceptation et publication de contenu"
 
 msgid "label_workflow_delete"
-msgstr "Délétion de contenu"
+msgstr "Suppression de contenu"
 
 msgid "label_workflow_submit"
 msgstr "Soumission de contenu"
