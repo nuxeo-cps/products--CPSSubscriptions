@@ -1,10 +1,15 @@
 <metal:block use-macro="here/content_lib/macros/master">
   <metal:block fill-slot="header">
     <h1 i18n:translate="heading_subscribtion_welcome">
-      Welcome !
+      You are now part of the mailing list.
     </h1>
   </metal:block>
   <metal:block fill-slot="main">
-    XXX
+    <span i18n:translate="label_you_are_no_registred">
+      You are now a subscriber.
+    </span>
+    <span i18n:translate="label_follow_subscriptions_instructions">
+       Please, follow the instruction included in the mail you will shortly receive
+     </span>
   </metal:block>
 </metal:block>

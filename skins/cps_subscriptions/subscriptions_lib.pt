@@ -190,60 +190,109 @@
                    subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
                    events python:subscriptions_tool.getEventsFromContext(context=here);
                    isAno python:here.portal_membership.isAnonymousUser();
-                   email request/email|nothing;">
-
-  <span i18n:translate="header_choose_the_events">
+                   email request/email|nothing;
+                   subscribe_list python:[x for x in events.keys() if not subscriptions_tool.isSubscriberFor(x, here, email)];
+                   unsubscribe_list python:[x for x in events.keys() if subscriptions_tool.isSubscriberFor(x, here, email)];
+                   ">
+  <h4 i18n:translate="header_choose_the_events">
     Below are events open for subscriptions.
-  </span>
+  </h4>
   <div class="group">
-  <form name="form" method="get" action="."
-        tal:attributes="action string:${here/absolute_url}">
-    <table width="100%" align="center">
-      <tr tal:repeat="event_key python:events.keys()"
-          tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
-        <td>
-          <strong>
-            <span i18n:translate="">
-              <span tal:replace="events/?event_key" />
-            </span>
-          </strong>
-        </td>
-        <td align="left">
-          <input type="checkbox"
-                 tal:condition="python:1"
-                 tal:attributes="name string:event_ids:list;
-                                 value event_key;
-                                 checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
-        </td>
-      </tr>
-      </table>
-      <tal:block condition="python:not email and isAno">
-        <h4 i18n:translate="header_enter_your_email">
-            <span i18n:translate="label_enter_your_email">
-              Enter a valid email
-            </span>
-        </h4>
-        <br />
-        <table width="100%" align="center">
-        <tr>
+  <tal:block condition="subscribe_list">
+    <form name="form" method="get" action="."
+          tal:attributes="action string:${here/absolute_url}">
+      <table width="100%" align="center">
+        <tr tal:repeat="event_key subscribe_list"
+            tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+          <td>
+            <strong>
+              <span i18n:translate="">
+                label_<span tal:replace="event_key" />
+              </span>
+            </strong>
+          </td>
           <td align="left">
-            <input type="text"
-                   size="30"
-                   name="subscriber_email"
-                   value="your_email@domain.com">
+            <input type="checkbox"
+                   tal:condition="python:1"
+                   tal:attributes="name string:event_ids:list;
+                                   value event_key;
+                                   checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
           </td>
         </tr>
         </table>
-      </tal:block>
-      <br />
-      <input type="submit" class="standAlone" name="folder_subscribe:method"
-             value="button_subscribe"
-             i18n:attributes="value">
-      <input type="submit" class="standAlone" name="folder_unsubscribe:method"
-             value="button_unsubscribe"
-             i18n:attributes="value">
-  </form>
+        <tal:block condition="python:not email and isAno">
+        <hr />
+          <table width="100%" align="center" cellspacing="2" cellpadding="5">
+          <tr>
+            <td align="right">
+              <strong i18n:translate="header_enter_your_email">
+              <span i18n:translate="label_enter_your_email">
+                Enter a valid email
+              </span>
+          </strong>
+            </td>
+            <td align="left">
+              <input type="text"
+                     size="30"
+                     name="subscriber_email"
+                     value="">
+            </td>
+          </tr>
+          </table>
+        </tal:block>
+        <br />
+        <input type="submit" class="standAlone" name="folder_subscribe:method"
+               value="button_subscribe"
+               i18n:attributes="value">
+    </form>
+  </tal:block>
+  <tal:block condition="not:subscribe_list">
+    <div translate="label_no_subscriptions">
+      No event opened for subscsriptions in here.
+    </div>
+  </tal:block>
   </div>
+  <tal:block condition="not:isAno">
+    <br />
+    <h4 i18n:translate="header_choose_the_events_to_sunsubscribe">
+      Below are the events you may unsubscribe
+    </h4>
+    <div class="group">
+    <tal:block condition="unsubscribe_list">
+      <form name="form" method="get" action="."
+            tal:attributes="action string:${here/absolute_url}">
+        <table width="100%" align="center">
+          <tr tal:repeat="event_key unsubscribe_list"
+              tal:attributes="class python:test(repeat['event_key'].odd(), 'even','odd')">
+            <td>
+              <strong>
+                <span i18n:translate="">
+                  label_<span tal:replace="event_key" />
+                </span>
+              </strong>
+            </td>
+            <td align="left">
+              <input type="checkbox"
+                     tal:condition="python:1"
+                     tal:attributes="name string:event_ids:list;
+                                     value event_key;
+                                     checked python:subscriptions_tool.isSubscriberFor(event_key, here, email)">
+            </td>
+          </tr>
+          </table>
+          <br />
+          <input type="submit" class="standAlone" name="folder_unsubscribe:method"
+                 value="button_unsubscribe"
+                 i18n:attributes="value">
+      </form>
+    </tal:block>
+    <tal:block condition="not:unsubscribe_list">
+      <div translate="label_no_subscriptions">
+        Currently you got no subscriptions in here.
+      </div>
+    </tal:block>
+    </div>
+  </tal:block>
 </tal:block>
 </metal:block>
 

@@ -22,5 +22,5 @@ else:
     if context.REQUEST is not None:
         psm = 'psm_welcome_to_mailing_list'
         context.REQUEST.RESPONSE.redirect(context.absolute_url() + \
-                                          '/folder_subscription_welcome?psm=%s' \
+                                          '/folder_subscription_welcome?portal_status_message=%s' \
                                           %(psm))
