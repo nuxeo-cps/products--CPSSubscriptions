@@ -223,7 +223,7 @@ class MailNotificationRule(NotificationRule):
         try:
             body = self.portal_subscriptions.getDefaultMessageBody(
                 event_id=infos['event']) % infos
-        except (KeyError, TypeError):
+        except (KeyError, TypeError, ValueError):
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
 

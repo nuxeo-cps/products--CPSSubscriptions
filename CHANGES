@@ -6,7 +6,8 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- ValuError cause of weired characters coming from the user side.
+  Notifications.py : _getBody()
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
