@@ -1,0 +1,40 @@
+<dtml-var manage_page_header>
+
+<dtml-let form_title="'Add a Notification Message Body">
+<dtml-var manage_form_title>
+</dtml-let>
+
+<form action="addNotificationMessageBody" method="POST">
+<table cellspacing="0" cellpadding="2" border="0">
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">Id</div>
+    </td>
+    <td align="left" valign="top">
+      <div class="form-element">
+        <input type="text" name="id" size="40" />
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      <div class="form-label">Message body</div>
+    </td>
+    <td align="left" valign="top">
+      <div class="form-element">
+      <textarea name="message_body" cols="55" rows="10">></textarea>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+    <td align="left" valign="top">
+      <div class="form-element">
+        <input class="form-element" type="submit" value=" Add " />
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+<dtml-var manage_page_footer>
