@@ -167,7 +167,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
   </tr>
 </table>
 </form>
-<hr>
+
 
 <h3>Specific event messages</h3>
 <p>
@@ -187,7 +187,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
   </li>
 </dtml-in>
 </ul>
-<hr>
+
 
 <h3>Reset all messages</h3>
 <form action="manage_resetEventMessages" method="post">
