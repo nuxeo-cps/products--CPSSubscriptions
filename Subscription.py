@@ -1,6 +1,6 @@
-# Copyright (C) 2003 Nuxeo SARL <http://nuxeo.com>
-# Copyright (C) 2003 CGEY <http://cgey.com>
-# Copyright (c) 2003 Ministère de L'intérieur (MISILL)
+# Copyright (C) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (C) 2004 CGEY <http://cgey.com>
+# Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Florent Guillaume <fg@nuxeo.com>
@@ -25,18 +25,11 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """ Subscription Class
 """
 
-from Globals import InitializeClass, DTMLFile, MessageDialog
-from Acquisition import aq_base, aq_parent, aq_inner
+from Globals import InitializeClass, MessageDialog
+from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
-from Products.CMFCore.utils import getToolByName
-
-from RecipientsRules import RecipientsRule, \
-     addComputedRecipientsRule, addExplicitRecipientsRule, \
-     addRoleRecipientsRule, addWorkflowImpliedRecipientsRule
-
-from Notifications import addMailNotificationRule
 
 from zLOG import LOG, DEBUG, INFO
 
@@ -56,7 +49,8 @@ class Subscription(PortalFolder):
                     'label': 'Filter Event Types'},
                    {'id': 'filter_object_types', 'type': 'lines', 'mode': 'w',
                     'label': 'Filter Object Types'},
-                   {'id': 'recipient_emails_black_list', 'type': 'lines', 'mode': 'w',
+                   {'id': 'recipient_emails_black_list', 'type': 'lines',
+                    'mode': 'w',
                     'label': 'Recipient Emails Black List'},
                    {'id': 'notification_type', 'type': 'string', 'mode': 'w',
                     'label': 'Notification Type'},
@@ -152,7 +146,6 @@ class Subscription(PortalFolder):
             for pt_recipient in pt_recipients.keys():
                 recipients[pt_recipient] = pt_recipients[pt_recipient]
 
-        LOG(" RECIPIENTS FOR SUBSCRIPTION ->", DEBUG, recipients)
 
         #
         # Notify the recipients
@@ -189,11 +182,14 @@ class Subscription(PortalFolder):
             return [x for x in all_recipients_rules \
                     if x.meta_type == recipients_rule_type]
 
+InitializeClass(Subscription)
+
 def addSubscription(self, id=None, title='', REQUEST=None):
     """Add a Subscriptions object"""
 
     if id is None:
         id = self.computeId()
+
     if hasattr(aq_base(self), id):
         return MessageDialog(
             title='Item Exists',
