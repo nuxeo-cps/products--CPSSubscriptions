@@ -19,6 +19,7 @@
 # translation of en.po to
 # translation of en.po to
 # translation of en.po to
+# translation of en.po to
 # translation of en.po to Français
 # Gettext Message File for default.
 # Your Name <your@email>, Year
@@ -28,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
 "POT-Creation-Date: 2004-03-10 04:33default\n"
-"PO-Revision-Date: 2004-03-10 04:35+0100\n"
+"PO-Revision-Date: 2004-03-15 17:02+0100\n"
 "Last-Translator: Julien Anguenot <anguenot@nuxeo.com>\n"
 "Language-Team:  <janguenot@nuxeo.com>\n"
 "MIME-Version: 1.0\n"
@@ -526,7 +527,7 @@ msgid "action_my_subscriptions"
 msgstr "My subscriptions"
 
 msgid "action_folder_subscribe"
-msgstr "Mailing lists"
+msgstr "Subscriptions"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
