@@ -151,7 +151,7 @@ class MailNotificationRule(NotificationRule):
 
     security = ClassSecurityInfo()
 
-    def _getMailFrom(self, object):
+    def _getMailFrom(self, object, infos):
         """ Return an email for the mail from field of the mail.
 
         1 - Creator of the object if an object has been created.
@@ -162,7 +162,8 @@ class MailNotificationRule(NotificationRule):
         mtool = self.portal_membership
         creator = mtool.getMemberById(object.Creator())
 
-        mail_from = None
+        mail_from = infos.get('email_from')
+
         if creator:
             # Skins if different name for the email field.
             email_creator = self.getMemberEmail(creator.getMemberId())
@@ -284,7 +285,7 @@ class MailNotificationRule(NotificationRule):
         portal = getToolByName(self, 'portal_url').getPortalObject()
 
         infos = self._makeInfoDict(event_type, object, infos)
-        mfrom = self._getMailFrom(object)
+        mfrom = self._getMailFrom(object, infos)
         subject = self._getSubject(infos)
         body = self._getBody(infos)
 
