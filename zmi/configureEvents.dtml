@@ -8,8 +8,8 @@
 
 <dtml-let keys="mapping_context_events.keys()">
 <ul>
-  <li>
-    <dtml-in keys>
+  <dtml-in keys>
+    <li>
       <dtml-let context=sequence-item>
         <strong>
           <dtml-var context><br />
@@ -24,8 +24,8 @@
           </ul>
         </dtml-in>
       </dtml-let>
-    </dtml-in>
-  </li>
+    </li>
+  </dtml-in>
 </ul>
 </dtml-let>
 
