@@ -144,7 +144,8 @@ class NotificationRule(PortalFolder):
 
         try:
             self.MailHost.send(raw_message)
-        except MailHostError:
+        except:
+            # FIXME find gaierror exception
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 INFO,
                 "Error while sending mail")
