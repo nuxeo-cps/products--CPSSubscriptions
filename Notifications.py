@@ -88,8 +88,9 @@ class MailNotificationRule(NotificationRule):
             return email_creator
         else:
             pprops = self.portal_properties
-            cps_admin_email = pprops.get('email_from_address',
-                                         'no_mail@nuxeo.com')
+            cps_admin_email = getattr(pprops,
+                                      'email_from_address',
+                                      'no_mail@nuxeo.com')
             return cps_admin_email
 
     def _getSubject(self, infos):
