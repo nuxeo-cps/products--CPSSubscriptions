@@ -290,6 +290,18 @@ class ExplicitRecipientsRule(RecipientsRule):
     emails_pending_add = []
     emails_pending_delete = []
 
+    def __init__(self, id, title=''):
+        """Init the expression attrs
+        """
+        PortalFolder.__init__(self, id, title=title)
+        self.members = []
+        self.members_allow_add = 0
+        self.groups = []
+        self.emails = []
+        self.emails_subscribers = []
+        self.emails_pending_add = []
+        self.emails_pending_delete = []
+
     ######################################################
     ######################################################
 
