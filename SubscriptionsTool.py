@@ -58,7 +58,7 @@ class SubscriptionsTool(UniqueObject, Folder):
     def getSubscriptionId(self):
         """ Returns the default id for subscription object
 
-        .cps_subscriptions byt default
+        .cps_subscriptions by default
         """
         default_id = '.cps_subscriptions'
         return default_id
@@ -81,13 +81,15 @@ class SubscriptionsTool(UniqueObject, Folder):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
-        recipients = self.getRecipientsFor(event_type, object, infos)
 
-        LOG("############## ALL RECIPIENTS ###############", DEBUG, recipients)
+        subscriptions = self.getSubscriptionsFor(event_type,
+                                                 object,
+                                                 infos)
+        for subscription in subscriptions:
+            if subscription.isInterestedInEvent(event_type, object, infos):
+                subscription.sendEvent(event_type, object, infos)
 
-        # XXX getting the nofication type and doing sthg now.
-
-    security.declareProtected(ModifyPortalContent, 'getSubscriptionsFor')
+    security.declarePublic("getSubscriptionsFor")
     def getSubscriptionsFor(self, event_type, object, infos=None):
         """Get the subscriptions applicable for this event.
 
@@ -103,30 +105,30 @@ class SubscriptionsTool(UniqueObject, Folder):
                              if 'subscription__'+event_type == x.id]
         return subscriptions
 
-    security.declareProtected(ModifyPortalContent, 'getRecipientsFor')
-    def getRecipientsFor(self, event_type, object, infos=None):
-        """Get all the recipients for a given event_type and
-        for a given object.
+    security.declarePublic("getRecipientsFor")
+    def getRecipientsFor(self, event_type='', object=None, infos={}):
+        """ Get all the recipients computed from all the subscriptions
+        found.
 
-        infos may be None
+        The black list parameter will pass within the infos parameter.
         """
-        subscriptions = self.getSubscriptionsFor(event_type,
-                                                 object,
-                                                 infos)
         recipients = {}
+        if event_type:
+            subscriptions = self.getSubscriptionsFor(event_type, object, infos)
+        else:
+            events = self.getEventTypesFromContext() # skins
+            subscriptions = []
+            for event in events:
+                subscriptions += self.getSubscriptionsFor(event, object, infos)
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
-                black_list = subscription.getRecipientEmailsBlackList()
-                LOG("BLACK LIST >>>>>>>>>>>>>>>", DEBUG, black_list)
-                recipients_rules = subscription.getRecipientsRules()
-                for recipients_rule in recipients_rules:
-                    subscription_recipients = recipients_rule.getRecipients(\
-                     event_type,
-                     object,
-                     infos)
-                    for key in subscription_recipients.keys():
-                        if key not in recipients.keys():
-                            recipients[key] = subscription_recipients[key]
+                for pt_recipient_rule in subscription.getRecipientsRules():
+                    pt_recipients = pt_recipient_rule.getRecipients(event_type,
+                                                                    object,
+                                                                    infos)
+                    LOG("YYYYY", DEBUG, pt_recipients)
+                    for pt_recipient in pt_recipients.keys():
+                        recipients[pt_recipient] = pt_recipients[pt_recipient]
         return recipients
 
 InitializeClass(SubscriptionsTool)
