@@ -1,0 +1,62 @@
+<html metal:define-macro="master"
+  tal:define="utool nocall:here/portal_url;
+    mtool here/portal_membership;
+    atool here/portal_actions;
+    wtool here/portal_workflow;
+    btool here/portal_boxes;
+    dirtool here/portal_directories;
+    dtool dirtool/members;
+    gdtool dirtool/groups;
+    mcat nocall:here/Localizer/default;
+    portal_object utool/getPortalObject;
+    portal_title portal_object/Title;
+    object_title here/Title;
+    rportal_url python:utool(relative=1);
+    portal_url python:rportal_url and '/'+rportal_url or '';
+    here_url python:'/'+here.absolute_url(relative=1);
+    bcs here/breadcrumbs;
+    member mtool/getAuthenticatedMember;
+    is_anon mtool/isAnonymousUser;
+    actions python: atool.listFilteredActionsFor(here);
+    global_actions actions/global;
+    pss modules/Products/PythonScripts/standard;
+    showthirdcol showthirdcol|nothing;
+    hideactions hideactions|nothing;
+    portal_status_message request/form/portal_status_message|nothing;
+    base_url python:here.getBaseUrl(utool=utool);
+">
+<head>
+  <title tal:content="here/expanded_title">Nuxeo
+    | Solutions web pour mieux collaborer</title>
+  <metal:block define-slot="base">
+    <!-- Additional head elements -->
+    <base tal:attributes="href string:${here/absolute_url}/">
+  </metal:block>
+  <metal:block define-slot="script_plus" />
+  <link rel="Stylesheet" type="text/css" href=""
+    tal:attributes="href string:${base_url}nuxeo_css1.css">
+  <style type="text/css" media="all"
+    tal:content="string:@import url(${base_url}nuxeo_css2.css);"></style>
+  <link rel="Stylesheet" type="text/css" href=""
+             tal:attributes="href string:${base_url}document.css">
+</head>
+
+<body bgcolor="white">
+  <table cellspacing="0" border="0" cellpadding="5" width="100%">
+    <tr>
+      <td>
+        <metal:block define-slot="header">
+          Header
+        </metal:block>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <metal:block define-slot="main">
+          Main
+        </metal:block>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
