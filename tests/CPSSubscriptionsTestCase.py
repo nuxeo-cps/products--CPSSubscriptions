@@ -26,9 +26,9 @@ class CPSSubscriptionsInstaller(CPSTestCase.CPSInstaller):
 
         # Install the CPSSubscriptions product
         cpssubscriptions_installer = ExternalMethod('cpsubscriptions_installer',
-                                                     '',
-                                                     'CPSSubscriptions.install',
-                                                     'install')
+                                                    '',
+                                                    'CPSSubscriptions.install',
+                                                    'install')
         portal._setObject('cpssubscriptions_installer', cpssubscriptions_installer)
         portal.cpssubscriptions_installer()
 

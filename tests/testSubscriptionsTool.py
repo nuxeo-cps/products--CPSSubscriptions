@@ -52,7 +52,7 @@ def randomText(max_len=10):
 class TestSubscriptionsTool(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     """Test Subscriptions Tool
 
-    This class this the subscriptions tool :
+    This class tests the subscriptions tool :
      - Fixtures
      - Default settings
      - Initialization

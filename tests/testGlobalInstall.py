@@ -12,6 +12,9 @@ class TestGlobalInstall(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     def afterSetUp(self):
         self.login('root')
 
+    def beforeTearDown(self):
+        self.logout()
+
     def testInstallerScript(self):
         # Check installation script
         from Products.ExternalMethod.ExternalMethod import ExternalMethod
@@ -22,10 +25,7 @@ class TestGlobalInstall(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
         self.portal.installer()
         # Check Subscriptions Tool
         subscriptions_tool = getToolByName(self.portal, 'portal_subscriptions')
-        self.assertEqual(subscriptions_tool is not None, 1)
-
-    def beforeTearDown(self):
-        self.logout()
+        self.assert_(subscriptions_tool is not None)
 
 def test_suite():
     suite = unittest.TestSuite()
