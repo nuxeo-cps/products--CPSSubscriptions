@@ -17,7 +17,7 @@ Comments: %(comments)s
 """
 
 mail_error_body = \
-"""An error occured while computing the body of the email message.
+"""An error occurred while computing the body of the email message.
 
 Please contact, the administrator of the portal.
 """
