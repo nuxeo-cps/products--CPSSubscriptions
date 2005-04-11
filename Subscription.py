@@ -27,7 +27,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """
 
 from Globals import InitializeClass, MessageDialog
-from Acquisition import aq_base
+from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
@@ -217,6 +217,11 @@ class Subscription(PortalFolder):
         else:
             return [x for x in all_recipients_rules \
                     if x.meta_type == recipients_rule_type]
+
+    def getParentContainer(self):
+        """Return the subscription parent container
+        """
+        return aq_parent(aq_inner(self))
 
 InitializeClass(Subscription)
 

@@ -78,6 +78,11 @@ class NotificationRule(PortalFolder):
         """
         raise NotImplementedError
 
+    def getParentSubscription(self):
+        """Return the parent subscription
+        """
+        return aq_parent(aq_inner(self))
+
 InitializeClass(NotificationRule)
 
 ################################################################
@@ -184,16 +189,12 @@ class MailNotificationRule(NotificationRule):
     def _getMailFrom(self, infos):
         """ Return an email for the mail from field of the mail.
         """
-        mail_from = infos.get('email_from')
-
-        if not mail_from:
-            pprops = self.portal_properties
-            mail_from = getattr(pprops, 'email_from_address', None)
-
-        if mail_from:
-            return mail_from
-        else:
-            return 'no_mail@no_mail.com'
+        subscription = self.getParentSubscription()
+        if subscription is not None:
+            container = subscription.getParentContainer()
+            if container is not None:
+                return container.getMailFrom()
+        return "no_mail@nomail.com"
 
     def _getSubject(self, infos):
         """ Returns the subject of the email.
