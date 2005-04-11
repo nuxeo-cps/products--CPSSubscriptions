@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- #508 : gestion desobjets / listes de CPSSubscriptions
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- Add some tests on RecipientsRules. We need more...

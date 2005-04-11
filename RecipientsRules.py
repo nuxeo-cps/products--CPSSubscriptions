@@ -263,50 +263,27 @@ class ExplicitRecipientsRule(RecipientsRule):
 
     security.declareProtected(ManageSubscriptions, "updateMembers")
     def updateMembers(self, member_struct={}):
-        """Add explicitly member in a given context
+        """Add explicitly a member in a given context
 
-        Notice that a given could have subscribe from different part
-        of the tree.
+        Notice a given member could have subscribed from different
+        parts of the tree.
+
+        XXX Don't store the absolute_url but the rpath instead...
+        XXX refactore the namming of the member struct internal
         """
         self._p_changed = 1
-
         if member_struct:
-            candidate_id = member_struct['id']
-            candidate_url = member_struct['subscription_relative_url'][0]
-            current_member_ids = self.getMemberIds()
-
-            #
-            # Here the member is not subscribed already
-            # So we simply add it
-            #
-
-            if candidate_id not in current_member_ids:
-                # It might have been changed through the ZMI
-                if isinstance(self.members, TupleType):
-                    self.members += (member_struct,)
-                else:
-                   self.members += [member_struct]
-                return 1
+            if member_struct.get('id') not in self.getMemberIds():
+                self.members.append(member_struct)
             else:
-
-                #
-                # Here, the member is already subscribed so let's see if it's
-                # from a different place
-                #
-
-                member_struct = self.getMemberStructById(candidate_id)
-                member_struct_urls = member_struct['subscription_relative_url']
-                if candidate_url not in member_struct_urls:
-                    member_struct_urls.append(candidate_url)
-                    member_struct['subscription_relative_url'] = member_struct_urls
-                    tmp_members = []
-                    for member in self.getMembers():
-                        if member['id'] != candidate_id:
-                            tmp_members.append(member)
-                        else:
-                            tmp_members.append(member_struct)
-                    self.members = tmp_members
-                    return 1
+                orig_struct = self.getMemberStructById(member_struct.get('id'))
+                for candidate_url in member_struct.get(
+                    'subscription_relative_url', ()):
+                    if candidate_url not in orig_struct.get(
+                        'subscription_relative_url'):
+                        orig_struct.get('subscription_relative_url').append(
+                            candidate_url)
+            return 1
         return 0
 
     security.declareProtected(ManageSubscriptions, "removeMember")
@@ -331,7 +308,8 @@ class ExplicitRecipientsRule(RecipientsRule):
                         tmp_members.append(member)
                     else:
                         if new_urls:
-                            member_struct['subscription_relative_url'] = new_urls
+                            member_struct[
+                                'subscription_relative_url'] = new_urls
                             tmp_members.append(member_struct)
                 self.members = tmp_members
                 return 1
@@ -352,11 +330,12 @@ class ExplicitRecipientsRule(RecipientsRule):
     def updateGroups(self, group_ids=[]):
         """Add explicitly group ids
         """
+        if not group_ids:
+            return 0
         for group_id in group_ids:
-            if group_id not in self.groups:
+            if group_id not in self.getGroups():
                 self.groups += [group_id]
-                return 1
-        return 0
+        return 1
 
     #####################################################
     #####################################################
@@ -368,13 +347,13 @@ class ExplicitRecipientsRule(RecipientsRule):
         Returns a list of emails
 
         """
-        return self.emails
+        return list(self.emails)
 
     security.declareProtected(ManageSubscriptions, "updateEmails")
     def updateEmails(self, emails=[]):
         """Add explicitly emails
         """
-        self.emails = emails
+        self.emails = list(emails)
 
     #####################################################
     #####################################################
@@ -385,15 +364,18 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         Returns a list of emails
         """
-        return self.emails_pending_add
+        return list(self.emails_pending_add)
 
     security.declareProtected(ManageSubscriptions, "updatePendingEmails")
     def updatePendingEmails(self, email=''):
         """Add pending email subscription
         """
+        self._p_changed = 1
         if (email and
             email not in self.getPendingEmails() and
             email not in self.getEmails()):
+            # ZMI
+            self.emails_pending_add = self.getPendingEmails()
             self.emails_pending_add.append(email)
             return 1
         return 0
@@ -407,14 +389,18 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         Returns a list of emails
         """
-        return self.emails_pending_delete
+        return list(self.emails_pending_delete)
 
     security.declareProtected(ManageSubscriptions, 'updatePendingDeleteEmails')
     def updatePendingDeleteEmails(self, email=''):
-        """Add pending email subscription
+        """Add pending delete email subscription
         """
-        if email and email in self.getSubscriberEmails() or \
-               email in self.getEmails():
+        if (email and
+            email not in self.getPendingDeleteEmails() and
+            (email in self.getSubscriberEmails() or
+             email in self.getEmails())):
+            # ZMI
+            self.emails_pending_delete = self.getPendingDeleteEmails()
             self.emails_pending_delete.append(email)
             return 1
         return 0
@@ -428,19 +414,21 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         return a list of emails
         """
-        return self.emails_subscribers
+        return list(self.emails_subscribers)
 
     security.declareProtected(ManageSubscriptions, 'updateSubscriberEmails')
     def updateSubscriberEmails(self, email=''):
         """Add email subscription (explicit)
         """
-        if email:
-            if email not in self.getSubscriberEmails():
-                self.emails_subscribers.append(email)
+        if (email and
+            email not in self.getSubscriberEmails()):
+            self.emails_subscribers = self.getSubscriberEmails()
+            self.emails_subscribers.append(email)
             return 1
         return 0
 
-    security.declareProtected(ManageSubscriptions, 'importEmailsSubscriberList')
+    security.declareProtected(ManageSubscriptions,
+                              'importEmailsSubscriberList')
     def importEmailsSubscriberList(self, list=[]):
         """Add the list of emails to the subscriber list
         """
