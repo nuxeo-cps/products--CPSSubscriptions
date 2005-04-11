@@ -78,6 +78,22 @@ class NotificationRule(PortalFolder):
         """
         raise NotImplementedError
 
+InitializeClass(NotificationRule)
+
+################################################################
+
+class MailNotificationRule(NotificationRule):
+    """Mail Notification Rule
+
+    Sending mail to the recipients of the subscription.
+    Only one MailNotifcationRule is necessarly within a subscription.
+    """
+
+    meta_type = "Mail Notification Rule"
+    portal_type = meta_type
+
+    security = ClassSecurityInfo()
+
     def getRawMessage(self, infos, object, event_id):
         """ Renders an RFC822 compliant message.
         """
@@ -164,22 +180,6 @@ class NotificationRule(PortalFolder):
                 INFO,
                 "Error while sending mail",
                 "check your SMTP parameters or mailfrom address")
-
-InitializeClass(NotificationRule)
-
-################################################################
-
-class MailNotificationRule(NotificationRule):
-    """Mail Notification Rule
-
-    Sending mail to the recipients of the subscription.
-    Only one MailNotifcationRule is necessarly within a subscription.
-    """
-
-    meta_type = "Mail Notification Rule"
-    portal_type = meta_type
-
-    security = ClassSecurityInfo()
 
     def _getMailFrom(self, infos):
         """ Return an email for the mail from field of the mail.
