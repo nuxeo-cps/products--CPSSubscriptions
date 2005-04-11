@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.16.1 [R1 build 2005/04/11-08:55 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
+- Typo in french translation of getMailTemplate.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.16.0 [R1 build 2005/01/20-11:43 by ben]
 
 Requires:
