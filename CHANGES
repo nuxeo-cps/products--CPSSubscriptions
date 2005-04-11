@@ -9,6 +9,7 @@ Bug fixes:
 - #508 : gestion desobjets / listes de CPSSubscriptions
 - #543 : Pas de prise en compte de "Adresse électronique de l'émetteur
 pour les courriels sortants"
+- #557 : mistake in french version (getMailTemplate_fr.py)
 
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~

@@ -33,7 +33,7 @@ Nous avaons reçu une demande d'abonnement pour votre adresse email,
 
 Vous devez confimer votre abonnement sur la page:
 
-$(object_url)s
+%(object_url)s
 """
 
 subscribe_welcome_email_title = \
