@@ -1,4 +1,24 @@
 *******************************************
+** CPSSubscriptions V0.16.2 [R1 build 2005/04/13-08:29 by ben]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- #508 : gestion desobjets / listes de CPSSubscriptions
+- #543 : Pas de prise en compte de "Adresse électronique de l'émetteur
+pour les courriels sortants"
+- #557 : mistake in french version (getMailTemplate_fr.py)
+
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Add some tests on RecipientsRules. We need more...
+
+*******************************************
 ** CPSSubscriptions V0.16.1 [R1 build 2005/04/11-08:55 by ben]
 
 Requires:
