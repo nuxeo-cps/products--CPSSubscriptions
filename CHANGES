@@ -6,7 +6,8 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- MailNotificationRule instead of Notification to send emails since
+the NotificationRule class is abstrat now
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

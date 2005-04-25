@@ -43,7 +43,7 @@ from Products.CMFCore.utils import UniqueObject, getToolByName, \
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
 from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
-from Notifications import NotificationRule
+from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 from Products.ZCatalog.ZCatalog import ZCatalog
 
@@ -1107,7 +1107,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         self._p_changed = 1
 
-        notification_vector = NotificationRule('fake')
+        notification_vector = MailNotificationRule('fake')
 
         if subscription_mode in self.mapping_modes.keys():
             table = self.notification_scheduling_table.get(
@@ -1273,7 +1273,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # using the mailHost
         #
 
-        notification_obj = NotificationRule('fake')
+        notification_obj = MailNotificationRule('fake')
 
 
         # Get the mailhost in here
