@@ -242,6 +242,7 @@ class MailNotificationRule(NotificationRule):
 
         portal_subscriptions = getToolByName(self, 'portal_subscriptions')
         memberDirectory = getToolByName(self, 'portal_directories').members
+        ttool = getToolByName(self, 'portal_types')
 
         context = aq_parent(aq_inner(object))
         mcat = self.Localizer.default
@@ -264,6 +265,12 @@ class MailNotificationRule(NotificationRule):
         infos['object_title'] = object.Title()
         infos['object_url'] = infos.get('url', object.absolute_url())
         infos['object_type'] = getattr(object, 'portal_type', '')
+
+        # i18n type title
+        type_title = ttool[infos['object_type']].Title()
+        i18n_type_title = mcat(type_title).encode('ISO-8859-15', 'ignore')
+        if  i18n_type_title != type_title:
+            infos['object_type'] = i18n_type_title
 
         object_parent = aq_parent(aq_inner(object))
         infos['object_parent_title'] = object_parent.Title()
