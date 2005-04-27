@@ -89,19 +89,19 @@ class ComputedRecipientsRule(RecipientsRule):
          },
         )
 
-    expression = 'string:'
+    expression = 'python:{}'
     expression_c = Expression(expression)
 
     _properties_post_process_tales = (
         ('expression', 'expression_c')
         )
 
-    def __init__(self, id, title=''):
+    def __init__(self, id, title='', expr='python:{}'):
         """Init the expression attrs
         """
         PortalFolder.__init__(self, id, title=title)
         self.id = id
-        self.expression = 'string:'
+        self.expression = expr
         self.expression_c = Expression(self.expression)
 
     def getExpression(self, context, infos={}):
@@ -110,7 +110,7 @@ class ComputedRecipientsRule(RecipientsRule):
         try:
             self.expression_c = Expression(self.expression)
         except AttributeError:
-            self.expression = 'string:'
+            self.expression = 'python:{}'
         expr_context = self._createExpressionContext(context, infos)
         return self.expression_c(expr_context)
 

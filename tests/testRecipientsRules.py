@@ -8,12 +8,19 @@ import unittest
 
 import CPSSubscriptionsTestCase
 
+from OFS.Folder import Folder
+
 from Products.CPSSubscriptions.RecipientsRules import RecipientsRule
 from Products.CPSSubscriptions.RecipientsRules import ExplicitRecipientsRule
 from Products.CPSSubscriptions.RecipientsRules import ComputedRecipientsRule
 from Products.CPSSubscriptions.RecipientsRules import RoleRecipientsRule
 from Products.CPSSubscriptions.RecipientsRules import \
      WorkflowImpliedRecipientsRule
+
+class FakeURLTool(Folder):
+    def getPortalObject(self):
+        # XXX dummy
+        return self
 
 class TestBaseRecipientsRules(
     CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
@@ -274,9 +281,24 @@ class TestExplicitRecipientsRules(TestBaseRecipientsRules):
 class TestComputedRecipientsRules(TestBaseRecipientsRules):
 
     def test_fixtures(self):
-        err = ComputedRecipientsRule('fake')
 
-    # XXX
+        # Instanciation 1 : default expr
+        err = ComputedRecipientsRule('fake', title='Fake')
+        self.portal._setObject('err', err)
+        err = self.portal['err']
+
+        self.assertEqual(err.expression, 'python:{}')
+        self.assertEqual(err.getRecipients('event_type', self.portal, {}), {})
+
+        # Instanciation 2 : custom expression
+        expr = "python:{'ja@nuxeo.com': 'Julien Anguenot'}"
+        err2 = ComputedRecipientsRule('fake', title='Fake', expr=expr)
+        self.portal._setObject('err2', err2)
+        err2 = self.portal['err2']
+
+        self.assertEqual(err2.expression, expr)
+        self.assertEqual(err2.getRecipients('event_type', self.portal, {}),
+                         {'ja@nuxeo.com': 'Julien Anguenot'})
 
 class TestRoleRecipientsRules(TestBaseRecipientsRules):
 
