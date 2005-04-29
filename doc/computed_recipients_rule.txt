@@ -10,7 +10,8 @@ It is containing a tales expression as attribut.
 expression -- A TALES expression returning a mapping with recipients.
 
 **ATTENTION** : your TALES expression should return a dictionnary with
-  emails as keys (ie: {'ex@example.com' : 'ex@example.com'}). If you are not
+  emails as keys and a string that may be empty or contains the member_id
+  (ie: {'ex@example.com' : 'member_id'}). If you are not
   respecting this format this is not going to work.
 
 The following namespace is available:
