@@ -19,10 +19,12 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <input type="text"
-             name="event_email_title"
-             value='<dtml-var expr="getDefaultMessageTitle(event_id)">'
-             size="60" />
+      <dtml-let msg="getDefaultMessageTitle(event_id)">
+        <input type="text"
+               name="event_email_title"
+               value="&dtml-msg;"
+               size="60" />
+      </dtml-let>
     </td>
  </tr>
  <tr>
