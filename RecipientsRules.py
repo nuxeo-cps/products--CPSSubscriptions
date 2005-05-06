@@ -143,7 +143,8 @@ addComputedRecipientsRuleForm = DTMLFile(
     'zmi/computed_recipients_rules_addform',
     globals())
 
-def addComputedRecipientsRule(self, id=None, REQUEST=None):
+def addComputedRecipientsRule(self, id=None, title='',
+                              expr='python:{}', REQUEST=None):
     """ Add a computed recipients rule
     """
 
@@ -162,7 +163,9 @@ def addComputedRecipientsRule(self, id=None, REQUEST=None):
             message='This object already contains an %s' % ob.id,
             action='%s/manage_main' % REQUEST['URL1'])
 
-    ob = ComputedRecipientsRule(id, title='Computed Recipients Rule')
+    if not title:
+        title='Computed Recipients Rule'
+    ob = ComputedRecipientsRule(id, title=title, expr=expr)
     self._setObject(id, ob)
 
     if REQUEST is not None:
