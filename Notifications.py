@@ -260,7 +260,9 @@ class MailNotificationRule(NotificationRule):
                                     event_type)).encode('ISO-8859-15',
                                                         'ignore')
 
-        infos['portal_title'] = self.portal_url.getPortalObject().Title()
+        portal = self.portal_url.getPortalObject()
+        infos['portal_url'] = portal.absolute_url()
+        infos['portal_title'] = portal.Title()
         infos['info_url'] = context.absolute_url() + '/folder_subscribe_form'
         infos['notification_title'] = event_from_context
         infos['event'] = event_type

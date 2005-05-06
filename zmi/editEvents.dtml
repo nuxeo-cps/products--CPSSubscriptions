@@ -18,6 +18,9 @@
   The available variables are the folowing:
 </p>
 <ul style="font-size: smaller;">
+<li><code>portal_url</code><br />
+URL of the portal</li>
+
 <li><code>portal_title</code><br />
 Title of the portal</li>
 
