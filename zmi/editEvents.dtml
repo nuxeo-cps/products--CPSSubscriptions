@@ -57,8 +57,8 @@ Fullname of the user who is at the origin of the event</li>
 <li><code>comments</code><br />
 Comments which where given by the user when she asks for a workflow transition</li>
 
-<li><code>infos</code><br />
-Dictionnary you may give to evtool.notify() containing whatever
+<li><code>Keys of the infos dictionnary</code><br />
+The infos dictionnary is the one given to evtool.notify()
 
 <li><code>Field values / Attribute values of the object</code><br />
 You may access to all the field values of the schemas if the object is a FlexibleTypeInformation or all attribute values in the case of a 'normal' zope object

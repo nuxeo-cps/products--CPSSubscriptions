@@ -236,6 +236,9 @@ class MailNotificationRule(NotificationRule):
 
     def _makeInfoDict(self, event_type, object, infos=None):
         """Build the info dict used for processing the email.
+
+        Additional keys are added to the infos dictionnary provided by the
+        event notification.
         """
         if infos is None:
             infos = {}
