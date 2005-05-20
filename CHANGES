@@ -3,13 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- The portal url is now available as a variable for event messages
+-
 Bug fixes:
 ~~~~~~~~~~
-- MailNotificationRule instead of Notification to send emails since
-the NotificationRule class is abstrat now
-- i18n of object_type within the notification emails
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- ComputedRecipientsRule: Possiblity to specify TALES expression at
-instanciation time
+-

@@ -1,4 +1,23 @@
 *******************************************
+** CPSSubscriptions V0.17.0 [R1 build 2005/05/20-14:43 by anahide]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 21690
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- The portal url is now available as a variable for event messages
+Bug fixes:
+~~~~~~~~~~
+- MailNotificationRule instead of Notification to send emails since
+the NotificationRule class is abstrat now
+- i18n of object_type within the notification emails
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- ComputedRecipientsRule: Possiblity to specify TALES expression at
+instanciation time
+
+*******************************************
 ** CPSSubscriptions V0.16.3 [R1 build 2005/04/13-15:43 by madarche]
 
 Requires:
