@@ -256,7 +256,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_save_changes"
-msgstr "Enregistrez les changements que vous avez fait"
+msgstr "Enregistrez les changements que vous avez faits"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
