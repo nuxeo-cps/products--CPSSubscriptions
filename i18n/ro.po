@@ -1,176 +1,6 @@
 # translation of ro.po to 
-# ##########################################################
-# ################# DON'T EDIT THIS FILE! ##################
-# ##########################################################
 # Gettext Message File for default.
-# Your Name <your@email>, Year
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
-# , 2005.
+# Alin Voinea <avoinea@nuxeo.com>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
@@ -225,7 +55,7 @@ msgstr "FAKE"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "Below are the subscriptions you belong to all over the portal"
-msgstr "Mai jos ai toate abonamentele din portal care iti apartin."
+msgstr "Mai jos ai toate subscrierile din portal care iti apartin."
 
 #.   <span>
 #.       Mailing list subscription confirmation for the event
@@ -366,7 +196,8 @@ msgid ""
 msgstr ""
 "Poti permite doar membrilor cu un anumit rol local sa se aboneze "
 "la acest "
-"eveniment.  De exemplu, poate ca nu vrei ca utilizatorii cu rolul de Oaspete sa se poata abona la evenimentul 'refuza continutul' din cadrul unei sectiuni.  De aceea, "
+"eveniment.  De exemplu, poate ca nu vrei ca utilizatorii cu rolul de "
+"Oaspete sa se poata abona la evenimentul 'refuza continutul' din cadrul unei sectiuni.  De aceea, "
 "alege rolurile locale dorite. Doar utilizatorii cu un rol "
 "din lista de roluri locale selectate"
 "vor putea sa se aboneze la evenimentul respectiv. "
@@ -414,7 +245,7 @@ msgstr ""
 "Nu e nevoie sa modifici campul urmator decat daca este neaparat necesar. "
 "In cazul in care e nevoie de o modificare, trebuie sa introduci "
 "o adresa "
-"electronica valida cum ar fi, de exemplu, systeme@monsite.net"
+"electronica valida cum ar fi, de exemplu, administrator@siteulmeu.net"
 
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
@@ -512,8 +343,8 @@ msgstr "Mai jos sunt evenimentele la care esti abonat datorita rolurilor tale lo
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_user_subscribption_mode"
 msgstr ""
-"Poti alege modul de abonare de mai jos pentru ansamblul de "
-"abonamente de mai sus. "
+"Poti alege modul de subscriere de mai jos pentru ansamblul de "
+"subscrieri de mai sus."
 
 #.   <h1 condition="not:email">
 #.         I Subscribe
@@ -535,7 +366,7 @@ msgstr "Toate persoanele notificate"
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
 msgid "heading_confirm_subscribtion"
-msgstr "Confirmarea abonamentului la <span replace='event_id' />"
+msgstr "Confirmarea subscrieri la <span replace='event_id' />"
 
 #.   <h1>
 #.           Confirm unsubscription for <span replace="event_id" />
@@ -564,7 +395,7 @@ msgstr "Administreaza notificarile"
 #.       </h1>
 #: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr "Abonamentele mele"
+msgstr "Subscrierile mele"
 
 #.   <h1>
 #.           Search members to add to recipients list
@@ -585,7 +416,7 @@ msgstr "Rezultatele cautarii"
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_ok_subscription"
-msgstr "Abonare luata in considerare"
+msgstr "Subscriere luata in considerare"
 
 #.   <h1 condition="email">
 #.         Unsubscription taken into consideration
@@ -621,7 +452,7 @@ msgstr "FAKE"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_anonymous_subscriptions"
-msgstr "Autorizeaza abonamentele pentru oaspeti"
+msgstr "Autorizeaza subscrierea utilizatorilor neautentificati"
 
 #.   <label for="subscription_allowed">
 #.   		  Allow user subscriptions
@@ -629,7 +460,7 @@ msgstr "Autorizeaza abonamentele pentru oaspeti"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_user_subscriptions"
-msgstr "Autorizeaza abonamentele pentru utilizatori"
+msgstr "Autorizeaza subscrierea utilizatorilor"
 
 #.   <label for="unsubscription_allowed">
 #.   		  Allow user local roles based unsubscriptions
@@ -842,7 +673,7 @@ msgstr "Unde"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_closed"
-msgstr "Abonamentele nu mai sunt autorizate aici"
+msgstr "Subscrierile nu mai sunt autorizate aici"
 
 #.   <span>
 #.                 E-Mails
@@ -850,7 +681,7 @@ msgstr "Abonamentele nu mai sunt autorizate aici"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "label_subscriptions_email"
-msgstr "Emails"
+msgstr "Email-uri"
 
 #.   <span>
 #.           You currently do not belong to any subscriptions.
@@ -865,7 +696,7 @@ msgstr "Nu ai nici un abonament in portal"
 #.       </span>
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_you_are_no_registred"
-msgstr "Acum este abonat."
+msgstr "Acum esti abonat."
 
 #.   <span>
 #.                   Real time
@@ -906,22 +737,22 @@ msgid "label_forum_moderator"
 msgstr "Moderatorul forumului"
 
 msgid "label_workflow_create"
-msgstr "Crearea continutului"
+msgstr "Creare continut"
 
 msgid "label_workflow_modify"
-msgstr "Modificarea continutului"
+msgstr "Modificare continut"
 
 msgid "label_workflow_cut_copy_paste"
 msgstr "Copiaza/Taie continutul"
 
 msgid "label_workflow_publish"
-msgstr "Publicarea continutului"
+msgstr "Publicare continut"
 
 msgid "label_workflow_accept"
-msgstr "Acceptarea si publicarea continutului"
+msgstr "Acceptare si publicare continut"
 
 msgid "label_workflow_delete"
-msgstr "Stergerea continutului"
+msgstr "Stergere continut"
 
 msgid "label_workflow_submit"
 msgstr "Continut adaugat"
@@ -942,7 +773,7 @@ msgid "label_reply_to_personnal_post"
 msgstr "Raspuns la o contributie personala"
 
 msgid "label_new_versions"
-msgstr "Crearea unei versiuni a documentului"
+msgstr "Crearea unei revizii a documentului"
 
 msgid "label_forum_new_message"
 msgstr "Crearea unui nou mesaj pe forum"
@@ -985,10 +816,10 @@ msgid "action_folder_notifications"
 msgstr "Administreaza notificarile"
 
 msgid "action_my_subscriptions"
-msgstr "Abonamentele mele"
+msgstr "Subscrierile mele"
 
 msgid "action_folder_subscribe"
-msgstr "Abonamente"
+msgstr "Subscrieri"
 
 msgid "action_notify_content"
 msgstr "Trimite o notificare prin email"
@@ -1004,7 +835,7 @@ msgid "psm_email_sent_to_you"
 msgstr "Un email de confirmare ti-a fost trimis."
 
 msgid "psm_subscription_not_taken_into_consideration"
-msgstr "Abonamentul nu a fost luat in considerare."
+msgstr "Subscrierea nu a fost luat in considerare."
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr "Trebuie sa te abonezi inainte de a incerca sa confirmi."
@@ -1028,7 +859,7 @@ msgid "psm_an_email_has_been_sent"
 msgstr "Un email a fost trimis"
 
 msgid "psm_subscription_updated"
-msgstr "O configuratie a evenimentului a fost adusa la zi"
+msgstr "O configuratie a evenimentului a fost actualizata"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
@@ -1041,5 +872,4 @@ msgid "mode_monthly"
 msgstr "Lunar"
 
 msgid "bc_manage_my_subscriptions"
-msgstr "Abonamentele mele"
-
+msgstr "Subscrierile mele"
