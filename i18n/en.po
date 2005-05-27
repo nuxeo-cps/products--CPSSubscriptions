@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-01-14 09:04default\n"
+"POT-Creation-Date: 2005-05-27 10:34default\n"
 "PO-Revision-Date: 2005-01-14 09:06+0100\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-code: LL\n"
-"Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
-"Domain: default\n"
 "X-Generator: KBabel 1.9.1\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Domain: default\n"
 
 #.   <block>
 #.   		  <block replace="context_lcs/?role" />
@@ -189,13 +189,14 @@ msgstr ""
 #.         opened to everybody for subscriptions.
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
+#, fuzzy
 msgid ""
-"You may allow only members with given local roles to subscribe to this "
+"You may allowed only members with given local roles to subscribe to this "
 "givent event. For instance, you may not want the anonymous users (public) to "
 "subscribe to the event 'reject content' within sections. For this, just pick "
 "up the local roles below for which you want to give the possiblity to the "
 "users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is open to everybody for "
+"not specify any local roles then the event is opened to everybody for "
 "subscriptions."
 msgstr ""
 "You may allow only members with given local roles to subscribe to this given "
@@ -206,10 +207,14 @@ msgstr ""
 "do not specify any local roles then the event is open to everybody for "
 "subscriptions."
 
-#.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
-msgid "button_close"
+#.   <input onclick="javascript:history.back()" type="button" class="standalone" value="button_back" />
+#.   <input onclick="javascript:history.back()" type="button" class="standAlone" value="button_back" />
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#: ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
+#: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
+#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
+#, fuzzy
+msgid "button_back"
 msgstr "Close"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
@@ -449,24 +454,24 @@ msgid ""
 msgstr "FAKE"
 
 #.   <label for="anonymous_subscription_allowed">
-#.   		  Allow anonymous subscriptions
-#.   		</label>
+#.                 Allow anonymous subscriptions
+#.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_anonymous_subscriptions"
 msgstr "Allow anonymous subscriptions"
 
 #.   <label for="subscription_allowed">
-#.   		  Allow user subscriptions
-#.   		</label>
+#.                 Allow user subscriptions
+#.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_user_subscriptions"
 msgstr "Allow user subscriptions"
 
 #.   <label for="unsubscription_allowed">
-#.   		  Allow user local roles based unsubscriptions
-#.   		</label>
+#.                 Allow user local roles based unsubscriptions
+#.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_user_unsubscriptions"
@@ -592,16 +597,16 @@ msgid "label_notify_content_add_emails"
 msgstr "Add explicitly recipients emails (one email per ligne)"
 
 #.   <label for="notify_local_only">
-#.                     Only notify people having local roles in this folder
-#.   		</label>
+#.                 Only notify people having local roles in this folder
+#.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_local_roles"
 msgstr "Only notify people having local roles in this folder"
 
 #.   <label for="notify_no_local">
-#.                     Only notify for events happening in sub-folders
-#.   		</label>
+#.                 Only notify for events happening in sub-folders
+#.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"

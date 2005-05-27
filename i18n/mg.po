@@ -1,25 +1,3 @@
-# translation of mg.po to 
-# translation of mg.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to francais
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to
-# translation of fr.po to Francais
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Julien Anguenot <ja@nuxeo.com>, 2004.
@@ -29,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mg\n"
-"POT-Creation-Date: 2005-01-14 09:04default\n"
+"POT-Creation-Date: 2005-05-27 10:34default\n"
 "PO-Revision-Date: 2004-11-24 13:44+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
@@ -37,11 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-code: LL\n"
-"Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
-"Domain: default\n"
 "X-Generator: KBabel 1.3\n"
+"Language-Code: mg\n"
+"Language-Name: Malagasy\n"
+"Domain: default\n"
+
+#.   <block>
+#.   		  <block replace="context_lcs/?role" />
+#.   		</block>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+msgid "<block replace=\"context_lcs/?role\" />"
+msgstr ""
 
 #.   <block>
 #.   		    <span replace="events/?event_key" />
@@ -204,29 +190,35 @@ msgstr ""
 #.         opened to everybody for subscriptions.
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
+#, fuzzy
 msgid ""
-"You may allow only members with given local roles to subscribe to this "
+"You may allowed only members with given local roles to subscribe to this "
 "givent event. For instance, you may not want the anonymous users (public) to "
 "subscribe to the event 'reject content' within sections. For this, just pick "
 "up the local roles below for which you want to give the possiblity to the "
 "users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is open to everybody for "
+"not specify any local roles then the event is opened to everybody for "
 "subscriptions."
 msgstr ""
-"Manana fahafahana mampihena ny fanjifana amin'ity zava-mitranga ity ho an'ny "
-"mpanjifa manana andraikitra eto anivon'ny tranonkala. Ohatra, azo atao ny "
-"tsy manome alalana ireo mpampiasa tsy fantatra anarana tsy hanjifa amin'ny "
-"zava-mitranga 'Rejet de publication de contenu' ao amin'ny sections. Noho "
-"izany mifidiana andraikitra ao amin'ny lisitra eo ambany eo ka ny mpampiasa "
-"manana andraikitra izay nofidianao eo ambany ihany no afaka hahita ny zava-"
-"mitranga. Raha tsy mifidy andraikitra mihitsy ianao dia azo jeren'ny rehetra "
-"ny zava-mitranga."
+"Vous avez la possibilité de restreindre l'abonnement à cet évènement à une "
+"certaine catégorie d'utilisateurs ayant certains rôles locaux. Par exemple, "
+"il est possible de ne pas autoriser les utilisateurs anonymes à s'abonner à "
+"l'événement 'Rejet de publication de contenu' dans les rubriques. Pour cela, "
+"choisissez les roles locaux dans la liste ci-dessous et l'événement sera "
+"disponible uniquement pour les utilisateurs ayant les rôles locaux que vous "
+"allez spécifier ci-dessous. Si vous ne spécifiez aucun rôle local, alors "
+"l'événement sera disponibe à tous. (Il s'agit de la configuration par "
+"défaut.)"
 
-#.   <input onclick="javascript:window.close()" type="button" class="standAlone" value="button_close" />
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
-msgid "button_close"
-msgstr "Hidina"
+#.   <input onclick="javascript:history.back()" type="button" class="standalone" value="button_back" />
+#.   <input onclick="javascript:history.back()" type="button" class="standAlone" value="button_back" />
+#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
+#: ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
+#: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
+#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
+#, fuzzy
+msgid "button_back"
+msgstr "Fermer"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -263,6 +255,13 @@ msgstr ""
 "tadiavinao, raha izany tokoa dia mampidira mailaka manana endrika hoe, "
 "ohatra,systeme@monsite.net"
 
+#.   <label for="saveChanges">Save changes you have done:</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "description_save_changes"
+msgstr "Enregistrez les changements que vous avez faits"
+
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
@@ -291,6 +290,15 @@ msgstr "Zava-mitranga izay ahafahanao misoratra anarana"
 msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Zava-mitranga izay azonao ialana tsy ho mpanjifa"
 
+#.   <h2>
+#.   	  Contextual notifications
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "header_contextual_notifications"
+msgstr "Notifications contextuelles"
+
 #.   <strong>
 #.                       <span>
 #.                         Enter a valid email
@@ -315,6 +323,24 @@ msgstr "Mailaky ny mpandefa ho an'ny taratasy elektronika mivoaka"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr ""
+
+#.   <h2>
+#.   	  Save changes
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "header_save_changes"
+msgstr "Enregistrer les changements"
+
+#.   <h2>
+#.   	  Subscribing/unsubscribing
+#.   	</h2>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "header_subscribing_unsubscribing"
+msgstr "Abonnement/désabonnement"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -437,6 +463,33 @@ msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr "DYN"
 
+#.   <label for="anonymous_subscription_allowed">
+#.                 Allow anonymous subscriptions
+#.               </label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_allow_anonymous_subscriptions"
+msgstr "Autoriser les abonnements pour les anonymes"
+
+#.   <label for="subscription_allowed">
+#.                 Allow user subscriptions
+#.               </label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_allow_user_subscriptions"
+msgstr "Autoriser les abonnements pour les utilisateurs"
+
+#.   <label for="unsubscription_allowed">
+#.                 Allow user local roles based unsubscriptions
+#.               </label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_allow_user_unsubscriptions"
+msgstr "Autoriser les désabonnements pour les utilisateurs"
+
 #.   <span>
 #.                 E-Mails Black list
 #.               </span>
@@ -555,9 +608,19 @@ msgstr "Lisitra"
 msgid "label_notify_content_add_emails"
 msgstr "Manampy mailaka "
 
+#.   <label for="notify_local_only">
+#.                 Only notify people having local roles in this folder
+#.               </label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_only_notify_local_roles"
+msgstr ""
+"Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire"
+
 #.   <label for="notify_no_local">
-#.                     Only notify for events happening in sub-folders
-#.   		</label>
+#.                 Only notify for events happening in sub-folders
+#.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
@@ -585,6 +648,13 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
 msgstr "Mijery ireo olona rehetra voalaza ho an'ny zava-mitranga rehetra."
+
+#.   <label for="senderEmailAddress">Email address of sender:</label>
+#: from
+#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+#, fuzzy
+msgid "label_sender_email_address"
+msgstr "Adresse électronique de l'émetteur"
 
 # ## LABELS #######################################
 #.   <span>
