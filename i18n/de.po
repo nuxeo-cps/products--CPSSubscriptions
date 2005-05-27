@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions-de CPS-3.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-26 16:24default\n"
+"POT-Creation-Date: 2005-05-27 11:57default\n"
 "PO-Revision-Date: 2005-03-14 20:23+0100\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
@@ -13,204 +13,6 @@ msgstr ""
 "Language-Code: de\n"
 "Language-Name: German\n"
 "Domain: default\n"
-
-#.   <block>
-#.   		  <block replace="context_lcs/?role" />
-#.   		</block>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
-msgid "<block replace=\"context_lcs/?role\" />"
-msgstr "FAKE"
-
-#.   <block>
-#.   		    <span replace="events/?event_key" />
-#.   		  </block>
-#.   <span>
-#.                       <span replace="events/?event_key" />
-#.                     </span>
-#.   <span>
-#.                         <span replace="events/?event_key" />
-#.                       </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
-msgid "<span replace=\"events/?event_key\" />"
-msgstr "FAKE"
-
-#.   <span>
-#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
-#.                 </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid ""
-"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
-msgstr "FAKE"
-
-#.   <span>
-#.         Below are the subscriptions you belong to all over the portal
-#.       </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid "Below are the subscriptions you belong to all over the portal"
-msgstr "Unten stehen die Ereignisse die sie portalweit abonniert haben"
-
-#.   <span>
-#.       Mailing list subscription confirmation for the event
-#.       <span />
-#.       in <span replace="here/title_or_id" />
-#.       at <a href="here/absolute_url">
-#.         <span replace="here/absolute_url" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"Mailing list subscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Mailing Listen Anmeldebestätigung für das Ereignis <span /> in <span replace="
-"\"here/title_or_id\" /> unter <a href=\"here/absolute_url\"> <span replace="
-"\"here/absolute_url\" /> </a>"
-
-#.   <span>
-#.       Mailing list unsubscription confirmation for the event
-#.       <span />
-#.       in <span replace="here/title_or_id" />
-#.       at <a href="here/absolute_url">
-#.         <span replace="here/absolute_url" />
-#.       </a>
-#.     </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"Mailing list unsubscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Mailing Listen Abmelde Bestätigung für das Ereignis <span /> in <span "
-"replace=\"here/title_or_id\" /> unter <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-
-#.   <td>Notification type</td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "Notification type"
-msgstr "Benachrichtungs Typ"
-
-#.   <span>
-#.          Please, follow the instruction included in the mail you will shortly receive
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr ""
-"Bitte folgen Sie den Anweisungen in der EMail die sie gleich erhalten werden."
-
-#.   <span>
-#.       Ton confirm that you want to be added to this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
-#.         here
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"Ton confirm that you want to be added to this mailing list, click <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-" Um zu bestätigen das Sie an der Mailing Liste teilnehmen wollen klicken Sie "
-"<a href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> hier </a>"
-
-#.   <span>
-#.       Ton confirm that you want to be removed from this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
-#.         here
-#.       </a>
-#.     </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"Ton confirm that you want to be removed from this mailing list, click <a "
-"href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Um zu bestätigen das Sie sich von der Mailing Liste abmelden wollen, klicken "
-"Sie <a href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> hier </a>"
-
-#.   <span>
-#.       We have received a request for subscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
-#.         <span replace="email" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"We have received a request for subscription with the email address, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
-msgstr ""
-"Wir haben eine Anfrage erhalten für ein Abonnement mit der EMail-Adresse, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
-
-#.   <span>
-#.       We have received a request for unsubscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
-#.         <span replace="email" />
-#.       </a>
-#.     </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"We have received a request for unsubscription with the email address, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
-msgstr ""
-"Wir haben eine Anfrage erhalten für eine Abmeldung mit der EMail-Adresse, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
-
-#.   <i>
-#.         You may allowed only members with given local roles to subscribe to this
-#.         givent event.  For instance, you may not want the anonymous users
-#.         (public) to subscribe to the event 'reject content' within sections.  For
-#.         this, just pick up the local roles below for which you want to give the
-#.         possiblity to the users granted with these local roles to subscribe to
-#.         this event.  If you do not specify any local roles then the event is
-#.         opened to everybody for subscriptions.
-#.       </i>
-#: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid ""
-"You may allowed only members with given local roles to subscribe to this "
-"givent event. For instance, you may not want the anonymous users (public) to "
-"subscribe to the event 'reject content' within sections. For this, just pick "
-"up the local roles below for which you want to give the possiblity to the "
-"users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is opened to everybody for "
-"subscriptions."
-msgstr ""
-"Sie können Teilnehmern mit hier vorhandenen lokalen Rollen Abonnement Rechte "
-"für dieses Ereignis vergeben. Zum Beispiel wenn sie nicht wollen das anonyme "
-"Teilnehmer das Ereignis 'Publikation abgelehnt' in den Websektionen "
-"abonnieren. Dafür müssen Sie hier die lokalen Rollen auswählen und "
-"eintragen, denen das Abonnement-Recht für dieses Ereignis gewährt werden "
-"soll. Wenn Sie hier keine Einträge machen, ist das Ereignis für alle "
-"abonnierbar."
-
-#.   <input onclick="javascript:history.back()" type="button" class="standalone" value="button_back" />
-#.   <input onclick="javascript:history.back()" type="button" class="standAlone" value="button_back" />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-#, fuzzy
-msgid "button_back"
-msgstr "Close"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -439,21 +241,6 @@ msgstr "Abonnement Beendung wird geprüft"
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
 msgstr "Willkommen bei der Mailing Liste."
-
-#.   <th content="field/title">id</th>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "id"
-msgstr "FAKE"
-
-#.   <span>
-#.         label_<span replace="request/event_key|nothing">
-#.         Susbcription ID
-#.       </span>
-#.       </span>
-#: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid ""
-"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr "FAKE"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
@@ -881,6 +668,10 @@ msgstr "Eine EMail wurde versandt"
 msgid "psm_subscription_updated"
 msgstr "Abonnement mit Erfolg erneuert"
 
+#, fuzzy
+msgid "psm_user_mode_updated"
+msgstr "The reception mode has been successfully updated"
+
 # ## Subscription modes ############################
 msgid "mode_daily"
 msgstr "Täglich"
@@ -893,37 +684,3 @@ msgstr "Monatlich"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Meine Abonnements"
-
-#~ msgid ""
-#~ "You may allow only members with given local roles to subscribe to this "
-#~ "givent event. For instance, you may not want the anonymous users (public) "
-#~ "to subscribe to the event 'reject content' within sections. For this, "
-#~ "just pick up the local roles below for which you want to give the "
-#~ "possiblity to the users granted with these local roles to subscribe to "
-#~ "this event. If you do not specify any local roles then the event is open "
-#~ "to everybody for subscriptions."
-#~ msgstr ""
-#~ "You may allow only members with given local roles to subscribe to this "
-#~ "given event.  For instance, you may not want the anonymous users (public) "
-#~ "to subscribe to the event 'reject content' within sections.  For this, "
-#~ "just pick up the local roles below for which you want to give the "
-#~ "possiblity to the users granted with these local roles to subscribe to "
-#~ "this event.  If you do not specify any local roles then the event is open "
-#~ "to everybody for subscriptions."
-
-#~ msgid "header_subscription_allowed"
-#~ msgstr " Sind Abonnements erlaubt und für Wen ?"
-
-#~ msgid "header_when_where_to_notify"
-#~ msgstr " Wann und Wo benachrichtigen ?"
-
-#~ msgid "label_notifications_no_local"
-#~ msgstr "Benachrichtige nur über Ereignisse in Sub Foldern "
-
-#~ msgid "label_subscription_allowed"
-#~ msgstr "Sind Abonnements erlaubt ?"
-
-#~ msgid "label_unsubscription_allowed"
-#~ msgstr ""
-#~ "Sind Abonnements beendbar für die Teilnehmer die als Ereignis-Empfänger "
-#~ "aufgrund ihrer lokalen Rollen gelten ?"

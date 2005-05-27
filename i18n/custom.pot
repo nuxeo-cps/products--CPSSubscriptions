@@ -172,6 +172,9 @@ msgstr ""
 msgid "psm_subscription_updated"
 msgstr ""
 
+msgid "psm_user_mode_updated"
+msgstr ""
+
 ### BUTTONS ########################################
 
 msgid "button_subscribe"

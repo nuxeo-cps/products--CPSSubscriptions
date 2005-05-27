@@ -1,13 +1,10 @@
-# Gettext Message File for default.
-# Your Name <your@email>, Year
-# Julien Anguenot <ja@nuxeo.com>, 2004.
 # Julien Anguenot <anguenot@nuxeo.com>, 2004.
 # emmanuel <epietriga@nuxeo.com>, 2004.
 # DARCHE <madarche@nuxeo.com>, 2004.
 msgid ""
 msgstr ""
 "Project-Id-Version: mg\n"
-"POT-Creation-Date: 2005-05-27 10:34default\n"
+"POT-Creation-Date: 2005-05-27 11:58default\n"
 "PO-Revision-Date: 2004-11-24 13:44+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
@@ -20,205 +17,6 @@ msgstr ""
 "Language-Code: mg\n"
 "Language-Name: Malagasy\n"
 "Domain: default\n"
-
-#.   <block>
-#.   		  <block replace="context_lcs/?role" />
-#.   		</block>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "<block replace=\"context_lcs/?role\" />"
-msgstr ""
-
-#.   <block>
-#.   		    <span replace="events/?event_key" />
-#.   		  </block>
-#.   <span>
-#.                       <span replace="events/?event_key" />
-#.                     </span>
-#.   <span>
-#.                         <span replace="events/?event_key" />
-#.                       </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
-msgid "<span replace=\"events/?event_key\" />"
-msgstr "FAKE"
-
-#.   <span>
-#.                     <span replace="python:subscriptions_tool.getI18nFor(elt['event_id'])" />
-#.                 </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid ""
-"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
-msgstr "FAKE"
-
-#.   <span>
-#.         Below are the subscriptions you belong to all over the portal
-#.       </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid "Below are the subscriptions you belong to all over the portal"
-msgstr "Ireto avy ireo fanjifanao eto anivon'ny tranonkala."
-
-#.   <span>
-#.       Mailing list subscription confirmation for the event
-#.       <span />
-#.       in <span replace="here/title_or_id" />
-#.       at <a href="here/absolute_url">
-#.         <span replace="here/absolute_url" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"Mailing list subscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Voasoratra ao amin'ny liste de diffusion ianao <span /> ao amin'ny <span "
-"replace=\"here/title_or_id\" /> amin'ity adiresy ity <a href=\"here/"
-"absolute_url\"> <span replace=\"here/absolute_url\" /> </a> "
-
-#.   <span>
-#.       Mailing list unsubscription confirmation for the event
-#.       <span />
-#.       in <span replace="here/title_or_id" />
-#.       at <a href="here/absolute_url">
-#.         <span replace="here/absolute_url" />
-#.       </a>
-#.     </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"Mailing list unsubscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Tsy mpanjifa intsony ianao manomboka izao <span /> ao amin'ny <span replace="
-"\"here/title_or_id\" /> amin'ity adiresy ity <a href=\"here/absolute_url\"> "
-"<span replace=\"here/absolute_url\" /> </a> "
-
-#.   <td>Notification type</td>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-msgid "Notification type"
-msgstr "Karazana fampilazana"
-
-#.   <span>
-#.          Please, follow the instruction included in the mail you will shortly receive
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr "Araho ireo toromarika ao anaty mailaka ho voarainao atsy ho atsy. "
-
-#.   <span>
-#.       Ton confirm that you want to be added to this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
-#.         here
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"Ton confirm that you want to be added to this mailing list, click <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Mba ho famafisana ny fanirianao ho tsy mpanjifa intsony ao amin'ny liste de "
-"diffusion<a href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> Tsindrio eto "
-"</a>f"
-
-#.   <span>
-#.       Ton confirm that you want to be removed from this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
-#.         here
-#.       </a>
-#.     </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"Ton confirm that you want to be removed from this mailing list, click <a "
-"href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Mba ho famafisana ny fanirianao ho tsy mpanjifa intsony ao amin'ny liste de "
-"diffusion<a href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> Tsindrio eto "
-"</a>f"
-
-#.   <span>
-#.       We have received a request for subscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
-#.         <span replace="email" />
-#.       </a>
-#.     </span>
-#: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"We have received a request for subscription with the email address, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
-msgstr ""
-"Voaray tamin'ny mailaka ny fangatahana ho mpanjifa, <a href=\"\" attributes="
-"\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
-
-#.   <span>
-#.       We have received a request for unsubscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
-#.         <span replace="email" />
-#.       </a>
-#.     </span>
-#: from
-#: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"We have received a request for unsubscription with the email address, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
-msgstr ""
-"Voaray tamin'ny mailaka ny fangatahana ho mpanjifa, <a href=\"\" attributes="
-"\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
-
-#.   <i>
-#.         You may allowed only members with given local roles to subscribe to this
-#.         givent event.  For instance, you may not want the anonymous users
-#.         (public) to subscribe to the event 'reject content' within sections.  For
-#.         this, just pick up the local roles below for which you want to give the
-#.         possiblity to the users granted with these local roles to subscribe to
-#.         this event.  If you do not specify any local roles then the event is
-#.         opened to everybody for subscriptions.
-#.       </i>
-#: from ../skins/cps_subscriptions/subscription_edit_form.pt
-#, fuzzy
-msgid ""
-"You may allowed only members with given local roles to subscribe to this "
-"givent event. For instance, you may not want the anonymous users (public) to "
-"subscribe to the event 'reject content' within sections. For this, just pick "
-"up the local roles below for which you want to give the possiblity to the "
-"users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is opened to everybody for "
-"subscriptions."
-msgstr ""
-"Vous avez la possibilité de restreindre l'abonnement à cet évènement à une "
-"certaine catégorie d'utilisateurs ayant certains rôles locaux. Par exemple, "
-"il est possible de ne pas autoriser les utilisateurs anonymes à s'abonner à "
-"l'événement 'Rejet de publication de contenu' dans les rubriques. Pour cela, "
-"choisissez les roles locaux dans la liste ci-dessous et l'événement sera "
-"disponible uniquement pour les utilisateurs ayant les rôles locaux que vous "
-"allez spécifier ci-dessous. Si vous ne spécifiez aucun rôle local, alors "
-"l'événement sera disponibe à tous. (Il s'agit de la configuration par "
-"défaut.)"
-
-#.   <input onclick="javascript:history.back()" type="button" class="standalone" value="button_back" />
-#.   <input onclick="javascript:history.back()" type="button" class="standAlone" value="button_back" />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-#, fuzzy
-msgid "button_back"
-msgstr "Fermer"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -447,21 +245,6 @@ msgstr "Tsy mpanjifa n'aiza n'aiza ianao"
 #: from ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "heading_subscribtion_welcome"
 msgstr "Tongasoa ato amin'ny mailing list"
-
-#.   <th content="field/title">id</th>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "id"
-msgstr "FAKE "
-
-#.   <span>
-#.         label_<span replace="request/event_key|nothing">
-#.         Susbcription ID
-#.       </span>
-#.       </span>
-#: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid ""
-"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr "DYN"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
@@ -890,6 +673,10 @@ msgstr "Lasa ilay mailaka"
 
 msgid "psm_subscription_updated"
 msgstr "Vita soa amn-tsara ny fanamboarana ny zava-mitranga"
+
+#, fuzzy
+msgid "psm_user_mode_updated"
+msgstr "Le mode de réception a bien été mise à jour"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
