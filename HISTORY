@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.17.1 [R1 build 2005/06/02-09:35 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 22058
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Improved the quality of the *.po files, fixes #595.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.17.0 [R1 build 2005/05/20-14:43 by anahide]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 21690
 Requires:
