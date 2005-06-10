@@ -248,7 +248,7 @@ class MailNotificationRule(NotificationRule):
         ttool = getToolByName(self, 'portal_types')
 
         context = aq_parent(aq_inner(object))
-        mcat = self.Localizer.default
+        mcat = self.translation_service
 
         events_from_context = portal_subscriptions.getEventsFromContext(context)
 

@@ -11,7 +11,7 @@ if REQUEST is not None:
     # Add a link to the current content at the end of the mail_body
     #
 
-    mcat = context.Localizer.default
+    mcat = context.translation_service
 
     mail_body = form.get('mail_body', '')
     mail_body = mail_body + \

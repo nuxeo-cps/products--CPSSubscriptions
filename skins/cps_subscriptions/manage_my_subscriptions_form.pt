@@ -1,4 +1,4 @@
-<tal:block define="mcat nocall:here/Localizer/default;
+<tal:block define="mcat nocall:here/translation_service;
                    dummy python:request.set('breadcrumb_set',
                    [{'id':'manage_my_subscriptions',
                      'url': here.portal_url()+'/manage_my_subscriptions_form',

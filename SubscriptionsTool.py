@@ -1054,7 +1054,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         portal = getToolByName(self, 'portal_url').getPortalObject()
         portal_title = getattr(portal, 'title', 'Portal')
-        mcat = self.Localizer.default
+        mcat = self.translation_service
 
         infos = {}
         infos['sender_email'] = getattr(portal,

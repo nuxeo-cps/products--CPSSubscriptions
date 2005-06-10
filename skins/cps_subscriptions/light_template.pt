@@ -7,7 +7,7 @@
     dirtool here/portal_directories;
     dtool dirtool/members;
     gdtool dirtool/groups;
-    mcat nocall:here/Localizer/default;
+    mcat nocall:here/translation_service;
     portal_object utool/getPortalObject;
     portal_title portal_object/Title;
     object_title here/Title;

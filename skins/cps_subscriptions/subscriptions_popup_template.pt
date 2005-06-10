@@ -18,7 +18,7 @@ tal:define="
   wf_state python:wtool.getInfoFor(here,'review_state','');
   uname python: isAnon and 'Guest' or member.getUserName();
   checkPerm nocall: mtool/checkPermission;
-  cpsmcat nocall:here/Localizer/default;
+  cpsmcat nocall:here/translation_service;
   in_ws here/isInWorkspace;
   CPSD_BMT python:here.Benchmarktimer('main_template');
   CPSD_bmt_start nocall:CPSD_BMT/start;
