@@ -13,7 +13,7 @@ if REQUEST is not None:
 
         # Checking if we have here a placefull subscription container
         subscription_id = subtool.getSubscriptionContainerId()
-        if subscription_id not in context.objectIds():
+        if getattr(context, subscription_id, None) is None:
             context.manage_addProduct['CPSSubscriptions'].addSubscriptionContainer()
 
         subscription_folder = getattr(context, subscription_id)
