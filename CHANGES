@@ -7,8 +7,10 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Taking advantage of the new centralized CPSI18n.tests.translations module.
-- The script for editing notifications failed if the currect object was not
+- The script for editing notifications failed if the correct object was not
   an object manager.
+- Renamed translation file cps-subscriptions.pot as cpssubscriptions.pot to ease
+  translation work (automation). Fixes #779.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
