@@ -1,6 +1,9 @@
 # translation of pt-BR.po to Português do Brasil
 # translation of pt-br.po to PortuguÃªs do Brasil
 # translation of cps-subscriptions.po to PortuguÃªs do Brasil
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Mario Olimpio de Menezes <mario@curiango.ipen.br>, 2004.
@@ -8,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
 "POT-Creation-Date: 2005-05-27 11:58default\n"
-"PO-Revision-Date: 2004-08-31 16:52-0300\n"
-"Last-Translator: Mario Olimpio de Menezes <mario@curiango.ipen.br>\n"
+"PO-Revision-Date: 2005-06-17 17:51-0300\n"
+"Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
@@ -20,9 +23,8 @@ msgstr ""
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#, fuzzy
 msgid "button_import"
-msgstr "Import"
+msgstr "Importar"
 
 #.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
 #.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
@@ -57,9 +59,8 @@ msgstr ""
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "description_save_changes"
-msgstr "Save changes"
+msgstr "Salve as mudanças realizadas:"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
@@ -94,9 +95,8 @@ msgstr "Abaixo estão eventos dos quais você pode se desubscrever."
 #.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "header_contextual_notifications"
-msgstr "Contextual notifications"
+msgstr "Notificações contextuais"
 
 #.   <strong>
 #.                       <span>
@@ -121,25 +121,23 @@ msgstr "Endereço do remetente para mensagens de saída"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
-msgstr ""
+msgstr "Pessoas notificadas"
 
 #.   <h2>
 #.   	  Save changes
 #.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "header_save_changes"
-msgstr "Save changes"
+msgstr "Salvar mudanças"
 
 #.   <h2>
 #.   	  Subscribing/unsubscribing
 #.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "header_subscribing_unsubscribing"
-msgstr "Subscribing/unsubscribing"
+msgstr "Subscrever/dessubscrever"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -193,7 +191,7 @@ msgstr "Confirmar desubscrição para "
 #.         </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid "heading_label_edit"
-msgstr ""
+msgstr "Editar subscrição"
 
 #.   <h1>
 #.         Local Notifications Management
@@ -208,21 +206,22 @@ msgstr "Administração de notificações locais"
 #.       </h1>
 #: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr "Minhas Subscrições"
+msgstr "Minhas subscrições"
 
+# ## ACTIONS ######################################
 #.   <h1>
 #.           Search members to add to recipients list
 #.         </h1>
 #: from ../skins/cps_subscriptions/content_notify_email_form.pt
 msgid "heading_notify_content_form"
-msgstr ""
+msgstr "Procurar membros para adicionar à lista de recipientes"
 
 #.   <h1>
 #.       Search results
 #.     </h1>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "heading_notify_members_search_results"
-msgstr ""
+msgstr "Resultados da busca"
 
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
@@ -250,27 +249,24 @@ msgstr "Você não é parte desta lista de discussão."
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_allow_anonymous_subscriptions"
-msgstr "Allow anonymous subscriptions"
+msgstr "Permitir subscrições por anônimos"
 
 #.   <label for="subscription_allowed">
 #.                 Allow user subscriptions
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_allow_user_subscriptions"
-msgstr "Allow user subscriptions"
+msgstr "Permitir subscrições de usuários"
 
 #.   <label for="unsubscription_allowed">
 #.                 Allow user local roles based unsubscriptions
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_allow_user_unsubscriptions"
-msgstr "Allow user unsubscriptions"
+msgstr "Permitir dessubscrições de usuários baseado em papéis locais."
 
 #.   <span>
 #.                 E-Mails Black list
@@ -291,9 +287,8 @@ msgstr "Clique aqui"
 #.   <td>Configure</td>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_configure"
-msgstr "Configure"
+msgstr "Configurar"
 
 #.   <span>
 #.                 Explicit E-Mails
@@ -323,32 +318,27 @@ msgstr ""
 #.                   Import a list of emails from a file. (text file with one email per ligne)
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#, fuzzy
 msgid "label_import_emais_list"
-msgstr ""
-"Import a list of emails from a file. (text file with one email per ligne)"
+msgstr "Importar uma lista de emails de um arquivo. (arquivo texto com um email por linha)"
 
 #.   <span>
 #.            Mail body
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
 msgid "label_mail_body"
-msgstr "Mail Body"
+msgstr "Corpo da Mensagem"
 
 #.   <span>
 #.            Mail Subject
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
 msgid "label_mail_subject"
-msgstr "Mail subject"
+msgstr "Assunto da Mensagem"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
 msgid "label_no_results"
-msgstr "No member match the request"
+msgstr "Resultados da busca"
 
 #.   <div>
 #.             No event opened for subscsriptions in here.
@@ -370,15 +360,13 @@ msgstr ""
 "Atualmente você não tem qualquer subscrição neste contexto para este objeto "
 "baseado em seus papéis locais."
 
-# ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
 #.   		    Edit
 #.   		</a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_notification_edit"
-msgstr "Edit"
+msgstr "Editar"
 
 #.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
 #.   		    Choose
@@ -388,23 +376,21 @@ msgstr "Edit"
 msgid "label_notifications_add"
 msgstr "Escolha"
 
-# ## PSMS ##########################################
+# ## ACTIONS ######################################
 #.   <span>
 #.            Add explicitly recipients emails (one email per ligne)
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#, fuzzy
 msgid "label_notify_content_add_emails"
-msgstr "Add explicitly recipients emails (one email per ligne)"
+msgstr "Adicionar emails dos recipientes explicitamente (um email por linha)"
 
 #.   <label for="notify_local_only">
 #.                 Only notify people having local roles in this folder
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_only_notify_local_roles"
-msgstr "Only notify people having local roles in this folder"
+msgstr "Somente notificar pessoas que têm papéis locais nesta pasta"
 
 #.   <label for="notify_no_local">
 #.                 Only notify for events happening in sub-folders
@@ -412,7 +398,7 @@ msgstr "Only notify people having local roles in this folder"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
-msgstr ""
+msgstr "Somente notificar para eventos acontecendo nas subpastas"
 
 #.   <td>Others</td>
 #: from
@@ -424,11 +410,8 @@ msgstr "Outros"
 #.                   Current local roles
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#, fuzzy
 msgid "label_roles_allowed_to_subscribe"
-msgstr ""
-"Currently users with the following local roles are allowed to subsribe to "
-"this event"
+msgstr "Papéis locais atuais"
 
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
 #.   	    See all subscribers
@@ -441,9 +424,8 @@ msgstr "Ver todos os subscritos"
 #.   <label for="senderEmailAddress">Email address of sender:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_sender_email_address"
-msgstr "Sender email address"
+msgstr "Endereço de email do remetente:"
 
 #.   <span>
 #.                 Full Name
@@ -489,9 +471,8 @@ msgstr "Onde"
 #.                    </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-#, fuzzy
 msgid "label_subscriptions_closed"
-msgstr "subscriptions / unsubscriptions are closed"
+msgstr "subscrições / dessubuscrições estão fechadas."
 
 #.   <span>
 #.                 E-Mails
@@ -626,10 +607,8 @@ msgstr "Comentário rejeitado"
 msgid "label_forum_comment_deleted"
 msgstr "Comentário removido"
 
-# ## PSMS ##########################################
-#, fuzzy
 msgid "label_notification_related_document"
-msgstr "Link to the document"
+msgstr "Link para documento relacionado"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -642,9 +621,8 @@ msgid "action_folder_subscribe"
 msgstr "Subscrever"
 
 # ## ACTIONS ######################################
-#, fuzzy
 msgid "action_notify_content"
-msgstr "Send a mail notification"
+msgstr "Enviar um email de notificação"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
@@ -674,17 +652,14 @@ msgstr "Você foi removido da lista; contacte o administrador se necessário."
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Por favor escolha pelo menos um evento para subscrever."
 
-#, fuzzy
 msgid "psm_an_email_has_been_sent"
-msgstr "An email has been sent"
+msgstr "Email enviado!"
 
-#, fuzzy
 msgid "psm_subscription_updated"
-msgstr "Event configuration successfully updated"
+msgstr "Configuração do Evento atualizada com sucesso."
 
-#, fuzzy
 msgid "psm_user_mode_updated"
-msgstr "The reception mode has been successfully updated"
+msgstr "O mode de recepção foi atualizado com sucesso"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
@@ -696,6 +671,108 @@ msgstr "Semanalmente"
 msgid "mode_monthly"
 msgstr "Mensalmente"
 
-#, fuzzy
 msgid "bc_manage_my_subscriptions"
-msgstr "My subscriptions "
+msgstr "Minhas Subscrições"
+
+#~ msgid "<span replace=\"events/?event_key\" />"
+#~ msgstr "<span replace=\"events/?event_key\" />"
+
+#~ msgid ""
+#~ "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+#~ msgstr "FAKE"
+
+#~ msgid "Below are the subscriptions you belong to all over the portal"
+#~ msgstr ""
+#~ "Abaixo estão as subscrições às quais você pertence em todo o portal."
+
+#~ msgid ""
+#~ "Mailing list subscription confirmation for the event <span /> in <span "
+#~ "replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+#~ "replace=\"here/absolute_url\" /> </a>"
+#~ msgstr ""
+#~ "Confirmação da subscrição em lista de discussão para o evento <span />  "
+#~ "em <span replace=\"here/title_or_id\" /> às <a href=\"here/absolute_url"
+#~ "\"> <span replace=\"here/absolute_url\" /> </a>"
+
+#~ msgid ""
+#~ "Mailing list unsubscription confirmation for the event <span /> in <span "
+#~ "replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+#~ "replace=\"here/absolute_url\" /> </a>"
+#~ msgstr ""
+#~ "Confirmação de não subscrição de lista de discussão para o evento <span /"
+#~ "> em <span replace=\"here/title_or_id\" /> às <a href=\"here/absolute_url"
+#~ "\"> <span replace=\"here/absolute_url\" /> </a>"
+
+#~ msgid "Notification type"
+#~ msgstr "Tipo de Notificação"
+
+#~ msgid ""
+#~ "Please, follow the instruction included in the mail you will shortly "
+#~ "receive"
+#~ msgstr ""
+#~ "Por favor, siga as instruções inclusas no email que você receberá em "
+#~ "breve."
+
+#~ msgid ""
+#~ "Ton confirm that you want to be added to this mailing list, click <a href="
+#~ "\"\" attributes=\"href string:${here/absolute_url}/"
+#~ "folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> here </a>"
+#~ msgstr ""
+#~ "Para confirmar que você quer ser adicionado a esta lista de discussão, "
+#~ "clique <a href=\"\" attributes=\"href string:${here/absolute_url}/"
+#~ "folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> aqui </a>"
+
+#~ msgid ""
+#~ "Ton confirm that you want to be removed from this mailing list, click <a "
+#~ "href=\"\" attributes=\"href string:${here/absolute_url}/"
+#~ "folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </"
+#~ "a>"
+#~ msgstr ""
+#~ "Para confirmar que você quer ser removido desta lista de discussão, "
+#~ "clique  <a href=\"\" attributes=\"href string:${here/absolute_url}/"
+#~ "folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> aqui </"
+#~ "a>"
+
+#~ msgid ""
+#~ "We have received a request for subscription with the email address, <a "
+#~ "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace="
+#~ "\"email\" /> </a>"
+#~ msgstr ""
+#~ "Nós recebemos um pedido para subscrição com o endereço de email, <a href="
+#~ "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /"
+#~ "> </a>"
+
+#~ msgid ""
+#~ "We have received a request for unsubscription with the email address, <a "
+#~ "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace="
+#~ "\"email\" /> </a>"
+#~ msgstr ""
+#~ "Nós recebemos um pedido de desubscrição com o endereço de email <a href="
+#~ "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /"
+#~ "> </a>"
+
+#~ msgid ""
+#~ "You may allow only members with given local roles to subscribe to this "
+#~ "givent event. For instance, you may not want the anonymous users (public) "
+#~ "to subscribe to the event 'reject content' within sections. For this, "
+#~ "just pick up the local roles below for which you want to give the "
+#~ "possiblity to the users granted with these local roles to subscribe to "
+#~ "this event. If you do not specify any local roles then the event is open "
+#~ "to everybody for subscriptions."
+#~ msgstr ""
+#~ "Você pode permitir somente membros com certos papéis subscreverem a este "
+#~ "evento. Por exemplo, você pode não querer que usuários anônimos (público) "
+#~ "subscrevam ao evento 'conteúdo rejeitado' dentro das seções. Para isto, "
+#~ "simplesmente selecione os papéis abaixo para os quais você quer dar a "
+#~ "possibilidade aos usuários que tenham estes papéis locais de subscreverem "
+#~ "a este evento. Se você não especificar qualquer papel local então o "
+#~ "evento é aberto a todos para subscrições."
+
+#~ msgid "id"
+#~ msgstr "id"
+
+#~ msgid ""
+#~ "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+#~ msgstr ""
+#~ "label_<span replace=\"request/event_key|nothing\"> ID da susbcrição </"
+#~ "span>"

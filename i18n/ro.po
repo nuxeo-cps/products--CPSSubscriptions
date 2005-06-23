@@ -11,7 +11,7 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "X-Generator: KBabel 1.9.1\n"
 "Language-Code: ro\n"
-"Language-Name: Rumanian\n"
+"Language-Name: Romanian\n"
 "Domain: default\n"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
