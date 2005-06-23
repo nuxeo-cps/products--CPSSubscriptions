@@ -1,1 +1,1 @@
-cps-subscriptions.pot
+cpssubscriptions.pot
