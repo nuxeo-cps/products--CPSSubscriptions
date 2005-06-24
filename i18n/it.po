@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions\n"
-"POT-Creation-Date: 2005-06-23 17:27default\n"
+"POT-Creation-Date: 2005-06-24 14:11default\n"
 "PO-Revision-Date: 2004-10-01 08:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: Fabio Nosari <fabnos@fastwebnet.it>\n"
@@ -178,16 +178,6 @@ msgid ""
 "not specify any local roles then the event is opened to everybody for "
 "subscriptions."
 msgstr ""
-
-#.   <input onclick="javascript:history.back()" type="button" class="standalone" value="button_back" />
-#.   <input onclick="javascript:history.back()" type="button" class="standAlone" value="button_back" />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
-#: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-#, fuzzy
-msgid "button_back"
-msgstr "S'abonner"
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -890,3 +880,7 @@ msgstr "Mensile"
 #, fuzzy
 msgid "bc_manage_my_subscriptions"
 msgstr "Mes abonnements"
+
+#, fuzzy
+#~ msgid "button_back"
+#~ msgstr "S'abonner"
