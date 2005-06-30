@@ -21,12 +21,22 @@ You need wget installed on your *NIX to request the portal
 Daily notifications :
 -----------------------
 
-Add within your /etc/cron.daily/ the following script.
+Create a script in your /etc/cron.daily/ by issuing the following command:
 
+cd /etc/cron.daily/
 cat <<'EOF' >portal_XXX_daily_subscriptions
 #!/bin/sh
-wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=daily
+wget -q http://manager:password_manager@localhost:8080/cps/cps_subscriptions_schedule_notifications?subscription_mode=daily
 EOF
+
+(Replace, if necessary, manager by the login name of a Zope user with manager
+role on the CPS instance, password_manager by its password, and 8080 by the
+actual port of your Zope instance, cps by the id of your CPS, and XXX by the
+name of your portal).
+
+and make sure that the script has execution rights 
+('chmod +x /etc/portal_XXX_daily_subscriptions')
+
 
 Weekly notifications :
 -----------------------
@@ -38,6 +48,8 @@ cat <<'EOF' >portal_XXX_weekly_subscriptions
 wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=weekly
 EOF
 
+(Same remark as above).
+
 Monthly notifications :
 -----------------------
 
@@ -48,6 +60,8 @@ cat <<'EOF' >portal_XXX_monthly_subscriptions
 wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=monthly
 EOF
 
-I don't have any idea on how to do that with redmond's systems... sorry...
+(Same remark as above).
+
+I don't have any idea on how to do that with Redmond's systems... sorry...
 
 
