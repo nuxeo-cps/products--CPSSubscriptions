@@ -30,7 +30,7 @@
 <strong i18n:translate="heading_search_results" />
 <div class="group" tal:condition="results">
 
-<table tal:condition="results" border="0" width="100%">
+<table tal:condition="results" width="100%">
 <tr>
   <th>&nbsp;</th>
   <tal:block repeat="field python:fields">

@@ -12,6 +12,9 @@ Bug fixes:
 - Renamed translation file cps-subscriptions.pot as cpssubscriptions.pot to ease
   translation work (automation). Fixes #779.
 - Fixed translation files through the CPSI18n/bin/fix_pos script.
+- Modified some ZPT files so that they are valid XHTML 1.0 Strict. This is a
+  work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
+  sites".
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

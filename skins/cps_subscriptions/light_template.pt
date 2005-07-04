@@ -40,7 +40,7 @@
 </head>
 
 <body bgcolor="white">
-  <table cellspacing="0" border="0" cellpadding="5" width="100%">
+  <table cellspacing="0" cellpadding="5" width="100%">
     <tr>
       <td>
         <metal:block define-slot="header">

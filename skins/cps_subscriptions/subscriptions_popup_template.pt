@@ -50,7 +50,7 @@ tal:define="
 
 
 <body bgcolor="white">
-  <table cellspacing="0" border="0" cellpadding="0" width="100%" align="center">
+  <table cellspacing="0" cellpadding="0" width="100%" align="center">
     <tr>
       <td>
         <metal:block define-slot="main">
