@@ -11,7 +11,7 @@ mail_body = \
 """%(user_name)s (%(user_id)s) a effectué un(e) %(notification_title)s
 sur le document %(object_title)s.
 
-Ce document est accessible à l'adresse suivante:
+Ce document est disponible à l'adresse suivante :
     %(object_url)s
 
 Commentaires : %(comments)s
