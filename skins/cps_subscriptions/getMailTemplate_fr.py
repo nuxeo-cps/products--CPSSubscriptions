@@ -6,20 +6,21 @@ pour utiliser ce template il faut le renommer getMailTemplate.py dans
 une de vos skin
 """
 
-mail_subject = "[Notification] %(notification_title)s sur l'objet %(object_title)s"
+mail_subject = "[%(portal_title)s] %(notification_title)s sur le document %(object_title)s"
 mail_body = \
-"""%(object_type)s a généré une notification sur %(notification_title)s.
+"""%(user_name)s (%(user_id)s) a effectué un(e) %(notification_title)s
+sur le document %(object_title)s.
 
-Identifiant: %(user_name)s (%(user_id)s)
-Type d'événement: %(event)s
-URL: %(object_url)s
+Ce document est accessible à l'adresse suivante:
+    %(object_url)s
+
 Commentaires : %(comments)s
 """
 
 mail_error_body = \
-"""An error occurred while computing the body of the email message.
+"""Une erreur s'est produite lors de la génération automatique de ce message.
 
-Please contact, the administrator of the portal.
+Veuillez contacter votre admistrateur pour plus d'informations.
 """
 
 subscribe_confirm_email_title = \
@@ -55,7 +56,7 @@ unsubscribe_email_title = \
 """
 
 unsubscribe_email_body = \
-"""Vous êtes désabonné de la liste de diffusion %(object_title)s at %(object_url)s
+"""Vous Ítes désabonné de la liste de diffusion %(object_title)s at %(object_url)s
 """
 
 unsubscribe_confirm_email_title = \

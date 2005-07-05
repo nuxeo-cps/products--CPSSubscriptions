@@ -15,6 +15,7 @@ Bug fixes:
 - Modified some ZPT files so that they are valid XHTML 1.0 Strict. This is a
   work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
   sites".
+- better french notification messages by Delphine
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
