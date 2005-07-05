@@ -755,12 +755,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
-        LOG('CPSSubscriptionsTool.notify_event', DEBUG, 'e: %s, o: %s, i: %s' %
-                (event_type, str(object), str(infos)))
         subscriptions = self.getSubscriptionsFor(event_type, object, infos)
-        LOG('CPSSubscriptionsTool.notify_event', DEBUG, 'subscriptions: %s' %
-                str([s.id for s in subscriptions]))
-
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
                 subscription.sendEvent(event_type, object, infos)
