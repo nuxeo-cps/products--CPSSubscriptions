@@ -56,7 +56,7 @@ unsubscribe_email_title = \
 """
 
 unsubscribe_email_body = \
-"""Vous Ítes désabonné de la liste de diffusion %(object_title)s at %(object_url)s
+"""Vous êtes désabonné de la liste de diffusion %(object_title)s at %(object_url)s
 """
 
 unsubscribe_confirm_email_title = \
