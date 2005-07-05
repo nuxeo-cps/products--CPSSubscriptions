@@ -5,15 +5,16 @@
 XXX do sthg else than that -> body rendered with DTML
 """
 
-mail_subject = '[Notification] %(notification_title)s for object %(object_title)s'
+mail_subject = '[%(portal_title)s] %(notification_title)s for document %(object_title)s'
 mail_body = \
-"""%(object_type)s has created a %(notification_title)s notification.
 
-Additional info:
-User name: %(user_name)s (%(user_id)s)
-Event type: %(event)s
-URL: %(object_url)s
-Comments: %(comments)s
+"""%(user_name)s (%(user_id)s) made a %(notification_title)s 
+on document %(object_title)s.
+
+This document is available at the following URL:
+    %(object_url)s
+
+Comments : %(comments)s
 """
 
 mail_error_body = \
