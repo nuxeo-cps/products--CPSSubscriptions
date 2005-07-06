@@ -7,7 +7,6 @@ XXX do sthg else than that -> body rendered with DTML
 
 mail_subject = '[%(portal_title)s] %(notification_title)s for document %(object_title)s'
 mail_body = \
-
 """%(user_name)s (%(user_id)s) made a %(notification_title)s 
 on document %(object_title)s.
 
