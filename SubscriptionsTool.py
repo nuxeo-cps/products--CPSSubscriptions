@@ -1045,6 +1045,23 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             return 0
         return -1
 
+    security.declarePublic('getMailSenderInfo')
+    def getMailSenderInfo(self, use_portal_title=0):
+        """Return the sender information (name and email address)
+
+        If use_portal_title is set to 1, then the portal title is used instead
+        of the portal administrator name.
+        """
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        sender_email = portal.getProperty('email_from_address',
+                                          'nobody@nobody.com')
+        if use_portal_title == 1:
+            sender_name = portal.title_or_id()
+        else:
+            sender_name = portal.getProperty('email_from_name',
+                                              'Portal administrator')
+        return sender_email, sender_name
+
     def _getMailInfoFor(self, subscription_mode, email_to, messages):
         """Build the infos dict
 
@@ -1056,12 +1073,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         mcat = self.translation_service
 
         infos = {}
-        infos['sender_email'] = getattr(portal,
-                                        'email_from_address',
-                                        'nobody@nobody.com')
-        infos['sender_name']  = getattr(portal,
-                                        'email_from_name',
-                                        'Portal administrator')
+        sender_email, sender_name = self._getMailSenderInfo()
+        infos['sender_email'] = sender_email
+        infos['sender_name']  = sender_name
         infos['to'] = email_to
 
         # Message body

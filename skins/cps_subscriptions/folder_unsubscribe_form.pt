@@ -8,7 +8,7 @@
   </metal:block>
   <metal:block fill-slot="main">
    <tal:block condition="email">
-     <span i18n:translate="">
+     <span i18n:translate="label_follow_subscriptions_instructions">
        Please, follow the instruction included in the mail you will shortly receive
      </span>
    </tal:block>

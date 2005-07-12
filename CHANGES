@@ -16,6 +16,9 @@ Bug fixes:
   work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
   sites".
 - better french notification messages by Delphine
+- A translation was missing in the unsuscribe page.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- Unified the sender name/email mechanism so that default sender is always the
+  name/email given in the portal properties.
+
