@@ -108,6 +108,5 @@ def initialize(registar):
     ToolInit(
         'CPS Subsriptions Tool',
         tools=tools,
-        product_name='CPSSubscriptions',
         icon='tool.png'
     ).initialize(registar)
