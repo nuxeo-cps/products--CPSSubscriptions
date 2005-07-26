@@ -23,7 +23,7 @@
     showthirdcol showthirdcol|nothing;
     hideactions hideactions|nothing;
     portal_status_message request/form/portal_status_message|nothing;
-    base_url python:here.getBaseUrl(utool=utool);
+    base_url python:utool.getBaseUrl();
 ">
 <head>
   <title tal:content="here/expanded_title">Nuxeo

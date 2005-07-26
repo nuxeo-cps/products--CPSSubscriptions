@@ -1,5 +1,5 @@
 # $Id$
 
 # CPS --------------------
-CPSCore
+CPSCore > 3.27.0
 CPSInstaller >= 0.4
