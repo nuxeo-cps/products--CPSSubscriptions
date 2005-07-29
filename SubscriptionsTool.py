@@ -69,8 +69,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     the object.
     """
 
+    __implements__ = ActionProviderBase.__implements__
+
     id = 'portal_subscriptions'
     meta_type = 'Subscriptions Tool'
+    _actions = ()
 
     security = ClassSecurityInfo()
 
@@ -102,7 +105,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                      'daily'  : 'mode_daily'}
 
     mapping_local_roles_context = {}
-    _actions = ()
 
     ###################################################
     # ZMI
