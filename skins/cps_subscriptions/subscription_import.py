@@ -4,8 +4,6 @@
 $Id$
 """
 
-import re
-
 subtool = context.portal_subscriptions
 subscription_container = subtool.getSubscriptionContainerFromContext(context, force_local_creation=1)
 

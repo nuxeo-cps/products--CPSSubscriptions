@@ -28,8 +28,6 @@ scheduling
 portal_subscriptions will store objects of this type.
 """
 
-import time
-
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo

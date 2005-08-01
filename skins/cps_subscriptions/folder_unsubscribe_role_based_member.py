@@ -5,8 +5,6 @@
 The subscptions container should be already in here since the guy got the action.
 """
 
-from zLOG import LOG, DEBUG
-
 isAno = context.portal_membership.isAnonymousUser()
 if not isAno:
     member = context.portal_membership.getAuthenticatedMember()

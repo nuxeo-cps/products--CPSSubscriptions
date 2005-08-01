@@ -29,7 +29,6 @@ Classes defining how to compute recipients. They are stored within
 the subscription container.
 """
 
-from types import TupleType
 from DateTime.DateTime import DateTime
 
 from Globals import InitializeClass, MessageDialog, DTMLFile

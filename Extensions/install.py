@@ -26,8 +26,6 @@
 Installer/Updater fot the CPSSubscriptions component.
 """
 
-from zLOG import LOG, INFO, DEBUG
-
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
 
 from Products.CMFCore.utils import getToolByName

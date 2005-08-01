@@ -12,7 +12,6 @@ if __name__ == '__main__':
 
 from types import StringType, ListType, DictType
 import unittest
-from Testing import ZopeTestCase
 
 from Products.CMFCore.utils import getToolByName
 

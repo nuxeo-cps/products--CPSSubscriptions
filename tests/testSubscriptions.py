@@ -4,10 +4,7 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-from pprint import pprint
 import unittest
-from DateTime import DateTime
-from Testing import ZopeTestCase
 import CPSSubscriptionsTestCase
 
 class DummyResponse:

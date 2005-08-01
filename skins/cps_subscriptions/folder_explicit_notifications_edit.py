@@ -5,8 +5,6 @@
 It applies for a given event. The event_id is within the REQUEST.
 """
 
-from zLOG import LOG, DEBUG
-
 if REQUEST is not None:
     if REQUEST.form:
 
