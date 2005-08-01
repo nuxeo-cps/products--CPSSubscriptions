@@ -33,6 +33,8 @@ from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFCore.permissions import AddPortalContent,\
      ModifyPortalContent
 
+import permissions
+
 import SubscriptionsTool
 import SubscriptionContainer
 import Subscription
