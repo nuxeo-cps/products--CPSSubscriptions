@@ -22,4 +22,4 @@ New internal features:
 - Unified the sender name/email mechanism so that default sender is always the
   name/email given in the portal properties.
 - Using the new URL tool from CPSCore API
-
+- rename the CPSSubscriptionsPermissions in permissions and add BBB from CPSSubscriptionsPermissions

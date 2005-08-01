@@ -44,7 +44,8 @@ from Products.CMFCore.permissions import View
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.Expression import getEngine
 
-from CPSSubscriptionsPermissions import CanSubscribe, ManageSubscriptions
+from Products.CPSSubscriptions.permissions import CanSubscribe
+from Products.CPSSubscriptions.permissions import ManageSubscriptions
 
 from zLOG import LOG, DEBUG, INFO
 

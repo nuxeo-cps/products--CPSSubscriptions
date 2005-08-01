@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-15 -*-
-# (C) Copyright 2004 Nuxeo SARL <http://nuxeo.com>
+# (C) Copyright 2005 Nuxeo SARL <http://nuxeo.com>
 # Author: Julien Anguenot <ja@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -20,21 +20,27 @@
 
 __author__ = "Julien Anguenot <ja@nuxeo.com>"
 
-"""Backward compatibility;  see Products.CPSSubscriptions.permissions
+"""CPS Subscriptions Permissions
+
+  - 'Manage Subscriptions' : Manage subscriptions
+
+  - 'Can subscribe' : user may subscribe
+
+  - 'View My Subscriptions' : user may view all his subscriptions
+
+  - 'Can Notify Content' : user may notify a document by hand
 """
 
-from warnings import warn
+from Products.CMFCore.permissions import setDefaultRoles
 
-warn("The module, "
-     "'Products.CPSSubscriptions.CPSSubscriptionsPermissions' "
-     "is a deprecated compatiblity alias for "
-     "'Products.CPSSubscriptions.permissions'; "
-     "please use the new module instead. "
-     "This reference will be removed within CPS-3.6",
-     DeprecationWarning)
+ManageSubscriptions = 'Manage Subscriptions'
+setDefaultRoles( ManageSubscriptions, ('Manager'))
 
-# BBB : can be removed in CPS-3.6
-from Products.CPSSubscriptions.permissions import ManageSubscriptions
-from Products.CPSSubscriptions.permissions import CanSubscribe
-from Products.CPSSubscriptions.permissions import ViewMySubscriptions
-from Products.CPSSubscriptions.permissions import CanNotifyContent
+CanSubscribe = 'Can subscribe'
+setDefaultRoles( CanSubscribe, ('Manager',))
+
+ViewMySubscriptions = 'View My Subscriptions'
+setDefaultRoles( ViewMySubscriptions, ('Manager', 'Member'))
+
+CanNotifyContent = 'Can Notify Content'
+setDefaultRoles( CanNotifyContent, ('Manager', 'Owner', 'Member'))

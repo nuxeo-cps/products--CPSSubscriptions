@@ -37,7 +37,8 @@ from Products.CPSCore.CPSBase import CPSBaseFolder
 
 from Products.CMFCore.utils import getToolByName, _checkPermission
 
-from CPSSubscriptionsPermissions import CanSubscribe, ManageSubscriptions
+from Products.CPSSubscriptions.permissions import CanSubscribe
+from Products.CPSSubscriptions.permissions import ManageSubscriptions
 
 class SubscriptionContainer(CPSBaseFolder):
     """ Subscription Container Class

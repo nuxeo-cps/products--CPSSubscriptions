@@ -34,8 +34,10 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
-from Products.CPSSubscriptions.CPSSubscriptionsPermissions import \
-     ManageSubscriptions, CanSubscribe, ViewMySubscriptions, CanNotifyContent
+from Products.CPSSubscriptions.permissions import ManageSubscriptions
+from Products.CPSSubscriptions.permissions import CanSubscribe
+from Products.CPSSubscriptions.permissions import ViewMySubscriptions
+from Products.CPSSubscriptions.permissions import CanNotifyContent
 
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'

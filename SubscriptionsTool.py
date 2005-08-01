@@ -42,7 +42,9 @@ from Products.CMFCore.utils import UniqueObject, getToolByName, \
      _checkPermission
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
-from CPSSubscriptionsPermissions import ViewMySubscriptions, CanSubscribe
+from Products.CPSSubscriptions.permissions import ViewMySubscriptions
+from Products.CPSSubscriptions.permissions import CanSubscribe
+
 from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 from Products.ZCatalog.ZCatalog import ZCatalog
