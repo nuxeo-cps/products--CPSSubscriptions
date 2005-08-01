@@ -51,7 +51,7 @@ from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 from Products.ZCatalog.ZCatalog import ZCatalog
 
-from zLOG import LOG, DEBUG, INFO
+from zLOG import LOG, DEBUG
 
 ##############################################################
 
@@ -830,7 +830,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                     else:
                         LOG("::CPSSubscriptions :: "
                             "ComputeRecipientsRules ERROR",
-                            INFO,
+                            DEBUG,
                             "You should provide a dictionnary",
                             pt_recipient_rule.absolute_url())
         return recipients
@@ -904,7 +904,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # parent folder
         containers = ZCatalog.searchResults(catalog, None, **query)
         LOG(":: CPSSubscriptions :: catalog search for containers" % query,
-            INFO, str([x.getPath() for x in containers]))
+            DEBUG, str([x.getPath() for x in containers]))
 
         #
         # Now let's get the subcription containers and check if the computed

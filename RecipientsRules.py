@@ -47,8 +47,7 @@ from Products.CMFCore.Expression import getEngine
 from Products.CPSSubscriptions.permissions import CanSubscribe
 from Products.CPSSubscriptions.permissions import ManageSubscriptions
 
-from zLOG import LOG, DEBUG, INFO
-
+from zLOG import LOG, ERROR
 
 class RecipientsRule(PortalFolder):
     """Recipients Rule Class.
@@ -471,7 +470,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
             LOG(" ::CPSSubscriptions:: subscribeTo()",
-                INFO,
+                ERROR,
                 "Error : No mail notification found")
             return 0
 
@@ -543,7 +542,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
             LOG(" ::CPSSubscriptions:: subscribeTo()",
-                INFO,
+                ERROR,
                 "Error : No mail notification found")
             return 0
 
@@ -586,7 +585,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
             LOG(" ::CPSSubscriptions:: subscribeTo()",
-                INFO,
+                ERROR,
                 "Error : No mail notification found")
             return 0
 
@@ -645,7 +644,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
             LOG(" ::CPSSubscriptions:: subscribeTo()",
-                INFO,
+                ERROR,
                 "Error : No mail notification found")
             return 0
 

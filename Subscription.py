@@ -32,7 +32,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from zLOG import LOG, DEBUG, INFO
+from zLOG import LOG, DEBUG
 
 class Subscription(PortalFolder):
     """ Subscription
@@ -180,7 +180,7 @@ class Subscription(PortalFolder):
                     recipients[pt_recipient] = pt_recipients[pt_recipient]
                 else:
                     LOG("::CPSSubscriptions :: black list for ",
-                        INFO,
+                        DEBUG,
                         pt_recipient)
 
         #

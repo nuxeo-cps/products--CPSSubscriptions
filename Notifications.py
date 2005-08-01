@@ -61,7 +61,7 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from zLOG import LOG, INFO, DEBUG
+from zLOG import LOG, DEBUG, ERROR
 
 logKey = 'CPSSubscriptions'
 
@@ -182,7 +182,7 @@ class MailNotificationRule(NotificationRule):
         # It could be build by the user with whatever stuffs within.
         if not self._validateStructure(mail_infos):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
-                INFO,
+                ERROR,
                 "Error while sending mail",
                 "check the email of the recipients")
             return -1
@@ -190,7 +190,7 @@ class MailNotificationRule(NotificationRule):
         raw_message = self.getRawMessage(mail_infos, object, event_id)
 
         LOG(":: CPSSubscriptions :: sendMail() :: for",
-            INFO,
+            DEBUG,
             raw_message)
 
         try:
@@ -200,7 +200,7 @@ class MailNotificationRule(NotificationRule):
                 self.MailHost.send(raw_message)
         except (socket.error, MailHostError, SMTPException, Timeout):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
-                INFO,
+                ERROR,
                 "Error while sending mail",
                 "check your SMTP parameters or mailfrom address")
 
@@ -410,7 +410,7 @@ class MailNotificationRule(NotificationRule):
             mime_type = 'text/plain'
 
         LOG(":: CPSSubscriptions :: MailNotificationRule :: on",
-            INFO,
+            DEBUG,
             infos)
 
         # Save the email notification body
