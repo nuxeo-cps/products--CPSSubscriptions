@@ -10,13 +10,7 @@ from zLOG import LOG, DEBUG
 if REQUEST is not None:
     if REQUEST.form:
         subtool = context.portal_subscriptions
-
-        # Checking if we have here a placefull subscription container
-        subscription_id = subtool.getSubscriptionContainerId()
-        if getattr(context, subscription_id, None) is None:
-            context.manage_addProduct['CPSSubscriptions'].addSubscriptionContainer()
-
-        subscription_folder = getattr(context, subscription_id)
+        container = subtool.getSubscriptionContainerFromContext(context)
 
         # @www
         kw = {}
@@ -33,14 +27,14 @@ if REQUEST is not None:
         kw['mfrom'] = REQUEST.form.get('mfrom', '')
 
         # Update properties
-        subscription_folder.updateProperties(**kw)
+        container.updateProperties(**kw)
 
         # Let's take the event/roles the user request for change
         role_events = REQUEST.form.get('role_event', [])
 
         # Cleaning / reinit
-        for subscription_id in subscription_folder.objectIds():
-            ob = getattr(subscription_folder,
+        for subscription_id in container.objectIds():
+            ob = getattr(container,
                          subscription_id)
             to_delete = [x for x in ob.objectValues() if
                          x.meta_type == 'Role Recipient Rule']
@@ -59,15 +53,15 @@ if REQUEST is not None:
             # Is the event already subscribed ?
             # If not then we create it and set the properties
             #
-            current_event_subscription = getattr(subscription_folder,
+            current_event_subscription = getattr(container,
                                                  'subscription__'+event,
                                                  0)
             if not current_event_subscription:
                 LOG("Creating new event subscription", DEBUG, 'subscription__'+event)
-                subscription_folder.manage_addProduct[
+                container.manage_addProduct[
                     'CPSSubscriptions'].addSubscription(id='subscription__'+event,
                                                         title=event)
-            current_event_subscription = getattr(subscription_folder,
+            current_event_subscription = getattr(container,
                                                  'subscription__'+event)
             current_event_subscription.addEventType(event)
             # Default -> mail notification
@@ -88,7 +82,7 @@ if REQUEST is not None:
                                                               **{'roles':[role]})
 
         # Dunno if I should ?
-        subscription_folder.reindexObject(idxs=['portal_type', 'getSubscriptions'])
+        container.reindexObject(idxs=['portal_type', 'getSubscriptions'])
 return REQUEST.RESPONSE.redirect("%s/%s?portal_status_message=%s" %(context.absolute_url(),
                                                                     'folder_notifications_form',
                                                                     'psm_notifications_changed'))

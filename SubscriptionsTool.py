@@ -44,6 +44,8 @@ from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
 from Products.CPSSubscriptions.permissions import ViewMySubscriptions
 from Products.CPSSubscriptions.permissions import CanSubscribe
+from Products.CPSSubscriptions.permissions import ManageSubscriptions
+
 
 from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
@@ -726,27 +728,32 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         return getattr(context, subscription_id)
 
     security.declarePublic('getSusbcriptionContainerFromContext')
-    def getSubscriptionContainerFromContext(self, context, force_local_creation=0):
-        """Returns a subscriptions container id.
+    def getSubscriptionContainerFromContext(self, context,
+                                            force_local_creation=0):
+        """Returns a subscriptions container in the context
 
-        Lookup to find one through acquisition
+        Lookup to find one through acquisition with the accurate
+        rights for the user to manage it. Note the user is supposed to
+        have the rights to manage the container in the context if not
+        then this method will return None
         """
-        container_id = self.getSubscriptionContainerId()
-        container = getattr(context, container_id, None)
 
-        #
+        # Lookup container by acquisition
+        container = getattr(context, self.getSubscriptionContainerId(), None)
+
         # No subscription container by acquisition
         # create one in the context if the current member
         # has the ModifyPortalContent permission
-        #
-
-        mtool = getToolByName(self, 'portal_membership')
-        auth_user = mtool.getAuthenticatedMember()
-
-
-        if (container is None or force_local_creation) \
-            and _checkPermission(ModifyPortalContent, context):
+        if ((container is None or force_local_creation)
+            and _checkPermission(ModifyPortalContent, context)):
             container = self.addSubscriptionContainerInContext(context)
+
+        # If the container is looked up by acquisition but the current
+        # user doesn't have the right permissions to perform
+        # modifications on it then create on in the context
+        if not _checkPermission(ManageSubscriptions, container):
+            container = self.addSubscriptionContainerInContext(context)
+
         return container
 
     security.declarePrivate("notify_event")
