@@ -778,7 +778,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
-        get_event_manager().push(event_type, object, infos)
+
+        # Pre-filtering : we don't want to notify the user on
+        # repository objects
+        if not 'portal_repository' in object.getPhysicalPath():
+            get_event_manager().push(event_type, object, infos)
 
     security.declarePublic("getSubscriptionsFor")
     def getSubscriptionsFor(self, event_type, object, infos=None):
