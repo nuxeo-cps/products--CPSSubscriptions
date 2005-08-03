@@ -28,30 +28,33 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 Defines the Subscriptions Tool class
 """
 
+from zLOG import LOG, DEBUG
+
 from types import DictType, StringType
 
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
+from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
-from Products.CMFCore.permissions import ManagePortal, View, \
-     ModifyPortalContent
-from Products.CMFCore.utils import UniqueObject, getToolByName, \
-     _checkPermission
+from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 
-from Products.CPSSubscriptions.permissions import ViewMySubscriptions
-from Products.CPSSubscriptions.permissions import CanSubscribe
-from Products.CPSSubscriptions.permissions import ManageSubscriptions
+from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.permissions import View
+from Products.CMFCore.permissions import ModifyPortalContent
 
+from permissions import ViewMySubscriptions
+from permissions import CanSubscribe
+from permissions import ManageSubscriptions
 
 from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
-from Products.ZCatalog.ZCatalog import ZCatalog
-
-from zLOG import LOG, DEBUG
+from EventManager import get_event_manager
 
 ##############################################################
 
@@ -757,6 +760,15 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         return container
 
     security.declarePrivate("notify_event")
+    def notify_processed_event(self, event_type, object, infos):
+        """EventManager's callable
+        """
+        subscriptions = self.getSubscriptionsFor(event_type, object, infos)
+        for subscription in subscriptions:
+            if subscription.isInterestedInEvent(event_type, object, infos):
+                subscription.sendEvent(event_type, object, infos)
+
+    security.declarePrivate('notify_processed_event')
     def notify_event(self, event_type, object, infos):
         """Standard event hook.
 
@@ -766,10 +778,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
-        subscriptions = self.getSubscriptionsFor(event_type, object, infos)
-        for subscription in subscriptions:
-            if subscription.isInterestedInEvent(event_type, object, infos):
-                subscription.sendEvent(event_type, object, infos)
+        get_event_manager().push(event_type, object, infos)
 
     security.declarePublic("getSubscriptionsFor")
     def getSubscriptionsFor(self, event_type, object, infos=None):
@@ -1276,8 +1285,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         if context is not None:
             context_area = self._getLocalRoleAreaFromContext(context)
             context_portal_type = getattr(context, 'portal_type', None)
-            LOG("context_area ----------", DEBUG, context_area)
-            LOG("context_portal_type ----------", DEBUG, context_portal_type)
             if (context_area is not None and
                 context_portal_type is not None and
                 context_portal_type in self.getContainerPortalTypes()):
