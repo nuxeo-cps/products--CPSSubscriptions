@@ -17,10 +17,7 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""Manager for event that can be delayed until commit time.
-
-A specific job is done when as well while processing the event queue
-while invoked. The duplicata are filtered
+"""Manager for events with a delayed processing until commit time.
 
 Asynchronous by default.
 """
