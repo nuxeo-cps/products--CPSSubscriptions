@@ -20,6 +20,9 @@ Bug fixes:
 - #740 (CPSSubscriptions specific permissions not imported and intialized)
 - Fix security bug. A user with ManageSubscriptions rights in a context getting a container looked up by acquisition where it hadn't the ManageSubscriptions permission over there couldn't updateProperties() it. A new container will be created where the user wants to e define custom notifications in its own sub-tree
 - #408 (Events on folderish document)
+- #814 (content_notify_email_form renders a html page within the body)
+- #800: content_notify_email_form search result filtering mechanism obsolete with
+cpsuserfolder
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Unified the sender name/email mechanism so that default sender is always the
