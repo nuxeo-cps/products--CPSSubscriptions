@@ -4,15 +4,6 @@
                    title_field here/title_field;
                    fields python:here.getDirectoryResultFields(dirname)[:3];
                    ">
-<metal:block use-macro="here/light_template/macros/master">
-<metal:block fill-slot="header" />
-<metal:block fill-slot="head">
-  <h1 i18n:translate="heading_notify_members_search_results">
-    Search results
-  </h1>
-</metal:block>
-<metal:block fill-slot="main">
-
 <div tal:condition="not:results">
   <div class="group" align="center">
     <span i18n:translate="label_no_results" />
@@ -102,6 +93,4 @@
 </p>
 </form>
 </div>
-</metal:block>
-</metal:block>
 </tal:block>
