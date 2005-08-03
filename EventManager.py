@@ -90,6 +90,7 @@ class EventManager:
         Dispatch the events to the susbcriptions tool todo the actual
         processing
         """
+        LOG("EventManager", DEBUG, "__call__")
         for k, v in self._events.items():
             ob = v[0]['object']
             root = ob.getPhysicalRoot()
@@ -105,6 +106,7 @@ class EventManager:
                     subtool.notify_processed_event(k[0], ob, v[1])
                 else:
                     LOG("EventManager", DEBUG, "Subscriptions Tool not found")
+        LOG("EventManager", DEBUG, "__call__ DONE")
 
 def _remove_event_manager():
     txn = transaction.get()
