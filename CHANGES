@@ -25,3 +25,4 @@ New internal features:
   name/email given in the portal properties.
 - Using the new URL tool from CPSCore API
 - rename the CPSSubscriptionsPermissions in permissions and add BBB from CPSSubscriptionsPermissions
+- EventManager and async processing of events
