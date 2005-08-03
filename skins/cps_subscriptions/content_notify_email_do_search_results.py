@@ -31,7 +31,7 @@ for field in result_fields:
     if call_context is not None:
         dict_roles = mtool.getMergedLocalRoles(call_context, withgroups=0)
         search_restricted_list = dict_roles.keys()
-        mapping['search_restricted_member_list'] = search_restricted_list
+        mapping[dir.id_field] = search_restricted_list
     results = dir.searchEntries(return_fields=return_fields,
                                 **mapping)
 
