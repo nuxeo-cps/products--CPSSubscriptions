@@ -61,7 +61,7 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from zLOG import LOG, DEBUG, ERROR
+from zLOG import LOG, DEBUG, ERROR, TRACE
 
 logKey = 'CPSSubscriptions'
 
@@ -362,7 +362,7 @@ class MailNotificationRule(NotificationRule):
         if infos.get('kwargs_comments') is not None:
             infos['comments'] = infos['kwargs_comments']
 
-        LOG('CPSSubscriptions', DEBUG, "available infos in emails: %s" % infos)
+        LOG('CPSSubscriptions', TRACE, "available infos in emails: %s" % infos)
         return infos
 
     security.declareProtected(ManagePortal, 'notifyRecipients')
@@ -409,9 +409,7 @@ class MailNotificationRule(NotificationRule):
             body = self._getBody(infos)
             mime_type = 'text/plain'
 
-        LOG(":: CPSSubscriptions :: MailNotificationRule :: on",
-            DEBUG,
-            infos)
+        LOG(":: CPSSubscriptions :: MailNotificationRule :: on", TRACE, infos)
 
         # Save the email notification body
         archive_id = substool.addNotificationMessageBodyObject(body, mime_type)
