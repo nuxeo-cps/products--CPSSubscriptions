@@ -17,16 +17,21 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""Manager for event that can be that can be delayed until commit
-time.
+"""Manager for event that can be delayed until commit time.
+
+A specific job is done when as well while processing the event queue
+while invoked. The duplicata are filtered
 
 Asynchronous by default.
 """
 
 from zLOG import LOG, DEBUG
-from Acquisition import aq_base
+from Acquisition import aq_base, aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
+
+from Products.CPSCore.ProxyBase import ProxyFolderishDocument
+from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 
 try:
     import transaction
@@ -38,7 +43,6 @@ except ImportError:
         return get_transaction()
     transaction.get = BBBget
 
-
 _TXN_MGR_ATTRIBUTE = '_cps_event_manager'
 
 class EventManager:
@@ -49,30 +53,37 @@ class EventManager:
     DEFAULT_SYNC = False
 
     def __init__(self, txn):
-        """Initialize and register this manager with the transaction."""
+        """Initialize and register this manager with the transaction.
+        """
         self._events = {}
         self._sync = self.DEFAULT_SYNC
         txn.beforeCommitHook(self)
 
     def setSynchonous(self, sync):
-        """Set queuing mode."""
+        """Set queuing mode.
+        """
         if sync:
             self()
         self._sync = sync
 
     def isSynchonous(self):
-        """Get queuing mode."""
+        """Get queuing mode.
+        """
         return self._sync
 
-    def push(self, event_type, object, info):
-        """Push the event in a queue
+    def _computeKeyFor(self, object, event_type):
+        """Compute the key for the queue element
         """
         rpath = '/'.join(object.getPhysicalPath())[1:]
-
         i = (id(aq_base(object)), rpath)
-        eid = (event_type, i)
+        return (event_type, i)
 
-        event_info = {'id' : i,
+    def push(self, event_type, object, info):
+        """Push the event in a queue with the related info.
+        """
+        eid = self._computeKeyFor(object, event_type)
+
+        event_info = {'id' : eid[1],
                       'object': object,
                       }
 
@@ -80,7 +91,6 @@ class EventManager:
         if cinfo is None:
             self._events[eid] = (event_info, info)
         else:
-            # XXX probably not what's needed here.
             self._events[eid][0].update(event_info)
             self._events[eid][1].update(info)
 
@@ -90,6 +100,9 @@ class EventManager:
         Dispatch the events to the susbcriptions tool todo the actual
         processing
         """
+
+        # XXX this code should move to an external callable
+
         LOG("EventManager", DEBUG, "__call__")
         for k, v in self._events.items():
             ob = v[0]['object']
@@ -100,12 +113,24 @@ class EventManager:
             if ob is None:
                 LOG("EventManager", DEBUG, "Object %r disappeard"%old_ob)
             else:
-                subtool = getToolByName(ob, 'portal_subscriptions')
-                if subtool is not None:
-                    LOG("EventManager", DEBUG, "Processing event for %r "%(ob))
-                    subtool.notify_processed_event(k[0], ob, v[1])
+                # Folderish document and parent has a notification
+                # during the same transaction thus no notification
+                parent = aq_parent(aq_inner(ob))
+                if ((isinstance(parent, ProxyFolderishDocument) or
+                     isinstance(parent, ProxyBTreeFolderishDocument)) and
+                    self._events.get(
+                    self._computeKeyFor(parent, k[0])) is not None):
+                    LOG("EventManager", DEBUG, "Folderish child excluded")
                 else:
-                    LOG("EventManager", DEBUG, "Subscriptions Tool not found")
+                    subtool = getToolByName(ob, 'portal_subscriptions')
+                    if subtool is not None:
+                        LOG("EventManager", DEBUG,
+                            "Processing event %s for %r with infos %r"
+                            %(k[0], ob, v[1]))
+                        subtool.notify_processed_event(k[0], ob, v[1])
+                    else:
+                        LOG("EventManager", DEBUG,
+                            "Subscriptions Tool not found")
         LOG("EventManager", DEBUG, "__call__ DONE")
 
 def _remove_event_manager():

@@ -108,6 +108,13 @@ class EventManagerTest(unittest.TestCase):
     def get_manager(self):
         return EventManager(FakeTransaction())
 
+    def test_compute_key(self):
+
+        mgr = self.get_manager()
+        dummy = root.addDummy()
+        self.assertEqual(mgr._computeKeyFor(dummy, 'event_id'),
+                         ('event_id', (id(dummy), str(dummy.id))))
+
     def test_push_events(self):
 
         mgr = self.get_manager()
@@ -216,17 +223,74 @@ class TransactionEventManagerTest(unittest.TestCase):
         
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
         transaction.commit()
-        self.assertEquals(
-            dummy.portal_subscriptions.getLog(),
-            ["event_type : event_id, object : %s , infos : {}"%other.id,
-             "event_type : event_id, object : %s , infos : {}"%dummy.id]
-            )
+        logs = dummy.portal_subscriptions.getLog()
+        for eid in (other.id, dummy.id):
+            self.assert_(
+                "event_type : event_id, object : %s , infos : {}" %eid in logs)
         root.clear()
+
+from Products.CPSCore.ProxyBase import ProxyFolderishDocument
+from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
+
+class FolderishDummy(Dummy, ProxyFolderishDocument):
+    pass
+
+class BTreeFolderishDummy(Dummy, ProxyBTreeFolderishDocument):
+    pass
+
+class EventManagerSpecificsTest(unittest.TestCase):
+
+    # Test Event Manager Specifics
+
+    def test_folderish(self):
+
+        dummy = root.addDummy(cls=FolderishDummy)
+        other = root.addDummy()
+        dummy.other = other
+
+        mgr = get_event_manager()
+        mgr.push('event_id', dummy, {})
+        mgr.push('event_id', other, {})
+
+        mgr()
+
+        self.assert_(len(dummy.portal_subscriptions.getLog()), 1)
+
+    def test_btree_folderish_simple(self):
+
+        dummy = root.addDummy(cls=BTreeFolderishDummy)
+        other = root.addDummy()
+        dummy.other = other
+
+        mgr = get_event_manager()
+        mgr.push('event_id', dummy, {})
+        mgr.push('event_id', other, {})
+
+        mgr()
+
+        self.assert_(len(dummy.portal_subscriptions.getLog()), 1)
+
+    def test_btree_folderish_simple(self):
+
+        dummy = root.addDummy(cls=BTreeFolderishDummy)
+        other = root.addDummy()
+        dummy.other = other
+        another = root.addDummy()
+
+        mgr = get_event_manager()
+        mgr.push('event_id', dummy, {})
+        mgr.push('event_id', other, {})
+        mgr.push('event_id', another, {})
+
+        mgr()
+
+        self.assert_(len(dummy.portal_subscriptions.getLog()), 2)
 
 def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(EventManagerTest),
         unittest.makeSuite(TransactionEventManagerTest),
+        unittest.makeSuite(EventManagerSpecificsTest),
         ))
 
 if __name__ == '__main__':
