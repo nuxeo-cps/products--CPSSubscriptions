@@ -1,4 +1,40 @@
 *******************************************
+** CPSSubscriptions V0.18.0 [R1 build 2005/08/05-13:59 by ben]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 25426
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Taking advantage of the new centralized CPSI18n.tests.translations module.
+- The script for editing notifications failed if the correct object was not
+  an object manager.
+- Renamed translation file cps-subscriptions.pot as cpssubscriptions.pot to ease
+  translation work (automation). Fixes #779.
+- Fixed translation files through the CPSI18n/bin/fix_pos script.
+- Modified some ZPT files so that they are valid XHTML 1.0 Strict. This is a
+  work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
+  sites".
+- better french notification messages by Delphine
+- A translation was missing in the unsuscribe page.
+- #740 (CPSSubscriptions specific permissions not imported and intialized)
+- Fix security bug. A user with ManageSubscriptions rights in a context getting a container looked up by acquisition where it hadn't the ManageSubscriptions permission over there couldn't updateProperties() it. A new container will be created where the user wants to e define custom notifications in its own sub-tree
+- #408 (Events on folderish document)
+- #814 (content_notify_email_form renders a html page within the body)
+- #800: content_notify_email_form search result filtering mechanism obsolete with
+cpsuserfolder
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Unified the sender name/email mechanism so that default sender is always the
+  name/email given in the portal properties.
+- Using the new URL tool from CPSCore API
+- rename the CPSSubscriptionsPermissions in permissions and add BBB from CPSSubscriptionsPermissions
+- EventManager and async processing of events
+
+*******************************************
 ** CPSSubscriptions V0.17.1 [R1 build 2005/06/02-09:35 by fguillaume]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 22058
 Requires:
