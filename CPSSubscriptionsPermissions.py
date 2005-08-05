@@ -31,7 +31,7 @@ warn("The module, "
      "'Products.CPSSubscriptions.permissions'; "
      "please use the new module instead. "
      "This reference will be removed within CPS-3.6",
-     DeprecationWarning)
+     DeprecationWarning, stacklevel=2)
 
 # BBB : can be removed in CPS-3.6
 from Products.CPSSubscriptions.permissions import ManageSubscriptions
