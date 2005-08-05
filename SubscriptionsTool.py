@@ -37,7 +37,7 @@ from Acquisition import aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
 from Products.ZCatalog.ZCatalog import ZCatalog
-from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
+from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
 
 from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
