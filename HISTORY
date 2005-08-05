@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.19.0 [R1 build 2005/08/05-14:52 by ben]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 25506
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Removed BBB test.
+
+*******************************************
 ** CPSSubscriptions V0.18.0 [R1 build 2005/08/05-13:59 by ben]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 25426
 Requires:
