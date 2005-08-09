@@ -40,7 +40,11 @@ except ImportError:
         return get_transaction()
     transaction.get = BBBget
 
-_TXN_MGR_ATTRIBUTE = '_cps_event_manager'
+_EVT_MGR_ATTRIBUTE = '_cps_event_manager'
+
+# We don't want any other hooks executed before this one right now.  It
+# will have an order of -100
+_EVT_MGR_ORDER = 100
 
 class EventManager:
     """Holds events that need to be processed."""
@@ -54,7 +58,7 @@ class EventManager:
         """
         self._events = {}
         self._sync = self.DEFAULT_SYNC
-        txn.beforeCommitHook(self)
+        txn.beforeCommitHookOrdered(self, _EVT_MGR_ORDER)
 
     def setSynchonous(self, sync):
         """Set queuing mode.
@@ -132,7 +136,7 @@ class EventManager:
 
 def _remove_event_manager():
     txn = transaction.get()
-    setattr(txn, _TXN_MGR_ATTRIBUTE, None)
+    setattr(txn, _EVT_MGR_ATTRIBUTE, None)
 
 def get_event_manager():
     """Get the event manager.
@@ -140,8 +144,8 @@ def get_event_manager():
     Creates it if needed.
     """
     txn = transaction.get()
-    mgr = getattr(txn, _TXN_MGR_ATTRIBUTE, None)
+    mgr = getattr(txn, _EVT_MGR_ATTRIBUTE, None)
     if mgr is None:
         mgr = EventManager(txn)
-        setattr(txn, _TXN_MGR_ATTRIBUTE, mgr)
+        setattr(txn, _EVT_MGR_ATTRIBUTE, mgr)
     return mgr

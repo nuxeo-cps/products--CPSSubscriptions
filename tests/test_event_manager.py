@@ -50,7 +50,7 @@ class DummySubscriptionsTool:
 portal_subscriptions = DummySubscriptionsTool()
 
 class FakeTransaction:
-    def beforeCommitHook(self, hook):
+    def beforeCommitHookOrdered(self, hook, order):
         pass
 
 class FakeRoot:
