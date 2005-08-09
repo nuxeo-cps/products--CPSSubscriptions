@@ -951,9 +951,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                         if subscriber != -1:
                             urls = subscriber['subscription_relative_url']
                             for url in urls:
-                                ob = self.restrictedTraverse(url)
-                                elt = self._makeEltDict(ob, subscription)
-                                subscriptions_list.append(elt)
+                                try:
+                                    ob = self.restrictedTraverse(url)
+                                except KeyError:
+                                    pass
+                                else:
+                                    elt = self._makeEltDict(ob, subscription)
+                                    subscriptions_list.append(elt)
 
                     #
                     # Standard case (Role based computed recipients)
