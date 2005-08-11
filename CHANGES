@@ -10,3 +10,4 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Use before commit hook ordering. EventManager will be called after the IndexationManager
+- Filter repo objects at push level so that they won't be processed at all

@@ -79,9 +79,21 @@ class EventManager:
         i = (id(aq_base(object)), rpath)
         return (event_type, i)
 
+    def _isObjectInteresting(self, object):
+        """Filter the objects we don't want to cope with
+
+        Add filter in here if necessarly.
+        """
+        repo = getToolByName(object, 'portal_repository')
+        return not repo.isObjectInRepository(object)
+
     def push(self, event_type, object, info):
         """Push the event in a queue with the related info.
         """
+
+        if not self._isObjectInteresting(object):
+            return
+
         eid = self._computeKeyFor(object, event_type)
 
         event_info = {'id' : eid[1],

@@ -49,6 +49,16 @@ class DummySubscriptionsTool:
 
 portal_subscriptions = DummySubscriptionsTool()
 
+class DummyRepositoryTool:
+
+    def __init__(self):
+        self.id = 'portal_repository'
+
+    def isObjectInRepository(self, ob):
+        return False
+
+portal_repository = DummyRepositoryTool()
+
 class FakeTransaction:
     def beforeCommitHookOrdered(self, hook, order):
         pass
@@ -90,6 +100,7 @@ class Dummy:
         self.id = id
         self.log = []
         self.portal_subscriptions = portal_subscriptions
+        self.portal_repository = portal_repository
 
     def getLog(self):
         # get and clear log
@@ -162,22 +173,22 @@ class EventManagerTest(unittest.TestCase):
 
     def test_synchronous(self):
         mgr = self.get_manager()
-    
+
         dummy = root.addDummy()
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
-    
+
         mgr.push('event_id', dummy, {})
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
-    
+
         mgr.setSynchonous(True)
         self.assertEquals(
             dummy.portal_subscriptions.getLog(),
             ["event_type : event_id, object : %s , infos : {}" %dummy.id])
-    
+
         mgr.setSynchonous(False)
         mgr.push('event_id', dummy, {'c':'c'})
         self.assertEquals(dummy.getLog(), [])
-    
+
         mgr()
         self.assertEquals(
             dummy.portal_subscriptions.getLog(),
@@ -209,8 +220,8 @@ class TransactionEventManagerTest(unittest.TestCase):
         transaction.abort()
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
         root.clear()
-        
-    
+
+
     def test_transaction_nested(self):
         transaction.begin()
         mgr = get_event_manager()
@@ -220,7 +231,7 @@ class TransactionEventManagerTest(unittest.TestCase):
 
         mgr.push('event_id', dummy, {})
         mgr.push('event_id', other, {})
-        
+
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
         transaction.commit()
         logs = dummy.portal_subscriptions.getLog()
