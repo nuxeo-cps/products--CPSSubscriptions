@@ -58,7 +58,7 @@ class EventManager:
         """
         self._events = {}
         self._sync = self.DEFAULT_SYNC
-        txn.beforeCommitHookOrdered(self, _EVT_MGR_ORDER)
+        txn.addBeforeCommitHook(self, order=_EVT_MGR_ORDER)
 
     def setSynchonous(self, sync):
         """Set queuing mode.
