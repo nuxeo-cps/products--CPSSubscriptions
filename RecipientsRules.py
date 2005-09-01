@@ -879,6 +879,8 @@ class RoleRecipientsRule(RecipientsRule):
             if member_email in member_email_mapping.keys():
                 del member_email_mapping[member_email]
 
+        return member_email_mapping
+
 InitializeClass(RoleRecipientsRule)
 
 def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
