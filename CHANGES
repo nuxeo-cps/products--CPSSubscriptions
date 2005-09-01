@@ -7,6 +7,7 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Don't crash when a container where a user explicitly subscribed has been removed.
+- If an email address is empty it will be skipped when sending emails.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Use before commit hook ordering. EventManager will be called after the IndexationManager

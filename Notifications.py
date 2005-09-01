@@ -419,6 +419,8 @@ class MailNotificationRule(NotificationRule):
         semail, sname = self._getMailSenderInfo(infos)
         subject = self._getSubject(infos)
         for email in emails:
+            if not email:
+                continue
             mail_infos = {
                 'sender_name': sname,
                 'sender_email': semail,
