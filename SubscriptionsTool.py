@@ -897,10 +897,10 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         #
 
         # Member information
+        membership_tool = getToolByName(self, 'portal_membership')
         if not member_id:
-            membership_tool = getToolByName(self, 'portal_membership')
             member_id = membership_tool.getAuthenticatedMember().getMemberId()
-        email = self.getMemberEmail(member_id)
+        email = membership_tool.getEmailFronUsername(member_id)
 
         # Place
         if context is not None:
@@ -987,7 +987,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         if not isAno:
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = self.getMemberEmail(member_id)
+            member_email = membership_tool.getEmailFromUsername(member_id)
 
             if role_based:
                 # Check here if the member is computed based on his local roles

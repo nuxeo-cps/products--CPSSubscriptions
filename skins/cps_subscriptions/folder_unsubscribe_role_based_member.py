@@ -9,7 +9,7 @@ isAno = context.portal_membership.isAnonymousUser()
 if not isAno:
     member = context.portal_membership.getAuthenticatedMember()
     member_id = member.getMemberId()
-    member_email = context.getMemberEmail(member_id)
+    member_email = context.portal_membership.getEmailFromUsername(member_id)
 
 if REQUEST is not None:
     if REQUEST.form:

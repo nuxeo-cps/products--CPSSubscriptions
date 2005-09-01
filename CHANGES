@@ -11,3 +11,6 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Use before commit hook ordering. EventManager will be called after the IndexationManager
 - Filter repo objects at push level so that they won't be processed at all
+- CPSSubscriptions now will use the MembershipTools new method to get an email
+  address instead of the getMemberEmail skin. The skin still exists for
+  backwards compatibility, and also uses this method.

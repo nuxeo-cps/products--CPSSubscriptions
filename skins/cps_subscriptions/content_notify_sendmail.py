@@ -27,7 +27,7 @@ mail_body = mail_body + \
 
 mtool = getToolByName(context, 'portal_membership')
 member = mtool.getAuthenticatedMember()
-sender_email = member.getProperty('email')
+sender_email = mtool.getEmailFromUsername(member.getUserName())
 sender_name = member.getProperty('sn') + ' ' + member.getProperty('givenName')
 
 subtool = getToolByName(context, 'portal_subscriptions')
@@ -39,7 +39,7 @@ if not sender_email:
 
 tos = explicit_recipients_emails
 for member_id in members:
-    tos.append(context.getMemberEmail(member_id))
+    tos.append(mtool.getEmailFromUsername(member_id))
 
 to_str = ''
 for to in tos:

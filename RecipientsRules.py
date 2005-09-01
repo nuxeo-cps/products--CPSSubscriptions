@@ -495,7 +495,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = self.getMemberEmail(member_id) #skins
+            member_email = membership_tool.getEmailfromUsername(member_id)
 
             # Building member struct with compuslory information
             utool = getToolByName(self, 'portal_url')
@@ -604,7 +604,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = self.getMemberEmail(member_id) #skins
+            member_email = membership_tool.getEmailfromUsername(member_id)
 
             if member_id in self.getMemberIds():
                 # Building member struct with compuslory information
@@ -688,7 +688,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         # Members subscribed
         for member_id in self.getMemberIds(context=object):
-            email = self.getMemberEmail(member_id)
+            email = metool.getEmailfromUsername(member_id)
             member_email_mapping[email] = member_id
 
         # Groups subscribed
@@ -697,7 +697,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                 group = aclu.getGroupById(group_id)
                 group_users = group.getUsers()
                 for member_id in group_users:
-                    email = self.getMemberEmail(member_id)
+                    email = mtool.getEmailFromUsername(member_id)
                     member_email_mapping[email] = member_id
             except KeyError:
                 # XXX
@@ -844,10 +844,8 @@ class RoleRecipientsRule(RecipientsRule):
                             group = aclu.getGroupById(group_id)
                             member_ids = group.getUsers()
                         for member_id in member_ids:
-                            member = mtool.getMemberById(member_id)
-                            if member is not None:
-                                email = self.getMemberEmail(member_id)
-                                member_email_mapping[email] = member_id
+                            email = mtool.getEmailFromUsername(member_id)
+                            member_email_mapping[email] = member_id
         else:
             #
             # Using roles defined only in the context
@@ -857,7 +855,7 @@ class RoleRecipientsRule(RecipientsRule):
                 member_id = member[0]
                 for role in self.getRoles():
                     if role in member[1]:
-                        email = self.getMemberEmail(member_id)
+                        email = mtool.getEmailFromUsername(member_id)
                         member_email_mapping[email] = member_id
 
             local_group_roles = container.get_local_group_roles()
@@ -869,20 +867,17 @@ class RoleRecipientsRule(RecipientsRule):
                         group = aclu.getGroupById(group_id)
                         group_users = group.getUsers()
                         for member_id in group_users:
-                            email = self.getMemberEmail(member_id)
+                            email = mtool.getEmailFromUsername(member_id)
                             member_email_mapping[email] = member_id
-
 
         #
         # Removing the members who asked for unsubsciption
         #
 
         for member_id in self.getUnSubscribedMembers():
-            member_email = self.getMemberEmail(member_id)
+            member_email = mtool.getEmailFromUsername(member_id)
             if member_email in member_email_mapping.keys():
                 del member_email_mapping[member_email]
-
-        return member_email_mapping
 
 InitializeClass(RoleRecipientsRule)
 
