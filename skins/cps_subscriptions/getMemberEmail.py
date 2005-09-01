@@ -8,9 +8,7 @@ CPS ones.
 """
 
 if member_id:
-    members = context.portal_directories.members
-    member = members.getEntry(member_id, default=None)
-    if member:
-        return member.get('email')
+    membership = context.portal_membership
+    return membership.getEmailFromUsername(member_id)
 
 return None
