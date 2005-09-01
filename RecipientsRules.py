@@ -879,6 +879,11 @@ class RoleRecipientsRule(RecipientsRule):
             if member_email in member_email_mapping.keys():
                 del member_email_mapping[member_email]
 
+        # Remove non-existent users and empty email adresses:
+        for key in (None, ''):
+            if key in member_email_mapping.keys():
+                del member_email_mapping[key]
+
         return member_email_mapping
 
 InitializeClass(RoleRecipientsRule)
