@@ -156,6 +156,24 @@ class EventManagerTest(unittest.TestCase):
         mgr.push('other_event_id', dummy2, {})
         self.assertEqual(len(mgr._events.keys()), 4)
 
+    def test_push_zope_root_object(self):
+
+        # Here, we test the behavior event related objects are located
+        # at the root of the Zope instance and thus can't find CMF
+        # tools
+
+        mgr = self.get_manager()
+
+        # Push one
+        dummy1 = Dummy('dummy1')
+
+        # Remove the tools.
+        dummy1.portal_repository = None
+        dummy1.portal_subscriptions = None
+
+        mgr.push('event_id', dummy1, {})
+        self.assertEqual(len(mgr._events.keys()), 0)
+
     def test_manager_call(self):
 
         mgr = self.get_manager()

@@ -84,8 +84,11 @@ class EventManager:
 
         Add filter in here if necessarly.
         """
-        repo = getToolByName(object, 'portal_repository')
-        return not repo.isObjectInRepository(object)
+        repo = getToolByName(object, 'portal_repository', None)
+        # Events outside CPS. We don't deal with those.
+        if repo is not None:
+            return not repo.isObjectInRepository(object)
+        return False
 
     def push(self, event_type, object, info):
         """Push the event in a queue with the related info.
