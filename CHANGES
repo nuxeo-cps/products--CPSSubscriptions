@@ -11,6 +11,7 @@ been removed.
 - If an email address is empty it will be skipped when sending emails.
 New internal features:
 - #888 (event error while logging out from portal)
+- use mtool.getEmailFromUsername instead of mtool.getEmailfromUsername
 
 ~~~~~~~~~~~~~~~~~~~~~~
 - Use before commit hook ordering. EventManager will be called after

@@ -495,7 +495,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = membership_tool.getEmailfromUsername(member_id)
+            member_email = membership_tool.getEmailFromUsername(member_id)
 
             # Building member struct with compuslory information
             utool = getToolByName(self, 'portal_url')
@@ -604,7 +604,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             membership_tool = getToolByName(self, 'portal_membership')
             member = membership_tool.getAuthenticatedMember()
             member_id = member.getMemberId()
-            member_email = membership_tool.getEmailfromUsername(member_id)
+            member_email = membership_tool.getEmailFromUsername(member_id)
 
             if member_id in self.getMemberIds():
                 # Building member struct with compuslory information
@@ -688,7 +688,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         # Members subscribed
         for member_id in self.getMemberIds(context=object):
-            email = metool.getEmailfromUsername(member_id)
+            email = metool.getEmailFromUsername(member_id)
             member_email_mapping[email] = member_id
 
         # Groups subscribed

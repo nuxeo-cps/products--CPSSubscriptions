@@ -900,7 +900,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         membership_tool = getToolByName(self, 'portal_membership')
         if not member_id:
             member_id = membership_tool.getAuthenticatedMember().getMemberId()
-        email = membership_tool.getEmailFronUsername(member_id)
+        email = membership_tool.getEmailFromUsername(member_id)
 
         # Place
         if context is not None:
