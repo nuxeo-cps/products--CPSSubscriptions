@@ -20,4 +20,5 @@ the IndexationManager
 - CPSSubscriptions now will use the MembershipTools new method to get an email
   address instead of the getMemberEmail skin. The skin still exists for
   backwards compatibility, and also uses this method.
-- Use the cps transaction manager to register the indexation manager hook
+- Use the cps transaction manager to register the event manager hook
+- EventManager implements CPSCore.interfaces.IBaseManager

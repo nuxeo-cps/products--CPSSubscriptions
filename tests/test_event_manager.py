@@ -24,6 +24,7 @@ import random
 import unittest
 from OFS.SimpleItem import SimpleItem
 
+from Products.CPSCore.interfaces import IBaseManager
 from Products.CPSSubscriptions.EventManager import EventManager
 from Products.CPSSubscriptions.EventManager import get_event_manager
 
@@ -123,6 +124,10 @@ class EventManagerTest(unittest.TestCase):
     def get_manager(self):
         return EventManager(FakeTransactionManager())
 
+    def test_z2interfaces(self):
+        from Interface.Verify import verifyClass
+        verifyClass(IBaseManager, EventManager)
+
     def test_compute_key(self):
 
         mgr = self.get_manager()
@@ -202,12 +207,12 @@ class EventManagerTest(unittest.TestCase):
         mgr.push('event_id', dummy, {})
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
 
-        mgr.setSynchonous(True)
+        mgr.setSynchronous(True)
         self.assertEquals(
             dummy.portal_subscriptions.getLog(),
             ["event_type : event_id, object : %s , infos : {}" %dummy.id])
 
-        mgr.setSynchonous(False)
+        mgr.setSynchronous(False)
         mgr.push('event_id', dummy, {'c':'c'})
         self.assertEquals(dummy.getLog(), [])
 

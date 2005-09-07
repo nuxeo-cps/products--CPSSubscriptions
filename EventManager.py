@@ -27,7 +27,10 @@ from Acquisition import aq_base, aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
 
+from Products.CPSCore.interfaces import IBaseManager
+from Products.CPSCore.BaseManager import BaseManager
 from Products.CPSCore.TransactionManager import get_transaction_manager
+
 from Products.CPSCore.ProxyBase import ProxyFolderishDocument
 from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 
@@ -47,31 +50,16 @@ _EVT_MGR_ATTRIBUTE = '_cps_event_manager'
 # will have an order of 100
 _EVT_MGR_ORDER = 100
 
-class EventManager:
+class EventManager(BaseManager):
     """Holds events that need to be processed."""
 
-    # Not synchronous by default
-    # XXX This may be monkey-patched by unit-tests.
-    DEFAULT_SYNC = False
+    __implements__ = IBaseManager
 
     def __init__(self, mgr):
         """Initialize and register this manager with the transaction.
         """
+        BaseManager.__init__(self, mgr, order=_EVT_MGR_ORDER)
         self._events = {}
-        self._sync = self.DEFAULT_SYNC
-        mgr.addBeforeCommitHook(self, order=_EVT_MGR_ORDER)
-
-    def setSynchonous(self, sync):
-        """Set queuing mode.
-        """
-        if sync:
-            self()
-        self._sync = sync
-
-    def isSynchonous(self):
-        """Get queuing mode.
-        """
-        return self._sync
 
     def _computeKeyFor(self, object, event_type):
         """Compute the key for the queue element
