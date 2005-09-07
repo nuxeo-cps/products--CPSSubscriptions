@@ -688,7 +688,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         # Members subscribed
         for member_id in self.getMemberIds(context=object):
-            email = metool.getEmailFromUsername(member_id)
+            email = mtool.getEmailFromUsername(member_id)
             member_email_mapping[email] = member_id
 
         # Groups subscribed
