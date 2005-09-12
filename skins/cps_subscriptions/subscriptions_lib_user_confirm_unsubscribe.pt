@@ -25,7 +25,7 @@
   </span>
   <br /><br />
   <span i18n:translate="">
-    Ton confirm that you want to be removed from this mailing list, click
+    To confirm that you want to be removed from this mailing list, click
     <a href=""
       tal:attributes="href
       string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">

@@ -12,6 +12,7 @@ been removed.
 New internal features:
 - #888 (event error while logging out from portal)
 - use mtool.getEmailFromUsername instead of mtool.getEmailfromUsername
+- i18n fixes (en and fr)
 
 ~~~~~~~~~~~~~~~~~~~~~~
 - Use before commit hook ordering. EventManager will be called after

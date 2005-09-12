@@ -13,7 +13,7 @@
   </metal:block>
   <metal:block fill-slot="main">
     <i i18n:translate="">
-      You may allowed only members with given local roles to subscribe to this
+      You may allow only members with given local roles to subscribe to this
       givent event.  For instance, you may not want the anonymous users
       (public) to subscribe to the event 'reject content' within sections.  For
       this, just pick up the local roles below for which you want to give the

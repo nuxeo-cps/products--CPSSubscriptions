@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2005-06-24 14:11default\n"
+"POT-Creation-Date: 2005-09-12 15:38default\n"
 "PO-Revision-Date: 2005-01-14 09:11+0100\n"
 "Last-Translator: DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: Francais <fr@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "Below are the subscriptions you belong to all over the portal"
-msgstr ""
+msgstr "Listes de vos abonnements pour tout le portail."
 
 #.   <span>
 #.       Mailing list subscription confirmation for the event
@@ -97,63 +97,54 @@ msgstr ""
 #.   <td>Notification type</td>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "Notification type"
-msgstr "Modifier"
+msgstr "Type d'alerte"
 
 #.   <span>
-#.          Please, follow the instruction included in the mail you will shortly receive
-#.        </span>
-#: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
-msgid ""
-"Please, follow the instruction included in the mail you will shortly receive"
-msgstr ""
-
-#.   <span>
-#.       Ton confirm that you want to be added to this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
+#.       To confirm that you want to be added to this mailing list, click
+#.       <a attributes="href
+#.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}" href="">
 #.         here
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 msgid ""
-"Ton confirm that you want to be added to this mailing list, click <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> here </a>"
+"To confirm that you want to be added to this mailing list, click <a "
+"attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email="
+"${email}&event_id=${event_id}\" href=\"\"> here </a>"
 msgstr ""
 
 #.   <span>
-#.       Ton confirm that you want to be removed from this mailing list, click
-#.       <a href="" attributes="href
-#.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
+#.       To confirm that you want to be removed from this mailing list, click
+#.       <a attributes="href
+#.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}" href="">
 #.         here
 #.       </a>
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
 msgid ""
-"Ton confirm that you want to be removed from this mailing list, click <a "
-"href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
+"To confirm that you want to be removed from this mailing list, click <a "
+"attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe?"
+"email=${email}&event_id=${event_id}\" href=\"\"> here </a>"
 msgstr ""
 
 #.   <span>
 #.       We have received a request for subscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
+#.       address, <a attributes="href string:mailto:${email}" href="">
 #.         <span replace="email" />
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 msgid ""
-"We have received a request for subscription with the email address, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
+"We have received a request for subscription with the email address, <a "
+"attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email"
+"\" /> </a>"
 msgstr ""
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
-#.       address, <a href="" attributes="href string:mailto:${email}">
+#.       address, <a attributes="href string:mailto:${email}" href="">
 #.         <span replace="email" />
 #.       </a>
 #.     </span>
@@ -161,12 +152,12 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
 msgid ""
 "We have received a request for unsubscription with the email address, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
 
 #.   <i>
-#.         You may allowed only members with given local roles to subscribe to this
+#.         You may allow only members with given local roles to subscribe to this
 #.         givent event.  For instance, you may not want the anonymous users
 #.         (public) to subscribe to the event 'reject content' within sections.  For
 #.         this, just pick up the local roles below for which you want to give the
@@ -176,7 +167,7 @@ msgstr ""
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
-"You may allowed only members with given local roles to subscribe to this "
+"You may allow only members with given local roles to subscribe to this "
 "givent event. For instance, you may not want the anonymous users (public) to "
 "subscribe to the event 'reject content' within sections. For this, just pick "
 "up the local roles below for which you want to give the possiblity to the "
@@ -185,23 +176,23 @@ msgid ""
 "subscriptions."
 msgstr ""
 
-#.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
+#.   <input type="submit" class="standalone" value="button_import" name="subscription_import:method" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "button_import"
 msgstr "Importer"
 
-#.   <input name="folder_subscribe:method" type="submit" class="standAlone" value="button_subscribe">
-#.               <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
+#.   <input type="submit" class="standAlone" value="button_subscribe" name="folder_subscribe:method">
+#.               <input condition="isAno" type="submit" class="standAlone" value="button_unsubscribe" name="folder_unsubscribe:method">
 #.           </input></input>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "button_subscribe"
 msgstr "S'abonner"
 
-#.   <input condition="isAno" name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
+#.   <input condition="isAno" type="submit" class="standAlone" value="button_unsubscribe" name="folder_unsubscribe:method">
 #.           </input>
-#.   <input name="folder_unsubscribe:method" type="submit" class="standAlone" value="button_unsubscribe">
+#.   <input type="submit" class="standAlone" value="button_unsubscribe" name="folder_unsubscribe:method">
 #.             </input>
-#.   <input name="folder_unsubscribe_role_based_member:method" type="submit" class="standAlone" value="button_unsubscribe" condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0">
+#.   <input condition="python:subscription_folder and subscription_folder.isUnSubscriptionAllowed() or 0" type="submit" class="standAlone" value="button_unsubscribe" name="folder_unsubscribe_role_based_member:method">
 #.             </input>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "button_unsubscribe"
@@ -380,13 +371,6 @@ msgstr "Mes abonnements"
 msgid "heading_notify_content_form"
 msgstr "Rechercher des membres ayant des droits sur ce document"
 
-#.   <h1>
-#.       Search results
-#.     </h1>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "heading_notify_members_search_results"
-msgstr "Résultats de la recherche"
-
 #.   <h1 condition="email">
 #.         Subscription taken into consideration
 #.       </h1>
@@ -489,9 +473,10 @@ msgstr "Entrer un courriel valide"
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
+#: ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "label_follow_subscriptions_instructions"
 msgstr ""
-"Veuiller suivre les instructions se trouvant dans le courriel que vous allez "
+"Veuillez suivre les instructions se trouvant dans le courriel que vous allez "
 "recevoir."
 
 #.   <span>
@@ -541,7 +526,7 @@ msgid "label_no_subscriptions_based_on_local_roles"
 msgstr "Aucun abonnements dû aux roles locaux."
 
 # ## PSMS ##########################################
-#.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
+#.   <a attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}" href=".">
 #.   		    Edit
 #.   		</a>
 #: from
@@ -550,7 +535,7 @@ msgid "label_notification_edit"
 msgstr "Modifier"
 
 # ## PSMS ##########################################
-#.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
+#.   <a attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}" href=".">
 #.   		    Choose
 #.   		</a>
 #: from
@@ -598,7 +583,7 @@ msgstr "Autres"
 msgid "label_roles_allowed_to_subscribe"
 msgstr "Rôles locaux permettant aux personnes de s'abonner à cet événement."
 
-#.   <a href="." attributes="href string:javascript:open_subscribers_window()">
+#.   <a attributes="href string:javascript:open_subscribers_window()" href=".">
 #.   	    See all subscribers
 #.   	</a>
 #: from
@@ -798,7 +783,7 @@ msgstr "Lien sur le document"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
-msgstr "Gestion des alertes"
+msgstr "Gérer les alertes"
 
 msgid "action_my_subscriptions"
 msgstr "Mes abonnements"
@@ -861,7 +846,3 @@ msgstr "Mensuel"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Mes abonnements"
-
-#, fuzzy
-#~ msgid "button_back"
-#~ msgstr "S'abonner"
