@@ -127,7 +127,7 @@ class EventManager(BaseManager):
                     self._computeKeyFor(parent, k[0])) is not None):
                     LOG("EventManager", DEBUG, "Folderish child excluded")
                 else:
-                    subtool = getToolByName(ob, 'portal_subscriptions')
+                    subtool = getToolByName(ob, 'portal_subscriptions', None)
                     if subtool is not None:
                         LOG("EventManager", DEBUG,
                             "Processing event %s for %r with infos %r"
