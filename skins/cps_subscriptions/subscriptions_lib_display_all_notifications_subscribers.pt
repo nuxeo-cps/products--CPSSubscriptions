@@ -36,7 +36,7 @@
             </a>
           </td>
           <td tal:define="m python:recipients[recipient_mail];
-                          name_to_display python:here.getMemberFullNameFromId(m)">
+                          name_to_display python:mtool.getFullnameFromId(m)">
             <span tal:replace="name_to_display" />
           </td>
         </tal:block>
