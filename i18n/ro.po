@@ -91,7 +91,7 @@ msgstr ""
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 #, fuzzy
 msgid "Notification type"
-msgstr "Type d'alerte"
+msgstr "Tip de notificare"
 
 #.   <span>
 #.       To confirm that you want to be added to this mailing list, click
@@ -102,9 +102,9 @@ msgstr "Type d'alerte"
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 msgid ""
-"To confirm that you want to be added to this mailing list, click <a "
+"Pentru a confirma ca vrei sa fii adaugat la lista de discutii, apasa <a "
 "attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email="
-"${email}&event_id=${event_id}\" href=\"\"> here </a>"
+"${email}&event_id=${event_id}\" href=\"\"> aici </a>"
 msgstr ""
 
 #.   <span>
@@ -117,9 +117,9 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
 msgid ""
-"To confirm that you want to be removed from this mailing list, click <a "
+"Pentru a confirma ca vrei sa fii sters din lista de discutii, apasa <a "
 "attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe?"
-"email=${email}&event_id=${event_id}\" href=\"\"> here </a>"
+"email=${email}&event_id=${event_id}\" href=\"\"> aici </a>"
 msgstr ""
 
 #.   <span>
@@ -130,7 +130,7 @@ msgstr ""
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 msgid ""
-"We have received a request for subscription with the email address, <a "
+"Am primit o cerere de abonare pentru adresa de email <a "
 "attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
@@ -144,7 +144,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
 msgid ""
-"We have received a request for unsubscription with the email address, <a "
+"Am cerut o cerere de dezabonare pentru adresa de email <a "
 "attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
@@ -160,13 +160,13 @@ msgstr ""
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
-"You may allow only members with given local roles to subscribe to this "
-"givent event. For instance, you may not want the anonymous users (public) to "
-"subscribe to the event 'reject content' within sections. For this, just pick "
-"up the local roles below for which you want to give the possiblity to the "
-"users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is opened to everybody for "
-"subscriptions."
+"Poti permite numai membrilor cu anumite roluri locale sa se aboneze la "
+"un anumit eveniment. De exemplu, poti opta ca utilizatorii anonimi (publicul) sa "
+"se aboneze la evenimentul 'continut respins' din cadrul sectiunilor. Pentru aceasta, selecteaza "
+"rolurile locale de mai jos pentru care vrei sa oferi posibilitatea "
+"uutilizatorilor cu roluri locale de a se abona la eveniment. Daca "
+"nu speicfici nici un rol local atunci evenimentul este deschis pentru abonare "
+"tuturor."
 msgstr ""
 
 #.   <input type="submit" class="standalone" value="button_import" name="subscription_import:method" />
@@ -324,14 +324,14 @@ msgstr "Toate persoanele notificate"
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
 msgid "heading_confirm_subscribtion"
-msgstr "Confirmarea subscrieri la <span replace='event_id' />"
+msgstr "Confirmarea subscrierii la <span replace='event_id' />"
 
 #.   <h1>
 #.           Confirm unsubscription for <span replace="event_id" />
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
 msgid "heading_confirm_unsubscribtion"
-msgstr "Confirmarea dézabonarii la <span replace='event_id' />"
+msgstr "Confirmarea dezabonarii la <span replace='event_id' />"
 
 #.   <span>
 #.           Edit subscription
@@ -467,7 +467,7 @@ msgstr "Introdu un email valid"
 #: ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "label_follow_subscriptions_instructions"
 msgstr ""
-"Te rog, urmeaza instructiunile incluse in email-ul pe care il vei primi in "
+"Urmeaza instructiunile incluse in email-ul pe care il vei primi in "
 "scurt timp"
 
 #.   <span>
@@ -818,7 +818,7 @@ msgstr "O configuratie a evenimentului a fost actualizata"
 
 #, fuzzy
 msgid "psm_user_mode_updated"
-msgstr "Le mode de réception a bien été mise à jour"
+msgstr "Modalitatea de receptionare a fost actualizata"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
