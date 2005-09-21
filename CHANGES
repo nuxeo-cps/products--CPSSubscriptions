@@ -6,20 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- Don't crash when a container where a user explicitly subscribed has
-been removed.
-- If an email address is empty it will be skipped when sending emails.
+-
 New internal features:
-- #888 (event error while logging out from portal)
-- use mtool.getEmailFromUsername instead of mtool.getEmailfromUsername
-- i18n fixes (en and fr)
-
 ~~~~~~~~~~~~~~~~~~~~~~
-- Use before commit hook ordering. EventManager will be called after
-the IndexationManager
-- Filter repo objects at push level so that they won't be processed at all
-- CPSSubscriptions now will use the MembershipTools new method to get an email
-  address instead of the getMemberEmail skin. The skin still exists for
-  backwards compatibility, and also uses this method.
-- Use the cps transaction manager to register the event manager hook
-- EventManager implements CPSCore.interfaces.IBaseManager
+-
