@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Notifications : notifyConfirmUnsubscribe() wrong var name
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

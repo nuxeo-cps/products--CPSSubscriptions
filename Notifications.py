@@ -615,7 +615,7 @@ class MailNotificationRule(NotificationRule):
         infos = {
             'portal_title': portal.Title(),
             'object_url'  : object_url,
-            'url'         : url,
+            'url'         : info_url,
             'object_title': context.title_or_id(),
             'info_url'    : info_url,
             'event_id'    : event_id,
