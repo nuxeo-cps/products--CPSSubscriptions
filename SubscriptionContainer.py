@@ -23,27 +23,31 @@
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
-""" Subscription Container Folder Class
+""" Subscription container class definition
 
-This is a placefull subscription container holding the configuration.
+This is a placefull subscription container holding the subscripions
+configuration.
 """
 
-from Globals import InitializeClass, MessageDialog
-from Acquisition import aq_base, aq_inner, aq_parent
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_base, aq_inner, aq_parent
 
+from Globals import InitializeClass
+from Globals import MessageDialog
+
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.permissions import ModifyPortalContent
-from Products.CPSCore.CPSBase import CPSBaseFolder
 
-from Products.CMFCore.utils import getToolByName, _checkPermission
+from Products.CPSCore.CPSBase import CPSBaseFolder
 
 from Products.CPSSubscriptions.permissions import CanSubscribe
 from Products.CPSSubscriptions.permissions import ManageSubscriptions
 
 class SubscriptionContainer(CPSBaseFolder):
-    """ Subscription Container Class
+    """ Subscription container
 
-    Placefull Object containing subscription information.
+    Placeful Object containing subscription information.
     """
 
     meta_type = 'CPS PlaceFull Subscription Container'
@@ -83,7 +87,8 @@ class SubscriptionContainer(CPSBaseFolder):
                    {'id': 'user_modes',
                     'type':'string',
                     'mode':'w',
-                    'label' : 'What frequence the user choose for its notifications'},
+                    'label' :
+                    'What frequence the user choose for its notifications'},
                    )
 
     notify_local_only = 0
@@ -127,6 +132,7 @@ class SubscriptionContainer(CPSBaseFolder):
 
         Will be use when sending emails to the mailing list
         """
+        # XXX not used yet
         return self.lang
 
     security.declarePublic('isNotificationLocalOnly')
@@ -204,7 +210,6 @@ class SubscriptionContainer(CPSBaseFolder):
             self.manage_permission(perm, roles, 1)
         self.reindexObjectSecurity()
 
-
     security.declareProtected(CanSubscribe, 'addSubscription')
     def addSubscription(self, id=None):
         """Add a subscription object within the subscription folder
@@ -237,10 +242,7 @@ class SubscriptionContainer(CPSBaseFolder):
         """
         # XXX : find sthg else to find these subscription objects
         return [x for x in self.objectValues()
-                if getattr(x, 'getFilterEventTypes', 0)]
-
-    ##################################################################
-    ##################################################################
+                if getattr(x, 'getFilterEventTypes', False)]
 
     security.declareProtected(CanSubscribe, 'updateUserMode')
     def updateUserMode(self, email, mode):
@@ -257,9 +259,8 @@ class SubscriptionContainer(CPSBaseFolder):
         """
         if email in self.user_modes.keys():
             return self.user_modes[email]
-        else:
-            # No mode == real time (default value)
-            return 'mode_real_time'
+        # No mode == real time (default value)
+        return 'mode_real_time'
 
 InitializeClass(SubscriptionContainer)
 
@@ -281,11 +282,9 @@ def addSubscriptionContainer(self, id=None, REQUEST=None):
 
     subscription_container = getattr(self, id)
 
-    #
     # Let's create event subscriptions mapping the context.
     # These information are know by tool site.
     # We need to create them right now for the subscriptions
-    #
 
     parent = aq_parent(aq_inner(subscription_container))
     events_in_context = subtool.getEventsFromContext(parent)
