@@ -251,4 +251,5 @@ def addSubscription(self, id=None, title='', REQUEST=None):
         'CPSSubscriptions'].addMailNotificationRule()
 
     if REQUEST is not None:
-        REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
+        return REQUEST.RESPONSE.redirect(self.absolute_url()+'/manage_main')
+    return subscription

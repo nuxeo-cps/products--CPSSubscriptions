@@ -7,6 +7,7 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Notifications : notifyConfirmUnsubscribe() wrong var name
+- Fix : SubscriptionContainer.getSusbcriptionById()
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

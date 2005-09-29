@@ -209,10 +209,13 @@ class SubscriptionContainer(CPSBaseFolder):
     def addSubscription(self, id=None):
         """Add a subscription object within the subscription folder
         """
-        self.manage_addProduct['CPSSubscriptions'].addSubscription(id=id)
+        return self.manage_addProduct['CPSSubscriptions'].addSubscription(id=id)
 
+    security.declarePublic('getSubscriptionById')
     def getSubscriptionById(self, subscription_id=''):
         """Return a susbcription object given an id
+
+        If it doesn't exist then create it 
         """
         subtool = getToolByName(self, 'portal_subscriptions')
         subscription_prefix = subtool.getSubscriptionObjectPrefix()
@@ -221,15 +224,11 @@ class SubscriptionContainer(CPSBaseFolder):
             subscription_id = subscription_prefix + subscription_id
 
         subscription = getattr(self, subscription_id, None)
-  	
-	#
+
 	# Cope with the None case : the subscription doesn't exist yet
-	#
-
         if (subscription is None and
-            _checkPermission(ModifyPortalContent, self)):
-            container = self.addSubscription(subscription_id)
-
+            _checkPermission(ManageSubscription, self)):
+            subscription = self.addSubscription(subscription_id)
 	return subscription
 
     security.declarePublic('getSubscriptions')

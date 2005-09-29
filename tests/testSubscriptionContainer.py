@@ -1,43 +1,18 @@
 # $Id$
 
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 import unittest
+from Testing import ZopeTestCase
+
 import CPSSubscriptionsTestCase
 
-class DummyResponse:
-    def __init__(self):
-        self.headers = {}
-        self.data = ''
+from Products.CPSSubscriptions.SubscriptionContainer import \
+     SubscriptionContainer
+from Products.CPSSubscriptions.SubscriptionsTool import SubscriptionsTool
+from Products.CPSSubscriptions.Subscription import Subscription
 
-    def setHeader(self, key, value):
-        self.headers[key] = value
+class TestSubscriptionContainer(
+    CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
 
-    def write(self, data):
-        self.data += data
-
-    def redirect(self, url):
-        self.redirect_url = url
-
-
-def randomText(max_len=10):
-    import random
-    return ''.join(
-        [chr(random.randint(32, 128)) for i in range(0, max_len)])
-
-
-def myGetViewFor(obj, view='view'):
-    ti = obj.getTypeInfo()
-    actions = ti.listActions()
-    for action in actions:
-        if action.getId() == view:
-            return getattr(obj, action.action.text)
-    raise "Unverified assumption"
-
-
-class TestSubscriptionContainer(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     def afterSetUp(self):
         self.login('manager')
         self.portal.REQUEST.SESSION = {}
@@ -45,6 +20,38 @@ class TestSubscriptionContainer(CPSSubscriptionsTestCase.CPSSubscriptionsTestCas
 
     def beforeTearDown(self):
         self.logout()
+
+    def test_fixtures(self):
+
+        container = SubscriptionContainer('subc')
+        self.assert_(isinstance(container, SubscriptionContainer))
+        # XXX attrs and sub-objects
+
+    def test_getSubscriptionsById_does_not_exist(self):
+
+        subtool = self.portal.portal_subscriptions
+        container = subtool.getSubscriptionContainerFromContext(
+            self.portal.workspaces,
+            force_local_creation=True,
+            )
+
+        # Try to get a subscription from there
+        subscription = container.getSubscriptionById('does_not_exist')
+
+        id_ = container.portal_subscriptions.getSubscriptionObjectPrefix() + \
+              'does_not_exist'
+
+        self.assert_(id_ in container.objectIds())
+        self.assert_(
+            isinstance(container.getSubscriptionById(id_), Subscription))
+        self.assert_(
+            isinstance(container.getSubscriptionById('does_not_exist'),
+                       Subscription))
+        self.assertEqual(container.getSubscriptionById(id_),
+                         container.getSubscriptionById('does_not_exist'))
+        self.assertEqual(container.getSubscriptionById(id_), subscription)
+        self.assertEqual(container.getSubscriptionById(id_),
+                         getattr(container, id_))
 
 def test_suite():
     suite = unittest.TestSuite()
