@@ -227,7 +227,7 @@ class SubscriptionContainer(CPSBaseFolder):
 
 	# Cope with the None case : the subscription doesn't exist yet
         if (subscription is None and
-            _checkPermission(ManageSubscription, self)):
+            _checkPermission(ManageSubscriptions, self)):
             subscription = self.addSubscription(subscription_id)
 	return subscription
 
