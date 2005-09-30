@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
 "POT-Creation-Date: 2005-09-12 15:38default\n"
-"PO-Revision-Date: 2005-06-17 17:51-0300\n"
+"PO-Revision-Date: 2005-09-29 15:07-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "<block replace=\"context_lcs/?role\" />"
-msgstr ""
+msgstr "Falso"
 
 #.   <block>
 #.   		    <span replace="events/?event_key" />
@@ -116,7 +116,7 @@ msgid ""
 "To confirm that you want to be added to this mailing list, click <a "
 "attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email="
 "${email}&event_id=${event_id}\" href=\"\"> here </a>"
-msgstr ""
+msgstr "Para confirmar que você quer ser adicionado a esta lista de discussão, clique  <a attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email= \"${email}&event_id=${event_id}\" href=\"\"> aqui </a>"
 
 #.   <span>
 #.       To confirm that you want to be removed from this mailing list, click
@@ -131,7 +131,7 @@ msgid ""
 "To confirm that you want to be removed from this mailing list, click <a "
 "attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe?"
 "email=${email}&event_id=${event_id}\" href=\"\"> here </a>"
-msgstr ""
+msgstr "Para confirmar que você quer ser removido desta lista de discussão, clique  <a attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe? email=${email}&event_id=${event_id}\" href=\"\"> aqui </a>"
 
 #.   <span>
 #.       We have received a request for subscription with the email
@@ -144,7 +144,7 @@ msgid ""
 "We have received a request for subscription with the email address, <a "
 "attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email"
 "\" /> </a>"
-msgstr ""
+msgstr "Nós recebemos um pedido de inscrição com o endereço de email  <a attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email\" /> </a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -158,7 +158,7 @@ msgid ""
 "We have received a request for unsubscription with the email address, <a "
 "attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email"
 "\" /> </a>"
-msgstr ""
+msgstr "Nós recebemos um pedido de desinscrição com o endereço de email  <a attributes=\"href string:mailto:${email}\" href=\"\"> <span replace=\"email\" /> </a>"
 
 #.   <i>
 #.         You may allow only members with given local roles to subscribe to this
@@ -178,7 +178,7 @@ msgid ""
 "users granted with these local roles to subscribe to this event. If you do "
 "not specify any local roles then the event is opened to everybody for "
 "subscriptions."
-msgstr ""
+msgstr "Você pode permitir somente que membros com dados papéis locais se inscrevam para este evento. Por exemplo, você pode não querer que usuários anônimos (públicos) se inscrevam para o evento 'rejeitar conteúdo' dentro das seções. Para isto, simplesmente escolha os papéis locais abaixo para os quais você quer dar a possibilidade aos usuários que tenham estes papéis se inscreverem a este evento. Se você não especificar quaisquer papéis locais então o evento é aberto a todos para inscrições."
 
 #.   <input type="submit" class="standalone" value="button_import" name="subscription_import:method" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -845,12 +845,4 @@ msgstr "Mensalmente"
 msgid "bc_manage_my_subscriptions"
 msgstr "Minhas Subscrições"
 
-#~ msgid "heading_notify_members_search_results"
-#~ msgstr "Resultados da busca"
 
-#~ msgid ""
-#~ "Please, follow the instruction included in the mail you will shortly "
-#~ "receive"
-#~ msgstr ""
-#~ "Por favor, siga as instruções inclusas no email que você receberá em "
-#~ "breve."
