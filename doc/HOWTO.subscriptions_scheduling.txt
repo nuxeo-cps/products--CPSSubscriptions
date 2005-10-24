@@ -16,7 +16,19 @@ above.
 Configurations :
 -----------------
 
-You need wget installed on your *NIX to request the portal
+Use the cps_housekeeping.py scripts that comes with CPS in folder CPSUtil/bin
+adjust the default values in the header and run it as follows::
+
+ $ python /path/to/cps_housekeeping.py --send-notifications daily
+
+A crontab example is provided in the header of the script.
+
+To get the list of all available options, type::
+
+ $ python /path/to/cps_housekeeping.py --help
+
+Otherwise, if you have wget installed on your *NIX to request the portal you
+can directly call the corresponding method as follows.
 
 Daily notifications :
 -----------------------
@@ -61,7 +73,3 @@ wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notif
 EOF
 
 (Same remark as above).
-
-I don't have any idea on how to do that with Redmond's systems... sorry...
-
-
