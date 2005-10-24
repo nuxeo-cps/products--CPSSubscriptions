@@ -12,4 +12,5 @@ Bug fixes:
 - Fix : SubscriptionContainer.getSusbcriptionById()
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- SubscriptionsTool.scheduleMessages() return "Notications sent" instead of None
+  when everything went well to avoid a 204 error on client side.

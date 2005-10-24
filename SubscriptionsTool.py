@@ -1175,6 +1175,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                 table[email] = []
             self.notification_scheduling_table[
                 self.mapping_modes[subscription_mode]] = table
+            return "Notifications sent"
         else:
             return -1
 
