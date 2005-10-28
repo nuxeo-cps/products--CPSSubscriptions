@@ -11,6 +11,7 @@ Bug fixes:
 - Notifications : notifyConfirmUnsubscribe() wrong var name
 - Fix : SubscriptionContainer.getSusbcriptionById()
 - #410: Event configuration form enhancement
+- #389: mass notification enable ?
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - SubscriptionsTool.scheduleMessages() return "Notications sent" instead of None

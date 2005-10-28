@@ -138,6 +138,9 @@ class MailNotificationRule(NotificationRule):
         # To
         writer.addheader(string.capitalize('to'),
                          mimify.mime_encode_header(infos['to']))
+        # Bcc
+        writer.addheader(string.capitalize('bcc'),
+                         mimify.mime_encode_header(infos['bcc']))
 
         # Misc
         writer.addheader('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')
@@ -379,17 +382,12 @@ class MailNotificationRule(NotificationRule):
         This method will be called by the Subscription object when a
         notification occurs.
         """
-
-        substool = getToolByName(self, 'portal_subscriptions')
-
         infos = self._makeInfoDict(event_type, object, infos)
 
-        #
         # Let's check if we render the content because of the portal_type
         # or because of the event id.
-        # This is defined tool side.
-        #
-
+        # This is defined subscriptions tool side.
+        substool = getToolByName(self, 'portal_subscriptions')
         rendered_portal_types = substool.getRenderedPortalTypes()
         rendered_events = substool.getRenderedEvents()
 
@@ -414,39 +412,41 @@ class MailNotificationRule(NotificationRule):
         # Save the email notification body
         archive_id = substool.addNotificationMessageBodyObject(body, mime_type)
 
-        # Dealing with emails
-        # XXX should send all the email at the same time with bcc?
+        # Dealing with the list of emails
         semail, sname = self._getMailSenderInfo(infos)
         subject = self._getSubject(infos)
-        for email in emails:
-            if not email:
-                continue
-            mail_infos = {
-                'sender_name': sname,
-                'sender_email': semail,
-                'subject': subject,
-                'to': email,
-                'body': (body, mime_type),
-                }
 
-            # Check user_mode and take actions
+        # Filter for the recipients we need to notify `real time`
+        real_time = []
+        for email in emails:
             container = substool.getSubscriptionContainerFromContext(self)
             user_mode = container.getUserMode(email)
-
             if user_mode != 'mode_real_time':
-                # Store the message_id within the scheduling table for a given user.
+                # Store the message_id within the scheduling table for
+                # a given user.
                 substool.scheduleNotificationMessageFor(user_mode,
                                                         email,
                                                         archive_id)
             else:
-                # Send the notification message
-                self.sendMail(mail_infos, object, event_id=infos.get('event', ''))
+                real_time.append(email)
 
-        # Dealing with members
+        # Send all the emails at once for those in `real time` mode
+        bcc = ','.join(real_time)
+        mail_infos = {
+            'sender_name': sname,
+            'sender_email': semail,
+            'subject': subject,
+            'to': semail,
+            'bcc': bcc,
+            'body': (body, mime_type),
+            }
+        self.sendMail(mail_infos, object, event_id=infos.get('event', ''))
+
+        # TODO: Dealing with members
         for member in members:
             pass
 
-        # Dealing with groups
+        # TODO: Dealing with groups
         for group in groups:
             pass
 
