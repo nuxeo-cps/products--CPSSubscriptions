@@ -281,7 +281,7 @@ class MailNotificationRule(NotificationRule):
         events_from_context = portal_subscriptions.getEventsFromContext(context)
 
         # Just more secure in case of the event configuration is badly done.
-        if events_from_context is None:
+        if not events_from_context:
             return {}
 
         event_type_trsl = mcat(events_from_context.get(event_type, event_type))
