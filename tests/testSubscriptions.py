@@ -55,7 +55,8 @@ class TestSubscriptions(
 
         list_ = ['ja@nuxeo.com', 'fg@nuxeo.com', 'incorrect']
         self._explicit.importEmailsSubscriberList(list_)
-        self.assertEqual(self._explicit.getSubscriberEmails(), list_)
+        self.assertEqual(self._explicit.getSubscriberEmails(),
+                         ['ja@nuxeo.com', 'fg@nuxeo.com'])
 
     def beforeTearDown(self):
         self.logout()
