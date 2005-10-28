@@ -656,7 +656,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """ Returns events given a context.
         """
         if context is not None:
-            context_portal_type = context.portal_type
+            context_portal_type = getattr(context, 'portal_type', '')
             if self.mapping_context_events.has_key(context_portal_type):
                 return self.mapping_context_events[context_portal_type]
         return {}
