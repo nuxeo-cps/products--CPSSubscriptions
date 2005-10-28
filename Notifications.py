@@ -424,23 +424,32 @@ class MailNotificationRule(NotificationRule):
             if user_mode != 'mode_real_time':
                 # Store the message_id within the scheduling table for
                 # a given user.
-                substool.scheduleNotificationMessageFor(user_mode,
-                                                        email,
-                                                        archive_id)
+                substool.scheduleNotificationMessageFor(
+                    user_mode, email, archive_id)
             else:
                 real_time.append(email)
 
-        # Send all the emails at once for those in `real time` mode
-        bcc = ','.join(real_time)
-        mail_infos = {
-            'sender_name': sname,
-            'sender_email': semail,
-            'subject': subject,
-            'to': semail,
-            'bcc': bcc,
-            'body': (body, mime_type),
-            }
-        self.sendMail(mail_infos, object, event_id=infos.get('event', ''))
+        # Send all the emails in batches for those in `real time` mode
+        max_recipients = substool.max_recipients_per_notification
+        emails = real_time
+        while emails:
+            batch = []
+            for i in range(max_recipients):
+                try:
+                    batch.append(emails.pop())
+                except IndexError:
+                    pass
+            batch.reverse()
+            bcc = ','.join(batch)
+            mail_infos = {
+                'sender_name': sname,
+                'sender_email': semail,
+                'subject': subject,
+                'to': semail,
+                'bcc': bcc,
+                'body': (body, mime_type),
+                }
+            self.sendMail(mail_infos, object, event_id=infos.get('event', ''))
 
         # TODO: Dealing with members
         for member in members:

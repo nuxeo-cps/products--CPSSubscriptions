@@ -44,7 +44,6 @@ class DummyMailHost(SimpleItem):
         self.mail_log = []
 
     def send(self, raw_message):
-        print raw_message
         message = email.message_from_string(raw_message)
         mfrom = message['From']
         mto = message['To']
@@ -83,6 +82,8 @@ class TestMailNotificationRule(TestBaseNotificationRule):
     def test_notifyRecipients(self):
 
         subtool = self.portal.portal_subscriptions
+        # Test the max recipients
+        subtool.max_recipients_per_notification = 3
         
         # Create a susbcription container
         self.portal.manage_addProduct[
@@ -94,9 +95,11 @@ class TestMailNotificationRule(TestBaseNotificationRule):
         # Get the default notification rule
         notification = subscription.getNotificationRules()[0]
 
-        # Notify a list of emails
+        # Notify a list of emails < to max recipients
+        # We should get only one email
         emails = ['ja@nuxeo.com', 'contact@nuxeo.com']
-        notification.notifyRecipients('fake_event_id', self.portal, emails=emails)
+        notification.notifyRecipients(
+            'fake_event_id', self.portal, emails=emails)
         self.assertEqual(len(self._mh.mail_log), 1)
         mail = self._mh.mail_log[0]
         self.assertEqual(mail['bcc'], ','.join(emails))
@@ -105,6 +108,23 @@ class TestMailNotificationRule(TestBaseNotificationRule):
         # to send the mails by committing the transaction.
         em = get_event_manager()
         em()
+
+        self._mh.clearLog()
+
+        # Notify a list of emails > max_recipients
+        # We should get 2 mails
+        emails = ['ja@nuxeo.com', 'contact@nuxeo.com',
+                  'bob@nuxeo.com', 'jack@nuxeo.com']
+        notification.notifyRecipients(
+            'fake_event_id', self.portal, emails=emails)
+        self.assertEqual(len(self._mh.mail_log), 2)
+        mail = self._mh.mail_log[1]
+        self.assertEqual(mail['bcc'], ','.join(['ja@nuxeo.com']))
+        mail = self._mh.mail_log[0]
+        self.assertEqual(mail['bcc'], ','.join([
+            'contact@nuxeo.com',
+            'bob@nuxeo.com',
+            'jack@nuxeo.com']))
 
 def test_suite():
     suite = unittest.TestSuite()

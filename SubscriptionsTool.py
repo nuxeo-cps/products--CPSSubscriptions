@@ -88,6 +88,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         {'id': 'notify_hidden_object',
          'type': 'boolean', 'mode':'w',
          'label' : 'Notify hidden files'},
+        {'id': 'max_recipients_per_notification',
+         'type': 'int', 'mode':'w',
+         'label': 'Max recipients per notification message'},
         {'id': 'render_content_for_portal_types',
          'type': 'lines', 'mode':'w',
          'label' : 'Render the content type responsible of the notification \
@@ -106,6 +109,10 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
          'type': 'string', 'mode':'r',
          'label': 'Local roles within the different context'},
         )
+
+    # Maximim recipients (emails) for one notification.
+    # Check the maik server capability
+    max_recipients_per_notification = 20
 
     mapping_modes = {'weekly' : 'mode_weekly',
                      'monthly': 'mode_monthly',
