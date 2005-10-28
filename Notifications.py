@@ -440,7 +440,7 @@ class MailNotificationRule(NotificationRule):
                                                         archive_id)
             else:
                 # Send the notification message
-                self.sendMail(mail_infos, object, event_id=infos['event'])
+                self.sendMail(mail_infos, object, event_id=infos.get('event', ''))
 
         # Dealing with members
         for member in members:
