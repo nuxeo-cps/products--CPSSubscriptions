@@ -29,6 +29,7 @@ Classes defining how to compute recipients. They are stored within
 the subscription container.
 """
 
+from re import compile
 from DateTime.DateTime import DateTime
 
 from Globals import InitializeClass, MessageDialog, DTMLFile
@@ -235,7 +236,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         Returns a list of ids
         """
-        return self.members
+        return list(self.members)
 
     security.declarePublic("getMemberIds")
     def getMemberIds(self, context=None):
@@ -435,8 +436,10 @@ class ExplicitRecipientsRule(RecipientsRule):
         """Add the list of emails to the subscriber list
         """
         self._p_changed = 1
+        email_pat = compile(r"^([-\w_.'+])+@(([-\w])+\.)+([\w]{2,4})$")
         for email in list:
-            self.updateSubscriberEmails(email)
+            if email_pat.match(email):
+                self.updateSubscriberEmails(email)
 
     ######################################################
     ######################################################

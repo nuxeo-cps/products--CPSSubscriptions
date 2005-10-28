@@ -1,47 +1,61 @@
+# -*- coding: ISO-8859-15 -*-
+# (C) Copyright 2005 Nuxeo SARL <http://nuxeo.com>
+# Author: Julien Anguenot <anguenot@nuxeo.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
 # $Id$
 
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
+import os
+import sys
 
 import unittest
 import CPSSubscriptionsTestCase
 
-class DummyResponse:
-    def __init__(self):
-        self.headers = {}
-        self.data = ''
+class TestSubscriptions(
+    CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
 
-    def setHeader(self, key, value):
-        self.headers[key] = value
-
-    def write(self, data):
-        self.data += data
-
-    def redirect(self, url):
-        self.redirect_url = url
-
-
-def randomText(max_len=10):
-    import random
-    return ''.join(
-        [chr(random.randint(32, 128)) for i in range(0, max_len)])
-
-
-def myGetViewFor(obj, view='view'):
-    ti = obj.getTypeInfo()
-    actions = ti.listActions()
-    for action in actions:
-        if action.getId() == view:
-            return getattr(obj, action.action.text)
-    raise "Unverified assumption"
-
-
-class TestSubscriptions(CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     def afterSetUp(self):
         self.login('manager')
-        self.portal.REQUEST.SESSION = {}
-        self.portal.REQUEST.form = {}
+        subtool = self.portal.portal_subscriptions
+        
+        # Create a susbcription container
+        self.portal.manage_addProduct[
+            'CPSSubscriptions'].addSubscriptionContainer()
+        self._container = getattr(
+            self.portal, subtool.getSubscriptionContainerId())
+        # Add a subscription
+        self._subscription = self._container.addSubscription('fake_event_id')
+
+        # Get the explicit recipient rules
+        self._explicit = self._subscription.getRecipientsRules(
+            recipients_rule_type='Explicit Recipients Rule')[0]
+
+    def test_importEmailsSubscribersListOK(self):
+
+        list_ = ['ja@nuxeo.com', 'fg@nuxeo.com']
+        self._explicit.importEmailsSubscriberList(list_)
+        self.assertEqual(self._explicit.getSubscriberEmails(), list_)
+
+    def test_importEmailsSubscribersListNotOK(self):
+
+        # Using directly the API. No control on emails
+
+        list_ = ['ja@nuxeo.com', 'fg@nuxeo.com', 'incorrect']
+        self._explicit.importEmailsSubscriberList(list_)
+        self.assertEqual(self._explicit.getSubscriberEmails(), list_)
 
     def beforeTearDown(self):
         self.logout()
@@ -50,3 +64,6 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestSubscriptions))
     return suite
+
+if __name__ == '__main__':
+    execfile(os.path.join(sys.path[0], 'framework.py'))

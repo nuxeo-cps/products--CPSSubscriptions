@@ -12,7 +12,9 @@ Bug fixes:
 - Fix : SubscriptionContainer.getSusbcriptionById()
 - #410: Event configuration form enhancement
 - #389: mass notification enable ?
+- #409: Enhancements for the email import and anonymous support
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- SubscriptionsTool.scheduleMessages() return "Notications sent" instead of None
-  when everything went well to avoid a 204 error on client side.
+- SubscriptionsTool.scheduleMessages() return "Notications sent"
+instead of None when everything went well to avoid a 204 error on
+client side.
