@@ -11,6 +11,7 @@
       subscription_container python:subtool.getSubscriptionContainerFromContext(here);
       event python:subscription_container.getSubscriptionById(event_id);
       roles_allowed_to_subscribe python: event and event.getRolesAllowedToSubscribe() or [];
+      context_lcs python:subtool.getRelevantLocalRolesFromContext(here)">
       ">
       <div class="group">
         <form action="." name="form"
@@ -22,8 +23,19 @@
               </span>
             </div>
             <div class="field">
-              <textarea cols="40" rows="10"
-                        name="roles_allowed_to_subscribe:lines" wrap="soft" tal:content="python:'\n'.join(roles_allowed_to_subscribe)"></textarea>
+	      <select name="roles_allowed_to_subscribe:list" multiple="1">
+		<tal:block repeat="role context_lcs">
+		  <tal:block condition="python:role not in roles_allowed_to_subscribe">
+		    <option tal:attributes="id role"
+			    tal:content="role" />
+		  </tal:block>
+		  <tal:block condition="python:role in roles_allowed_to_subscribe">
+		    <option selected="1"
+			    tal:attributes="id role"
+			    tal:content="role" />
+		  </tal:block>
+		</tal:block>
+	      </select>
             </div>
           </div>
           <p><input type="submit" value="button_change"

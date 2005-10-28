@@ -10,6 +10,7 @@ Bug fixes:
 ~~~~~~~~~~
 - Notifications : notifyConfirmUnsubscribe() wrong var name
 - Fix : SubscriptionContainer.getSusbcriptionById()
+- #410: Event configuration form enhancement
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - SubscriptionsTool.scheduleMessages() return "Notications sent" instead of None
