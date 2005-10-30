@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004-2005 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministere de L'interieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
@@ -32,30 +32,22 @@ Notifications are subclasses of NotificationRule and store also as
 subobjects, like RecipientsRule.
 """
 
-from smtplib import SMTPException
-
-# Trying to import the TimeOut error class of CPSRSS is installed
-try:
-    from Products.CPSRSS.timeoutsocket import Timeout
-except ImportError:
-    class Timeout:
-        pass
-
 import socket
 import cStringIO
 import string
 import mimify
 import mimetools
 import MimeWriter
-
-from types import StringType, TupleType
+from smtplib import SMTPException
 from urllib import urlencode
 
-from Globals import InitializeClass, MessageDialog
-from Products.MailHost.MailHost import MailHostError
-from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import getSecurityManager
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_base, aq_parent, aq_inner
+from Globals import InitializeClass
+from Globals import MessageDialog
+
+from Products.MailHost.MailHost import MailHostError
 
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
@@ -85,7 +77,7 @@ class NotificationRule(PortalFolder):
         return aq_parent(aq_inner(self))
 
     def getSubscriptionContainer(self):
-        """Return the placeful subscription container this notification is in.
+        """Return the placefull subscription container this notification is in.
 
         A notification is supposed to be into a 'Subscription Configuration'
         object, itself in a 'PlaceFull Subscription Container' object.
@@ -123,9 +115,11 @@ class MailNotificationRule(NotificationRule):
 
         # Sender
         if infos.get('sender_name'):
-            sender = '"%s" <%s>' % (infos['sender_name'], infos['sender_email'])
+            sender = '"%s" <%s>' % (infos['sender_name'],
+                                    infos['sender_email'])
         else:
-            sender = '"%s" <%s>' % (infos['sender_email'], infos['sender_email'])
+            sender = '"%s" <%s>' % (infos['sender_email'],
+                                    infos['sender_email'])
         writer.addheader('From', sender)
 
         # Subject
@@ -169,10 +163,10 @@ class MailNotificationRule(NotificationRule):
         """Validate the mail_infos structure
         """
 
-        return  (isinstance(mail_infos.get('sender_email'), StringType) and
-                 isinstance(mail_infos.get('to'), StringType) and
-                 isinstance(mail_infos.get('subject'), StringType) and
-                 isinstance(mail_infos.get('body'), TupleType) and
+        return  (isinstance(mail_infos.get('sender_email'), str) and
+                 isinstance(mail_infos.get('to'), str) and
+                 isinstance(mail_infos.get('subject'), str) and
+                 isinstance(mail_infos.get('body'), tuple) and
                  len(mail_infos.get('body')) == 2)
 
     def sendMail(self, mail_infos, object=None, event_id=None, mailhost=None):
@@ -255,14 +249,12 @@ class MailNotificationRule(NotificationRule):
 
         Is proccessed with the infos given as parameters.
         """
-
         try:
             body = self.portal_subscriptions.getDefaultMessageBody(
                 event_id=infos['event']) % infos
         except (KeyError, TypeError, ValueError):
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
-
         return body
 
     def _makeInfoDict(self, event_type, object, infos=None):
@@ -274,14 +266,14 @@ class MailNotificationRule(NotificationRule):
         if infos is None:
             infos = {}
 
-        portal_subscriptions = getToolByName(self, 'portal_subscriptions')
+        stool = getToolByName(self, 'portal_subscriptions')
         memberDirectory = getToolByName(self, 'portal_directories').members
         ttool = getToolByName(self, 'portal_types')
 
         context = aq_parent(aq_inner(object))
         mcat = self.translation_service
 
-        events_from_context = portal_subscriptions.getEventsFromContext(context)
+        events_from_context = stool.getEventsFromContext(context)
 
         # Just more secure in case of the event configuration is badly done.
         if not events_from_context:
@@ -348,9 +340,10 @@ class MailNotificationRule(NotificationRule):
         infos['user_id'] = user_id
         infos['user_name'] = user_name
 
-        # Making sure that there is always an available "comments" variable so
-        # that this variable is always available for all email message bodies and
-        # thus will prevent producing KeyError errors.
+        # Making sure that there is always an available "comments"
+        # variable so that this variable is always available for all
+        # email message bodies and thus will prevent producing
+        # KeyError errors.
         if infos.get('comments') is None:
             infos['comments'] = ''
 

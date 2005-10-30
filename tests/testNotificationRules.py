@@ -23,13 +23,13 @@ import sys
 import email
 import unittest
 
+from Acquisition import aq_parent, aq_inner
 from OFS.SimpleItem import SimpleItem
 import transaction
 
-import CPSSubscriptionsTestCase
-
 from Products.CPSSubscriptions.Notifications import NotificationRule
-from Products.CPSSubscriptions.Notifications import MailNotificationRule
+
+import CPSSubscriptionsTestCase
 
 class DummyMailHost(SimpleItem):
     """Host that stores the sent mails in a list
@@ -76,9 +76,20 @@ class TestBaseNotificationRule(
 
 class TestNotificationRule(TestBaseNotificationRule):
 
+    # Test the base notification rule behavior when standlone
+
+    def afterSetUp(self):
+        self._notification = NotificationRule(id='notification')
+
+    def test_getSubscriptionContainer(self):
+        self.assertEqual(None, self._notification.getSubscriptionContainer())
+
+    def test_getParentSusbcription(self):
+        self.assertEqual(None, self._notification.getParentSubscription())
+
     def test_notifyRecipients(self):
-        nr = NotificationRule(id='fake')
-        self.assertRaises(NotImplementedError, nr.notifyRecipients)
+        self.assertRaises(
+            NotImplementedError, self._notification.notifyRecipients)
 
 class TestMailNotificationRule(TestBaseNotificationRule):
 
@@ -94,6 +105,21 @@ class TestMailNotificationRule(TestBaseNotificationRule):
         subscription = container.addSubscription('fake_event_id')
         # Get the default notification rule for the subscription
         self._notification = subscription.getNotificationRules()[0]
+
+    def test_getSubscriptionContainer(self):
+        self.assertEqual(
+            self._notification.getSubscriptionContainer(),
+            getattr(self.portal, self._stool.getSubscriptionContainerId()))
+        self.assertEqual(
+            self._notification.getSubscriptionContainer().portal_type,
+            'CPS PlaceFull Subscription Container')
+
+    def test_getParentSusbcription(self):
+        self.assertEqual(aq_parent(aq_inner(self._notification)),
+                         self._notification.getParentSubscription())
+        self.assertEqual(
+            self._notification.getParentSubscription().portal_type,
+            'CPS Subscription Configuration')
 
     def test_notifyRecipients_lesser_than_max_recipients(self):
 
