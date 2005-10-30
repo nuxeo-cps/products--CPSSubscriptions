@@ -117,24 +117,25 @@ class EventManager(BaseManager):
             ob = root.unrestrictedTraverse(path, None)
             if ob is None:
                 LOG("EventManager", DEBUG, "Object %r disappeard"%old_ob)
+                # Let's use the old object for the notification info
+                ob = v[0]['object']
+            # Folderish document and parent has a notification
+            # during the same transaction thus no notification
+            parent = aq_parent(aq_inner(ob))
+            if ((isinstance(parent, ProxyFolderishDocument) or
+                 isinstance(parent, ProxyBTreeFolderishDocument)) and
+                self._events.get(
+                self._computeKeyFor(parent, k[0])) is not None):
+                LOG("EventManager", DEBUG, "Folderish child excluded")
             else:
-                # Folderish document and parent has a notification
-                # during the same transaction thus no notification
-                parent = aq_parent(aq_inner(ob))
-                if ((isinstance(parent, ProxyFolderishDocument) or
-                     isinstance(parent, ProxyBTreeFolderishDocument)) and
-                    self._events.get(
-                    self._computeKeyFor(parent, k[0])) is not None):
-                    LOG("EventManager", DEBUG, "Folderish child excluded")
+                subtool = getToolByName(ob, 'portal_subscriptions', None)
+                if subtool is not None:
+                    LOG("EventManager", DEBUG,
+                        "Processing event %s for %r with infos %r"
+                        %(k[0], ob, v[1]))
+                    subtool.notify_processed_event(k[0], ob, v[1])
                 else:
-                    subtool = getToolByName(ob, 'portal_subscriptions', None)
-                    if subtool is not None:
-                        LOG("EventManager", DEBUG,
-                            "Processing event %s for %r with infos %r"
-                            %(k[0], ob, v[1]))
-                        subtool.notify_processed_event(k[0], ob, v[1])
-                    else:
-                        LOG("EventManager", DEBUG,
+                    LOG("EventManager", DEBUG,
                             "Subscriptions Tool not found")
         LOG("EventManager", DEBUG, "__call__ DONE")
 

@@ -75,6 +75,15 @@ msgstr ""
 msgid "label_workflow_unpublish"
 msgstr ""
 
+msgid "label_workflow_checkin_draft"
+msgstr ""
+
+msgid "label_workflow_checkout_draft"
+msgstr ""
+
+msgid "label_workflow_abandon_draft"
+msgstr ""
+
 msgid "label_calendar_new_event"
 msgstr ""
 
