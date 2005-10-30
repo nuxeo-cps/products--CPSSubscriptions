@@ -28,7 +28,6 @@ import transaction
 
 import CPSSubscriptionsTestCase
 
-from Products.CPSSubscriptions.EventManager import get_event_manager
 from Products.CPSSubscriptions.Notifications import NotificationRule
 from Products.CPSSubscriptions.Notifications import MailNotificationRule
 
@@ -58,6 +57,10 @@ class TestBaseNotificationRule(
     def afterSetUp(self):
         self.login('manager')
         self._setupDummyMailHost()
+        self._stool = self.portal.portal_subscriptions
+        # Max recipients per mail notification at a time.
+        # 20 is the default one.
+        self._stool.max_recipients_per_notification = 3
 
     def _setupDummyMailHost(self):
         # Set up the dummy mailhost
@@ -79,52 +82,49 @@ class TestNotificationRule(TestBaseNotificationRule):
 
 class TestMailNotificationRule(TestBaseNotificationRule):
 
-    def test_notifyRecipients(self):
-
-        subtool = self.portal.portal_subscriptions
-        # Test the max recipients
-        subtool.max_recipients_per_notification = 3
-        
-        # Create a susbcription container
+    def afterSetUp(self):
+        TestBaseNotificationRule.afterSetUp(self)
+        # Create a susbcription container at the root of the portal
+        # for the tests
         self.portal.manage_addProduct[
             'CPSSubscriptions'].addSubscriptionContainer()
         container = getattr(
-            self.portal, subtool.getSubscriptionContainerId())
-        # Add a subscription
+            self.portal, self._stool.getSubscriptionContainerId())
+        # Add a subscription object
         subscription = container.addSubscription('fake_event_id')
-        # Get the default notification rule
-        notification = subscription.getNotificationRules()[0]
+        # Get the default notification rule for the subscription
+        self._notification = subscription.getNotificationRules()[0]
+
+    def test_notifyRecipients_lesser_than_max_recipients(self):
 
         # Notify a list of emails < to max recipients
-        # We should get only one email
+        # We should get only one email as a result
         emails = ['ja@nuxeo.com', 'contact@nuxeo.com']
-        notification.notifyRecipients(
+        self._notification.notifyRecipients(
             'fake_event_id', self.portal, emails=emails)
         self.assertEqual(len(self._mh.mail_log), 1)
         mail = self._mh.mail_log[0]
         self.assertEqual(mail['bcc'], ','.join(emails))
         
-        # Since CPS-3.3.x we now need to force the subscription tool
-        # to send the mails by committing the transaction.
-        em = get_event_manager()
-        em()
-
         self._mh.clearLog()
+
+    def test_notifyRecipients_greater_than_max_recipients(self):
 
         # Notify a list of emails > max_recipients
         # We should get 2 mails
         emails = ['ja@nuxeo.com', 'contact@nuxeo.com',
                   'bob@nuxeo.com', 'jack@nuxeo.com']
-        notification.notifyRecipients(
+        self._notification.notifyRecipients(
             'fake_event_id', self.portal, emails=emails)
         self.assertEqual(len(self._mh.mail_log), 2)
-        mail = self._mh.mail_log[1]
-        self.assertEqual(mail['bcc'], ','.join(['ja@nuxeo.com']))
         mail = self._mh.mail_log[0]
-        self.assertEqual(mail['bcc'], ','.join([
-            'contact@nuxeo.com',
-            'bob@nuxeo.com',
-            'jack@nuxeo.com']))
+        self.assertEqual(
+            mail['bcc'], ','.join(['ja@nuxeo.com', 'contact@nuxeo.com',
+                                   'bob@nuxeo.com']))
+        mail = self._mh.mail_log[1]
+        self.assertEqual(mail['bcc'], ','.join(['jack@nuxeo.com']))
+
+        self._mh.clearLog()
 
 def test_suite():
     suite = unittest.TestSuite()

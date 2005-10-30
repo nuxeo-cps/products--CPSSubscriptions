@@ -63,7 +63,7 @@ from Products.CMFCore.PortalFolder import PortalFolder
 
 from zLOG import LOG, DEBUG, ERROR, TRACE
 
-logKey = 'CPSSubscriptions'
+logKey = 'CPSSubscriptions.Notifications'
 
 class NotificationRule(PortalFolder):
     """Base Notification rule Class.
@@ -369,36 +369,36 @@ class MailNotificationRule(NotificationRule):
         return infos
 
     security.declareProtected(ManagePortal, 'notifyRecipients')
-    def notifyRecipients(self,
-                         event_type,
-                         object,
-                         infos=None,
-                         emails=[],
-                         members=[],
-                         groups=[],
-                         **kw):
+    def notifyRecipients(self, event_type, object_, infos=None, emails=[],
+                         members=[], groups=[], **kw):
         """ Notify recipients
 
         This method will be called by the Subscription object when a
         notification occurs.
+
+        This method id aware about the fact that for some recipients
+        we won't send a email directly but store the email for further
+        scheduling. (daily, monthly, ...)
         """
-        infos = self._makeInfoDict(event_type, object, infos)
 
-        # Let's check if we render the content because of the portal_type
-        # or because of the event id.
-        # This is defined subscriptions tool side.
-        substool = getToolByName(self, 'portal_subscriptions')
-        rendered_portal_types = substool.getRenderedPortalTypes()
-        rendered_events = substool.getRenderedEvents()
+        # Construct a mapping for the email notification
+        infos = self._makeInfoDict(event_type, object_, infos)
 
-        if (object is not None and
-            getattr(object, 'portal_type', None) in rendered_portal_types or
-            infos.get('event') in rendered_events):
-            try:
-                body = object.getContent().render(proxy=object)
+        # Let's check if we render the content, instead of a regular
+        # user defined notification message, because of the
+        # portal_type or because of the event id.  This is defined
+        # subscriptions tool side.
+        stool = getToolByName(self, 'portal_subscriptions')
+        rendered_ptypes = stool.getRenderedPortalTypes()
+        rendered_events = stool.getRenderedEvents()
+        if (object_ is not None and
+            getattr(object, 'portal_type', '') in rendered_ptypes or
+            infos.get('event', '') in rendered_events):
+            # Is the object_ a CPSDocument ?
+            if hasattr(aq_parent(aq_inner(object_)), 'render'):
+                body = object_.getContent().render(proxy=object_)
                 mime_type = 'text/html'
-            except AttributeError:
-                # Not a CPSDocument
+            else:
                 # XXX : we might handle whatever sort of content for rendering
                 # in here. Using the main_template flag maybe.
                 body = self._getBody(infos)
@@ -407,49 +407,40 @@ class MailNotificationRule(NotificationRule):
             body = self._getBody(infos)
             mime_type = 'text/plain'
 
-        LOG(":: CPSSubscriptions :: MailNotificationRule :: on", TRACE, infos)
+        # Save the email notification body for furher scheduling.
+        # The scheduling table is stored on the subscriptions tool for now.
+        archive_id = stool.addNotificationMessageBodyObject(body, mime_type)
 
-        # Save the email notification body
-        archive_id = substool.addNotificationMessageBodyObject(body, mime_type)
-
-        # Dealing with the list of emails
-        semail, sname = self._getMailSenderInfo(infos)
-        subject = self._getSubject(infos)
-
-        # Filter for the recipients we need to notify `real time`
+        # Filter for the recipients we need to notify `real time` For
+        # the other ones, we will add an entry within the scheduling
+        # table
         real_time = []
         for email in emails:
-            container = substool.getSubscriptionContainerFromContext(self)
+            container = stool.getSubscriptionContainerFromContext(self)
             user_mode = container.getUserMode(email)
             if user_mode != 'mode_real_time':
-                # Store the message_id within the scheduling table for
-                # a given user.
-                substool.scheduleNotificationMessageFor(
-                    user_mode, email, archive_id)
+                stool.scheduleNotificationMessageFor(user_mode, email,
+                                                     archive_id)
             else:
                 real_time.append(email)
 
         # Send all the emails in batches for those in `real time` mode
-        max_recipients = substool.max_recipients_per_notification
-        emails = real_time
-        while emails:
-            batch = []
-            for i in range(max_recipients):
-                try:
-                    batch.append(emails.pop())
-                except IndexError:
-                    pass
-            batch.reverse()
+        max_recipients = stool.max_recipients_per_notification
+        semail, sname = self._getMailSenderInfo(infos)
+        while real_time:
+            batch = real_time[:max_recipients]
+            real_time = real_time[max_recipients:]
             bcc = ','.join(batch)
             mail_infos = {
                 'sender_name': sname,
                 'sender_email': semail,
-                'subject': subject,
+                'subject': self._getSubject(infos),
                 'to': semail,
                 'bcc': bcc,
                 'body': (body, mime_type),
                 }
-            self.sendMail(mail_infos, object, event_id=infos.get('event', ''))
+            self.sendMail(mail_infos, object_, event_id=infos.get('event', ''))
+            LOG(logKey + ' notifyRecipients()', TRACE, repr(mail_infos))
 
         # TODO: Dealing with members
         for member in members:
