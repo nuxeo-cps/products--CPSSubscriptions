@@ -152,6 +152,42 @@ class TestMailNotificationRule(TestBaseNotificationRule):
 
         self._mh.clearLog()
 
+    def test_notifyWelcomeSubscription(self):
+        email = 'bob@nuxeo.com'
+        event_id = 'fake_event_id'
+        self.portal._setObject('item', SimpleItem('item'))
+        object_ = getattr(self.portal, 'item')
+        context = object_
+        self._notification.notifyWelcomeSubscription(
+            event_id, object_, email, context)
+        mail = self._mh.mail_log[0]
+        self.assertEqual(mail['to'], 'bob@nuxeo.com')
+        self.assert_(mail['message'])
+        self._mh.clearLog()
+
+    def test_notifyUnSubscribe(self):
+        email = 'bob@nuxeo.com'
+        event_id = 'fake_event_id'
+        self.portal._setObject('item', SimpleItem('item'))
+        object_ = getattr(self.portal, 'item')
+        context = object_
+
+        # Subscribe
+        self._notification.notifyWelcomeSubscription(
+            event_id, object_, email, context)
+        mail = self._mh.mail_log[0]
+        self.assertEqual(mail['to'], 'bob@nuxeo.com')
+        self.assert_(mail['message'])
+        self._mh.clearLog()
+
+        # Unsubsribe
+        self._notification.notifyUnSubscribe(
+            event_id, object_, email, context)
+        mail = self._mh.mail_log[0]
+        self.assertEqual(mail['to'], 'bob@nuxeo.com')
+        self.assert_(mail['message'])
+        self._mh.clearLog()
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestNotificationRule))

@@ -133,8 +133,9 @@ class MailNotificationRule(NotificationRule):
         writer.addheader(string.capitalize('to'),
                          mimify.mime_encode_header(infos['to']))
         # Bcc
-        writer.addheader(string.capitalize('bcc'),
-                         mimify.mime_encode_header(infos['bcc']))
+        if infos.get('bcc'):
+            writer.addheader(string.capitalize('bcc'),
+                             mimify.mime_encode_header(infos['bcc']))
 
         # Misc
         writer.addheader('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')
@@ -195,7 +196,7 @@ class MailNotificationRule(NotificationRule):
                 mailhost.send(raw_message)
             else:
                 self.MailHost.send(raw_message)
-        except (socket.error, MailHostError, SMTPException, Timeout):
+        except (socket.error, MailHostError, SMTPException):
             LOG("::  CPSSubscriptions  :: sendMail() :: for",
                 ERROR,
                 "Error while sending mail",
