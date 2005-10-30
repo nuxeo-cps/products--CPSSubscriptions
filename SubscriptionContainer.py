@@ -86,7 +86,7 @@ class SubscriptionContainer(CPSBaseFolder):
                     'label' : 'Language'},
                    {'id': 'user_modes',
                     'type':'string',
-                    'mode':'w',
+                    'mode':'r',
                     'label' :
                     'What frequence the user choose for its notifications'},
                    )
@@ -248,6 +248,10 @@ class SubscriptionContainer(CPSBaseFolder):
     def updateUserMode(self, email, mode):
         """Update user mode
         """
+        # In case it has been changed in ZMI with older
+        # CPSSubscriptions revision
+        if not isinstance(self.user_modes, dict):
+            self.user_modes = {}
         user_modes = self.user_modes
         if email and mode:
             user_modes[email] = mode
@@ -257,6 +261,10 @@ class SubscriptionContainer(CPSBaseFolder):
     def getUserMode(self, email):
         """Return the mode corresponding to a given email
         """
+        # In case it has been changed in ZMI with older
+        # CPSSubscriptions revision
+        if not isinstance(self.user_modes, dict):
+            self.user_modes = {}
         if email in self.user_modes.keys():
             return self.user_modes[email]
         # No mode == real time (default value)

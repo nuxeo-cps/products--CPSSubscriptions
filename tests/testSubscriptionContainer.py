@@ -1,13 +1,30 @@
+# -*- coding: ISO-8859-15 -*-
+# (C) Copyright 2005 Nuxeo SARL <http://nuxeo.com>
+# Author: Julien Anguenot <anguenot@nuxeo.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
 # $Id$
+"""Test the subscription container
+"""
 
 import unittest
-from Testing import ZopeTestCase
-
 import CPSSubscriptionsTestCase
 
 from Products.CPSSubscriptions.SubscriptionContainer import \
      SubscriptionContainer
-from Products.CPSSubscriptions.SubscriptionsTool import SubscriptionsTool
 from Products.CPSSubscriptions.Subscription import Subscription
 
 class TestSubscriptionContainer(
@@ -15,8 +32,6 @@ class TestSubscriptionContainer(
 
     def afterSetUp(self):
         self.login('manager')
-        self.portal.REQUEST.SESSION = {}
-        self.portal.REQUEST.form = {}
 
     def beforeTearDown(self):
         self.logout()
@@ -25,7 +40,7 @@ class TestSubscriptionContainer(
 
         container = SubscriptionContainer('subc')
         self.assert_(isinstance(container, SubscriptionContainer))
-        # XXX attrs and sub-objects
+        self.assertEqual(container.user_modes, {})
 
     def test_getSubscriptionsById_does_not_exist(self):
 
@@ -52,6 +67,31 @@ class TestSubscriptionContainer(
         self.assertEqual(container.getSubscriptionById(id_), subscription)
         self.assertEqual(container.getSubscriptionById(id_),
                          getattr(container, id_))
+
+    def test_UserMode(self):
+
+        subtool = self.portal.portal_subscriptions
+        container = subtool.getSubscriptionContainerFromContext(
+            self.portal.workspaces,
+            force_local_creation=True,
+           ) 
+        self.assertEqual(container.user_modes, {})
+        container.updateUserMode('bob@nuxeo.com', 'mode_daily')
+        self.assertEqual(container.user_modes, {'bob@nuxeo.com':'mode_daily'})
+        self.assertEqual(container.getUserMode('bob@nuxeo.com'), 'mode_daily')
+
+    def test_userMode_ZMI_changed(self):
+
+        subtool = self.portal.portal_subscriptions
+        container = subtool.getSubscriptionContainerFromContext(
+            self.portal.workspaces,
+            force_local_creation=True,
+            )
+        self.assertEqual(container.user_modes, {})
+        container.user_modes = str({})
+        # should not fail. The attr will be converted.
+        self.assertEqual(
+            container.getUserMode('bob@nuxeo.com'), 'mode_real_time')
 
 def test_suite():
     suite = unittest.TestSuite()
