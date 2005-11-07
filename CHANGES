@@ -3,20 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- updated Brazilian Portuguese translations (Thanks to Mario Olimpio de Menezes
-  <mario [at] curiango.ipen.br>)
 -
 Bug fixes:
 ~~~~~~~~~~
-- Notifications : notifyConfirmUnsubscribe() wrong var name
-- Fix : SubscriptionContainer.getSusbcriptionById()
-- #410: Event configuration form enhancement
-- #389: mass notification enable ?
-- #409: Enhancements for the email import and anonymous support
-- #471: No notifications for "workflow_checkin_draft" and
-"workflow_abandon_draft".
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- SubscriptionsTool.scheduleMessages() return "Notications sent"
-instead of None when everything went well to avoid a 204 error on
-client side.
+-

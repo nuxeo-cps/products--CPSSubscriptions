@@ -1,4 +1,30 @@
 *******************************************
+** CPSSubscriptions V0.21.0 [R1 build 2005/11/07-15:26 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 29059
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- updated Brazilian Portuguese translations (Thanks to Mario Olimpio de Menezes
+  <mario [at] curiango.ipen.br>)
+-
+Bug fixes:
+~~~~~~~~~~
+- Notifications : notifyConfirmUnsubscribe() wrong var name
+- Fix : SubscriptionContainer.getSusbcriptionById()
+- #410: Event configuration form enhancement
+- #389: mass notification enable ?
+- #409: Enhancements for the email import and anonymous support
+- #471: No notifications for "workflow_checkin_draft" and
+"workflow_abandon_draft".
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- SubscriptionsTool.scheduleMessages() return "Notications sent"
+instead of None when everything went well to avoid a 204 error on
+client side.
+
+*******************************************
 ** CPSSubscriptions V0.20.0 [R1 build 2005/09/21-15:24 by fguillaume]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 27306
 Requires:
