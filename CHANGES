@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- #1116, was incorrect name of called method in SubscriptionTool
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

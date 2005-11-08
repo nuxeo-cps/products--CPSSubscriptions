@@ -1107,7 +1107,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         mcat = self.translation_service
 
         infos = {}
-        sender_email, sender_name = self._getMailSenderInfo()
+        sender_email, sender_name = self.getMailSenderInfo()
         infos['sender_email'] = sender_email
         infos['sender_name']  = sender_name
         infos['to'] = email_to
