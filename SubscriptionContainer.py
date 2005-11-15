@@ -220,7 +220,7 @@ class SubscriptionContainer(CPSBaseFolder):
     def getSubscriptionById(self, subscription_id=''):
         """Return a susbcription object given an id
 
-        If it doesn't exist then create it 
+        If it doesn't exist then create it
         """
         subtool = getToolByName(self, 'portal_subscriptions')
         subscription_prefix = subtool.getSubscriptionObjectPrefix()
@@ -289,6 +289,9 @@ def addSubscriptionContainer(self, id=None, REQUEST=None):
     self._setObject(id, ob)
 
     subscription_container = getattr(self, id)
+
+    # Set 'CanSubscribe' permission to roles mapping
+    subscription_container.updateProperties()
 
     # Let's create event subscriptions mapping the context.
     # These information are know by tool site.

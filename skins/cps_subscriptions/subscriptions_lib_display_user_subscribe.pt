@@ -7,7 +7,7 @@
 
 <metal:block define-macro="display_user_subscribe">
   <tal:block define="subscriptions_tool nocall:here/portal_subscriptions;
-    subscription_folder python:getattr(here,subscriptions_tool.getSubscriptionContainerId(), None);
+    subscription_folder python:subscriptions_tool.getSubscriptionContainerFromContext(here);
     events python:subscriptions_tool.getFilteredAllowedToSubscribeEventsFromContext(here);
     isAno python:here.portal_membership.isAnonymousUser();
     email request/email|nothing;
