@@ -10,4 +10,5 @@ Bug fixes:
 - #1125, fixed Unauthorized when subscribing as member.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- Better error messages when notification mail templates are incorrect.
+

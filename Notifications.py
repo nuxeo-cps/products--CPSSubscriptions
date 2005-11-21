@@ -239,7 +239,10 @@ class MailNotificationRule(NotificationRule):
             # modules of Python can't hndle properly non-ASCII in
             # subject header.
             subject = subject.translate(_translation_table)
-        except (KeyError, TypeError):
+        except (KeyError, TypeError), e:
+            LOG('CPSSubscriptions', ERROR,
+                "Error in subject notification template for %s: %s"
+                % (infos['event'], str(e)))
             # If the user put wrong variables
             subject = "No Subject"
 
@@ -253,7 +256,10 @@ class MailNotificationRule(NotificationRule):
         try:
             body = self.portal_subscriptions.getDefaultMessageBody(
                 event_id=infos['event']) % infos
-        except (KeyError, TypeError, ValueError):
+        except (KeyError, TypeError, ValueError), e:
+            LOG('CPSSubscriptions', ERROR,
+                "Error in body notification template for %s: %s"
+                % (infos['event'], str(e)))
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
         return body
