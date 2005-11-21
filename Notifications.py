@@ -241,8 +241,8 @@ class MailNotificationRule(NotificationRule):
             subject = subject.translate(_translation_table)
         except (KeyError, TypeError), e:
             LOG('CPSSubscriptions', ERROR,
-                "Error in subject notification template for %s: %s"
-                % (infos['event'], str(e)))
+                "Error in subject notification template for %r: %s"
+                % (infos.get('event'), str(e)))
             # If the user put wrong variables
             subject = "No Subject"
 
@@ -258,8 +258,8 @@ class MailNotificationRule(NotificationRule):
                 event_id=infos['event']) % infos
         except (KeyError, TypeError, ValueError), e:
             LOG('CPSSubscriptions', ERROR,
-                "Error in body notification template for %s: %s"
-                % (infos['event'], str(e)))
+                "Error in body notification template for %r: %s"
+                % (infos.get('event'), str(e)))
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
         return body
