@@ -261,6 +261,26 @@ class TestExplicitRecipientsRules(TestBaseRecipientsRules):
         self.assert_(not err.updateSubscriberEmails('nuxeo@nuxeo.com'))
 
 
+    def test_group_is_gone(self):
+        def getGroupById(id):
+            raise KeyError, id
+
+        class FakeSection:
+            portal_type = 'Section'
+
+        err = ExplicitRecipientsRule('fake')
+        err.groups = ['GostGroup']
+        self.portal._setObject('err', err)
+        err = err.__of__(self.portal)
+
+        self.portal.acl_users.getGroupById = getGroupById
+
+        # this should not raise an error when aclu.getGroupById() returns None
+        res = err.getRecipients('event_type', FakeSection(), 'infos')
+
+        self.assertEquals(err.groups, [])
+
+
     ##def test_getRecipients(self):
     ##    pass
     ##

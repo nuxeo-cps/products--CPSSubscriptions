@@ -695,6 +695,7 @@ class ExplicitRecipientsRule(RecipientsRule):
             member_email_mapping[email] = member_id
 
         # Groups subscribed
+        dead_groups = []
         for group_id in self.getGroups():
             try:
                 group = aclu.getGroupById(group_id)
@@ -703,8 +704,9 @@ class ExplicitRecipientsRule(RecipientsRule):
                     email = mtool.getEmailFromUsername(member_id)
                     member_email_mapping[email] = member_id
             except KeyError:
-                # XXX
-                pass
+                dead_groups.append(group_id)
+        for dead_group in dead_groups:
+            self.groups.remove(dead_group)
 
         # Explicit emails
         for email in self.getEmails():
