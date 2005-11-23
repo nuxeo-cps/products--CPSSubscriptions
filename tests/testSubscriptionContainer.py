@@ -74,11 +74,19 @@ class TestSubscriptionContainer(
         container = subtool.getSubscriptionContainerFromContext(
             self.portal.workspaces,
             force_local_creation=True,
-           ) 
+           )
         self.assertEqual(container.user_modes, {})
         container.updateUserMode('bob@nuxeo.com', 'mode_daily')
         self.assertEqual(container.user_modes, {'bob@nuxeo.com':'mode_daily'})
         self.assertEqual(container.getUserMode('bob@nuxeo.com'), 'mode_daily')
+
+    def test_PermissionSettingsAfterCreation(self):
+        subtool = self.portal.portal_subscriptions
+        container = subtool.getSubscriptionContainerFromContext(
+            self.portal.workspaces,
+            force_local_creation=True,
+           )
+        self.assert_('Authenticated' in container._Can_subscribe_Permission)
 
     def test_userMode_ZMI_changed(self):
 
