@@ -22,7 +22,7 @@
 Asynchronous by default.
 """
 
-from zLOG import LOG, DEBUG
+from zLOG import LOG, TRACE
 from Acquisition import aq_base, aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
@@ -108,7 +108,7 @@ class EventManager(BaseManager):
 
         # XXX this code should move to an external callable
 
-        LOG("EventManager", DEBUG, "__call__")
+        LOG("EventManager", TRACE, "__call__")
         for k, v in self._events.items():
             ob = v[0]['object']
             root = ob.getPhysicalRoot()
@@ -116,7 +116,7 @@ class EventManager(BaseManager):
             old_ob = ob
             ob = root.unrestrictedTraverse(path, None)
             if ob is None:
-                LOG("EventManager", DEBUG, "Object %r disappeard"%old_ob)
+                LOG("EventManager", TRACE, "Object %r disappeard"%old_ob)
                 # Let's use the old object for the notification info
                 ob = v[0]['object']
             # Folderish document and parent has a notification
@@ -126,18 +126,18 @@ class EventManager(BaseManager):
                  isinstance(parent, ProxyBTreeFolderishDocument)) and
                 self._events.get(
                 self._computeKeyFor(parent, k[0])) is not None):
-                LOG("EventManager", DEBUG, "Folderish child excluded")
+                LOG("EventManager", TRACE, "Folderish child excluded")
             else:
                 subtool = getToolByName(ob, 'portal_subscriptions', None)
                 if subtool is not None:
-                    LOG("EventManager", DEBUG,
+                    LOG("EventManager", TRACE,
                         "Processing event %s for %r with infos %r"
                         %(k[0], ob, v[1]))
                     subtool.notify_processed_event(k[0], ob, v[1])
                 else:
-                    LOG("EventManager", DEBUG,
+                    LOG("EventManager", TRACE,
                             "Subscriptions Tool not found")
-        LOG("EventManager", DEBUG, "__call__ DONE")
+        LOG("EventManager", TRACE, "__call__ DONE")
 
 def del_event_manager():
     txn = transaction.get()
