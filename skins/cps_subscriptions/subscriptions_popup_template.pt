@@ -7,11 +7,9 @@ tal:define="
   mtool here/portal_membership;
   ttool here/portal_trees;
   wtool here/portal_workflow;
-  btool here/portal_boxes;
   context_url python:here.getContextUrl(utool=utool);
   base_url python:utool.getBaseUrl();
   here_url python:here.absolute_url();
-  boxes python:btool.getBoxes(here);
   member mtool/getAuthenticatedMember;
   isAnon mtool/isAnonymousUser;
   actions python:atool.listFilteredActionsFor(here);
