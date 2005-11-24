@@ -126,12 +126,15 @@ class TestMailNotificationRule(TestBaseNotificationRule):
         # Notify a list of emails < to max recipients
         # We should get only one email as a result
         emails = ['ja@nuxeo.com', 'contact@nuxeo.com']
+        self._stool.mapping_context_events = {'Portal':
+                                              {'fake_event_id': 'Yo'}}
+        self._stool.mapping_event_email_content = {'fake_event_id': 'ha'}
         self._notification.notifyRecipients(
-            'fake_event_id', self.portal, emails=emails)
+            'fake_event_id', self.portal.sections, emails=emails)
         self.assertEqual(len(self._mh.mail_log), 1)
         mail = self._mh.mail_log[0]
         self.assertEqual(mail['bcc'], ','.join(emails))
-        
+
         self._mh.clearLog()
 
     def test_notifyRecipients_greater_than_max_recipients(self):
@@ -140,8 +143,11 @@ class TestMailNotificationRule(TestBaseNotificationRule):
         # We should get 2 mails
         emails = ['ja@nuxeo.com', 'contact@nuxeo.com',
                   'bob@nuxeo.com', 'jack@nuxeo.com']
+        self._stool.mapping_context_events = {'Portal':
+                                              {'fake_event_id': 'Yo'}}
+        self._stool.mapping_event_email_content = {'fake_event_id': 'ha'}
         self._notification.notifyRecipients(
-            'fake_event_id', self.portal, emails=emails)
+            'fake_event_id', self.portal.sections, emails=emails)
         self.assertEqual(len(self._mh.mail_log), 2)
         mail = self._mh.mail_log[0]
         self.assertEqual(
