@@ -383,6 +383,9 @@ class MailNotificationRule(NotificationRule):
 
         # Construct a mapping for the email notification
         infos = self._makeInfoDict(event_type, object_, infos)
+        if not infos:
+            # No notification info for that object
+            return
 
         # Let's check if we render the content, instead of a regular
         # user defined notification message, because of the
