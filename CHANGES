@@ -9,6 +9,7 @@ Bug fixes:
 - #1116, was incorrect name of called method in SubscriptionTool
 - #1125, fixed Unauthorized when subscribing as member.
 - #1143 removed dependency on CPSBoxes in the popup forms
+- Fixed security declaration on some methods.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Better error messages when notification mail templates are incorrect.

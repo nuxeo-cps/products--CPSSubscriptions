@@ -255,7 +255,7 @@ class ExplicitRecipientsRule(RecipientsRule):
                         continue
             return res
 
-    security.declareProtected(ManageSubscriptions, "getMemberStrucById")
+    security.declareProtected(ManageSubscriptions, "getMemberStructById")
     def getMemberStructById(self, member_id):
         """Return the index of member_id in the list
         """

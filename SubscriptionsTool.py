@@ -381,7 +381,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     ######################################################
     #####################################################
 
-    security.declareProtected(ManagePortal, 'addRenderedPortalTypes')
+    security.declareProtected(ManagePortal, 'addRenderedPortalType')
     def addRenderedPortalType(self, portal_type=''):
         """Add a portal type for wich the render of the content
         type will be included into the notification email body.
@@ -395,7 +395,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             return 1
         return 0
 
-    security.declareProtected(ManagePortal, 'addRenderedEvents')
+    security.declareProtected(ManagePortal, 'addRenderedEvent')
     def addRenderedEvent(self, event_id=''):
         """Add an event for wich the render of the content
         type will be included into the notification email body.
