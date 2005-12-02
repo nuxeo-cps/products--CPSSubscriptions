@@ -87,7 +87,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     _properties = (
         {'id': 'notify_hidden_object',
          'type': 'boolean', 'mode':'w',
-         'label' : 'Notify hidden files'},
+         'label' : 'Notify hidden files'}, # FIXME Unused for now
         {'id': 'max_recipients_per_notification',
          'type': 'int', 'mode':'w',
          'label': 'Max recipients per notification message'},
@@ -108,6 +108,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         {'id': 'mapping_local_roles_context',
          'type': 'string', 'mode':'r',
          'label': 'Local roles within the different context'},
+        {'id': 'ignore_events', 'type': 'boolean', 'mode': 'w',
+         'label': "Ignore events"},
         )
 
     # Maximim recipients (emails) for one notification.
@@ -119,6 +121,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                      'daily'  : 'mode_daily'}
 
     mapping_local_roles_context = {}
+    ignore_events = False
 
     ###################################################
     # ZMI
@@ -785,6 +788,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         For workflow events, infos must contain the additional
         keyword arguments passed to the transition.
         """
+        if self.ignore_events:
+            return
 
         # Pre-filtering : we don't want to notify the user on
         # repository objects

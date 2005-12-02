@@ -13,4 +13,4 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Better error messages when notification mail templates are incorrect.
-
+- Added ignore_events flag on subscriptions tool.
