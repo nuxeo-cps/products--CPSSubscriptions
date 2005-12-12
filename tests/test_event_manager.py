@@ -124,8 +124,8 @@ class EventManagerTest(unittest.TestCase):
     def get_manager(self):
         return EventManager(FakeTransactionManager())
 
-    def test_z2interfaces(self):
-        from Interface.Verify import verifyClass
+    def test_interfaces(self):
+        from zope.interface.verify import verifyClass
         verifyClass(IBaseManager, EventManager)
 
     def test_fixtures(self):
