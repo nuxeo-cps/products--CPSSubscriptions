@@ -22,7 +22,7 @@
 Asynchronous by default.
 """
 
-from zLOG import LOG, TRACE
+from zLOG import LOG, TRACE, DEBUG
 from Acquisition import aq_base, aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
@@ -82,6 +82,16 @@ class EventManager(BaseManager):
     def push(self, event_type, object, info):
         """Push the event in a queue with the related info.
         """
+
+        # Do not push anything if the subscriber is not enabled
+        # When the manager is disabled it won't queue anything. It means, it
+        # can be deactiveted for a while, thus won't queue, and then be
+        # activated again and start queuing again.
+        if not self._status:
+            LOG("CPSSUbscriptions.EventManager is DISABLED", DEBUG,
+                "Will *not* process event %s for %r with infos %r"
+                %(event_type, object, info))
+            return
 
         if not self._isObjectInteresting(object):
             return

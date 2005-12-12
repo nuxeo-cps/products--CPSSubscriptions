@@ -128,6 +128,15 @@ class EventManagerTest(unittest.TestCase):
         from Interface.Verify import verifyClass
         verifyClass(IBaseManager, EventManager)
 
+    def test_fixtures(self):
+
+        mgr = self.get_manager()
+
+        self.assertEqual(mgr._sync, False)
+        self.assertEqual(mgr.isSynchronous(), False)
+        self.assertEqual(mgr.isSynchronous(), mgr._sync)
+        self.assertEqual(mgr._status, True)
+
     def test_compute_key(self):
 
         mgr = self.get_manager()
@@ -164,6 +173,34 @@ class EventManagerTest(unittest.TestCase):
         # Push the second one with another event
         mgr.push('other_event_id', dummy2, {})
         self.assertEqual(len(mgr._events.keys()), 4)
+
+    def test_push_events_status(self):
+
+        mgr = self.get_manager()
+
+        self.assertEqual(mgr._sync, False)
+        self.assertEqual(mgr._status, True)
+
+        # Disable the subscriber
+        mgr.disable()
+
+        # Push one. Won't be taken into consideration
+        dummy1 = Dummy('dummy1')
+        mgr.push('event_id', dummy1, {})
+        self.assertEqual(len(mgr._events.keys()), 0)
+
+        # Enable the subscriber back
+        mgr.enable()
+
+        # Push one.
+        dummy1 = Dummy('dummy1')
+        mgr.push('event_id', dummy1, {})
+        self.assertEqual(len(mgr._events.keys()), 1)
+
+        # Push another one
+        dummy2 = Dummy('dummy2')
+        mgr.push('event_id', dummy2, {})
+        self.assertEqual(len(mgr._events.keys()), 2)
 
     def test_push_zope_root_object(self):
 

@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- API : enable / disable EventManager
 Bug fixes:
 ~~~~~~~~~~
 - #1116, was incorrect name of called method in SubscriptionTool
