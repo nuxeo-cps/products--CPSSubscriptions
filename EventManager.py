@@ -23,6 +23,10 @@ Asynchronous by default.
 """
 
 from zLOG import LOG, TRACE, DEBUG
+
+import transaction
+import zope.interface
+
 from Acquisition import aq_base, aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
@@ -34,26 +38,13 @@ from Products.CPSCore.TransactionManager import get_transaction_manager
 from Products.CPSCore.ProxyBase import ProxyFolderishDocument
 from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 
-try:
-    import transaction
-except ImportError:
-    # BBB: for Zope 2.7
-    from Products.CMFCore.utils import transaction
-    # The following is missing from CMF 1.5.2
-    def BBBget():
-        return get_transaction()
-    transaction.get = BBBget
-
 _EVT_MGR_ATTRIBUTE = '_cps_event_manager'
-
-# We don't want any other hooks executed before this one right now.  It
-# will have an order of 100
 _EVT_MGR_ORDER = 100
 
 class EventManager(BaseManager):
     """Holds events that need to be processed."""
 
-    __implements__ = IBaseManager
+    zope.interface.implements(IBaseManager)
 
     def __init__(self, mgr):
         """Initialize and register this manager with the transaction.
