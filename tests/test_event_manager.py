@@ -28,10 +28,7 @@ from Products.CPSCore.interfaces import IBaseManager
 from Products.CPSSubscriptions.EventManager import EventManager
 from Products.CPSSubscriptions.EventManager import get_event_manager
 
-try:
-    import transaction
-except ImportError: # BBB: for Zope 2.7
-    from Products.CMFCore.utils import transaction
+import transaction
 
 class DummySubscriptionsTool:
 
