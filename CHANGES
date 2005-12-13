@@ -14,3 +14,6 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Better error messages when notification mail templates are incorrect.
 - Added ignore_events flag on subscriptions tool.
+- EventManager cleanups
+  o use logging instead of the zLOG
+  o use zope.interface
