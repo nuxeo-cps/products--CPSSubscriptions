@@ -22,8 +22,7 @@
 Asynchronous by default.
 """
 
-from zLOG import LOG, TRACE, DEBUG
-
+import logging
 import transaction
 import zope.interface
 
@@ -40,6 +39,8 @@ from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 
 _EVT_MGR_ATTRIBUTE = '_cps_event_manager'
 _EVT_MGR_ORDER = 100
+
+logger = logging.getLogger("CPSSubscriptions.EventManager")
 
 class EventManager(BaseManager):
     """Holds events that need to be processed."""
@@ -79,9 +80,9 @@ class EventManager(BaseManager):
         # can be deactiveted for a while, thus won't queue, and then be
         # activated again and start queuing again.
         if not self._status:
-            LOG("CPSSUbscriptions.EventManager is DISABLED", DEBUG,
-                "Will *not* process event %s for %r with infos %r"
-                %(event_type, object, info))
+            logger.debug("is DISABELED. "
+                         "Will *not* process event %s for %r with infos %r"
+                         %(event_type, object, info))
             return
 
         if not self._isObjectInteresting(object):
@@ -109,7 +110,7 @@ class EventManager(BaseManager):
 
         # XXX this code should move to an external callable
 
-        LOG("EventManager", TRACE, "__call__")
+        logger.debug("__call__")
         for k, v in self._events.items():
             ob = v[0]['object']
             root = ob.getPhysicalRoot()
@@ -117,7 +118,7 @@ class EventManager(BaseManager):
             old_ob = ob
             ob = root.unrestrictedTraverse(path, None)
             if ob is None:
-                LOG("EventManager", TRACE, "Object %r disappeard"%old_ob)
+                logger.debug("Object %r disappeard"%old_ob)
                 # Let's use the old object for the notification info
                 ob = v[0]['object']
             # Folderish document and parent has a notification
@@ -127,18 +128,16 @@ class EventManager(BaseManager):
                  isinstance(parent, ProxyBTreeFolderishDocument)) and
                 self._events.get(
                 self._computeKeyFor(parent, k[0])) is not None):
-                LOG("EventManager", TRACE, "Folderish child excluded")
+                logger.debug("Folderish child excluded")
             else:
                 subtool = getToolByName(ob, 'portal_subscriptions', None)
                 if subtool is not None:
-                    LOG("EventManager", TRACE,
-                        "Processing event %s for %r with infos %r"
-                        %(k[0], ob, v[1]))
+                    logger.debug("Processing event %s for %r with infos %r"
+                    %(k[0], ob, v[1]))
                     subtool.notify_processed_event(k[0], ob, v[1])
                 else:
-                    LOG("EventManager", TRACE,
-                            "Subscriptions Tool not found")
-        LOG("EventManager", TRACE, "__call__ DONE")
+                    logger.error("Subscriptions Tool not found")
+        logger.debug("__call__ DONE")
 
 def del_event_manager():
     txn = transaction.get()
