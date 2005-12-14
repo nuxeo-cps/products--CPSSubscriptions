@@ -1,38 +1,61 @@
-$Id$
+=======================
+Subscription Scheduling
+=======================
+
+
+:Revision: $Id$
+
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
+
 
 Scheduling the notifications on daily, weekly or monthly basis.
 
-Use case :
-------------
+Use case
+========
 
- - While subscribing a user can specify how he would like to subscribe ?
+- While subscribing a user can specify how he would like to
+  subscribe?
 
-   * daily
-   * weekly
-   * monthly
+  + daily
+  + weekly
+  + monthly
 
- - And then he will receive the messages according to this configuration.
-  Compilation of all the notifications related to the event he subscribed to
-  during the time corresponding to the sort of notification.
+- And then he will receive the messages according to this
+  configuration. Compilation of all the notifications related to
+  the event he subscribed to during the time corresponding to the
+  sort of notification.
 
-Implementation :
-------------------
 
- - It has to be an external process that will ask for the notification
-   category. (No available scheduler available within Zope).
-   With crond it's gonna work just fine.
+Implementation
+==============
 
- - We need to maintain, within the portal_subscriptions, a scheduling table
-   classified by categories / user / event subscribed.
-   The categories correspond to the sort of subscriptions described above.
+- It has to be an external process that will ask for the
+  notification category. (No available scheduler available within
+  Zope). With crond, it will work just fine.
 
- - The mail content can be stored within the portal_subscriptions as simple
-   object containing the bodies of all notifications.
-   A Btree will be storing the these objects.
+- We need to maintain, within the portal_subscriptions, a
+  scheduling table classified by categories / user / event
+  subscribed. The categories correspond to the sort of
+  subscriptions described above.
 
- - The mapping, within a category, will contain an entry for the mail and then
-   the references on the given mail body objects.
+- The mail content can be stored within the portal_subscriptions
+  as simple objects containing the bodies of all notifications. A
+  Btree will be storing the these objects.
 
- - API which is call for a given category and then compile all the mail bodies
-   that have that are referenced in the scheduling table and then sent that
-   to the given users registered within the scheduling table.
+- The mapping, within a category, will contain an entry for the
+  mail and then the references on the given mail body objects.
+
+- API which is call for a given category and then compile all the
+  mail bodies that are referenced in the scheduling table and then
+  sent that to the given users registered within the scheduling
+  table.
+
+
+.. Emacs
+.. Local Variables:
+.. mode: rst
+.. End:
+.. Vim
+.. vim: set filetype=rst:
+
