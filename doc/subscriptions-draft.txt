@@ -1,418 +1,464 @@
-Event subscriptions and notifications
+=====================================
+Event Subscriptions and Notifications
+=====================================
 
-  $Id$
 
-  Typical use cases
+:Revision:  $Id$
 
-    1. Notify the creator of a document that it is published.
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-    2. Notify the submitter of a document that it is published.
 
-    3. Notify the section reviewer that a document is submitted.
+Typical Use Cases
+=================
 
-    4. Notify the forum reviewer that a post is pending approval.
+1. Notify the creator of a document that it is published.
 
-    5. Notify all the intermediate workflow validators of a document
-       that it has reached "approved" status.
+2. Notify the submitter of a document that it is published.
 
-    6. Notify all having "ResponsableCrise" roles that a subproblem has
-       reached "resolved" status.
+3. Notify the section reviewer that a document is submitted.
 
-    7. Notify workspace members that a comment has been posted into a
-       container forum.
+4. Notify the forum reviewer that a post is pending approval.
 
-    8. Notify the poster of a message that someone gave an answer.
+5. Notify all the intermediate workflow validators of a document
+   that it has reached "approved" status.
 
-    9. Notify workspace members that a document has been copy/pasted
-       into the workspace.
+6. Notify all having "ResponsableCrise" roles that a subproblem has
+   reached "resolved" status.
 
-    10. Notify workspace members that a new document version has been
-        created (which means that a revision has been frozen). [Misill]
+7. Notify workspace members that a comment has been posted into a
+   container forum.
 
-    11. When certain workflow transitions are done, it must be possible
-        for the user to specify a flag "notify_local_only" which will
-        instruct the user resolution mechanism to lookup only locally
-        and not infer merged local roles. Another flag "notify_no_local"
-        will instruct to not send any notification based on the placeful
-        resolution. [Misill]
+8. Notify the poster of a message that someone gave an answer.
 
-  Use case analysis
+9. Notify workspace members that a document has been copy/pasted
+   into the workspace.
 
-    The main use case is to "do something when something happens".
+10. Notify workspace members that a new document version has been
+    created (which means that a revision has been frozen). [Misill]
 
-    When?
+11. When certain workflow transitions are done, it must be possible
+    for the user to specify a flag "notify_local_only" which will
+    instruct the user resolution mechanism to lookup only locally
+    and not infer merged local roles. Another flag "notify_no_local"
+    will instruct to not send any notification based on the placeful
+    resolution. [Misill]
 
-      - Workflow transition (create, edit, submit, publish, accept,
-        copy/cut/paste, )
 
-      - Forum related eventes (New post, Reply to post, New comment)
+Use case analysis
+=================
 
-      - Other
+The main use case is to "do something when something happens".
 
-    Do what?
 
-      - Send emails
+When?
+-----
 
-      - Launch some script
+- Workflow transition (create, edit, submit, publish, accept,
+  copy/cut/paste, )
 
-    Sending an email
+- Forum related events (New post, Reply to post, New comment)
 
-      Notify whom?
+- Other
 
-	- Global list of users/groups
 
-	- Local roles in the context of the event
+Do what?
+--------
 
-	  - Direct local roles on the object
+- Send emails
 
-	    ex: the Owner role to notify the creator that his document
-	    is published.
+- Launch some script
 
-	    ex: the Reader role to notify local readers assigned to
-	    the document. (?)
 
-	  - Direct local roles on a parent of the object with specific
-            characteristics
+Sending an email
+----------------
 
-	    ex: the SectionManagers of the Forum above the current post.
+Notify whom?
 
-	  - Merged local roles
+- Global list of users/groups
 
-	    ex: the SectionReviewers are all potential validators.
+- Local roles in the context of the event
 
-	  For publishing (and others), there are two contexts: source
-	  and destination...
+  - Direct local roles on the object
 
-	- Local explicit list
+    ex: the Owner role to notify the creator that his document
+    is published.
 
-	  This is what we have currently with "MailingList".
+    ex: the Reader role to notify local readers assigned to
+    the document. (?)
 
-	- Configuration list in the parent of the object giving instructions
+  - Direct local roles on a parent of the object with specific
+      characteristics
 
-	  ex: notification of the poster of a message that someone
-	  responded to him. A configuration object at the forum level
-	  (or above) specifies that we lookup the Owner of the
-	  Post/Thread above the new post and notify him.
+    Example: The SectionManagers of the Forum above the current post.
 
-	- Users having been implied by the workflow
+  - Merged local roles
 
-	  This is important be able to notify actors of some workflow
-	  transition. The workflow currently records actors in the
-	  history, so it is possible to extract them.
+    Example: The SectionReviewers are all potential validators.
 
-	  Configuration examples:
+  For publishing (and others), there are two contexts: source
+  and destination ...
 
-	    - those that did the transitions "edit"
+- Local explicit list
 
-	    - those that did the LAST transition "edit"
+  This is what we have currently with "MailingList".
 
-	    - those that did the transitions "validate" or "publish"
+- Configuration list in the parent of the object giving
+  instructions
 
-	    - those that did any transition except "comment" and "view"
+  Example: Notification of the poster of a message that someone
+  responded to him. A configuration object at the forum level (or
+  above) specifies that we lookup the Owner of the Post/Thread
+  above the new post and notify him.
 
-	  In some workflows, we accumulate a stack of people that will
-	  be able to do some action later. We also want to be able to
-	  notify those. XXX this depends on how we store them.
+- Users having been implied by the workflow
 
-	  Note that there are two workflow history, the one local to
-	  the proxy and the one global to the docid. Both may be
-	  useful depending on the context:
+  This is important be able to notify actors of some workflow
+  transition. The workflow currently records actors in the
+  history, so it is possible to extract them.
 
-	    - local: ex: people who have been acting on the proxy in a
-              particular workspace
+  Configuration examples:
 
-	    - global: ex: (?)
+  - those that did the transitions "edit"
 
-	Note that for publishing events, may want to check the source
-	context (to notify people from the workspace) or the
-	destination (to notify people from the section).
+  - those that did the LAST transition "edit"
 
-      Send what message?
+  - those that did the transitions "validate" or "publish"
 
-	- message defined globally. i18n.
+  - those that did any transition except "comment" and "view"
 
-	- message defined locally.
+  In some workflows, we accumulate a stack of people that will
+  be able to do some action later. We also want to be able to
+  notify those. XXX this depends on how we store them.
 
-	The message's content may have to be computed according to
-	the context.
+  Note that there are two workflow history, the one local to
+  the proxy and the one global to the document ID. Both may be
+  useful depending on the context:
 
-  Specification
+  - local: ex: people who have been acting on the proxy in a
+      particular workspace
 
-    Concepts
+  - global: Example: (?)
 
-      Subscriptions Tool
+Note that for publishing events, may want to check the source
+context (to notify people from the workspace) or the destination
+(to notify people from the section).
 
-        portal_subcriptions is the central tool with the necessary
-        methods to query the subscriptions and execute them.
+Send what message?
 
-        The subscriptions are looked up locally in a .cps_subscriptions
-        folder in the object.
+- message defined globally. i18n.
 
-      Subscription
+- message defined locally.
 
-        A Subscription object holds the information about what kind of
-        events are treated, the parameters needed to find the final
-        recipients (recipients rules), and the notifications sent to the
-        recipients.
+The message's content may have to be computed according to the
+context.
 
-        The recipients rules are stored as subobjects of the
-        Subscription.
 
-      RecipientsRule
+Specification
+=============
 
-        They describe how to get some recipients. A final recipient for
-        a subscription is either a member or an explicit email. Explicit
-        emails only make sense for email subscriptions.
+Concepts
+--------
 
-        If configured so, members or anonymous users can add or remove
-        themselves from the subscription list.
+Subscriptions Tool
+      portal_subcriptions is the central tool with the necessary
+      methods to query the subscriptions and execute them.
 
-      Notification
+      The subscriptions are looked up locally in a .cps_subscriptions
+      folder in the object.
 
-        The something that is actually done. Usually it involves
-        Recipients (sending email) but that's not mandatory (triggering
-        an arbitrary script for instance).
+Subscription
+      A Subscription object holds the information about what kind
+      of events are treated, the parameters needed to find the
+      final recipients (recipients rules), and the notifications
+      sent to the recipients.
 
-    Scenario
+      The recipients rules are stored as sub-objects of the
+      Subscription.
 
-      An event is sent. The event has a context object, and additional
-      properties like the user flags specified in doActionFor for a
-      workflow transition, or the workflow transition parameters like
-      the source/destination container.
+RecipientsRule
+      They describe how to get some recipients. A final recipient
+      for a subscription is either a member or an explicit email.
+      Explicit emails only make sense for email subscriptions.
 
-      The event is passed to the portal_subcriptions tool.
+      If configured so, members or anonymous users can add or
+      remove themselves from the subscription list.
 
-      The subscriptions tool does lookups from the context and up to
-      find the subscriptions. It then sends the notification to all
-      applicable subscriptions.
+Notification
+      The something that is actually done. Usually it involves
+      Recipients (sending email) but that's not mandatory
+      (triggering an arbitrary script for instance).
 
-      Each subscription computes a set of recipients according to its
-      recipient rules, and does its specific notification on the
-      recipients.
 
-    Implementation
+Scenario
+--------
 
-      Subscriptions Tool
+An event is sent. The event has a context object, and additional
+properties like the user flags specified in doActionFor for a
+workflow transition, or the workflow transition parameters like
+the source/destination container.
 
-        This tool has id 'portal_subscriptions'.
+The event is passed to the portal_subcriptions tool.
 
-        API
+The subscriptions tool does lookups from the context and up to
+find the subscriptions. It then sends the notification to all
+applicable subscriptions.
 
-          - def notify_event(self, event_type, object, infos):
-            """Standard event hook.
+Each subscription computes a set of recipients according to its
+recipient rules, and does its specific notification on the
+recipients.
 
-            Get the applicable subscriptions. Sends the event to the
-            subscriptions.
 
-            For workflow events, infos must contain the additional
-            keyword arguments passed to the transition.
-            """
+Implementation
+--------------
 
-          - def getSubscriptionsFor(self, event_type, object, infos):
-            """Get the subscriptions applicable for this event.
+Subscriptions Tool
+..................
 
-            Some of the parameters may be None to get all subscriptions.
-            """
+This tool has id 'portal_subscriptions'.
 
-        Also needed API
+API:
 
-          - To what local subscription lists can the user subscribe?
+- notify_event::
+  
+      def notify_event(self, event_type, object, infos):
+      """Standard event hook.
 
-      Subscription
+      Get the applicable subscriptions. Sends the event to the
+      subscriptions.
 
-        API
+      For workflow events, infos must contain the additional
+      keyword arguments passed to the transition.
+      """
 
-          - def isInterestedInEvent(self, event_type, object, infos):
-            """Is the subscription interested in the given event."""
+- getSubscriptionsFor::
 
-          - def sendEvent(self, event_type, object, infos):
-            """Send an event to the subscription."""
+      def getSubscriptionsFor(self, event_type, object, infos):
+      """Get the subscriptions applicable for this event.
 
-          - def getRecipientsRules(self, ...):
-            """Get the recipients rules objects...
+      Some of the parameters may be None to get all subscriptions.
+      """
 
-            XXX matching what ?
-            """
+Also needed API
 
-          - setters/getters for the properties.
+- To what local subscription lists can the user subscribe?
 
-	A Subscription instance has the following properties:
 
-          Event filtering:
+Subscription
+............
 
-            - filter_event_types -- The event types on which to react.
+API:
 
-              ex: workflow_create, workflow_in_publish
+- isInterestedInEvent::
 
-            - filter_object_types -- The types of the objects concerned
-              by the subscription. The subscription is valid only if the
-              context object's portal_type is in object_types.
+      def isInterestedInEvent(self, event_type, object, infos):
+      """Is the subscription interested in the given event."""
 
-          Recipient filtering:
+- sendEvent::
 
-           - recipient_emails_black_list -- The emails the subscription is
-             blocking.
+      def sendEvent(self, event_type, object, infos):
+      """Send an event to the subscription."""
 
-          Notifications:
+- getRecipientsRules::
 
-            - notification_types -- What kinds of action are taken for
-              the recipients:
+      def getRecipientsRules(self, ...):
+      """Get the recipients rules objects...
 
-              - 'tales': Call notification_expression.
+      XXX matching what ?
+      """
 
-              - 'email': Send an email to each recipient, according to
-                notification_email_expression.
+- setters/getters for the properties.
 
-            - notification_expression -- A TALES expression called
-              for each recipient. In the expression, the same namespace
-              as in ComputedRecipient is available, with in addition:
+A Subscription instance has the following properties:
 
-              - email: The recipient's email.
+- Event filtering:
 
-              - member: The member if the recipient is a member, or
-                None.
+  - filter_event_types -- The event types on which to react.
 
-            - notification_email_expression -- A TALES expression
-              returning the email headers and body as a string. No mail
-              is sent if it returns a false value. In the expression,
-              the same namespace as in action_expression is
-              available.
+    Examples: workflow_create, workflow_in_publish
 
-      Recipients:
+  - filter_object_types -- The types of the objects concerned by
+    the subscription. The subscription is valid only if the
+    context object's portal_type is in object_types.
 
-        There are different ways of getting recipients. The following
-        classes subclass RecipientsRule and implement different
-        strategies. Their properties are described below.
+- Recipient filtering:
 
-        API
+  - recipient_emails_black_list -- The emails the subscription is
+    blocking.
 
-          - def getRecipients(self, event_type, object, infos):
-            """Get the recipients.
+- Notifications:
 
-            Returns a mapping with 'members' and 'emails' as keys.
-            """
+  - notification_types -- What kinds of action are taken for the
+    recipients:
 
-        ComputedRecipientsRule
+    - 'tales': Call notification_expression.
 
-          - expression -- A TALES expression returning a mapping
-            with recipients. In the expression, the following namespace
-            is available:
+    - 'email': Send an email to each recipient, according to
+      notification_email_expression.
 
-            - portal: The portal object.
+  - notification_expression -- A TALES expression called for each
+    recipient. In the expression, the same namespace as in
+    ComputedRecipient is available, with in addition:
 
-            - context: The context object (proxy) where the triggering
-              event occured.
+    - email: The recipient's email.
 
-            - proxy: Alias for context.
+    - member: The member if the recipient is a member, or None.
 
-            - doc: context.getContent().
+  - notification_email_expression -- A TALES expression returning
+    the email headers and body as a string. No mail is sent if it
+    returns a false value. In the expression, the same namespace
+    as in action_expression is available.
 
-            - container: The context's container.
 
-            - ancestor: If 'ancestor_local' or 'ancestor_merged' was
-              used for recipient_roles_origins, that object, else None.
+Recipients
+..........
 
-            - event_type: The triggering event type.
+There are different ways of getting recipients. The following
+classes subclass RecipientsRule and implement different
+strategies. Their properties are described below.
 
-            - triggering_user: The user who triggered the original
-              action.
+API:
 
-            - DateTime: A DateTime constructor.
+- getRecipients::
 
-        ExplicitRecipientsRule:
+      def getRecipients(self, event_type, object, infos):
+      """Get the recipients.
 
-          - members -- The ids of the members subscribed manually.
+      Returns a mapping with 'members' and 'emails' as keys.
+      """
 
-          - members_allow_add -- Whether members are allowed to
-            subscribe / unsubscribe manually to the Subscription (adding
-            themselves to recipient_members).
+ComputedRecipientsRule:
 
-    	  - groups -- The ids of the groups subscribed manually.
+expression -- A TALES expression returning a mapping with
+recipients. In the expression, the following namespace is
+available:
 
-          - emails -- The emails subscribed manually.
+- portal: The portal object.
 
-          - emails_allow_add -- Whether anonymous visitors are allowed
-            to subscribe / unsubscribe manually to the Subscription
-            (adding themselves to recipient_emails).
+- context: The context object (proxy) where the triggering
+  event occurred.
 
-          - emails_confirm -- Whether the emails have to be confirmed
-            before being used. XXX this may be better as a global flag
-            of portal_subcriptions instead..
+- proxy: Alias for context.
 
-          - emails_pending_add -- The emails subscribed manually but not
-            yet confirmed.
+- doc: context.getContent().
 
-          - emails_pending_delete -- The emails pending deletion from
-            recipient_emails but not yet confirmed.
+- container: The context's container.
 
-        RoleRecipientsRule:
+- ancestor: If 'ancestor_local' or 'ancestor_merged' was used for
+  recipient_roles_origins, that object, else None.
 
-          - roles -- The roles subscribed.
+- event_type: The triggering event type.
 
-          - origins -- A sequence describing how roles are looked up. It
-            can contain the following keys:
+- triggering_user: The user who triggered the original
+  action.
 
-            - 'local': Direct local roles from the context object are
-              used.
+- DateTime: A DateTime constructor.
 
-            - 'merged': All merged local roles of the context object are
-              used.
+ExplicitRecipientsRule:
 
-            - 'ancestor_local': Direct local roles found on an ancestor
-              object of type in ancestor_object_types. Only the closest
-              matching ancestor object is used.
+- members -- The ids of the members subscribed manually.
 
-            - 'ancestor_merged': Idem but with merged local roles.
+- members_allow_add -- Whether members are allowed to
+  subscribe / unsubscribe manually to the Subscription (adding
+  themselves to recipient_members).
 
-          - ancestor_object_types -- The portal types of the ancestor
-            where a lookup of local roles is done if origins contains
-            'ancestor_local' or 'ancestor_merged'.
+- groups -- The ids of the groups subscribed manually.
 
-        WorkflowImpliedRecipientsRule:
+- emails -- The emails subscribed manually.
 
-          - origins -- A sequence of keys used to determine which
-            object's workflow is queried for recipients. It can contain
-            the following keys:
+- emails_allow_add -- Whether anonymous visitors are allowed to
+  subscribe / unsubscribe manually to the Subscription (adding
+  themselves to recipient_emails).
 
-            - 'context': The context object.
+- emails_confirm -- Whether the emails have to be confirmed before
+  being used. XXX this may be better as a global flag of
+  portal_subcriptions instead..
 
-            - 'container': The container.
+- emails_pending_add -- The emails subscribed manually but not yet
+  confirmed.
 
-            - 'ancestor': Direct local roles found on an ancestor object
-              of type in ancestor_object_types. Only the closest
-              matching ancestor is used.
+- emails_pending_delete -- The emails pending deletion from
+  recipient_emails but not yet confirmed.
 
-          - ancestor_object_types -- The portal types of the ancestor
-            where workflow is queried for recipients.
+RoleRecipientsRule:
 
-          - history_lookup -- Determines what part of the history we
-            lookup for the transition of type matching 'transitions':
+- roles -- The roles subscribed.
 
-            - 'last': The last transition of matching type is
-              used.
+- origins -- A sequence describing how roles are looked up. It can
+  contain the following keys:
 
-            - 'all': All transitions of matching type are used.
+  - 'local': Direct local roles from the context object are
+    used.
 
-          - transitions -- The name of the transitions examined for
-            variables. '*' means all transitions. If the first element
-            of the list is '-', then all types except the ones following
-            it are used.
+  - 'merged': All merged local roles of the context object are
+    used.
 
-          - variables -- The workflow variables containing used
-            recipients (string or list). (Will often be ['actor'].)
+  - 'ancestor_local': Direct local roles found on an ancestor
+    object of type in ancestor_object_types. Only the closest
+    matching ancestor object is used.
 
-  Open problems
+  - 'ancestor_merged': Idem but with merged local roles.
 
-    - We need a "Mailing" object that contains the body of an email and
-      that can be reused easily.
+- ancestor_object_types -- The portal types of the ancestor where
+  a lookup of local roles is done if origins contains
+  'ancestor_local' or 'ancestor_merged'.
 
-    - Where to place these mailing objects? Locally or globaly ?
-      [JA:Globally (portal_subscriptions) and locally (Notification rules)
+WorkflowImpliedRecipientsRule:
 
-    - We need a way for local administrators to add a new subscription
-      from a fixed predetermined list, without having able to
-      re-parametrize them. This may mean that RecipientsRules have to be
-      kept non-locally.
+- origins -- A sequence of keys used to determine which object's
+  workflow is queried for recipients. It can contain the following
+  keys:
 
-    - Notifications should be subclasses of NotificationRule and store
-      also as subobjects, like RecipientsRule.
+  - 'context': The context object.
+
+  - 'container': The container.
+
+  - 'ancestor': Direct local roles found on an ancestor object of
+    type in ancestor_object_types. Only the closest matching
+    ancestor is used.
+
+- ancestor_object_types -- The portal types of the ancestor where
+  workflow is queried for recipients.
+
+- history_lookup -- Determines what part of the history we lookup
+  for the transition of type matching 'transitions':
+
+  - 'last': The last transition of matching type is used.
+
+  - 'all': All transitions of matching type are used.
+
+- transitions -- The name of the transitions examined for
+  variables. '*' means all transitions. If the first element of
+  the list is '-', then all types except the ones following it are
+  used.
+
+- variables -- The workflow variables containing used recipients
+  (string or list). (Will often be ['actor'].)
+
+
+Open problems
+=============
+
+- We need a "Mailing" object that contains the body of an email
+  and that can be reused easily.
+
+- Where to place these mailing objects? Locally or globally?
+  [JA:Globally (portal_subscriptions) and locally (Notification
+  rules)
+
+- We need a way for local administrators to add a new subscription
+  from a fixed predetermined list, without having able to
+  re-parameterize them. This may mean that RecipientsRules have to
+  be kept non-locally.
+
+- Notifications should be subclasses of NotificationRule and store
+  also as sub-objects, like RecipientsRule.
+
+
+.. Emacs
+.. Local Variables:
+.. mode: rst
+.. End:
+.. Vim
+.. vim: set filetype=rst:
+
