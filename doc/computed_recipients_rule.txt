@@ -1,25 +1,33 @@
-$Id$
+===================
+Computed Recipients
+===================
 
-About the computed recipients rule objects.
+:Revision: $Id$
 
-You may create ComputedRecipientsRules object within your subscription
-object.
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-It is containing a tales expression as attribut.
+
+This document describes the computed recipients rule objects.
+
+You may create ComputedRecipientsRules object within your
+subscription object.
+
+It contains a tales expression as attribute.
 
 expression -- A TALES expression returning a mapping with recipients.
 
-**ATTENTION** : your TALES expression should return a dictionnary with
-  emails as keys and a string that may be empty or contains the member_id
-  (ie: {'ex@example.com' : 'member_id'}). If you are not
-  respecting this format this is not going to work.
+**Important:** Your TALES expression should return a dictionary
+with email addresses as keys and a string that may be empty or
+contains the member_id (i.e.: ``{'ex@example.com' : 'member_id'}``).
+If you do not respect this format, it will not work.
 
 The following namespace is available:
 
 - portal: The portal object.
 
-- context: The context object (proxy) where the triggering
-  event occured.
+- context: The context object (proxy) where the triggering event
+  occurred.
 
 - proxy: Alias for context.
 
@@ -27,14 +35,22 @@ The following namespace is available:
 
 - container: The context's container.
 
-- ancestor: If 'ancestor_local' or 'ancestor_merged' was
-  used for recipient_roles_origins, that object, else None.
+- ancestor: If 'ancestor_local' or 'ancestor_merged' was used for
+  recipient_roles_origins, that object, else None.
 
 - event_type: The triggering event type.
 
-- triggering_user: The user who triggered the original
-  action.
+- triggering_user: The user who triggered the original action.
 
 - DateTime: A DateTime constructor.
 
-- infos: dictionnary containing information
+- infos: dictionary containing information
+
+
+.. Emacs
+.. Local Variables:
+.. mode: rst
+.. End:
+.. Vim
+.. vim: set filetype=rst:
+
