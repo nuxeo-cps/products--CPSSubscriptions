@@ -735,9 +735,16 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             return None
 
         subscription_id = self.getSubscriptionContainerId()
-        if subscription_id not in context.objectIds():
-            context.manage_addProduct[
-                'CPSSubscriptions'].addSubscriptionContainer()
+        if context.isPrincipiaFolderish:
+            if subscription_id not in context.objectIds():
+                context.manage_addProduct[
+                    'CPSSubscriptions'].addSubscriptionContainer()
+        else:
+            # `context` is not a folderish document so we can't create
+            # a subscription container within.
+            return self.getSubscriptionContainerFromContext(
+                aq_parent(aq_inner(context)), force_local_creation=True)
+        
         return getattr(context, subscription_id)
 
     security.declarePublic('getSusbcriptionContainerFromContext')

@@ -22,6 +22,9 @@ import os
 import sys
 
 import unittest
+
+from Acquisition import aq_parent, aq_inner
+
 import CPSSubscriptionsTestCase
 
 from Products.CPSSubscriptions import SubscriptionsTool
@@ -125,6 +128,18 @@ class TestSubscriptionsTool(
             self._stool.addRenderedEvent(event_id_not_ok), 0)
         new_currents = self._stool.getRenderedEvents()
         self.assertEqual(new_len, len(new_currents))
+
+    def test_getSubscriptionContainerFromContext_nonfolderish(self):
+        # http://svn.nuxeo.org/trac/pub/ticket/1158
+
+        id_ = self.portal.workspaces.invokeFactory('Workspace', 'calendars')
+        calendars = getattr(self.portal.workspaces, id_)
+        id_calendar = calendars.invokeFactory('CPS Calendar', 'calendar')
+        calendar = getattr(calendars, id_calendar)
+
+        container = self._stool.getSubscriptionContainerFromContext(
+            calendar)
+        self.assertEqual(calendars, aq_parent(aq_inner(container)))
 
 def test_suite():
     suite = unittest.TestSuite()
