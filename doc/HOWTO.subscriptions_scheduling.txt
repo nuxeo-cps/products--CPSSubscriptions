@@ -1,75 +1,101 @@
-$Id$
+===============================
+Subscriptions Scheduling How-to
+===============================
 
-What ?
--------
+:Revision: $Id$
 
-To request the CPS Portal to send mails according to the daily / weekly /
-monthly subscriptions.
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-How ?
---------
 
-Since Zope (CPS neither)  doesn't provide Scheduler (And I think this is
-much more better like that...), you need to use crond to preform what's
-above.
+What Is Subscription Scheduling
+===============================
 
-Configurations :
------------------
+Subscription scheduling is the ability to request the CPS Portal
+to send mails according to the daily / weekly / monthly
+subscriptions.
 
-Use the cps_housekeeping.py scripts that comes with CPS in folder CPSUtil/bin
-adjust the default values in the header and run it as follows::
 
- $ python /path/to/cps_housekeeping.py --send-notifications daily
+How is Subscription Scheduling Done
+===================================
+
+Since Zope (CPS neither) doesn't provide Scheduler (And I think
+this is better like that...), you need to use crond to perform
+subscription scheduling.
+
+
+Configurations
+==============
+
+Use the ``cps_housekeeping.py`` script that comes with CPS in
+folder ``CPSUtil/bin``; adjust the default values in the header;
+and run it as follows::
+
+  $ python /path/to/cps_housekeeping.py --send-notifications daily
 
 A crontab example is provided in the header of the script.
 
 To get the list of all available options, type::
 
- $ python /path/to/cps_housekeeping.py --help
+  $ python /path/to/cps_housekeeping.py --help
 
-Otherwise, if you have wget installed on your *NIX to request the portal you
-can directly call the corresponding method as follows.
-
-Daily notifications :
------------------------
-
-Create a script in your /etc/cron.daily/ by issuing the following command:
-
-cd /etc/cron.daily/
-cat <<'EOF' >portal_XXX_daily_subscriptions
-#!/bin/sh
-wget -q http://manager:password_manager@localhost:8080/cps/cps_subscriptions_schedule_notifications?subscription_mode=daily
-EOF
-
-(Replace, if necessary, manager by the login name of a Zope user with manager
-role on the CPS instance, password_manager by its password, and 8080 by the
-actual port of your Zope instance, cps by the id of your CPS, and XXX by the
-name of your portal).
-
-and make sure that the script has execution rights 
-('chmod +x /etc/portal_XXX_daily_subscriptions')
+Otherwise, if you have ``wget`` installed on your \*NIX to request
+the portal you can directly call the corresponding method as
+described below.
 
 
-Weekly notifications :
------------------------
+Daily notifications
+===================
 
-Add within your /etc/cron.weekly/ the following script.
+Create a script in your ``/etc/cron.daily/`` by issuing the
+following command::
 
-cat <<'EOF' >portal_XXX_weekly_subscriptions
-#!/bin/sh
-wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=weekly
-EOF
+  cd /etc/cron.daily/
+  cat <<'EOF' >portal_XXX_daily_subscriptions
+  #!/bin/sh
+  wget -q http://manager:password_manager@localhost:8080/cps/cps_subscriptions_schedule_notifications?subscription_mode=daily
+  EOF
+
+Replace, if necessary, "manager" by the login name of a Zope user
+with manager role on the CPS instance, "password_manager" by its
+password, and "8080" by the actual port of your Zope instance, "cps"
+by the ID of your CPS site, and "XXX" by the name of your portal.
+
+And, make sure that the script has execution rights.  For example::
+
+  chmod +x /etc/portal_XXX_daily_subscriptions
+
+
+Weekly notifications
+====================
+
+Add within your ``/etc/cron.weekly/`` the following script::
+
+  cat <<'EOF' >portal_XXX_weekly_subscriptions
+  #!/bin/sh
+  wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=weekly
+  EOF
+
+(Same remark as above).
+
+
+Monthly notifications
+=====================
+
+Add within your ``/etc/cron.monthly/`` the following script::
+
+  cat <<'EOF' >portal_XXX_monthly_subscriptions
+  #!/bin/sh
+  wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=monthly
+  EOF
 
 (Same remark as above).
 
-Monthly notifications :
------------------------
 
-Add within your /etc/cron.monthly/ the following script.
+.. Emacs
+.. Local Variables:
+.. mode: rst
+.. End:
+.. Vim
+.. vim: set filetype=rst:
 
-cat <<'EOF' >portal_XXX_monthly_subscriptions
-#!/bin/sh
-wget -q http://root:pwd_root@localhost:9080/cps/cps_subscriptions_schedule_notifications?subscription_mode=monthly
-EOF
-
-(Same remark as above).
