@@ -44,9 +44,6 @@ for field in result_fields:
 
     for group_id  in groups:
         group_mapping = {'groups':[group_id]}
-        for k,v in mapping.items():
-            if k !=  'search_restricted_member_list':
-                group_mapping[k] = v
         group_member_results = dir.searchEntries(return_fields=return_fields,
                                                  **group_mapping)
         for member in group_member_results:
