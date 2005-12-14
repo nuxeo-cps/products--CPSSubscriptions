@@ -3,7 +3,6 @@
     mtool here/portal_membership;
     atool here/portal_actions;
     wtool here/portal_workflow;
-    btool here/portal_boxes;
     dirtool here/portal_directories;
     dtool dirtool/members;
     gdtool dirtool/groups;
