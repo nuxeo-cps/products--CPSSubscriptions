@@ -132,11 +132,13 @@ class TestSubscriptionsTool(
     def test_getSubscriptionContainerFromContext_nonfolderish(self):
         # http://svn.nuxeo.org/trac/pub/ticket/1158
 
+        if 'CPS Calendar' not in self.portal.portal_types.objectIds():
+            return 
         id_ = self.portal.workspaces.invokeFactory('Workspace', 'calendars')
         calendars = getattr(self.portal.workspaces, id_)
         id_calendar = calendars.invokeFactory('CPS Calendar', 'calendar')
         calendar = getattr(calendars, id_calendar)
-
+            
         container = self._stool.getSubscriptionContainerFromContext(
             calendar)
         self.assertEqual(calendars, aq_parent(aq_inner(container)))
