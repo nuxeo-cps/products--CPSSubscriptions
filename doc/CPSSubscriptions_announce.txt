@@ -1,40 +1,56 @@
+==============================
 CPSSubscriptions Release (0.6)
--------------------------------
+==============================
 
-$Id$
+:Revision: $Id$
 
-CPSSubscriptions is a CPS3 product handling event subscriptions and
-notifications.
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-Within CPS3, content is driven by several workflows and handled by different
-actors depending on their rights at a certain time and in a given context. The
-workflow schemas within large scaled organizations can also be extremely
-complex.
 
-It seems to be quite vital for portal actors to be informed when they have to
-do something (validating, publishing, transmiting, etc, ....) without having to
-lookup on the portal to find what they need to do.
+CPSSubscriptions is a CPS3 product handling event subscriptions
+and notifications.
 
-The main features of CPSSubscriptions :
+Within CPS3, content is driven by several workflows and handled by
+different actors depending on their rights at a certain time and
+in a given context.  The workflow schemas within large scale
+organizations can also be extremely complex.
 
-  - Subscriptions
+It seems to be quite vital for portal actors to be informed when
+they have to do something (validating, publishing, transmitting,
+etc, ....) without having to lookup on the portal to find what
+they need to do.
 
-    A subscription, within CPSSubscriptions, can be seen as a mailing list
-    subscription. It is usually linked to a given event and portal members
-    or visitors can be notified when this given event occurs by either
-    subscribing or either having roles which are setup to notify on these
-    given events by a manager. Or still being part explicitly of the mailing
-    list. (Manager can add explicitly email to an event.)
+The main features of CPSSubscriptions:
 
-  - Notifications
+- Subscriptions
 
-    CPSSubscriptions can right now handle mail notifications but it could be
-    extended to handle SMS, Jabber or other notification systems, thanks the
-    architecture's modularity.
+  A subscription, within CPSSubscriptions, can be seen as a
+  mailing list subscription. It is usually linked to a given event
+  and portal members or visitors can be notified when this given
+  event occurs by either subscribing or either having roles which
+  are setup to notify on these given events by a manager. Or still
+  being part explicitly of the mailing list. (Manager can add
+  explicitly email to an event.)
 
-  - An administration tool (portal_subscriptions) where the portal manager can
-    monitor events, content of sent messages, subscribable context, etc...
+- Notifications
 
-It is also designed to be extended easily with custom workflows, custom
-portal_types on CPS3-based project.
+  CPSSubscriptions can right now handle mail notifications, but it
+  could be extended to handle SMS, Jabber or other notification
+  systems, thanks to the architecture's modularity.
+
+- An administration tool (portal_subscriptions) where the portal
+  manager can monitor events, content of sent messages,
+  subscribe-able context, etc...
+
+It is also designed to be extended easily with custom workflows,
+custom portal_types on CPS3-based project.
+
+
+.. Emacs
+.. Local Variables:
+.. mode: rst
+.. End:
+.. Vim
+.. vim: set filetype=rst:
 
