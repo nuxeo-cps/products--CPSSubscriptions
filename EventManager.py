@@ -94,6 +94,8 @@ class EventManager(BaseManager):
                       'object': object,
                       }
 
+        logger.debug("push for %s: %r"%(event_type, event_info))
+
         cinfo = self._events.get(eid)
         if cinfo is None:
             self._events[eid] = (event_info, info)
