@@ -61,8 +61,8 @@ class FakeTransaction:
     def addBeforeCommitHook(self, hook):
         pass
 
-class FakeTransactionManager:
-    def addBeforeCommitHook(self, hook, order):
+class FakeBeforeCommitSubscribersManager:
+    def addSubscriber(self, hook, order):
         pass
 
 class FakeRoot:
@@ -119,7 +119,7 @@ class Dummy:
 class EventManagerTest(unittest.TestCase):
 
     def get_manager(self):
-        return EventManager(FakeTransactionManager())
+        return EventManager(FakeBeforeCommitSubscribersManager())
 
     def test_interfaces(self):
         from zope.interface.verify import verifyClass

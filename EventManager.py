@@ -32,7 +32,9 @@ from Products.CMFCore.utils import getToolByName
 
 from Products.CPSCore.interfaces import IBaseManager
 from Products.CPSCore.BaseManager import BaseManager
-from Products.CPSCore.TransactionManager import get_transaction_manager
+from Products.CPSCore.TransactionManager import (
+    get_before_commit_subscribers_manager
+    )
 
 from Products.CPSCore.ProxyBase import ProxyFolderishDocument
 from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
@@ -153,6 +155,6 @@ def get_event_manager():
     txn = transaction.get()
     mgr = getattr(txn, _EVT_MGR_ATTRIBUTE, None)
     if mgr is None:
-        mgr = EventManager(get_transaction_manager())
+        mgr = EventManager(get_before_commit_subscribers_manager())
         setattr(txn, _EVT_MGR_ATTRIBUTE, mgr)
     return mgr

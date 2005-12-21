@@ -776,7 +776,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         return container
 
-    security.declarePrivate("notify_event")
+    security.declarePrivate('notify_processed_event')
     def notify_processed_event(self, event_type, object, infos):
         """EventManager's callable
         """
@@ -785,7 +785,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             if subscription.isInterestedInEvent(event_type, object, infos):
                 subscription.sendEvent(event_type, object, infos)
 
-    security.declarePrivate('notify_processed_event')
+    security.declarePrivate("notify_event")
     def notify_event(self, event_type, object, infos):
         """Standard event hook.
 
