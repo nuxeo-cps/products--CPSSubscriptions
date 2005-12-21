@@ -17,7 +17,7 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""Manager for events with a delayed processing until commit time.
+"""Manager for subscriptions with a delayed processing until commit time.
 
 Asynchronous by default.
 """
@@ -39,13 +39,13 @@ from Products.CPSCore.TransactionManager import (
 from Products.CPSCore.ProxyBase import ProxyFolderishDocument
 from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 
-_EVT_MGR_ATTRIBUTE = '_cps_event_manager'
+_EVT_MGR_ATTRIBUTE = '_cps_event_subscriptions_manager'
 _EVT_MGR_ORDER = 100
 
-logger = logging.getLogger("CPSSubscriptions.EventManager")
+logger = logging.getLogger("CPSSubscriptions.SubscriptionsManager")
 
-class EventManager(BaseManager):
-    """Holds events that need to be processed."""
+class EventSubscriptionsManager(BaseManager):
+    """Holds subscription events that need to be processed."""
 
     zope.interface.implements(IBaseManager)
 
@@ -143,18 +143,19 @@ class EventManager(BaseManager):
                     logger.error("Subscriptions Tool not found")
         logger.debug("__call__ DONE")
 
-def del_event_manager():
+def del_event_susbcriptions_manager():
     txn = transaction.get()
     setattr(txn, _EVT_MGR_ATTRIBUTE, None)
 
-def get_event_manager():
-    """Get the event manager.
+def get_event_subscriptions_manager():
+    """Get the susbcriptions manager.
 
     Creates it if needed.
     """
     txn = transaction.get()
     mgr = getattr(txn, _EVT_MGR_ATTRIBUTE, None)
     if mgr is None:
-        mgr = EventManager(get_before_commit_subscribers_manager())
+        mgr = EventSubscriptionsManager(
+            get_before_commit_subscribers_manager())
         setattr(txn, _EVT_MGR_ATTRIBUTE, mgr)
     return mgr

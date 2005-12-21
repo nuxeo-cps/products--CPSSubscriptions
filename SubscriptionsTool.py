@@ -54,7 +54,7 @@ from permissions import ManageSubscriptions
 
 from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
-from EventManager import get_event_manager
+from EventSubscriptionsManager import get_event_subscriptions_manager
 
 ##############################################################
 
@@ -801,7 +801,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # Pre-filtering : we don't want to notify the user on
         # repository objects
         if not 'portal_repository' in object.getPhysicalPath():
-            get_event_manager().push(event_type, object, infos)
+            get_event_subscriptions_manager().push(event_type, object, infos)
 
     security.declarePublic("getSubscriptionsFor")
     def getSubscriptionsFor(self, event_type, object, infos=None):

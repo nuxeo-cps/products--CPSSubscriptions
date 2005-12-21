@@ -17,7 +17,7 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""Tests for the Indexation Manager
+"""Tests for the Subsccriptions Manager
 """
 
 import random
@@ -25,8 +25,10 @@ import unittest
 from OFS.SimpleItem import SimpleItem
 
 from Products.CPSCore.interfaces import IBaseManager
-from Products.CPSSubscriptions.EventManager import EventManager
-from Products.CPSSubscriptions.EventManager import get_event_manager
+from Products.CPSSubscriptions.EventSubscriptionsManager import (
+    get_event_subscriptions_manager,
+    EventSubscriptionsManager
+    )
 
 import transaction
 
@@ -116,14 +118,14 @@ class Dummy:
     def getPhysicalPath(self):
         return ('', str(self.id))
 
-class EventManagerTest(unittest.TestCase):
+class EventSubscriptionsManagerTest(unittest.TestCase):
 
     def get_manager(self):
-        return EventManager(FakeBeforeCommitSubscribersManager())
+        return EventSubscriptionsManager(FakeBeforeCommitSubscribersManager())
 
     def test_interfaces(self):
         from zope.interface.verify import verifyClass
-        verifyClass(IBaseManager, EventManager)
+        verifyClass(IBaseManager, EventSubscriptionsManager)
 
     def test_fixtures(self):
 
@@ -256,13 +258,13 @@ class EventManagerTest(unittest.TestCase):
             ["event_type : event_id, object : %s , infos : {'c': 'c'}"%dummy.id])
         root.clear()
 
-class TransactionEventManagerTest(unittest.TestCase):
+class TransactionEventSubscriptionsManagerTest(unittest.TestCase):
 
     # These really test the beforeCommitHook
 
     def test_transaction(self):
         transaction.begin()
-        mgr = get_event_manager()
+        mgr = get_event_subscriptions_manager()
         dummy = root.addDummy()
         mgr.push('event_id', dummy, {})
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
@@ -274,7 +276,7 @@ class TransactionEventManagerTest(unittest.TestCase):
 
     def test_transaction_aborting(self):
         transaction.begin()
-        mgr = get_event_manager()
+        mgr = get_event_subscriptions_manager()
         dummy = root.addDummy()
         mgr.push('event_id', dummy, {})
         self.assertEquals(dummy.portal_subscriptions.getLog(), [])
@@ -285,7 +287,7 @@ class TransactionEventManagerTest(unittest.TestCase):
 
     def test_transaction_nested(self):
         transaction.begin()
-        mgr = get_event_manager()
+        mgr = get_event_subscriptions_manager()
         dummy = root.addDummy()
         other = root.addDummy()
         dummy.other = other
@@ -310,7 +312,7 @@ class FolderishDummy(Dummy, ProxyFolderishDocument):
 class BTreeFolderishDummy(Dummy, ProxyBTreeFolderishDocument):
     pass
 
-class EventManagerSpecificsTest(unittest.TestCase):
+class EventSubscriptionsManagerSpecificsTest(unittest.TestCase):
 
     # Test Event Manager Specifics
 
@@ -320,7 +322,7 @@ class EventManagerSpecificsTest(unittest.TestCase):
         other = root.addDummy()
         dummy.other = other
 
-        mgr = get_event_manager()
+        mgr = get_event_subscriptions_manager()
         mgr.push('event_id', dummy, {})
         mgr.push('event_id', other, {})
 
@@ -334,7 +336,7 @@ class EventManagerSpecificsTest(unittest.TestCase):
         other = root.addDummy()
         dummy.other = other
 
-        mgr = get_event_manager()
+        mgr = get_event_subscriptions_manager()
         mgr.push('event_id', dummy, {})
         mgr.push('event_id', other, {})
 
@@ -349,7 +351,7 @@ class EventManagerSpecificsTest(unittest.TestCase):
         dummy.other = other
         another = root.addDummy()
 
-        mgr = get_event_manager()
+        mgr = get_event_subscriptions_manager()
         mgr.push('event_id', dummy, {})
         mgr.push('event_id', other, {})
         mgr.push('event_id', another, {})
@@ -360,9 +362,9 @@ class EventManagerSpecificsTest(unittest.TestCase):
 
 def test_suite():
     return unittest.TestSuite((
-        unittest.makeSuite(EventManagerTest),
-        unittest.makeSuite(TransactionEventManagerTest),
-        unittest.makeSuite(EventManagerSpecificsTest),
+        unittest.makeSuite(EventSubscriptionsManagerTest),
+        unittest.makeSuite(TransactionEventSubscriptionsManagerTest),
+        unittest.makeSuite(EventSubscriptionsManagerSpecificsTest),
         ))
 
 if __name__ == '__main__':
