@@ -24,7 +24,7 @@ import random
 import unittest
 from OFS.SimpleItem import SimpleItem
 
-from Products.CPSCore.interfaces import IBaseManager
+from Products.CPSCore.interfaces import IBeforeCommitSubscriber
 from Products.CPSSubscriptions.EventSubscriptionsManager import (
     get_event_subscriptions_manager,
     EventSubscriptionsManager
@@ -125,7 +125,7 @@ class EventSubscriptionsManagerTest(unittest.TestCase):
 
     def test_interfaces(self):
         from zope.interface.verify import verifyClass
-        verifyClass(IBaseManager, EventSubscriptionsManager)
+        verifyClass(IBeforeCommitSubscriber, EventSubscriptionsManager)
 
     def test_fixtures(self):
 

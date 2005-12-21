@@ -30,11 +30,9 @@ from Acquisition import aq_base, aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
 
-from Products.CPSCore.interfaces import IBaseManager
-from Products.CPSCore.BaseManager import BaseManager
-from Products.CPSCore.TransactionManager import (
-    get_before_commit_subscribers_manager
-    )
+from Products.CPSCore.interfaces import IBeforeCommitSubscriber
+from Products.CPSCore.commithooks import BeforeCommitSubscriber
+from Products.CPSCore.commithooks import get_before_commit_subscribers_manager
 
 from Products.CPSCore.ProxyBase import ProxyFolderishDocument
 from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
@@ -42,15 +40,15 @@ from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 _EVT_MGR_ATTRIBUTE = '_cps_event_subscriptions_manager'
 _EVT_MGR_ORDER = 100
 
-class EventSubscriptionsManager(BaseManager):
+class EventSubscriptionsManager(BeforeCommitSubscriber):
     """Holds subscription events that need to be processed."""
 
-    zope.interface.implements(IBaseManager)
+    zope.interface.implements(IBeforeCommitSubscriber)
 
     def __init__(self, mgr):
         """Initialize and register this manager with the transaction.
         """
-        BaseManager.__init__(self, mgr, order=_EVT_MGR_ORDER)
+        BeforeCommitSubscriber.__init__(self, mgr, order=_EVT_MGR_ORDER)
         self._events = {}
         self.log = logging.getLogger(
             "CPSSubscriptions.EventSubscriptionsManager")
