@@ -17,7 +17,7 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""Manager for subscriptions with a delayed processing until commit time.
+"""Manager for event subscriptions with a delayed processing until commit time.
 
 Asynchronous by default.
 """
@@ -42,8 +42,6 @@ from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 _EVT_MGR_ATTRIBUTE = '_cps_event_subscriptions_manager'
 _EVT_MGR_ORDER = 100
 
-logger = logging.getLogger("CPSSubscriptions.SubscriptionsManager")
-
 class EventSubscriptionsManager(BaseManager):
     """Holds subscription events that need to be processed."""
 
@@ -54,6 +52,8 @@ class EventSubscriptionsManager(BaseManager):
         """
         BaseManager.__init__(self, mgr, order=_EVT_MGR_ORDER)
         self._events = {}
+        self.log = logging.getLogger(
+            "CPSSubscriptions.EventSubscriptionsManager")
 
     def _computeKeyFor(self, object, event_type):
         """Compute the key for the queue element
@@ -82,9 +82,9 @@ class EventSubscriptionsManager(BaseManager):
         # can be deactiveted for a while, thus won't queue, and then be
         # activated again and start queuing again.
         if not self._status:
-            logger.debug("is DISABELED. "
-                         "Will *not* process event %s for %r with infos %r"
-                         %(event_type, object, info))
+            self.log.debug("is DISABELED. "
+                           "Will *not* process event %s for %r with infos %r"
+                           %(event_type, object, info))
             return
 
         if not self._isObjectInteresting(object):
@@ -96,7 +96,7 @@ class EventSubscriptionsManager(BaseManager):
                       'object': object,
                       }
 
-        logger.debug("push for %s: %r"%(event_type, event_info))
+        self.log.debug("push for %s: %r"%(event_type, event_info))
 
         cinfo = self._events.get(eid)
         if cinfo is None:
@@ -114,7 +114,7 @@ class EventSubscriptionsManager(BaseManager):
 
         # XXX this code should move to an external callable
 
-        logger.debug("__call__")
+        self.log.debug("__call__")
         for k, v in self._events.items():
             ob = v[0]['object']
             root = ob.getPhysicalRoot()
@@ -122,7 +122,7 @@ class EventSubscriptionsManager(BaseManager):
             old_ob = ob
             ob = root.unrestrictedTraverse(path, None)
             if ob is None:
-                logger.debug("Object %r disappeard"%old_ob)
+                self.log.debug("Object %r disappeard"%old_ob)
                 # Let's use the old object for the notification info
                 ob = v[0]['object']
             # Folderish document and parent has a notification
@@ -132,23 +132,23 @@ class EventSubscriptionsManager(BaseManager):
                  isinstance(parent, ProxyBTreeFolderishDocument)) and
                 self._events.get(
                 self._computeKeyFor(parent, k[0])) is not None):
-                logger.debug("Folderish child excluded")
+                self.log.debug("Folderish child excluded")
             else:
                 subtool = getToolByName(ob, 'portal_subscriptions', None)
                 if subtool is not None:
-                    logger.debug("Processing event %s for %r with infos %r"
+                    self.log.debug("Processing event %s for %r with infos %r"
                     %(k[0], ob, v[1]))
                     subtool.notify_processed_event(k[0], ob, v[1])
                 else:
-                    logger.error("Subscriptions Tool not found")
-        logger.debug("__call__ DONE")
+                    self.log.error("Subscriptions Tool not found")
+        self.log.debug("__call__ DONE")
 
 def del_event_susbcriptions_manager():
     txn = transaction.get()
     setattr(txn, _EVT_MGR_ATTRIBUTE, None)
 
 def get_event_subscriptions_manager():
-    """Get the susbcriptions manager.
+    """Get the event susbcriptions manager.
 
     Creates it if needed.
     """
