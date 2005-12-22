@@ -13,6 +13,7 @@ Bug fixes:
 - #1162: Searching members in groups
 - #1158: Subscription on CPSScharedCalendar : id ".cps_subscriptions" is
   invalid
+- #1119: Members without emails should not appear in recipient rules
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Better error messages when notification mail templates are incorrect.

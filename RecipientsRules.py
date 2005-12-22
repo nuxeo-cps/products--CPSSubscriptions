@@ -666,7 +666,7 @@ class ExplicitRecipientsRule(RecipientsRule):
     ###############################################################
 
     security.declareProtected(View, "getRecipients")
-    def getRecipients(self, event_type, object, infos):
+    def getRecipients(self, event_type, object, infos={}):
         """Get the recipients.
 
         Returns a mapping with 'members' and 'emails' as keys.
@@ -677,7 +677,7 @@ class ExplicitRecipientsRule(RecipientsRule):
         aclu = getattr(self, 'acl_users', None)
 
         #
-        # It might not be an event nortification but just a request
+        # It might not be an event notification but just a request
         # in a given context such as the manager editing subscriptions
         # parameters. Thus we won't change the context since the context is
         # already given as a parameter (object)
@@ -692,7 +692,8 @@ class ExplicitRecipientsRule(RecipientsRule):
         # Members subscribed
         for member_id in self.getMemberIds(context=object):
             email = mtool.getEmailFromUsername(member_id)
-            member_email_mapping[email] = member_id
+            if email is not None:
+                member_email_mapping[email] = member_id
 
         # Groups subscribed
         dead_groups = []
@@ -702,7 +703,8 @@ class ExplicitRecipientsRule(RecipientsRule):
                 group_users = group.getUsers()
                 for member_id in group_users:
                     email = mtool.getEmailFromUsername(member_id)
-                    member_email_mapping[email] = member_id
+                    if email is not None:
+                        member_email_mapping[email] = member_id
             except KeyError:
                 dead_groups.append(group_id)
         for dead_group in dead_groups:
@@ -850,7 +852,8 @@ class RoleRecipientsRule(RecipientsRule):
                             member_ids = group.getUsers()
                         for member_id in member_ids:
                             email = mtool.getEmailFromUsername(member_id)
-                            member_email_mapping[email] = member_id
+                            if email is not None:
+                                member_email_mapping[email] = member_id
         else:
             #
             # Using roles defined only in the context
@@ -861,7 +864,8 @@ class RoleRecipientsRule(RecipientsRule):
                 for role in self.getRoles():
                     if role in member[1]:
                         email = mtool.getEmailFromUsername(member_id)
-                        member_email_mapping[email] = member_id
+                        if email is not None:
+                            member_email_mapping[email] = member_id
 
             local_group_roles = container.get_local_group_roles()
             for group in local_group_roles:
@@ -873,7 +877,8 @@ class RoleRecipientsRule(RecipientsRule):
                         group_users = group.getUsers()
                         for member_id in group_users:
                             email = mtool.getEmailFromUsername(member_id)
-                            member_email_mapping[email] = member_id
+                            if email is not None:
+                                member_email_mapping[email] = member_id
 
         #
         # Removing the members who asked for unsubsciption

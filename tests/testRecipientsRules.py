@@ -1,9 +1,6 @@
 # $Id$
 
 import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 import unittest
 
 import CPSSubscriptionsTestCase
@@ -17,10 +14,20 @@ from Products.CPSSubscriptions.RecipientsRules import RoleRecipientsRule
 from Products.CPSSubscriptions.RecipientsRules import \
      WorkflowImpliedRecipientsRule
 
+# Some fake tools
+class FakeTool:
+    pass
+
 class FakeURLTool(Folder):
     def getPortalObject(self):
         # XXX dummy
         return self
+
+class FakeContainer:
+    portal_type = 'fake_container'
+    def objectIds(self):
+        return ('.cps_subscriptions',)
+
 
 class TestBaseRecipientsRules(
     CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
@@ -281,9 +288,57 @@ class TestExplicitRecipientsRules(TestBaseRecipientsRules):
         self.assertEquals(err.groups, [])
 
 
-    ##def test_getRecipients(self):
-    ##    pass
-    ##
+    def test_getRecipients(self):
+        err = ExplicitRecipientsRule('fake')
+
+        # Faking some required tools
+        err.portal_membership = FakeTool()
+        err.portal_subscriptions = FakeTool()
+
+        # Nobody means no recipients
+        self.assertEquals(err.getRecipients('fake_event', None, infos={}), {})
+
+        # test with one member
+        example_struct = {'id' : 'manager',
+                          'subscription_relative_url' :
+                          [self.portal.absolute_url()],
+                          }
+        self.assert_(err.updateMembers(example_struct))
+
+        # that member has no email -> no recipient
+        err.portal_membership.getEmailFromUsername = lambda _: None
+        self.assertEquals(err.getRecipients('fake_event', None, infos={}), {})
+
+        # that member has an email -> add it to the list
+        err.portal_membership.getEmailFromUsername = {
+            'manager': 'man@ager.net'}.get
+        recipients = err.getRecipients('fake_event', None, infos={})
+        self.assertEquals(recipients, {'man@ager.net': 'manager'})
+
+        # test with a group of members
+        class FakeGroup:
+            def getUsers(self): return ('manager', 'toto')
+        class FakeUserFolder:
+            def getGroupById(self, _): return FakeGroup()
+        err.acl_users = FakeUserFolder()
+        err.updateGroups(group_ids=('some_group',))
+
+        # toto has no email -> not a recipient
+        recipients = err.getRecipients('fake_event', None, infos={})
+        self.assertEquals(recipients, {'man@ager.net': 'manager'})
+
+        # if toto has an email, it should be added to the recipients list
+        err.portal_membership.getEmailFromUsername = {
+            'manager': 'man@ager.net',
+            'toto': 'toto@ager.net',
+        }.get
+        recipients = err.getRecipients('fake_event', None, infos={})
+        self.assertEquals(recipients, {
+            'man@ager.net': 'manager',
+            'toto@ager.net': 'toto',
+        })
+
+
     ##def test_subscription(self):
     ##    pass
     ##
@@ -323,14 +378,109 @@ class TestComputedRecipientsRules(TestBaseRecipientsRules):
 class TestRoleRecipientsRules(TestBaseRecipientsRules):
 
     def test_fixtures(self):
-        err = RoleRecipientsRule('fake')
+        rrr = RoleRecipientsRule('fake')
 
-    # XXX
+    def test_getRecipients(self):
+        rrr = RoleRecipientsRule('fake')
+
+        # Faking some required tools
+        rrr.portal_membership = FakeTool()
+        rrr.portal_membership.getMergedLocalRoles = lambda _: {}
+
+        rrr.portal_subscriptions = FakeTool()
+        rrr.portal_subscriptions.getContainerPortalTypes = lambda: (
+            'fake_container',)
+        rrr.portal_subscriptions.getSubscriptionContainerId = lambda: (
+            '.cps_subscriptions')
+
+        # Faking a container object
+        container = FakeContainer()
+
+        # No role means no recipients whatever the configuration
+        rrr.notify_no_local = True
+        rrr.notify_local_only = False
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {})
+
+        rrr.notify_no_local = False
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {})
+
+        # test with one role
+        rrr.addRole('FakeRole')
+        self.assertEquals(rrr.getRoles(), ['FakeRole'])
+
+        # Nobody has that role in that context
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {})
+
+        # manager has the role but no email
+        # toto has a non matching role (and no email either)
+        rrr.portal_membership.getMergedLocalRoles = lambda _: {
+            'user:manager': ('FakeRole',),
+            'user:toto': ('SomeOtherFakeRole',),
+        }
+        rrr.portal_membership.getEmailFromUsername = lambda _: None
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {})
+
+        # manager has an email -> add it to the list
+        # toto has an email too but not the matching role -> not the list
+        rrr.portal_membership.getEmailFromUsername = {
+            'manager': 'man@ager.net',
+            'toto': 'toto@ager.net',
+        }.get
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {'man@ager.net': 'manager'})
+
+        # test with a group of members
+        class FakeGroup:
+            def getUsers(self): return ('manager', 'toto', 'toto_no_email')
+        class FakeUserFolder:
+            def getGroupById(self, id):
+                return {'some_group': FakeGroup()}.get(id)
+        rrr.acl_users = FakeUserFolder()
+        rrr.portal_membership.getMergedLocalRoles = lambda _: {
+            'user:manager': ('FakeRole',),
+            'group:some_group': ('FakeRole',),
+            'group:some_other_group': ('SomeOtherFakeRole',),
+        }
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {
+            'man@ager.net': 'manager',
+            'toto@ager.net': 'toto',
+        })
+
+        # Same setting but only some local roles are taken into accounts:
+        container.get_local_roles = lambda: (
+            ('manager', ('FakeRole',)),
+            ('toto', ('SomeOtherFakeRole',)),
+            ('toto_no_email', ('FakeRole',)),
+        )
+        container.get_local_group_roles = lambda: ()
+        rrr.notify_local_only = True
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {'man@ager.net': 'manager'})
+
+        # adding some more groups with no merged local roles
+        container.get_local_group_roles = lambda: (
+            ('some_group', ('FakeRole',)),)
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {
+            'man@ager.net': 'manager',
+            'toto@ager.net': 'toto',
+        })
+
+        # Checking with notify_no_local
+        rrr.notify_no_local = True
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {})
+
 
 class TestWorkflowImpliedRecipientsRules(TestBaseRecipientsRules):
 
     def test_fixtures(self):
-        err = WorkflowImpliedRecipientsRule('fake')
+        wrr = WorkflowImpliedRecipientsRule('fake')
 
     # XXX
 
