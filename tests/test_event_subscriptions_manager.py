@@ -134,7 +134,7 @@ class EventSubscriptionsManagerTest(unittest.TestCase):
         self.assertEqual(mgr._sync, False)
         self.assertEqual(mgr.isSynchronous(), False)
         self.assertEqual(mgr.isSynchronous(), mgr._sync)
-        self.assertEqual(mgr._status, True)
+        self.assertEqual(mgr.enabled, True)
 
     def test_compute_key(self):
 
@@ -178,7 +178,7 @@ class EventSubscriptionsManagerTest(unittest.TestCase):
         mgr = self.get_manager()
 
         self.assertEqual(mgr._sync, False)
-        self.assertEqual(mgr._status, True)
+        self.assertEqual(mgr.enabled, True)
 
         # Disable the subscriber
         mgr.disable()

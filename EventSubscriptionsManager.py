@@ -79,7 +79,7 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
         # When the manager is disabled it won't queue anything. It means, it
         # can be deactiveted for a while, thus won't queue, and then be
         # activated again and start queuing again.
-        if not self._status:
+        if not self.enabled:
             self.log.debug("is DISABELED. "
                            "Will *not* process event %s for %r with infos %r"
                            %(event_type, object, info))
