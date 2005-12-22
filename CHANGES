@@ -10,8 +10,8 @@ Bug fixes:
 - #1125, fixed Unauthorized when subscribing as member.
 - #1143 removed dependency on CPSBoxes in the popup forms
 - Fixed security declaration on some methods.
-- #1162: Searching members in groups 
-- #1158: Subscription on CPSScharedCalendar : id ".cps_subscriptions" is 
+- #1162: Searching members in groups
+- #1158: Subscription on CPSScharedCalendar : id ".cps_subscriptions" is
   invalid
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
