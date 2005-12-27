@@ -23,6 +23,7 @@ Asynchronous by default.
 """
 
 import logging
+from ZODB.loglevels import TRACE
 import transaction
 import zope.interface
 
@@ -40,6 +41,16 @@ from Products.CPSCore.ProxyBase import ProxyBTreeFolderishDocument
 _EVT_MGR_ATTRIBUTE = '_cps_event_subscriptions_manager'
 _EVT_MGR_ORDER = 100
 
+class Logger(object):
+    """Logger that knows how to log at TRACE level.
+    """
+    def __init__(self, logger):
+        self.logger = logger
+    def trace(self, *args):
+        self.logger.log(TRACE, *args)
+    def error(self, *args):
+        self.logger.error(*args)
+
 class EventSubscriptionsManager(BeforeCommitSubscriber):
     """Holds subscription events that need to be processed."""
 
@@ -50,8 +61,9 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
         """
         BeforeCommitSubscriber.__init__(self, mgr, order=_EVT_MGR_ORDER)
         self._events = {}
-        self.log = logging.getLogger(
+        logger = logging.getLogger(
             "CPSSubscriptions.EventSubscriptionsManager")
+        self.log = Logger(logger)
 
     def _computeKeyFor(self, object, event_type):
         """Compute the key for the queue element
@@ -80,7 +92,7 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
         # can be deactiveted for a while, thus won't queue, and then be
         # activated again and start queuing again.
         if not self.enabled:
-            self.log.debug("is DISABELED. "
+            self.log.trace("is DISABLED. "
                            "Will *not* process event %s for %r with infos %r"
                            %(event_type, object, info))
             return
@@ -94,7 +106,7 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
                       'object': object,
                       }
 
-        self.log.debug("push for %s: %r"%(event_type, event_info))
+        self.log.trace("push for %s: %r"%(event_type, event_info))
 
         cinfo = self._events.get(eid)
         if cinfo is None:
@@ -112,7 +124,7 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
 
         # XXX this code should move to an external callable
 
-        self.log.debug("__call__")
+        self.log.trace("__call__")
         for k, v in self._events.items():
             ob = v[0]['object']
             root = ob.getPhysicalRoot()
@@ -120,7 +132,7 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
             old_ob = ob
             ob = root.unrestrictedTraverse(path, None)
             if ob is None:
-                self.log.debug("Object %r disappeard"%old_ob)
+                self.log.trace("Object %r disappeard"%old_ob)
                 # Let's use the old object for the notification info
                 ob = v[0]['object']
             # Folderish document and parent has a notification
@@ -130,16 +142,16 @@ class EventSubscriptionsManager(BeforeCommitSubscriber):
                  isinstance(parent, ProxyBTreeFolderishDocument)) and
                 self._events.get(
                 self._computeKeyFor(parent, k[0])) is not None):
-                self.log.debug("Folderish child excluded")
+                self.log.trace("Folderish child excluded")
             else:
                 subtool = getToolByName(ob, 'portal_subscriptions', None)
                 if subtool is not None:
-                    self.log.debug("Processing event %s for %r with infos %r"
+                    self.log.trace("Processing event %s for %r with infos %r"
                     %(k[0], ob, v[1]))
                     subtool.notify_processed_event(k[0], ob, v[1])
                 else:
                     self.log.error("Subscriptions Tool not found")
-        self.log.debug("__call__ DONE")
+        self.log.trace("__call__ DONE")
 
 def del_event_susbcriptions_manager():
     txn = transaction.get()
