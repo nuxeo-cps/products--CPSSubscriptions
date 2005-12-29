@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-10-30 18:11default\n"
+"POT-Creation-Date: 2005-12-29 16:36default\n"
 "PO-Revision-Date: 2005-10-30 18:11+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -48,7 +48,8 @@ msgstr ""
 #.                 </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgid ""
+"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr ""
 
 #.   <span>
@@ -296,14 +297,16 @@ msgstr "Subscribing/unsubscribing"
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr "Below are the events to which you are subscribed because of your local roles"
+msgstr ""
+"Below are the events to which you are subscribed because of your local roles"
 
 #.   <h4>
 #.              You can choose below your subscription mode for your above subscriptions
 #.           </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_user_subscribption_mode"
-msgstr "You can choose below your subscription mode for your above subscriptions"
+msgstr ""
+"You can choose below your subscription mode for your above subscriptions"
 
 #.   <h1 condition="not:email">
 #.         I Subscribe
@@ -396,7 +399,8 @@ msgstr ""
 #.       </span>
 #.       </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgid ""
+"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr ""
 
 #.   <label for="anonymous_subscription_allowed">
@@ -467,14 +471,16 @@ msgstr "Enter a valid email"
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 #: ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr "Please, follow the instruction included in the mail you will shortly receive"
+msgstr ""
+"Please, follow the instruction included in the mail you will shortly receive"
 
 #.   <span>
 #.                   Import a list of emails from a file. (text file with one email per ligne)
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_import_emais_list"
-msgstr "Import a list of emails from a file. (text file with one email per ligne)"
+msgstr ""
+"Import a list of emails from a file. (text file with one email per ligne)"
 
 #.   <span>
 #.            Mail body
@@ -503,7 +509,8 @@ msgstr "No member match the request"
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
-msgstr "Currently you haven't any subscriptions in this context or for this object."
+msgstr ""
+"Currently you haven't any subscriptions in this context or for this object."
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -843,4 +850,3 @@ msgstr "Monthly"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "My subscriptions "
-

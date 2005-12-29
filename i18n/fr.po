@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2005-10-30 18:11default\n"
+"POT-Creation-Date: 2005-12-29 16:36default\n"
 "PO-Revision-Date: 2005-10-30 18:11+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -51,7 +51,8 @@ msgstr ""
 #.                 </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgid ""
+"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr ""
 
 #.   <span>
@@ -403,7 +404,8 @@ msgstr ""
 #.       </span>
 #.       </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgid ""
+"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
 msgstr ""
 
 #.   <label for="anonymous_subscription_allowed">
@@ -514,7 +516,8 @@ msgstr "Aucun membre ne correspond à votre recherche"
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
-msgstr "Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
+msgstr ""
+"Présentement vous n'avez aucun abonnement dans ce contexte ou pour cet objet."
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -555,7 +558,8 @@ msgstr "Ajouter des courriels de destinataires"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_local_roles"
-msgstr "Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire"
+msgstr ""
+"Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire"
 
 #.   <label for="notify_no_local">
 #.                 Only notify for events happening in sub-folders
@@ -852,4 +856,3 @@ msgstr "Mensuel"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Mes abonnements"
-

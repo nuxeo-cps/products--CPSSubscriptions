@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
-"POT-Creation-Date: 2005-10-30 18:11default\n"
+"POT-Creation-Date: 2005-12-29 16:36default\n"
 "PO-Revision-Date: 2005-04-05 18:18+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
@@ -728,7 +728,7 @@ msgstr "Création d'une version"
 
 #, fuzzy
 msgid "label_workflow_abandon_draft"
-msgstr "Validation d'une version"
+msgstr "Abandon d'une version"
 
 msgid "label_calendar_new_event"
 msgstr "Crearea unui nou eveniment in agenda"

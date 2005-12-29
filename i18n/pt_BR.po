@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2005-10-30 18:11default\n"
+"POT-Creation-Date: 2005-12-29 16:36default\n"
 "PO-Revision-Date: 2005-09-29 15:07-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -750,7 +750,7 @@ msgstr "Creation of a revision"
 
 #, fuzzy
 msgid "label_workflow_abandon_draft"
-msgstr "Validation of a revision"
+msgstr "Abandon of a draft"
 
 msgid "label_calendar_new_event"
 msgstr "Novo evento"

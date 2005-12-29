@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions_en\n"
-"POT-Creation-Date: 2005-10-30 18:11default\n"
+"POT-Creation-Date: 2005-12-29 16:36default\n"
 "PO-Revision-Date: 2004-09-24 09:49+0200\n"
 "Last-Translator: Aitzol Naberan Burgaña <anaberan@codesyntax.com>\n"
 "Language-Team: Euskara <eu@li.org>\n"
@@ -760,7 +760,7 @@ msgstr "Creation of a revision"
 
 #, fuzzy
 msgid "label_workflow_abandon_draft"
-msgstr "Validation of a revision"
+msgstr "Abandon of a draft"
 
 msgid "label_calendar_new_event"
 msgstr "New planning event"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mg\n"
-"POT-Creation-Date: 2005-10-30 18:11default\n"
+"POT-Creation-Date: 2005-12-29 16:36default\n"
 "PO-Revision-Date: 2004-11-24 13:44+0300\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
@@ -748,7 +748,7 @@ msgstr "Création d'une version"
 
 #, fuzzy
 msgid "label_workflow_abandon_draft"
-msgstr "Validation d'une version"
+msgstr "Abandon d'une version"
 
 msgid "label_calendar_new_event"
 msgstr "Famoronana zava-mitranga vaovao ao amin'ny diary"

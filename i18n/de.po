@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions-de CPS-3.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-30 17:57default\n"
+"POT-Creation-Date: 2005-10-30 18:11default\n"
 "PO-Revision-Date: 2005-03-14 20:23+0100\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
@@ -738,6 +738,10 @@ msgstr "Validation of a revision"
 #, fuzzy
 msgid "label_workflow_checkout_draft"
 msgstr "Creation of a revision"
+
+#, fuzzy
+msgid "label_workflow_abandon_draft"
+msgstr "Abandon of a draft"
 
 msgid "label_calendar_new_event"
 msgstr "Neu geplantes Event"
