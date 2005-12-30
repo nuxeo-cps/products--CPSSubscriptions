@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2005-12-29 16:36default\n"
-"PO-Revision-Date: 2005-09-29 15:07-0300\n"
+"POT-Creation-Date: 2005-12-30 12:42default\n"
+"PO-Revision-Date: 2005-12-19 15:23-0200\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -117,6 +117,9 @@ msgid ""
 "\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
 "email=${email}&event_id=${event_id}\"> here </a>"
 msgstr ""
+"Para confirmar que você quer ser adicionado a esta lista de distribuição, "
+"clique <a href=\\\"\\\" attributes=\\\"href string:${here/absolute_url}/"
+"folder_confirm_subscribe?email=${email}&event_id=${event_id}\\\"> aqui </a>\""
 
 #.   <span>
 #.       To confirm that you want to be removed from this mailing list, click
@@ -132,6 +135,9 @@ msgid ""
 "\"\" attributes=\"href string:${here/absolute_url}/"
 "folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
 msgstr ""
+"Para confirmar que você quer ser removido desta lista de distribuição, "
+"clique  <a href=\\\"\\\" attributes=\\\"href string:${here/absolute_url}/"
+"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\\\"> aqui </a>"
 
 #.   <span>
 #.       We have received a request for subscription with the email
@@ -145,6 +151,9 @@ msgid ""
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
 msgstr ""
+"Nós recebemos um pedido de subscrição com o endereço de email, <a href= \\"
+"\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\"
+"\"email\\\" /></a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -159,6 +168,9 @@ msgid ""
 "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
+"Nós recebemos um pedido de desubscrição com o endereço de email, <a href=\\"
+"\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\"
+"\"email \\\" /> </a>"
 
 #.   <i>
 #.         You may allow only members with given local roles to subscribe to this
@@ -740,17 +752,14 @@ msgstr "Rejeitar"
 msgid "label_workflow_unpublish"
 msgstr "Despublicar"
 
-#, fuzzy
 msgid "label_workflow_checkin_draft"
-msgstr "Validation of a revision"
+msgstr "Validação de uma revisão"
 
-#, fuzzy
 msgid "label_workflow_checkout_draft"
-msgstr "Creation of a revision"
+msgstr "Criação de uma revisão"
 
-#, fuzzy
 msgid "label_workflow_abandon_draft"
-msgstr "Abandon of a draft"
+msgstr "Abandono de uma revisão"
 
 msgid "label_calendar_new_event"
 msgstr "Novo evento"
