@@ -25,3 +25,4 @@ New internal features:
   o EventManager -> EventSusbcriptionsManager
   o get_event_manager -> get_event_subscriptions_manager
   o del_event_manager -> del_event_subscriotions_manager
+- CPS css_slot was renamed style_slot to comply with later CMF/Zope 3 standard.
