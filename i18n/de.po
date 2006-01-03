@@ -1,18 +1,16 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubscriptions-de CPS-3.2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-29 16:36default\n"
-"PO-Revision-Date: 2005-03-14 20:23+0100\n"
+"POT-Creation-Date: 2005-12-30 12:42default\n"
+"PO-Revision-Date: 2005-10-06 17:28+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: de\n"
-"Language-Name: German\n"
-"Domain: default\n"
 
 #.   <block>
 #.   		  <block replace="context_lcs/?role" />
@@ -52,7 +50,7 @@ msgstr ""
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "Below are the subscriptions you belong to all over the portal"
-msgstr ""
+msgstr "Unten stehen die Abonnements die Sie portalweit haben"
 
 #.   <span>
 #.       Mailing list subscription confirmation for the event
@@ -206,15 +204,14 @@ msgstr ""
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "description_save_changes"
-msgstr "Save changes"
+msgstr "Änderungen sichern"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
 msgid "event_id"
-msgstr "FAKE"
+msgstr "event_id"
 
 #.   <h2>
 #.         Available events in here
@@ -243,9 +240,8 @@ msgstr "Unten stehen die Abonnements die Sie beenden können."
 #.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "header_contextual_notifications"
-msgstr "Contextual notifications"
+msgstr "Benachrichtigungen im Kontext"
 
 #.   <strong>
 #.                       <span>
@@ -270,25 +266,23 @@ msgstr "Absender Adresse für ausgehende EMails"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
-msgstr ""
+msgstr "Benachrichtigte Personen"
 
 #.   <h2>
 #.   	  Save changes
 #.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "header_save_changes"
-msgstr "Save changes"
+msgstr "Änderungen sichern"
 
 #.   <h2>
 #.   	  Subscribing/unsubscribing
 #.   	</h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "header_subscribing_unsubscribing"
-msgstr "Subscribing/unsubscribing"
+msgstr "abonnieren/Abonnement kündigen"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -402,34 +396,31 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr ""
+msgstr "Erlaube anonyme Abonnements"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_allow_anonymous_subscriptions"
-msgstr "Allow anonymous subscriptions"
+msgstr "Erlaube anonyme Abonnements"
 
 #.   <label for="subscription_allowed">
 #.                 Allow user subscriptions
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_allow_user_subscriptions"
-msgstr "Allow user subscriptions"
+msgstr "Erlaube Teilnehmer Abonnements"
 
 #.   <label for="unsubscription_allowed">
 #.                 Allow user local roles based unsubscriptions
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_allow_user_unsubscriptions"
-msgstr "Allow user unsubscriptions"
+msgstr "Erlaube Teilnehmern Abonnents zu kündigen"
 
 #.   <span>
 #.                 E-Mails Black list
@@ -437,7 +428,7 @@ msgstr "Allow user unsubscriptions"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_explicit_recipients_management.pt
 msgid "label_black_list"
-msgstr "Diese EMails nicht benachrichtigen (Schwarze Liste):"
+msgstr "Diese EMails nicht benachrichtigen (Blacklist):"
 
 #.   <span>
 #.                     Click here
@@ -523,7 +514,7 @@ msgstr ""
 msgid "label_no_subscriptions_based_on_local_roles"
 msgstr ""
 "Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses "
-"Objekt  aufgrund Ihrer lokalen Rollen "
+"Objekt aufgrund Ihrer lokalen Rollen "
 
 # ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
@@ -541,7 +532,7 @@ msgstr "Bearbeiten"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
-msgstr "Wähle"
+msgstr "Hinzufügen"
 
 # ## PSMS ##########################################
 #.   <span>
@@ -549,16 +540,15 @@ msgstr "Wähle"
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
-msgstr "Hinzufügen weiterer Email Adressen (je eine pro Zeile)"
+msgstr "Hinzufügen weiterer Email Adressen (jeweils eine pro Zeile)"
 
 #.   <label for="notify_local_only">
 #.                 Only notify people having local roles in this folder
 #.               </label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_only_notify_local_roles"
-msgstr "Only notify people having local roles in this folder"
+msgstr "Nur Personen benachrichtigen die in diesem Folder lokale Rollen haben"
 
 #.   <label for="notify_no_local">
 #.                 Only notify for events happening in sub-folders
@@ -566,7 +556,7 @@ msgstr "Only notify people having local roles in this folder"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
-msgstr ""
+msgstr "Nur für Subfolder benachrichtigen"
 
 #.   <td>Others</td>
 #: from
@@ -592,9 +582,8 @@ msgstr "Zeigen aller Abonnementen für alle Ereignisse"
 #.   <label for="senderEmailAddress">Email address of sender:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
-#, fuzzy
 msgid "label_sender_email_address"
-msgstr "Sender email address"
+msgstr "Email Adresse des Senders"
 
 # ## LABELS #######################################
 #.   <span>
@@ -603,7 +592,7 @@ msgstr "Sender email address"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_all_notifications_subscribers.pt
 msgid "label_subcriptions_fullname"
-msgstr "Voller Name"
+msgstr "Vor- und Zuname"
 
 #.   <span>
 #.                   Description
@@ -619,14 +608,14 @@ msgstr "Beschreibung"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscription_manage"
-msgstr "Managen"
+msgstr "Verwalten"
 
 #.   <span>
 #.                 Subscription modes
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_subscription_modes"
-msgstr "Abonnement Modus"
+msgstr "Abonnements Arten"
 
 #.   <span>
 #.                   Where
@@ -642,7 +631,7 @@ msgstr "Wo"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_closed"
-msgstr "Abonnements sind geschlossen"
+msgstr "Abonnements sind zZ geschlossen"
 
 #.   <span>
 #.                 E-Mails
@@ -684,13 +673,13 @@ msgid "label_workspace_reader"
 msgstr "Arbeitsbereich Leser"
 
 msgid "label_section_manager"
-msgstr "Sektion Manager"
+msgstr "Websektion Manager"
 
 msgid "label_section_reviewer"
-msgstr "Sektion Moderator"
+msgstr "Websektion Moderator"
 
 msgid "label_section_reader"
-msgstr "Sektion Leser"
+msgstr "Websektion Leser"
 
 msgid "label_owner"
 msgstr "Besitzer &nbsp;"
@@ -762,10 +751,10 @@ msgid "label_forum_new_post"
 msgstr "Nachricht Erstellen"
 
 msgid "label_forum_new_comment"
-msgstr "Antwort Erstellen"
+msgstr "Kommentar erstellen"
 
 msgid "label_forum_post_published"
-msgstr "Nachricht publizieren"
+msgstr "Nachricht publiziert"
 
 msgid "label_forum_post_unpublished"
 msgstr "Nachricht zurückgezogen"
@@ -777,16 +766,16 @@ msgid "label_forum_post_deleted"
 msgstr "Nachricht gelöscht"
 
 msgid "label_forum_comment_published"
-msgstr "Antwort publizieren"
+msgstr "Kommentar publizieren"
 
 msgid "label_forum_comment_unpublished"
-msgstr "Antwort zurückgezogen"
+msgstr "Kommentar zurückziehen"
 
 msgid "label_forum_comment_rejected"
-msgstr "Antwort abgelehnt"
+msgstr "Kommentar abgelehnen"
 
 msgid "label_forum_comment_deleted"
-msgstr "Antwort gelöscht"
+msgstr "Kommentar löschen"
 
 # ## PSMS ##########################################
 msgid "label_notification_related_document"
@@ -843,9 +832,8 @@ msgstr "Eine EMail wurde versandt"
 msgid "psm_subscription_updated"
 msgstr "Abonnement mit Erfolg erneuert"
 
-#, fuzzy
 msgid "psm_user_mode_updated"
-msgstr "The reception mode has been successfully updated"
+msgstr "Der Rezeptions Modus wurde erfolgreich geändert"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
