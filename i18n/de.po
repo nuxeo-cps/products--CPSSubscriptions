@@ -8,9 +8,12 @@ msgstr ""
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: de\n"
+"Domain: default\n"
+"Language-Name: German\n"
 
 #.   <block>
 #.   		  <block replace="context_lcs/?role" />
