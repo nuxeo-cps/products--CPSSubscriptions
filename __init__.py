@@ -32,9 +32,12 @@ from Products.CMFCore.utils import ContentInit, ToolInit
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFCore.permissions import AddPortalContent,\
      ModifyPortalContent
+from Products.GenericSetup import profile_registry
+from Products.GenericSetup import EXTENSION
+
+from Products.CPSDefault.interfaces import ICPSSite
 
 import permissions
-
 import SubscriptionsTool
 import SubscriptionContainer
 import Subscription
@@ -112,3 +115,12 @@ def initialize(registar):
         tools=tools,
         icon='tool.png'
     ).initialize(registar)
+
+    profile_registry.registerProfile(
+        'default',
+        'CPS Subscriptions',
+        "Notification product for CPS.",
+        'profiles/default',
+        'CPSSubscriptions',
+        EXTENSION,
+        for_=ICPSSite)

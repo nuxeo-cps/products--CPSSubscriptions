@@ -36,6 +36,8 @@ from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
+from zope.interface import implements
+
 from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
 
@@ -55,6 +57,8 @@ from permissions import ManageSubscriptions
 from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 from EventSubscriptionsManager import get_event_subscriptions_manager
+
+from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 
 ##############################################################
 
@@ -77,6 +81,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     """
 
     __implements__ = ActionProviderBase.__implements__
+
+    implements(ISubscriptionsTool)
 
     id = 'portal_subscriptions'
     meta_type = 'Subscriptions Tool'

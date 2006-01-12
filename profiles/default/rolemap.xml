@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+    <role name="Manager"/>
+    <role name="Member"/>
+  </roles>
+  <permissions>
+    <permission name="Can subscribe" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="Manage Subscriptions" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="View My Subscriptions" acquire="False">
+      <role name="Manager"/>
+      <role name="Member"/>
+    </permission>
+  </permissions>
+</rolemap>

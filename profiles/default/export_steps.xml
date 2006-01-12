@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<export-steps>
+ <export-step id="subscriptions"
+              handler="Products.CPSSubscriptions.exportimport.exportSubscriptionsTool"
+              title="Subscriptions Tool">
+  Export subscriptions tool and subscriptions configuration.
+ </export-step>
+</export-steps>

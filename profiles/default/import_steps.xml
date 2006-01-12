@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="subscriptions" version="20060112-01"
+              handler="Products.CPSSubscriptions.exportimport.importSubscriptionsTool"
+              title="Subscriptions Tool">
+  <dependency step="toolset"/>
+  Import subscriptions tool and subscriptions configuration.
+ </import-step>
+ <import-step id="subscriptions-various" version="20060112-01"
+              handler="Products.CPSSubscriptions.exportimport.importVarious"
+              title="Various Settings">
+  <dependency step="toolset"/>
+  <dependency step="skins"/>
+  Import various non-exportable settings.
+ </import-step>
+</import-steps>

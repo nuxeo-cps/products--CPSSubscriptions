@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <adapter
+      factory=".exportimport.SubscriptionsToolXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for="Products.CPSSubscriptions.interfaces.ISubscriptionsTool
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <!-- traversable so that add views can work -->
+
+  <five:traversable
+      class="Products.CPSSubscriptions.SubscriptionsTool.SubscriptionsTool"/>
+
+</configure>
