@@ -21,7 +21,7 @@
   </action>
   <action title="action_folder_subscribe" action_id="folder_subscribe"
      category="folder"
-     condition_expr="python:hasattr(object, 'portal_type') and             object.portal_type in portal.portal_subscriptions.getSubscribablePortalTypes() and             hasattr(object, portal.portal_subscriptions.getSubscriptionContainerId()) and             getattr(object, portal.portal_subscriptions.getSubscriptionContainerId()).isSubscriptionAllowed()"
+     condition_expr="python:hasattr(object, 'portal_type') and object.portal_type in portal.portal_subscriptions.getSubscribablePortalTypes() and hasattr(object, portal.portal_subscriptions.getSubscriptionContainerId()) and getattr(object, portal.portal_subscriptions.getSubscriptionContainerId()).isSubscriptionAllowed()"
      url_expr="string:${object_url}/folder_subscribe_form" visible="True">
    <permission>View</permission>
   </action>
