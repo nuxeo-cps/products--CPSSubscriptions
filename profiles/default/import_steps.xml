@@ -4,6 +4,7 @@
               handler="Products.CPSSubscriptions.exportimport.importSubscriptionsTool"
               title="Subscriptions Tool">
   <dependency step="toolset"/>
+  <dependency step="eventservice"/>
   Import subscriptions tool and subscriptions configuration.
  </import-step>
  <import-step id="subscriptions-various" version="20060112-01"
