@@ -4,6 +4,7 @@ Requires:
 New features:
 ~~~~~~~~~~~~~
 - API : enable / disable EventManager
+- CPSSubscriptions default profile enabled
 Bug fixes:
 ~~~~~~~~~~
 - #1116, was incorrect name of called method in SubscriptionTool
