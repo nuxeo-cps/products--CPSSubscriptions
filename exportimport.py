@@ -84,6 +84,8 @@ class VariousImporter(object):
         Will go away when specific handlers are coded for these.
         """
         self.setupDefaultMappings()
+        tool = getToolByName(self.site, TOOL)
+        tool.setupEvents()
         return "Various settings imported."
 
     def setupDefaultMappings(self):
@@ -97,7 +99,6 @@ class VariousImporter(object):
         # Setting by area
         for area in context_local_roles_mapping.keys():
             tool.setLocalRolesArea(area=area, value=context_local_roles_mapping[area])
-
 
 class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                               PropertyManagerHelpers):
