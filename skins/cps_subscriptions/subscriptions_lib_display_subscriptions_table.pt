@@ -25,7 +25,7 @@ $Id$
     </h2>
     <tal:block define="subtool nocall:here/portal_subscriptions;
                        context_lcs python:subtool.getRelevantLocalRolesFromContext(here)">
-      <form action="." name="form" tal:attributes="action here/absolute_url">
+      <form action="." tal:attributes="action here/absolute_url">
         <table class="listing" id="subscriptions"
           summary="A table listing the available events and their notifications in this context">
         <thead>
@@ -165,11 +165,13 @@ $Id$
         <h2 i18n:translate="header_notified_people">
           Notified people
         </h2>
+        <p>
         <a href="."
           tal:attributes="href string:javascript:open_subscribers_window()"
           i18n:translate="label_see_all_subscribers">
             See all subscribers
         </a>
+        </p>
 
         <h2 i18n:translate="header_save_changes">
           Save changes
