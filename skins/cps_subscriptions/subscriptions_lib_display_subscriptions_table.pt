@@ -1,11 +1,7 @@
-<!-- a subscriptions_lib macro -->
-<!-- $Id$ -->
-
 <!--
-&lt;!-- CPSSubscriptions : zpt's macro lib --&gt;
-&lt;!-- $Id$ --&gt;
-
-&lt;!-- ###### Checkboxes wixthin a table used to configure notifications based on roles --&gt;
+A subscriptions_lib macro
+Checkboxes wixthin a table used to configure notifications based on roles
+$Id$
 -->
 
 <metal:block define-macro="display_subscriptions_table">
@@ -34,14 +30,14 @@
           summary="A table listing the available events and their notifications in this context">
 	<thead>
 	  <tr>
-	    <td i18n:translate="">Notification type</td>
-	    <td tal:repeat="role python:context_lcs.keys()">
+	    <th i18n:translate="">Notification type</th>
+	    <th tal:repeat="role python:context_lcs.keys()">
 		<tal:block i18n:translate="">
 		  <tal:block tal:replace="context_lcs/?role" />
 		</tal:block>
-	    </td>
-	    <td i18n:translate="label_other">Others</td>
-	    <td i18n:translate="label_configure">Configure</td>
+	    </th>
+	    <th i18n:translate="label_other">Others</th>
+	    <th i18n:translate="label_configure">Configure</th>
 	  </tr>
 	  </thead>
 	  <tal:block define="events python:here.portal_subscriptions.getEventsFromContext(context=here)">
