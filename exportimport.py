@@ -20,22 +20,21 @@
 """CPSSubscriptions Tool XML Adapter.
 """
 
-from Products.CMFCore.utils import getToolByName
+from zope.component import adapts
+from zope.interface import implements
+
 from Products.GenericSetup.utils import exportObjects
 from Products.GenericSetup.utils import importObjects
 from Products.GenericSetup.utils import XMLAdapterBase
 from Products.GenericSetup.utils import ObjectManagerHelpers
 from Products.GenericSetup.utils import PropertyManagerHelpers
-from Products.CPSUtil.PropertiesPostProcessor import (
-    PostProcessingPropertyManagerHelpers)
 
-from zope.component import adapts
-from zope.interface import implements
+from Products.CMFCore.utils import getToolByName
+
 from Products.GenericSetup.interfaces import IBody
 from Products.GenericSetup.interfaces import ISetupEnviron
 
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
-
 
 TOOL = 'portal_subscriptions'
 NAME = 'subscriptions'
@@ -44,7 +43,6 @@ NAME = 'subscriptions'
 def importVarious(context):
     importer = VariousImporter(context)
     importer.importVarious()
-
 
 def exportSubscriptionsTool(context):
     """Export directory tool and directories as a set of XML files.
@@ -57,14 +55,12 @@ def exportSubscriptionsTool(context):
         return
     exportObjects(tool, '', context)
 
-
 def importSubscriptionsTool(context):
     """Import directory tool and directories from XML files.
     """
     site = context.getSite()
     tool = getToolByName(site, TOOL)
     importObjects(tool, '', context)
-
 
 class VariousImporter(object):
     """Class to import various steps.
@@ -93,12 +89,10 @@ class VariousImporter(object):
         local roles within a given context so that we can propose good local
         Roles depending on this one
         """
-        context_local_roles_mapping = self.site.getCPSSubscriptionsLocalRolesMapping()
+        roles_map = self.site.getCPSSubscriptionsLocalRolesMapping()
         tool = getToolByName(self.site, TOOL)
-
-        # Setting by area
-        for area in context_local_roles_mapping.keys():
-            tool.setLocalRolesArea(area=area, value=context_local_roles_mapping[area])
+        for area in roles_map.keys():
+            tool.setLocalRolesArea(area=area, value=roles_map[area])
 
 class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                               PropertyManagerHelpers):
