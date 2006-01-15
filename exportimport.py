@@ -45,7 +45,7 @@ def importVarious(context):
     importer.importVarious()
 
 def exportSubscriptionsTool(context):
-    """Export directory tool and directories as a set of XML files.
+    """Export subscriptions tool and subobjects as a set of XML files.
     """
     site = context.getSite()
     tool = getToolByName(site, TOOL, None)
@@ -56,7 +56,7 @@ def exportSubscriptionsTool(context):
     exportObjects(tool, '', context)
 
 def importSubscriptionsTool(context):
-    """Import directory tool and directories from XML files.
+    """Import subscriptions tool and subobjects from XML files.
     """
     site = context.getSite()
     tool = getToolByName(site, TOOL)
