@@ -38,7 +38,7 @@ from Products.CMFCore.permissions import ModifyPortalContent
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import EXTENSION
 
-from Products.CPSDefault.interfaces import ICPSSite
+from Products.CPSCore.interfaces import ICPSSite
 
 import permissions
 import SubscriptionsTool
