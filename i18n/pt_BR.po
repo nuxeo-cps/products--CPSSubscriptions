@@ -151,9 +151,7 @@ msgid ""
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
 msgstr ""
-"Nós recebemos um pedido de subscrição com o endereço de email, <a href= \\"
-"\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\"
-"\"email\\\" /></a>"
+"Nós recebemos um pedido de subscrição com o endereço de email, <a href= \\\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\\"email\\\" /></a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -168,9 +166,7 @@ msgid ""
 "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
 "\" /> </a>"
 msgstr ""
-"Nós recebemos um pedido de desubscrição com o endereço de email, <a href=\\"
-"\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\"
-"\"email \\\" /> </a>"
+"Nós recebemos um pedido de desubscrição com o endereço de email, <a href=\\\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\\"email \\\" /> </a>"
 
 #.   <i>
 #.         You may allow only members with given local roles to subscribe to this
