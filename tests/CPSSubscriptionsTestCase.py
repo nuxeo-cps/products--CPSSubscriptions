@@ -18,7 +18,7 @@
 # $Id$
 
 from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
-from Products.CPSDefault.tests.CPSDefaultLayer import ExtensionProfileLayerClass
+from Products.CPSDefault.tests.CPSTestCase import ExtensionProfileLayerClass
 
 
 class LayerClass(ExtensionProfileLayerClass):
