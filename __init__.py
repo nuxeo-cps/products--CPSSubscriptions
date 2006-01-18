@@ -1,6 +1,5 @@
 # -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2005-2006 Nuxeo SAS <http://nuxeo.com>
-# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004-2006 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministère de L'intérieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
@@ -34,7 +33,7 @@ from Products.CMFCore.DirectoryView import registerDirectory
 
 from Products.CMFCore.permissions import AddPortalContent
 from Products.CMFCore.permissions import ModifyPortalContent
-     
+
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import EXTENSION
 
