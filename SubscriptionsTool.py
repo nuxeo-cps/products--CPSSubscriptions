@@ -438,7 +438,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
     security.declareProtected(ManagePortal, 'setupEvents')
     def setupEvents(self):
-        """ Setup events on which to react
+        """Setup events on which to react.
         """
         portal = getToolByName(self, 'portal_url').getPortalObject()
         mapping_context_events = portal.getEvents()
@@ -451,14 +451,14 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
     security.declarePublic('resetEvents')
     def resetEvents(self):
-        """ Reset events
+        """Reset events.
         """
         self.__init__()
         self.setupEvents()
 
     security.declarePublic('getSubscriptionContainerId')
     def getSubscriptionContainerId(self):
-        """ Returns the default id for subscription containers
+        """Returns the default id for subscription containers.
 
         .cps_subscriptions by default
         """
@@ -466,7 +466,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
     security.declarePublic('getExplicitRecipientsRuleId')
     def getExplicitRecipientsRuleId(self):
-        """ Returns an in use id.
+        """Returns an in use id.
 
         Id in use for the ExplicitRecipientsRule object
         """

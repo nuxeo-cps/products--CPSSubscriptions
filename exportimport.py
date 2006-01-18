@@ -39,11 +39,6 @@ from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 TOOL = 'portal_subscriptions'
 NAME = 'subscriptions'
 
-# Called according to import_steps.xml
-def importVarious(context):
-    importer = VariousImporter(context)
-    importer.importVarious()
-
 def exportSubscriptionsTool(context):
     """Export subscriptions tool and subobjects as a set of XML files.
     """
@@ -62,37 +57,17 @@ def importSubscriptionsTool(context):
     tool = getToolByName(site, TOOL)
     importObjects(tool, '', context)
 
-class VariousImporter(object):
-    """Class to import various steps.
+    # Setting up events on which to react
+    tool.setupEvents()
 
-    For steps that have not yet been separated into their own
-    component. Note that this should be able to run as an extension
-    profile, without purge and with potentially missing files.
-    """
+    # Setting up default mappings.
+    # The tool is going to hold information about the relevant local roles
+    # within a given context so that we can propose good local Roles depending
+    # on this one.
+    roles_map = site.getCPSSubscriptionsLocalRolesMapping()
+    for area in roles_map.keys():
+        tool.setLocalRolesArea(area=area, value=roles_map[area])
 
-    def __init__(self, context):
-        self.context = context
-        self.site = context.getSite()
-
-    def importVarious(self):
-        """Import various non-exportable settings.
-
-        Will go away when specific handlers are coded for these.
-        """
-        self.setupDefaultMappings()
-        tool = getToolByName(self.site, TOOL)
-        tool.setupEvents()
-        return "Various settings imported."
-
-    def setupDefaultMappings(self):
-        """The tool is going to hold information about the relevant
-        local roles within a given context so that we can propose good local
-        Roles depending on this one
-        """
-        roles_map = self.site.getCPSSubscriptionsLocalRolesMapping()
-        tool = getToolByName(self.site, TOOL)
-        for area in roles_map.keys():
-            tool.setLocalRolesArea(area=area, value=roles_map[area])
 
 class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                               PropertyManagerHelpers):
