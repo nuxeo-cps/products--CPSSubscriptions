@@ -57,17 +57,24 @@ def importSubscriptionsTool(context):
     tool = getToolByName(site, TOOL)
     importObjects(tool, '', context)
 
-    # Setting up events on which to react
-    tool.setupEvents()
+    # FIXME
+    try:
+        # Setting up events on which to react
+        tool.setupEvents()
+    except AttributeError:
+        pass
 
     # Setting up default mappings.
     # The tool is going to hold information about the relevant local roles
     # within a given context so that we can propose good local Roles depending
     # on this one.
-    roles_map = site.getCPSSubscriptionsLocalRolesMapping()
-    for area in roles_map.keys():
-        tool.setLocalRolesArea(area=area, value=roles_map[area])
-
+    try:
+        roles_map = site.getCPSSubscriptionsLocalRolesMapping()
+    except AttributeError:
+        pass
+    else:
+        for area in roles_map.keys():
+            tool.setLocalRolesArea(area=area, value=roles_map[area])
 
 class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                               PropertyManagerHelpers):

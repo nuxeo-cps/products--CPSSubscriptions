@@ -441,6 +441,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """Setup events on which to react.
         """
         portal = getToolByName(self, 'portal_url').getPortalObject()
+        # FIXME AT: getEvents should not be a skin script...
         mapping_context_events = portal.getEvents()
         for context in mapping_context_events.keys():
             for event_id in mapping_context_events[context].keys():
