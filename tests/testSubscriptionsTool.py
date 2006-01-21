@@ -88,7 +88,7 @@ class TestSubscriptionsTool(
         currents = self._stool.getRenderedPortalTypes()
         initial_len = len(currents)
 
-        self.assert_(isinstance(currents, list))
+        self.assert_(isinstance(currents, tuple))
 
         self.assertEqual(self._stool.addRenderedPortalType(portal_type_ok), 1)
         new_currents = self._stool.getRenderedPortalTypes()
@@ -113,19 +113,17 @@ class TestSubscriptionsTool(
         initial_len = len(currents)
 
         # This variables could be initialized
-        # Just check in here if the structure hosting is a list
-        self.assert_(isinstance(currents, list))
+        # Just check in here if the structure hosting is a sequence
+        self.assert_(isinstance(currents, tuple))
 
-        self.assertEqual(
-            self._stool.addRenderedEvent(event_id_ok), 1)
+        self.assertEqual(self._stool.addRenderedEvent(event_id_ok), 1)
 
         currents_plus = self._stool.getRenderedEvents()
         new_len = len(currents_plus)
 
         self.assertEqual(new_len, initial_len + 1)
 
-        self.assertEqual(
-            self._stool.addRenderedEvent(event_id_not_ok), 0)
+        self.assertEqual(self._stool.addRenderedEvent(event_id_not_ok), 0)
         new_currents = self._stool.getRenderedEvents()
         self.assertEqual(new_len, len(new_currents))
 

@@ -287,7 +287,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             REQUEST.RESPONSE.redirect(self.absolute_url() + '/manage_events')
 
     #######################################################################
-    #######################################################################
 
     def manage_addLocalRoleArea(self,
                                 area_portal_type='',
@@ -374,8 +373,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         self.unsubscribe_email_body = ''
 
         # Rendering content at notification time
-        self.render_content_for_portal_types = []
-        self.render_content_for_events = []
+        self.render_content_for_portal_types = ()
+        self.render_content_for_events = ()
 
         # Here, it's stored the notification scheduling table
         # Structure :
@@ -395,7 +394,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # Local roles / context
         self.mapping_local_roles_context = {}
 
-    ######################################################
     #####################################################
 
     security.declareProtected(ManagePortal, 'addRenderedPortalType')
@@ -403,12 +401,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """Add a portal type for wich the render of the content
         type will be included into the notification email body.
         """
-
-        self._p_changed = 1
-
         if (isinstance(portal_type, StringType) and
             portal_type not in self.render_content_for_portal_types):
-            self.render_content_for_portal_types.append(portal_type)
+            self.render_content_for_portal_types += (portal_type,)
             return 1
         return 0
 
@@ -417,31 +412,27 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """Add an event for wich the render of the content
         type will be included into the notification email body.
         """
-
-        self._p_changed = 1
-
         if (isinstance(event_id, StringType) and
             event_id not in self.render_content_for_events):
-            self.render_content_for_events.append(event_id)
+            self.render_content_for_events += (event_id,)
             return 1
         return 0
 
     security.declarePublic('getRenderedPortalTypes')
     def getRenderedPortalTypes(self):
-        """Return the portal_types that we are gonna render
+        """Return the portal_types that we are going to render
         and add the rendering within the email notification body
         """
         return self.render_content_for_portal_types
 
     security.declarePublic('getRenderedEvents')
     def getRenderedEvents(self):
-        """Return the events for wich we are gonna render the content
+        """Return the events for wich we are going to render the content
         type which is responsible of the notifications
         and then add this rendering within the email notification body
         """
         return self.render_content_for_events
 
-    ###########################################################
     ###########################################################
 
     security.declareProtected(ManagePortal, 'setupEvents')
@@ -497,7 +488,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """
         return SUBSCRIPTION_PREFIX
 
-    ###########################################################
     ###########################################################
 
     security.declarePublic('getDefaultMessageTitle')
@@ -667,7 +657,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         return self.unsubscribe_confirm_email_body
 
     #######################################################
-    #######################################################
 
     security.declarePublic('getSubscribablePortalTypes')
     def getSubscribablePortalTypes(self):
@@ -739,7 +728,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                     return self.mapping_context_events[
                         key_portal_type][key_event]
 
-    #########################################################
     #########################################################
 
     security.declarePublic('addSusbcriptionContainerFromContext')
@@ -882,7 +870,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                             pt_recipient_rule.absolute_url())
         return recipients
 
-    #############################################################
     #############################################################
 
     def _makeEltDict(self, ob, subscription):
@@ -1063,7 +1050,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         return
 
     ################################################################
-    ################################################################
 
     security.declareProtected(ManagePortal, 'addNotificationMessageBodyObject')
     def addNotificationMessageBodyObject(self, message_body='',
@@ -1214,7 +1200,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             return -1
 
     ###############################################################
-    ###############################################################
 
     security.declareProtected(ManagePortal, 'setLocalRolesArea')
     def setLocalRolesArea(self, area='', value={}):
@@ -1294,7 +1279,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                         role_id] = role_label
 
     ##############################################################
-    ##############################################################
 
     def _getLocalRoleAreaFromContext(self, context):
         """Get Local Role area from context
@@ -1334,7 +1318,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                 return area.get(context_portal_type, {})
         return {}
 
-    #########################################################################
     #########################################################################
 
     def sendmail(self, infos={}):
