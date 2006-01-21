@@ -225,14 +225,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                                 event_id,
                                 event_email_title,
                                 event_email_body,
-                                subscribe_confirm_email_body='',
-                                subscribe_confirm_email_title='',
-                                subscribe_welcome_email_body='',
-                                subscribe_welcome_email_title='',
-                                unsubscribe_email_title='',
-                                unsubscribe_email_body='',
-                                unsubscribe_confirm_email_title='',
-                                unsubscribe_confirm_email_body='',
                                 REQUEST=None):
         """Edit a custom event message
         """
@@ -240,14 +232,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         struct = [event_email_title,
                   event_email_body,
-                  subscribe_confirm_email_title,
-                  subscribe_confirm_email_body,
-                  subscribe_welcome_email_title,
-                  subscribe_welcome_email_body,
-                  unsubscribe_email_title,
-                  unsubscribe_email_body,
-                  unsubscribe_confirm_email_title,
-                  unsubscribe_confirm_email_body,]
+                  ]
 
         self.mapping_event_email_content[event_id] = struct
 
@@ -273,14 +258,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             self.mapping_event_email_content[event_id] = [
                 self.getDefaultMessageTitle(),
                 self.getDefaultMessageBody(),
-                self.getSubscribeConfirmEmailTitle(),
-                self.getSubscribeConfirmEmailBody(),
-                self.getSubscribeWelcomeEmailTitle(),
-                self.getSubscribeWelcomeEmailBody(),
-                self.getUnSubscribeConfirmEmailTitle(),
-                self.getUnSubscribeConfirmEmailBody(),
-                self.getUnSubscribeEmailTitle(),
-                self.getUnSubscribeEmailBody(),
                 ]
 
         if REQUEST is not None:
@@ -534,15 +511,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         If event_id is specified then let's check if we get a custom
         one.
         """
-        if event_id is not None:
-            if self.mapping_event_email_content.has_key(event_id):
-                return self.mapping_event_email_content[event_id][2]
-        else:
-            if not self.event_error_email_body:
-                # Init of the variable here.
-                self.event_error_email_body = self.getMailTemplate()[
-                    'mail_error_body']
-            return self.event_error_email_body
+        if not self.event_error_email_body:
+            # Init of the variable here.
+            self.event_error_email_body = self.getMailTemplate()[
+                'mail_error_body']
+        return self.event_error_email_body
 
     security.declarePublic('getSubscribeConfirmEmailTitle')
     def getSubscribeConfirmEmailTitle(self, event_id=None):
