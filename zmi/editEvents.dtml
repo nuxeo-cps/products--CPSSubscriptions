@@ -70,96 +70,123 @@ You may access to all the field values of the schemas if the object is a Flexibl
 
 <form action="manage_editDefaultEventMessage" method="post">
  <table cellspacing="0" cellpadding="2" border="0">
+
  <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      Error Body
+      Confirm subscribe subject
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_error_email_body" cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
+      <input name="subscribe_confirm_email_title" size="55" value="&dtml-getSubscribeConfirmEmailTitle;" />
     </td>
  </tr>
  <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      Confirm email Title
-      </div>
-    </td>
-    <td align="left" valign="top">
-      <textarea name="subscribe_confirm_email_title" cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailTitle()"></textarea>
-    </td>
- </tr>
- <tr>
-   <td align="left" valign="top">
-      <div class="form-label">
-      Confirm email body
+      Confirm subscribe body
       </div>
     </td>
     <td align="left" valign="top">
       <textarea name="subscribe_confirm_email_body" cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailBody()"></textarea>
     </td>
  </tr>
+
  <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      Welcome email Title
+      Welcome subject
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_welcome_email_title" cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailTitle()"></textarea>
+      <input name="subscribe_welcome_email_title" size="55" value="&dtml-getSubscribeWelcomeEmailTitle;" />
     </td>
  </tr>
  <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      Welcome email body
+      Welcome body
       </div>
     </td>
     <td align="left" valign="top">
       <textarea name="subscribe_welcome_email_body" cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
     </td>
  </tr>
-  <tr>
+
+ <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      UnSubscribe email Title
+      Confirm unsubscribe subject
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_email_title" cols="55" rows="10"><dtml-var "getUnSubscribeEmailTitle()"></textarea>
+      <input name="unsubscribe_confirm_email_title" size="55" value="&dtml-getUnSubscribeConfirmEmailTitle;" />
     </td>
  </tr>
  <tr>
    <td align="left" valign="top">
       <div class="form-label">
-      UnSubsribe email body
-      </div>
-    </td>
-    <td align="left" valign="top">
-      <textarea name="unsubscribe_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
-    </td>
- </tr>
-   <tr>
-   <td align="left" valign="top">
-      <div class="form-label">
-      Confirm UnSubscribe email Title
-      </div>
-    </td>
-    <td align="left" valign="top">
-      <textarea name="unsubscribe_confirm_email_title" cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailTitle()"></textarea>
-    </td>
- </tr>
- <tr>
-   <td align="left" valign="top">
-      <div class="form-label">
-      Confirm UnSubsribe email body
+      Confirm unsubscribe body
       </div>
     </td>
     <td align="left" valign="top">
       <textarea name="unsubscribe_confirm_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailBody()"></textarea>
     </td>
  </tr>
+
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Unsubscribed subject
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input name="unsubscribe_email_title" size="55" value="&dtml-getUnSubscribeEmailTitle;" />
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Unsubscribed body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="unsubscribe_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
+    </td>
+ </tr>
+
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Default subject
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <input name="event_default_email_title" size="55" value="&dtml-getDefaultMessageTitle;" />
+    </td>
+ </tr>
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Default body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="event_default_email_body" cols="55" rows="10"><dtml-var "getDefaultMessageBody()"></textarea>
+    </td>
+ </tr>
+
+ <tr>
+   <td align="left" valign="top">
+      <div class="form-label">
+      Error body
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <textarea name="event_error_email_body" cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
+    </td>
+ </tr>
+
  <tr>
     <td>&nbsp;</td>
     <td valign="top">
@@ -192,6 +219,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
 </ul>
 
 
+<!--
 <h3>Reset all messages</h3>
 <form action="manage_resetEventMessages" method="post">
 <p>
@@ -202,5 +230,6 @@ Reset all messages (default and specific) to their default values
 <input class="form-element" type="submit" name="action" value="Reset" />
 </p>
 </form>
+-->
 
 <dtml-var manage_page_footer>

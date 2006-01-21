@@ -184,6 +184,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                                        unsubscribe_email_body,
                                        unsubscribe_confirm_email_title,
                                        unsubscribe_confirm_email_body,
+                                       event_default_email_title=None,
+                                       event_default_email_body=None,
                                        REQUEST=None):
         """Edit the default event email messages.
         """
@@ -196,6 +198,12 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         # Notifications
         self.event_error_email_body = event_error_email_body
+
+        # Defaults
+        if event_default_email_title is not None:
+            self.event_default_email_title = event_default_email_title
+        if event_default_email_body is not None:
+            self.event_default_email_body = event_default_email_body
 
         # Subscriptions
         self.subscribe_confirm_email_body = subscribe_confirm_email_body
