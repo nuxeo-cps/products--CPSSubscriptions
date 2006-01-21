@@ -7,13 +7,6 @@
   <element value="workflow_newsletter_sendmail"/>
  </property>
  <property name="ignore_events">False</property>
- <context-events portal_type="CPS Calendar">
-  <event id="calendar_event_deleted">calendar_event_deleted</event>
-  <event id="calendar_event_invite">calendar_event_invite</event>
-  <event id="calendar_event_modify">calendar_event_modify</event>
-  <event
-     id="calendar_event_status_change">calendar_event_status_change</event>
- </context-events>
  <context-events portal_type="CPSForum">
   <event id="forum_new_post">label_forum_new_post</event>
   <event id="forum_post_deleted">label_forum_post_deleted</event>
@@ -26,11 +19,6 @@
   <event id="forum_post_published">label_forum_post_published</event>
  </context-events>
  <context-events portal_type="Section">
-  <event id="calendar_event_deleted">calendar_event_deleted</event>
-  <event id="calendar_event_invite">calendar_event_invite</event>
-  <event id="calendar_event_modify">calendar_event_modify</event>
-  <event
-     id="calendar_event_status_change">calendar_event_status_change</event>
   <event id="workflow_accept">label_workflow_accept</event>
   <event id="workflow_cut_copy_paste">label_workflow_cut_copy_paste</event>
   <event id="workflow_delete">label_workflow_delete</event>
@@ -42,11 +30,6 @@
   <event id="workflow_unpublish">label_workflow_unpublish</event>
  </context-events>
  <context-events portal_type="Workspace">
-  <event id="calendar_event_deleted">calendar_event_deleted</event>
-  <event id="calendar_event_invite">calendar_event_invite</event>
-  <event id="calendar_event_modify">calendar_event_modify</event>
-  <event
-     id="calendar_event_status_change">calendar_event_status_change</event>
   <event id="forum_comment_deleted">label_forum_comment_deleted</event>
   <event id="forum_comment_published">label_forum_comment_published</event>
   <event id="forum_comment_rejected">label_forum_comment_rejected</event>
@@ -78,14 +61,6 @@
   </context-roles>
  </area>
  <area portal_type="Workspace">
-  <context-roles portal_type="CPS Calendar">
-   <role id="AttendeeManager">AttendeeManager</role>
-   <role id="AttendeeReader">AttendeeReader</role>
-   <role id="EventOrganizer">EventOrganizer</role>
-   <role id="EventParticipant">EventParticipant</role>
-   <role id="EventReader">EventReader</role>
-   <role id="Owner">Owner</role>
-  </context-roles>
   <context-roles portal_type="CPSForum">
    <role id="ForumModerator">label_forum_moderator</role>
    <role id="ForumPoster">label_forum_poster</role>
@@ -170,59 +145,6 @@ Follow the link below to confirm :
   <subject>[%(portal_title)s] Unsubscription</subject>
   <body
     >You have been unsubscribed from the mailing list at %(object_title)s at %(object_url)s
-</body>
- </message>
- <message event_id="calendar_event_deleted">
-  <subject>[Calendar] Event deleted</subject>
-  <body
-    >%(user_name)s has deleted a meeting or event that you were to attend:
-Title: %(event_title)s
-Starts: %(event_begins)s
-Ends: %(event_ends)s
-</body>
- </message>
- <message event_id="calendar_event_invite">
-  <subject>[Calendar] %(user_name)s has invited you to a meeting</subject>
-  <body
-    >%(user_name)s has invited you to a meeting:
-Title: %(event_title)s
-Starts: %(event_begins)s
-Ends: %(event_ends)s
-
-You can accept or deny the meeting invitation at
-%(event_url)s/attendees.html
-
-For further event details, please go to
-%(event_url)s
-</body>
- </message>
- <message event_id="calendar_event_modify">
-  <subject>[Calendar] Event modification</subject>
-  <body
-    >A meeting or event that you are attending has been moved or updated:
-
-Title: %(event_title)s
-Starts: %(event_begins)s
-Ends: %(event_ends)s
-
-For further event details, please go to
-%(event_url)s
-</body>
- </message>
- <message event_id="calendar_event_status_change">
-  <subject>[Calendar] Your attendence status has been changed</subject>
-  <body
-    >%(user_name)s has changed your attendence status for an event.
-Title: %(event_title)s
-Starts: %(event_begins)s
-Ends: %(event_ends)s
-
-Your status was changed from %(old_status)s to %(new_status)s
-You can change the attendence status at
-%(event_url)s/attendees.html
-
-For further event details, please go to
-%(event_url)s
 </body>
  </message>
 </object>
