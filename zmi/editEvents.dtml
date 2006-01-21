@@ -2,71 +2,15 @@
 <dtml-var manage_tabs>
 
 <h3>Default message for events</h3>
+
 <p>
- This message appears in the mails sent at notification time.
- You may customize it by filling the form below.
- Notice, you can also customize every event type by clicking the name of the
- event above.
+ These messages appear in emails sent at notification time.
+ You can customize them below.
 </p>
 <p>
-<em>
-  Take care with the %(XX)s notation. It's the variables that are going to be
-  used to send emails.
-</em>
+ You can also customize individual events by clicking its name below.
+ The <em>Default</em> message will be used if an event is not customized.
 </p>
-<p>
-  The available variables are the folowing:
-</p>
-<ul style="font-size: smaller;">
-<li><code>portal_url</code><br />
-URL of the portal</li>
-
-<li><code>portal_title</code><br />
-Title of the portal</li>
-
-<li><code>info_url</code><br />
-URL of the page summarizing the subscription informations</li>
-
-<li><code>notification_title<code><br />
-Title of the notification</li>
-
-<li><code>event</code><br />
-Id of the event</li>
-
-<li><code>object_title</code><br />
-Tiltle of the object generating the notification</li>
-
-<li><code>object_url</code><br />
-URL of the object generating the notification</li>
-
-<li><code>object_parent_title</code><br />
-Parent object Title</li>
-
-<li><code>object_type</code><br />
-portal_type of the object generating the notifications</li>
-
-<li><code>object_creator_id</code><br />
-Id of the user who created the object on which the event occured</li>
-
-<li><code>object_creator_name</code><br />
-Fullname of the user who created the object on which the event occured</li>
-
-<li><code>user_id</code><br />
-Id of the user who is at the origin of the event</li>
-
-<li><code>user_name</code><br />
-Fullname of the user who is at the origin of the event</li>
-
-<li><code>comments</code><br />
-Comments which where given by the user when she asks for a workflow transition</li>
-
-<li><code>Keys of the infos dictionnary</code><br />
-The infos dictionnary is the one given to evtool.notify()
-
-<li><code>Field values / Attribute values of the object</code><br />
-You may access to all the field values of the schemas if the object is a FlexibleTypeInformation or all attribute values in the case of a 'normal' zope object
-
-</ul>
 
 <form action="manage_editDefaultEventMessage" method="post">
  <table cellspacing="0" cellpadding="2" border="0">
@@ -202,7 +146,7 @@ You may access to all the field values of the schemas if the object is a Flexibl
 <h3>Specific event messages</h3>
 <p>
   You can edit for each event the content of the notifcation message that
-  will be use at global scope (i.e: everywhere the event will append).
+  will be use at global scope (i.e: everywhere the event will happen).
 </p>
 <p>
   Below are listed all the recorded events in all the contexts. Follow the
@@ -218,6 +162,61 @@ You may access to all the field values of the schemas if the object is a Flexibl
 </dtml-in>
 </ul>
 
+<h3>Variables</h3>
+<p>
+  The following variables can be used in messages using
+  the <code>%(VARIABLE)s</code> syntax.
+</p>
+<ul style="font-size: smaller;">
+<li><code>portal_url</code><br />
+URL of the portal</li>
+
+<li><code>portal_title</code><br />
+Title of the portal</li>
+
+<li><code>info_url</code><br />
+URL of the page summarizing the subscription informations</li>
+
+<li><code>notification_title<code><br />
+Title of the notification</li>
+
+<li><code>event</code><br />
+Id of the event</li>
+
+<li><code>object_title</code><br />
+Tiltle of the object generating the notification</li>
+
+<li><code>object_url</code><br />
+URL of the object generating the notification</li>
+
+<li><code>object_parent_title</code><br />
+Parent object Title</li>
+
+<li><code>object_type</code><br />
+portal_type of the object generating the notifications</li>
+
+<li><code>object_creator_id</code><br />
+Id of the user who created the object on which the event occured</li>
+
+<li><code>object_creator_name</code><br />
+Fullname of the user who created the object on which the event occured</li>
+
+<li><code>user_id</code><br />
+Id of the user who is at the origin of the event</li>
+
+<li><code>user_name</code><br />
+Fullname of the user who is at the origin of the event</li>
+
+<li><code>comments</code><br />
+Comments which where given by the user when she asks for a workflow transition</li>
+
+<li><code>Keys of the infos dictionnary</code><br />
+The infos dictionnary is the one given to evtool.notify()
+
+<li><code>Field values / Attribute values of the object</code><br />
+You may access to all the field values of the schemas if the object is a FlexibleTypeInformation or all attribute values in the case of a 'normal' zope object
+
+</ul>
 
 <!--
 <h3>Reset all messages</h3>
