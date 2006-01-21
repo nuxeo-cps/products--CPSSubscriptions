@@ -35,6 +35,7 @@ from Products.GenericSetup.interfaces import IBody
 from Products.GenericSetup.interfaces import ISetupEnviron
 
 from Products.CPSUtil.genericsetup import StrictTextElement
+from Products.CPSUtil.genericsetup import getExactNodeText
 
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 
@@ -107,6 +108,8 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
     def _importNode(self, node):
         """Import the object from the DOM node.
         """
+        self.context._p_changed = 1
+
         if self.environ.shouldPurge():
             self._purgeProperties()
             self._purgeObjects()
@@ -149,7 +152,18 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         self.context.mapping_context_events = {}
 
     def _initContextEvents(self, node):
-        pass
+        mapping_context_events = self.context.mapping_context_events
+        for child in node.childNodes:
+            if child.nodeName != 'context-events':
+                continue
+            portal_type = str(child.getAttribute('portal_type'))
+            event_labels = mapping_context_events.setdefault(portal_type, {})
+            for subnode in child.childNodes:
+                if subnode.nodeName != 'event':
+                    continue
+                event_id = str(subnode.getAttribute('id'))
+                event_label = self._getNodeText(subnode)
+                event_labels[event_id] = event_label
 
     def _extractAreaContextRoles(self):
         fragment = self._doc.createDocumentFragment()
@@ -183,7 +197,23 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         self.context.mapping_local_roles_context = {}
 
     def _initAreaContextRoles(self, node):
-        pass
+        mapping_areas = self.context.mapping_local_roles_context
+        for child in node.childNodes:
+            if child.nodeName != 'area':
+                continue
+            area_type = str(child.getAttribute('portal_type'))
+            area = mapping_areas.setdefault(area_type, {})
+            for subnode in child.childNodes:
+                if subnode.nodeName != 'context-roles':
+                    continue
+                portal_type = str(subnode.getAttribute('portal_type'))
+                role_labels = area.setdefault(portal_type, {})
+                for e in subnode.childNodes:
+                    if e.nodeName != 'role':
+                        continue
+                    role = str(e.getAttribute('id'))
+                    role_label = self._getNodeText(e)
+                    role_labels[role] = role_label
 
     def _extractDefaultEventMessages(self):
         tool = self.context
@@ -214,7 +244,32 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
             event_default_email_body='')
 
     def _initDefaultEventMessages(self, node):
-        pass
+        tool = self.context
+        for child in node.childNodes:
+            if child.nodeName != 'message':
+                continue
+            event_id, subject, body = self._getOneMessage(child)
+            attrs = {
+                '(default)': ('event_default_email_title',
+                              'event_default_email_body'),
+                '(error)': (None,
+                            'event_error_email_body'),
+                '(subscribe-confirm)': ('subscribe_confirm_email_title',
+                                        'subscribe_confirm_email_body'),
+                '(subscribed)': ('subscribe_welcome_email_title',
+                                 'subscribe_welcome_email_body'),
+                '(unsubscribe-confirm)': ('unsubscribe_confirm_email_title',
+                                          'unsubscribe_confirm_email_body'),
+                '(unsubscribed)': ('unsubscribe_email_title',
+                                   'unsubscribe_email_body'),
+                }.get(event_id)
+            if attrs is None:
+                continue
+            subject_attr, body_attr = attrs
+            if subject is not None and subject_attr is not None:
+                setattr(tool, subject_attr, subject)
+            if body is not None:
+                setattr(tool, body_attr, body)
 
     def _extractEventMessages(self):
         fragment = self._doc.createDocumentFragment()
@@ -254,11 +309,36 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
 
         return node
 
+    def _getOneMessage(self, node):
+        event_id = str(node.getAttribute('event_id'))
+        subject, body = None, None
+        for child in node.childNodes:
+            if child.nodeName == 'subject':
+                subject = self._getNodeText(child)
+            elif child.nodeName == 'body':
+                body = getExactNodeText(child)
+        return event_id, subject, body
+
     def _purgeEventMessages(self):
         self.context.mapping_event_email_content = {}
 
     def _initEventMessages(self, node):
-        pass
+        # we could use manage_editEventMessage but the API is too dumb
+        tool = self.context
+        defaults = [tool.getDefaultMessageTitle(),
+                    tool.getDefaultMessageBody()]
+        event_messages = tool.mapping_event_email_content
+        for child in node.childNodes:
+            if child.nodeName != 'message':
+                continue
+            event_id, subject, body = self._getOneMessage(child)
+            if event_id.startswith('('):
+                continue
+            messages = event_messages.setdefault(event_id, defaults[:])
+            if subject is not None:
+                messages[0] = subject
+            if body is not None:
+                messages[1] = body
 
     def createStrictTextElement(self, tagName):
         e = StrictTextElement(tagName)
