@@ -98,7 +98,7 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         node.appendChild(self._extractObjects())
         node.appendChild(self._extractContextEvents())
         node.appendChild(self._extractAreaContextRoles())
-        node.appendChild(self._extractEventDefaultMessages())
+        node.appendChild(self._extractDefaultEventMessages())
         node.appendChild(self._extractEventMessages())
 
         self._logger.info("Subscriptions tool exported.")
@@ -112,14 +112,14 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
             self._purgeObjects()
             self._purgeContextEvents()
             self._purgeAreaContextRoles()
-            self._purgeEventDefaultMessages()
+            self._purgeDefaultEventMessages()
             self._purgeEventMessages()
 
         self._initProperties(node)
         self._initObjects(node)
         self._initContextEvents(node)
         self._initAreaContextRoles(node)
-        self._initEventDefaultMessages(node)
+        self._initDefaultEventMessages(node)
         self._initEventMessages(node)
 
         self._logger.info("Subscriptions tool imported.")
@@ -146,7 +146,7 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         return fragment
 
     def _purgeContextEvents(self):
-        pass
+        self.context.mapping_context_events = {}
 
     def _initContextEvents(self, node):
         pass
@@ -180,12 +180,12 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         return fragment
 
     def _purgeAreaContextRoles(self):
-        pass
+        self.context.mapping_local_roles_context = {}
 
     def _initAreaContextRoles(self, node):
         pass
 
-    def _extractEventDefaultMessages(self):
+    def _extractDefaultEventMessages(self):
         tool = self.context
         fragment = self._doc.createDocumentFragment()
         for event_id, prefix in (
@@ -205,10 +205,15 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
             fragment.appendChild(node)
         return fragment
 
-    def _purgeEventDefaultMessages(self):
-        pass
+    def _purgeDefaultEventMessages(self):
+        self.context.manage_editDefaultEventMessage(
+            '', # err
+            '', '', '', '', # sub
+            '', '', '', '', # unsub
+            event_default_email_title='',
+            event_default_email_body='')
 
-    def _initEventDefaultMessages(self, node):
+    def _initDefaultEventMessages(self, node):
         pass
 
     def _extractEventMessages(self):
@@ -250,7 +255,7 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         return node
 
     def _purgeEventMessages(self):
-        pass
+        self.context.mapping_event_email_content = {}
 
     def _initEventMessages(self, node):
         pass
