@@ -7,17 +7,6 @@
   <element value="workflow_newsletter_sendmail"/>
  </property>
  <property name="ignore_events">False</property>
- <context-events portal_type="CPSForum">
-  <event id="forum_new_post">label_forum_new_post</event>
-  <event id="forum_post_deleted">label_forum_post_deleted</event>
-  <event id="forum_post_published">label_forum_post_published</event>
-  <event id="forum_post_rejected">label_forum_post_rejected</event>
-  <event id="forum_post_unpublished">label_forum_post_unpublished</event>
- </context-events>
- <context-events portal_type="ForumPost">
-  <event id="forum_new_post">label_forum_new_post</event>
-  <event id="forum_post_published">label_forum_post_published</event>
- </context-events>
  <context-events portal_type="Section">
   <event id="workflow_accept">label_workflow_accept</event>
   <event id="workflow_cut_copy_paste">label_workflow_cut_copy_paste</event>
@@ -30,12 +19,6 @@
   <event id="workflow_unpublish">label_workflow_unpublish</event>
  </context-events>
  <context-events portal_type="Workspace">
-  <event id="forum_comment_deleted">label_forum_comment_deleted</event>
-  <event id="forum_comment_published">label_forum_comment_published</event>
-  <event id="forum_comment_rejected">label_forum_comment_rejected</event>
-  <event
-     id="forum_comment_unpublished">label_forum_comment_unpublished</event>
-  <event id="forum_new_comment">label_forum_new_comment</event>
   <event id="workflow_abandon_draft">label_workflow_abandon_draft</event>
   <event id="workflow_checkin_draft">label_workflow_checkin_draft</event>
   <event id="workflow_checkout_draft">label_workflow_checkout_draft</event>
@@ -45,14 +28,6 @@
   <event id="workflow_modify">label_workflow_modify</event>
  </context-events>
  <area portal_type="Section">
-  <context-roles portal_type="CPSForum">
-   <role id="ForumModerator">label_forum_moderator</role>
-   <role id="ForumPoster">label_forum_poster</role>
-   <role id="Owner">label_owner</role>
-   <role id="SectionManager">label_section_manager</role>
-   <role id="SectionReader">label_section_reader</role>
-   <role id="SectionReviewer">label_section_reviewer</role>
-  </context-roles>
   <context-roles portal_type="Section">
    <role id="Owner">label_owner</role>
    <role id="SectionManager">label_section_manager</role>
@@ -61,14 +36,6 @@
   </context-roles>
  </area>
  <area portal_type="Workspace">
-  <context-roles portal_type="CPSForum">
-   <role id="ForumModerator">label_forum_moderator</role>
-   <role id="ForumPoster">label_forum_poster</role>
-   <role id="Owner">label_owner</role>
-   <role id="WorkspaceManager">label_workspace_manager</role>
-   <role id="WorkspaceMember">label_workspace_member</role>
-   <role id="WorkspaceReader">label_workspace_reader</role>
-  </context-roles>
   <context-roles portal_type="Workspace">
    <role id="Owner">label_owner</role>
    <role id="WorkspaceManager">label_workspace_manager</role>
