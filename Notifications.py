@@ -274,7 +274,7 @@ class MailNotificationRule(NotificationRule):
             infos = {}
 
         stool = getToolByName(self, 'portal_subscriptions')
-        memberDirectory = getToolByName(self, 'portal_directories').members
+        members = getToolByName(self, 'portal_directories').members
         ttool = getToolByName(self, 'portal_types')
 
         context = aq_parent(aq_inner(object))
@@ -316,8 +316,7 @@ class MailNotificationRule(NotificationRule):
         infos['object_parent_url'] = object_parent.absolute_url()
 
         object_creator_id = object.Creator()
-        object_creator_user = memberDirectory.getEntry(object_creator_id,
-                                                       default=None)
+        object_creator_user = members.getEntry(object_creator_id, default=None)
         object_creator_name = ''
         if object_creator_user:
             object_creator_name = object_creator_user.get('fullname')
@@ -340,7 +339,7 @@ class MailNotificationRule(NotificationRule):
         # Including information about the user whose action is at the origin of
         # the event.
         user_id = getSecurityManager().getUser().getId()
-        user = memberDirectory.getEntry(user_id, default=None)
+        user = members.getEntry(user_id, default=None)
         user_name = ''
         if user:
             user_name = user.get('fullname')
