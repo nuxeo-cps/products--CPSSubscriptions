@@ -163,7 +163,7 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                     continue
                 event_id = str(subnode.getAttribute('id'))
                 event_label = self._getNodeText(subnode)
-                event_labels[event_id] = event_label
+                event_labels[event_id] = str(event_label) # no unicode
 
     def _extractAreaContextRoles(self):
         fragment = self._doc.createDocumentFragment()
@@ -213,7 +213,7 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                         continue
                     role = str(e.getAttribute('id'))
                     role_label = self._getNodeText(e)
-                    role_labels[role] = role_label
+                    role_labels[role] = str(role_label) # no unicode
 
     def _extractDefaultEventMessages(self):
         tool = self.context
@@ -314,9 +314,9 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         subject, body = None, None
         for child in node.childNodes:
             if child.nodeName == 'subject':
-                subject = self._getNodeText(child)
+                subject = str(self._getNodeText(child)) # no unicode
             elif child.nodeName == 'body':
-                body = getExactNodeText(child)
+                body = str(getExactNodeText(child)) # no unicode
         return event_id, subject, body
 
     def _purgeEventMessages(self):
