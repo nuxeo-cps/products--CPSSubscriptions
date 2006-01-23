@@ -258,8 +258,8 @@ class MailNotificationRule(NotificationRule):
                 event_id=infos['event']) % infos
         except (KeyError, TypeError, ValueError), e:
             LOG('CPSSubscriptions', ERROR,
-                "Error in body notification template for %r: %s"
-                % (infos.get('event'), str(e)))
+                "Error in body notification template with infos %r: %s"
+                % (infos, str(e)))
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
         return body
