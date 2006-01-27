@@ -114,7 +114,7 @@ def initialize(registar):
 
     # Portal subscriptions tool
     ToolInit(
-        'CPS Subsriptions Tool',
+        'CPS Subscriptions Tool',
         tools=tools,
         icon='tool.png'
     ).initialize(registar)
