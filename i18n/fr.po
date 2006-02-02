@@ -362,7 +362,7 @@ msgstr "Gérer les alertes"
 #.       </h1>
 #: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr "Mes abonnements"
+msgstr "Abonnements"
 
 # ## ACTIONS ######################################
 #.   <h1>
@@ -803,7 +803,7 @@ msgstr "Abonnements"
 
 # ## ACTIONS ######################################
 msgid "action_notify_content"
-msgstr "Envoyer une alerte e-mail"
+msgstr "Envoi par mél"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
