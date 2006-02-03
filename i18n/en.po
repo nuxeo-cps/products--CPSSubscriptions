@@ -357,7 +357,7 @@ msgstr "Local Notifications"
 #.       </h1>
 #: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr "My subscriptions"
+msgstr "Subscriptions"
 
 # ## ACTIONS ######################################
 #.   <h1>

@@ -353,7 +353,7 @@ msgstr "Administreaza notificarile"
 #.       </h1>
 #: from ../skins/cps_subscriptions/manage_my_subscriptions_form.pt
 msgid "heading_my_subscriptions"
-msgstr "Abonamentele mele"
+msgstr "Abonamente"
 
 #.   <h1>
 #.           Search members to add to recipients list
