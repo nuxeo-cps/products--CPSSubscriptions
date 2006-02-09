@@ -6,7 +6,8 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- An AttributeError: 'NoneType' object has no attribute 'encode' would
+  occur if the title of the portal type had no translation.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

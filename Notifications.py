@@ -307,9 +307,11 @@ class MailNotificationRule(NotificationRule):
 
         # i18n type title
         type_title = ttool[infos['object_type']].Title()
-        i18n_type_title = mcat(type_title).encode('ISO-8859-15', 'ignore')
-        if  i18n_type_title != type_title:
-            infos['object_type'] = i18n_type_title
+        i18n_type_title = mcat(type_title)
+        if i18n_type_title is not None:
+            i18n_type_title = i18n_type_title.encode('ISO-8859-15', 'ignore')
+            if  i18n_type_title != type_title:
+                infos['object_type'] = i18n_type_title
 
         object_parent = aq_parent(aq_inner(object))
         infos['object_parent_title'] = object_parent.Title()
