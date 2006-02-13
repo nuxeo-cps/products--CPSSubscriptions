@@ -61,13 +61,6 @@ def importSubscriptionsTool(context):
     tool = getToolByName(site, TOOL)
     importObjects(tool, '', context)
 
-    # FIXME
-    try:
-        # Setting up events on which to react
-        tool.setupEvents()
-    except AttributeError:
-        pass
-
     # Setting up default mappings.
     # The tool is going to hold information about the relevant local roles
     # within a given context so that we can propose good local Roles depending

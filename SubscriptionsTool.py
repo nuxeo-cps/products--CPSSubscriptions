@@ -28,6 +28,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 Defines the Subscriptions Tool class
 """
 
+import warnings
 from zLOG import LOG, DEBUG
 
 from types import DictType, StringType
@@ -169,6 +170,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     def manage_resetEventMessages(self, REQUEST=None):
         """Reset the email messages to their default values.
         """
+        warnings.warn("manage_resetEventMessages is obsolete and will be "
+                      "removed in CPS 3.5.0", DeprecationWarning, 2)
         self.resetEvents()
         if REQUEST is not None:
             REQUEST.RESPONSE.redirect(
@@ -416,6 +419,10 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     def setupEvents(self):
         """Setup events on which to react.
         """
+
+        warnings.warn("setupEvents is obsolete and will be "
+                      "removed in CPS 3.5.0", DeprecationWarning, 2)
+
         portal = getToolByName(self, 'portal_url').getPortalObject()
         # FIXME AT: getEvents should not be a skin script...
         mapping_context_events = portal.getEvents()
@@ -430,6 +437,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     def resetEvents(self):
         """Reset events.
         """
+        warnings.warn("resetEvents is obsolete and will be "
+                      "removed in CPS 3.5.0", DeprecationWarning, 2)
         self.__init__()
         self.setupEvents()
 
