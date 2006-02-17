@@ -6,10 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- An AttributeError: 'NoneType' object has no attribute 'encode' would
-  occur if the title of the portal type had no translation.
-- #1297 : CPSSubscriptions importer crashes when re-importing
-- #1271 ; Profile import error on CPSSubscription
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
