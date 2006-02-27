@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubcriptions\n"
 "POT-Creation-Date: 2005-06-24 14:11default\n"
-"PO-Revision-Date: 2006-02-23 10:08+0100\n"
+"PO-Revision-Date: 2006-02-25 19:36+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +174,7 @@ msgstr "Borrarse"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
-msgstr "No debe modificar el campo siguiente a menos que no lo necesite específicamente, y si es el caso, debe introducir una dirección de correo electrónico válida como, por ejemplo, systeme@monsite.net"
+msgstr "No debe modificar el campo siguiente a menos que sea estrictamente necesario. Si es el caso, debe introducir una dirección de correo electrónico válida."
 
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
@@ -257,14 +257,14 @@ msgstr "Registrar los cambios"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_subscribing_unsubscribing"
-msgstr "Subscripción/fin de subscripción"
+msgstr "Subscribirse / Borrarse"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_subscribption_based_on_local_roles"
-msgstr "Los eventos siguientes son a los que está subscrito"
+msgstr "Está usted subscrito a los siguientes eventos:"
 
 #.   <h4>
 #.              You can choose below your subscription mode for your above subscriptions
@@ -660,7 +660,7 @@ msgid "label_workflow_create"
 msgstr "Creación de contenido"
 
 msgid "label_workflow_modify"
-msgstr "Modification de contenu"
+msgstr "Modificación de contenido"
 
 msgid "label_workflow_cut_copy_paste"
 msgstr "Copiar y pegar el contenido"
