@@ -27,6 +27,15 @@
   <event id="workflow_delete">label_workflow_delete</event>
   <event id="workflow_modify">label_workflow_modify</event>
  </context-events>
+ <context-events portal_type="Members Workspace">
+  <event id="workflow_abandon_draft">label_workflow_abandon_draft</event>
+  <event id="workflow_checkin_draft">label_workflow_checkin_draft</event>
+  <event id="workflow_checkout_draft">label_workflow_checkout_draft</event>
+  <event id="workflow_create">label_workflow_create</event>
+  <event id="workflow_cut_copy_paste">label_workflow_cut_copy_paste</event>
+  <event id="workflow_delete">label_workflow_delete</event>
+  <event id="workflow_modify">label_workflow_modify</event>
+ </context-events>
  <area portal_type="Section">
   <context-roles portal_type="Section">
    <role id="Owner">label_owner</role>
@@ -36,6 +45,20 @@
   </context-roles>
  </area>
  <area portal_type="Workspace">
+  <context-roles portal_type="Workspace">
+   <role id="Owner">label_owner</role>
+   <role id="WorkspaceManager">label_workspace_manager</role>
+   <role id="WorkspaceMember">label_workspace_member</role>
+   <role id="WorkspaceReader">label_workspace_reader</role>
+  </context-roles>
+ </area>
+ <area portal_type="Members Workspace">
+  <context-roles portal_type="Members Workspace">
+   <role id="Owner">label_owner</role>
+   <role id="WorkspaceManager">label_workspace_manager</role>
+   <role id="WorkspaceMember">label_workspace_member</role>
+   <role id="WorkspaceReader">label_workspace_reader</role>
+  </context-roles>
   <context-roles portal_type="Workspace">
    <role id="Owner">label_owner</role>
    <role id="WorkspaceManager">label_workspace_manager</role>
