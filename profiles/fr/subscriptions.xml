@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<object name="portal_subscriptions">
+    <message event_id="(default)">
+        <subject>[%(portal_title)s] %(notification_title)s sur le document %(object_title)s</subject>
+        <body>%(user_name)s (%(user_id)s) a effectué un(e) %(notification_title)s
+sur le document %(object_title)s.
+
+Ce document est disponible à l'adresse suivante :
+%(object_url)s
+
+Commentaires : %(comments)s
+        </body>
+    </message>
+    <message event_id="(error)">
+        <body>Une erreur s'est produite lors de la génération automatique de ce message.
+
+Veuillez contacter votre admistrateur pour plus d'informations.
+        </body>
+    </message>
+    <message event_id="(subscribe-confirm)">
+        <subject>[%(portal_title)s] Confirmation d'abonnement</subject>
+        <body>Confirmation d'abonnement à la liste de diffusion:
+%(event_id)s
+
+Nous avons reçu une demande d'abonnement pour votre adresse email,
+%(email)s, pour la liste %(event_id)s.
+
+Vous devez confimer votre abonnement sur la page:
+
+%(object_url)s
+        </body>
+    </message>
+    <message event_id="(subscribed)">
+        <subject>[%(portal_title)s] Bienvenue sur la liste de diffusion %(object_title)s</subject>
+        <body>Bienvenue sur la liste %(event_id)s accessible depuis :
+
+%(object_url)s
+
+Pour plus d'information ou vous désabonner de la liste :
+
+%(info_url)s
+        </body>
+    </message>
+    <message event_id="(unsubscribe-confirm)">
+        <subject>[%(portal_title)s] Confirmation de désabonnement</subject>
+        <body>Vous avez demandé à vous désabonner de la liste de diffusion :
+
+%(object_title)s à :
+
+%(object_url)s
+
+Aller sur la page suivante pour confirmer :
+
+%(url)s
+        </body>
+    </message>
+    <message event_id="(unsubscribed)">
+        <subject>[%(portal_title)s] Désabonnement</subject>
+        <body>Vous êtes désabonné de la liste de diffusion %(object_title)s at %(object_url)s
+        </body>
+ </message>
+</object>

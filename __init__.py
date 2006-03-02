@@ -128,3 +128,13 @@ def initialize(registar):
         'CPSSubscriptions',
         EXTENSION,
         for_=ICPSSite)
+
+    # Register CPSSubscriptions profile with french translations
+    profile_registry.registerProfile(
+        'fr',
+        'CPS Subscriptions (French)',
+        "Notification product for CPS.",
+        'profiles/fr',
+        'CPSSubscriptions',
+        EXTENSION,
+        for_=ICPSSite)

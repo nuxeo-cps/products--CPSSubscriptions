@@ -295,9 +295,9 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         subject, body = None, None
         for child in node.childNodes:
             if child.nodeName == 'subject':
-                subject = str(self._getNodeText(child)) # no unicode
+                subject = self._getNodeText(child).encode('utf-8')
             elif child.nodeName == 'body':
-                body = str(getExactNodeText(child)) # no unicode
+                body = getExactNodeText(child).encode('utf-8')
         return event_id, subject, body
 
     def _purgeEventMessages(self):
