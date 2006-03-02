@@ -7,6 +7,8 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - #1496: use the default event message if the specified one isn't found 
+- #1497: Section/Workspace managers should have the "Manage subscriptions" 
+  permission
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
