@@ -486,6 +486,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         if event_id is not None:
             if self.mapping_event_email_content.has_key(event_id):
                 return self.mapping_event_email_content[event_id][0]
+            else:
+                # if the event message is not found, use the default message
+                return self.event_default_email_title
         else:
             if not self.event_default_email_title:
                 # Init of the variable here.
@@ -503,6 +506,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         if event_id is not None:
             if self.mapping_event_email_content.has_key(event_id):
                 return self.mapping_event_email_content[event_id][1]
+            else:
+                # if the event message is not found, use the default message
+                return self.event_default_email_body
         else:
             if not self.event_default_email_body:
                 # Init of the variable here.

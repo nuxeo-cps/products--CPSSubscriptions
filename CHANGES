@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- #1496: use the default event message if the specified one isn't found 
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
