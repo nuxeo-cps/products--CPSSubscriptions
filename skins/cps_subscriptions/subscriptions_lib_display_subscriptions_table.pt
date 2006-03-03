@@ -181,7 +181,7 @@ $Id$
             i18n:translate="description_save_changes">Save changes you have done:</label>
           <input type="submit" name="folder_notifications_edit:method"
             id="saveChanges"
-            value="button_change" class="standAlone"
+            value="button_change" class="standalone"
             i18n:attributes="value" />
         </p>
       </form>
