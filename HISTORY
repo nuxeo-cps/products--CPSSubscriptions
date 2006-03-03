@@ -1,4 +1,23 @@
 *******************************************
+** CPSSubscriptions V0.22.2 [R1 build 2006/03/03-17:31 by ben]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 33855
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- #1496: use the default event message if the specified one isn't found 
+- #1497: Section/Workspace managers should have the "Manage subscriptions" 
+  permission
+- #1500: add translated subscriptions messages
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.22.1 [R1 build 2006/02/17-20:26 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 32986
 Requires:
