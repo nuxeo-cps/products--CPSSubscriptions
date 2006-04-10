@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
 "POT-Creation-Date: 2006-01-03 14:49default\n"
-"PO-Revision-Date: 2005-12-19 15:23-0200\n"
+"PO-Revision-Date: 2006-04-05 15:55-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -150,8 +150,7 @@ msgid ""
 "We have received a request for subscription with the email address, <a href="
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
-msgstr ""
-"Nós recebemos um pedido de subscrição com o endereço de email, <a href= \\\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\\"email\\\" /></a>"
+msgstr "Nós recebemos um pedido de subscrição com o endereço de email, <a href= \"\" attributes=\"href string:mailto:${email}> <span replace=email/></a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -165,8 +164,7 @@ msgid ""
 "We have received a request for unsubscription with the email address, <a "
 "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
 "\" /> </a>"
-msgstr ""
-"Nós recebemos um pedido de desubscrição com o endereço de email, <a href=\\\"\\\" attributes=\\\"href string:mailto:${email}\\\"> <span replace=\\\"email \\\" /> </a>"
+msgstr "Nós recebemos um pedido de desubscrição com o endereço de email, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email \" /> </a>"
 
 #.   <i>
 #.         You may allow only members with given local roles to subscribe to this
@@ -424,8 +422,7 @@ msgstr "id"
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr ""
-"label_<span replace=\"request/event_key|nothing\"> ID da susbcrição </span>"
+msgstr "label_<span replace=\"request/event_key|nothing\"> ID da susbcrição </span>"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
