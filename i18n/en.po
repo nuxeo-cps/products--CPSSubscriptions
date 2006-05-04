@@ -654,7 +654,7 @@ msgstr "E-Mails"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
 msgid "label_subscriptions_no_subscription_yet"
-msgstr "You currently do not belong to any subscriptions."
+msgstr "You have no subscriptions."
 
 #.   <span>
 #.         You are now a subscriber.

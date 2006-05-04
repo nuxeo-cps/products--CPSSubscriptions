@@ -80,7 +80,7 @@
     </div>
     <div class="group" tal:condition="not:subscriptions_struct" align="center">
       <span i18n:translate="label_subscriptions_no_subscription_yet">
-        You currently do not belong to any subscriptions.
+        You have no subscriptions.
       </span>
     </div>
   </tal:block>
