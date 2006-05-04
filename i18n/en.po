@@ -545,7 +545,7 @@ msgstr "Choose"
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
-msgstr "Add explicitly recipients emails (one email per ligne)"
+msgstr "Add recipients emails (one email per line)"
 
 #.   <label for="notify_local_only">
 #.                 Only notify people having local roles in this folder
