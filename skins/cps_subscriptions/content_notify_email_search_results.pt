@@ -54,7 +54,7 @@
 <div class="row">
   <div class="label">
       <span i18n:translate="label_notify_content_add_emails">
-         Add recipients emails (one email per line)
+         Add recipient emails (one email per line)
       </span>
   </div>
   <div class="field" align="center">
