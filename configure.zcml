@@ -1,11 +1,17 @@
+
 <configure
-    xmlns="http://namespaces.zope.org/zope">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five">
 
   <adapter
       factory=".exportimport.SubscriptionsToolXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
       for=".interfaces.ISubscriptionsTool
            Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <five:traversable
+      class=".SubscriptionsTool.SubscriptionsTool"
       />
 
 </configure>

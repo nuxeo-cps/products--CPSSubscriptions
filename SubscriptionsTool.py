@@ -148,8 +148,10 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         {'label': "Events / Notification messages",
          'action': 'manage_edit_events',
          },
-        ) + CMFBTreeFolder.manage_options[0:1] + \
-        CMFBTreeFolder.manage_options[2:4]
+        ) + CMFBTreeFolder.manage_options[0:1] + (
+        {'label': 'Export',
+         'action': 'manage_genericSetupExport.html', },
+        ) + CMFBTreeFolder.manage_options[2:4]
 
     security.declareProtected(ManagePortal, 'manage_events')
     manage_events = DTMLFile('zmi/configureEvents', globals())
