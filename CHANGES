@@ -8,6 +8,7 @@ Bug fixes:
 ~~~~~~~~~~
 - Updated brazilian portugese translations (thanks to mo.menezes@gmail.com).
 - Some improvements of the english translation.
+- Fixed charset problems with email bodies with 'fr' profile
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - New action icon ordering
