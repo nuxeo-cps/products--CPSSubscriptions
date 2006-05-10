@@ -39,7 +39,6 @@ from AccessControl import ClassSecurityInfo
 
 from zope.interface import implements
 
-from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
 
 from Products.CMFCore.utils import UniqueObject
@@ -923,10 +922,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         catalog = getToolByName(self, 'portal_catalog')
         portal_type = 'CPS PlaceFull Subscription Container'
         query = {'portal_type': portal_type, 'path': path}
-        # Here we search the Catalog without view restriction
-        # because .cps_subsciption may be herited from unaccessible
-        # parent folder
-        containers = ZCatalog.searchResults(catalog, None, **query)
+
+        # Here we search the Catalog without view restriction because
+        # .cps_subsciption may be herited from unaccessible parent
+        # folder
+        containers = catalog.unrestrictedSearchResults(None, **query)
         LOG(":: CPSSubscriptions :: catalog search for containers" % query,
             DEBUG, str([x.getPath() for x in containers]))
 

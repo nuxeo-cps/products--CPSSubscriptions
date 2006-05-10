@@ -12,3 +12,6 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - New action icon ordering
+- Fix ZCatalog use for unrestricted results. This is not necesarly
+  anymore since ICatalogTool provides an unrestrictedSearchResults() and
+  as well because we don't want ZCatalog deps (i.e : CPSLuceneCatalog)
