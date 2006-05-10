@@ -1,4 +1,25 @@
 *******************************************
+** CPSSubscriptions V0.22.3 [R1 build 2006/05/10-20:04 by ogrisel]
+** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 45429
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- ZMI XML export tab
+Bug fixes:
+~~~~~~~~~~
+- Updated brazilian portugese translations (thanks to mo.menezes@gmail.com).
+- Some improvements of the english translation.
+- Fixed charset problems with email bodies with 'fr' profile
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- New action icon ordering
+- Fix ZCatalog use for unrestricted results. This is not necesarly
+  anymore since ICatalogTool provides an unrestrictedSearchResults() and
+  as well because we don't want ZCatalog deps (i.e : CPSLuceneCatalog)
+
+*******************************************
 ** CPSSubscriptions V0.22.2 [R1 build 2006/03/03-17:31 by ben]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 33855
 Requires:
