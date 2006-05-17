@@ -787,6 +787,9 @@ msgstr "Rejet d'un commentaire"
 msgid "label_forum_comment_deleted"
 msgstr "Suppression d'un commentaire"
 
+msgid "label_comment_created"
+msgstr "Création d'un commentaire"
+
 # ## PSMS ##########################################
 msgid "label_notification_related_document"
 msgstr "Lien sur le document"

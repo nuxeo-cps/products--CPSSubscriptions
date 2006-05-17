@@ -132,6 +132,9 @@ msgstr ""
 msgid "label_notification_related_document"
 msgstr ""
 
+msgid "label_comment_created"
+msgstr ""
+
 ### ACTIONS ######################################
 
 msgid "action_folder_notifications"

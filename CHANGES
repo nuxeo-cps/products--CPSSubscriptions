@@ -3,7 +3,8 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- added 'comment_created' event subscription, notified by CPSComment
+
 Bug fixes:
 ~~~~~~~~~~
 -
