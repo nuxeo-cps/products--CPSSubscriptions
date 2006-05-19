@@ -1,4 +1,21 @@
 *******************************************
+** CPSSubscriptions V0.23.0 [R1 build 2006/05/19-13:09 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk Revision: 45740
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- added 'comment_created' event subscription, notified by CPSComment
+
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSSubscriptions V0.22.3 [R1 build 2006/05/10-20:04 by ogrisel]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSSubscriptions/trunk Revision: 45429
 Requires:
