@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- #1673 - Send document content by email when render content is specified.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

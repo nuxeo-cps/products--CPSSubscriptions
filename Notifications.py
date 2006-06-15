@@ -396,11 +396,12 @@ class MailNotificationRule(NotificationRule):
         rendered_ptypes = stool.getRenderedPortalTypes()
         rendered_events = stool.getRenderedEvents()
         if (object_ is not None and
-            getattr(object, 'portal_type', '') in rendered_ptypes or
+            getattr(object_, 'portal_type', '') in rendered_ptypes or
             infos.get('event', '') in rendered_events):
             # Is the object_ a CPSDocument ?
-            if hasattr(aq_parent(aq_inner(object_)), 'render'):
-                body = object_.getContent().render(proxy=object_)
+            doc = hasattr(object_, 'getContent') and object_.getContent()
+            if hasattr(doc, 'render'):
+                body = doc.render(proxy=object_)
                 mime_type = 'text/html'
             else:
                 # XXX : we might handle whatever sort of content for rendering
