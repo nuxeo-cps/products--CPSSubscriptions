@@ -1314,20 +1314,11 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """Send a mail given a mapping
         """
 
-        #
-        # Create an object capable of sending this mail
-        # using the mailHost
-        #
+        # Add acquisition so that it can found the mailhost object at
+        # the root of CPS.
+        notification_obj = MailNotificationRule('notification').__of__(self)
 
-        notification_obj = MailNotificationRule('fake')
-
-
-        # Get the mailhost in here
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        mailhost = portal.MailHost
-
-        # Send it !
-        cerror = notification_obj.sendMail(infos, mailhost=mailhost)
+        cerror = notification_obj.sendMail(infos)
         return cerror
 
     def all_meta_types(self):
