@@ -1,4 +1,20 @@
 *******************************************
+** CPSSubscriptions V0.23.1 [R1 build 2006/06/22-17:04 by anahide]
+** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk Revision: 46727
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- #1673 - Send document content by email when render content is specified.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- tiny refactoring
+
+*******************************************
 ** CPSSubscriptions V0.23.0 [R1 build 2006/05/19-13:09 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk Revision: 45740
 Requires:
