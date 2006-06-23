@@ -53,6 +53,9 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
+from Products.CPSUtil.text import toAscii
+from Products.CPSSubscriptions.utils import toIso885915
+
 from zLOG import LOG, DEBUG, ERROR, TRACE
 
 logKey = 'CPSSubscriptions.Notifications'
@@ -109,7 +112,6 @@ class MailNotificationRule(NotificationRule):
     def getRawMessage(self, infos, object, event_id):
         """ Renders an RFC822 compliant message.
         """
-
         rendered_message = cStringIO.StringIO()
         writer = MimeWriter.MimeWriter(rendered_message)
 
@@ -163,7 +165,6 @@ class MailNotificationRule(NotificationRule):
     def _validateStructure(self, mail_infos):
         """Validate the mail_infos structure
         """
-
         return  (isinstance(mail_infos.get('sender_email'), str) and
                  isinstance(mail_infos.get('to'), str) and
                  isinstance(mail_infos.get('subject'), str) and
@@ -227,19 +228,15 @@ class MailNotificationRule(NotificationRule):
 
         Is proccessed with the infos given as parameters.
         """
-
-        _translation_table = string.maketrans(
-            r"""¿¡¬√ƒ≈«»… ÀÃÕŒœ—“”‘’÷ÿŸ⁄€‹›‡·‚„‰ÂÁËÈÍÎÏÌÓÔÒÚÛÙıˆ¯˘˙˚¸˝ˇ""",
-            r"""AAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy""")
-
         try:
             subject = self.portal_subscriptions.getDefaultMessageTitle(
                 event_id=infos['event']) % infos
             # Temporary fix for suppressing accented chars, old Mime
-            # modules of Python can't hndle properly non-ASCII in
+            # modules of Python can't handle properly non-ASCII in
             # subject header.
-            subject = subject.translate(_translation_table)
+            subject = toAscii(subject)
         except (KeyError, TypeError), e:
+            raise
             LOG('CPSSubscriptions', ERROR,
                 "Error in subject notification template for %r: %s"
                 % (infos.get('event'), str(e)))
@@ -366,6 +363,10 @@ class MailNotificationRule(NotificationRule):
         if infos.get('kwargs_comments') is not None:
             infos['comments'] = infos['kwargs_comments']
 
+        for key, value in infos.items():
+            if isinstance(value, unicode):
+                infos[key] = toIso885915(value)
+
         LOG('CPSSubscriptions', TRACE, "available infos in emails: %s" % infos)
         return infos
 
@@ -444,6 +445,11 @@ class MailNotificationRule(NotificationRule):
                 'bcc': bcc,
                 'body': (body, mime_type),
                 }
+
+            for key, value in mail_infos.items():
+                if isinstance(value, unicode):
+                    mail_infos[key] = toIso885915(value)
+
             self.sendMail(mail_infos, object_, event_id=infos.get('event', ''))
             LOG(logKey + ' notifyRecipients()', TRACE, repr(mail_infos))
 
@@ -486,6 +492,10 @@ class MailNotificationRule(NotificationRule):
             'mfrom'       : container.getMailFrom(),
             }
 
+        for key, value in infos.items():
+            if isinstance(value, unicode):
+                infos[key] = toIso885915(value)
+
         subject = tool.getSubscribeConfirmEmailTitle() % infos
         body = tool.getSubscribeConfirmEmailBody() % infos
         semail, sname = self._getMailSenderInfo(infos)
@@ -498,6 +508,10 @@ class MailNotificationRule(NotificationRule):
             'to': email,
             'body': (body, 'text/plain'),
             }
+
+        for key, value in mail_infos.items():
+            if isinstance(value, unicode):
+                mail_infos[key] = toIso885915(value)
 
         # Send mail then.
         self.sendMail(mail_infos)
@@ -527,6 +541,10 @@ class MailNotificationRule(NotificationRule):
             'mfrom'       : container.getMailFrom(),
             }
 
+        for key, value in infos.items():
+            if isinstance(value, unicode):
+                infos[key] = toIso885915(value)
+
         subject = tool.getSubscribeWelcomeEmailTitle() % infos
         body = tool.getSubscribeWelcomeEmailBody() % infos
         semail, sname = self._getMailSenderInfo(infos)
@@ -543,6 +561,11 @@ class MailNotificationRule(NotificationRule):
             'to': email,
             'body': (infos.get('body', ''), 'text/plain'),
             }
+
+        for key, value in mail_infos.items():
+            if isinstance(value, unicode):
+                mail_infos[key] = toIso885915(value)
+
         # Send mail then.
         self.sendMail(mail_infos)
 
@@ -574,6 +597,10 @@ class MailNotificationRule(NotificationRule):
             'mfrom'       : container.getMailFrom(),
             }
 
+        for key, value in infos.items():
+            if isinstance(value, unicode):
+                infos[key] = toIso885915(value)
+
         subject = tool.getUnSubscribeEmailTitle() % infos
         body = tool.getUnSubscribeEmailBody() % infos
         semail, sname = self._getMailSenderInfo(infos)
@@ -590,6 +617,10 @@ class MailNotificationRule(NotificationRule):
             'to': email,
             'body': (infos.get('body', ''), 'text/plain'),
             }
+
+        for key, value in mail_infos.items():
+            if isinstance(value, unicode):
+                mail_infos[key] = toIso885915(value)
 
         # Send mail then.
         self.sendMail(mail_infos)
@@ -628,6 +659,10 @@ class MailNotificationRule(NotificationRule):
             'mfrom'       : container.getMailFrom(),
             }
 
+        for key, value in infos.items():
+            if isinstance(value, unicode):
+                infos[key] = toIso885915(value)
+
         subject = tool.getUnSubscribeConfirmEmailTitle() % infos
         body = tool.getUnSubscribeConfirmEmailBody() % infos
         semail, sname = self._getMailSenderInfo(infos)
@@ -644,6 +679,11 @@ class MailNotificationRule(NotificationRule):
             'to': email,
             'body': (infos.get('body', ''), 'text/plain'),
             }
+
+        for key, value in mail_infos.items():
+            if isinstance(value, unicode):
+                mail_infos[key] = toIso885915(value)
+
         # Send mail then.
         self.sendMail(mail_infos)
 

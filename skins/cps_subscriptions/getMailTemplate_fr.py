@@ -6,7 +6,7 @@ pour utiliser ce template il faut le renommer getMailTemplate.py dans
 une de vos skin
 """
 
-mail_subject = "[%(portal_title)s] %(notification_title)s sur le document %(object_title)s"
+mail_subject = "[%(portal_title)s] %(notification_title)s sur le é document %(object_title)s"
 mail_body = \
 """%(user_name)s (%(user_id)s) a effectué un(e) %(notification_title)s
 sur le document %(object_title)s.
