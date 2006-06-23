@@ -59,7 +59,6 @@ from NotificationMessageBody import addNotificationMessageBody
 from EventSubscriptionsManager import get_event_subscriptions_manager
 
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
-from Products.CPSSubscriptions.utils import toIso885915
 
 ##############################################################
 
@@ -737,7 +736,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             # a subscription container within.
             return self.getSubscriptionContainerFromContext(
                 aq_parent(aq_inner(context)), force_local_creation=True)
-
+        
         return getattr(context, subscription_id)
 
     security.declarePublic('getSusbcriptionContainerFromContext')
@@ -1148,10 +1147,6 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             infos['body'] = (compiled_body_text, 'text/plain')
         else:
             infos = None
-
-        for key, value in infos.items():
-            if isinstance(value, unicode):
-                infos[key] = toIso885915(value)
 
         return infos, infos_html
 

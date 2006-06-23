@@ -37,6 +37,8 @@ class TestSubscriptionsTool(
     def afterSetUp(self):
         self.login('manager')
         self._stool = self.portal.portal_subscriptions
+        self.utool = self.portal.portal_url
+
 
     def testSubscriptionsToolFixtures(self):
         self.assertNotEqual(self._stool, None)
@@ -127,19 +129,36 @@ class TestSubscriptionsTool(
         new_currents = self._stool.getRenderedEvents()
         self.assertEqual(new_len, len(new_currents))
 
+
+    def test_getSubscriptionContainerFromContext_folder(self):
+        id_ = self.portal.workspaces.invokeFactory('Workspace', 'ws')
+        ws = getattr(self.portal.workspaces, id_)
+        container = self._stool.getSubscriptionContainerFromContext(ws)
+        print container.absolute_url()
+        self.assertEqual(ws, aq_parent(aq_inner(container)))
+
+
+    def test_getSubscriptionContainerFromContext_document(self):
+        id_ = self.portal.workspaces.invokeFactory('File', 'file')
+        file = getattr(self.portal.workspaces, id_)
+        container = self._stool.getSubscriptionContainerFromContext(file)
+        self.assertEqual(self.portal.workspaces, aq_parent(aq_inner(container)))
+
+
     def test_getSubscriptionContainerFromContext_nonfolderish(self):
         # http://svn.nuxeo.org/trac/pub/ticket/1158
-
         if 'CPS Calendar' not in self.portal.portal_types.objectIds():
-            return 
+            return
         id_ = self.portal.workspaces.invokeFactory('Workspace', 'calendars')
         calendars = getattr(self.portal.workspaces, id_)
         id_calendar = calendars.invokeFactory('CPS Calendar', 'calendar')
         calendar = getattr(calendars, id_calendar)
-            
+
         container = self._stool.getSubscriptionContainerFromContext(
             calendar)
         self.assertEqual(calendars, aq_parent(aq_inner(container)))
+
+
 
 def test_suite():
     suite = unittest.TestSuite()
