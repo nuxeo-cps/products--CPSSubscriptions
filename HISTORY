@@ -1,3 +1,23 @@
+===========================================================
+Package: CPSSubscriptions 0.23.3
+===========================================================
+First release built by: ogrisel at: 2006-10-10T11:44:49
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.23.3
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@49442
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Updated Spanish translation thanks to Jesús Martín.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
 *******************************************
 ** CPSSubscriptions V0.23.2 [R1 build 2006/08/03-09:35 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk Revision: 47855
