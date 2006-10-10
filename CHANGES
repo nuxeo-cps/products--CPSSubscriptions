@@ -7,7 +7,8 @@ New features
   w.r.t. CPSUSerFolder properties
 Bug fixes
 ~~~~~~~~~
--
+- notify search form did not take search criteria into consideration when local
+  roles where affected to groups
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
