@@ -3,7 +3,8 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
--
+- handle special groups (role:Authenticated and role:Anonymous) consistently
+  w.r.t. CPSUSerFolder properties
 Bug fixes
 ~~~~~~~~~
 -
