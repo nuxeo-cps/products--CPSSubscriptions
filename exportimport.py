@@ -139,6 +139,10 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
                 continue
             portal_type = str(child.getAttribute('portal_type'))
             event_labels = mapping_context_events.setdefault(portal_type, {})
+            if self._convertToBoolean(child.getAttribute('purge') or 'False'):
+                # purge existing labels
+                event_labels = mapping_context_events[portal_type] = {}
+
             for subnode in child.childNodes:
                 if subnode.nodeName != 'event':
                     continue

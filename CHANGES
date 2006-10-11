@@ -11,4 +11,4 @@ Bug fixes
   roles where affected to groups
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
-- 
+- made the profile importer able to purge existing "context-events"
