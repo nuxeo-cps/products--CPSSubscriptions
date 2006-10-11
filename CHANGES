@@ -3,12 +3,10 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
-- handle special groups (role:Authenticated and role:Anonymous) consistently
-  w.r.t. CPSUSerFolder properties
+-
 Bug fixes
 ~~~~~~~~~
-- notify search form did not take search criteria into consideration when local
-  roles where affected to groups
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
-- made the profile importer able to purge existing "context-events"
+- 

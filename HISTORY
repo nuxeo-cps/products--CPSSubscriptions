@@ -1,4 +1,26 @@
 ===========================================================
+Package: CPSSubscriptions 0.24.0
+===========================================================
+First release built by: ogrisel at: 2006-10-11T20:18:51
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.24.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@49523
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- handle special groups (role:Authenticated and role:Anonymous) consistently
+  w.r.t. CPSUSerFolder properties
+Bug fixes
+~~~~~~~~~
+- notify search form did not take search criteria into consideration when local
+  roles where affected to groups
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- made the profile importer able to purge existing "context-events"
+
+===========================================================
 Package: CPSSubscriptions 0.23.3
 ===========================================================
 First release built by: ogrisel at: 2006-10-10T11:44:49
