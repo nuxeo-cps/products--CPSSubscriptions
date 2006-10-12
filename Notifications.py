@@ -53,9 +53,9 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from zLOG import LOG, DEBUG, ERROR, TRACE
+from logging import getLogger
 
-logKey = 'CPSSubscriptions.Notifications'
+logger = getLogger('CPSSubscriptions.Notifications')
 
 class NotificationRule(PortalFolder):
     """Base Notification rule Class.
@@ -122,6 +122,13 @@ class MailNotificationRule(NotificationRule):
                                     infos['sender_email'])
         writer.addheader('From', sender)
 
+        # Reply-To
+        reply_to_email = infos.get('reply_to_email')
+        if reply_to_email is not None:
+            reply_to_name = infos.get('reply_to_name', reply_to_email)
+            reply_to = '"%s" <%s>' % (reply_to_name, reply_to_email)
+            writer.addheader('Reply-To', reply_to)
+
         # Subject
         subject = infos['subject']
         subject = string.replace(subject, "\n", "")
@@ -179,28 +186,23 @@ class MailNotificationRule(NotificationRule):
         # Check the mail strucuture
         # It could be build by the user with whatever stuffs within.
         if not self._validateStructure(mail_infos):
-            LOG("::  CPSSubscriptions  :: sendMail() :: for",
-                ERROR,
-                "Error while sending mail",
-                "check the email of the recipients")
+            logger.error("sendMail() check the email of the recipients  %r",
+                         mail_infos)
             return -1
 
         raw_message = self.getRawMessage(mail_infos, object, event_id)
 
-        LOG(":: CPSSubscriptions :: sendMail() :: for",
-            DEBUG,
-            raw_message)
+        logger.debug("sendMail() sending:\n\n%s", raw_message)
 
         try:
             if mailhost is not None:
                 mailhost.send(raw_message)
             else:
                 self.MailHost.send(raw_message)
-        except (socket.error, MailHostError, SMTPException):
-            LOG("::  CPSSubscriptions  :: sendMail() :: for",
-                ERROR,
-                "Error while sending mail",
-                "check your SMTP parameters or mailfrom address")
+        except (socket.error, MailHostError, SMTPException), e:
+            logger.debug("sendMail() Error while sending mail "
+                         "check your SMTP parameters or mailfrom address "
+                         "error was:\n%r", e)
 
     def _getMailSenderInfo(self, infos):
         """Return mail sender information (name and email)
@@ -213,13 +215,19 @@ class MailNotificationRule(NotificationRule):
         # XXX AT: maybe use the portal title instead of the portal admin
         # name to send the email (?)
         sender_email, sender_name = substool.getMailSenderInfo()
+        logger.debug('_getMailSenderInfo from substool: %s, %s',
+                   sender_name, sender_email)
         # get info from 'infos' dict
         if infos.has_key('mfrom'):
             sender_email = infos.get('mfrom')
+            logger.debug('_getMailSenderInfo from mfrom key in infos: %s, %s',
+                         sender_name, sender_email)
         # get from container
         container = self.getSubscriptionContainer()
         if container is not None:
             sender_email = container.getMailFrom()
+            logger.debug('_getMailSenderInfo from container property: %s, %s',
+                         sender_name, sender_email)
         return sender_email, sender_name
 
     def _getSubject(self, infos):
@@ -240,9 +248,8 @@ class MailNotificationRule(NotificationRule):
             # subject header.
             subject = subject.translate(_translation_table)
         except (KeyError, TypeError), e:
-            LOG('CPSSubscriptions', ERROR,
-                "Error in subject notification template for %r: %s"
-                % (infos.get('event'), str(e)))
+            logger.error("Error in subject notification template for %r: %s",
+                         infos.get('event'), e)
             # If the user put wrong variables
             subject = "No Subject"
 
@@ -257,9 +264,8 @@ class MailNotificationRule(NotificationRule):
             body = self.portal_subscriptions.getDefaultMessageBody(
                 event_id=infos['event']) % infos
         except (KeyError, TypeError, ValueError), e:
-            LOG('CPSSubscriptions', ERROR,
-                "Error in body notification template with infos %r: %s"
-                % (infos, str(e)))
+            logger.error("Error in body notification template with infos %r: %r",
+                         infos, e)
             # If the user put wrong variables
             body = self.portal_subscriptions.getErrorMessageBody()
         return body
@@ -366,7 +372,7 @@ class MailNotificationRule(NotificationRule):
         if infos.get('kwargs_comments') is not None:
             infos['comments'] = infos['kwargs_comments']
 
-        LOG('CPSSubscriptions', TRACE, "available infos in emails: %s" % infos)
+        logger.debug("_makeInfoDict() available infos in emails: %r", infos)
         return infos
 
     security.declareProtected(ManagePortal, 'notifyRecipients')
@@ -445,7 +451,7 @@ class MailNotificationRule(NotificationRule):
                 'body': (body, mime_type),
                 }
             self.sendMail(mail_infos, object_, event_id=infos.get('event', ''))
-            LOG(logKey + ' notifyRecipients()', TRACE, repr(mail_infos))
+            logger.debug('notifyRecipients() %r', mail_infos)
 
         # TODO: Dealing with members
         for member in members:
