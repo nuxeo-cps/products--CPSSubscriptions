@@ -3,10 +3,11 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
--
+- manual email notifications use the Reply-To header instead of the From
+  header
 Bug fixes
 ~~~~~~~~~
 -
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
-- 
+-
