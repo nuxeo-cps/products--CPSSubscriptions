@@ -1,4 +1,25 @@
 ===========================================================
+Package: CPSSubscriptions 0.25.0
+===========================================================
+First release built by: ogrisel at: 2006-10-15T22:39:39
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.25.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@49572
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- manual email notifications use the Reply-To header instead of the From
+  header
+Bug fixes
+~~~~~~~~~
+-
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+-
+
+===========================================================
 Package: CPSSubscriptions 0.24.0
 ===========================================================
 First release built by: ogrisel at: 2006-10-11T20:18:51
