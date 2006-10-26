@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- [packaging] bundleman svn property
+- #1771: search on user id doesn't make sense in 'send by email' form
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

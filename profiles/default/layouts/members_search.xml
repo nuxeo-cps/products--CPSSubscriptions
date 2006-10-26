@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="members_search" meta_type="CPS Layout">
+ <property name="layout_search_noid_method"
+    type="string">layout_dir_search</property>
+ <widget name="id" meta_type="String Widget">
+  <property name="hidden_layout_modes">
+   <element value="search_noid"/>
+  </property>
+ </widget>
+</object>
