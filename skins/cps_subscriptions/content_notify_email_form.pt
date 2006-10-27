@@ -7,7 +7,7 @@
   dummy2 python:request.set('input_id', request.get('input_id'));
   res python: dir.renderSearchDetailed(request=request, validate=validate,
                                        callback='content_notify_email_do_search_results',
-				       layout_mode='search_noid',
+                                       layout_mode='search_noid',
                                        call_context=here);
   global rendered_main python: res[0];
   global ok python: res[1];
