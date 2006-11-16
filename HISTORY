@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSSubscriptions 0.25.1
+===========================================================
+First release built by: gracinet at: 2006-11-16T18:18:35
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.25.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@50008
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1771: search on user id doesn't make sense in 'send by email' form
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 0.25.0
 ===========================================================
 First release built by: ogrisel at: 2006-10-15T22:39:39
