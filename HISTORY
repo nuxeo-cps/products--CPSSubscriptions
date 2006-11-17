@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSSubscriptions 0.25.2
+===========================================================
+First release built by: gracinet at: 2006-11-17T18:34:34
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.25.2
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@50141
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Basque translation
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 0.25.1
 ===========================================================
 First release built by: gracinet at: 2006-11-16T18:18:35
