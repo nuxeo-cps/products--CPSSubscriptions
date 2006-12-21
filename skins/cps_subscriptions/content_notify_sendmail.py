@@ -33,9 +33,11 @@ reply_to_name = member.getProperty('sn') + ' ' + member.getProperty('givenName')
 subtool = getToolByName(context, 'portal_subscriptions')
 sender_email, sender_name = subtool.getMailSenderInfo()
 
-tos = explicit_recipients_emails
+tos = explicit_recipients_emails or []
 for member_id in members:
-    tos.append(mtool.getEmailFromUsername(member_id))
+    email = mtool.getEmailFromUsername(member_id)
+    if email is not None:
+        tos.append(email)
 
 to_str = ','.join(tos)
 
