@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSSubscriptions 0.26.0
+===========================================================
+First release built by: ben at: 2006-12-26T11:22:48
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.26.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@50682
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+-
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- safer content_notify_sendmail
+
+===========================================================
 Package: CPSSubscriptions 0.25.3
 ===========================================================
 First release built by: gracinet at: 2006-11-23T21:02:18
