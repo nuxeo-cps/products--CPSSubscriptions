@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pt-BR\n"
-"POT-Creation-Date: 2006-01-03 14:49default\n"
+"POT-Creation-Date: 2007-04-25 15:59default\n"
 "PO-Revision-Date: 2006-04-05 15:55-0300\n"
 "Last-Translator: Mario Olimpio de Menezes <mario@ipen.br>\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -22,16 +22,16 @@ msgstr ""
 "Domain: default\n"
 
 #.   <block>
-#.   		  <block replace="context_lcs/?role" />
-#.   		</block>
+#.                     <block replace="context_lcs/?role" />
+#.                   </block>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "<block replace=\"context_lcs/?role\" />"
 msgstr "Falso"
 
 #.   <block>
-#.   		    <span replace="events/?event_key" />
-#.   		  </block>
+#.                       <span replace="events/?event_key" />
+#.                     </block>
 #.   <span>
 #.                       <span replace="events/?event_key" />
 #.                     </span>
@@ -98,7 +98,7 @@ msgstr ""
 "em <span replace=\"here/title_or_id\" /> às <a href=\"here/absolute_url\"> "
 "<span replace=\"here/absolute_url\" /> </a>"
 
-#.   <td>Notification type</td>
+#.   <th>Notification type</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "Notification type"
@@ -150,7 +150,9 @@ msgid ""
 "We have received a request for subscription with the email address, <a href="
 "\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
 "</a>"
-msgstr "Nós recebemos um pedido de subscrição com o endereço de email, <a href= \"\" attributes=\"href string:mailto:${email}> <span replace=email/></a>"
+msgstr ""
+"Nós recebemos um pedido de subscrição com o endereço de email, <a href= \"\" "
+"attributes=\"href string:mailto:${email}> <span replace=email/></a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -164,7 +166,10 @@ msgid ""
 "We have received a request for unsubscription with the email address, <a "
 "href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
 "\" /> </a>"
-msgstr "Nós recebemos um pedido de desubscrição com o endereço de email, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email \" /> </a>"
+msgstr ""
+"Nós recebemos um pedido de desubscrição com o endereço de email, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email \" /> "
+"</a>"
 
 #.   <i>
 #.         You may allow only members with given local roles to subscribe to this
@@ -216,10 +221,10 @@ msgid "button_unsubscribe"
 msgstr "Desubscrever"
 
 #.   <p>
-#.   	  You should not modify the following field unless you have specific
-#.   	  needs, and if so, you should enter a valid email address like,
-#.   	  for example, system@mysite.net
-#.   	</p>
+#.             You should not modify the following field unless you have specific
+#.             needs, and if so, you should enter a valid email address like,
+#.             for example, system@mysite.net
+#.           </p>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
@@ -263,8 +268,8 @@ msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Abaixo estão eventos dos quais você pode se desubscrever."
 
 #.   <h2>
-#.   	  Contextual notifications
-#.   	</h2>
+#.             Contextual notifications
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_contextual_notifications"
@@ -280,32 +285,32 @@ msgid "header_enter_your_email"
 msgstr "Entre um endereço de email válido"
 
 #.   <h2>
-#.   	  Sender address for outgoing emails
-#.   	</h2>
+#.             Sender address for outgoing emails
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
 msgstr "Endereço do remetente para mensagens de saída"
 
 #.   <h2>
-#.   	  Notified people
-#.   	</h2>
+#.             Notified people
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr "Pessoas notificadas"
 
 #.   <h2>
-#.   	  Save changes
-#.   	</h2>
+#.             Save changes
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_save_changes"
 msgstr "Salvar mudanças"
 
 #.   <h2>
-#.   	  Subscribing/unsubscribing
-#.   	</h2>
+#.             Subscribing/unsubscribing
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_subscribing_unsubscribing"
@@ -409,11 +414,6 @@ msgstr "Desubscrições levadas em consideração"
 msgid "heading_subscribtion_welcome"
 msgstr "Você não é parte desta lista de discussão."
 
-#.   <th content="field/title">id</th>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "id"
-msgstr "id"
-
 #.   <span>
 #.         label_<span replace="request/event_key|nothing">
 #.         Susbcription ID
@@ -422,7 +422,8 @@ msgstr "id"
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
 msgid ""
 "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr "label_<span replace=\"request/event_key|nothing\"> ID da susbcrição </span>"
+msgstr ""
+"label_<span replace=\"request/event_key|nothing\"> ID da susbcrição </span>"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
@@ -464,7 +465,7 @@ msgstr "Lista negra de emails"
 msgid "label_click_here"
 msgstr "Clique aqui"
 
-#.   <td>Configure</td>
+#.   <th>Configure</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_configure"
@@ -518,11 +519,6 @@ msgstr "Corpo da Mensagem"
 msgid "label_mail_subject"
 msgstr "Assunto da Mensagem"
 
-#.   <span />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "label_no_results"
-msgstr "Resultados da busca"
-
 #.   <div>
 #.             No event opened for subscsriptions in here.
 #.           </div>
@@ -544,16 +540,16 @@ msgstr ""
 "baseado em seus papéis locais."
 
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
-#.   		    Edit
-#.   		</a>
+#.                       Edit
+#.                   </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notification_edit"
 msgstr "Editar"
 
 #.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
-#.   		    Choose
-#.   		</a>
+#.                       Choose
+#.                   </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
@@ -561,7 +557,7 @@ msgstr "Escolha"
 
 # ## ACTIONS ######################################
 #.   <span>
-#.            Add explicitly recipients emails (one email per ligne)
+#.            Add recipient emails (one email per line)
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
@@ -583,7 +579,7 @@ msgstr "Somente notificar pessoas que têm papéis locais nesta pasta"
 msgid "label_only_notify_subfolders"
 msgstr "Somente notificar para eventos acontecendo nas subpastas"
 
-#.   <td>Others</td>
+#.   <th>Others</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_other"
@@ -597,8 +593,8 @@ msgid "label_roles_allowed_to_subscribe"
 msgstr "Papéis locais atuais"
 
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
-#.   	    See all subscribers
-#.   	</a>
+#.               See all subscribers
+#.           </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
@@ -666,7 +662,7 @@ msgid "label_subscriptions_email"
 msgstr "E-Mails"
 
 #.   <span>
-#.           You currently do not belong to any subscriptions.
+#.           You have no subscriptions.
 #.         </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
@@ -802,6 +798,10 @@ msgstr "Comentário removido"
 msgid "label_notification_related_document"
 msgstr "Link para documento relacionado"
 
+#, fuzzy
+msgid "label_comment_created"
+msgstr "Criar"
+
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Administração de Notificações"
@@ -865,3 +865,9 @@ msgstr "Mensalmente"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Minhas Subscrições"
+
+#~ msgid "id"
+#~ msgstr "id"
+
+#~ msgid "label_no_results"
+#~ msgstr "Resultados da busca"

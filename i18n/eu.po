@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubcriptions\n"
-"POT-Creation-Date: 2005-06-24 14:11default\n"
+"POT-Creation-Date: 2007-04-25 15:59default\n"
 "PO-Revision-Date: 2006-11-16 15:56+0100\n"
 "Last-Translator: Jesus Martin <jesusmartin@lasalle.es>\n"
 "Language-Team: euskara <perikoalkain@lasalle.es>\n"
@@ -18,16 +18,16 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 
 #.   <block>
-#.   		  <block replace="context_lcs/?role" />
-#.   		</block>
+#.                     <block replace="context_lcs/?role" />
+#.                   </block>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "<block replace=\"context_lcs/?role\" />"
 msgstr ""
 
 #.   <block>
-#.   		    <span replace="events/?event_key" />
-#.   		  </block>
+#.                       <span replace="events/?event_key" />
+#.                     </block>
 #.   <span>
 #.                       <span replace="events/?event_key" />
 #.                     </span>
@@ -45,7 +45,8 @@ msgstr ""
 #.                 </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgid ""
+"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr ""
 
 #.   <span>
@@ -65,8 +66,14 @@ msgstr "Hemen daude harpidetu zaren leku guztien izenak. "
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid "Mailing list subscription confirmation for the event <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
-msgstr "Hedatze-zerrendarako abonu-berrespena<span /> <span replace=\"here/title_or_id\" />-n honako helbidean <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
+msgid ""
+"Mailing list subscription confirmation for the event <span /> in <span "
+"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
+msgstr ""
+"Hedatze-zerrendarako abonu-berrespena<span /> <span replace=\"here/"
+"title_or_id\" />-n honako helbidean <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
 
 #.   <span>
 #.       Mailing list unsubscription confirmation for the event
@@ -78,28 +85,37 @@ msgstr "Hedatze-zerrendarako abonu-berrespena<span /> <span replace=\"here/title
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid "Mailing list unsubscription confirmation for the event <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
-msgstr "Hedapen-zerrendarako abonuaren amaiera <span />en <span replace=\"here/title_or_id\" />honako helbidean <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
+msgid ""
+"Mailing list unsubscription confirmation for the event <span /> in <span "
+"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
+msgstr ""
+"Hedapen-zerrendarako abonuaren amaiera <span />en <span replace=\"here/"
+"title_or_id\" />honako helbidean <a href=\"here/absolute_url\"> <span "
+"replace=\"here/absolute_url\" /> </a>"
 
-#.   <td>Notification type</td>
+#.   <th>Notification type</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "Notification type"
 msgstr "Alerta-motak"
 
 #.   <span>
-#.       Ton confirm that you want to be added to this mailing list, click
+#.       To confirm that you want to be added to this mailing list, click
 #.       <a href="" attributes="href
 #.         string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}">
 #.         here
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid "Ton confirm that you want to be added to this mailing list, click <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> here </a>"
-msgstr "Hedapen-zerrendara abonua berresteko egizu klik <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\">hemen </a>f"
+msgid ""
+"To confirm that you want to be added to this mailing list, click <a href="
+"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
+"email=${email}&event_id=${event_id}\"> here </a>"
+msgstr ""
 
 #.   <span>
-#.       Ton confirm that you want to be removed from this mailing list, click
+#.       To confirm that you want to be removed from this mailing list, click
 #.       <a href="" attributes="href
 #.         string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}">
 #.         here
@@ -107,8 +123,11 @@ msgstr "Hedapen-zerrendara abonua berresteko egizu klik <a href=\"\" attributes=
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid "Ton confirm that you want to be removed from this mailing list, click <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
-msgstr "Hedapen-zerrendatik kendu nahi zarela berresteko egizu klik<a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> hemen</a>f"
+msgid ""
+"To confirm that you want to be removed from this mailing list, click <a href="
+"\"\" attributes=\"href string:${here/absolute_url}/"
+"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr ""
 
 #.   <span>
 #.       We have received a request for subscription with the email
@@ -117,8 +136,13 @@ msgstr "Hedapen-zerrendatik kendu nahi zarela berresteko egizu klik<a href=\"\" 
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid "We have received a request for subscription with the email address, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
-msgstr "<a href=\"\" attributes=\"href string:mailto:${email}\"> posta-helbiderako abonu-eskari bat jaso dugu  <span replace=\"email\" /> </a>"
+msgid ""
+"We have received a request for subscription with the email address, <a href="
+"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
+"</a>"
+msgstr ""
+"<a href=\"\" attributes=\"href string:mailto:${email}\"> posta-helbiderako "
+"abonu-eskari bat jaso dugu  <span replace=\"email\" /> </a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -128,11 +152,16 @@ msgstr "<a href=\"\" attributes=\"href string:mailto:${email}\"> posta-helbidera
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid "We have received a request for unsubscription with the email address, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
-msgstr "<a href=\"\" attributes=\"href string:mailto:${email}\"> posta-helbidetik ezabatzeko eskari bat jaso dugu<span replace=\"email\" /> </a>"
+msgid ""
+"We have received a request for unsubscription with the email address, <a "
+"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
+"\" /> </a>"
+msgstr ""
+"<a href=\"\" attributes=\"href string:mailto:${email}\"> posta-helbidetik "
+"ezabatzeko eskari bat jaso dugu<span replace=\"email\" /> </a>"
 
 #.   <i>
-#.         You may allowed only members with given local roles to subscribe to this
+#.         You may allow only members with given local roles to subscribe to this
 #.         givent event.  For instance, you may not want the anonymous users
 #.         (public) to subscribe to the event 'reject content' within sections.  For
 #.         this, just pick up the local roles below for which you want to give the
@@ -141,8 +170,15 @@ msgstr "<a href=\"\" attributes=\"href string:mailto:${email}\"> posta-helbideti
 #.         opened to everybody for subscriptions.
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid "You may allowed only members with given local roles to subscribe to this givent event. For instance, you may not want the anonymous users (public) to subscribe to the event 'reject content' within sections. For this, just pick up the local roles below for which you want to give the possiblity to the users granted with these local roles to subscribe to this event. If you do not specify any local roles then the event is opened to everybody for subscriptions."
-msgstr "Eduki honetara harpidetza egiteko baimena, rol jakin batzuetan harpidetza egin dituztenei baino ez eman diezaiekezu. Horrela, adibidez, ez duzu nahi izango erabiltzaile anonimoek harpidetza egin dezaten (erregistratu gabeak)   \"edukia ukatzeko\" aukerarik izan ez dezaten atalen barruan. Hortaz, hautatu zein bertako roletara harpidetzeko baimena emango diezun. Ez baduzu zehazten zeintzuetara, edozeinek harpidetza egin dezake eta zureak egin du."
+msgid ""
+"You may allow only members with given local roles to subscribe to this "
+"givent event. For instance, you may not want the anonymous users (public) to "
+"subscribe to the event 'reject content' within sections. For this, just pick "
+"up the local roles below for which you want to give the possiblity to the "
+"users granted with these local roles to subscribe to this event. If you do "
+"not specify any local roles then the event is opened to everybody for "
+"subscriptions."
+msgstr ""
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -167,14 +203,16 @@ msgid "button_unsubscribe"
 msgstr "Ezabatu"
 
 #.   <p>
-#.   	  You should not modify the following field unless you have specific
-#.   	  needs, and if so, you should enter a valid email address like,
-#.   	  for example, system@mysite.net
-#.   	</p>
+#.             You should not modify the following field unless you have specific
+#.             needs, and if so, you should enter a valid email address like,
+#.             for example, system@mysite.net
+#.           </p>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
-msgstr "Ez duzu ondoko eremua aldatu behar, ezinbestean ez bada. Hala bada, baliozko posta elketronikoaren helbidea sartu beharko duzu."
+msgstr ""
+"Ez duzu ondoko eremua aldatu behar, ezinbestean ez bada. Hala bada, baliozko "
+"posta elketronikoaren helbidea sartu beharko duzu."
 
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
@@ -211,8 +249,8 @@ msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Zein gertaeretatik ezaba zaitezkeen"
 
 #.   <h2>
-#.   	  Contextual notifications
-#.   	</h2>
+#.             Contextual notifications
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_contextual_notifications"
@@ -228,32 +266,32 @@ msgid "header_enter_your_email"
 msgstr "Sar ezazu baliozko posta elketronikoaren helbide bat"
 
 #.   <h2>
-#.   	  Sender address for outgoing emails
-#.   	</h2>
+#.             Sender address for outgoing emails
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
 msgstr "Bidaltzailearen posta elektronikoaren helbidea posta bidaltzeko"
 
 #.   <h2>
-#.   	  Notified people
-#.   	</h2>
+#.             Notified people
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr "Jakinarazitako pertsonak"
 
 #.   <h2>
-#.   	  Save changes
-#.   	</h2>
+#.             Save changes
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_save_changes"
 msgstr "Aldaketak erregistratu"
 
 #.   <h2>
-#.   	  Subscribing/unsubscribing
-#.   	</h2>
+#.             Subscribing/unsubscribing
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_subscribing_unsubscribing"
@@ -353,19 +391,16 @@ msgstr "Gogoan hartutako harpidetzaren amaiera"
 msgid "heading_subscribtion_welcome"
 msgstr "Ongi etorri posta-zerrendara"
 
-#.   <th content="field/title">id</th>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "id"
-msgstr "FALTSUA"
-
 #.   <span>
 #.         label_<span replace="request/event_key|nothing">
 #.         Susbcription ID
 #.       </span>
 #.       </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr "label_<span replace=\"request/event_key|nothing\"> ID harpidetza</span>"
+msgid ""
+"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgstr ""
+"label_<span replace=\"request/event_key|nothing\"> ID harpidetza</span>"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
@@ -407,7 +442,7 @@ msgstr "Gertaera honetarako blokeatu beharreko posta-zerrenda"
 msgid "label_click_here"
 msgstr "Administratu"
 
-#.   <td>Configure</td>
+#.   <th>Configure</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_configure"
@@ -433,6 +468,7 @@ msgstr "Baliozko posta bat sartu"
 #.        </span>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
+#: ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "label_follow_subscriptions_instructions"
 msgstr "Mesedez, jasoko duzun postan  jarraitu aurkituko dituzun aginduak"
 
@@ -441,7 +477,9 @@ msgstr "Mesedez, jasoko duzun postan  jarraitu aurkituko dituzun aginduak"
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_import_emais_list"
-msgstr "Posta-zerrenda bat inportatu fitxategi batetik (testu-fitxategia posta bana duena lerro bakoitzeko)"
+msgstr ""
+"Posta-zerrenda bat inportatu fitxategi batetik (testu-fitxategia posta bana "
+"duena lerro bakoitzeko)"
 
 #.   <span>
 #.            Mail body
@@ -457,11 +495,6 @@ msgstr "Mezuaren gorputza"
 msgid "label_mail_subject"
 msgstr "Mezuaren gaia"
 
-#.   <span />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "label_no_results"
-msgstr "Ez dago kiderik zure bilaketarekin bat datorrenik"
-
 #.   <div>
 #.             No event opened for subscsriptions in here.
 #.           </div>
@@ -470,7 +503,9 @@ msgstr "Ez dago kiderik zure bilaketarekin bat datorrenik"
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
-msgstr "Oraingoz ez  duzu inolako harpidetzarik testuinguru honetan edota objektu honetarako "
+msgstr ""
+"Oraingoz ez  duzu inolako harpidetzarik testuinguru honetan edota objektu "
+"honetarako "
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
@@ -481,8 +516,8 @@ msgstr "Ez dago bertako roletarako harpidetzarik"
 
 # ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
-#.   		    Edit
-#.   		</a>
+#.                       Edit
+#.                   </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notification_edit"
@@ -490,8 +525,8 @@ msgstr "Aldatu"
 
 # ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
-#.   		    Choose
-#.   		</a>
+#.                       Choose
+#.                   </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
@@ -499,7 +534,7 @@ msgstr "Zerrenda"
 
 # ## PSMS ##########################################
 #.   <span>
-#.            Add explicitly recipients emails (one email per ligne)
+#.            Add recipient emails (one email per line)
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
@@ -511,7 +546,8 @@ msgstr "Hartzaileen postak erantsi"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_local_roles"
-msgstr "Katalogo honetako bertako rokak dituzten pertsonei baino ez ohartarazi "
+msgstr ""
+"Katalogo honetako bertako rokak dituzten pertsonei baino ez ohartarazi "
 
 #.   <label for="notify_no_local">
 #.                 Only notify for events happening in sub-folders
@@ -521,7 +557,7 @@ msgstr "Katalogo honetako bertako rokak dituzten pertsonei baino ez ohartarazi "
 msgid "label_only_notify_subfolders"
 msgstr "Azpikatalogoetan emango diren gertaeretarako baino ez ohartarazi "
 
-#.   <td>Others</td>
+#.   <th>Others</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_other"
@@ -532,11 +568,13 @@ msgstr "Besterik"
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_roles_allowed_to_subscribe"
-msgstr "Gertaera honetara harpide daitezkeen pertsonak ahalbidetzen dituzten bertako rolak "
+msgstr ""
+"Gertaera honetara harpide daitezkeen pertsonak ahalbidetzen dituzten bertako "
+"rolak "
 
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
-#.   	    See all subscribers
-#.   	</a>
+#.               See all subscribers
+#.           </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
@@ -605,7 +643,7 @@ msgid "label_subscriptions_email"
 msgstr "Posta"
 
 #.   <span>
-#.           You currently do not belong to any subscriptions.
+#.           You have no subscriptions.
 #.         </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
@@ -737,12 +775,12 @@ msgstr "Iruzkin bat ukatu"
 msgid "label_forum_comment_deleted"
 msgstr "Iruzkin bat ezabatu"
 
-msgid "label_comment_created"
-msgstr "Iruzkin-sorkuntza"
-
 # ## PSMS ##########################################
 msgid "label_notification_related_document"
 msgstr "Dokumentuarekin zerikusia duen jakinarazpena"
+
+msgid "label_comment_created"
+msgstr "Iruzkin-sorkuntza"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -781,7 +819,9 @@ msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr "Hedapen-zerrendatik ezabatua izan da"
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
-msgstr "Hedapen-zerrendatik ezabatua izan da. Harremanetan jarri administratzailearekin zerrenda horren partaide izan nahi baduzu."
+msgstr ""
+"Hedapen-zerrendatik ezabatua izan da. Harremanetan jarri "
+"administratzailearekin zerrenda horren partaide izan nahi baduzu."
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Gertaeraren bat, gutxienez, aukeratu behar duzu"
@@ -808,7 +848,8 @@ msgstr "Hilabetero"
 msgid "bc_manage_my_subscriptions"
 msgstr "Nire harpidetzak"
 
-#, fuzzy
-#~ msgid "button_back"
-#~ msgstr "Subscribe"
+msgid "label_no_results"
+msgstr "Ez dago kiderik zure bilaketarekin bat datorrenik"
 
+msgid "id"
+msgstr "FALTSUA"

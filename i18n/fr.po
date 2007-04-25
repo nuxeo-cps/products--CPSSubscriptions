@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2006-01-03 14:49default\n"
+"POT-Creation-Date: 2007-04-25 15:59default\n"
 "PO-Revision-Date: 2005-10-30 18:11+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -24,16 +24,16 @@ msgstr ""
 "Domain: default\n"
 
 #.   <block>
-#.   		  <block replace="context_lcs/?role" />
-#.   		</block>
+#.                     <block replace="context_lcs/?role" />
+#.                   </block>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "<block replace=\"context_lcs/?role\" />"
 msgstr ""
 
 #.   <block>
-#.   		    <span replace="events/?event_key" />
-#.   		  </block>
+#.                       <span replace="events/?event_key" />
+#.                     </block>
 #.   <span>
 #.                       <span replace="events/?event_key" />
 #.                     </span>
@@ -95,7 +95,7 @@ msgid ""
 msgstr ""
 
 # ## PSMS ##########################################
-#.   <td>Notification type</td>
+#.   <th>Notification type</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "Notification type"
@@ -200,10 +200,10 @@ msgid "button_unsubscribe"
 msgstr "Se désinscrire"
 
 #.   <p>
-#.   	  You should not modify the following field unless you have specific
-#.   	  needs, and if so, you should enter a valid email address like,
-#.   	  for example, system@mysite.net
-#.   	</p>
+#.             You should not modify the following field unless you have specific
+#.             needs, and if so, you should enter a valid email address like,
+#.             for example, system@mysite.net
+#.           </p>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
@@ -247,8 +247,8 @@ msgid "header_choose_the_events_to_sunsubscribe"
 msgstr "Événements desquels vous pouvez vous désabonner"
 
 #.   <h2>
-#.   	  Contextual notifications
-#.   	</h2>
+#.             Contextual notifications
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_contextual_notifications"
@@ -264,32 +264,32 @@ msgid "header_enter_your_email"
 msgstr "Entrer une adresse électronique valide"
 
 #.   <h2>
-#.   	  Sender address for outgoing emails
-#.   	</h2>
+#.             Sender address for outgoing emails
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
 msgstr "Adresse électronique de l'émetteur pour les courriels sortants"
 
 #.   <h2>
-#.   	  Notified people
-#.   	</h2>
+#.             Notified people
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_notified_people"
 msgstr "Personnes alertées"
 
 #.   <h2>
-#.   	  Save changes
-#.   	</h2>
+#.             Save changes
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_save_changes"
 msgstr "Enregistrer les changements"
 
 #.   <h2>
-#.   	  Subscribing/unsubscribing
-#.   	</h2>
+#.             Subscribing/unsubscribing
+#.           </h2>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_subscribing_unsubscribing"
@@ -393,11 +393,6 @@ msgstr "Désabonnement pris en compte"
 msgid "heading_subscribtion_welcome"
 msgstr "Bienvenue sur la mailing list"
 
-#.   <th content="field/title">id</th>
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "id"
-msgstr ""
-
 #.   <span>
 #.         label_<span replace="request/event_key|nothing">
 #.         Susbcription ID
@@ -448,7 +443,7 @@ msgstr "Liste de courriels à bloquer pour cet événement"
 msgid "label_click_here"
 msgstr "Gérer"
 
-#.   <td>Configure</td>
+#.   <th>Configure</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_configure"
@@ -503,11 +498,6 @@ msgstr "Corps du message"
 msgid "label_mail_subject"
 msgstr "Sujet du message"
 
-#.   <span />
-#: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
-msgid "label_no_results"
-msgstr "Aucun membre ne correspond à votre recherche"
-
 #.   <div>
 #.             No event opened for subscsriptions in here.
 #.           </div>
@@ -528,8 +518,8 @@ msgstr "Aucun abonnements dû aux roles locaux."
 
 # ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
-#.   		    Edit
-#.   		</a>
+#.                       Edit
+#.                   </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notification_edit"
@@ -537,8 +527,8 @@ msgstr "Modifier"
 
 # ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/folder_explicit_notifications_form?event_key=${event_key}">
-#.   		    Choose
-#.   		</a>
+#.                       Choose
+#.                   </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
@@ -546,7 +536,7 @@ msgstr "Liste"
 
 # ## PSMS ##########################################
 #.   <span>
-#.            Add explicitly recipients emails (one email per ligne)
+#.            Add recipient emails (one email per line)
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
@@ -571,7 +561,7 @@ msgstr ""
 "Alerter uniquement pour les événements se produisant dans des sous-"
 "répertoires"
 
-#.   <td>Others</td>
+#.   <th>Others</th>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_other"
@@ -585,8 +575,8 @@ msgid "label_roles_allowed_to_subscribe"
 msgstr "Rôles locaux permettant aux personnes de s'abonner à cet événement."
 
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
-#.   	    See all subscribers
-#.   	</a>
+#.               See all subscribers
+#.           </a>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
@@ -655,7 +645,7 @@ msgid "label_subscriptions_email"
 msgstr "Courriel"
 
 #.   <span>
-#.           You currently do not belong to any subscriptions.
+#.           You have no subscriptions.
 #.         </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
@@ -787,12 +777,12 @@ msgstr "Rejet d'un commentaire"
 msgid "label_forum_comment_deleted"
 msgstr "Suppression d'un commentaire"
 
-msgid "label_comment_created"
-msgstr "Création d'un commentaire"
-
 # ## PSMS ##########################################
 msgid "label_notification_related_document"
 msgstr "Lien sur le document"
+
+msgid "label_comment_created"
+msgstr "Création d'un commentaire"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -859,3 +849,6 @@ msgstr "Mensuel"
 
 msgid "bc_manage_my_subscriptions"
 msgstr "Mes abonnements"
+
+#~ msgid "label_no_results"
+#~ msgstr "Aucun membre ne correspond à votre recherche"
