@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSSubscriptions 0.26.1
+===========================================================
+First release built by: div at: 2007-03-14T12:26:55
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.26.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@51329
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Fixed #572 : Plug CPSSubscriptions in CPSWiki for email notifications.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 0.26.0
 ===========================================================
 First release built by: ben at: 2006-12-26T11:22:48
