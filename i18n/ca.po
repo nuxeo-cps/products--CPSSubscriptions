@@ -2,18 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSSubcriptions\n"
 "POT-Creation-Date: 2005-06-24 14:11default\n"
-"PO-Revision-Date: 2006-07-15 23:47+0100\n"
-"Last-Translator: Domènec Arcalís <darcalis@gmail.com>\n"
-"Language-Team: català <darcalis@gmail.com>\n"
+"PO-Revision-Date: 2007-05-31 12:43+0100\n"
+"Language-Team: valencià/català. <juangus@lasalle.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: ca\n"
-"Language-Name: Catalan\n"
-"Preferred-encodings: utf-8 latin1\n"
+"Preferred-encodings: latin9 utf-8\n"
 "Domain: default\n"
-"X-Generator: KBabel 1.9.1\n"
+"Language-Code: ca\n"
+"Language-Name: valencià/català\n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-Country: SPAIN\n"
 
@@ -45,8 +43,7 @@ msgstr ""
 #.                 </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_manage_my_subscriptions.pt
-msgid ""
-"<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
+msgid "<span replace=\"python:subscriptions_tool.getI18nFor(elt['event_id'])\" />"
 msgstr ""
 
 #.   <span>
@@ -66,14 +63,8 @@ msgstr "Aquí estan tots els llocs als quals s'ha subscrit."
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"Mailing list subscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Confirmació de la subscripció a la llista de correu<span /> a<span replace="
-"\"here/title_or_id\" />a l'adreça <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
+msgid "Mailing list subscription confirmation for the event <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
+msgstr "Confirmació de la subscripció a la llista de correu<span /> a<span replace=\"here/title_or_id\" />a l'adreça <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
 
 #.   <span>
 #.       Mailing list unsubscription confirmation for the event
@@ -85,14 +76,8 @@ msgstr ""
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"Mailing list unsubscription confirmation for the event <span /> in <span "
-"replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span "
-"replace=\"here/absolute_url\" /> </a>"
-msgstr ""
-"Confirmació de fi de la subscripció a la llista de correu <span />a <span "
-"replace=\"here/title_or_id\" /> a l'adreça <a href=\"here/absolute_url\"> "
-"<span replace=\"here/absolute_url\" /> </a>"
+msgid "Mailing list unsubscription confirmation for the event <span /> in <span replace=\"here/title_or_id\" /> at <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
+msgstr "Confirmació de fi de la subscripció a la llista de correu <span />a <span replace=\"here/title_or_id\" /> a l'adreça <a href=\"here/absolute_url\"> <span replace=\"here/absolute_url\" /> </a>"
 
 #.   <td>Notification type</td>
 #: from
@@ -108,14 +93,8 @@ msgstr "Tipus d'avís"
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"Ton confirm that you want to be added to this mailing list, click <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Para confirmar que desea abonarse a la lista de difusión haga click<a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\">aquí </a>f"
+msgid "Ton confirm that you want to be added to this mailing list, click <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr "Per a confirmar que vol subscriure's a la llista de correu faci clic <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\">aquí </a>f"
 
 #.   <span>
 #.       Ton confirm that you want to be removed from this mailing list, click
@@ -126,14 +105,8 @@ msgstr ""
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"Ton confirm that you want to be removed from this mailing list, click <a "
-"href=\"\" attributes=\"href string:${here/absolute_url}/"
-"folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
-msgstr ""
-"Para confirmar que desea borrarse de la lista de difusión haga click <a href="
-"\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?"
-"email=${email}&event_id=${event_id}\"> aquí</a>f"
+msgid "Ton confirm that you want to be removed from this mailing list, click <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_unsubscribe?email=${email}&event_id=${event_id}\"> here </a>"
+msgstr "Per a confirmar que desitja donar-se de baixa de la llista de correu faci clic <a href=\"\" attributes=\"href string:${here/absolute_url}/folder_confirm_subscribe?email=${email}&event_id=${event_id}\"> aquí</a>f"
 
 #.   <span>
 #.       We have received a request for subscription with the email
@@ -142,14 +115,8 @@ msgstr ""
 #.       </a>
 #.     </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
-msgid ""
-"We have received a request for subscription with the email address, <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
-msgstr ""
-"Hem rebut una sol·licitud de subscripció per a l'adreça de correu <a href="
-"\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> "
-"</a>"
+msgid "We have received a request for subscription with the email address, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
+msgstr "Hem rebut una sol·licitud de subscripció per a l'adreça de correu <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
 
 #.   <span>
 #.       We have received a request for unsubscription with the email
@@ -159,14 +126,8 @@ msgstr ""
 #.     </span>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_user_confirm_unsubscribe.pt
-msgid ""
-"We have received a request for unsubscription with the email address, <a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
-msgstr ""
-"Hem rebut una sol·licitud de baixa de la llista per a l'adreça de correu<a "
-"href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email"
-"\" /> </a>"
+msgid "We have received a request for unsubscription with the email address, <a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
+msgstr "Hem rebut una sol·licitud de baixa de la llista per a l'adreça de correu<a href=\"\" attributes=\"href string:mailto:${email}\"> <span replace=\"email\" /> </a>"
 
 #.   <i>
 #.         You may allowed only members with given local roles to subscribe to this
@@ -178,21 +139,8 @@ msgstr ""
 #.         opened to everybody for subscriptions.
 #.       </i>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid ""
-"You may allowed only members with given local roles to subscribe to this "
-"givent event. For instance, you may not want the anonymous users (public) to "
-"subscribe to the event 'reject content' within sections. For this, just pick "
-"up the local roles below for which you want to give the possiblity to the "
-"users granted with these local roles to subscribe to this event. If you do "
-"not specify any local roles then the event is opened to everybody for "
-"subscriptions."
-msgstr ""
-"Puede permitir subscribirse a este contenido sólo a aquellos miembros que "
-"tengan determinados roles. Así, por ejemplo, puede que no desee que los "
-"usuarios anónimos (los no registrados) tengan la opción de  \"rechazar "
-"contenido\" dentro de las secciones. Para ello, seleccione a qué roles "
-"locales les quiere ofrecer la posibilidad de subscribirse o no. Si no "
-"especifica ningún rol local, cualquiera podrá subscribirse."
+msgid "You may allowed only members with given local roles to subscribe to this givent event. For instance, you may not want the anonymous users (public) to subscribe to the event 'reject content' within sections. For this, just pick up the local roles below for which you want to give the possiblity to the users granted with these local roles to subscribe to this event. If you do not specify any local roles then the event is opened to everybody for subscriptions."
+msgstr "Vostè pot permetre subscriure's a aquest esdeveniment només a determinats membres que tinguin determinats rols. Per exemple, potser no vol que els usuaris anònims (el públic) es subscriguin a l'esdeveniment 'rebutjar contingut' dins les seccions. Per això, triï quins rols locals cal que tingui un usuari perquè es pugui subscriure a aquest esdeveniment. Si no tria cap rol, qualsevol s'hi podrà subscriure."
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -224,9 +172,7 @@ msgstr "Donar-se de baixa"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
-msgstr ""
-"No ha de modificar el camp següent si no és  estrictament necessari. Si és "
-"així, ha d'entrar una adreça de correu electrònic vàlida."
+msgstr "No ha de modificar el camp següent si no és  estrictament necessari. Si és així, ha d'entrar una adreça de correu electrònic vàlida."
 
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
@@ -416,10 +362,8 @@ msgstr "FALS"
 #.       </span>
 #.       </span>
 #: from ../skins/cps_subscriptions/subscription_edit_form.pt
-msgid ""
-"label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
-msgstr ""
-"label_<span replace=\"request/event_key|nothing\"> Subscripció ID </span>"
+msgid "label_<span replace=\"request/event_key|nothing\"> Susbcription ID </span>"
+msgstr "label_<span replace=\"request/event_key|nothing\"> Subscripció ID </span>"
 
 #.   <label for="anonymous_subscription_allowed">
 #.                 Allow anonymous subscriptions
@@ -488,17 +432,14 @@ msgstr "Introduir una adreça de correu vàlida"
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 #: ../skins/cps_subscriptions/folder_subscription_welcome.pt
 msgid "label_follow_subscriptions_instructions"
-msgstr ""
-"Per favor, segueixi les instruccions que trobarà al correu que aviat rebrà"
+msgstr "Per favor, segueixi les instruccions que trobarà al correu que aviat rebrà"
 
 #.   <span>
 #.                   Import a list of emails from a file. (text file with one email per ligne)
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_import_emais_list"
-msgstr ""
-"Importar una llista de correus electrònics des d'un fitxer (fitxer de text "
-"amb una adreça per línia)"
+msgstr "Importar una llista de correus electrònics des d'un fitxer (fitxer de text amb una adreça per línia)"
 
 #.   <span>
 #.            Mail body
@@ -527,18 +468,14 @@ msgstr "No s'ha trobat cap membre amb aquests criteris"
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
-msgstr ""
-"No hi ha cap esdeveniment obert a subscripcions aquí. Actualment no té cap "
-"subscripció en aquest context o per a aquest objecte"
+msgstr "No hi ha cap esdeveniment obert a subscripcions aquí. Actualment no té cap subscripció en aquest context o per a aquest objecte"
 
 #.   <div>
 #.               Currently you haven't any subscriptions in this context or for this object based on your local roles
 #.             </div>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions_based_on_local_roles"
-msgstr ""
-"Actualment no pot subscriure's en aquest context o per a aquest objecte, en "
-"funció dels seus rols locals"
+msgstr "Actualment no pot subscriure's en aquest context o per a aquest objecte, en funció dels seus rols locals"
 
 # ## PSMS ##########################################
 #.   <a href="." attributes="href string:${here/absolute_url}/subscription_edit_form?event_key=${event_key}">
@@ -580,8 +517,7 @@ msgstr "Avisar només a les persones que tinguin rols locals en aquesta carpeta"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
-msgstr ""
-"Avisar només sobre els esdeveniments que es produeixin en les subcarpetes"
+msgstr "Avisar només sobre els esdeveniments que es produeixin en les subcarpetes"
 
 #.   <td>Others</td>
 #: from
@@ -799,10 +735,6 @@ msgstr "Rebuig d'un comentari"
 msgid "label_forum_comment_deleted"
 msgstr "Supressió d'un comentari"
 
-#, fuzzy
-msgid "label_comment_created"
-msgstr "Creación de comentarios"
-
 # ## PSMS ##########################################
 msgid "label_notification_related_document"
 msgstr "Notificació relacionada amb el document"
@@ -844,9 +776,7 @@ msgid "psm_you_are_removed_from_the_mailing_list"
 msgstr "Ha estat donat de baixa de la llista de correu"
 
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
-msgstr ""
-"Ha estat donat de baixa de la llista de correu. Contacti amb l'administrador "
-"si vol tornar a subscriure-s'hi."
+msgstr "Ha estat donat de baixa de la llista de correu. Contacti amb l'administrador si vol tornar a subscriure-s'hi."
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Ha de triar al menys un esdeveniment per donar-se'n de baixa"
@@ -871,8 +801,9 @@ msgid "mode_monthly"
 msgstr "Mensual"
 
 msgid "bc_manage_my_subscriptions"
-msgstr "Les meves subscripcions"
+msgstr "Les meues subscripcions"
 
 #, fuzzy
-msgid "button_back"
-msgstr "Subscribe"
+#~ msgid "button_back"
+#~ msgstr "Subscribe"
+
