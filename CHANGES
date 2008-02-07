@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- Removed wrong SVN properties on files.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
