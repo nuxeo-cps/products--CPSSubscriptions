@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSSubscriptions 0.27.1
+===========================================================
+First release built by: madarche at: 2008-02-22T15:57:20
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/0.27.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@52586
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Removed wrong SVN properties on files.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 0.27.0
 ===========================================================
 First release built by: madarche at: 2007-10-19T12:21:46
