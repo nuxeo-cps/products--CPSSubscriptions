@@ -1,29 +1,30 @@
 # -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004-2005 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004-2008 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministere de L'interieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Florent Guillaume <fg@nuxeo.com>
-
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
 # $Id$
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
-""" Notification rule classes
+"""Notification rule classes
 
 The something that is actually done.  Usually it involves Recipients (sending
 email) but that's not mandatory (triggering an arbitrary script for instance).
@@ -131,14 +132,15 @@ class MailNotificationRule(NotificationRule):
 
         # Subject
         subject = infos['subject']
-        subject = string.replace(subject, "\n", "")
+        subject = string.replace(subject, '\n', '')
 
         # Header
         writer.addheader('subject', subject)
 
         # To
-        writer.addheader(string.capitalize('to'),
-                         mimify.mime_encode_header(infos['to']))
+        if infos.get('to'):
+            writer.addheader(string.capitalize('to'),
+                             mimify.mime_encode_header(infos['to']))
         # Bcc
         if infos.get('bcc'):
             writer.addheader(string.capitalize('bcc'),
@@ -170,9 +172,10 @@ class MailNotificationRule(NotificationRule):
     def _validateStructure(self, mail_infos):
         """Validate the mail_infos structure
         """
-
         return  (isinstance(mail_infos.get('sender_email'), str) and
-                 isinstance(mail_infos.get('to'), str) and
+                 # It is possible that no 'to' nor 'bcc' fields are specified
+                 isinstance(mail_infos.get('to', ''), str) and
+                 isinstance(mail_infos.get('bcc', ''), str) and
                  isinstance(mail_infos.get('subject'), str) and
                  isinstance(mail_infos.get('body'), tuple) and
                  len(mail_infos.get('body')) == 2)
@@ -182,11 +185,9 @@ class MailNotificationRule(NotificationRule):
 
         mail_infos contains all the needed information
         """
-
-        # Check the mail strucuture
-        # It could be build by the user with whatever stuffs within.
+        # Check the mail structure
         if not self._validateStructure(mail_infos):
-            logger.error("sendMail() check the email of the recipients  %r",
+            logger.error("sendMail() check the email of the recipients %r",
                          mail_infos)
             return -1
 
@@ -378,7 +379,7 @@ class MailNotificationRule(NotificationRule):
     security.declareProtected(ManagePortal, 'notifyRecipients')
     def notifyRecipients(self, event_type, object_, infos=None, emails=[],
                          members=[], groups=[], **kw):
-        """ Notify recipients
+        """Notify recipients
 
         This method will be called by the Subscription object when a
         notification occurs.
@@ -446,7 +447,8 @@ class MailNotificationRule(NotificationRule):
                 'sender_name': sname,
                 'sender_email': semail,
                 'subject': self._getSubject(infos),
-                'to': semail,
+                # No 'to' field here, the many recipients
+                # are specified in the 'bcc' field.
                 'bcc': bcc,
                 'body': (body, mime_type),
                 }
