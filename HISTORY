@@ -1,4 +1,25 @@
 ===========================================================
+Package: CPSSubscriptions 1.0.0
+===========================================================
+First release built by: madarche at: 2008-04-18T12:49:43
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/tags/1.0.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSSubscriptions/trunk@52761
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1903: Notifications are received twice and/or received by the sender email
+  address.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- Ready to be considered for a 1.0.0 release. 
+
+===========================================================
 Package: CPSSubscriptions 0.27.1
 ===========================================================
 First release built by: madarche at: 2008-02-22T15:57:20

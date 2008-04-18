@@ -6,8 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #1903: Notifications are received twice and/or received by the sender email
-  address.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
-- Ready to be considered for a 1.0.0 release. 
+- 
