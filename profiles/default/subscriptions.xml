@@ -42,6 +42,15 @@
   <event id="workflow_delete">label_workflow_delete</event>
   <event id="workflow_modify">label_workflow_modify</event>
  </context-events>
+ <context-events portal_type="Blog">
+  <event id="workflow_abandon_draft">label_workflow_abandon_draft</event>
+  <event id="workflow_checkin_draft">label_workflow_checkin_draft</event>
+  <event id="workflow_checkout_draft">label_workflow_checkout_draft</event>
+  <event id="workflow_create">label_workflow_create</event>
+  <event id="workflow_cut_copy_paste">label_workflow_cut_copy_paste</event>
+  <event id="workflow_delete">label_workflow_delete</event>
+  <event id="workflow_modify">label_workflow_modify</event>
+ </context-events>
  <area portal_type="Section">
   <context-roles portal_type="Section">
    <role id="Owner">label_owner</role>
