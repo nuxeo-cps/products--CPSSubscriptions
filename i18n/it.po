@@ -6,14 +6,14 @@ msgstr ""
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Preferred-encodings: utf-8 latin1\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "Language-Code: it\n"
 "Language-Name: Italian\n"
 "Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <block>
 #.                     <block replace="context_lcs/?role" />
@@ -194,7 +194,7 @@ msgstr ""
 "iscrivano all'evento 'rifiuta pubblicazione' in questa sezione. Per ottenere "
 "questo, seleziona i ruoli locali ai quali vuoi consentire l'iscrizione a "
 "questo evento. Nel caso non specifiche alcun ruolo locale, l'iscrizione "
-"all'evento sar‡ consentita a tutti."
+"all'evento sar√† consentita a tutti."
 
 #.   <input name="subscription_import:method" type="submit" class="standalone" value="button_import" />
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
@@ -228,7 +228,7 @@ msgstr "Abbandona la sottoscrizione"
 msgid "description_do_not_modify_or_enter_email_address"
 msgstr ""
 "Non devi modificare i campi successivi a meno che tu non abbia delle "
-"necessit‡ specifiche.<br> In questo caso dovrai inserire un indirizzo valido "
+"necessit√† specifiche.<br> In questo caso dovrai inserire un indirizzo valido "
 "come per esempio: sistema@miosito.net"
 
 #.   <label for="saveChanges">Save changes you have done:</label>
@@ -631,7 +631,7 @@ msgstr "Amministra"
 #.               </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_subscription_modes"
-msgstr "Modalit‡ di sottoscrizione"
+msgstr "Modalit√† di sottoscrizione"
 
 #.   <span>
 #.                   Where
@@ -798,7 +798,7 @@ msgstr "Correlato al documento"
 
 #, fuzzy
 msgid "label_comment_created"
-msgstr "CrÈation d'un commentaire"
+msgstr "Cr√©ation d'un commentaire"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -822,14 +822,14 @@ msgid "psm_please_choose_at_least_one_event_for subscription"
 msgstr "Scegli almeno un evento a cui desideri iscriverti."
 
 msgid "psm_email_sent_to_you"
-msgstr "Ti Ë stato inviato un messaggio di posta elettronica."
+msgstr "Ti √® stato inviato un messaggio di posta elettronica."
 
 msgid "psm_subscription_not_taken_into_consideration"
 msgstr "Sottoscrizioni non prese in considerazione."
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr ""
-"Prima di effettuare la conferma, devi necessariamente avere gi‡ effettuato "
+"Prima di effettuare la conferma, devi necessariamente avere gi√† effettuato "
 "la sottoscrizione."
 
 msgid "psm_welcome_to_mailing_list"
@@ -848,13 +848,13 @@ msgid "psm_please_choose_at_least_one_event_for unsubscription"
 msgstr "Per effettuare la disiscrizione, devi scegliere almeno un avvenimento."
 
 msgid "psm_an_email_has_been_sent"
-msgstr "L'email Ë stata inviata"
+msgstr "L'email √® stata inviata"
 
 msgid "psm_subscription_updated"
-msgstr "La configurazione dell'evento Ë stata aggiornata"
+msgstr "La configurazione dell'evento √® stata aggiornata"
 
 msgid "psm_user_mode_updated"
-msgstr "La modalit‡ di ricezione Ë stata aggiornata"
+msgstr "La modalit√† di ricezione √® stata aggiornata"
 
 # ## Subscription modes ############################
 msgid "mode_daily"

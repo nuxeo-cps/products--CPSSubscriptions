@@ -9,14 +9,14 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Preferred-encodings: utf-8 latin1\n"
 "X-Generator: KBabel 1.3\n"
 "Language-Code: mg\n"
 "Language-Name: Malagasy\n"
 "Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <block>
 #.                     <block replace="context_lcs/?role" />
@@ -293,7 +293,7 @@ msgstr "Enregistrer les changements"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 #, fuzzy
 msgid "header_subscribing_unsubscribing"
-msgstr "Abonnement/désabonnement"
+msgstr "Abonnement/dÃ©sabonnement"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -429,7 +429,7 @@ msgstr "Autoriser les abonnements pour les utilisateurs"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 #, fuzzy
 msgid "label_allow_user_unsubscriptions"
-msgstr "Autoriser les désabonnements pour les utilisateurs"
+msgstr "Autoriser les dÃ©sabonnements pour les utilisateurs"
 
 #.   <span>
 #.                 E-Mails Black list
@@ -553,7 +553,7 @@ msgstr "Manampy mailaka "
 #, fuzzy
 msgid "label_only_notify_local_roles"
 msgstr ""
-"Alerter uniquement les personnes ayant des rôles locaux dans ce répertoire"
+"Alerter uniquement les personnes ayant des rÃ´les locaux dans ce rÃ©pertoire"
 
 #.   <label for="notify_no_local">
 #.                 Only notify for events happening in sub-folders
@@ -591,7 +591,7 @@ msgstr "Mijery ireo olona rehetra voalaza ho an'ny zava-mitranga rehetra."
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 #, fuzzy
 msgid "label_sender_email_address"
-msgstr "Adresse électronique de l'émetteur"
+msgstr "Adresse Ã©lectronique de l'Ã©metteur"
 
 # ## LABELS #######################################
 #.   <span>
@@ -734,7 +734,7 @@ msgstr "Validation d'une version"
 
 #, fuzzy
 msgid "label_workflow_checkout_draft"
-msgstr "Création d'une version"
+msgstr "CrÃ©ation d'une version"
 
 #, fuzzy
 msgid "label_workflow_abandon_draft"
@@ -747,7 +747,7 @@ msgid "label_forum_comment_create"
 msgstr "Famoronana fanamarihana"
 
 msgid "label_reply_to_personnal_post"
-msgstr "A la réponse à une contribution personnelle"
+msgstr "A la rÃ©ponse Ã  une contribution personnelle"
 
 msgid "label_new_versions"
 msgstr "Famoronana laharana ho an'ny antotan-dahatsoratra"
@@ -791,7 +791,7 @@ msgstr "Rohy amin'ireo antotan-dahatsoratra"
 
 #, fuzzy
 msgid "label_comment_created"
-msgstr "Création d'un commentaire"
+msgstr "CrÃ©ation d'un commentaire"
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
@@ -846,7 +846,7 @@ msgstr "Vita soa amn-tsara ny fanamboarana ny zava-mitranga"
 
 #, fuzzy
 msgid "psm_user_mode_updated"
-msgstr "Le mode de réception a bien été mise à jour"
+msgstr "Le mode de rÃ©ception a bien Ã©tÃ© mise Ã  jour"
 
 # ## Subscription modes ############################
 msgid "mode_daily"

@@ -8,12 +8,13 @@ msgstr ""
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: de <rheinland@dzug.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: de\n"
-"Domain: default\n"
 "Language-Name: German\n"
+"Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <block>
 #.            <block replace="context_lcs/?role" />
@@ -200,15 +201,15 @@ msgstr "Beenden"
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_do_not_modify_or_enter_email_address"
 msgstr ""
-"Sie sollten das folgende Feld nicht verändern solange Sie keine speziellen "
-"Anforderungen haben, und wenn, dann sollten Sie eine gültige EMail-Adresse "
+"Sie sollten das folgende Feld nicht verÃ¤ndern solange Sie keine speziellen "
+"Anforderungen haben, und wenn, dann sollten Sie eine gÃ¼ltige EMail-Adresse "
 "angeben wie zB system@mysite.net"
 
 #.   <label for="saveChanges">Save changes you have done:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "description_save_changes"
-msgstr "Änderungen sichern"
+msgstr "Ã„nderungen sichern"
 
 #.   <span />
 #: from ../skins/cps_subscriptions/subscriptions_lib_user_confirm_subscribe.pt
@@ -229,14 +230,14 @@ msgstr "Vorhandene Ereignisse in diesem Kontext"
 #.       </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_choose_the_events"
-msgstr "Unten stehen die Ereignisse die Sie abonnieren können"
+msgstr "Unten stehen die Ereignisse die Sie abonnieren kÃ¶nnen"
 
 #.   <h4>
 #.           Below are the events you may unsubscribe
 #.         </h4>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_choose_the_events_to_sunsubscribe"
-msgstr "Unten stehen die Abonnements die Sie beenden können."
+msgstr "Unten stehen die Abonnements die Sie beenden kÃ¶nnen."
 
 #.   <h2>
 #.        Contextual notifications
@@ -253,7 +254,7 @@ msgstr "Benachrichtigungen im Kontext"
 #.                     </strong>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_enter_your_email"
-msgstr "Geben Sie eine gültige EMail Adresse ein"
+msgstr "Geben Sie eine gÃ¼ltige EMail Adresse ein"
 
 #.   <h2>
 #.        Sender address for outgoing emails
@@ -261,7 +262,7 @@ msgstr "Geben Sie eine gültige EMail Adresse ein"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_mfrom_mailing_list"
-msgstr "Absender Adresse für ausgehende EMails"
+msgstr "Absender Adresse fÃ¼r ausgehende EMails"
 
 #.   <h2>
 #.        Notified people
@@ -277,7 +278,7 @@ msgstr "Benachrichtigte Personen"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_save_changes"
-msgstr "Änderungen sichern"
+msgstr "Ã„nderungen sichern"
 
 #.   <h2>
 #.        Subscribing/unsubscribing
@@ -285,7 +286,7 @@ msgstr "Änderungen sichern"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "header_subscribing_unsubscribing"
-msgstr "abonnieren/Abonnement kündigen"
+msgstr "abonnieren/Abonnement kÃ¼ndigen"
 
 #.   <h4>
 #.           Below are the events for which you are subsribed because of your local roles
@@ -302,7 +303,7 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "header_user_subscribption_mode"
 msgstr ""
-"Sie können hier den Abonnement Modus auswählen für die oben stehenden "
+"Sie kÃ¶nnen hier den Abonnement Modus auswÃ¤hlen fÃ¼r die oben stehenden "
 "Abonnements"
 
 #.   <h1 condition="not:email">
@@ -325,7 +326,7 @@ msgstr "Alle Abonnementen"
 #.         </h1>
 #: from ../skins/cps_subscriptions/folder_confirm_subscribe_form.pt
 msgid "heading_confirm_subscribtion"
-msgstr "Bestätigen Sie das Abonnement für <span replace='event_id' />"
+msgstr "BestÃ¤tigen Sie das Abonnement fÃ¼r <span replace='event_id' />"
 
 #.   <h1>
 #.           Confirm unsubscription for <span replace="event_id" />
@@ -333,7 +334,7 @@ msgstr "Bestätigen Sie das Abonnement für <span replace='event_id' />"
 #: from ../skins/cps_subscriptions/folder_confirm_unsubscribe_form.pt
 msgid "heading_confirm_unsubscribtion"
 msgstr ""
-"Bestätigen Sie die Abmeldung des Abonnements für <span replace='event_id' />"
+"BestÃ¤tigen Sie die Abmeldung des Abonnements fÃ¼r <span replace='event_id' />"
 
 #.   <span>
 #.           Edit subscription
@@ -370,14 +371,14 @@ msgstr "Suche Teilnehmer die informiert werden sollen"
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_subscribe_form.pt
 msgid "heading_ok_subscription"
-msgstr "Abonnement wird geprüft"
+msgstr "Abonnement wird geprÃ¼ft"
 
 #.   <h1 condition="email">
 #.         Unsubscription taken into consideration
 #.       </h1>
 #: from ../skins/cps_subscriptions/folder_unsubscribe_form.pt
 msgid "heading_ok_unsubscription"
-msgstr "Abonnement Beendung wird geprüft"
+msgstr "Abonnement Beendung wird geprÃ¼ft"
 
 #.   <h1>
 #.         You are now part of the mailing list.
@@ -423,7 +424,7 @@ msgstr "Erlaube Teilnehmer Abonnements"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_allow_user_unsubscriptions"
-msgstr "Erlaube Teilnehmern Abonnents zu kündigen"
+msgstr "Erlaube Teilnehmern Abonnents zu kÃ¼ndigen"
 
 #.   <span>
 #.                 E-Mails Black list
@@ -460,7 +461,7 @@ msgstr "Diese EMail Adressen benachrichtigen:"
 #.                       </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_enter_your_email"
-msgstr "Geben Sie eine gültige EMail ein"
+msgstr "Geben Sie eine gÃ¼ltige EMail ein"
 
 #.   <span>
 #.          Please, follow the instruction included in the mail you will shortly receive
@@ -507,7 +508,7 @@ msgstr "Kein Ergebnis"
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions"
 msgstr ""
-"Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses "
+"Momentan haben Sie keine Abonnements in diesem Kontext oder fÃ¼r dieses "
 "Objekt."
 
 #.   <div>
@@ -516,7 +517,7 @@ msgstr ""
 #: from ../skins/cps_subscriptions/subscriptions_lib_display_user_subscribe.pt
 msgid "label_no_subscriptions_based_on_local_roles"
 msgstr ""
-"Momentan haben Sie keine Abonnements in diesem Kontext oder für dieses "
+"Momentan haben Sie keine Abonnements in diesem Kontext oder fÃ¼r dieses "
 "Objekt aufgrund Ihrer lokalen Rollen "
 
 # ## PSMS ##########################################
@@ -535,7 +536,7 @@ msgstr "Bearbeiten"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_notifications_add"
-msgstr "Hinzufügen"
+msgstr "HinzufÃ¼gen"
 
 # ## PSMS ##########################################
 #.   <span>
@@ -543,7 +544,7 @@ msgstr "Hinzufügen"
 #.         </span>
 #: from ../skins/cps_subscriptions/content_notify_email_search_results.pt
 msgid "label_notify_content_add_emails"
-msgstr "Hinzufügen weiterer Email Adressen (jeweils eine pro Zeile)"
+msgstr "HinzufÃ¼gen weiterer Email Adressen (jeweils eine pro Zeile)"
 
 #.   <label for="notify_local_only">
 #.                 Only notify people having local roles in this folder
@@ -559,7 +560,7 @@ msgstr "Nur Personen benachrichtigen die in diesem Folder lokale Rollen haben"
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_only_notify_subfolders"
-msgstr "Nur für Subfolder benachrichtigen"
+msgstr "Nur fÃ¼r Subfolder benachrichtigen"
 
 #.   <td>Others</td>
 #: from
@@ -572,7 +573,7 @@ msgstr "Andere"
 #.                 </span>
 #: from ../skins/cps_subscriptions/subscriptions_lib_configure_subscription.pt
 msgid "label_roles_allowed_to_subscribe"
-msgstr "Zeigen aller lokaler Rollen die hier Ereignisse abonnieren können "
+msgstr "Zeigen aller lokaler Rollen die hier Ereignisse abonnieren kÃ¶nnen "
 
 #.   <a href="." attributes="href string:javascript:open_subscribers_window()">
 #.          See all subscribers
@@ -580,7 +581,7 @@ msgstr "Zeigen aller lokaler Rollen die hier Ereignisse abonnieren können "
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
 msgid "label_see_all_subscribers"
-msgstr "Zeigen aller Abonnementen für alle Ereignisse"
+msgstr "Zeigen aller Abonnementen fÃ¼r alle Ereignisse"
 
 #.   <label for="senderEmailAddress">Email address of sender:</label>
 #: from
@@ -700,10 +701,10 @@ msgid "label_workflow_create"
 msgstr "Objekte Erstellen"
 
 msgid "label_workflow_modify"
-msgstr "Objekte Ändern"
+msgstr "Objekte Ã„ndern"
 
 msgid "label_workflow_cut_copy_paste"
-msgstr "Objekte kopieren / einfügen"
+msgstr "Objekte kopieren / einfÃ¼gen"
 
 msgid "label_workflow_publish"
 msgstr "Objekte Publizieren"
@@ -712,7 +713,7 @@ msgid "label_workflow_accept"
 msgstr "Objekte Publizieren Erlauben"
 
 msgid "label_workflow_delete"
-msgstr "Objekte Löschen"
+msgstr "Objekte LÃ¶schen"
 
 msgid "label_workflow_submit"
 msgstr "Objekte Vorlegen"
@@ -721,7 +722,7 @@ msgid "label_workflow_reject"
 msgstr "Objekte Publizieren Ablehnen"
 
 msgid "label_workflow_unpublish"
-msgstr "Objekte Zurückziehen"
+msgstr "Objekte ZurÃ¼ckziehen"
 
 #, fuzzy
 msgid "label_workflow_checkin_draft"
@@ -760,25 +761,25 @@ msgid "label_forum_post_published"
 msgstr "Nachricht publiziert"
 
 msgid "label_forum_post_unpublished"
-msgstr "Nachricht zurückgezogen"
+msgstr "Nachricht zurÃ¼ckgezogen"
 
 msgid "label_forum_post_rejected"
 msgstr "Nachricht abgelehnt"
 
 msgid "label_forum_post_deleted"
-msgstr "Nachricht gelöscht"
+msgstr "Nachricht gelÃ¶scht"
 
 msgid "label_forum_comment_published"
 msgstr "Kommentar publizieren"
 
 msgid "label_forum_comment_unpublished"
-msgstr "Kommentar zurückziehen"
+msgstr "Kommentar zurÃ¼ckziehen"
 
 msgid "label_forum_comment_rejected"
 msgstr "Kommentar abgelehnen"
 
 msgid "label_forum_comment_deleted"
-msgstr "Kommentar löschen"
+msgstr "Kommentar lÃ¶schen"
 
 #, fuzzy
 msgid "label_comment_created"
@@ -804,10 +805,10 @@ msgstr "Email Benachrichtigung"
 
 # ## PSMS ##########################################
 msgid "psm_notifications_changed"
-msgstr "Lokale Benachrichtung geändert"
+msgstr "Lokale Benachrichtung geÃ¤ndert"
 
 msgid "psm_please_choose_at_least_one_event_for subscription"
-msgstr "Bitte wählen Sie mindestens ein Ereignis für das Abonnement aus"
+msgstr "Bitte wÃ¤hlen Sie mindestens ein Ereignis fÃ¼r das Abonnement aus"
 
 msgid "psm_email_sent_to_you"
 msgstr "Eine EMail wurde an sie versandt"
@@ -817,7 +818,7 @@ msgstr "Abonnement wird nicht weiter verfolgt"
 
 msgid "psm_you_need_to_subscribe_before_trying_to_confirm"
 msgstr ""
-"Sorry, Sie müssen erst abonnieren bevor Sie das Abonnement bestätigen können"
+"Sorry, Sie mÃ¼ssen erst abonnieren bevor Sie das Abonnement bestÃ¤tigen kÃ¶nnen"
 
 msgid "psm_welcome_to_mailing_list"
 msgstr "Willkommen bei der Mailing Liste."
@@ -828,10 +829,10 @@ msgstr "Sie wurden von der Mailing Liste abgemeldet"
 msgid "psm_you_have_been_removed_from_the_list_contact_the_administrator_if_needed"
 msgstr ""
 "Sie wurden von  der Mailing Liste abgemeldet. Wenn Sie sich wieder anmelden "
-"wollen müssen Sie den Administrator dieser Liste anschreiben. "
+"wollen mÃ¼ssen Sie den Administrator dieser Liste anschreiben. "
 
 msgid "psm_please_choose_at_least_one_event_for unsubscription"
-msgstr "Bitte wählen Sie mindestens ein Ereignis aus"
+msgstr "Bitte wÃ¤hlen Sie mindestens ein Ereignis aus"
 
 msgid "psm_an_email_has_been_sent"
 msgstr "Eine EMail wurde versandt"
@@ -840,14 +841,14 @@ msgid "psm_subscription_updated"
 msgstr "Abonnement mit Erfolg erneuert"
 
 msgid "psm_user_mode_updated"
-msgstr "Der Rezeptions Modus wurde erfolgreich geändert"
+msgstr "Der Rezeptions Modus wurde erfolgreich geÃ¤ndert"
 
 # ## Subscription modes ############################
 msgid "mode_daily"
-msgstr "Täglich"
+msgstr "TÃ¤glich"
 
 msgid "mode_weekly"
-msgstr "Wöchentlich"
+msgstr "WÃ¶chentlich"
 
 msgid "mode_monthly"
 msgstr "Monatlich"
