@@ -94,6 +94,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         {'id': 'notify_hidden_object',
          'type': 'boolean', 'mode':'w',
          'label' : 'Notify hidden files'}, # FIXME Unused for now
+        {'id': 'user_is_sender',
+         'type': 'boolean', 'mode':'w',
+         'label' : "Use user's email address as mail from"}, 
         {'id': 'max_recipients_per_notification',
          'type': 'int', 'mode':'w',
          'label': 'Max recipients per notification message'},
@@ -128,6 +131,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
     mapping_local_roles_context = {}
     ignore_events = False
+    user_is_sender = False
 
     ###################################################
     # ZMI
@@ -1089,6 +1093,15 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         If use_portal_title is set to 1, then the portal title is used instead
         of the portal administrator name.
         """
+        if self.user_is_sender:
+            member = getToolByName(self, 
+                                   'portal_membership').getAuthenticatedMember()
+            address = member.getProperty('email', None)
+            name = member.getProperty('fullname', None)
+            if address is not None and name is not None:
+                return address, name
+
+        # otherwise default to global info
         portal = getToolByName(self, 'portal_url').getPortalObject()
         sender_email = portal.getProperty('email_from_address',
                                           'nobody@nobody.com')
