@@ -29,8 +29,8 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 Defines the Subscriptions Tool class
 """
 
+from logging import getLogger
 import warnings
-from zLOG import LOG, DEBUG
 
 from types import DictType, StringType
 
@@ -70,6 +70,8 @@ MAIL_NOTIFICATION_RULE_ID = 'mail__notification_rule'
 SUBSCRIPTION_PREFIX = 'subscription__'
 
 ##############################################################
+
+logger = getLogger('CPSSubscriptions.SubscriptionsTool')
 
 class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     """Subscriptions Tool
@@ -857,11 +859,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
                             recipients[pt_recipient] = pt_recipients[
                                 pt_recipient]
                     else:
-                        LOG("::CPSSubscriptions :: "
-                            "ComputeRecipientsRules ERROR",
-                            DEBUG,
-                            "You should provide a dictionnary",
-                            pt_recipient_rule.absolute_url())
+                        logger.debug("ComputeRecipientsRules ERROR: "
+                                     "You should provide a dictionnary %s"
+                                     % pt_recipient_rule.absolute_url())
         return recipients
 
     #############################################################
@@ -932,8 +932,8 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # .cps_subsciption may be herited from unaccessible parent
         # folder
         containers = catalog.unrestrictedSearchResults(None, **query)
-        LOG(":: CPSSubscriptions :: catalog search for containers" % query,
-            DEBUG, str([x.getPath() for x in containers]))
+        logger.debug("catalog search for containers %s %s"
+                     % (query, [x.getPath() for x in containers]))
 
         #
         # Now let's get the subcription containers and check if the computed
@@ -1066,6 +1066,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """Add within the scheduling table the message_id for a the given user
         within the given category
         """
+        logger.debug("scheduleNotificationMessageFor user_mode = %s" % user_mode)
 
         self._p_changed = 1
 
