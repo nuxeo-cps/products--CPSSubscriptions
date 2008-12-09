@@ -6,6 +6,8 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #1946: CPSSubscriptions stores persistently in the database all notification
+  messages
 - Leveraging the use of CPSUtil.text.toAscii.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~

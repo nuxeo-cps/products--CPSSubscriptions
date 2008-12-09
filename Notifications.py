@@ -385,7 +385,6 @@ class MailNotificationRule(NotificationRule):
         we won't send an email directly but store the email for further
         scheduling (daily, monthly, etc.).
         """
-
         # Construct a mapping for the email notification
         infos = self._makeInfoDict(event_type, object_, infos)
         if not infos:
@@ -416,22 +415,26 @@ class MailNotificationRule(NotificationRule):
             body = self._getBody(infos)
             mime_type = 'text/plain'
 
-        # Save the email notification body for furher scheduling.
-        # The scheduling table is stored on the subscriptions tool for now.
-        archive_id = stool.addNotificationMessageBodyObject(body, mime_type)
-
-        # Filter for the recipients we need to notify `real time` For
-        # the other ones, we will add an entry within the scheduling
-        # table.
+        # Filter out which recipients need to be notified "real time" and those
+        # who need to have a postponed notification. For the latter an entry is
+        # created persistently within the scheduling table.
+        postponed_notification = False
         real_time = []
         for email in emails:
             container = stool.getSubscriptionContainerFromContext(self)
             user_mode = container.getUserMode(email)
             if user_mode != 'mode_real_time':
+                postponed_notification = True
                 stool.scheduleNotificationMessageFor(user_mode, email,
                                                      archive_id)
             else:
                 real_time.append(email)
+
+        # If there is at least one postponed notification
+        if postponed_notification:
+            # Save the email notification body for furher scheduling.
+            # The scheduling table is stored on the subscriptions tool for now.
+            archive_id = stool.addNotificationMessageBodyObject(body, mime_type)
 
         # Send all the emails in batches for those in `real time` mode
         max_recipients = stool.max_recipients_per_notification
@@ -450,7 +453,7 @@ class MailNotificationRule(NotificationRule):
                 'body': (body, mime_type),
                 }
             self.sendMail(mail_infos, object_, event_id=infos.get('event', ''))
-            logger.debug('notifyRecipients() %r', mail_infos)
+            logger.debug("notifyRecipients() %r", mail_infos)
 
         # TODO: Dealing with members
         for member in members:
