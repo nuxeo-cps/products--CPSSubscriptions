@@ -749,14 +749,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     security.declarePublic('getSusbcriptionContainerFromContext')
     def getSubscriptionContainerFromContext(self, context,
                                             force_local_creation=0):
-        """Returns a subscriptions container in the context
+        """Returns a SubscriptionContainer relative to the context.
 
         Lookup to find one through acquisition with the accurate
         rights for the user to manage it. Note the user is supposed to
         have the rights to manage the container in the context if not
-        then this method will return None
+        then this method will return None.
         """
-
         # Lookup container by acquisition
         container = getattr(context, self.getSubscriptionContainerId(), None)
 
@@ -777,7 +776,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
     security.declarePrivate('notify_processed_event')
     def notify_processed_event(self, event_type, object, infos):
-        """EventManager's callable
+        """EventManager's callable.
         """
         subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         for subscription in subscriptions:
@@ -1067,9 +1066,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         within the given category
         """
         logger.debug("scheduleNotificationMessageFor user_mode = %s" % user_mode)
-
         self._p_changed = 1
-
         if user_mode and email and message_id:
             if not self.notification_scheduling_table.has_key(user_mode):
                 if user_mode in self.getSubscriptionModes():
