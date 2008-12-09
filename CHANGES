@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- Leveraging the use of CPSUtil.text.toAscii.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

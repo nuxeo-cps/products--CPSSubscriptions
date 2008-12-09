@@ -1,10 +1,11 @@
-# -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004-2008 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
 # Copyright (c) 2004 Ministere de L'interieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
-# Authors : Julien Anguenot <ja@nuxeo.com>
-#           Florent Guillaume <fg@nuxeo.com>
+# Authors:
+# Julien Anguenot <ja@nuxeo.com>
+# Florent Guillaume <fg@nuxeo.com>
+# M.-A. Darche <madarche@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -33,6 +34,7 @@ Notifications are subclasses of NotificationRule and store also as
 subobjects, like RecipientsRule.
 """
 
+from logging import getLogger
 import socket
 import cStringIO
 import string
@@ -54,7 +56,7 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from logging import getLogger
+from Products.CPSUtil.text import toAscii
 
 logger = getLogger('CPSSubscriptions.Notifications')
 
@@ -232,22 +234,17 @@ class MailNotificationRule(NotificationRule):
         return sender_email, sender_name
 
     def _getSubject(self, infos):
-        """ Returns the subject of the email.
+        """Returns the subject of the email.
 
-        Is proccessed with the infos given as parameters.
+        The infos given as parameters are used to create the subject.
         """
-
-        _translation_table = string.maketrans(
-            r"""¿¡¬√ƒ≈«»… ÀÃÕŒœ—“”‘’÷ÿŸ⁄€‹›‡·‚„‰ÂÁËÈÍÎÏÌÓÔÒÚÛÙıˆ¯˘˙˚¸˝ˇ""",
-            r"""AAAAAACEEEEIIIINOOOOOOUUUUYaaaaaaceeeeiiiinoooooouuuuyy""")
-
         try:
             subject = self.portal_subscriptions.getDefaultMessageTitle(
                 event_id=infos['event']) % infos
             # Temporary fix for suppressing accented chars, old Mime
-            # modules of Python can't hndle properly non-ASCII in
+            # modules of Python can't handle properly non-ASCII in
             # subject header.
-            subject = subject.translate(_translation_table)
+            subject = toAscii(subject)
         except (KeyError, TypeError), e:
             logger.error("Error in subject notification template for %r: %s",
                          infos.get('event'), e)
@@ -384,9 +381,9 @@ class MailNotificationRule(NotificationRule):
         This method will be called by the Subscription object when a
         notification occurs.
 
-        This method id aware about the fact that for some recipients
-        we won't send a email directly but store the email for further
-        scheduling. (daily, monthly, ...)
+        This method is aware about the fact that for some recipients
+        we won't send an email directly but store the email for further
+        scheduling (daily, monthly, etc.).
         """
 
         # Construct a mapping for the email notification
@@ -425,7 +422,7 @@ class MailNotificationRule(NotificationRule):
 
         # Filter for the recipients we need to notify `real time` For
         # the other ones, we will add an entry within the scheduling
-        # table
+        # table.
         real_time = []
         for email in emails:
             container = stool.getSubscriptionContainerFromContext(self)
