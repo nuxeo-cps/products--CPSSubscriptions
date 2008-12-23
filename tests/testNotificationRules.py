@@ -51,6 +51,28 @@ class DummyMailHost(SimpleItem):
         self.mail_log.append({'from': mfrom, 'to': mto, 'message': message,
                               'subject': subject, 'bcc': bcc})
 
+    def _send(self, mfrom, mto, msg):
+        message = email.message_from_string(msg)
+        hfrom = message['From']
+        hto = message['To']
+        hcc = message['Cc']
+        subject = message['Subject']
+        if message['Bcc'] is not None:
+            raise ValueError("Bcc has ended up in message headers")
+        # True bcc computation: take effective mto minus To and Cc headers
+        bcc = [r.strip() for r in mto]
+        if hto:
+            for r in hto.split(','):
+                bcc.remove(r.strip())
+        if hcc:
+            for r in hto.split(','):
+                bcc.remove(r.strip())
+        bcc = ','.join(bcc)
+        self.mail_log.append({'smtp_from': mfrom, 'smtp_to': mto, 
+                              'message': message,
+                              'from': hfrom, 'to': hto,
+                              'subject': subject, 'bcc': bcc})
+
 class TestBaseNotificationRule(
     CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
 
