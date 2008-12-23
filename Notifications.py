@@ -49,8 +49,20 @@ from Products.CMFCore.PortalFolder import PortalFolder
 
 from Products.CPSUtil.mail import send_mail
 from Products.CPSUtil.text import toAscii
+from Products.CPSUtil import html
 
 logger = getLogger('CPSSubscriptions.Notifications')
+
+HTML_TAGS_TO_KEEP =  ('div', 'p', 'span', 'br', 'hr',
+                    'a',
+                    'ul', 'ol', 'li',
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                    'em', 'strong',
+                    'dl', 'dt', 'dd',
+                    'address', 'q', 'blockquote', 'cite', 'abbr', 'acronym',
+                    'table', 'thead', 'tbody', 'th', 'tr', 'td', 'hr',
+                    'img', # this one is not in CPSUtil's tuple !
+                    )
 
 class NotificationRule(PortalFolder):
     """Base Notification rule Class.
@@ -365,7 +377,16 @@ class MailNotificationRule(NotificationRule):
             # Is the object_ a CPSDocument ?
             doc = hasattr(object_, 'getContent') and object_.getContent()
             if hasattr(doc, 'render'):
-                body = doc.render(proxy=object_)
+                rendered = doc.render(proxy=object_)
+                # Sanitization
+                body = html.sanitize(rendered,
+                                     tags_to_keep=HTML_TAGS_TO_KEEP)
+                if body is None: # try again with sgml parser
+                    body = html.sanitize(rendered,
+                                         sgml=True, 
+                                         tags_to_keep=HTML_TAGS_TO_KEEP)
+                if body is None: # sanitization failed. Forget it.
+                    body = rendered
                 mime_type = 'text/html'
             else:
                 # XXX : we might handle whatever sort of content for rendering

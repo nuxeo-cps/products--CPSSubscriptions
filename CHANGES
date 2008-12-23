@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #1950: html sanitization before sending via smtp
 - #1926: provide text alternative for html subscriptions
 - #1946: CPSSubscriptions stores persistently in the database all notification
   messages
