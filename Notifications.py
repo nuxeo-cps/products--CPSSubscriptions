@@ -188,7 +188,7 @@ class MailNotificationRule(NotificationRule):
         # get from container
         container = self.getSubscriptionContainer()
         if container is not None:
-            sender_email = container.getMailFrom() or sender_email
+            sender_email = container.getMailFrom()
             logger.debug('_getMailSenderInfo from container property: %s, %s',
                          sender_name, sender_email)
         return sender_email, sender_name
