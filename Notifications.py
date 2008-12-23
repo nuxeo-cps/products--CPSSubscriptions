@@ -35,6 +35,7 @@ subobjects, like RecipientsRule.
 """
 
 from logging import getLogger
+import string
 
 from AccessControl import getSecurityManager
 from AccessControl import ClassSecurityInfo
