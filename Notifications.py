@@ -35,14 +35,6 @@ subobjects, like RecipientsRule.
 """
 
 from logging import getLogger
-import socket
-import cStringIO
-import string
-import mimify
-import mimetools
-import MimeWriter
-from smtplib import SMTPException
-from urllib import urlencode
 
 from AccessControl import getSecurityManager
 from AccessControl import ClassSecurityInfo
@@ -50,12 +42,11 @@ from Acquisition import aq_base, aq_parent, aq_inner
 from Globals import InitializeClass
 from Globals import MessageDialog
 
-from Products.MailHost.MailHost import MailHostError
-
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
+from Products.CPSUtil.mail import send_mail
 from Products.CPSUtil.text import toAscii
 
 logger = getLogger('CPSSubscriptions.Notifications')
@@ -109,68 +100,6 @@ class MailNotificationRule(NotificationRule):
 
     security = ClassSecurityInfo()
 
-    def getRawMessage(self, infos, object, event_id):
-        """ Renders an RFC822 compliant message.
-        """
-
-        rendered_message = cStringIO.StringIO()
-        writer = MimeWriter.MimeWriter(rendered_message)
-
-        # Sender
-        if infos.get('sender_name'):
-            sender = '"%s" <%s>' % (infos['sender_name'],
-                                    infos['sender_email'])
-        else:
-            sender = '"%s" <%s>' % (infos['sender_email'],
-                                    infos['sender_email'])
-        writer.addheader('From', sender)
-
-        # Reply-To
-        reply_to_email = infos.get('reply_to_email')
-        if reply_to_email is not None:
-            reply_to_name = infos.get('reply_to_name', reply_to_email)
-            reply_to = '"%s" <%s>' % (reply_to_name, reply_to_email)
-            writer.addheader('Reply-To', reply_to)
-
-        # Subject
-        subject = infos['subject']
-        subject = string.replace(subject, '\n', '')
-
-        # Header
-        writer.addheader('subject', subject)
-
-        # To
-        if infos.get('to'):
-            writer.addheader(string.capitalize('to'),
-                             mimify.mime_encode_header(infos['to']))
-        # Bcc
-        if infos.get('bcc'):
-            writer.addheader(string.capitalize('bcc'),
-                             mimify.mime_encode_header(infos['bcc']))
-
-        # Misc
-        writer.addheader('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')
-        writer.flushheaders()
-        writer._fp.write('Content-Transfer-Encoding: 8bit\n')
-
-        if infos['body'][1] == 'text/html':
-            body_writer = writer.startbody('text/html; charset=iso-8859-15',
-                                           [],
-                                           {'Content-Transfer-Encoding':
-                                            '8bit'})
-        else:
-            body_writer = writer.startbody('text/plain; charset=iso-8859-15',
-                                           [],
-                                           {'Content-Transfer-Encoding':
-                                            '8bit'})
-
-        body = '\n' + infos['body'][0]
-        body = cStringIO.StringIO(body)
-        body.seek(0)
-        mimetools.copyliteral(body, body_writer)
-
-        return rendered_message.getvalue()
-
     def _validateStructure(self, mail_infos):
         """Validate the mail_infos structure
         """
@@ -193,19 +122,50 @@ class MailNotificationRule(NotificationRule):
                          mail_infos)
             return -1
 
-        raw_message = self.getRawMessage(mail_infos, object, event_id)
+        infos = mail_infos # TODO lazyness
 
-        logger.debug("sendMail() sending:\n\n%s", raw_message)
 
+        additional_headers = [('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')]
+
+        # From
+        if infos.get('sender_name'):
+            sender = '"%s" <%s>' % (infos['sender_name'],
+                                    infos['sender_email'])
+        else:
+            sender = '"%s" <%s>' % (infos['sender_email'],
+                                    infos['sender_email'])
+
+        # Reply-To
+        reply_to_email = infos.get('reply_to_email')
+        reply_to_name = infos.get('reply_to_name')
+        if reply_to_email is not None:
+            additional_headers.append((
+                'Reply-To', reply_to_name and '"%s" <%s>' % (
+                    reply_to_name, reply_to_email) or reply_to_email))
+
+        # Subject
+        subject = infos['subject']
+        subject = string.replace(subject, '\n', '')
+
+        # Body
+        body, ctype = infos['body']
+        
+        # Bcc
+        mbcc = infos.get('bcc')
+        if mbcc is not None:
+            # GR, actually, send_mail will re-join and also a bit more
+            mbcc = (c.strip() for c in mbcc.split(','))
+        
         try:
-            if mailhost is not None:
-                mailhost.send(raw_message)
-            else:
-                self.MailHost.send(raw_message)
-        except (socket.error, MailHostError, SMTPException), e:
-            logger.debug("sendMail() Error while sending mail "
-                         "check your SMTP parameters or mailfrom address "
-                         "error was:\n%r", e)
+            send_mail(self, infos.get('to'), sender, subject, body,
+                  mbcc=mbcc, 
+                  plain_text= (ctype == 'text/plain'),
+                  additional_headers = additional_headers)
+
+        except (ValueError, IOError), e:
+            logger.error("sendMail() Error while sending mail "
+                         "check your SMTP parameters or mailfrom address \n", 
+                         exc_info=True)
 
     def _getMailSenderInfo(self, infos):
         """Return mail sender information (name and email)
@@ -228,7 +188,7 @@ class MailNotificationRule(NotificationRule):
         # get from container
         container = self.getSubscriptionContainer()
         if container is not None:
-            sender_email = container.getMailFrom()
+            sender_email = container.getMailFrom() or sender_email
             logger.debug('_getMailSenderInfo from container property: %s, %s',
                          sender_name, sender_email)
         return sender_email, sender_name
