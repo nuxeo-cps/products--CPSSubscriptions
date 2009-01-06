@@ -29,6 +29,7 @@ Classes defining how to compute recipients. They are stored within
 the subscription container.
 """
 
+import logging
 from re import compile
 from DateTime.DateTime import DateTime
 
@@ -47,7 +48,7 @@ from Products.CMFCore.Expression import getEngine
 from Products.CPSSubscriptions.permissions import CanSubscribe
 from Products.CPSSubscriptions.permissions import ManageSubscriptions
 
-from zLOG import LOG, ERROR
+logger = logging.getLogger('Products.CPSSubscriptions.RecipientsRules')
 
 class RecipientsRule(PortalFolder):
     """Recipients Rule Class.
@@ -471,9 +472,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: subscribeTo()",
-                ERROR,
-                "Error : No mail notification found")
+            logger.error("::subscribeTo() No mail notification found")
             return 0
 
         # Subscription information from the subscription container
@@ -543,7 +542,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: subscribeTo()",
+            (" ::CPSSubscriptions:: subscribeTo()",
                 ERROR,
                 "Error : No mail notification found")
             return 0
@@ -586,9 +585,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: subscribeTo()",
-                ERROR,
-                "Error : No mail notification found")
+            logger.error("::unSubscribeTo() No mail notification found")
             return 0
 
         # Anonymous unsubscriptions
@@ -645,9 +642,7 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         notification_rule = getattr(self, notification_rule_id, None)
         if notification_rule is None:
-            LOG(" ::CPSSubscriptions:: subscribeTo()",
-                ERROR,
-                "Error : No mail notification found")
+            logger.error("::confirmUnSubscribeTo() No mail notification found")
             return 0
 
         # Anonymous unsubscriptions
