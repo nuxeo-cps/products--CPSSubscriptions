@@ -736,6 +736,8 @@ def addExplicitRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
 
 #########################################################
 
+MISSING_GROUP_WARNING = """\
+RoleRecipientsRule: group "%s" is recorded in local roles but does not exist. Consider purging local roles."""
 class RoleRecipientsRule(RecipientsRule):
     """Role Recipient Rules Class
 
@@ -843,7 +845,11 @@ class RoleRecipientsRule(RecipientsRule):
                             aclu = getattr(self, 'acl_users', None)
                             if group_id == 'role':
                                 group_id = group_id + ':' + entry.split(':')[2]
-                            group = aclu.getGroupById(group_id)
+                            try:
+                                group = aclu.getGroupById(group_id)
+                            except KeyError:
+                                logger.warn(MISSING_GROUP_WARNING, group_id)
+                                continue
                             member_ids = group.getUsers()
                         for member_id in member_ids:
                             email = mtool.getEmailFromUsername(member_id)
@@ -868,7 +874,11 @@ class RoleRecipientsRule(RecipientsRule):
                     if role in group[1]:
                         group_id = group[0]
                         aclu = getattr(self, 'acl_users', None)
-                        group = aclu.getGroupById(group_id)
+                        try:
+                            group = aclu.getGroupById(group_id)
+                        except KeyError:
+                            logger.warn(MISSING_GROUP_WARNING, group_id)
+                            continue
                         group_users = group.getUsers()
                         for member_id in group_users:
                             email = mtool.getEmailFromUsername(member_id)

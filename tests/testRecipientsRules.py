@@ -438,12 +438,24 @@ class TestRoleRecipientsRules(TestBaseRecipientsRules):
             def getUsers(self): return ('manager', 'toto', 'toto_no_email')
         class FakeUserFolder:
             def getGroupById(self, id):
-                return {'some_group': FakeGroup()}.get(id)
+                return {'some_group': FakeGroup()}[id] # KeyError is wanted
         rrr.acl_users = FakeUserFolder()
         rrr.portal_membership.getMergedLocalRoles = lambda _: {
             'user:manager': ('FakeRole',),
             'group:some_group': ('FakeRole',),
             'group:some_other_group': ('SomeOtherFakeRole',),
+        }
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {
+            'man@ager.net': 'manager',
+            'toto@ager.net': 'toto',
+        })
+
+        # test with a group that does not exist (#1955) having the relevant role
+        rrr.portal_membership.getMergedLocalRoles = lambda _: {
+            'user:manager': ('FakeRole',),
+            'group:some_other_group': ('FakeRole',),
+            'group:some_group': ('FakeRole',),
         }
         recipients = rrr.getRecipients('fake_event', container, infos={})
         self.assertEquals(recipients, {
@@ -464,6 +476,16 @@ class TestRoleRecipientsRules(TestBaseRecipientsRules):
 
         # adding some more groups with no merged local roles
         container.get_local_group_roles = lambda: (
+            ('some_group', ('FakeRole',)),)
+        recipients = rrr.getRecipients('fake_event', container, infos={})
+        self.assertEquals(recipients, {
+            'man@ager.net': 'manager',
+            'toto@ager.net': 'toto',
+        })
+
+        # again for #1955
+        container.get_local_group_roles = lambda: (
+            ('unknown_group', ('FakeRole',)),
             ('some_group', ('FakeRole',)),)
         recipients = rrr.getRecipients('fake_event', container, infos={})
         self.assertEquals(recipients, {
