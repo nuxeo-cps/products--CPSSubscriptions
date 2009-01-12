@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cps="http://namespaces.nuxeo.org/cps">
+
+  <!-- CPS 3.4 upgrades -->
+
+  <cps:upgradeStep
+      title="Clean up redundancies in subscriptions email from addresses"
+      source="3.4.7" destination="3.4.8"
+      handler=".upgrade.upgrade_347_348_email_from"
+      />
+
+</configure>

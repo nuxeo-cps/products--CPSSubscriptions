@@ -180,30 +180,40 @@ class MailNotificationRule(NotificationRule):
                          "check your SMTP parameters or mailfrom address \n", 
                          exc_info=True)
 
-    def _getMailSenderInfo(self, infos):
+    def _getMailSenderInfo(self, infos, with_user=True):
         """Return mail sender information (name and email)
 
         Try to get email from infos and from the subscriptions container
         instead of default values.
+        If with_users is set to True, then the container can decide that the
+        current user's email can be used
         """
-        # default values: admin name, admin email
         substool = getToolByName(self, 'portal_subscriptions')
+        # default values are the portal_wide choices, including user according
+        # to with_user
         # XXX AT: maybe use the portal title instead of the portal admin
         # name to send the email (?)
-        sender_email, sender_name = substool.getMailSenderInfo()
+        sender_email, sender_name = substool.getMailSenderInfo(
+            with_user=with_user)
         logger.debug('_getMailSenderInfo from substool: %s, %s',
                    sender_name, sender_email)
+
         # get info from 'infos' dict
         if infos.has_key('mfrom'):
             sender_email = infos.get('mfrom')
             logger.debug('_getMailSenderInfo from mfrom key in infos: %s, %s',
                          sender_name, sender_email)
+
         # get from container
         container = self.getSubscriptionContainer()
         if container is not None:
-            sender_email = container.getMailFrom()
+            cmf = container.getMailFrom()
+            # can't expect previous name to be still valid with new sender_email
+            if cmf and cmf != sender_email:
+                sender_name = ''
+            sender_email = cmf or sender_email
             logger.debug('_getMailSenderInfo from container property: %s, %s',
-                         sender_name, sender_email)
+                         sender_name, cmf)
         return sender_email, sender_name
 
     def _getSubject(self, infos):
@@ -456,7 +466,6 @@ class MailNotificationRule(NotificationRule):
         """
 
         tool = getToolByName(self, 'portal_subscriptions')
-        container = tool.getSubscriptionContainerFromContext(context)
         portal = getToolByName(self,'portal_url').getPortalObject()
         url_args = {
             'fake': 'subscriptions',
@@ -467,18 +476,20 @@ class MailNotificationRule(NotificationRule):
         object_url = context.absolute_url() \
                      + "/folder_confirm_subscribe_form?%s" %(url_args,)
 
+        # this is a service message
+        semail, sname = self._getMailSenderInfo({}, with_user=False)
+
         # Pre process for body/subject
         infos = {
             'portal_title': portal.Title(),
             'object_url'  : object_url,
             'event_id'    : event_id,
             'email'       : email,
-            'mfrom'       : container.getMailFrom(),
+            'mfrom'       : semail,
             }
 
         subject = tool.getSubscribeConfirmEmailTitle() % infos
         body = tool.getSubscribeConfirmEmailBody() % infos
-        semail, sname = self._getMailSenderInfo(infos)
 
         # For building the E-Mail
         mail_infos = {
@@ -501,10 +512,12 @@ class MailNotificationRule(NotificationRule):
 
         tool = getToolByName(self, 'portal_subscriptions')
         portal = getToolByName(self,'portal_url').getPortalObject()
-        container = tool.getSubscriptionContainerFromContext(context)
 
         info_url = context.absolute_url() + '/folder_subscribe_form'
         object_url = context.absolute_url()
+
+        # this is a service message
+        semail, sname = self._getMailSenderInfo({}, with_user=False)
 
         # Pre process for body/subject
         infos = {
@@ -514,12 +527,11 @@ class MailNotificationRule(NotificationRule):
             'info_url'    : info_url,
             'event_id'    : event_id,
             'email'       : email,
-            'mfrom'       : container.getMailFrom(),
+            'mfrom'       : semail,
             }
 
         subject = tool.getSubscribeWelcomeEmailTitle() % infos
         body = tool.getSubscribeWelcomeEmailBody() % infos
-        semail, sname = self._getMailSenderInfo(infos)
 
         # Post process
         infos['body'] =  body
@@ -553,6 +565,9 @@ class MailNotificationRule(NotificationRule):
         info_url = context.absolute_url() + '/folder_subscribe_form'
         object_url = context.absolute_url()
 
+        # this is a service message
+        semail, sname = self._getMailSenderInfo({}, with_user=False)
+
         # infos contains information needed to generated messages
         infos = {
             'portal_title': portal.Title(),
@@ -561,12 +576,11 @@ class MailNotificationRule(NotificationRule):
             'info_url'    : info_url,
             'event_id'    : event_id,
             'email'       : email,
-            'mfrom'       : container.getMailFrom(),
+            'mfrom'       : semail,
             }
 
         subject = tool.getUnSubscribeEmailTitle() % infos
         body = tool.getUnSubscribeEmailBody() % infos
-        semail, sname = self._getMailSenderInfo(infos)
 
         # Post process
         infos['body'] =  body
@@ -606,6 +620,9 @@ class MailNotificationRule(NotificationRule):
         object_url = context.absolute_url() \
                      + "/folder_confirm_unsubscribe_form?%s" %(url_args,)
 
+        # this is a service message
+        semail, sname = self._getMailSenderInfo({}, with_user=False)
+
         # infos contains information needed to generated messages
         infos = {
             'portal_title': portal.Title(),
@@ -615,12 +632,11 @@ class MailNotificationRule(NotificationRule):
             'info_url'    : info_url,
             'event_id'    : event_id,
             'email'       : email,
-            'mfrom'       : container.getMailFrom(),
+            'mfrom'       : semail,
             }
 
         subject = tool.getUnSubscribeConfirmEmailTitle() % infos
         body = tool.getUnSubscribeConfirmEmailBody() % infos
-        semail, sname = self._getMailSenderInfo(infos)
 
         # Post process
         infos['body'] =  body

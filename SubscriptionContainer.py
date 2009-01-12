@@ -117,15 +117,10 @@ class SubscriptionContainer(CPSBaseFolder):
         self.user_modes = {}
 
     security.declarePublic('getMailFrom')
-    def getMailFrom(self):
-        """Returns the default email address from for the emails
-        that are going to be sent by this container
-
-        The email address used by default is the email address of the portal
-        administrator.
+    def getMailFrom(self, with_user=True):
+        """Returns the email address that's stored at container level.
+        See #1925 for more detail.
         """
-        if not self.mfrom:
-            self.mfrom = self.portal_properties.email_from_address
         return self.mfrom
 
     def getLanguage(self):

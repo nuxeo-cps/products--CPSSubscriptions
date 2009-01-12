@@ -152,15 +152,33 @@ $Id$
           needs, and if so, you should enter a valid email address like,
           for example, system@mysite.net
         </p>
-        <p>
-          <tal:block define="current_mfrom python:subscription_folder and
-            subscription_folder.getMailFrom() or ''">
+	<tal:block define="current_mfrom subscription_folder/mfrom|string:;
+		user_is_sender subtool/user_is_sender;
+		portal_mfrom python:subtool.getMailSenderInfo()[0]">
+          <p>
+	    <span tal:condition="not:current_mfrom">
+	      The current setting is to use the portal wide default behaviour,
+	      that is
+	    </span>
+	    <span tal:condition="current_mfrom">
+	      Leave blank to get back to portal wide default behaviour,
+	      that is
+	    </span>
+	    <span tal:content="portal_mfrom" />
+	    <span tal:condition="subtool/user_is_sender">
+	      for service messages, and acting user's address 
+	      for workflow events
+	    </span>
+          </p>
+          <p>
             <label for="senderEmailAddress"
-              i18n:translate="label_sender_email_address">Email address of sender:</label>
+                   i18n:translate="label_sender_email_address">
+              Email address of sender:
+            </label>
             <input type="text" name="mfrom" id="senderEmailAddress" value=""
-              tal:attributes="value current_mfrom" />
-          </tal:block>
-        </p>
+	           tal:attributes="value current_mfrom" />
+          </p>
+	</tal:block>
 
         <h2 i18n:translate="header_notified_people">
           Notified people

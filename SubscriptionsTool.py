@@ -29,7 +29,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 Defines the Subscriptions Tool class
 """
 
-from logging import getLogger
+import logging
 import warnings
 
 from types import DictType, StringType
@@ -71,7 +71,7 @@ SUBSCRIPTION_PREFIX = 'subscription__'
 
 ##############################################################
 
-logger = getLogger('CPSSubscriptions.SubscriptionsTool')
+logger = logging.getLogger('CPSSubscriptions.SubscriptionsTool')
 
 class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     """Subscriptions Tool
@@ -890,6 +890,32 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
         return elt
 
+    def _catalogSearchContainers(self, context=None):
+        """Return a generator for the placeful containers under context.
+        If context is None, start from portal."""
+
+        # Place
+        if context is not None:
+            path = context.absolute_url()
+        else:
+            path = getToolByName(self, 'portal_url').getPortalPath()
+
+        # Get the subscriptions containers
+        catalog = getToolByName(self, 'portal_catalog')
+        portal_type = 'CPS PlaceFull Subscription Container'
+        query = {'portal_type': portal_type, 'path': path}
+
+        # Here we search the Catalog without view restriction because
+        # .cps_subsciption may be herited from unaccessible parent
+        # folder
+        brains = catalog.unrestrictedSearchResults(None, **query)
+        if logger.isEnabledFor(logging.DEBUG):
+            # logger's comma lazy notation isn't enough to avoid list evaluation
+            logger.debug("catalog search for containers %s %s"
+                         % (query, [x.getPath() for x in brains]))
+        return (brain.getObject() for brain in brains)
+
+
     security.declareProtected(ViewMySubscriptions, 'getAllSubscriptionsFor')
     def getAllSubscriptionsFor(self, member_id='', context=None):
         """Returns all the subscriptions for a given member/email or
@@ -916,32 +942,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             member_id = membership_tool.getAuthenticatedMember().getMemberId()
         email = membership_tool.getEmailFromUsername(member_id)
 
-        # Place
-        if context is not None:
-            path = context.absolute_url()
-        else:
-            path = getToolByName(self, 'portal_url').getPortalPath()
-
-        # Get the subscriptions containers
-        catalog = getToolByName(self, 'portal_catalog')
-        portal_type = 'CPS PlaceFull Subscription Container'
-        query = {'portal_type': portal_type, 'path': path}
-
-        # Here we search the Catalog without view restriction because
-        # .cps_subsciption may be herited from unaccessible parent
-        # folder
-        containers = catalog.unrestrictedSearchResults(None, **query)
-        logger.debug("catalog search for containers %s %s"
-                     % (query, [x.getPath() for x in containers]))
-
-        #
         # Now let's get the subcription containers and check if the computed
         # member is a subscriber from there.
         #
 
         subscriptions_list = []
-        for container in containers:
-            container_parent = aq_parent(aq_inner(container.getObject()))
+        for container in self._catalogSearchContainers(context=context):
+            container_parent = aq_parent(aq_inner(container))
             # Fetch the subscriptions in the given container
             subscriptions = self.getSubscriptionsFor(None, container_parent)
             for subscription in subscriptions:
@@ -1086,11 +1093,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         return -1
 
     security.declarePublic('getMailSenderInfo')
-    def getMailSenderInfo(self, use_portal_title=0):
+    def getMailSenderInfo(self, use_portal_title=0, with_user=True):
         """Return the sender information (name and email address)
 
         If use_portal_title is set to 1, then the portal title is used instead
         of the portal administrator name.
+        if the user_is_sender prop and with_user are True, then the 
+        current user's are returned
         """
         if self.user_is_sender:
             member = getToolByName(self,
