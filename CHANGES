@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #1925: Can use current user's as sending address
 - #1955: Don't crash if a group having roles has been deleted 
 - #1950: html sanitization before sending via smtp
 - #1926: provide text alternative for html subscriptions
