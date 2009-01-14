@@ -28,7 +28,13 @@ def upgrade_347_348_email_from(portal):
     """
     logger=logging.getLogger(
         'Products.CPSSubscriptions::upgrade_347_348_email_from')
-    stool = getToolByName(portal, 'portal_subscriptions')
+
+    stool = getToolByName(portal, 'portal_subscriptions', None)
+    if stool is None:
+        logger.warn(
+            "CPSSubscriptions profile not loaded. Upgrade step is irrelevant.")
+        return
+
     global_mfrom = getToolByName(portal, 
                                  'portal_properties').email_from_address.strip()
     for container in stool._catalogSearchContainers():
