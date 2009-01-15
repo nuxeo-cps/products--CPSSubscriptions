@@ -24,9 +24,9 @@ from Products.CMFCore.utils import getToolByName
 def upgrade_347_348_email_from(portal):
     """Remove stored email_from addresses that have been copied from portal.
 
-    See #
+    See #1925
     """
-    logger=logging.getLogger(
+    logger = logging.getLogger(
         'Products.CPSSubscriptions::upgrade_347_348_email_from')
 
     stool = getToolByName(portal, 'portal_subscriptions', None)
@@ -35,10 +35,10 @@ def upgrade_347_348_email_from(portal):
             "CPSSubscriptions profile not loaded. Upgrade step is irrelevant.")
         return
 
-    global_mfrom = getToolByName(portal, 
+    global_mfrom = getToolByName(portal,
                                  'portal_properties').email_from_address.strip()
     for container in stool._catalogSearchContainers():
         if container.mfrom.strip() == global_mfrom:
             container.mfrom = ''
-            logger.info("Cleaned placeful container of %s", 
+            logger.info("Cleaned placeful container of %s",
                         container.aq_inner.aq_parent)
