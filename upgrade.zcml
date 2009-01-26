@@ -10,4 +10,10 @@
       handler=".upgrade.upgrade_347_348_email_from"
       />
 
+  <cps:upgradeStep
+      title="Upgrade content rendering criteria for CPSSubscriptions"
+      source="3.4.7" destination="3.4.8"
+      handler=".upgrade.upgrade_347_348_render_types_events"
+      />
+
 </configure>

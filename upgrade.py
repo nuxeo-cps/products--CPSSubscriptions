@@ -42,3 +42,10 @@ def upgrade_347_348_email_from(portal):
             container.mfrom = ''
             logger.info("Cleaned placeful container of %s",
                         container.aq_inner.aq_parent)
+
+
+def upgrade_347_348_render_types_events(portal):
+    """Initiate the compiled version of properties."""
+    getToolByName(portal, 'portal_subscriptions')._postProcessProperties()
+    
+    

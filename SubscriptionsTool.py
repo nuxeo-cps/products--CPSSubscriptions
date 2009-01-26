@@ -5,6 +5,7 @@
 # Authors:
 # Julien Anguenot <ja@nuxeo.com>
 # Florent Guillaume <fg@nuxeo.com>
+# G. Racinet <georges@racinet.fr>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -35,7 +36,7 @@ import warnings
 from types import DictType, StringType
 
 from Globals import InitializeClass, DTMLFile
-from Acquisition import aq_parent, aq_inner
+from Acquisition import aq_parent, aq_inner, aq_base
 from AccessControl import ClassSecurityInfo
 
 from zope.interface import implements
@@ -59,6 +60,7 @@ from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 from EventSubscriptionsManager import get_event_subscriptions_manager
 
+from Products.CPSUtil.PropertiesPostProcessor import PropertiesPostProcessor
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 
 ##############################################################
@@ -73,7 +75,10 @@ SUBSCRIPTION_PREFIX = 'subscription__'
 
 logger = logging.getLogger('CPSSubscriptions.SubscriptionsTool')
 
-class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
+_marker_all = object()
+
+class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
+                        CMFBTreeFolder, ActionProviderBase):
     """Subscriptions Tool
 
     portal_subcriptions is the central tool with the necessary methods
@@ -93,6 +98,7 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
 
     security = ClassSecurityInfo()
 
+    _propertiesBaseClass = CMFBTreeFolder
     _properties = (
         {'id': 'notify_hidden_object',
          'type': 'boolean', 'mode':'w',
@@ -135,6 +141,25 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     mapping_local_roles_context = {}
     ignore_events = False
     user_is_sender = False
+
+    def _postProcessProperties(self):
+        def dictSplit(lines):
+            res = {}
+            for line in lines:
+                keyvals = [s.strip() for s in line.split(':', 1)]
+                key = keyvals[0]
+                if len(keyvals) == 1 or not keyvals[1]:
+                    res[key] = _marker_all
+                    continue
+                
+                vals = tuple(s.strip() for s in keyvals[1].split(','))
+                res[key] = vals
+            return res
+
+        self.render_content_for_portal_types_c = dictSplit(
+            self.render_content_for_portal_types)
+        self.render_content_for_events_c = dictSplit(
+            self.render_content_for_events)
 
     ###################################################
     # ZMI
@@ -363,6 +388,9 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         # Rendering content at notification time
         self.render_content_for_portal_types = ()
         self.render_content_for_events = ()
+        self.render_content_for_portal_types_c = {}
+        self.render_content_for_events_c = {}
+
 
         # Here, it's stored the notification scheduling table
         # Structure :
@@ -388,10 +416,17 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     def addRenderedPortalType(self, portal_type=''):
         """Add a portal type for wich the render of the content
         type will be included into the notification email body.
+
+        GR: updated for BBB, but such stuff is useless in GenericSetup times
         """
+        warnings.warn("addRenderedPortalType is obsolete and will be "
+                      "removed in CPS 3.5.0 "
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      DeprecationWarning, 2)
         if (isinstance(portal_type, StringType) and
             portal_type not in self.render_content_for_portal_types):
             self.render_content_for_portal_types += (portal_type,)
+            self._postProcessProperties()
             return 1
         return 0
 
@@ -399,10 +434,17 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     def addRenderedEvent(self, event_id=''):
         """Add an event for wich the render of the content
         type will be included into the notification email body.
+
+        GR: updated for BBB, but such stuff is useless in GenericSetup times
         """
+        warnings.warn("addRenderedEvent is obsolete and will be "
+                      "removed in CPS 3.5.0 "
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      DeprecationWarning, 2)
         if (isinstance(event_id, StringType) and
             event_id not in self.render_content_for_events):
             self.render_content_for_events += (event_id,)
+            self._postProcessProperties()
             return 1
         return 0
 
@@ -410,7 +452,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
     def getRenderedPortalTypes(self):
         """Return the portal_types that we are going to render
         and add the rendering within the email notification body
+
+        GR: deprecated, see #1960
         """
+        warnings.warn("getRenderedPortalTypes is obsolete and will be "
+                      "removed in CPS 3.5.0 "
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      DeprecationWarning, 2)
         return self.render_content_for_portal_types
 
     security.declarePublic('getRenderedEvents')
@@ -418,7 +466,13 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
         """Return the events for wich we are going to render the content
         type which is responsible of the notifications
         and then add this rendering within the email notification body
+
+        GR: deprecated, see #1960
         """
+        warnings.warn("getRenderedEvents is obsolete and will be "
+                      "removed in CPS 3.5.0 "
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      DeprecationWarning, 2)
         return self.render_content_for_events
 
     ###########################################################
@@ -773,6 +827,31 @@ class SubscriptionsTool(UniqueObject, CMFBTreeFolder, ActionProviderBase):
             container = self.addSubscriptionContainerInContext(context)
 
         return container
+
+    security.declarePublic('shouldRender')
+    def shouldRender(self, obj, event, **kw):
+        """Tell if a notification for 'event' on 'obj' should render object.
+
+        Does so by applying the list of rendered portal_types and list of 
+        rendered events. 
+        See #1960.
+        """
+
+        if obj is None: 
+            return False
+        type = getattr(aq_base(obj), 'portal_type', '')
+
+        events = self.render_content_for_portal_types_c.get(type, ())
+        if events == _marker_all or event in events:
+            return True
+
+        types = self.render_content_for_events_c.get(event, ())
+        if types == _marker_all or type in types:
+            return True
+
+        return False
+        
+        
 
     security.declarePrivate('notify_processed_event')
     def notify_processed_event(self, event_type, object, infos):

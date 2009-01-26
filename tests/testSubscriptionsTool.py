@@ -28,6 +28,51 @@ import CPSSubscriptionsTestCase
 
 from Products.CPSSubscriptions import SubscriptionsTool
 
+class UnitTestSubscriptionsTool(unittest.TestCase):
+    """For quick running unit tests."""
+
+    def setUp(self):
+        self.stool = SubscriptionsTool.SubscriptionsTool()
+        self.stool.manage_changeProperties(
+            render_content_for_portal_types=(
+                'File', 'News Item:evt1', 'Document:', 'Note:create, publish'))
+        self.stool.manage_changeProperties(
+            render_content_for_events=('wf_create', 'wf_publish:News Item,Gig'))
+    
+    def testPostProcessing(self):
+        _marker_all = SubscriptionsTool._marker_all
+        self.assertEquals(self.stool.render_content_for_portal_types_c, 
+                          {'File': _marker_all,
+                           'News Item': ('evt1',),
+                           'Document': _marker_all,
+                           'Note': ('create', 'publish'),
+                           })
+        self.assertEquals(self.stool.render_content_for_events_c, 
+                          {'wf_publish': ('News Item', 'Gig'),
+                           'wf_create': _marker_all,
+                           })
+
+    def testShouldRender(self):
+        shouldRender = self.stool.shouldRender
+        self.assertFalse(shouldRender(None, 'wf_create'))
+
+        class FakeContent:
+            pass
+        content = FakeContent()
+        
+        content.portal_type = 'News Item'
+        self.assertFalse(shouldRender(content, 'unknown_event'))
+        self.assertTrue(shouldRender(content, 'wf_publish'))
+        self.assertTrue(shouldRender(content, 'wf_create'))
+        self.assertTrue(shouldRender(content, 'evt1'))
+
+        content.portal_type = 'File'
+        self.assertTrue(shouldRender(content, 'unknown_event'))
+
+        content.portal_type = 'Unknown Type'
+        self.assertTrue(shouldRender(content, 'wf_create'))
+                     
+
 class TestSubscriptionsTool(
     CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
     """Test Subscriptions Tool
@@ -161,6 +206,7 @@ class TestSubscriptionsTool(
 
 def test_suite():
     suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(UnitTestSubscriptionsTool))
     suite.addTest(unittest.makeSuite(TestSubscriptionsTool))
     return suite
 

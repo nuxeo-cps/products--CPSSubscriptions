@@ -6,6 +6,7 @@
 # Julien Anguenot <ja@nuxeo.com>
 # Florent Guillaume <fg@nuxeo.com>
 # M.-A. Darche <madarche@nuxeo.com>
+# G. Racinet <georges@racinet.fr>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -379,11 +380,9 @@ class MailNotificationRule(NotificationRule):
         # portal_type or because of the event id.  This is defined
         # subscriptions tool side.
         stool = getToolByName(self, 'portal_subscriptions')
-        rendered_ptypes = stool.getRenderedPortalTypes()
-        rendered_events = stool.getRenderedEvents()
-        if (object_ is not None and
-            getattr(object_, 'portal_type', '') in rendered_ptypes or
-            infos.get('event', '') in rendered_events):
+        
+        event_id = infos.get('event', '')
+        if stool.shouldRender(object_, event_id):
             # Is the object_ a CPSDocument ?
             doc = hasattr(object_, 'getContent') and object_.getContent()
             if hasattr(doc, 'render'):
@@ -444,7 +443,7 @@ class MailNotificationRule(NotificationRule):
                 'bcc': bcc,
                 'body': (body, mime_type),
                 }
-            self.sendMail(mail_infos, object_, event_id=infos.get('event', ''))
+            self.sendMail(mail_infos, object_, event_id=event_id)
             logger.debug("notifyRecipients() %r", mail_infos)
 
         # TODO: Dealing with members
