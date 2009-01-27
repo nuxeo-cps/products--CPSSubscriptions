@@ -27,7 +27,6 @@ from Products.GenericSetup.utils import exportObjects
 from Products.GenericSetup.utils import importObjects
 from Products.GenericSetup.utils import XMLAdapterBase
 from Products.GenericSetup.utils import ObjectManagerHelpers
-from Products.GenericSetup.utils import PropertyManagerHelpers
 
 from Products.CMFCore.utils import getToolByName
 
@@ -36,6 +35,8 @@ from Products.GenericSetup.interfaces import ISetupEnviron
 
 from Products.CPSUtil.genericsetup import StrictTextElement
 from Products.CPSUtil.genericsetup import getExactNodeText
+from Products.CPSUtil.PropertiesPostProcessor import (
+    PostProcessingPropertyManagerHelpers)
 
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 
@@ -62,7 +63,7 @@ def importSubscriptionsTool(context):
     importObjects(tool, '', context)
 
 class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
-                                  PropertyManagerHelpers):
+                                  PostProcessingPropertyManagerHelpers):
     """XML importer and exporter for SubscriptionsTool.
     """
 
