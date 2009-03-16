@@ -163,22 +163,22 @@ class MailNotificationRule(NotificationRule):
 
         # Body
         body, ctype = infos['body']
-        
+
         # Bcc
         mbcc = infos.get('bcc')
         if mbcc is not None:
             # GR, actually, send_mail will re-join and also a bit more
             mbcc = (c.strip() for c in mbcc.split(','))
-        
+
         try:
             send_mail(self, infos.get('to'), sender, subject, body,
-                  mbcc=mbcc, 
+                  mbcc=mbcc,
                   plain_text= (ctype == 'text/plain'),
                   additional_headers = additional_headers)
 
         except (ValueError, IOError), e:
             logger.error("sendMail() Error while sending mail "
-                         "check your SMTP parameters or mailfrom address \n", 
+                         "check your SMTP parameters or mailfrom address \n",
                          exc_info=True)
 
     def _getMailSenderInfo(self, infos, with_user=True):
@@ -380,7 +380,7 @@ class MailNotificationRule(NotificationRule):
         # portal_type or because of the event id.  This is defined
         # subscriptions tool side.
         stool = getToolByName(self, 'portal_subscriptions')
-        
+
         event_id = infos.get('event', '')
         if stool.shouldRender(object_, event_id):
             # Is the object_ a CPSDocument ?
@@ -392,7 +392,7 @@ class MailNotificationRule(NotificationRule):
                                      tags_to_keep=HTML_TAGS_TO_KEEP)
                 if body is None: # try again with sgml parser
                     body = html.sanitize(rendered,
-                                         sgml=True, 
+                                         sgml=True,
                                          tags_to_keep=HTML_TAGS_TO_KEEP)
                 if body is None: # sanitization failed. Forget it.
                     body = rendered
