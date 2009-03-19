@@ -151,7 +151,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
                 if len(keyvals) == 1 or not keyvals[1]:
                     res[key] = _marker_all
                     continue
-                
+
                 vals = tuple(s.strip() for s in keyvals[1].split(','))
                 res[key] = vals
             return res
@@ -421,7 +421,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         """
         warnings.warn("addRenderedPortalType is obsolete and will be "
                       "removed in CPS 3.5.0 "
-                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960",
                       DeprecationWarning, 2)
         if (isinstance(portal_type, StringType) and
             portal_type not in self.render_content_for_portal_types):
@@ -439,7 +439,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         """
         warnings.warn("addRenderedEvent is obsolete and will be "
                       "removed in CPS 3.5.0 "
-                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960",
                       DeprecationWarning, 2)
         if (isinstance(event_id, StringType) and
             event_id not in self.render_content_for_events):
@@ -457,7 +457,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         """
         warnings.warn("getRenderedPortalTypes is obsolete and will be "
                       "removed in CPS 3.5.0 "
-                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960",
                       DeprecationWarning, 2)
         return self.render_content_for_portal_types
 
@@ -471,7 +471,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         """
         warnings.warn("getRenderedEvents is obsolete and will be "
                       "removed in CPS 3.5.0 "
-                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960", 
+                      "cf http://svn.nuxeo.org/trac/pub/ticket/1960",
                       DeprecationWarning, 2)
         return self.render_content_for_events
 
@@ -832,12 +832,12 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
     def shouldRender(self, obj, event, **kw):
         """Tell if a notification for 'event' on 'obj' should render object.
 
-        Does so by applying the list of rendered portal_types and list of 
-        rendered events. 
+        Does so by applying the list of rendered portal_types and list of
+        rendered events.
         See #1960.
         """
 
-        if obj is None: 
+        if obj is None:
             return False
         type = getattr(aq_base(obj), 'portal_type', '')
 
@@ -850,8 +850,8 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
             return True
 
         return False
-        
-        
+
+
 
     security.declarePrivate('notify_processed_event')
     def notify_processed_event(self, event_type, object, infos):
@@ -1177,7 +1177,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
 
         If use_portal_title is set to 1, then the portal title is used instead
         of the portal administrator name.
-        if the user_is_sender prop and with_user are True, then the 
+        if the user_is_sender prop and with_user are True, then the
         current user's are returned
         """
         if self.user_is_sender:
