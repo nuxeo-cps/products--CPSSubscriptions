@@ -136,43 +136,49 @@ class MailNotificationRule(NotificationRule):
                          mail_infos)
             return -1
 
-        infos = mail_infos # TODO lazyness
-
-
         additional_headers = [('X-Mailer', 'Nuxeo CPS 3 : CPSSubscriptions')]
 
         # From
-        if infos.get('sender_name'):
-            sender = '"%s" <%s>' % (infos['sender_name'],
-                                    infos['sender_email'])
+        if mail_infos.get('sender_name'):
+            sender = '"%s" <%s>' % (mail_infos['sender_name'],
+                                    mail_infos['sender_email'])
         else:
-            sender = '"%s" <%s>' % (infos['sender_email'],
-                                    infos['sender_email'])
+            sender = '"%s" <%s>' % (mail_infos['sender_email'],
+                                    mail_infos['sender_email'])
 
         # Reply-To
-        reply_to_email = infos.get('reply_to_email')
-        reply_to_name = infos.get('reply_to_name')
+        reply_to_email = mail_infos.get('reply_to_email')
+        reply_to_name = mail_infos.get('reply_to_name')
         if reply_to_email is not None:
             additional_headers.append((
                 'Reply-To', reply_to_name and '"%s" <%s>' % (
                     reply_to_name, reply_to_email) or reply_to_email))
 
         # Subject
-        subject = infos['subject']
+        subject = mail_infos['subject']
         subject = string.replace(subject, '\n', '')
 
         # Body
-        body, ctype = infos['body']
+        body, ctype = mail_infos['body']
+
+        # Related parts
+        related_parts = {}
+        cid_parts = mail_infos.get('cid_parts')
+        if cid_parts is not None:
+            for cid, part in cid_parts.items():
+                related_parts[cid] = {'data': part['content'],
+                                      'filename': part['filename'],
+                                      'content-type': str(part['content-type'])}
 
         # Bcc
-        mbcc = infos.get('bcc')
+        mbcc = mail_infos.get('bcc')
         if mbcc is not None:
             # GR, actually, send_mail will re-join and also a bit more
             mbcc = (c.strip() for c in mbcc.split(','))
 
         try:
-            send_mail(self, infos.get('to'), sender, subject, body,
-                  mbcc=mbcc,
+            send_mail(self, mail_infos.get('to'), sender, subject, body,
+                  mbcc=mbcc, related_parts=related_parts,
                   plain_text= (ctype == 'text/plain'),
                   additional_headers = additional_headers)
 
@@ -382,11 +388,12 @@ class MailNotificationRule(NotificationRule):
         stool = getToolByName(self, 'portal_subscriptions')
 
         event_id = infos.get('event', '')
+        cid_parts = None
         if stool.shouldRender(object_, event_id):
             # Is the object_ a CPSDocument ?
             doc = hasattr(object_, 'getContent') and object_.getContent()
-            if hasattr(doc, 'render'):
-                rendered = doc.render(proxy=object_)
+            if hasattr(doc, 'renderEmail'):
+                rendered, cid_parts = doc.renderEmail(proxy=object_)
                 # Sanitization
                 body = html.sanitize(rendered,
                                      tags_to_keep=HTML_TAGS_TO_KEEP)
@@ -409,6 +416,7 @@ class MailNotificationRule(NotificationRule):
         # Filter out which recipients need to be notified "real time" and those
         # who need to have a postponed notification. For the latter an entry is
         # created persistently within the scheduling table.
+        # GR: this persistence can be costly for heavy mails
         postponed_notification = False
         real_time = []
         for email in emails:
@@ -428,6 +436,8 @@ class MailNotificationRule(NotificationRule):
             archive_id = stool.addNotificationMessageBodyObject(body, mime_type)
 
         # Send all the emails in batches for those in `real time` mode
+        # XXX GR: how to avoid doing the dumping of binary parts and
+        # other heavy content each time? Probably an MTA job
         max_recipients = stool.max_recipients_per_notification
         semail, sname = self._getMailSenderInfo(infos)
         while real_time:
@@ -442,9 +452,12 @@ class MailNotificationRule(NotificationRule):
                 # are specified in the 'bcc' field.
                 'bcc': bcc,
                 'body': (body, mime_type),
+                'cid_parts': cid_parts,
                 }
             self.sendMail(mail_infos, object_, event_id=event_id)
-            logger.debug("notifyRecipients() %r", mail_infos)
+            # no need to log a lot, mail util will do it
+            logger.debug("notifyRecipients() %d just done, %d remaining ",
+                         len(batch), len(real_time))
 
         # TODO: Dealing with members
         for member in members:
