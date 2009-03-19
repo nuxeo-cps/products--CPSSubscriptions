@@ -63,6 +63,7 @@ HTML_TAGS_TO_KEEP =  ('div', 'p', 'span', 'br', 'hr',
                     'address', 'q', 'blockquote', 'cite', 'abbr', 'acronym',
                     'table', 'thead', 'tbody', 'th', 'tr', 'td', 'hr',
                     'img', # this one is not in CPSUtil's tuple !
+                    'html', 'head', 'body', 'link',
                     )
 
 class NotificationRule(PortalFolder):
