@@ -6,6 +6,7 @@ New features
 - #1961: improve HTML rendering of subscriptions (inline images)
 Bug fixes
 ~~~~~~~~~
+- #1986: persistence related error with HTML rendering
 - #1960: finer control of content rendering
 - #1925: Can use current user's as sending address
 - #1955: Don't crash if a group having roles has been deleted

@@ -75,7 +75,7 @@ SUBSCRIPTION_PREFIX = 'subscription__'
 
 logger = logging.getLogger('CPSSubscriptions.SubscriptionsTool')
 
-_marker_all = object()
+_marker_all = ()
 
 class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
                         CMFBTreeFolder, ActionProviderBase):
@@ -841,12 +841,12 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
             return False
         type = getattr(aq_base(obj), 'portal_type', '')
 
-        events = self.render_content_for_portal_types_c.get(type, ())
-        if events == _marker_all or event in events:
+        events = self.render_content_for_portal_types_c.get(type)
+        if events is not None and (events == _marker_all or event in events):
             return True
 
-        types = self.render_content_for_events_c.get(event, ())
-        if types == _marker_all or type in types:
+        types = self.render_content_for_events_c.get(event)
+        if types is not None and (types == _marker_all or type in types):
             return True
 
         return False
