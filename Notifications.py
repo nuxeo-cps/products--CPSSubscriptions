@@ -232,10 +232,6 @@ class MailNotificationRule(NotificationRule):
         try:
             subject = self.portal_subscriptions.getDefaultMessageTitle(
                 event_id=infos['event']) % infos
-            # Temporary fix for suppressing accented chars, old Mime
-            # modules of Python can't handle properly non-ASCII in
-            # subject header.
-            subject = toAscii(subject)
         except (KeyError, TypeError), e:
             logger.error("Error in subject notification template for %r: %s",
                          infos.get('event'), e)
