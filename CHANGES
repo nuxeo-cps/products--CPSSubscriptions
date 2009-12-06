@@ -16,6 +16,7 @@ Bug fixes
 - #1946: CPSSubscriptions stores persistently in the database all notification
   messages
 - Leveraging the use of CPSUtil.text.toAscii.
+- related to #2081: recipient rules instantiation used computeId skins script
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 -

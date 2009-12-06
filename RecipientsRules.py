@@ -45,6 +45,7 @@ from Products.CMFCore.permissions import View
 from Products.CMFCore.Expression import Expression
 from Products.CMFCore.Expression import getEngine
 
+from Products.CPSUtil.id import generateId
 from Products.CPSSubscriptions.permissions import CanSubscribe
 from Products.CPSSubscriptions.permissions import ManageSubscriptions
 
@@ -902,7 +903,7 @@ def addRoleRecipientsRule(self, id=None, title='', REQUEST=None, **kw):
     """Add a roles explicit Recipient rules
     """
     if not id:
-        id = self.computeId()
+        id = generateId('', container=self.this())
     if hasattr(aq_base(self), id):
         return MessageDialog(
             title='Item Exists',
