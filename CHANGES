@@ -3,20 +3,10 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
-- #1961: improve HTML rendering of subscriptions (inline images)
+-
 Bug fixes
 ~~~~~~~~~
-- #1991: Notifications subjects are stripped of accented characters
-- #1986: persistence related error with HTML rendering
-- #1960: finer control of content rendering
-- #1925: Can use current user's as sending address
-- #1955: Don't crash if a group having roles has been deleted
-- #1950: html sanitization before sending via smtp
-- #1926: provide text alternative for html subscriptions
-- #1946: CPSSubscriptions stores persistently in the database all notification
-  messages
-- Leveraging the use of CPSUtil.text.toAscii.
-- related to #2081: recipient rules instantiation used computeId skins script
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
--
+- 
