@@ -7,6 +7,7 @@ members, explicit_recipients_emails, mail_subject, mail_body
 """
 
 from Products.CMFCore.utils import getToolByName
+from Products.CPSUtil.text import get_final_encoding
 
 if REQUEST is not None:
     kw.update(REQUEST.form)
@@ -17,11 +18,13 @@ mail_subject = kw.get('mail_subject', '')
 mail_body = kw.get('mail_body', '')
 
 mcat = context.translation_service
+encoding = get_final_encoding(mcat)
 
 # Add a link to the current content at the end of the mail_body
 mail_body = mail_body + \
             '\n' + \
-            mcat('label_notification_related_document').encode('ISO-8859-15', 'ignore') + \
+            mcat('label_notification_related_document').encode(encoding,
+                                                               'ignore') + \
             ' : ' + \
             context.absolute_url()
 
@@ -38,8 +41,6 @@ for member_id in members:
     email = mtool.getEmailFromUsername(member_id)
     if email is not None:
         tos.append(email)
-
-to_str = ','.join(tos)
 
 infos = {
     'sender_email'   : sender_email,

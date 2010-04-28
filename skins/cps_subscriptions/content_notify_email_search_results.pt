@@ -58,7 +58,7 @@
       </span>
   </div>
   <div class="field" align="center">
-    <textarea name="explicit_recipients_emails:lines" rows="10" cols="60"></textarea>
+    <textarea name="explicit_recipients_emails:utf8:ulines" rows="10" cols="60"></textarea>
   </div>
 </div>
 
@@ -69,7 +69,7 @@
       </span>
   </div>
   <div class="field" align="center">
-    <input type="text" name="mail_subject" size="62" value="" />
+    <input type="text" name="mail_subject:utf8:ustring" size="62" value="" />
   </div>
 </div>
 
@@ -80,7 +80,7 @@
       </span>
   </div>
   <div class="field" align="center">
-    <textarea name="mail_body" rows="10" cols="60"></textarea>
+    <textarea name="mail_body:utf8:ustring" rows="10" cols="60"></textarea>
   </div>
 </div>
 
