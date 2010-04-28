@@ -1,3 +1,4 @@
+<dtml-call "REQUEST.set('management_page_charset','utf-8')">
 <dtml-var manage_page_header>
 <dtml-var manage_tabs>
 
@@ -22,7 +23,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <input name="subscribe_confirm_email_title" size="55" value="&dtml-getSubscribeConfirmEmailTitle;" />
+      <input name="subscribe_confirm_email_title:utf8:ustring" size="55" value="&dtml-getSubscribeConfirmEmailTitle;" />
     </td>
  </tr>
  <tr>
@@ -32,7 +33,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_confirm_email_body" cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailBody()"></textarea>
+      <textarea name="subscribe_confirm_email_body:utf8:ustring" cols="55" rows="10"><dtml-var "getSubscribeConfirmEmailBody()"></textarea>
     </td>
  </tr>
 
@@ -43,7 +44,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <input name="subscribe_welcome_email_title" size="55" value="&dtml-getSubscribeWelcomeEmailTitle;" />
+      <input name="subscribe_welcome_email_title:utf8:ustring" size="55" value="&dtml-getSubscribeWelcomeEmailTitle;" />
     </td>
  </tr>
  <tr>
@@ -53,7 +54,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="subscribe_welcome_email_body" cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
+      <textarea name="subscribe_welcome_email_body:utf8:ustring" cols="55" rows="10"><dtml-var "getSubscribeWelcomeEmailBody()"></textarea>
     </td>
  </tr>
 
@@ -64,7 +65,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <input name="unsubscribe_confirm_email_title" size="55" value="&dtml-getUnSubscribeConfirmEmailTitle;" />
+      <input name="unsubscribe_confirm_email_title:utf8:ustring" size="55" value="&dtml-getUnSubscribeConfirmEmailTitle;" />
     </td>
  </tr>
  <tr>
@@ -74,7 +75,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_confirm_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailBody()"></textarea>
+      <textarea name="unsubscribe_confirm_email_body:utf8:ustring" cols="55" rows="10"><dtml-var "getUnSubscribeConfirmEmailBody()"></textarea>
     </td>
  </tr>
 
@@ -85,7 +86,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <input name="unsubscribe_email_title" size="55" value="&dtml-getUnSubscribeEmailTitle;" />
+      <input name="unsubscribe_email_title:utf8:ustring" size="55" value="&dtml-getUnSubscribeEmailTitle;" />
     </td>
  </tr>
  <tr>
@@ -95,7 +96,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="unsubscribe_email_body" cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
+      <textarea name="unsubscribe_email_body:utf8:ustring" cols="55" rows="10"><dtml-var "getUnSubscribeEmailBody()"></textarea>
     </td>
  </tr>
 
@@ -106,7 +107,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <input name="event_default_email_title" size="55" value="&dtml-getDefaultMessageTitle;" />
+      <input name="event_default_email_title:utf8:ustring" size="55" value="&dtml-getDefaultMessageTitle;" />
     </td>
  </tr>
  <tr>
@@ -116,7 +117,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_default_email_body" cols="55" rows="10"><dtml-var "getDefaultMessageBody()"></textarea>
+      <textarea name="event_default_email_body:utf8:ustring" cols="55" rows="10"><dtml-var "getDefaultMessageBody()"></textarea>
     </td>
  </tr>
 
@@ -127,7 +128,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_error_email_body" cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
+      <textarea name="event_error_email_body:utf8:ustring" cols="55" rows="10"><dtml-var "getErrorMessageBody()"></textarea>
     </td>
  </tr>
 

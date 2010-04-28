@@ -1,3 +1,4 @@
+<dtml-call "REQUEST.set('management_page_charset','utf-8')">
 <dtml-var manage_page_header>
 
 <dtml-let form_title="'Add a Notification Message Body">
@@ -22,7 +23,8 @@
     </td>
     <td align="left" valign="top">
       <div class="form-element">
-      <textarea name="message_body" cols="55" rows="10">></textarea>
+      <textarea name="message_body:utf8:ustring"
+         cols="55" rows="10">></textarea>
       </div>
     </td>
   </tr>
