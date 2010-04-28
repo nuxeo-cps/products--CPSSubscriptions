@@ -20,6 +20,7 @@
 
 import logging
 from Products.CMFCore.utils import getToolByName
+from Products.CPSUtil.text import OLD_CPS_ENCODING
 
 def upgrade_347_348_email_from(portal):
     """Remove stored email_from addresses that have been copied from portal.
@@ -47,5 +48,47 @@ def upgrade_347_348_email_from(portal):
 def upgrade_347_348_render_types_events(portal):
     """Initiate the compiled version of properties."""
     getToolByName(portal, 'portal_subscriptions')._postProcessProperties()
-    
-    
+
+
+def upgrade_msg_unicode(portal):
+    """Upgrade all messages to unicode"""
+
+    logger = logging.getLogger(
+        'Products.CPSSubscriptions::upgrade_msg_unicode')
+
+    mappings = ('mapping_event_email_content', )
+    strings = ('event_default_email_body',
+               'event_default_email_title',
+               'event_error_email_body',
+               'subscribe_confirm_email_body',
+               'subscribe_confirm_email_title',
+               'unsubscribe_confirm_email_body',
+               'unsubscribe_confirm_email_title',
+               'subscribe_welcome_email_body',
+               'subscribe_welcome_email_title',
+               'unsubscribe_email_body',
+               'unsubscribe_email_title',
+               )
+    stool = portal.portal_subscriptions
+    stool._p_changed = 1
+    count = 0
+
+    for mapping in mappings:
+        d = getattr(stool, mapping)
+        for k, v in d.items():
+            if isinstance(v, str):
+                d[k] = v.decode(OLD_CPS_ENCODING)
+                count += 1
+            elif isinstance(v, list):
+                for i, s in enumerate(v):
+                    if isinstance(s, str):
+                        v[i] = s.decode(OLD_CPS_ENCODING)
+                        count += 1
+
+    for attr in strings:
+        v = getattr(stool, attr)
+        if isinstance(v, str):
+            setattr(stool, attr, v.decode(OLD_CPS_ENCODING))
+            count += 1
+
+    logger.info("Converted %s messages to unicode strings", count)
