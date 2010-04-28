@@ -1,4 +1,3 @@
-# -*- coding: ISO-8859-15 -*-
 # (C) Copyright 2004 Nuxeo SARL <http://nuxeo.com>
 # Author: Julien Anguenot <ja@nuxeo.com>
 #

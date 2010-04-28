@@ -1,7 +1,6 @@
-# -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 CGEY <http://cgey.com>
-# Copyright (c) 2004 Ministère de L'intérieur (MISILL)
+# Copyright (c) 2004 Ministere de L'interieur (MISILL)
 #               <http://www.interieur.gouv.fr/>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Florent Guillaume <fg@nuxeo.com>
