@@ -44,6 +44,8 @@ from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 TOOL = 'portal_subscriptions'
 NAME = 'subscriptions'
 
+XML_ENC = 'utf-8'
+
 def exportSubscriptionsTool(context):
     """Export subscriptions tool and subobjects as a set of XML files.
     """
@@ -284,12 +286,12 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
 
         if subject is not None:
             subject_node = self.createStrictTextElement('subject')
-            text = self._doc.createTextNode(subject.strip())
+            text = self._doc.createTextNode(subject.strip().encode(XML_ENC))
             subject_node.appendChild(text)
             node.appendChild(subject_node)
 
         body_node = self.createStrictTextElement('body')
-        text = self._doc.createTextNode(body)
+        text = self._doc.createTextNode(body.encode(XML_ENC))
         body_node.appendChild(text)
         node.appendChild(body_node)
 
@@ -300,9 +302,9 @@ class SubscriptionsToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
         subject, body = None, None
         for child in node.childNodes:
             if child.nodeName == 'subject':
-                subject = self._getNodeText(child).encode('utf-8')
+                subject = self._getNodeText(child).encode(XML_ENC)
             elif child.nodeName == 'body':
-                body = getExactNodeText(child).encode('utf-8')
+                body = getExactNodeText(child).encode(XML_ENC)
         return event_id, subject, body
 
     def _purgeEventMessages(self):
