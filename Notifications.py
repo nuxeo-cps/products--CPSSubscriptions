@@ -371,6 +371,7 @@ class MailNotificationRule(NotificationRule):
         This method is aware about the fact that for some recipients
         we won't send an email directly but store the email for further
         scheduling (daily, monthly, etc.).
+
         """
         # Construct a mapping for the email notification
         infos = self._makeInfoDict(event_type, object_, infos)
@@ -426,6 +427,8 @@ class MailNotificationRule(NotificationRule):
             else:
                 real_time.append(email)
 
+        real_time.extend(groups)
+
         # If there is at least one postponed notification
         if postponed_notification:
             # Save the email notification body for furher scheduling.
@@ -458,10 +461,6 @@ class MailNotificationRule(NotificationRule):
 
         # TODO: Dealing with members
         for member in members:
-            pass
-
-        # TODO: Dealing with groups
-        for group in groups:
             pass
 
     #####################################################################

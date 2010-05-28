@@ -106,6 +106,9 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         {'id': 'user_is_sender',
          'type': 'boolean', 'mode':'w',
          'label' : "Use user's email address as mail from"},
+        {'id': 'use_group_emails',
+         'type': 'boolean', 'mode':'w',
+         'label' : "Use groups email addresses according to user folder properties"},
         {'id': 'max_recipients_per_notification',
          'type': 'int', 'mode':'w',
          'label': 'Max recipients per notification message'},
@@ -141,6 +144,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
     mapping_local_roles_context = {}
     ignore_events = False
     user_is_sender = False
+    use_group_emails = False
 
     def _postProcessProperties(self):
         def dictSplit(lines):
@@ -857,10 +861,12 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
     def notify_processed_event(self, event_type, object, infos):
         """EventManager's callable.
         """
+        with_groups = self.use_group_emails
         subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
-                subscription.sendEvent(event_type, object, infos)
+                subscription.sendEvent(event_type, object, infos,
+                                       with_groups=with_groups)
 
     security.declarePrivate("notify_event")
     def notify_event(self, event_type, object, infos):

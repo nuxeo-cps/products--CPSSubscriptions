@@ -57,12 +57,44 @@ class RecipientsRule(PortalFolder):
     All the Recipients Rule types will sub-class this one.
     """
 
-    def getRecipients(self, event_type, object, infos):
+    def getRecipients(self, event_type, object, infos, expand_groups=True):
         """Get the recipients.
 
-        Returns a mapping with 'members' and 'emails' as keys.
+        if expand_groups, return a dict email -> member
+        else return two dicts : email -> member and email -> group
         """
         raise NotImplementedError
+
+    @classmethod
+    def getGroupsDirectory(self, acl_users):
+        dtool = getToolByName(acl_users, 'portal_directories', None)
+        if dtool is None: # can happen in unit tests
+            return None
+        return dtool[acl_users.groups_dir]
+
+    @classmethod
+    def getGroupEmail(self, acl_users, group_id, gdir=None):
+        """Find the group email from info in user folder and directories.
+
+        KeyError means that the group could not be found
+        Note: Group object in CPSUserFolder is presented as a minimal compat
+        layer
+        """
+        email_field = acl_users.groups_email_field
+        if not email_field:
+            logger.error("Email field for groups not configured."
+                         "Group recipients won't work.")
+        if gdir is None:
+            gdir = self.getGroupsDirectory(acl_users)
+
+        entry = gdir._getEntry(group_id)
+        try:
+            return entry[email_field]
+        except KeyError:
+            logger.error("Wrong configuration of group email for group '%s': "
+                         "field '%s' not found in entry.", group_id,
+                         email_field)
+            raise RuntimeError(email_field)
 
 InitializeClass(RecipientsRule)
 
@@ -132,12 +164,12 @@ class ComputedRecipientsRule(RecipientsRule):
             }
         return getEngine().getContext(mapping)
 
-    def getRecipients(self, event_type, object, infos={}):
-        """Get the recipients.
-
-        Returns a mapping with 'members' and 'emails' as keys.
-        """
-        return self.getExpression(object, infos)
+    def getRecipients(self, event_type, object, infos={}, expand_groups=True):
+        """See base class docstring."""
+        emails = self.getExpression(object, infos)
+        if expand_groups:
+            return emails
+        return emails, {}
 
 InitializeClass(ComputedRecipientsRule)
 
@@ -662,13 +694,11 @@ class ExplicitRecipientsRule(RecipientsRule):
     ###############################################################
 
     security.declareProtected(View, "getRecipients")
-    def getRecipients(self, event_type, object, infos={}):
-        """Get the recipients.
-
-        Returns a mapping with 'members' and 'emails' as keys.
-        """
+    def getRecipients(self, event_type, object, infos={}, expand_groups=True):
+        """See baseclass docstring."""
 
         member_email_mapping = {}
+        group_email_mapping = {}
         mtool = self.portal_membership
         aclu = getattr(self, 'acl_users', None)
 
@@ -693,14 +723,19 @@ class ExplicitRecipientsRule(RecipientsRule):
 
         # Groups subscribed
         dead_groups = []
+        gdir = self.getGroupsDirectory(aclu)
         for group_id in self.getGroups():
             try:
-                group = aclu.getGroupById(group_id)
-                group_users = group.getUsers()
-                for member_id in group_users:
-                    email = mtool.getEmailFromUsername(member_id)
-                    if email is not None:
-                        member_email_mapping[email] = member_id
+                if not expand_groups:
+                    email = self.getGroupEmail(aclu, group_id, gdir=gdir)
+                    group_email_mapping[email] = group_id
+                else:
+                    group = aclu.getGroupById(group_id)
+                    group_users = group.getUsers()
+                    for member_id in group_users:
+                        email = mtool.getEmailFromUsername(member_id)
+                        if email is not None:
+                            member_email_mapping[email] = member_id
             except KeyError:
                 dead_groups.append(group_id)
         for dead_group in dead_groups:
@@ -714,7 +749,10 @@ class ExplicitRecipientsRule(RecipientsRule):
         for email in self.getSubscriberEmails():
             member_email_mapping[email] = ''
 
-        return member_email_mapping
+        if expand_groups:
+            return member_email_mapping
+        else:
+            return member_email_mapping, group_email_mapping
 
 InitializeClass(ExplicitRecipientsRule)
 
@@ -811,14 +849,57 @@ class RoleRecipientsRule(RecipientsRule):
         if member_id not in self.getUnSubscribedMembers():
             self.unsubscribed_members.append(member_id)
 
-    security.declareProtected(View, "getRecipients")
-    def getRecipients(self, event_type='', object=None, infos={}):
-        """Get the recipients.
+    def updateRecipientsForGroupRole(self, acl_users, group_id,
+                                     member_emails, group_emails,
+                                     expand_groups=True,
+                                     gdir=None,
+                                     mtool=None):
+        """Update the two _emails dicts with info from the group.
 
-        Returns a mapping with 'members' and 'emails' as keys.
+        Takes all little detail, like 'role:' pseudo groups into account.
         """
 
+        if group_id.startswith('role:'):
+            return # TODO apply a few mailing lists or what
+
+        if not expand_groups:
+            try:
+                email = self.getGroupEmail(acl_users, group_id, gdir=gdir)
+            except KeyError:
+                logger.info("Group '%s' does not currently exist", group_id)
+                return
+            group_emails[email] = group_id
+            return
+
+        # groups resolution logic.
+
+        try:
+            group = acl_users.getGroupById(group_id)
+        except KeyError:
+            logger.warn(MISSING_GROUP_WARNING, group_id)
+            return
+        member_ids = group.getUsers()
+        if mtool is None:
+            mtool = getToolByName(acl_users, 'portal_membership')
+
+        for member_id in member_ids:
+            email = mtool.getEmailFromUsername(member_id)
+            if email is not None:
+                member_emails[email] = member_id
+
+
+    security.declareProtected(View, "getRecipients")
+    def getRecipients(self, event_type='', object=None, infos={},
+                      expand_groups=True):
+        """See baseclass docstring."""
+
         member_email_mapping = {}
+        group_email_mapping = {}
+        if expand_groups:
+            void = {}
+        else:
+            void = ({}, {})
+
         mtool = self.portal_membership
         subtool = self.portal_subscriptions
         if getattr(object, 'portal_type') in \
@@ -829,7 +910,10 @@ class RoleRecipientsRule(RecipientsRule):
 
         if getattr(self, 'notify_no_local'):
             if subtool.getSubscriptionContainerId() in container.objectIds():
-                return {}
+                return void
+
+        aclu = getattr(self, 'acl_users', None)
+        gdir = self.getGroupsDirectory(aclu)
 
         if not getattr(self, 'notify_local_only'):
             #
@@ -840,22 +924,16 @@ class RoleRecipientsRule(RecipientsRule):
                 for role in self.getRoles():
                     if role in merged_local_roles[entry]:
                         if entry.startswith('user:'):
-                            member_ids = [entry.split(':')[1]]
-                        if entry.startswith('group:'):
-                            group_id = entry.split(':')[1]
-                            aclu = getattr(self, 'acl_users', None)
-                            if group_id == 'role':
-                                group_id = group_id + ':' + entry.split(':')[2]
-                            try:
-                                group = aclu.getGroupById(group_id)
-                            except KeyError:
-                                logger.warn(MISSING_GROUP_WARNING, group_id)
-                                continue
-                            member_ids = group.getUsers()
-                        for member_id in member_ids:
+                            member_id = entry.split(':')[1]
                             email = mtool.getEmailFromUsername(member_id)
                             if email is not None:
                                 member_email_mapping[email] = member_id
+                        elif entry.startswith('group:'):
+                            self.updateRecipientsForGroupRole(
+                                aclu, entry.split(':', 1)[1],
+                                member_email_mapping, group_email_mapping,
+                                expand_groups=expand_groups,
+                                gdir=gdir, mtool=mtool)
         else:
             #
             # Using roles defined only in the context
@@ -874,17 +952,12 @@ class RoleRecipientsRule(RecipientsRule):
                 for role in self.getRoles():
                     if role in group[1]:
                         group_id = group[0]
-                        aclu = getattr(self, 'acl_users', None)
-                        try:
-                            group = aclu.getGroupById(group_id)
-                        except KeyError:
-                            logger.warn(MISSING_GROUP_WARNING, group_id)
-                            continue
-                        group_users = group.getUsers()
-                        for member_id in group_users:
-                            email = mtool.getEmailFromUsername(member_id)
-                            if email is not None:
-                                member_email_mapping[email] = member_id
+                        self.updateRecipientsForGroupRole(
+                            aclu, group_id,
+                            member_email_mapping, group_email_mapping,
+                            expand_groups=expand_groups,
+                            gdir=gdir, mtool=mtool)
+
 
         #
         # Removing the members who asked for unsubsciption
@@ -895,7 +968,9 @@ class RoleRecipientsRule(RecipientsRule):
             if member_email in member_email_mapping.keys():
                 del member_email_mapping[member_email]
 
-        return member_email_mapping
+        if expand_groups:
+            return member_email_mapping
+        return member_email_mapping, group_email_mapping
 
 InitializeClass(RoleRecipientsRule)
 

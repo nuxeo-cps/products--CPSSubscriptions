@@ -25,14 +25,14 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """ Subscription Class
 """
-
+import logging
 from Globals import InitializeClass, MessageDialog
 from Acquisition import aq_base, aq_parent, aq_inner
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.PortalFolder import PortalFolder
 
-from zLOG import LOG, DEBUG
+logger = logging.getLogger('Products.CPSSubscriptions.Subscription')
 
 class Subscription(PortalFolder):
     """ Subscription
@@ -161,7 +161,7 @@ class Subscription(PortalFolder):
         """
         return [x for x in self.objectValues() if hasattr(x,
                                                        'notifyRecipients')]
-    def sendEvent(self, event_type, object, infos):
+    def sendEvent(self, event_type, object, infos, with_groups=False):
         """Send an event to the subscription.
         """
 
@@ -170,18 +170,23 @@ class Subscription(PortalFolder):
         #
 
         recipients_rules = self.getRecipientsRules()
-        recipients = {}
+        emails = {}
+        groups = {}
+
         for recipient_rule in recipients_rules:
-            pt_recipients = recipient_rule.getRecipients(event_type,
-                                                         object,
-                                                         infos)
-            for pt_recipient in pt_recipients.keys():
-                if pt_recipient not in self.getRecipientEmailsBlackList():
-                    recipients[pt_recipient] = pt_recipients[pt_recipient]
+            pt_recipients = recipient_rule.getRecipients(
+                event_type, object, infos, expand_groups=not with_groups)
+            if with_groups:
+                pt_emails, pt_groups = pt_recipients
+                groups.update(pt_groups)
+            else:
+                pt_emails = pt_recipients
+
+            for email, v in pt_emails.items():
+                if email not in self.getRecipientEmailsBlackList():
+                    emails[email] = v
                 else:
-                    LOG("::CPSSubscriptions :: black list for ",
-                        DEBUG,
-                        pt_recipient)
+                    logger.debug("sendEvent: black list for %r", pt_recipient)
 
         #
         # Notify the recipients
@@ -193,7 +198,8 @@ class Subscription(PortalFolder):
             notification_rule.notifyRecipients(event_type,
                                                object,
                                                infos,
-                                               emails=recipients.keys())
+                                               emails=emails.keys(),
+                                               groups=groups.keys())
 
     def getRecipientsRules(self, recipients_rule_type=None):
         """Get the recipient rules objects.
