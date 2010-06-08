@@ -178,7 +178,8 @@ class MailNotificationRule(NotificationRule):
             mbcc = (c.strip() for c in mbcc.split(','))
 
         try:
-            send_mail(self, mail_infos.get('to'), sender, subject, body,
+            send_mail(self, mail_infos.get('to').split(','),
+                      sender, subject, body,
                   mbcc=mbcc, related_parts=related_parts,
                   plain_text= (ctype == 'text/plain'),
                   additional_headers = additional_headers)
