@@ -177,8 +177,12 @@ class MailNotificationRule(NotificationRule):
             # GR, actually, send_mail will re-join and also a bit more
             mbcc = (c.strip() for c in mbcc.split(','))
 
+        mto = mail_infos.get('to')
+        if mto is not None:
+            mto = tuple(c.strip() for c in mto.split(','))
+
         try:
-            send_mail(self, mail_infos.get('to').split(','),
+            send_mail(self, mto,
                       sender, subject, body,
                   mbcc=mbcc, related_parts=related_parts,
                   plain_text= (ctype == 'text/plain'),
