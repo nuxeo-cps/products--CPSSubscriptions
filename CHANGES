@@ -3,11 +3,10 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
-- #1968: support groups emails
+-
 Bug fixes
 ~~~~~~~~~
-- Hardening the SubscriptionContainer.changePermissions method that may
-  otherwise fail if some permissions are missing.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
