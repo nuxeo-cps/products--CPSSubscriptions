@@ -178,8 +178,13 @@ class MailNotificationRule(NotificationRule):
             # GR, actually, send_mail will re-join and also a bit more
             mbcc = (c.strip() for c in mbcc.split(','))
 
+        mto = mail_infos.get('to')
+        if mto is not None:
+            mto = tuple(c.strip() for c in mto.split(','))
+
         try:
-            send_mail(self, mail_infos.get('to'), sender, subject, body,
+            send_mail(self, mto,
+                      sender, subject, body,
                   mbcc=mbcc, related_parts=related_parts,
                   plain_text= (ctype == 'text/plain'),
                   additional_headers = additional_headers)
@@ -369,6 +374,7 @@ class MailNotificationRule(NotificationRule):
         This method is aware about the fact that for some recipients
         we won't send an email directly but store the email for further
         scheduling (daily, monthly, etc.).
+
         """
         # Construct a mapping for the email notification
         infos = self._makeInfoDict(event_type, object_, infos)
@@ -424,6 +430,8 @@ class MailNotificationRule(NotificationRule):
             else:
                 real_time.append(email)
 
+        real_time.extend(groups)
+
         # If there is at least one postponed notification
         if postponed_notification:
             # Save the email notification body for furher scheduling.
@@ -456,10 +464,6 @@ class MailNotificationRule(NotificationRule):
 
         # TODO: Dealing with members
         for member in members:
-            pass
-
-        # TODO: Dealing with groups
-        for group in groups:
             pass
 
     #####################################################################

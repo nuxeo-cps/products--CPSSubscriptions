@@ -19,8 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-#
-# $Id$
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
@@ -30,6 +28,7 @@ This is a placefull subscription container holding the subscripions
 configuration.
 """
 
+from logging import getLogger
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base, aq_inner, aq_parent
 
@@ -44,6 +43,8 @@ from Products.CPSCore.CPSBase import CPSBaseFolder
 
 from Products.CPSSubscriptions.permissions import CanSubscribe
 from Products.CPSSubscriptions.permissions import ManageSubscriptions
+
+logger = getLogger('CPSSubscriptions.SubscriptionContainer')
 
 class SubscriptionContainer(CPSBaseFolder):
     """ Subscription container
@@ -204,7 +205,10 @@ class SubscriptionContainer(CPSBaseFolder):
 
         for perm, roles in new_perms.items():
             self.manage_permission(perm, roles, 1)
-        self.reindexObjectSecurity()
+        try:
+            self.reindexObjectSecurity()
+        except Exception, inst:
+            logger.info("Some permissions may not be present anymore: %s" % inst)
 
     security.declareProtected(CanSubscribe, 'addSubscription')
     def addSubscription(self, id=None):
@@ -226,11 +230,11 @@ class SubscriptionContainer(CPSBaseFolder):
 
         subscription = getattr(self, subscription_id, None)
 
-	# Cope with the None case : the subscription doesn't exist yet
+        # Cope with the None case : the subscription doesn't exist yet
         if (subscription is None and
             _checkPermission(ManageSubscriptions, self)):
             subscription = self.addSubscription(subscription_id)
-	return subscription
+        return subscription
 
     security.declarePublic('getSubscriptions')
     def getSubscriptions(self):

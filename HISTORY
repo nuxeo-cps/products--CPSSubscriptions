@@ -1,4 +1,39 @@
 ===========================================================
+Package: CPSSubscriptions 1.2.0
+===========================================================
+First release built by: gracinet at: 2010-06-30T02:36:34
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- #1968: support groups emails
+Bug fixes
+~~~~~~~~~
+- Hardening the SubscriptionContainer.changePermissions method that may
+  otherwise fail if some permissions are missing.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
+Package: CPSSubscriptions 1.1.1
+===========================================================
+First release built by: gracinet at: 2010-03-14T16:32:13
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Switch to mercurial DCVS and hgbundler release manager
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 1.1.0
 ===========================================================
 First release built by: gracinet at: 2009-12-15T12:28:21
