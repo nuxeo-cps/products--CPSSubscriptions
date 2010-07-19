@@ -1,3 +1,4 @@
+<dtml-call "REQUEST.set('management_page_charset','utf-8')">
 <dtml-var manage_page_header>
 <dtml-var manage_tabs>
 
@@ -8,7 +9,7 @@
 </p>
 
 <form action="manage_editEventMessage" method="post">
-<input type="hidden" name="event_id"
+<input type="hidden" name="event_id:utf8:ustring"
        value="<dtml-var event_id>">
  <table cellspacing="0" cellpadding="2" border="0">
  <dtml-let the_event_id=event_id>
@@ -34,7 +35,7 @@
       </div>
     </td>
     <td align="left" valign="top">
-      <textarea name="event_email_body" cols="55" rows="10"><dtml-var expr="getDefaultMessageBody(event_id)"></textarea>
+      <textarea name="event_email_body:utf8:ustring" cols="55" rows="10"><dtml-var expr="getDefaultMessageBody(event_id)"></textarea>
     </td>
  </tr>
  <tr>

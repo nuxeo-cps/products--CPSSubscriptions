@@ -16,4 +16,10 @@
       handler=".upgrade.upgrade_347_348_render_types_events"
       />
 
+  <cps:upgradeStep
+      title="Upgrade subscriptions messages to unicode"
+      source="3.5.0" destination="3.5.1"
+      handler=".upgrade.upgrade_msg_unicode"
+      />
+
 </configure>

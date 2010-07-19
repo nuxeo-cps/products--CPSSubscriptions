@@ -49,7 +49,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.PortalFolder import PortalFolder
 
 from Products.CPSUtil.mail import send_mail
-from Products.CPSUtil.text import toAscii
+from Products.CPSUtil.text import get_final_encoding
 from Products.CPSUtil import html
 
 logger = getLogger('CPSSubscriptions.Notifications')
@@ -118,11 +118,11 @@ class MailNotificationRule(NotificationRule):
     def _validateStructure(self, mail_infos):
         """Validate the mail_infos structure
         """
-        return  (isinstance(mail_infos.get('sender_email'), str) and
+        return  (isinstance(mail_infos.get('sender_email'), basestring) and
                  # It is possible that no 'to' nor 'bcc' fields are specified
-                 isinstance(mail_infos.get('to', ''), str) and
-                 isinstance(mail_infos.get('bcc', ''), str) and
-                 isinstance(mail_infos.get('subject'), str) and
+                 isinstance(mail_infos.get('to', ''), basestring) and
+                 isinstance(mail_infos.get('bcc', ''), basestring) and
+                 isinstance(mail_infos.get('subject'), basestring) and
                  isinstance(mail_infos.get('body'), tuple) and
                  len(mail_infos.get('body')) == 2)
 
@@ -131,6 +131,7 @@ class MailNotificationRule(NotificationRule):
 
         mail_infos contains all the needed information
         """
+        encoding = get_final_encoding(self)
         # Check the mail structure
         if not self._validateStructure(mail_infos):
             logger.error("sendMail() check the email of the recipients %r",
@@ -283,9 +284,7 @@ class MailNotificationRule(NotificationRule):
             return {}
 
         event_type_trsl = mcat(events_from_context.get(event_type, event_type))
-        if event_type_trsl is not None:
-            event_type_trsl = event_type_trsl.encode('ISO-8859-15', 'ignore')
-        else:
+        if event_type_trsl is None:
             event_type_trsl = event_type
 
         event_from_context = event_type_trsl
@@ -305,7 +304,6 @@ class MailNotificationRule(NotificationRule):
         type_title = ttool[infos['object_type']].Title()
         i18n_type_title = mcat(type_title)
         if i18n_type_title is not None:
-            i18n_type_title = i18n_type_title.encode('ISO-8859-15', 'ignore')
             if  i18n_type_title != type_title:
                 infos['object_type'] = i18n_type_title
 

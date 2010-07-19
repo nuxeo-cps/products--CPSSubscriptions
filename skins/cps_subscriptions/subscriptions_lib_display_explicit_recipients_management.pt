@@ -34,7 +34,7 @@
             </span>
           </div>
           <div class="row">
-            <textarea cols="40" rows="10" name="explicit_emails:lines" wrap="soft" tal:content="python:'\n'.join(explicit_emails)"></textarea>
+            <textarea cols="40" rows="10" name="explicit_emails:utf8:ulines" wrap="soft" tal:content="python:'\n'.join(explicit_emails)"></textarea>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
             </span>
           </div>
           <div class="row">
-            <textarea cols="40" rows="10" name="black_list:lines" wrap="soft" tal:content="python:'\n'.join(black_list)"></textarea>
+            <textarea cols="40" rows="10" name="black_list:utf8:ulines" wrap="soft" tal:content="python:'\n'.join(black_list)"></textarea>
           </div>
         </div>
       </div>
