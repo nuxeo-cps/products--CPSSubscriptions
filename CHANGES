@@ -6,7 +6,7 @@ New features
 - UNICODE
 Bug fixes
 ~~~~~~~~~
--
+- #2175: postponed notifications break everything
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
