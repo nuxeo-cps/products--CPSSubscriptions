@@ -425,20 +425,19 @@ class MailNotificationRule(NotificationRule):
         for email in emails:
             container = stool.getSubscriptionContainerFromContext(self)
             user_mode = container.getUserMode(email)
-            if user_mode != 'mode_real_time':
-                postponed_notification = True
+            if user_mode == 'mode_real_time':
+                real_time.append(email)
+            else:
+                if not postponed_notification: # first time
+                    # Save the email notification body for furher scheduling.
+                    # The scheduling table is stored on the tool for now.
+                    archive_id = stool.addNotificationMessageBodyObject(
+                        body, mime_type)
                 stool.scheduleNotificationMessageFor(user_mode, email,
                                                      archive_id)
-            else:
-                real_time.append(email)
+                postponed_notification = True
 
         real_time.extend(groups)
-
-        # If there is at least one postponed notification
-        if postponed_notification:
-            # Save the email notification body for furher scheduling.
-            # The scheduling table is stored on the subscriptions tool for now.
-            archive_id = stool.addNotificationMessageBodyObject(body, mime_type)
 
         # Send all the emails in batches for those in `real time` mode
         # XXX GR: how to avoid doing the dumping of binary parts and

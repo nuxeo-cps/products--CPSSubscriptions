@@ -158,6 +158,25 @@ class TestMailNotificationRule(TestBaseNotificationRule):
 
         self._mh.clearLog()
 
+    def test_notifyRecipients_postponed(self):
+
+        # Notify a list of emails < to max recipients
+        # We should get only one email as a result
+        emails = ['ja@nuxeo.com', 'contact@nuxeo.com']
+        sections = self.portal.sections
+        cont = self._stool.getSubscriptionContainerFromContext(sections)
+        cont.updateUserMode('ja@nuxeo.com', 'postponed')
+        self._stool.mapping_context_events = {'Portal':
+                                              {'fake_event_id': 'Yo'}}
+        self._stool.mapping_event_email_content = {'fake_event_id': 'ha'}
+
+        self._notification.notifyRecipients(
+            'fake_event_id', sections, emails=emails)
+        self.assertEqual(len(self._mh.mail_log), 1)
+        mail = self._mh.mail_log[0]
+        self.assertEqual(mail['bcc'], 'contact@nuxeo.com') # ja is postponed
+        self._mh.clearLog()
+
     def test_notifyRecipients_greater_than_max_recipients(self):
 
         # Notify a list of emails > max_recipients
