@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSSubscriptions 1.3.0
+===========================================================
+First release built by: gracinet at: 2010-07-26T22:52:25
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- UNICODE
+Bug fixes
+~~~~~~~~~
+- #2175: postponed notifications break everything
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 1.2.0
 ===========================================================
 First release built by: gracinet at: 2010-06-30T02:36:34
