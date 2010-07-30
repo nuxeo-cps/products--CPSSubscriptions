@@ -69,7 +69,11 @@ def upgrade_msg_unicode(portal):
                'unsubscribe_email_body',
                'unsubscribe_email_title',
                )
-    stool = portal.portal_subscriptions
+    stool = getToolByName(portal, 'portal_subscriptions', None)
+    if stool is None:
+        logger.info('Subscriptions tool not present. Nothing to do.')
+        return
+
     stool._p_changed = 1
     count = 0
 
