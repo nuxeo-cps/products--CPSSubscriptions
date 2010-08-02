@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- unicode upgrade doesn't break if tool absent
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
