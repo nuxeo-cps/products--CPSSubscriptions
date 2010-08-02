@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSSubscriptions 1.3.1
+===========================================================
+First release built by: gracinet at: 2010-08-02T20:00:05
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- unicode upgrade doesn't break if tool absent
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 1.3.0
 ===========================================================
 First release built by: gracinet at: 2010-07-26T22:52:25
