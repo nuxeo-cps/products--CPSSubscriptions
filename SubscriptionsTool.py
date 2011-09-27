@@ -38,6 +38,7 @@ from types import DictType, StringType
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner, aq_base
 from AccessControl import ClassSecurityInfo
+from AccessControl import Unauthorized
 
 from zope.interface import implements
 
@@ -53,6 +54,7 @@ from Products.CMFCore.permissions import View
 from Products.CMFCore.permissions import ModifyPortalContent
 
 from permissions import ViewMySubscriptions
+from permissions import ViewSubscriptions
 from permissions import CanSubscribe
 from permissions import ManageSubscriptions
 
@@ -924,6 +926,9 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         else:
             container = aq_parent(aq_inner(object))
 
+        if not _checkPermission(ViewSubscriptions, obj):
+            raise Unauthorized()
+
         if event_type:
             subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         else:
@@ -961,6 +966,9 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         directories and values the list of events for which the recipient
         is notified.
         """
+
+        if not _checkPermission(ViewSubscriptions, obj):
+            raise Unauthorized()
 
         members = {}
         groups = {}
