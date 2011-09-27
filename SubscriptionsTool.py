@@ -926,7 +926,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         else:
             container = aq_parent(aq_inner(object))
 
-        if not _checkPermission(ViewSubscriptions, obj):
+        if not _checkPermission(ViewSubscriptions, object):
             raise Unauthorized()
 
         if event_type:
