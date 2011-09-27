@@ -934,18 +934,16 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
 
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
-                for pt_recipient_rule in subscription.getRecipientsRules():
-                    pt_recipients = pt_recipient_rule.getRecipients(event_type,
-                                                                    object,
-                                                                    infos)
-                    if isinstance(pt_recipients, DictType):
-                        for pt_recipient in pt_recipients.keys():
-                            recipients[pt_recipient] = pt_recipients[
-                                pt_recipient]
-                    else:
-                        logger.debug("ComputeRecipientsRules ERROR: "
-                                     "You should provide a dictionnary %s"
-                                     % pt_recipient_rule.absolute_url())
+                for rule in subscription.getRecipientsRules():
+                    rrecs = rule.getRecipients(event_type, object, infos)
+                    if not isinstance(rrecs, dict):
+                        logger.error("getRecipients of %r did not return a "
+                                     "dict. Skipping.", rule)
+                        continue
+                    elif rrecs:
+                        logger.debug("rule %r recipients=%r", rule, rrecs)
+                    recipients.update(rrecs)
+
         return recipients
 
     #############################################################
