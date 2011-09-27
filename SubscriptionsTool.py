@@ -946,6 +946,58 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
 
         return recipients
 
+    security.declarePublic("getDetailedRecipientsFor")
+    def getDetailedRecipientsFor(self, obj, infos={}):
+        """Compute all the recipients of all events for given object
+
+        object can be a container as well
+
+        The returned structure is a dict with three keys:
+          - members
+          - groups
+          - other
+
+        Values are themselves dicts whose keys are ids in corresponding
+        directories and values the list of events for which the recipient
+        is notified.
+        """
+
+        members = {}
+        groups = {}
+        other = {}
+        recipients = dict(members=members, groups=groups, other=other)
+
+        def record(category, recipient, event):
+            """Record that a recipient of category is notified for event_type.
+
+            Category is one of our three dicts
+            """
+            category.setdefault(recipient, []).append(event)
+
+        expand_groups = not self.use_group_emails
+
+        for event in self.getEventsFromContext(context=obj):
+            for subscription in self.getSubscriptionsFor(event, obj, infos):
+                for rule in subscription.getRecipientsRules():
+                    rrecs = rule.getRecipients(event, obj, infos,
+                                               expand_groups=expand_groups)
+
+                    if expand_groups: # uniformity
+                        rrecs = (rrecs, {})
+                    elif not isinstance(rrecs, tuple) or len(rrecs) != 2:
+                        logger.error("getRecipients of %r with expand_groups="
+                                     "False should return two dicts, got %r "
+                                     "instead (skipping).", rule, rrecs)
+
+                    for category, recs in zip((members, groups), rrecs):
+                        for address, rid in recs.items():
+                            if rid:
+                                record(category, rid, event)
+                            else:
+                                record(other, address, event)
+
+        return recipients
+
     #############################################################
 
     def _makeEltDict(self, ob, subscription):
