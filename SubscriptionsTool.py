@@ -39,6 +39,7 @@ from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner, aq_base
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
+from ZTUtils import make_query
 
 from zope.interface import implements
 
@@ -962,9 +963,10 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
           - groups
           - other
 
-        Values are themselves dicts whose keys are ids in corresponding
-        directories and values the list of events for which the recipient
-        is notified.
+        For easy iteration in page templates, values are lists of dicts,
+        with these keys:
+           + id : the recipient id, whose meaning depends on the category
+           + events : list of events the recipient is being notified for
         """
 
         if not _checkPermission(ViewSubscriptions, obj):
@@ -975,12 +977,42 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         other = {}
         recipients = dict(members=members, groups=groups, other=other)
 
+        aclu = getToolByName(self, 'acl_users')
+        utool = getToolByName(self, 'portal_url')
+        dtool = getToolByName(self, 'portal_directories')
+        base_url = utool.getBaseUrl()
+
         def record(category, recipient, event):
             """Record that a recipient of category is notified for event_type.
 
             Category is one of our three dicts
             """
-            category.setdefault(recipient, []).append(event)
+            logger.debug("Recording %r for %r in %r",
+                         recipient, event, category)
+            rec_dict = category.get(recipient)
+            if rec_dict is None:
+                category[recipient] = rec_dict = dict(id=recipient, events=[])
+
+                if category is members:
+                    attr = 'users_dir'
+                elif category is groups:
+                    attr = 'groups_dir'
+                else:
+                    attr = None
+
+                if attr:
+                    dirname = getattr(aclu, attr)
+                    dirobj = dtool[dirname]
+                    try:
+                        entry = dirobj.getEntry(recipient)
+                    except Unauthorized:
+                        pass
+                    else:
+                        rec_dict['link'] = '%scpsdirectory_entry_view?%s' % (
+                            base_url, make_query(dirname=dirname, id=recipient))
+                        rec_dict['title'] = entry[dirobj.title_field]
+
+            rec_dict['events'].append(event)
 
         expand_groups = not self.use_group_emails
 
