@@ -782,6 +782,9 @@ msgstr "Comment creation"
 msgid "action_folder_notifications"
 msgstr "Manage notifications"
 
+msgid "action_folder_notifications_recipients"
+msgstr "Notified people"
+
 msgid "action_my_subscriptions"
 msgstr "My subscriptions"
 

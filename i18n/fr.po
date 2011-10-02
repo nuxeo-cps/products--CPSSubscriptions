@@ -788,6 +788,9 @@ msgstr "Création d'un commentaire"
 msgid "action_folder_notifications"
 msgstr "Gérer les alertes"
 
+msgid "action_folder_notifications_recipients"
+msgstr "Personnes alertées"
+
 msgid "action_my_subscriptions"
 msgstr "Mes abonnements"
 

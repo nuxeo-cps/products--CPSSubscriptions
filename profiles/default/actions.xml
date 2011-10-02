@@ -7,6 +7,14 @@
      url_expr="string:${object_url}/folder_notifications_form" visible="True">
    <permission>Manage Subscriptions</permission>
   </action>
+  <action title="action_folder_notifications_recipients"
+	  action_id="folder_notifications_recipients"
+     category="folder"
+     condition_expr="python:hasattr(object, 'portal_type') and object.portal_type in portal.portal_subscriptions.getContainerPortalTypes()"
+     url_expr="string:${object_url}/folder_notifications_recipients"
+     visible="False">
+   <permission>View Subscriptions</permission>
+  </action>
   <action title="action_my_subscriptions" action_id="my_subscriptions"
      category="user"
      condition_expr="python:not portal.portal_membership.isAnonymousUser()"
