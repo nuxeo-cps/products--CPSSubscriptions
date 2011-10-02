@@ -1,0 +1,76 @@
+<metal:block define-macro="events_in_div">
+ <div tal:repeat="event item/events"
+      i18n:translate="" tal:content="events/?event"/>
+</metal:block>
+
+<metal:block define-macro="recipient">
+ <tal:block define="href item/link|nothing">
+  <a tal:omit-tag="not:href" tal:attributes="href href"
+     tal:content="item/title|item/id" />
+ </tal:block>
+</metal:block>
+
+<metal:block define-macro="display"
+             xmlns:metal="http://xml.zope.org/namespaces/metal"
+             xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+  <tal:block define="recipients python:here.portal_subscriptions.getDetailedRecipientsFor(here);
+                     events python:here.portal_subscriptions.getEventsFromContext(context=here);
+                     members recipients/members;
+                     groups recipients/groups;
+                     other recipients/other;">
+
+   <table class="subscriptionsSummary">
+    <thead>
+     <tr>
+      <th i18n:translate="label_subscriptions_fullname">Full Name</th>
+      <th i18n:translate="">Notification type</th>
+     </tr>
+    </thead>
+    <tbody tal:condition="groups">
+     <tr><th colspan="0">Groups</th></tr>
+     <tr tal:repeat="item python:groups.values()"
+         tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
+         >
+      <td>
+       <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
+      </td>
+      <td>
+       <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/events_in_div"/>
+      </td>
+     </tr>
+    </tbody>
+
+    <tbody tal:condition="members">
+     <tr><th colspan="0">Members</th></tr>
+     <tr tal:repeat="item python:members.values()"
+         tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
+         >
+      <td>
+        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
+      </td>
+
+      <td>
+       <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/events_in_div"/>
+      </td>
+     </tr>
+    </tbody>
+
+    <tbody tal:condition="other">
+     <tr><th colspan="0">Others</th></tr>
+     <tr tal:repeat="item python:members.items()"
+         tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
+         >
+      <td>
+       <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
+      </td>
+      <td>
+       <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/events_in_div"/>
+      </td>
+     </tr>
+    </tbody>
+
+   </table>
+
+  </tal:block>
+</metal:block>
