@@ -23,16 +23,19 @@
    <table class="subscriptionsSummary">
     <thead>
      <tr>
-      <th i18n:translate="label_subscriptions_fullname">Full Name</th>
-      <th i18n:translate="">Notification type</th>
+      <th i18n:translate="heading_subscriptions_recipient">Recipient</th>
+      <th i18n:translate="heading_subscriptions_notif_types">
+       Notification types
+      </th>
      </tr>
     </thead>
     <tbody tal:condition="groups">
-     <tr><th class="recipientCategory" colspan="0">Groups</th></tr>
+     <tr><th class="recipientCategory" colspan="0"
+             i18n:translate="label_user_groups">Groups</th></tr>
      <tr tal:repeat="item python:groups.values()"
          tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
          >
-      <td>
+      <td class="recipient">
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
       </td>
       <td class="recipientEvents">
@@ -42,11 +45,14 @@
     </tbody>
 
     <tbody tal:condition="members">
-     <tr><th class="recipientCategory" colspan="0">Users</th></tr>
+     <tr><th class="recipientCategory" colspan="0"
+             i18n:translate="label_simple_users">
+      Users
+     </th></tr>
      <tr tal:repeat="item python:members.values()"
          tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
          >
-      <td>
+      <td class="recipient">
         <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
       </td>
 
@@ -57,14 +63,18 @@
     </tbody>
 
     <tbody tal:condition="other">
-     <tr><th  class="recipientCategory" colspan="0">Others</th></tr>
+     <tr><th  class="recipientCategory" colspan="0"
+              i18n:translate="heading_subscriptions_other_recipients">
+      Others
+     </th>
+     </tr>
      <tr tal:repeat="item python:members.items()"
          tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
          >
-      <td class="recipientEvents">
+      <td class="recipient">
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
       </td>
-      <td>
+      <td class="recipientEvents">
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/events_in_div"/>
       </td>
      </tr>

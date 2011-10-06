@@ -10,14 +10,15 @@ msgstr ""
 "PO-Revision-Date: 2005-10-30 18:11+0100\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team:  <en@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: KBabel 1.10.2\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Domain: default\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Preferred-Encodings: utf-8\n"
 
 #.   <block>
@@ -579,8 +580,25 @@ msgstr "See all subscribers for all events"
 #.   <label for="senderEmailAddress">Email address of sender:</label>
 #: from
 #: ../skins/cps_subscriptions/subscriptions_lib_display_subscriptions_table.pt
+
 msgid "label_sender_email_address"
 msgstr "Sender email address"
+
+msgid "heading_subscriptions_recipient"
+msgstr "Recipient"
+
+msgid "heading_subscriptions_notif_types"
+msgstr "Alert types"
+
+msgid "label_user_groups"
+msgstr "User groups"
+
+msgid "label_simple_users"
+msgstr "Individual users"
+
+msgid "heading_subscriptions_other_recipients"
+msgstr "Other recipients"
+
 
 # ## LABELS #######################################
 #.   <span>
