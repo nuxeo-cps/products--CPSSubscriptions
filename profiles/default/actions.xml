@@ -12,7 +12,7 @@
      category="folder"
      condition_expr="python:hasattr(object, 'portal_type') and object.portal_type in portal.portal_subscriptions.getContainerPortalTypes()"
      url_expr="string:${object_url}/folder_notifications_recipients"
-     visible="False">
+     visible="True">
    <permission>View Subscriptions</permission>
   </action>
   <action title="action_my_subscriptions" action_id="my_subscriptions"
