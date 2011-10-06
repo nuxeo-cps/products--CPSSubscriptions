@@ -28,21 +28,21 @@
      </tr>
     </thead>
     <tbody tal:condition="groups">
-     <tr><th colspan="0">Groups</th></tr>
+     <tr><th class="recipientCategory" colspan="0">Groups</th></tr>
      <tr tal:repeat="item python:groups.values()"
          tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
          >
       <td>
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
       </td>
-      <td>
+      <td class="recipientEvents">
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/events_in_div"/>
       </td>
      </tr>
     </tbody>
 
     <tbody tal:condition="members">
-     <tr><th colspan="0">Members</th></tr>
+     <tr><th class="recipientCategory" colspan="0">Users</th></tr>
      <tr tal:repeat="item python:members.values()"
          tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
          >
@@ -50,18 +50,18 @@
         <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
       </td>
 
-      <td>
+      <td class="recipientEvents">
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/events_in_div"/>
       </td>
      </tr>
     </tbody>
 
     <tbody tal:condition="other">
-     <tr><th colspan="0">Others</th></tr>
+     <tr><th  class="recipientCategory" colspan="0">Others</th></tr>
      <tr tal:repeat="item python:members.items()"
          tal:attributes="class python:test(repeat['item'].even(), 'even', 'odd')"
          >
-      <td>
+      <td class="recipientEvents">
        <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/recipient"/>
       </td>
       <td>
