@@ -638,6 +638,21 @@ msgstr ""
 msgid "mode_real_time"
 msgstr ""
 
+msgid "heading_subscriptions_recipient"
+msgstr ""
+
+msgid "heading_subscriptions_notif_types"
+msgstr ""
+
+msgid "label_user_groups"
+msgstr ""
+
+msgid "label_simple_users"
+msgstr ""
+
+msgid "heading_subscriptions_other_recipients"
+msgstr ""
+
 # ## LABELS #######################################
 msgid "label_workspace_manager"
 msgstr ""
@@ -758,6 +773,9 @@ msgstr ""
 
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
+msgstr ""
+
+msgid "action_folder_notifications_recipients"
 msgstr ""
 
 msgid "action_my_subscriptions"

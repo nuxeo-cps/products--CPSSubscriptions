@@ -1,12 +1,10 @@
 <tal:block define="emptybody python:1">
-<metal:block use-macro="here/main_template/macros/master">
-  <metal:block fill-slot="header">
+ <metal:block use-macro="here/main_template/macros/master">
+  <metal:block fill-slot="body">
     <h1 i18n:translate="heading_all_subscribers">
       All Subscribers
     </h1>
+    <metal:block use-macro="here/subscriptions_lib_display_detailed_recipients/macros/display" />
   </metal:block>
-  <metal:block fill-slot="main">
-    <metal:block use-macro="here/subscriptions_lib_display_all_notifications_subscribers/macros/display_all_notifications_subscribers" />
-  </metal:block>
-</metal:block>
+ </metal:block>
 </tal:block>

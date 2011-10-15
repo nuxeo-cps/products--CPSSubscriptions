@@ -41,5 +41,10 @@ setDefaultRoles( CanSubscribe, ('Manager',))
 ViewMySubscriptions = 'View My Subscriptions'
 setDefaultRoles( ViewMySubscriptions, ('Manager', 'Member'))
 
+ViewSubscriptions = 'View Subscriptions'
+# Giving to Member by default because users already need to get to traverse
+# to object to call subscriptions synthethic pages
+setDefaultRoles( ViewSubscriptions, ('Manager', 'Member'))
+
 CanNotifyContent = 'Can Notify Content'
 setDefaultRoles( CanNotifyContent, ('Manager', 'Owner', 'Member'))

@@ -6,6 +6,9 @@
  <action-icon category="folder" action_id="folder_subscribe"
 	      title="Folder subscription" priority="320"
 	      icon_expr="actionicon_subscriptions.png"/>
+ <action-icon category="folder" action_id="folder_notifications_recipients"
+	      title="Notification Recipients" priority="295"
+	      icon_expr="actionicon_alerts_recipients.png"/>
  <action-icon category="folder" action_id="folder_notifications"
 	      title="Manage notifications" priority="300"
 	      icon_expr="actionicon_manage_alerts.png"/>

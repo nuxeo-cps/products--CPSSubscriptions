@@ -38,6 +38,8 @@ from types import DictType, StringType
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_parent, aq_inner, aq_base
 from AccessControl import ClassSecurityInfo
+from AccessControl import Unauthorized
+from ZTUtils import make_query
 
 from zope.interface import implements
 
@@ -53,6 +55,7 @@ from Products.CMFCore.permissions import View
 from Products.CMFCore.permissions import ModifyPortalContent
 
 from permissions import ViewMySubscriptions
+from permissions import ViewSubscriptions
 from permissions import CanSubscribe
 from permissions import ManageSubscriptions
 
@@ -924,6 +927,9 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         else:
             container = aq_parent(aq_inner(object))
 
+        if not _checkPermission(ViewSubscriptions, object):
+            raise Unauthorized()
+
         if event_type:
             subscriptions = self.getSubscriptionsFor(event_type, object, infos)
         else:
@@ -934,18 +940,102 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
 
         for subscription in subscriptions:
             if subscription.isInterestedInEvent(event_type, object, infos):
-                for pt_recipient_rule in subscription.getRecipientsRules():
-                    pt_recipients = pt_recipient_rule.getRecipients(event_type,
-                                                                    object,
-                                                                    infos)
-                    if isinstance(pt_recipients, DictType):
-                        for pt_recipient in pt_recipients.keys():
-                            recipients[pt_recipient] = pt_recipients[
-                                pt_recipient]
+                for rule in subscription.getRecipientsRules():
+                    rrecs = rule.getRecipients(event_type, object, infos)
+                    if not isinstance(rrecs, dict):
+                        logger.error("getRecipients of %r did not return a "
+                                     "dict. Skipping.", rule)
+                        continue
+                    elif rrecs:
+                        logger.debug("rule %r recipients=%r", rule, rrecs)
+                    recipients.update(rrecs)
+
+        return recipients
+
+    security.declarePublic("getDetailedRecipientsFor")
+    def getDetailedRecipientsFor(self, obj, infos={}):
+        """Compute all the recipients of all events for given object
+
+        object can be a container as well
+
+        The returned structure is a dict with three keys:
+          - members
+          - groups
+          - other
+
+        For easy iteration in page templates, values are lists of dicts,
+        with these keys:
+           + id : the recipient id, whose meaning depends on the category
+           + events : list of events the recipient is being notified for
+        """
+
+        if not _checkPermission(ViewSubscriptions, obj):
+            raise Unauthorized()
+
+        members = {}
+        groups = {}
+        other = {}
+        recipients = dict(members=members, groups=groups, other=other)
+
+        aclu = getToolByName(self, 'acl_users')
+        utool = getToolByName(self, 'portal_url')
+        dtool = getToolByName(self, 'portal_directories')
+        base_url = utool.getBaseUrl()
+
+        def record(category, recipient, event):
+            """Record that a recipient of category is notified for event_type.
+
+            Category is one of our three dicts
+            """
+            logger.debug("Recording %r for %r in %r",
+                         recipient, event, category)
+            rec_dict = category.get(recipient)
+            if rec_dict is None:
+                category[recipient] = rec_dict = dict(id=recipient, events=[])
+
+                if category is members:
+                    attr = 'users_dir'
+                elif category is groups:
+                    attr = 'groups_dir'
+                else:
+                    attr = None
+
+                if attr:
+                    dirname = getattr(aclu, attr)
+                    dirobj = dtool[dirname]
+                    try:
+                        entry = dirobj.getEntry(recipient)
+                    except Unauthorized:
+                        pass
                     else:
-                        logger.debug("ComputeRecipientsRules ERROR: "
-                                     "You should provide a dictionnary %s"
-                                     % pt_recipient_rule.absolute_url())
+                        rec_dict['link'] = '%scpsdirectory_entry_view?%s' % (
+                            base_url, make_query(dirname=dirname, id=recipient))
+                        rec_dict['title'] = entry[dirobj.title_field]
+
+            rec_dict['events'].append(event)
+
+        expand_groups = not self.use_group_emails
+
+        for event in self.getEventsFromContext(context=obj):
+            for subscription in self.getSubscriptionsFor(event, obj, infos):
+                for rule in subscription.getRecipientsRules():
+                    rrecs = rule.getRecipients(event, obj, infos,
+                                               expand_groups=expand_groups)
+
+                    if expand_groups: # uniformity
+                        rrecs = (rrecs, {})
+                    elif not isinstance(rrecs, tuple) or len(rrecs) != 2:
+                        logger.error("getRecipients of %r with expand_groups="
+                                     "False should return two dicts, got %r "
+                                     "instead (skipping).", rule, rrecs)
+
+                    for category, recs in zip((members, groups), rrecs):
+                        for address, rid in recs.items():
+                            if rid:
+                                record(category, rid, event)
+                            else:
+                                record(other, address, event)
+
         return recipients
 
     #############################################################

@@ -1,10 +1,3 @@
-<!-- a subscriptions_lib macro -->
-<!-- $Id$ -->
-
-<!--
-&lt;!-- ###### Subscription Configuration --&gt;
--->
-
 <metal:block define-macro="configure_subscription">
   <tal:block define="subtool here/portal_subscriptions;
       event_id request/event_key|nothing;

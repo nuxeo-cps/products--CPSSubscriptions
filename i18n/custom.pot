@@ -140,6 +140,9 @@ msgstr ""
 msgid "action_folder_notifications"
 msgstr ""
 
+msgid "action_folder_notifications_recipients"
+msgstr ""
+
 msgid "action_my_subscriptions"
 msgstr ""
 

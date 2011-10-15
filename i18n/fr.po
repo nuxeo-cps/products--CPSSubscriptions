@@ -588,6 +588,21 @@ msgstr "Voir toutes les personnes alertées pour tous les événements."
 msgid "label_sender_email_address"
 msgstr "Adresse électronique de l'émetteur"
 
+msgid "heading_subscriptions_recipient"
+msgstr "Destinataire"
+
+msgid "heading_subscriptions_notif_types"
+msgstr "Types d'alertes"
+
+msgid "label_user_groups"
+msgstr "Groupes d'utilisateurs"
+
+msgid "label_simple_users"
+msgstr "Utilisateurs individuels"
+
+msgid "heading_subscriptions_other_recipients"
+msgstr "Autres destinataires"
+
 # ## LABELS #######################################
 #.   <span>
 #.                 Full Name
@@ -787,6 +802,9 @@ msgstr "Création d'un commentaire"
 # ## ACTIONS ######################################
 msgid "action_folder_notifications"
 msgstr "Gérer les alertes"
+
+msgid "action_folder_notifications_recipients"
+msgstr "Personnes alertées"
 
 msgid "action_my_subscriptions"
 msgstr "Mes abonnements"
