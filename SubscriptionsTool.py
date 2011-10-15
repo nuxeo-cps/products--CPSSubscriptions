@@ -60,7 +60,7 @@ from Notifications import MailNotificationRule
 from NotificationMessageBody import addNotificationMessageBody
 from EventSubscriptionsManager import get_event_subscriptions_manager
 
-from Products.CPSUtil.PropertiesPostProcessor import PropertiesPostProcessor
+from Products.CPSUtil.property import PropertiesPostProcessor
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 
 ##############################################################
