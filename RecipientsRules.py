@@ -79,6 +79,18 @@ class RecipientsRule(PortalFolder):
         Note: Group object in CPSUserFolder is presented as a minimal compat
         layer
         """
+        # pseudo groups special cases
+        if group_id == 'role:Authenticated':
+            email = acl_users.email_for_authenticated
+            if not email:
+                raise KeyError(group_id)
+        elif group_id == 'role:Anonymous':
+            email = acl_users.email_for_anonymous
+            if not email:
+                raise KeyError(group_id)
+        elif group_id.startswith('role:'):
+            raise KeyError(group_id)
+
         email_field = acl_users.groups_email_field
         if not email_field:
             logger.error("Email field for groups not configured."
@@ -857,8 +869,7 @@ class RoleRecipientsRule(RecipientsRule):
 
         Takes all little detail, like 'role:' pseudo groups into account.
         """
-
-        if group_id.startswith('role:'):
+        if group_id.startswith('role:') and expand_groups:
             return # TODO apply a few mailing lists or what
 
         if not expand_groups:
