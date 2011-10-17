@@ -89,7 +89,7 @@ class RecipientsRule(PortalFolder):
         if group_id == 'role:Authenticated':
             return validate(acl_users.email_for_authenticated)
         elif group_id == 'role:Anonymous':
-            return validatel(acl_users.email_for_anonymous)
+            return validate(acl_users.email_for_anonymous)
         elif group_id.startswith('role:'):
             raise KeyError(group_id)
 
