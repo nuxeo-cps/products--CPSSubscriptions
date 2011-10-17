@@ -80,14 +80,16 @@ class RecipientsRule(PortalFolder):
         layer
         """
         # pseudo groups special cases
+
+        def validate(email):
+            if not email:
+                raise KeyError(group_id)
+            return email
+
         if group_id == 'role:Authenticated':
-            email = acl_users.email_for_authenticated
-            if not email:
-                raise KeyError(group_id)
+            return validate(acl_users.email_for_authenticated)
         elif group_id == 'role:Anonymous':
-            email = acl_users.email_for_anonymous
-            if not email:
-                raise KeyError(group_id)
+            return validatel(acl_users.email_for_anonymous)
         elif group_id.startswith('role:'):
             raise KeyError(group_id)
 
