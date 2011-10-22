@@ -22,9 +22,13 @@ import sys
 import email
 import unittest
 
+import transaction
+from zope.interface import implements
+from zope.app import zapi
+
 from Acquisition import aq_parent, aq_inner
 from OFS.SimpleItem import SimpleItem
-import transaction
+from Products.MailHost.interfaces import IMailHost
 
 from Products.CPSSubscriptions.Notifications import NotificationRule
 
@@ -35,6 +39,8 @@ class DummyMailHost(SimpleItem):
 
     The list can then be inspected. This way you can see who got notified.
     """
+
+    implements(IMailHost)
 
     mail_log = []
 
@@ -84,12 +90,12 @@ class TestBaseNotificationRule(
         self._stool.max_recipients_per_notification = 3
 
     def _setupDummyMailHost(self):
-        # Set up the dummy mailhost
-        self.portal._delObject('MailHost')
-        self.portal._setObject('MailHost', DummyMailHost())
-        self._mh = self.portal.MailHost
-        # Get rid of any pending notifications
-        transaction.commit()
+        """Register the dummy mailhost instead of the standard one.
+
+        No need to clean this up in beforeTearDown
+        """
+        self._mh = DummyMailHost()
+        zapi.getSiteManager().registerUtility(self._mh, IMailHost)
         self._mh.clearLog()
 
     def beforeTearDown(self):
