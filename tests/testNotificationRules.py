@@ -14,89 +14,26 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
-#
-# $Id$
 
-import os
-import sys
-import email
 import unittest
 
 import transaction
-from zope.interface import implements
-from zope.app import zapi
-
 from Acquisition import aq_parent, aq_inner
 from OFS.SimpleItem import SimpleItem
-from Products.MailHost.interfaces import IMailHost
 
 from Products.CPSSubscriptions.Notifications import NotificationRule
 
-import CPSSubscriptionsTestCase
+from CPSSubscriptionsTestCase import CPSSubscriptionsTestCase
 
-class DummyMailHost(SimpleItem):
-    """Host that stores the sent mails in a list
-
-    The list can then be inspected. This way you can see who got notified.
-    """
-
-    implements(IMailHost)
-
-    mail_log = []
-
-    def clearLog(self):
-        self.mail_log = []
-
-    def send(self, raw_message):
-        message = email.message_from_string(raw_message)
-        mfrom = message['From']
-        mto = message['To']
-        subject = message['Subject']
-        bcc = message['Bcc']
-        self.mail_log.append({'from': mfrom, 'to': mto, 'message': message,
-                              'subject': subject, 'bcc': bcc})
-
-    def _send(self, mfrom, mto, msg):
-        message = email.message_from_string(msg)
-        hfrom = message['From']
-        hto = message['To']
-        hcc = message['Cc']
-        subject = message['Subject']
-        if message['Bcc'] is not None:
-            raise ValueError("Bcc has ended up in message headers")
-        # True bcc computation: take effective mto minus To and Cc headers
-        bcc = [r.strip() for r in mto]
-        if hto:
-            for r in hto.split(','):
-                bcc.remove(r.strip())
-        if hcc:
-            for r in hto.split(','):
-                bcc.remove(r.strip())
-        bcc = ','.join(bcc)
-        self.mail_log.append({'smtp_from': mfrom, 'smtp_to': mto, 
-                              'message': message,
-                              'from': hfrom, 'to': hto,
-                              'subject': subject, 'bcc': bcc})
-
-class TestBaseNotificationRule(
-    CPSSubscriptionsTestCase.CPSSubscriptionsTestCase):
+class TestBaseNotificationRule(CPSSubscriptionsTestCase):
 
     def afterSetUp(self):
+        CPSSubscriptionsTestCase.afterSetUp(self)
         self.login('manager')
-        self._setupDummyMailHost()
         self._stool = self.portal.portal_subscriptions
         # Max recipients per mail notification at a time.
         # 20 is the default one.
         self._stool.max_recipients_per_notification = 3
-
-    def _setupDummyMailHost(self):
-        """Register the dummy mailhost instead of the standard one.
-
-        No need to clean this up in beforeTearDown
-        """
-        self._mh = DummyMailHost()
-        zapi.getSiteManager().registerUtility(self._mh, IMailHost)
-        self._mh.clearLog()
 
     def beforeTearDown(self):
         self.logout()
@@ -245,6 +182,3 @@ def test_suite():
     suite.addTest(unittest.makeSuite(TestNotificationRule))
     suite.addTest(unittest.makeSuite(TestMailNotificationRule))
     return suite
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
