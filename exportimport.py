@@ -35,8 +35,7 @@ from Products.GenericSetup.interfaces import ISetupEnviron
 
 from Products.CPSUtil.genericsetup import StrictTextElement
 from Products.CPSUtil.genericsetup import getExactNodeText
-from Products.CPSUtil.PropertiesPostProcessor import (
-    PostProcessingPropertyManagerHelpers)
+from Products.CPSUtil.property import PostProcessingPropertyManagerHelpers
 
 from Products.CPSSubscriptions.interfaces import ISubscriptionsTool
 
