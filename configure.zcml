@@ -12,8 +12,4 @@
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 
-  <five:traversable
-      class=".SubscriptionsTool.SubscriptionsTool"
-      />
-
 </configure>
