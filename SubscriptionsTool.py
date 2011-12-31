@@ -980,6 +980,7 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
         aclu = getToolByName(self, 'acl_users')
         utool = getToolByName(self, 'portal_url')
         dtool = getToolByName(self, 'portal_directories')
+        cpsmcat = getToolByName(self, 'translation_service')
         base_url = utool.getBaseUrl()
 
         def record(category, recipient, event):
@@ -993,15 +994,17 @@ class SubscriptionsTool(UniqueObject, PropertiesPostProcessor,
             if rec_dict is None:
                 category[recipient] = rec_dict = dict(id=recipient, events=[])
 
+                dir_attr = None
                 if category is members:
-                    attr = 'users_dir'
+                    dir_attr = 'users_dir'
                 elif category is groups:
-                    attr = 'groups_dir'
-                else:
-                    attr = None
+                    if recipient.startswith('role:'):
+                        rec_dict['title'] = cpsmcat(recipient)
+                    else:
+                        dir_attr = 'groups_dir'
 
-                if attr:
-                    dirname = getattr(aclu, attr)
+                if dir_attr:
+                    dirname = getattr(aclu, dir_attr)
                     dirobj = dtool[dirname]
                     try:
                         entry = dirobj.getEntry(recipient)

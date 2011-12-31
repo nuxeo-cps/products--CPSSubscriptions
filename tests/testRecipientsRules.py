@@ -559,6 +559,40 @@ class TestRoleRecipientsRules(TestBaseRecipientsRules):
         }.get
 
 
+        # role:authenticated
+        rrr.acl_users.email_for_authenticated = 'all@cps.example'
+
+        rrr.portal_membership.getMergedLocalRoles = lambda _: {
+            'group:role:Authenticated': ('FakeRole',),
+        }
+        recipients = rrr.getRecipients('fake_event', container, infos={},
+                                       expand_groups=False)
+        self.assertEquals(recipients,
+                          ({}, {'all@cps.example': 'role:Authenticated'}))
+
+        # Again with no address specified
+        rrr.acl_users.email_for_authenticated = ''
+        recipients = rrr.getRecipients('fake_event', container, infos={},
+                                       expand_groups=False)
+        self.assertEquals(recipients, ({}, {}))
+
+        # role:anoymous
+        rrr.acl_users.email_for_anonymous = 'anon@cps.example'
+
+        rrr.portal_membership.getMergedLocalRoles = lambda _: {
+            'group:role:Anonymous': ('FakeRole',),
+        }
+        recipients = rrr.getRecipients('fake_event', container, infos={},
+                                       expand_groups=False)
+        self.assertEquals(recipients,
+                          ({}, {'anon@cps.example': 'role:Anonymous'}))
+
+        # Again with no address specified
+        rrr.acl_users.email_for_anonymous = ''
+        recipients = rrr.getRecipients('fake_event', container, infos={},
+                                       expand_groups=False)
+        self.assertEquals(recipients, ({}, {}))
+
         # Just the user
         rrr.portal_membership.getMergedLocalRoles = lambda _: {
             'user:manager': ('FakeRole',),
