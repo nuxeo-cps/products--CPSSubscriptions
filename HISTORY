@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSSubscriptions 1.4.2-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2012-09-18T18:14:35
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2568: Filtering by groups in manual notification users search
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 1.4.1-CPS-3.5
 ===========================================================
 First release built by: gracinet at: 2011-11-23T19:59:06
