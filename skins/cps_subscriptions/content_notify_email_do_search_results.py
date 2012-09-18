@@ -1,5 +1,8 @@
 ##parameters=dir, datastructure, **kw
 
+import logging
+logger = logging.getLogger('Products.CPSSubscriptions.notify')
+
 datamodel = datastructure.getDataModel()
 
 original_mapping = {}
@@ -35,27 +38,35 @@ if call_context is not None:
     dict_roles = mtool.getMergedLocalRoles(call_context, withgroups=0)
     search_restricted_list = dict_roles.keys()
     users_mapping[dir.id_field] = search_restricted_list
+
+logger.info("users_mapping %r", users_mapping)
 results = dir.searchEntries(return_fields=return_fields, **users_mapping)
+logger.info("results %r", results)
+
 
 #
 # Check if there's groups with local roles
 #
 
 dict_roles = mtool.getMergedLocalRoles(call_context, withgroups=1)
-groups = [x[len('group:'):] for x in dict_roles if x.startswith('group:')]
+groups_with_roles = [x[len('group:'):] for x in dict_roles if x.startswith('group:')]
 
 # special handling of special groups to behave as the RecipientRules logic
-if "role:Authenticated" in groups and not aclu.is_role_authenticated_empty:
+if "role:Authenticated" in groups_with_roles and not aclu.is_role_authenticated_empty:
     results = dir.searchEntries(return_fields=return_fields, **original_mapping)
     skip_groups = True
-elif "role:Anonymous" in groups and not aclu.is_role_anonymous_empty:
+elif "role:Anonymous" in groups_with_roles and not aclu.is_role_anonymous_empty:
     results = dir.searchEntries(return_fields=return_fields, **original_mapping)
     skip_groups = True
 else:
     skip_groups = False
 
+# GR there are problems with sets in skin scripts
+wanted_groups = original_mapping.get('groups', ())
 if not skip_groups:
-    for group_id  in groups:
+    for group_id in groups_with_roles:
+        if not group_id in wanted_groups:
+            continue
         group_mapping = original_mapping.copy()
         group_mapping['groups'] = [group_id]
         group_member_results = dir.searchEntries(return_fields=return_fields,
