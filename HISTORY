@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSSubscriptions 1.5.1
+===========================================================
+First release built by: gracinet at: 2012-09-30T10:16:08
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- General merge from CPS-3.5 branch
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSSubscriptions 1.5.0
 ===========================================================
 First release built by: gracinet at: 2012-01-21T22:23:49
